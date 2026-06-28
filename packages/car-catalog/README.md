@@ -28,8 +28,29 @@ know what a "shortlist", "reminder", or "garage" is** — those are app concerns
 Realistically: scrape + parse PDFs + normalize. That normalized schema is the
 moat — nobody else bothers, which is why comparison sites stay shallow.
 
+## Sourcing pipeline (planned stages)
+
+1. **Fetch** — pull source docs (brochures, spec PDFs, manuals, dataset rows)
+   for a target model/trim, recording where each came from.
+2. **Parse** — extract structured fields from PDFs/HTML.
+3. **Normalize** — map into our schema; standardize units, enums, naming.
+4. **Validate** — sanity-check ranges, flag missing/low-confidence fields.
+5. **Store** — persist with provenance (source + fetched-at + confidence).
+6. **Refresh** — re-run periodically to keep data current.
+
+Start with a **narrow seed set** (one market, ~20–50 popular models) to prove
+the data shape end to end before scaling coverage.
+
+## API surface (planned, read-only)
+
+- list/filter cars (by body style, fuel, price, seats, size, ...)
+- get a trim's full spec set
+- get a model/trim's maintenance schedule
+
 ## Boundary rule (enforce in CI)
 
 `car-catalog` depends on nothing app-specific. Apps depend on `car-catalog`,
 never the reverse, never each other. Keep this clean and splitting the catalog
 into its own repo later is a ~30-minute job instead of a painful untangle.
+
+See `docs/DATA-MODEL.md` for the full entity/field breakdown.

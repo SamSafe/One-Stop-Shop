@@ -33,3 +33,29 @@ The "find specs / download & parse schedules / store on a DB" part is **not**
 garage-specific — it's the shared catalog. That logic lives in
 `packages/car-catalog`. The garage app owns only the per-user concerns:
 garages, owned vehicles, mileage, personalized schedules, reminders.
+
+## Feature ideas
+
+- Add an owned vehicle (manual entry must work even when the trim isn't in the
+  catalog yet) — this is the primary onboarding flow.
+- Load the catalog maintenance schedule and personalize it per vehicle.
+- Dashboard: upcoming items, overdue items, per-vehicle details and controls.
+- Mileage model: current mileage + avg miles/week → predict next-due dates.
+- Tracking: "did change at X, next is due at X+Y"; full service history.
+- Wear items and seasonal items (e.g. winter tires) handled distinctly.
+- Reminders (in-app first; email/push later).
+
+## MVP scope
+
+In: add vehicle, attach + personalize a schedule, dashboard of upcoming/overdue,
+mileage + date preferences, mark items done with history.
+
+Out (for MVP): multi-user garages/sharing, OSS import bridge, deep notification
+channels, cost tracking/receipts.
+
+## Personalization model
+
+Each owned vehicle gets its **own copy** of the catalog schedule so it can
+diverge per user (different mileage, skipped/added items). Next-due is computed
+from the item's mileage/time interval against the vehicle's current mileage and
+average weekly mileage. See `docs/DATA-MODEL.md` (UserVehicle / PersonalizedSchedule).

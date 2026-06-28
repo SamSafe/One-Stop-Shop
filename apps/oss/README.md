@@ -32,7 +32,28 @@ a discovered bonus, never part of OSS's pitch.
 The moat is **data depth**. Competitors stay shallow because deep structured
 per-model data is annoying to source. Build that schema and you win.
 
+## Feature ideas
+
+- Browse + filter the catalog (by body style, fuel, price, seats, size...).
+- Side-by-side comparison of 2–4 trims across the full deep spec set.
+- Decision-first ranking: user sets priority weights (budget, fuel cost, space,
+  reliability) → ranked shortlist with an explanation of *why* each ranks where.
+- "What fits my life" surfacing: seating layout, leg/head room, boot volume and
+  running costs shown up front instead of buried in a sub-tab.
+- Shortlists the user can save and revisit.
+- (Later) one-way "add to my garage" handoff into the Garage app.
+
+## MVP scope
+
+In: catalog browse/filter, side-by-side comparison with deep specs, priority-
+based ranking + explanation, save a shortlist.
+
+Out (for MVP): accounts beyond the minimum, the garage bridge, used-car
+listings, finance/insurance, reviews/editorial.
+
 ## Open decisions before building
 
-- Geography / market (UK, US, EU) — dictates models, units, data sources.
-- New cars, used, or both — different data and different buyer mindset.
+- Geography / market (UK, US, EU) — dictates models, units, data sources. (Q1)
+- New cars, used, or both — different data and different buyer mindset. (Q2)
+
+See `docs/DATA-MODEL.md`, `docs/ROADMAP.md`, `docs/DECISIONS.md`.

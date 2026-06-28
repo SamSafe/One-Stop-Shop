@@ -49,4 +49,12 @@ deploys, an external consumer, a collaborator).
 - New cars, used, or both.
 - Which app to build first (pure business call now that garage stands alone).
 
-See each subdirectory's README for detail.
+Full list with rationale in `docs/DECISIONS.md`.
+
+## Planning docs
+
+- [`docs/ROADMAP.md`](docs/ROADMAP.md) — phased plan, catalog-first.
+- [`docs/DATA-MODEL.md`](docs/DATA-MODEL.md) — entities + the shared-vs-per-app split.
+- [`docs/DECISIONS.md`](docs/DECISIONS.md) — decisions made + open questions.
+
+See each subdirectory's README for app-level detail.
