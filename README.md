@@ -33,6 +33,14 @@ It serves the built dist directory with security headers, gzip and safe cache
 policies. Put it behind HTTPS. Use the production server for release checks;
 Vite's preview command is a development convenience.
 
+To create a standalone local release archive from a clean, committed checkout:
+
+    npm run package:release
+
+The archive, checksums and source receipt are written under artifacts/. Extract
+it and run node scripts/serve.mjs; no npm install is needed for the release.
+External publication is awaiting explicit approval; see the release report.
+
 To test the container:
 
     docker build -t oss:local .

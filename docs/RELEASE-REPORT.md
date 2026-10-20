@@ -34,10 +34,20 @@ executed checks from configured automation and future operational work.
 
 ## Publication
 
-Native private publication and its deployment receipt are pending. The browser
-suite ran without retries in a disposable Ubuntu container because the host
-lacks Firefox/WebKit libraries. Browser emulation does not replace testing on
-physical iOS/Android devices.
+The release is ready for deployment. Sites registration created an owner-private,
+unpublished project, but no source push, saved version or deployment occurred.
+Automatic approval review rejected exporting the repository source and built
+artifacts to the external Sites repository because the user's request did not
+explicitly authorize that payload/destination. Publication requires explicit
+user approval; the rejection was not bypassed.
+
+A standalone local release archive is generated under artifacts/ with a source
+commit, per-file SHA-256 manifest and archive checksum. It runs with Node and
+requires no dependency installation. Its receipt is stored alongside it.
+
+The full browser suite ran without retries in a disposable Ubuntu container
+because the host lacks Firefox/WebKit libraries. Browser emulation does not
+replace testing on physical iOS/Android devices.
 
 ## Operational boundaries
 
@@ -53,5 +63,5 @@ physical iOS/Android devices.
   maintenance reminders remain outside this release.
 
 See [OPERATIONS.md](OPERATIONS.md) for deployment, monitoring, rollback and
-source-refresh instructions. A publication receipt will record the source SHA,
-version ID and URL once the native deployment succeeds.
+source-refresh instructions. A future publication receipt must record the source
+SHA, version ID and URL after a successful native deployment.

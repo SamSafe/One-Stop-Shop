@@ -52,9 +52,11 @@ sources older than 180 days fail builds. Refresh dates only after verification.
 
 ## D9 — Private first deployment
 
-The first Sites deployment uses its default owner-private audience. No public
-sharing or custom domain is implied. The same dist artifact and production
-container can be hosted elsewhere; see OPERATIONS.md.
+The proposed first Sites deployment uses its default owner-private audience.
+The project is registered but unpublished: automatic approval review requires
+explicit permission before uploading repository source/build artifacts to that
+external destination. No public sharing or custom domain is implied. The same
+dist artifact and production container can be hosted elsewhere; see OPERATIONS.md.
 
 ## Deferred decisions
 

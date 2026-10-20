@@ -18,6 +18,15 @@ certify accessibility.
 Deploy the resulting dist artifact as a unit. Keep the previous artifact and
 source SHA for rollback. Never mix old HTML with only some newly built assets.
 
+For a standalone local artifact, commit the reviewed source and run:
+
+    npm run package:release
+
+The ignored artifacts/ directory contains a .tgz archive, its SHA-256 checksum
+and a release receipt with the source commit. Extract it, verify SHA256SUMS and
+run node scripts/serve.mjs without installing dependencies. This packaging
+command performs no upload or publication.
+
 ## Production server and container
 
     npm start
@@ -49,6 +58,11 @@ Request URLs are not logged by the app; a reverse proxy/host may log them.
 The tracked .openai/hosting.json selects this release's owner-private Sites
 project and dist directory. Site identity is configuration, not a credential.
 Short-lived source credentials must stay out of the repository and artifacts.
+
+The Site is currently unpublished. Automatic approval review rejected uploading
+repository source/build artifacts to that external destination without explicit
+user authorization. Obtain that authorization before retrying publication; do
+not work around the rejected source transfer.
 
 The Sites workflow builds, synchronizes the exact source commit, packages the
 artifact and deploys a saved version. Preserve the current private audience.
