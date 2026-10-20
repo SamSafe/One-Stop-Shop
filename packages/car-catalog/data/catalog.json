@@ -1,0 +1,506 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-20",
+  "scope": "Five Canadian-market 2026 compact SUV configurations across three models; dated specification and base MSRP snapshot.",
+  "pricingNote": "Base MSRP in CAD excludes freight/PDI, levies, taxes, registration, dealer fees, options and accessories. Announcement prices may have changed; this is not an on-road quote.",
+  "sources": [
+    {
+      "id": "honda-ca-2026-crv-specs",
+      "title": "2026 CR-V Canadian specifications",
+      "url": "https://www.honda.ca/-/media/Brands/Honda/Models/CR-V/2026/PDF/2026-Honda-CR-V-Specifications---EN_v4.pdf?rev=c1a5cb87c6f74a0e9a7e0edf3a58ea2b",
+      "publisher": "Honda Canada",
+      "reviewedAt": "2026-10-20",
+      "publishedAt": null,
+      "locator": "LX and Sport Hybrid columns: power/fuel p. 1; seats p. 3; dimensions/cargo p. 4. LX uses 2WD values."
+    },
+    {
+      "id": "honda-ca-2026-crv-pricing",
+      "title": "2026 CR-V Canadian launch pricing",
+      "url": "https://hondanews.ca/en-CA/releases/release-04150531cb93adf566aca863300f8f08-rugged-electrified-and-refreshed-best-selling-honda-cr-v-hybrid-gains-new-trailsport-hybrid-trim-and-more-standard-tech",
+      "publisher": "Honda Canada",
+      "reviewedAt": "2026-10-20",
+      "publishedAt": "2025-05-28",
+      "locator": "Pricing & Fuel Economy table: LX (2WD), Sport Hybrid (AWD); base MSRP column, not selling price."
+    },
+    {
+      "id": "subaru-ca-2026-forester-specs",
+      "title": "2026 Forester Canadian specifications",
+      "url": "https://www.subaru.ca/WebPage.aspx?ModelYear=2026&Range=Forester&WebPageID=26168&WebSiteID=282",
+      "publisher": "Subaru Canada",
+      "reviewedAt": "2026-10-20",
+      "publishedAt": null,
+      "locator": "Convenience (car ID 1562) and Touring (1563): engine, drivetrain, seating, cargo, interior/exterior measurements."
+    },
+    {
+      "id": "subaru-ca-2026-forester-pricing",
+      "title": "2026 Forester Canadian base prices",
+      "url": "https://www.subaru.ca/WebPage.aspx?CarID=1562&ModelYear=2026&Range=Forester&WebPageID=26171&WebSiteID=282",
+      "publisher": "Subaru Canada",
+      "reviewedAt": "2026-10-20",
+      "publishedAt": null,
+      "locator": "Embedded base MSRP: Convenience TJACP (1562), Touring TJATP (1563). Freight, taxes and fees extra."
+    },
+    {
+      "id": "mazda-ca-2026-cx5-specs",
+      "title": "2026 CX-5 Canadian specifications",
+      "url": "https://prod.mazda.ca/en/vehicles/cx-5/specifications/?trim=NXXL86%2AA00",
+      "publisher": "Mazda Canada",
+      "reviewedAt": "2026-10-20",
+      "publishedAt": null,
+      "locator": "GX column: Specifications and Capacities; Engineering Features. Headroom without panoramic roof; height without antenna."
+    },
+    {
+      "id": "mazda-ca-2026-cx5-pricing",
+      "title": "2026 CX-5 Canadian launch pricing",
+      "url": "https://en.media.mazda.ca/2026-01-13-Mazda-Announces-Pricing-and-Packaging-for-All-New-2026-CX-5",
+      "publisher": "Mazda Canada",
+      "reviewedAt": "2026-10-20",
+      "publishedAt": "2026-01-13",
+      "locator": "Starting MSRP table: CX-5 GX; footnote 2. Freight/PDE, taxes and other charges excluded."
+    },
+    {
+      "id": "nrcan-2026-fuel",
+      "title": "2026 Canadian fuel consumption ratings",
+      "url": "https://open.canada.ca/data/dataset/98f1a129-f628-4ce4-b24d-6f16bf24dd64/resource/9df1b18d-d036-4783-a61c-99f1f75b3ac5/download/my2026-fuel-consumption-ratings.csv",
+      "publisher": "Natural Resources Canada",
+      "reviewedAt": "2026-10-20",
+      "publishedAt": "2026-10-06",
+      "locator": "2026 CR-V 1.5L/AV, CR-V Hybrid AWD 2.0L/AV, Forester AWD 2.5L/AV8 and CX-5 4WD (SIL) 2.5L/AS6. City/highway/combined L/100 km."
+    }
+  ],
+  "cars": [
+    {
+      "id": "honda-cr-v-2026-lx-fwd",
+      "make": "Honda",
+      "model": "CR-V",
+      "trim": "LX",
+      "year": 2026,
+      "market": "CA",
+      "bodyStyle": "Compact SUV",
+      "fuel": "Gasoline",
+      "drivetrain": "FWD",
+      "sourceIds": [
+        "honda-ca-2026-crv-specs",
+        "honda-ca-2026-crv-pricing",
+        "nrcan-2026-fuel"
+      ],
+      "facts": {
+        "msrpCad": {
+          "value": 36975,
+          "source": "honda-ca-2026-crv-pricing",
+          "note": "MSRP announced May 28, 2025; not a current dealer quote. Excludes freight/PDI, levies, taxes and fees."
+        },
+        "fuelCityL100km": {
+          "value": 8.4,
+          "source": "nrcan-2026-fuel",
+          "note": "Canadian certification rating; lower is better. Actual consumption varies."
+        },
+        "fuelHighwayL100km": {
+          "value": 7.1,
+          "source": "nrcan-2026-fuel",
+          "note": "Canadian certification rating; lower is better. Actual consumption varies."
+        },
+        "fuelCombinedL100km": {
+          "value": 7.8,
+          "source": "nrcan-2026-fuel",
+          "note": "Canadian certification rating; lower is better. Actual consumption varies."
+        },
+        "horsepower": {
+          "value": 190,
+          "source": "honda-ca-2026-crv-specs"
+        },
+        "seats": {
+          "value": 5,
+          "source": "honda-ca-2026-crv-specs"
+        },
+        "cargoSeatsUpL": {
+          "value": 1113,
+          "source": "honda-ca-2026-crv-specs",
+          "note": "Manufacturer-published litres; measurement standard unspecified. Seat position and measurement methods can affect comparisons."
+        },
+        "cargoSeatsDownL": {
+          "value": 2166,
+          "source": "honda-ca-2026-crv-specs",
+          "note": "Manufacturer-published litres; measurement standard unspecified. Seat position and measurement methods can affect comparisons."
+        },
+        "frontHeadroomMm": {
+          "value": 1016,
+          "source": "honda-ca-2026-crv-specs"
+        },
+        "rearHeadroomMm": {
+          "value": 970,
+          "source": "honda-ca-2026-crv-specs"
+        },
+        "frontLegroomMm": {
+          "value": 1049,
+          "source": "honda-ca-2026-crv-specs"
+        },
+        "rearLegroomMm": {
+          "value": 1042,
+          "source": "honda-ca-2026-crv-specs"
+        },
+        "lengthMm": {
+          "value": 4695,
+          "source": "honda-ca-2026-crv-specs"
+        },
+        "widthMm": {
+          "value": 2150,
+          "source": "honda-ca-2026-crv-specs",
+          "note": "Honda labels this Width; mirror position is unspecified. Not directly comparable to body-only widths."
+        },
+        "heightMm": {
+          "value": 1680,
+          "source": "honda-ca-2026-crv-specs"
+        }
+      }
+    },
+    {
+      "id": "honda-cr-v-2026-sport-hybrid-awd",
+      "make": "Honda",
+      "model": "CR-V",
+      "trim": "Sport Hybrid",
+      "year": 2026,
+      "market": "CA",
+      "bodyStyle": "Compact SUV",
+      "fuel": "Hybrid",
+      "drivetrain": "AWD",
+      "sourceIds": [
+        "honda-ca-2026-crv-specs",
+        "honda-ca-2026-crv-pricing",
+        "nrcan-2026-fuel"
+      ],
+      "facts": {
+        "msrpCad": {
+          "value": 45900,
+          "source": "honda-ca-2026-crv-pricing",
+          "note": "MSRP announced May 28, 2025; not a current dealer quote. Excludes freight/PDI, levies, taxes and fees."
+        },
+        "fuelCityL100km": {
+          "value": 6,
+          "source": "nrcan-2026-fuel",
+          "note": "Canadian certification rating; lower is better. Actual consumption varies."
+        },
+        "fuelHighwayL100km": {
+          "value": 6.9,
+          "source": "nrcan-2026-fuel",
+          "note": "Canadian certification rating; lower is better. Actual consumption varies."
+        },
+        "fuelCombinedL100km": {
+          "value": 6.4,
+          "source": "nrcan-2026-fuel",
+          "note": "Canadian certification rating; lower is better. Actual consumption varies."
+        },
+        "horsepower": {
+          "value": 204,
+          "source": "honda-ca-2026-crv-specs",
+          "note": "Combined hybrid system output; not engine-only horsepower."
+        },
+        "seats": {
+          "value": 5,
+          "source": "honda-ca-2026-crv-specs"
+        },
+        "cargoSeatsUpL": {
+          "value": 1028,
+          "source": "honda-ca-2026-crv-specs",
+          "note": "Manufacturer-published litres; measurement standard unspecified. Seat position and measurement methods can affect comparisons."
+        },
+        "cargoSeatsDownL": {
+          "value": 2030,
+          "source": "honda-ca-2026-crv-specs",
+          "note": "Manufacturer-published litres; measurement standard unspecified. Seat position and measurement methods can affect comparisons."
+        },
+        "frontHeadroomMm": {
+          "value": 970,
+          "source": "honda-ca-2026-crv-specs",
+          "note": "Moonroof-equipped trim; differs from the base configuration."
+        },
+        "rearHeadroomMm": {
+          "value": 970,
+          "source": "honda-ca-2026-crv-specs",
+          "note": "Moonroof-equipped trim; differs from the base configuration."
+        },
+        "frontLegroomMm": {
+          "value": 1049,
+          "source": "honda-ca-2026-crv-specs"
+        },
+        "rearLegroomMm": {
+          "value": 1042,
+          "source": "honda-ca-2026-crv-specs"
+        },
+        "lengthMm": {
+          "value": 4695,
+          "source": "honda-ca-2026-crv-specs"
+        },
+        "widthMm": {
+          "value": 2150,
+          "source": "honda-ca-2026-crv-specs",
+          "note": "Honda labels this Width; mirror position is unspecified. Not directly comparable to body-only widths."
+        },
+        "heightMm": {
+          "value": 1690,
+          "source": "honda-ca-2026-crv-specs"
+        }
+      }
+    },
+    {
+      "id": "subaru-forester-2026-convenience-awd",
+      "make": "Subaru",
+      "model": "Forester",
+      "trim": "Convenience",
+      "year": 2026,
+      "market": "CA",
+      "bodyStyle": "Compact SUV",
+      "fuel": "Gasoline",
+      "drivetrain": "AWD",
+      "sourceIds": [
+        "subaru-ca-2026-forester-specs",
+        "subaru-ca-2026-forester-pricing",
+        "nrcan-2026-fuel"
+      ],
+      "facts": {
+        "msrpCad": {
+          "value": 34195,
+          "source": "subaru-ca-2026-forester-pricing",
+          "note": "Current official base MSRP reviewed October 20, 2026; effective date not stated. Excludes freight/PDI, levies, taxes and fees."
+        },
+        "fuelCityL100km": {
+          "value": 9.1,
+          "source": "nrcan-2026-fuel",
+          "note": "Canadian certification rating; lower is better. Actual consumption varies."
+        },
+        "fuelHighwayL100km": {
+          "value": 7.2,
+          "source": "nrcan-2026-fuel",
+          "note": "Canadian certification rating; lower is better. Actual consumption varies."
+        },
+        "fuelCombinedL100km": {
+          "value": 8.3,
+          "source": "nrcan-2026-fuel",
+          "note": "Canadian certification rating; lower is better. Actual consumption varies."
+        },
+        "horsepower": {
+          "value": 180,
+          "source": "subaru-ca-2026-forester-specs"
+        },
+        "seats": {
+          "value": 5,
+          "source": "subaru-ca-2026-forester-specs"
+        },
+        "cargoSeatsUpL": {
+          "value": 838,
+          "source": "subaru-ca-2026-forester-specs",
+          "note": "Manufacturer-published litres; measurement standard unspecified. Seat position and measurement methods can affect comparisons."
+        },
+        "cargoSeatsDownL": {
+          "value": 2107,
+          "source": "subaru-ca-2026-forester-specs",
+          "note": "Manufacturer-published litres; measurement standard unspecified. Seat position and measurement methods can affect comparisons."
+        },
+        "frontHeadroomMm": {
+          "value": 1047,
+          "source": "subaru-ca-2026-forester-specs"
+        },
+        "rearHeadroomMm": {
+          "value": 1006,
+          "source": "subaru-ca-2026-forester-specs"
+        },
+        "frontLegroomMm": {
+          "value": 1101,
+          "source": "subaru-ca-2026-forester-specs"
+        },
+        "rearLegroomMm": {
+          "value": 1000,
+          "source": "subaru-ca-2026-forester-specs"
+        },
+        "lengthMm": {
+          "value": 4655,
+          "source": "subaru-ca-2026-forester-specs"
+        },
+        "widthMm": {
+          "value": 1830,
+          "source": "subaru-ca-2026-forester-specs",
+          "note": "Body width; width with mirrors extended is 2,063 mm."
+        },
+        "heightMm": {
+          "value": 1730,
+          "source": "subaru-ca-2026-forester-specs"
+        }
+      }
+    },
+    {
+      "id": "subaru-forester-2026-touring-awd",
+      "make": "Subaru",
+      "model": "Forester",
+      "trim": "Touring",
+      "year": 2026,
+      "market": "CA",
+      "bodyStyle": "Compact SUV",
+      "fuel": "Gasoline",
+      "drivetrain": "AWD",
+      "sourceIds": [
+        "subaru-ca-2026-forester-specs",
+        "subaru-ca-2026-forester-pricing",
+        "nrcan-2026-fuel"
+      ],
+      "facts": {
+        "msrpCad": {
+          "value": 39195,
+          "source": "subaru-ca-2026-forester-pricing",
+          "note": "Current official base MSRP reviewed October 20, 2026; effective date not stated. Excludes freight/PDI, levies, taxes and fees."
+        },
+        "fuelCityL100km": {
+          "value": 9.1,
+          "source": "nrcan-2026-fuel",
+          "note": "Canadian certification rating; lower is better. Actual consumption varies."
+        },
+        "fuelHighwayL100km": {
+          "value": 7.2,
+          "source": "nrcan-2026-fuel",
+          "note": "Canadian certification rating; lower is better. Actual consumption varies."
+        },
+        "fuelCombinedL100km": {
+          "value": 8.3,
+          "source": "nrcan-2026-fuel",
+          "note": "Canadian certification rating; lower is better. Actual consumption varies."
+        },
+        "horsepower": {
+          "value": 180,
+          "source": "subaru-ca-2026-forester-specs"
+        },
+        "seats": {
+          "value": 5,
+          "source": "subaru-ca-2026-forester-specs"
+        },
+        "cargoSeatsUpL": {
+          "value": 779,
+          "source": "subaru-ca-2026-forester-specs",
+          "note": "Manufacturer-published litres; measurement standard unspecified. Seat position and measurement methods can affect comparisons."
+        },
+        "cargoSeatsDownL": {
+          "value": 1957,
+          "source": "subaru-ca-2026-forester-specs",
+          "note": "Manufacturer-published litres; measurement standard unspecified. Seat position and measurement methods can affect comparisons."
+        },
+        "frontHeadroomMm": {
+          "value": 1016,
+          "source": "subaru-ca-2026-forester-specs",
+          "note": "Moonroof-equipped trim; differs from the base configuration."
+        },
+        "rearHeadroomMm": {
+          "value": 957,
+          "source": "subaru-ca-2026-forester-specs",
+          "note": "Moonroof-equipped trim; differs from the base configuration."
+        },
+        "frontLegroomMm": {
+          "value": 1101,
+          "source": "subaru-ca-2026-forester-specs"
+        },
+        "rearLegroomMm": {
+          "value": 1000,
+          "source": "subaru-ca-2026-forester-specs"
+        },
+        "lengthMm": {
+          "value": 4655,
+          "source": "subaru-ca-2026-forester-specs"
+        },
+        "widthMm": {
+          "value": 1830,
+          "source": "subaru-ca-2026-forester-specs",
+          "note": "Body width; width with mirrors extended is 2,063 mm."
+        },
+        "heightMm": {
+          "value": 1730,
+          "source": "subaru-ca-2026-forester-specs"
+        }
+      }
+    },
+    {
+      "id": "mazda-cx-5-2026-gx-awd",
+      "make": "Mazda",
+      "model": "CX-5",
+      "trim": "GX",
+      "year": 2026,
+      "market": "CA",
+      "bodyStyle": "Compact SUV",
+      "fuel": "Gasoline",
+      "drivetrain": "AWD",
+      "sourceIds": [
+        "mazda-ca-2026-cx5-specs",
+        "mazda-ca-2026-cx5-pricing",
+        "nrcan-2026-fuel"
+      ],
+      "facts": {
+        "msrpCad": {
+          "value": 36300,
+          "source": "mazda-ca-2026-cx5-pricing",
+          "note": "MSRP announced January 13, 2026; not a current dealer quote. Excludes freight/PDE, levies, taxes and fees."
+        },
+        "fuelCityL100km": {
+          "value": 9.9,
+          "source": "nrcan-2026-fuel",
+          "note": "Canadian certification rating; lower is better. Actual consumption varies."
+        },
+        "fuelHighwayL100km": {
+          "value": 7.9,
+          "source": "nrcan-2026-fuel",
+          "note": "Canadian certification rating; lower is better. Actual consumption varies."
+        },
+        "fuelCombinedL100km": {
+          "value": 9,
+          "source": "nrcan-2026-fuel",
+          "note": "Canadian certification rating; lower is better. Actual consumption varies."
+        },
+        "horsepower": {
+          "value": 187,
+          "source": "mazda-ca-2026-cx5-specs"
+        },
+        "seats": {
+          "value": 5,
+          "source": "mazda-ca-2026-cx5-specs"
+        },
+        "cargoSeatsUpL": {
+          "value": 954,
+          "source": "mazda-ca-2026-cx5-specs",
+          "note": "Manufacturer-published litres; measurement standard unspecified. Seat position and measurement methods can affect comparisons."
+        },
+        "cargoSeatsDownL": {
+          "value": 1882,
+          "source": "mazda-ca-2026-cx5-specs",
+          "note": "Manufacturer-published litres; measurement standard unspecified. Seat position and measurement methods can affect comparisons."
+        },
+        "frontHeadroomMm": {
+          "value": 1007,
+          "source": "mazda-ca-2026-cx5-specs",
+          "note": "GX without panoramic roof."
+        },
+        "rearHeadroomMm": {
+          "value": 1020,
+          "source": "mazda-ca-2026-cx5-specs",
+          "note": "GX without panoramic roof."
+        },
+        "frontLegroomMm": {
+          "value": 1058,
+          "source": "mazda-ca-2026-cx5-specs"
+        },
+        "rearLegroomMm": {
+          "value": 1012,
+          "source": "mazda-ca-2026-cx5-specs"
+        },
+        "lengthMm": {
+          "value": 4690,
+          "source": "mazda-ca-2026-cx5-specs"
+        },
+        "widthMm": {
+          "value": 1892,
+          "source": "mazda-ca-2026-cx5-specs",
+          "note": "Width with mirrors folded; mirrors in driving position measure 2,077 mm."
+        },
+        "heightMm": {
+          "value": 1690,
+          "source": "mazda-ca-2026-cx5-specs",
+          "note": "Without antenna."
+        }
+      }
+    }
+  ]
+}
