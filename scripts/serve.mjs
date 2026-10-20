@@ -7,6 +7,10 @@ import { createGzip } from 'node:zlib';
 import { fileURLToPath } from 'node:url';
 
 const root = await realpath(fileURLToPath(new URL('../dist', import.meta.url)));
+// Refuse to advertise readiness for an absent or incomplete build.
+if (!(await stat(path.join(root, 'index.html'))).isFile()) {
+  throw new Error('Build index.html is missing. Run npm run build before starting.');
+}
 const port = Number(process.env.PORT ?? 8080);
 const host = process.env.HOST ?? '0.0.0.0';
 if (!Number.isInteger(port) || port < 1 || port > 65535)
@@ -24,7 +28,7 @@ const types = {
 };
 const securityHeaders = {
   'Content-Security-Policy':
-    "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests",
+    "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'",
   'X-Content-Type-Options': 'nosniff',
   'X-Frame-Options': 'DENY',
   'Referrer-Policy': 'strict-origin-when-cross-origin',
@@ -118,8 +122,11 @@ const server = createServer(
       if (compress) await pipeline(file, createGzip(), response);
       else await pipeline(file, response);
     } catch (error) {
-      if (!response.headersSent && !response.destroyed) reply(404, 'Not found');
-      else if (error.code !== 'ERR_STREAM_PREMATURE_CLOSE') response.destroy();
+      if (!response.headersSent && !response.destroyed) {
+        const missing = ['ENOENT', 'ENOTDIR'].includes(error.code);
+        if (!missing) console.error('Static response failed.', error.code ?? 'unknown');
+        reply(missing ? 404 : 500, missing ? 'Not found' : 'Unable to serve the request');
+      } else if (error.code !== 'ERR_STREAM_PREMATURE_CLOSE') response.destroy();
     }
   },
 );

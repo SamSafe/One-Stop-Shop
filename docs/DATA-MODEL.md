@@ -1,71 +1,57 @@
-# Data model (planning)
+# Data contract
 
-Conceptual model only — entities and fields, not schema/DDL. The dividing line
-is the architectural rule: **shared catalog data vs. per-app data.** The catalog
-never references app concepts; apps reference the catalog by id.
+This describes the implemented v1 contract. The authoritative schema is
+[packages/car-catalog/src/schema.ts](../packages/car-catalog/src/schema.ts).
 
-## Shared — `packages/car-catalog`
+## Shared catalog
 
-The canonical, app-agnostic source of truth about cars.
+The catalog contains schemaVersion, reviewedAt, scope, pricingNote, sources and
+cars. Each car identifies make, model, model year, exact trim, Canadian market,
+body style, powertrain and drivetrain with a stable ID.
 
-### Make
-Manufacturer. Fields: name, country, logo.
+Facts are base MSRP in CAD; city/highway/combined L/100 km; horsepower; seating;
+cargo with seats up/down in litres; front/rear headroom and legroom in mm; and
+published length, width and height in mm.
 
-### Model
-A nameplate under a make (e.g. "Golf"). Fields: make, name, body style,
-generation, production years.
+Each fact contains:
 
-### Trim / Variant
-The unit users actually compare. Most spec depth lives here. Fields grouped:
+- value: a finite number within a field-specific range, or null.
+- source: an official source ID; required for every known value.
+- note: measurement method, price basis, trim caveat or missing-data explanation.
+  Required when the value is null.
 
-- **Identity:** model, name, model year, market(s).
-- **Dimensions:** length, width, height, wheelbase, kerb weight, boot/cargo
-  volume (seats up / down), towing capacity.
-- **Interior / space:** seat count, seating layout (e.g. 2+3, 2+3+2), front/rear
-  leg room, front/rear head room, shoulder room, ISOFIX points.
-- **Powertrain:** fuel type (petrol/diesel/hybrid/PHEV/BEV), engine/motor,
-  displacement, power (kW/hp), torque, transmission, drivetrain (FWD/RWD/AWD),
-  battery capacity + range (if electric), 0–100, top speed.
-- **Running costs:** fuel economy / efficiency, CO2, fuel tank size, insurance
-  group, est. annual running cost, warranty.
-- **Technology:** infotainment (screen size, CarPlay/Android Auto), driver-assist
-  features, connectivity, key comfort/safety features.
-- **Safety:** NCAP/IIHS rating, airbag count, assist systems.
+Sources contain a stable ID, title, publisher, HTTPS URL, field/table locator,
+publishedAt (nullable) and reviewedAt. Only reviewed official domains are allowed.
+Publication and review dates have different meanings. An undated source is not
+assigned a fictional publication date. MSRP announcement dates remain visible.
 
-### MaintenanceSchedule  *(feeds the Garage app, lives in the catalog)*
-Per-model/trim service plan parsed from manuals. A schedule is a list of
-**ScheduleItem**s. Fields per item: name (e.g. "engine oil & filter"),
-interval-by-mileage, interval-by-time, category (routine / wear / seasonal /
-inspection), notes. The catalog stores the *generic* schedule; the Garage app
-personalizes it per user vehicle (see below).
+Car IDs and exact configurations are unique. Every referenced source must exist.
+Seat counts must be integers. Folded-seat cargo cannot be smaller than seats-up
+cargo. Unknown values never become zero.
 
-### Source / provenance
-Where each datum came from (manufacturer brochure, manual, dataset) + fetched-at
-+ confidence. Important for trust and for re-scraping.
+Measurements are manufacturer-published. Honda width has an unspecified mirror
+position, Subaru uses body width and Mazda GX uses folded-mirror width. These
+notes must accompany the values. Cargo measurement standards are not harmonized.
 
-## Per-app — `apps/oss`
+## OSS state
 
-Nothing here is in the catalog; all of it references catalog ids.
+- Filters: search, maximum base MSRP, powertrain, drivetrain and saved-only.
+- Priorities: integer weights 0–5 for purchase price, consumption, seats-up cargo
+  and rear legroom. Fixed scales live in apps/oss/src/domain.ts.
+- Shortlist: versioned local-storage record containing known catalog IDs only.
+  Corrupt, retired, duplicate and unknown IDs are handled safely.
+- Comparison: at most four known IDs and optional weights in URL parameters.
+  A shared link restores the same cars and priorities.
+- Fuel estimate: annual kilometres / 100 × combined L/100 km × CAD/litre.
+  Inputs remain in memory and are excluded from shared URLs.
 
-- **Shortlist / Comparison:** a user-saved set of trim ids being compared.
-- **Priorities:** the user's stated weights (budget, fuel cost, space,
-  reliability, etc.) used to rank — the core of the decision-first UX.
-- **Saved searches** (optional later).
+There is no account database or server-side shortlist in v1. Comparison query
+parameters are visible to link recipients and may appear in hosting access logs.
 
-## Per-app — `apps/garage`
+## Future Garage model
 
-- **Garage:** a user's collection of owned vehicles.
-- **UserVehicle:** an owned car. References a catalog trim id (or a manual entry
-  if the trim isn't in the catalog yet). Fields: nickname, current mileage,
-  avg miles/week, purchase date, plate (optional).
-- **PersonalizedSchedule:** a copy of the catalog `MaintenanceSchedule`
-  attached to a UserVehicle so it can diverge per user. Each item tracks:
-  last-done (date + mileage), next-due (computed from intervals + avg mileage),
-  status (done / upcoming / overdue), and history.
-- **Reminder:** derived from PersonalizedSchedule items approaching due.
-- **Preferences:** date vs. mileage emphasis, notification channels.
-
-## Cross-cutting
-
-- **User / Account:** shared identity so a user *can* use both apps, but neither
-  app requires the other. Belongs to a shared auth package, not the catalog.
+Garage, owned vehicles, mileage observations, service history, personalized
+schedules and reminders remain app-specific future entities. A maintenance
+implementation must define calendar-versus-distance deadlines, unknown service
+history, severe-use schedules and source-version updates before shipping.
+Neither maintenance data nor reminders are part of this release.

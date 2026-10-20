@@ -79,11 +79,7 @@
       "bodyStyle": "Compact SUV",
       "fuel": "Gasoline",
       "drivetrain": "FWD",
-      "sourceIds": [
-        "honda-ca-2026-crv-specs",
-        "honda-ca-2026-crv-pricing",
-        "nrcan-2026-fuel"
-      ],
+      "sourceIds": ["honda-ca-2026-crv-specs", "honda-ca-2026-crv-pricing", "nrcan-2026-fuel"],
       "facts": {
         "msrpCad": {
           "value": 36975,
@@ -164,11 +160,7 @@
       "bodyStyle": "Compact SUV",
       "fuel": "Hybrid",
       "drivetrain": "AWD",
-      "sourceIds": [
-        "honda-ca-2026-crv-specs",
-        "honda-ca-2026-crv-pricing",
-        "nrcan-2026-fuel"
-      ],
+      "sourceIds": ["honda-ca-2026-crv-specs", "honda-ca-2026-crv-pricing", "nrcan-2026-fuel"],
       "facts": {
         "msrpCad": {
           "value": 45900,
@@ -424,11 +416,7 @@
       "bodyStyle": "Compact SUV",
       "fuel": "Gasoline",
       "drivetrain": "AWD",
-      "sourceIds": [
-        "mazda-ca-2026-cx5-specs",
-        "mazda-ca-2026-cx5-pricing",
-        "nrcan-2026-fuel"
-      ],
+      "sourceIds": ["mazda-ca-2026-cx5-specs", "mazda-ca-2026-cx5-pricing", "nrcan-2026-fuel"],
       "facts": {
         "msrpCad": {
           "value": 36300,

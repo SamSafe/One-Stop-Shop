@@ -10,7 +10,7 @@ export default defineConfig({
         // React's development preamble and Vite HMR need inline scripts/websockets.
         // Production HTML keeps the strict policy, supplemented by server headers.
         return context.server
-          ? html.replace(/\s*<meta http-equiv="Content-Security-Policy"[^>]+>/, '')
+          ? html.replace(/\s*<meta\b[^>]*http-equiv="Content-Security-Policy"[^>]*>/, '')
           : html;
       },
     },

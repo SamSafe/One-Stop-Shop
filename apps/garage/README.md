@@ -1,9 +1,9 @@
 # Garage — car maintenance reminder app
 
-Standalone app. Build a garage of the cars you *own* and get reminded to do
+Standalone app. Build a garage of the cars you _own_ and get reminded to do
 maintenance at the right intervals. Must stand entirely on its own — most users
-already own a car and have never heard of OSS. One-sentence pitch: *"track your
-cars, never miss a service."*
+already own a car and have never heard of OSS. One-sentence pitch: _"track your
+cars, never miss a service."_
 
 Adding a car you already own is the **primary** flow. Importing a car from OSS
 is a rare convenience, never an assumption.

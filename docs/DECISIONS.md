@@ -1,45 +1,65 @@
-# Decisions & open questions
+# Decisions
 
-A running log of product/architecture decisions. Newest decisions appended;
-open questions tracked at the bottom until resolved.
+## D1 — Two products with separate purposes
 
-## Decided
+OSS supports buying decisions; Garage will support ownership. Garage must work
+for someone who has never used OSS. It is currently documentation only.
 
-### D1 — Two separate apps, one shared backend
-Build two independently-marketed apps (OSS = buy, Garage = own) on top of one
-shared `car-catalog` backend. Share the *plumbing* (data, auth, design system),
-never the *pitch*. Each app must justify itself in one sentence to a user who
-has never heard of the other.
-_Rationale: different stages of the same ownership lifecycle, but the garage app
-must stand alone — most users already own a car and won't enter through a buying
-tool._
+## D2 — Monorepo with an enforced boundary
 
-### D2 — Monorepo now, not 3 repos
-Single repo with an enforced package boundary around `car-catalog` (it imports
-nothing app-specific; apps never import each other). Split the catalog into its
-own repo only when a concrete reason appears (independent deploys, an external
-consumer, a collaborator).
-_Rationale: the dependency tangle is prevented by the boundary, not by repo
-separation; a clean package splits out in ~30 min, while separate repos tax the
-daily schema churn with publish/version/reinstall cycles._
+car-catalog imports no application. Applications never import one another.
+Repository separation is deferred until an independent consumer or deployment
+need justifies it. Boundary checks run in CI.
 
-### D3 — Garage app does not assume OSS
-Adding an owned car is the primary flow. Importing a car chosen in OSS is a
-one-way convenience the user may discover, never a prerequisite.
+## D3 — Manual owned-vehicle entry remains Garage's primary future flow
 
-### D4 — OSS competes on data depth
-Differentiation is structured depth competitors skip (dimensions, seating, leg/
-head room, boot, power/torque, drivetrain, tech, running costs) and a
-decision-first UX (rank by stated priorities + explain why) over dumb spec
-grids.
+The OSS handoff is optional future convenience, not Garage onboarding.
 
-## Open questions
+## D4 — Explain decisions with sourced data
 
-| # | Question | Why it matters | Status |
-|---|----------|----------------|--------|
-| Q1 | Target market: UK / US / EU? | Dictates models, units, regulations, and which data sources are viable. Painful to retrofit. | OPEN |
-| Q2 | New cars, used, or both? | Different data shape (trims vs. listings) and different buyer mindset. | OPEN |
-| Q3 | Which app ships first? | Pure business call now that garage stands alone. Garage = lower onboarding friction; OSS = clearer active-intent. | OPEN |
-| Q4 | Tech stack (FE framework, DB, hosting)? | Affects monorepo tooling and the catalog API shape. | OPEN |
-| Q5 | How are maintenance schedules sourced legally? | Manuals may have licensing constraints; need a defensible sourcing story. | OPEN |
-| Q6 | Monetization for each app? | Shapes feature priorities (e.g. affiliate/dealer leads for OSS, subscription for garage). | OPEN |
+The product hypothesis is that clear priorities and useful, trustworthy details
+help buyers form a shortlist. Data depth as a competitive advantage still needs
+user validation; it is not an established moat.
+
+## D5 — Canada first, OSS first
+
+Confirmed by the user on 2026-10-20. Use Canadian trims, CAD, L/100 km, litres and
+millimetres. The first release compares model-year 2026 compact SUV configurations
+and base MSRP snapshots. It does not sell cars, show live stock or value used
+listings. Do not derive Canadian specifications from a US configuration.
+
+## D6 — Static application and curated data for v1
+
+React + TypeScript + Vite, npm workspaces, a validated JSON catalog and a
+dependency-free Node production server or static hosting. No runtime database,
+auth, API keys or external integration is required. Shortlists stay on device.
+This keeps the first product operable while gathering evidence for a backend.
+
+## D7 — Transparent ranking with explicit missing values
+
+Four priorities, integer weights, fixed normalization scales and deterministic
+tie handling. Lower price and fuel consumption are better. Missing an active
+metric leaves a car unscored. Reliability, safety and total ownership cost are
+not inferred from proxies.
+
+## D8 — Publish a small, dated snapshot
+
+Five exact configurations, with source URLs, locators, notes and review dates.
+Honda and Mazda prices come from dated announcements; Subaru is a current
+official base-price snapshot. All exclude freight/PDI and other charges.
+NRCan independently supplies Canadian fuel consumption. The UI warns at 90 days;
+sources older than 180 days fail builds. Refresh dates only after verification.
+
+## D9 — Private first deployment
+
+The first Sites deployment uses its default owner-private audience. No public
+sharing or custom domain is implied. The same dist artifact and production
+container can be hosted elsewhere; see OPERATIONS.md.
+
+## Deferred decisions
+
+Maintenance data sourcing and licensing, the Garage stack, account sync,
+commercial distribution, monetization and wider-market coverage need separate
+product decisions. Resolve source rights before redistributing documents or
+licensed media; the current catalog stores factual values and source links,
+without manufacturer PDFs or imagery.

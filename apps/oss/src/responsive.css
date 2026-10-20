@@ -566,7 +566,7 @@
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  :root html {
+  :root {
     scroll-behavior: auto;
   }
   :root *,

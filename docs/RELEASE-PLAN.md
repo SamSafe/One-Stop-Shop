@@ -1,12 +1,13 @@
 # OSS v1 release contract
 
-Status: implementation in progress. This document defines the release boundary;
-it is not a claim that the checks below have passed.
+Status: implemented; release verification and publication are recorded in
+[RELEASE-REPORT.md](RELEASE-REPORT.md).
 
 ## Product decisions
 
 - First product: OSS. Garage remains planned and has no runtime dependency.
-- First market: United States. Prices are USD and fuel economy uses US gallons.
+- First market: Canada (confirmed by the user). Prices are CAD, fuel consumption
+  is L/100 km, cargo is litres and dimensions are millimetres.
 - Catalog: model-year 2026 compact SUV configurations, curated from manufacturer
   publications. This is a dated specification/MSRP snapshot, not live inventory,
   a used-car valuation, a dealer quote, or comprehensive market coverage.
@@ -14,8 +15,9 @@ it is not a claim that the checks below have passed.
   validated at build time and bundled with the application. No runtime database,
   API keys, accounts, third-party tracking, or backend operations are necessary
   for this release. This deliberately reduces operating complexity.
-- Save shortlists on the user's device. Share comparisons through URLs, without
-  sending private data to a server.
+- Save shortlists on the user's device. Share comparisons through URLs.
+  There is no application database or cloud shortlist sync; URL parameters are
+  visible to recipients and may appear in host access logs.
 
 ## Required behavior
 

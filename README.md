@@ -1,60 +1,69 @@
-# One Stop Shop — platform
+# One Stop Shop — OSS
 
-A monorepo for two **separate, separately-marketed** car apps that share one
-invisible backend.
+A Canadian car comparison app that explains how each configuration fits your
+priorities. The first release covers five verified 2026 compact SUV configurations
+across Honda, Subaru and Mazda. Prices are CAD base MSRP, fuel consumption is
+L/100 km, cargo is litres and dimensions are millimetres.
 
-## The lifecycle
+Browse and filter, set priority weights, compare 2–4 cars, estimate annual fuel
+costs, share a comparison URL and save a shortlist on your device. Every published
+numeric specification has an official source. This is a dated research catalog;
+it does not claim live inventory, current dealer prices, reliability ratings or
+complete market coverage.
 
-The two apps are the same person at two stages of car ownership:
+## Run locally
 
-- **buy** → `apps/oss` — One Stop Shop: deep car comparison / buying tool.
-- **own** → `apps/garage` — maintenance reminder app, a garage of cars you own.
+Requires Node 22.12+ or Node 24; CI and Docker use Node 22.22.2.
 
-Each is a standalone product with its own front door, onboarding, and marketing.
-Customers never need to know they're related. The only link a user might
-discover is a one-way bridge: choose a car in OSS → "add to my garage".
+    npm ci
+    npm run dev
+
+The development server runs at http://127.0.0.1:5173.
+
+## Verify and serve the release
+
+    npm run check
+    npx playwright install chromium firefox webkit
+    npm run test:e2e
+    npm audit --audit-level=moderate
+    npm start
+
+The production server defaults to port 8080; configure PORT and HOST as needed.
+It serves the built dist directory with security headers, gzip and safe cache
+policies. Put it behind HTTPS. Use the production server for release checks;
+Vite's preview command is a development convenience.
+
+To test the container:
+
+    docker build -t oss:local .
+    docker run --rm --read-only --cap-drop ALL --security-opt no-new-privileges -p 127.0.0.1:8080:8080 oss:local
 
 ## Architecture
 
-Share the **plumbing**, not the **pitch**.
+- apps/oss: React/TypeScript UI and app-specific filtering, ranking, URL state
+  and device persistence.
+- packages/car-catalog: versioned Canadian data, runtime schema, field-level
+  provenance, units and validation. It never imports an application.
+- apps/garage: future maintenance product; documentation only.
+- scripts: catalog and boundary checks plus a dependency-free production server.
+- tests/e2e: real browser journeys, accessibility and HTTP production checks.
 
-```
-one-stop-shop/
-  packages/
-    car-catalog/      # SHARED backend: specs + maintenance schedules + scraping
-    ui/               # (later) shared design system
-  apps/
-    oss/              # comparison app — own frontend + BFF
-    garage/           # maintenance app — own frontend + BFF
-```
+A static catalog is bundled at build time. There is no runtime database,
+application account service, third-party analytics or secret configuration.
+Shortlists use local storage; comparisons and weights use URL parameters.
+Garage remains independent and will reuse the catalog when it is implemented.
 
-- **Shared:** the car catalog (one `Car` record carries both specs and
-  maintenance schedules), auth/accounts, design system.
-- **Not shared:** each app's own data (OSS shortlists/comparisons vs. garage's
-  owned vehicles/mileage/reminders), the frontends, marketing/onboarding.
+## Operating the project
 
-## Why monorepo (not 3 repos) for now
+- [Release scope](docs/RELEASE-PLAN.md)
+- [Deployment, monitoring and rollback](docs/OPERATIONS.md)
+- [Verified catalog research and sources](docs/CATALOG-RESEARCH.md)
+- [Implemented data contract](docs/DATA-MODEL.md)
+- [Decisions](docs/DECISIONS.md)
+- [Roadmap](docs/ROADMAP.md)
+- [Release verification](docs/RELEASE-REPORT.md)
 
-The dependency tangle you want to avoid is prevented by the **boundary**
-(`car-catalog` imports nothing app-specific; apps never import each other), not
-by repo separation. A clean package is ~30 min to split out later; a tangled one
-is the painful part. Meanwhile the catalog schema will churn daily early on —
-separate repos tax every change with publish/version/reinstall. Split
-`car-catalog` into its own repo only when there's a real reason (independent
-deploys, an external consumer, a collaborator).
-
-## Open decisions
-
-- Market: UK / US / EU (dictates models, units, data sources).
-- New cars, used, or both.
-- Which app to build first (pure business call now that garage stands alone).
-
-Full list with rationale in `docs/DECISIONS.md`.
-
-## Planning docs
-
-- [`docs/ROADMAP.md`](docs/ROADMAP.md) — phased plan, catalog-first.
-- [`docs/DATA-MODEL.md`](docs/DATA-MODEL.md) — entities + the shared-vs-per-app split.
-- [`docs/DECISIONS.md`](docs/DECISIONS.md) — decisions made + open questions.
-
-See each subdirectory's README for app-level detail.
+CI checks package boundaries, unit tests, catalog freshness, types, production
+build, dependencies and browser journeys, then smoke-tests a non-root container.
+Weekly scheduled runs catch stale data and new advisories. Dependency updates
+are proposed through Dependabot.

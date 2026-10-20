@@ -658,7 +658,11 @@ export function App() {
             className="shortlist-nav"
             onClick={() => {
               setFilters((previous) => ({ ...previous, savedOnly: !previous.savedOnly }));
-              document.getElementById('cars')?.scrollIntoView({ behavior: 'smooth' });
+              document.getElementById('cars')?.scrollIntoView({
+                behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches
+                  ? 'auto'
+                  : 'smooth',
+              });
             }}
             aria-pressed={filters.savedOnly}
           >

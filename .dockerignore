@@ -1,0 +1,15 @@
+node_modules
+**/node_modules
+dist
+.git
+.env*
+.aws
+.codex
+.agents
+.sites-runtime
+.openai
+test-results
+playwright-report
+coverage
+data/raw
+data/tmp
