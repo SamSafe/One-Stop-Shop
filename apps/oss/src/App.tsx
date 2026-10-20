@@ -1,0 +1,1087 @@
+import { useEffect, useMemo, useRef, useState } from 'react';
+import { catalog, metricDefinitions } from '@oss/car-catalog';
+import type { Car, Fact, Metric } from '@oss/car-catalog';
+import {
+  annualFuelCost,
+  defaultFilters,
+  defaultWeights,
+  filterCars,
+  fullName,
+  loadShortlist,
+  parseSharedState,
+  priorityDefinitions,
+  priorityKeys,
+  rankCars,
+  saveShortlist,
+  scoreCar,
+  serializeSharedState,
+  storageKey,
+} from './domain';
+import type { Filters, Weights } from './domain';
+
+const cars = catalog.cars;
+const sources = new Map(catalog.sources.map((source) => [source.id, source]));
+const currency = new Intl.NumberFormat('en-CA', {
+  style: 'currency',
+  currency: 'CAD',
+  maximumFractionDigits: 0,
+});
+const formatDate = (date: string) =>
+  new Intl.DateTimeFormat('en-CA', {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric',
+    timeZone: 'UTC',
+  }).format(new Date(`${date}T00:00:00Z`));
+const reviewedDate = formatDate(catalog.reviewedAt);
+const metricKeys = Object.keys(metricDefinitions) as Metric[];
+const initialShared = parseSharedState(window.location.search, cars);
+
+function Icon({
+  name,
+  size = 20,
+}: {
+  name: 'arrow' | 'save' | 'search' | 'close' | 'check' | 'link' | 'sliders' | 'garage';
+  size?: number;
+}) {
+  const paths = {
+    arrow: (
+      <>
+        <path d="M4 12h16m-6-6 6 6-6 6" />
+      </>
+    ),
+    save: <path d="M6 4h12v17l-6-4-6 4V4Z" />,
+    search: (
+      <>
+        <circle cx="10.5" cy="10.5" r="6.5" />
+        <path d="m16 16 5 5" />
+      </>
+    ),
+    close: <path d="m6 6 12 12M6 18 18 6" />,
+    check: <path d="m5 12 4 4L19 6" />,
+    link: (
+      <>
+        <path d="m9 15 6-6m-7 2-2 2a4 4 0 0 0 6 6l2-2m-4-10 2-2a4 4 0 0 1 6 6l-2 2" />
+      </>
+    ),
+    sliders: (
+      <>
+        <path d="M4 7h16M4 17h16M9 4v6m6 4v6" />
+      </>
+    ),
+    garage: (
+      <>
+        <path d="M3 21V9l9-6 9 6v12H3Zm4 0V10h10v11M7 14h10M7 18h10" />
+      </>
+    ),
+  };
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.7"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      {paths[name]}
+    </svg>
+  );
+}
+
+function CarArt({ make }: { make: string }) {
+  return (
+    <svg
+      className={`car-art car-${make.toLowerCase()}`}
+      viewBox="0 0 420 180"
+      fill="none"
+      aria-hidden="true"
+    >
+      <ellipse cx="212" cy="149" rx="164" ry="9" fill="currentColor" opacity=".09" />
+      <path
+        d="M37 119 48 91l41-13 43-41h124l64 40 43 11 19 28-4 24h-28a33 33 0 0 0-66 0H132a33 33 0 0 0-66 0H40l-3-21Z"
+        className="car-body"
+      />
+      <path d="m103 78 38-33h108l53 33H103Z" fill="#263d43" />
+      <path d="m144 48-33 28h73V48h-40Zm49 0v28h95l-43-28h-52Z" fill="#d1dfdc" opacity=".8" />
+      <path
+        d="M49 102h37m247-6 28 9M194 87v42m-90-43 17 15m103-14h14m-91 0h14M45 125h29m271 0h29"
+        stroke="#263d43"
+        strokeWidth="3"
+        strokeLinecap="round"
+        opacity=".6"
+      />
+      <path d="M87 79h232M122 39h134" stroke="#263d43" strokeWidth="3" opacity=".4" />
+      {[99, 317].map((cx) => (
+        <g key={cx}>
+          <circle cx={cx} cy="139" r="25" fill="#203032" />
+          <circle cx={cx} cy="139" r="15" fill="#dce1df" />
+          <circle cx={cx} cy="139" r="6" fill="#6e7c7a" />
+          <path d={`M${cx} 125v28m-14-14h28`} stroke="#9aa8a4" strokeWidth="3" />
+        </g>
+      ))}
+      <path d="m366 105 10 12h-22v-12h12ZM46 99h17v9H43l3-9Z" fill="#fff9e3" />
+    </svg>
+  );
+}
+
+function displayFact(metric: Metric, fact: Fact): string {
+  if (fact.value === null) return 'Not verified';
+  if (metric === 'msrpCad') return currency.format(fact.value);
+  return `${fact.value.toLocaleString('en-CA', { maximumFractionDigits: 1 })} ${metricDefinitions[metric].unit}`;
+}
+
+function SourcedFact({ metric, fact }: { metric: Metric; fact: Fact }) {
+  const source = fact.source ? sources.get(fact.source) : null;
+  return (
+    <>
+      {source ? (
+        <a
+          className="fact-link"
+          href={source.url}
+          target="_blank"
+          rel="noreferrer"
+          aria-label={`${metricDefinitions[metric].label}: ${displayFact(metric, fact)}. Source: ${source.publisher} (opens in new tab)`}
+        >
+          {displayFact(metric, fact)} <span aria-hidden="true">↗</span>
+        </a>
+      ) : (
+        <span>{displayFact(metric, fact)}</span>
+      )}
+      {fact.note && <small className="fact-note">{fact.note}</small>}
+    </>
+  );
+}
+
+function readSaved(): { ids: string[]; warning: string | null } {
+  try {
+    return loadShortlist(window.localStorage, cars);
+  } catch {
+    return {
+      ids: [],
+      warning: 'Device storage is unavailable. Your shortlist will work for this visit.',
+    };
+  }
+}
+
+function Card({
+  car,
+  index,
+  weights,
+  selected,
+  saved,
+  atLimit,
+  onCompare,
+  onSave,
+}: {
+  car: Car;
+  index: number;
+  weights: Weights;
+  selected: boolean;
+  saved: boolean;
+  atLimit: boolean;
+  onCompare: () => void;
+  onSave: () => void;
+}) {
+  const ranking = scoreCar(car, weights);
+  const [expanded, setExpanded] = useState(false);
+  const largest = [...ranking.contributions].sort((a, b) => b.points - a.points)[0];
+  return (
+    <article
+      className={`car-card ${selected ? 'is-selected' : ''}`}
+      aria-labelledby={`title-${car.id}`}
+    >
+      <div className="card-top">
+        <span className="card-index">{String(index + 1).padStart(2, '0')}</span>
+        <span className={`fuel-tag ${car.fuel === 'Hybrid' ? 'hybrid' : ''}`}>
+          {car.fuel === 'Hybrid' ? '◈ Hybrid' : 'Gasoline'} · {car.drivetrain}
+        </span>
+        <button
+          type="button"
+          className={`icon-button save-button ${saved ? 'is-saved' : ''}`}
+          aria-label={`${saved ? 'Unsave' : 'Save'} ${fullName(car)}`}
+          aria-pressed={saved}
+          onClick={onSave}
+        >
+          <Icon name="save" />
+        </button>
+      </div>
+      <div className="car-illustration">
+        <CarArt make={car.make} />
+        <span>Illustration · not model-specific</span>
+      </div>
+      <div className="card-content">
+        <p className="car-make">
+          {car.year} {car.make}
+        </p>
+        <h3 id={`title-${car.id}`}>{car.model}</h3>
+        <p className="car-trim">
+          {car.trim} · {car.drivetrain}
+        </p>
+        <div className="price-row">
+          <div>
+            <strong>
+              {car.facts.msrpCad.value === null
+                ? 'Not verified'
+                : currency.format(car.facts.msrpCad.value)}
+            </strong>
+            <span>base MSRP · CAD</span>
+          </div>
+          <div className="fit-score">
+            <strong>
+              {ranking.score === null ? '—' : ranking.score}
+              <span>/100</span>
+            </strong>
+            <span>your fit score</span>
+          </div>
+        </div>
+        <dl className="quick-specs">
+          <div>
+            <dt>Combined</dt>
+            <dd>
+              {car.facts.fuelCombinedL100km.value ?? '—'} <small>L/100 km</small>
+            </dd>
+          </div>
+          <div>
+            <dt>Cargo, seats up</dt>
+            <dd>
+              {car.facts.cargoSeatsUpL.value ?? '—'} <small>L</small>
+            </dd>
+          </div>
+          <div>
+            <dt>Rear legroom</dt>
+            <dd>
+              {car.facts.rearLegroomMm.value ?? '—'} <small>mm</small>
+            </dd>
+          </div>
+        </dl>
+        <p className="fit-reason">
+          {ranking.reason ?? (
+            <>
+              Largest score contribution:{' '}
+              <strong>
+                {largest ? priorityDefinitions[largest.priority].label.toLowerCase() : ''}
+              </strong>
+              .
+            </>
+          )}
+        </p>
+        <div className="card-actions">
+          <label className={`compare-checkbox ${atLimit && !selected ? 'is-disabled' : ''}`}>
+            <input
+              type="checkbox"
+              checked={selected}
+              disabled={atLimit && !selected}
+              onChange={onCompare}
+              aria-label={`Compare ${fullName(car)}`}
+            />
+            <span>Compare</span>
+          </label>
+          <button
+            type="button"
+            className="text-button"
+            aria-expanded={expanded}
+            aria-controls={`specs-${car.id}`}
+            onClick={() => setExpanded(!expanded)}
+          >
+            Specs & sources <span aria-hidden="true">{expanded ? '−' : '+'}</span>
+          </button>
+        </div>
+        {expanded && (
+          <div id={`specs-${car.id}`} className="expanded-specs">
+            <h4>Manufacturer-reported specs</h4>
+            <dl>
+              {metricKeys.map((metric) => (
+                <div key={metric}>
+                  <dt>{metricDefinitions[metric].label}</dt>
+                  <dd>
+                    <SourcedFact metric={metric} fact={car.facts[metric]} />
+                  </dd>
+                </div>
+              ))}
+            </dl>
+            <p>
+              Source review: {reviewedDate}. Cargo measurement methods can differ. Published width
+              may use different mirror conventions. {catalog.pricingNote}
+            </p>
+          </div>
+        )}
+      </div>
+    </article>
+  );
+}
+
+function Comparison({
+  selected,
+  weights,
+  open,
+  onClose,
+  onRemove,
+  onShare,
+  shareUrl,
+}: {
+  selected: Car[];
+  weights: Weights;
+  open: boolean;
+  onClose: () => void;
+  onRemove: (id: string) => void;
+  onShare: () => void;
+  shareUrl: string;
+}) {
+  const dialog = useRef<HTMLDialogElement>(null);
+  const [kilometres, setKilometres] = useState('15000');
+  const [gas, setGas] = useState('1.60');
+  const fuelInputsValid =
+    kilometres.trim() !== '' &&
+    gas.trim() !== '' &&
+    Number.isFinite(Number(kilometres)) &&
+    Number(kilometres) >= 0 &&
+    Number(kilometres) <= 200000 &&
+    Number.isFinite(Number(gas)) &&
+    Number(gas) > 0 &&
+    Number(gas) <= 5;
+  useEffect(() => {
+    if (open && !dialog.current?.open) dialog.current?.showModal();
+    if (!open && dialog.current?.open) dialog.current?.close();
+  }, [open]);
+  return (
+    <dialog
+      ref={dialog}
+      className="comparison-dialog"
+      aria-labelledby="comparison-title"
+      onClose={onClose}
+      onCancel={onClose}
+    >
+      <div className="dialog-header">
+        <div>
+          <p className="eyebrow">THE SIDE-BY-SIDE</p>
+          <h2 id="comparison-title">See the tradeoffs.</h2>
+        </div>
+        <button
+          type="button"
+          className="icon-button"
+          onClick={onClose}
+          aria-label="Close comparison"
+          autoFocus
+        >
+          <Icon name="close" size={24} />
+        </button>
+      </div>
+      <p className="dialog-intro">
+        Exact Canadian configurations. Click a spec to open its manufacturer source. Prices exclude
+        freight/PDI, taxes and fees.
+      </p>
+      <div className="comparison-tools">
+        <button type="button" className="button secondary" onClick={onShare}>
+          <Icon name="link" size={17} />
+          Copy comparison link
+        </button>
+        <span>Includes these cars and your priority weights.</span>
+      </div>
+      {shareUrl && (
+        <label className="share-fallback">
+          Comparison link
+          <input readOnly value={shareUrl} onFocus={(event) => event.currentTarget.select()} />
+        </label>
+      )}
+      {selected.length < 2 ? (
+        <div className="empty-state">
+          <h3>Add another car to compare.</h3>
+          <p>Select at least two configurations from the catalog.</p>
+          <button type="button" className="button primary" onClick={onClose}>
+            Back to cars
+          </button>
+        </div>
+      ) : (
+        <>
+          <div
+            className="table-scroll"
+            role="region"
+            aria-label="Car specifications comparison; scroll horizontally for more cars"
+            tabIndex={0}
+          >
+            <table>
+              <caption className="sr-only">
+                Manufacturer specifications for selected 2026 compact SUVs
+              </caption>
+              <thead>
+                <tr>
+                  <th scope="col">The details</th>
+                  {selected.map((car) => (
+                    <th scope="col" key={car.id}>
+                      <span className="car-make">
+                        {car.make} · {car.year}
+                      </span>
+                      <strong>{car.model}</strong>
+                      <span>
+                        {car.trim} · {car.drivetrain}
+                      </span>
+                      <button
+                        type="button"
+                        className="text-button"
+                        aria-label={`Remove ${fullName(car)} from comparison`}
+                        onClick={() => onRemove(car.id)}
+                      >
+                        Remove ×
+                      </button>
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="score-table-row">
+                  <th scope="row">Your fit score</th>
+                  {selected.map((car) => (
+                    <td key={car.id}>
+                      <strong>{scoreCar(car, weights).score ?? 'Unscored'}</strong>
+                      {scoreCar(car, weights).score !== null && ' / 100'}
+                    </td>
+                  ))}
+                </tr>
+                <tr>
+                  <th scope="row">Powertrain</th>
+                  {selected.map((car) => (
+                    <td key={car.id}>
+                      {car.fuel} · {car.drivetrain}
+                    </td>
+                  ))}
+                </tr>
+                {metricKeys.map((metric) => (
+                  <tr key={metric}>
+                    <th scope="row">{metricDefinitions[metric].label}</th>
+                    {selected.map((car) => (
+                      <td key={car.id}>
+                        <SourcedFact metric={metric} fact={car.facts[metric]} />
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+                <tr>
+                  <th scope="row">Estimated annual fuel</th>
+                  {selected.map((car) => {
+                    const cost = fuelInputsValid
+                      ? annualFuelCost(car, Number(kilometres), Number(gas))
+                      : null;
+                    return (
+                      <td key={car.id}>
+                        {cost === null ? 'Not available' : currency.format(cost)}
+                      </td>
+                    );
+                  })}
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <fieldset className="fuel-calculator">
+            <legend>Make fuel costs yours</legend>
+            <label>
+              Annual kilometres
+              <input
+                type="number"
+                min="0"
+                max="200000"
+                step="100"
+                inputMode="numeric"
+                value={kilometres}
+                onChange={(event) => setKilometres(event.target.value)}
+                aria-describedby="fuel-note"
+                aria-invalid={!fuelInputsValid}
+              />
+            </label>
+            <label>
+              Gas price · CAD / litre
+              <input
+                type="number"
+                min="0.01"
+                max="5"
+                step="0.01"
+                inputMode="decimal"
+                value={gas}
+                onChange={(event) => setGas(event.target.value)}
+                aria-describedby="fuel-note"
+                aria-invalid={!fuelInputsValid}
+              />
+            </label>
+            <p id="fuel-note">
+              {fuelInputsValid
+                ? 'Estimate = annual kilometres ÷ 100 × published combined L/100 km × your gas price. Actual costs vary; this excludes maintenance, insurance and depreciation. These inputs stay in this visit and are not included in shared links.'
+                : 'Enter 0–200,000 annual kilometres and a gas price above $0 and at most $5.'}
+            </p>
+          </fieldset>
+        </>
+      )}
+      <p className="comparison-footnote">
+        Reviewed {reviewedDate}. Cargo measurement methods and width conventions can differ between
+        manufacturers; confirm real-world fit before buying. Hybrid power is total system
+        horsepower. Fit scores reflect only your selected priorities.
+      </p>
+    </dialog>
+  );
+}
+
+export function App() {
+  const [filters, setFilters] = useState<Filters>({ ...defaultFilters });
+  const [weights, setWeights] = useState<Weights>(initialShared.weights);
+  const [compareIds, setCompareIds] = useState<string[]>(initialShared.compare);
+  const [comparisonOpen, setComparisonOpen] = useState(initialShared.compare.length >= 2);
+  const [savedState] = useState(readSaved);
+  const [savedIds, setSavedIds] = useState(savedState.ids);
+  const [storageWarning, setStorageWarning] = useState(savedState.warning);
+  const [announcement, setAnnouncement] = useState('');
+  const [shareUrl, setShareUrl] = useState('');
+  const [sort, setSort] = useState('fit');
+  const selected = compareIds
+    .map((id) => cars.find((car) => car.id === id))
+    .filter((car): car is Car => !!car);
+  const reviewAge = Math.floor((Date.now() - Date.parse(catalog.reviewedAt)) / 86400000);
+
+  useEffect(() => {
+    try {
+      if (!saveShortlist(window.localStorage, savedIds))
+        setStorageWarning(
+          'Your shortlist cannot be saved on this device. It will work for this visit.',
+        );
+    } catch {
+      setStorageWarning(
+        'Your shortlist cannot be saved on this device. It will work for this visit.',
+      );
+    }
+  }, [savedIds]);
+  useEffect(() => {
+    const receiveStorage = (event: StorageEvent) => {
+      if (event.key === storageKey || event.key === null) {
+        const loaded = readSaved();
+        setSavedIds(loaded.ids);
+        setStorageWarning(loaded.warning);
+      }
+    };
+    window.addEventListener('storage', receiveStorage);
+    return () => window.removeEventListener('storage', receiveStorage);
+  }, []);
+  useEffect(() => {
+    window.history.replaceState(
+      null,
+      '',
+      `${window.location.pathname}${serializeSharedState({ compare: compareIds, weights })}${window.location.hash}`,
+    );
+    setShareUrl('');
+  }, [compareIds, weights]);
+  useEffect(() => {
+    const navigate = () => {
+      const next = parseSharedState(window.location.search, cars);
+      setCompareIds(next.compare);
+      setWeights(next.weights);
+      setComparisonOpen(next.compare.length >= 2);
+    };
+    window.addEventListener('popstate', navigate);
+    return () => window.removeEventListener('popstate', navigate);
+  }, []);
+
+  const results = useMemo(() => {
+    const ranked = rankCars(filterCars(cars, filters, savedIds), weights);
+    if (sort === 'price')
+      ranked.sort(
+        (a, b) =>
+          (a.car.facts.msrpCad.value ?? Infinity) - (b.car.facts.msrpCad.value ?? Infinity) ||
+          a.car.id.localeCompare(b.car.id),
+      );
+    if (sort === 'fuel')
+      ranked.sort(
+        (a, b) =>
+          (a.car.facts.fuelCombinedL100km.value ?? Infinity) -
+            (b.car.facts.fuelCombinedL100km.value ?? Infinity) || a.car.id.localeCompare(b.car.id),
+      );
+    return ranked;
+  }, [filters, weights, savedIds, sort]);
+
+  function toggleCompare(id: string) {
+    setCompareIds((previous) =>
+      previous.includes(id)
+        ? previous.filter((item) => item !== id)
+        : previous.length < 4
+          ? [...previous, id]
+          : previous,
+    );
+  }
+  function toggleSave(car: Car) {
+    const wasSaved = savedIds.includes(car.id);
+    setSavedIds((previous) =>
+      wasSaved ? previous.filter((id) => id !== car.id) : [...previous, car.id],
+    );
+    setAnnouncement(
+      `${car.make} ${car.model} ${wasSaved ? 'removed from' : 'added to'} your shortlist.`,
+    );
+  }
+  async function shareComparison() {
+    const url = new URL(window.location.href);
+    url.hash = '';
+    url.search = serializeSharedState({ compare: compareIds, weights });
+    try {
+      await navigator.clipboard.writeText(url.toString());
+      setAnnouncement('Comparison link copied.');
+    } catch {
+      setShareUrl(url.toString());
+      setAnnouncement('Copy the comparison link from the text field.');
+    }
+  }
+  function resetFilters() {
+    setFilters({ ...defaultFilters });
+  }
+
+  return (
+    <>
+      <a className="skip-link" href="#cars">
+        Skip to cars
+      </a>
+      <header className="site-header">
+        <a className="brand" href="/" aria-label="OSS — One Stop Shop home">
+          <span className="brand-mark">
+            <Icon name="garage" size={26} />
+          </span>
+          <span>
+            oss<span className="brand-dot">.</span>
+          </span>
+          <span className="brand-full">
+            ONE STOP
+            <br />
+            SHOP
+          </span>
+        </a>
+        <nav aria-label="Main navigation">
+          <a href="#cars">Find your fit</a>
+          <a href="#methodology">How it works</a>
+          <button
+            type="button"
+            className="shortlist-nav"
+            onClick={() => {
+              setFilters((previous) => ({ ...previous, savedOnly: !previous.savedOnly }));
+              document.getElementById('cars')?.scrollIntoView({ behavior: 'smooth' });
+            }}
+            aria-pressed={filters.savedOnly}
+          >
+            <Icon name="save" size={18} />
+            Shortlist <span>{savedIds.length}</span>
+          </button>
+        </nav>
+      </header>
+      <main>
+        <section className="hero" aria-labelledby="hero-title">
+          <div className="hero-copy">
+            <p className="eyebrow">
+              <span className="status-dot" /> THE RIGHT CAR STARTS WITH YOU
+            </p>
+            <h1 id="hero-title">
+              Less scrolling.
+              <br />
+              <span>More certainty.</span>
+            </h1>
+            <p className="hero-description">
+              Your next car, without the rabbit hole. Compare the details that matter and find the
+              fit for your everyday.
+            </p>
+            <a className="button primary" href="#cars">
+              Find your fit <Icon name="arrow" />
+            </a>
+            <p className="hero-proof">Official sources. Your priorities. No app account needed.</p>
+          </div>
+          <div className="hero-visual" aria-hidden="true">
+            <div className="hero-orbit orbit-one" />
+            <div className="hero-orbit orbit-two" />
+            <span className="visual-coordinate">YOUR LIFE ↗ YOUR CAR</span>
+            <CarArt make="Honda" />
+            <div className="visual-label">
+              <span className="visual-check">✓</span>
+              <div>
+                <strong>A little more clarity.</strong>
+                <span>A lot less second-guessing.</span>
+              </div>
+            </div>
+            <span className="visual-index">01 / FIND YOUR FIT</span>
+          </div>
+        </section>
+        <div className="trust-strip">
+          <span>
+            <Icon name="check" size={16} />
+            {cars.length} exact configurations
+          </span>
+          <span>2026 compact SUVs · Canada</span>
+          <span>Reviewed {reviewedDate}</span>
+          <a href="#sources">Meet the sources ↗</a>
+        </div>
+        {reviewAge > 90 && (
+          <p className="notice stale-notice">
+            This catalog was reviewed {reviewedDate}. Prices and specifications may have changed;
+            check the linked manufacturer publications.
+          </p>
+        )}
+        {storageWarning && (
+          <p className="notice" role="status">
+            {storageWarning}
+          </p>
+        )}
+        <section id="cars" className="catalog-section" aria-labelledby="catalog-title">
+          <div className="section-heading">
+            <div>
+              <p className="eyebrow">A SHORTLIST STARTS HERE</p>
+              <h2 id="catalog-title">Find what fits.</h2>
+            </div>
+            <p>
+              A focused collection. A clearer decision.
+              <br />
+              Start with your needs, then get into the details.
+            </p>
+          </div>
+          <div className="catalog-layout">
+            <aside className="filters" aria-label="Filters and priorities">
+              <div className="filter-heading">
+                <h3>
+                  <Icon name="sliders" size={18} />
+                  Make it yours
+                </h3>
+                <button
+                  type="button"
+                  className="text-button"
+                  onClick={() => {
+                    resetFilters();
+                    setWeights({ ...defaultWeights });
+                  }}
+                >
+                  Reset
+                </button>
+              </div>
+              <label className="field-label" htmlFor="budget">
+                Max base MSRP <strong>{currency.format(filters.budget)}</strong>
+              </label>
+              <input
+                id="budget"
+                type="range"
+                min="30000"
+                max="60000"
+                step="500"
+                value={filters.budget}
+                onChange={(event) => setFilters({ ...filters, budget: Number(event.target.value) })}
+                aria-valuetext={currency.format(filters.budget)}
+              />
+              <div className="range-endpoints">
+                <span>$30,000</span>
+                <span>$60,000</span>
+              </div>
+              <p className="field-hint">CAD, before freight/PDI, taxes & fees.</p>
+              <label className="field-label" htmlFor="fuel">
+                Powertrain
+              </label>
+              <select
+                id="fuel"
+                value={filters.fuel}
+                onChange={(event) => setFilters({ ...filters, fuel: event.target.value })}
+              >
+                <option value="all">Any powertrain</option>
+                <option value="Gasoline">Gasoline</option>
+                <option value="Hybrid">Hybrid</option>
+              </select>
+              <label className="field-label" htmlFor="drive">
+                Drivetrain
+              </label>
+              <select
+                id="drive"
+                value={filters.drivetrain}
+                onChange={(event) => setFilters({ ...filters, drivetrain: event.target.value })}
+              >
+                <option value="all">Any drivetrain</option>
+                <option value="AWD">All-wheel drive</option>
+                <option value="FWD">Front-wheel drive</option>
+              </select>
+              <label className="saved-filter">
+                <input
+                  type="checkbox"
+                  checked={filters.savedOnly}
+                  onChange={(event) => setFilters({ ...filters, savedOnly: event.target.checked })}
+                />
+                Only my shortlist <span>{savedIds.length}</span>
+              </label>
+              <fieldset className="priorities">
+                <legend>What matters most?</legend>
+                <p>
+                  Give each priority a weight.
+                  <br />0 = ignore · 5 = matters most
+                </p>
+                {priorityKeys.map((key) => (
+                  <div className="priority" key={key}>
+                    <label htmlFor={`weight-${key}`}>
+                      {priorityDefinitions[key].label}
+                      <output htmlFor={`weight-${key}`}>{weights[key]}</output>
+                    </label>
+                    <input
+                      id={`weight-${key}`}
+                      type="range"
+                      min="0"
+                      max="5"
+                      step="1"
+                      value={weights[key]}
+                      onChange={(event) =>
+                        setWeights({ ...weights, [key]: Number(event.target.value) })
+                      }
+                      aria-valuetext={`${weights[key]} out of 5`}
+                    />
+                  </div>
+                ))}
+                <a href="#methodology" className="methodology-link">
+                  How your fit score works ↗
+                </a>
+              </fieldset>
+              <div className="scope-note">
+                <strong>Small by design.</strong>
+                <p>
+                  This first collection covers five configurations across three models. More
+                  coverage comes after the data is verified.
+                </p>
+              </div>
+            </aside>
+            <div className="results">
+              <div className="results-toolbar">
+                <label className="search-box">
+                  <span className="sr-only">Search cars</span>
+                  <Icon name="search" size={19} />
+                  <input
+                    type="search"
+                    placeholder="Search make, model or trim"
+                    value={filters.query}
+                    onChange={(event) => setFilters({ ...filters, query: event.target.value })}
+                    maxLength={100}
+                  />
+                </label>
+                <label className="sort-control">
+                  <span>Sort by</span>
+                  <select value={sort} onChange={(event) => setSort(event.target.value)}>
+                    <option value="fit">Your best fit</option>
+                    <option value="price">Lowest MSRP</option>
+                    <option value="fuel">Fuel economy</option>
+                  </select>
+                </label>
+              </div>
+              <div className="results-caption">
+                <p role="status">
+                  {results.length} {results.length === 1 ? 'configuration' : 'configurations'}
+                  {filters.savedOnly ? ' in your shortlist' : ' for your consideration'}
+                </p>
+                <span>
+                  {sort === 'fit'
+                    ? 'Ranked around you'
+                    : sort === 'price'
+                      ? 'Lowest base MSRP first'
+                      : 'Lowest combined L/100 km first'}
+                </span>
+              </div>
+              {priorityKeys.every((key) => weights[key] === 0) && (
+                <p className="notice">
+                  Choose at least one priority to calculate fit scores. Cars are currently ordered
+                  by MSRP when sorting by fit.
+                </p>
+              )}
+              {results.length ? (
+                <div className="card-grid">
+                  {results.map(({ car }, index) => (
+                    <Card
+                      key={car.id}
+                      car={car}
+                      index={index}
+                      weights={weights}
+                      selected={compareIds.includes(car.id)}
+                      saved={savedIds.includes(car.id)}
+                      atLimit={compareIds.length >= 4}
+                      onCompare={() => toggleCompare(car.id)}
+                      onSave={() => toggleSave(car)}
+                    />
+                  ))}
+                </div>
+              ) : (
+                <div className="empty-state">
+                  <span className="empty-icon">
+                    <Icon name="search" size={30} />
+                  </span>
+                  <h3>
+                    {filters.savedOnly && savedIds.length === 0
+                      ? 'Your shortlist starts with a favourite.'
+                      : 'No fits with these filters.'}
+                  </h3>
+                  <p>
+                    {filters.savedOnly && savedIds.length === 0
+                      ? 'Save a car with the bookmark button to find it here later.'
+                      : 'Try a higher budget, another powertrain, or a broader search.'}
+                  </p>
+                  <button type="button" className="button secondary" onClick={resetFilters}>
+                    Show all cars <Icon name="arrow" size={18} />
+                  </button>
+                </div>
+              )}
+              <p className="catalog-disclaimer">
+                {catalog.pricingNote} This is a specification snapshot, not live inventory. Fit
+                scores compare only the priorities shown; reliability, safety ratings and total
+                ownership cost are not scored.
+              </p>
+            </div>
+          </div>
+        </section>
+        <section
+          id="methodology"
+          className="methodology-section"
+          aria-labelledby="methodology-title"
+        >
+          <div>
+            <p className="eyebrow">NOT A MYSTERY NUMBER</p>
+            <h2 id="methodology-title">
+              Your priorities.
+              <br />
+              Our working, shown.
+            </h2>
+            <p>
+              The best car depends on what you need. Your fit score makes those tradeoffs explicit.
+            </p>
+          </div>
+          <div className="methodology-content">
+            <ol>
+              <li>
+                <span>01</span>
+                <div>
+                  <h3>You set the weights.</h3>
+                  <p>Pick what matters from 0 to 5. A zero removes that metric from the score.</p>
+                </div>
+              </li>
+              <li>
+                <span>02</span>
+                <div>
+                  <h3>Every metric has a fixed scale.</h3>
+                  <p>
+                    Price: CAD $30k–$60k and combined consumption: 4–12 L/100 km (lower is better).
+                    Cargo, seats up: 500–1,200 L and rear legroom: 850–1,150 mm (higher is better).
+                    Values outside a scale are capped at its ends.
+                  </p>
+                </div>
+              </li>
+              <li>
+                <span>03</span>
+                <div>
+                  <h3>The score is a weighted average.</h3>
+                  <p>
+                    Each normalized metric × its share of your total weight, summed and rounded to
+                    100. Filtering never changes the scales. Equal scores sort by lower MSRP, then
+                    configuration ID. Missing an active metric? The car stays unscored.
+                  </p>
+                </div>
+              </li>
+            </ol>
+            <p className="methodology-caveat">
+              This is a decision aid, not a quality or safety rating. Cargo methods differ, and
+              measurements cannot tell you how a seat feels. Use the shortlist to decide what to see
+              in person.
+            </p>
+          </div>
+        </section>
+        <section id="sources" className="sources-section" aria-labelledby="sources-title">
+          <div className="section-heading">
+            <div>
+              <p className="eyebrow">CHECK OUR WORK</p>
+              <h2 id="sources-title">Good decisions need good sources.</h2>
+            </div>
+            <p>
+              Manufacturer and NRCan publications, reviewed {reviewedDate}.<br />
+              Every numeric spec links back to its source.
+            </p>
+          </div>
+          <div className="source-grid">
+            {catalog.sources.map((source) => (
+              <a href={source.url} target="_blank" rel="noreferrer" key={source.id}>
+                <span>
+                  {source.publisher}
+                  <span aria-hidden="true">↗</span>
+                </span>
+                <strong>{source.title}</strong>
+                <small>{source.locator}</small>
+                <small>Reviewed {formatDate(source.reviewedAt)} · opens in new tab</small>
+              </a>
+            ))}
+          </div>
+        </section>
+      </main>
+      <footer className="site-footer">
+        <div className="footer-brand">
+          oss<span>.</span>
+          <small>FIND YOUR FIT.</small>
+        </div>
+        <p>
+          Independent comparison tool. No manufacturer affiliation.
+          <br />
+          Shortlists stay in this browser. No app accounts or analytics.
+        </p>
+        <a href="#privacy">Privacy & data</a>
+        <details id="privacy">
+          <summary>How your data works</summary>
+          <p>
+            Shortlist IDs are saved in local storage on this device. Clear your shortlist below or
+            clear site data in your browser to remove them. Comparison IDs and priority weights
+            appear in shareable URLs, so anyone with a link can see those choices. We do not collect
+            search, priority or fuel-cost inputs. The hosting provider receives standard connection
+            and access information when serving the site. External manufacturer links follow their
+            own privacy policies.
+          </p>
+          <button
+            type="button"
+            className="text-button"
+            onClick={() => {
+              setSavedIds([]);
+              setAnnouncement('Shortlist cleared.');
+            }}
+          >
+            Clear my shortlist
+          </button>
+        </details>
+      </footer>
+      <div className="sr-only" role="status" aria-live="polite">
+        {announcement}
+      </div>
+      {compareIds.length > 0 && (
+        <div className="compare-tray" aria-label="Selected cars">
+          <div className="tray-copy">
+            <span className="tray-count">
+              {compareIds.length}
+              <small>/4</small>
+            </span>
+            <div>
+              <strong>{compareIds.length === 4 ? 'Comparison full' : 'Your comparison'}</strong>
+              <span>
+                {compareIds.length === 1
+                  ? 'Choose at least one more car'
+                  : selected.map((car) => `${car.make} ${car.model}`).join(' · ')}
+              </span>
+            </div>
+          </div>
+          <div className="tray-actions">
+            <button type="button" className="text-button" onClick={() => setCompareIds([])}>
+              Clear
+            </button>
+            <button
+              type="button"
+              className="button accent"
+              disabled={compareIds.length < 2}
+              onClick={() => setComparisonOpen(true)}
+            >
+              Compare {compareIds.length} cars <Icon name="arrow" size={18} />
+            </button>
+          </div>
+        </div>
+      )}
+      <Comparison
+        selected={selected}
+        weights={weights}
+        open={comparisonOpen}
+        onClose={() => setComparisonOpen(false)}
+        onRemove={toggleCompare}
+        onShare={() => void shareComparison()}
+        shareUrl={shareUrl}
+      />
+    </>
+  );
+}

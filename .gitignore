@@ -34,3 +34,9 @@ data/raw/
 data/tmp/
 *.sqlite
 *.sqlite3
+
+# local checks and Sites transport state
+test-results/
+playwright-report/
+.sites-runtime/
+*.tgz
