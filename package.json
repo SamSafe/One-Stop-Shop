@@ -22,6 +22,7 @@
     "test": "vitest run",
     "test:e2e": "playwright test",
     "validate:catalog": "node --import tsx scripts/validate-catalog.ts",
+    "catalog:sync": "node --import tsx scripts/sync-nrcan.ts",
     "check:boundaries": "node scripts/check-boundaries.mjs",
     "check": "npm run check:boundaries && npm run test && npm run build"
   },
