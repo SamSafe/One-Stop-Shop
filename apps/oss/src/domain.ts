@@ -40,7 +40,7 @@ export const priorityKeys = Object.keys(priorityDefinitions) as Priority[];
 export const fullName = (car: Car) =>
   car.recordKind === 'government-rating'
     ? `${car.year} ${car.make} ${car.model} · ${car.governmentRating?.engineLitres ? `${car.governmentRating.engineLitres} L · ` : ''}${car.governmentRating?.transmission} · NRCan ${car.governmentRating?.recordId}`
-    : `${car.year} ${car.make} ${car.model} ${car.trim} ${car.drivetrain}`;
+    : `${car.year} ${car.make} ${car.model} ${car.trim}${car.variant ? ` ${car.variant}` : ''}${car.drivetrain !== 'Not verified' ? ` ${car.drivetrain}` : ''}`;
 
 export interface Filters {
   query: string;

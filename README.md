@@ -2,9 +2,11 @@
 
 A Canadian car comparison app that explains how each configuration fits your
 priorities. Market expansion is in progress: the working catalog includes 2,518
-NRCan rating records for 2025–2027 across 47 makes, plus five retail configurations
-with manufacturer specifications. Matching ratings are merged with those retail
-configurations instead of duplicating them. The app currently displays 2,519
+NRCan rating records for 2025–2027 across 47 makes, plus 43 retail configurations
+with verified prices, including Subaru Canada's 40 currently listed configurations.
+Five retail configurations also retain the initial manufacturer specification
+review. Matching ratings are merged with those retail
+configurations instead of duplicating them. The app currently displays 2,557
 records, including gasoline/hybrid, diesel, flex-fuel, electric and plug-in hybrid
 variants, cars, SUVs, pickups and vans.
 
@@ -79,6 +81,9 @@ The NRCan baseline is attributed under the Open Government Licence – Canada.
 Refresh it explicitly with `npm run catalog:sync -- 2025 2026 2027`; ordinary builds
 use the checked-in snapshot and require no data-source network access. All pages,
 totals and unique record IDs must reconcile before the snapshot is replaced.
+Refresh Subaru's published lineup and base MSRP with `npm run catalog:sync:subaru`.
+Manufacturer listings establish a current offering, not dealer stock or delivery
+dates; older model-year inventory and additional specifications still need review.
 
 ## Operating the project
 

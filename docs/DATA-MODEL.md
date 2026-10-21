@@ -26,6 +26,14 @@ in electric operation separately from fuel-only operation. Tailpipe CO₂ is g/k
 EV gasoline consumption is null, rather than a fictional zero-cost fuel rating.
 Facts may link to the exact vehicle report through a reviewed official source URL.
 
+Manufacturer imports preserve the official configuration ID, model code and
+transmission, plus a reviewed specification URL. The Subaru snapshot reconciles
+current national-lineup IDs with each model's trim/transmission pricing records.
+Base MSRP is taken from the explicit MSRP field, never a fee-inclusive header
+selling price. A manufacturer-listed status identifies the national offering;
+it does not assert dealer inventory or a delivery date. Older stock remains a
+separate availability review.
+
 The checked-in NRCan snapshot preserves every selected record and per-page
 response receipts. Build-time expansion joins reviewed retail configurations by
 explicit NRCan IDs. Both Forester trims can share one rating; exact trim identities

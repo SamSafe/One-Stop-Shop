@@ -14,7 +14,7 @@ test('preserves a newer shortlist format until the user explicitly clears it', a
   const payload = JSON.stringify({ version: 2, ids: ['future-car'], note: 'Keep my data' });
   await page.addInitScript((raw) => localStorage.setItem('oss-shortlist-v1', raw), payload);
   await openRetailCatalog(page);
-  await expect(page.getByRole('article')).toHaveCount(5);
+  await expect(page.getByRole('article')).toHaveCount(30);
   expect(await page.evaluate(() => localStorage.getItem('oss-shortlist-v1'))).toBe(payload);
   await page.getByRole('button', { name: `Save ${honda}`, exact: true }).click();
   await expect(page.getByRole('button', { name: `Unsave ${honda}`, exact: true })).toBeVisible();
@@ -37,9 +37,9 @@ test('keeps comparisons usable when the browser refuses address-bar updates', as
     });
   });
   await openRetailCatalog(page);
-  await expect(page.getByRole('article')).toHaveCount(5);
+  await expect(page.getByRole('article')).toHaveCount(30);
   await page.getByRole('checkbox', { name: `Compare ${honda}`, exact: true }).check();
-  await expect(page.getByRole('article')).toHaveCount(5);
+  await expect(page.getByRole('article')).toHaveCount(30);
   await page.getByRole('checkbox', { name: `Compare ${hybrid}`, exact: true }).check();
   await page.getByRole('button', { name: 'Compare 2 cars' }).click();
   await page.getByRole('button', { name: 'Copy comparison link' }).click();
@@ -52,10 +52,11 @@ test('browse, filter, empty state and reset', async ({ page }) => {
   const errors: string[] = [];
   page.on('pageerror', (error) => errors.push(error.message));
   await openRetailCatalog(page);
-  await expect(page.getByRole('article')).toHaveCount(5);
+  await expect(page.getByRole('article')).toHaveCount(30);
   await page.getByLabel('Powertrain', { exact: true }).selectOption('Hybrid');
-  await expect(page.getByRole('article')).toHaveCount(1);
+  await expect(page.getByRole('article').first()).toContainText('Hybrid');
   await page.getByLabel('Drivetrain', { exact: true }).selectOption('FWD');
+  await page.getByRole('searchbox', { name: 'Search cars' }).fill('no-such-vehicle-oss');
   await expect(page.getByText('No fits with these filters.')).toBeVisible();
   await page.getByRole('button', { name: 'Show all cars' }).click();
   await page.getByLabel('Record type', { exact: true }).selectOption('retail-trim');
@@ -146,7 +147,7 @@ test('shows source links and handles clipboard denial', async ({ page }) => {
 test('recovers from corrupt and blocked local storage', async ({ page }) => {
   await page.addInitScript(() => localStorage.setItem('oss-shortlist-v1', '{bad-json'));
   await openRetailCatalog(page);
-  await expect(page.getByRole('article')).toHaveCount(5);
+  await expect(page.getByRole('article')).toHaveCount(30);
   await expect(page.getByText(/storage is unavailable or unreadable/)).toBeVisible();
   await page.addInitScript(() =>
     Object.defineProperty(window, 'localStorage', {

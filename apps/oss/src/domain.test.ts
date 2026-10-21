@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { catalog, retailCatalog } from '@oss/car-catalog';
+import { catalog, curatedCatalog, retailCatalog } from '@oss/car-catalog';
 import {
   annualFuelCost,
   annualEnergyCost,
@@ -15,7 +15,7 @@ import {
   serializeSharedState,
 } from './domain';
 
-const cars = retailCatalog.cars;
+const cars = curatedCatalog.cars;
 const first = cars[0]!;
 const hybrid = cars.find((car) => car.fuel === 'Hybrid')!;
 const onlyPrice = { price: 5, efficiency: 0, cargo: 0, room: 0 };
@@ -123,7 +123,7 @@ describe('full-market filtering and energy calculations', () => {
       selected.every((car) => car.make === 'Tesla' && car.year === 2027 && car.fuel === 'Electric'),
     ).toBe(true);
     expect(filterCars(catalog.cars, { ...defaultFilters, recordKind: 'retail-trim' })).toHaveLength(
-      5,
+      retailCatalog.cars.length,
     );
   });
   it('does not turn missing EV gasoline consumption into a free gasoline estimate', () => {

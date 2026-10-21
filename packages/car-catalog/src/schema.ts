@@ -167,6 +167,15 @@ export const carSchema = z.strictObject({
   ]),
   drivetrain: z.enum(['FWD', 'RWD', 'AWD', '4WD', 'Not verified']),
   recordKind: z.enum(['retail-trim', 'government-rating']).default('retail-trim'),
+  variant: z.string().min(1).max(200).optional(),
+  manufacturerConfiguration: z
+    .strictObject({
+      id: z.string().min(1).max(100),
+      code: z.string().min(1).max(100),
+      transmission: z.string().min(1).max(100),
+      specificationsUrl: sourceSchema.shape.url.optional(),
+    })
+    .optional(),
   governmentRating: z
     .strictObject({
       recordId: z.number().int().positive(),
@@ -226,6 +235,7 @@ export const catalogSchema = z
         car.trim,
         car.market,
         car.drivetrain,
+        car.variant ?? '',
         car.recordKind === 'government-rating' ? car.governmentRating?.recordId : '',
       ].join('|');
       if (car.recordKind === 'government-rating' && !car.governmentRating)
@@ -244,6 +254,8 @@ export const catalogSchema = z
         ctx.addIssue({ code: 'custom', message: `Duplicate configuration: ${car.id}` });
       }
       carIds.add(car.id);
+      if (car.availability.checkedAt && car.availability.checkedAt > data.reviewedAt)
+        ctx.addIssue({ code: 'custom', message: `Availability check is in the future: ${car.id}` });
       configurations.add(configuration);
       for (const sourceId of car.sourceIds) {
         if (!sourceIds.has(sourceId))

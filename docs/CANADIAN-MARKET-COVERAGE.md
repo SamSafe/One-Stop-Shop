@@ -59,7 +59,7 @@ Refreshes are explicit; ordinary builds never require external network access.
 
 ## Application baseline verified
 
-The app exposes all 2,518 rating IDs, with five matched retail configurations
+The initial baseline milestone exposed all 2,518 rating IDs, with five matched retail configurations
 representing four of those IDs, for 2,519 displayed records. Make, model-year,
 NRCan class, record-type, powertrain and drivetrain filters work across the whole
 catalog. Rendering is limited to 30 records per page; selection and shortlists
@@ -81,3 +81,31 @@ Generate the gap report with `npm run catalog:coverage`. The optional
 `-- --require-complete` exits unsuccessfully while full coverage remains unproven.
 Legitimately unpublished specification values may remain null with an explanation;
 retail identity and current-offering evidence still require reconciliation.
+
+## Subaru retail lineup imported
+
+The next manufacturer pass captured all 40 exact configurations across the nine
+models in Subaru Canada's currently published lineup: 2026 Forester, Impreza,
+Outback and WRX, and 2027 BRZ, Crosstrek, Solterra, Trailseeker and Uncharted.
+The importer reconciles the lineup's manufacturer IDs against every pricing page,
+checks model year/range identity and uses Transmissions.MSRP rather than the
+header's fee-inclusive selling price. Each source response has a checksum.
+
+These records include base MSRP, seating and explicit manufacturer powertrain
+flags, plus factory codes, transmission names and direct specification links.
+Other specifications remain unverified until their exact source/variant joins
+are reviewed. Existing Forester IDs and their reviewed facts are preserved.
+
+The working app now has 2,557 records: 43 retail configurations with verified
+prices and 2,514 rating variants. Forty retail records have dated evidence of
+current manufacturer listing. The remaining 2,517 records require current-offering
+checks; this includes rating variants and the original Honda/Mazda configurations.
+The count is a progress report, not a completed-market claim.
+
+Refresh with `npm run catalog:sync:subaru`. Subaru's older model-year dealer stock
+and variants omitted from the current national lineup still require reconciliation.
+This pass does not claim every new Subaru in Canadian inventory is covered.
+
+After the merge, all 69 unit tests and all 64 cross-browser checks passed without
+retries. MSRP provenance, source parsing, complete trim/model reconciliation and
+preserved Forester IDs have regression coverage.

@@ -225,6 +225,7 @@ function Card({
           {car.recordKind === 'government-rating'
             ? 'NRCan rating · retail trim not checked'
             : 'Retail configuration'}
+          {car.availability.status === 'manufacturer-listed' && ' · manufacturer-listed'}
           {car.availability.status === 'not-checked' && ' · current availability not checked'}
         </p>
         <div className="price-row">
@@ -311,6 +312,21 @@ function Card({
         {expanded && (
           <div id={`specs-${car.id}`} className="expanded-specs">
             <h4>Published specifications</h4>
+            {car.manufacturerConfiguration && (
+              <p>
+                Manufacturer code: {car.manufacturerConfiguration.code}.{' '}
+                {car.manufacturerConfiguration.transmission}.{' '}
+                {car.manufacturerConfiguration.specificationsUrl && (
+                  <a
+                    href={car.manufacturerConfiguration.specificationsUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Manufacturer specifications ↗
+                  </a>
+                )}
+              </p>
+            )}
             {car.governmentRating && (
               <p>
                 NRCan class: {car.governmentRating.vehicleClass}. Fuel:{' '}
