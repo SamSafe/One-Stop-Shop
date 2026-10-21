@@ -1,5 +1,10 @@
 # OSS v1.0.1 verification
 
+Historical verification of the initial five-configuration release. The current
+working tree is undergoing a broader market expansion; follow
+[CANADIAN-MARKET-COVERAGE.md](CANADIAN-MARKET-COVERAGE.md) for its status. The checks
+below describe the archived v1.0.1 release, not proof of full Canadian coverage.
+
 Verification date: 2026-10-20. Scope: Canadian 2026 compact SUV comparisons,
 five exact configurations across three models. This report distinguishes
 executed checks from configured automation and future operational work.

@@ -56,3 +56,28 @@ powertrain's pages, totals, selected years and unique IDs before atomically
 replacing packages/car-catalog/data/nrcan.json. Raw responses remain in ignored
 data/raw/nrcan; the tracked snapshot records response hashes and attribution.
 Refreshes are explicit; ordinary builds never require external network access.
+
+## Application baseline verified
+
+The app exposes all 2,518 rating IDs, with five matched retail configurations
+representing four of those IDs, for 2,519 displayed records. Make, model-year,
+NRCan class, record-type, powertrain and drivetrain filters work across the whole
+catalog. Rendering is limited to 30 records per page; selection and shortlists
+span pages. Unknown prices remain visible with no budget cap and are excluded
+when a maximum price is applied.
+
+EV consumption uses kWh/100 km. Plug-in estimates use an explicit electric-mode
+distance share and include the published fuel burned in that mode. Retail trim
+and availability labels distinguish the baseline from an audited retail catalog.
+The original five shortlist/link IDs remain stable.
+
+Validation passed: 64 unit tests and 64 browser checks without retries across
+desktop/mobile Chromium, Firefox and mobile WebKit. The suite covers the larger
+catalog, pagination, filters, EV/PHEV estimates and the existing comparison,
+storage, keyboard, accessibility and server checks. These checks verify the
+implementation; they do not prove full market or retail-trim coverage.
+
+Generate the gap report with `npm run catalog:coverage`. The optional
+`-- --require-complete` exits unsuccessfully while full coverage remains unproven.
+Legitimately unpublished specification values may remain null with an explanation;
+retail identity and current-offering evidence still require reconciliation.

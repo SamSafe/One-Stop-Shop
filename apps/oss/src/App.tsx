@@ -1,8 +1,8 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { catalog, metricDefinitions } from '@oss/car-catalog';
+import { catalog, metricDefinitions, nrcanSnapshot, ratingUrl } from '@oss/car-catalog';
 import type { Car, Fact, Metric } from '@oss/car-catalog';
 import {
-  annualFuelCost,
+  annualEnergyCost,
   defaultFilters,
   defaultWeights,
   filterCars,
@@ -18,6 +18,17 @@ import type { Filters, Weights } from './domain';
 import { useShortlist } from './useShortlist';
 
 const cars = catalog.cars;
+const makes = [...new Set(cars.map((car) => car.make))].sort((a, b) => a.localeCompare(b));
+const years = [...new Set(cars.map((car) => car.year))].sort((a, b) => b - a);
+const vehicleClasses = [
+  ...new Set(
+    cars
+      .map((car) => car.governmentRating?.vehicleClass)
+      .filter((value): value is string => !!value),
+  ),
+].sort();
+const fuels = [...new Set(cars.map((car) => car.fuel))].sort();
+const pageSize = 30;
 const sources = new Map(catalog.sources.map((source) => [source.id, source]));
 const currency = new Intl.NumberFormat('en-CA', {
   style: 'currency',
@@ -93,7 +104,7 @@ function Icon({
 function CarArt({ make }: { make: string }) {
   return (
     <svg
-      className={`car-art car-${make.toLowerCase()}`}
+      className={`car-art car-${make.toLowerCase().replace(/[^a-z0-9]/g, '-')}`}
       viewBox="0 0 420 180"
       fill="none"
       aria-hidden="true"
@@ -139,7 +150,7 @@ function SourcedFact({ metric, fact }: { metric: Metric; fact: Fact }) {
       {source ? (
         <a
           className="fact-link"
-          href={source.url}
+          href={fact.sourceUrl ?? source.url}
           target="_blank"
           rel="noreferrer"
           aria-label={`${metricDefinitions[metric].label}: ${displayFact(metric, fact)}. Source: ${source.publisher} (opens in new tab)`}
@@ -184,7 +195,7 @@ function Card({
       <div className="card-top">
         <span className="card-index">{String(index + 1).padStart(2, '0')}</span>
         <span className={`fuel-tag ${car.fuel === 'Hybrid' ? 'hybrid' : ''}`}>
-          {car.fuel === 'Hybrid' ? '◈ Hybrid' : 'Gasoline'} · {car.drivetrain}
+          {car.fuel} {car.drivetrain !== 'Not verified' && `· ${car.drivetrain}`}
         </span>
         <button
           type="button"
@@ -206,7 +217,15 @@ function Card({
         </p>
         <h3 id={`title-${car.id}`}>{car.model}</h3>
         <p className="car-trim">
-          {car.trim} · {car.drivetrain}
+          {car.recordKind === 'government-rating'
+            ? `${car.governmentRating?.engineLitres ? `${car.governmentRating.engineLitres} L · ` : ''}${car.governmentRating?.transmission}`
+            : `${car.trim} · ${car.drivetrain}`}
+        </p>
+        <p className="record-status">
+          {car.recordKind === 'government-rating'
+            ? 'NRCan rating · retail trim not checked'
+            : 'Retail configuration'}
+          {car.availability.status === 'not-checked' && ' · current availability not checked'}
         </p>
         <div className="price-row">
           <div>
@@ -227,9 +246,21 @@ function Card({
         </div>
         <dl className="quick-specs">
           <div>
-            <dt>Combined</dt>
+            <dt>
+              {car.fuel === 'Electric' || car.fuel === 'Plug-in hybrid'
+                ? 'Electric mode'
+                : 'Combined fuel'}
+            </dt>
             <dd>
-              {car.facts.fuelCombinedL100km.value ?? '—'} <small>L/100 km</small>
+              {car.fuel === 'Electric' || car.fuel === 'Plug-in hybrid' ? (
+                <>
+                  {car.facts.electricCombinedKwh100km.value ?? '—'} <small>kWh/100 km</small>
+                </>
+              ) : (
+                <>
+                  {car.facts.fuelCombinedL100km.value ?? '—'} <small>L/100 km</small>
+                </>
+              )}
             </dd>
           </div>
           <div>
@@ -279,7 +310,17 @@ function Card({
         </div>
         {expanded && (
           <div id={`specs-${car.id}`} className="expanded-specs">
-            <h4>Manufacturer-reported specs</h4>
+            <h4>Published specifications</h4>
+            {car.governmentRating && (
+              <p>
+                NRCan class: {car.governmentRating.vehicleClass}. Fuel:{' '}
+                {car.governmentRating.fuelType}.{' '}
+                <a href={ratingUrl(car.governmentRating.recordId)} target="_blank" rel="noreferrer">
+                  Exact NRCan vehicle report ↗
+                </a>
+              </p>
+            )}
+            <p>{car.availability.note}</p>
             <dl>
               {metricKeys.map((metric) => (
                 <div key={metric}>
@@ -291,8 +332,8 @@ function Card({
               ))}
             </dl>
             <p>
-              Source review: {reviewedDate}. Cargo measurement methods can differ. Published width
-              may use different mirror conventions. {catalog.pricingNote}
+              Review dates appear on each linked source. Cargo measurement methods can differ.
+              Published width may use different mirror conventions. {catalog.pricingNote}
             </p>
           </div>
         )}
@@ -321,6 +362,8 @@ function Comparison({
   const dialog = useRef<HTMLDialogElement>(null);
   const [kilometres, setKilometres] = useState('15000');
   const [gas, setGas] = useState('1.60');
+  const [electricity, setElectricity] = useState('0.15');
+  const [electricShare, setElectricShare] = useState('50');
   const fuelInputsValid =
     kilometres.trim() !== '' &&
     gas.trim() !== '' &&
@@ -358,8 +401,9 @@ function Comparison({
         </button>
       </div>
       <p className="dialog-intro">
-        Exact Canadian configurations. Click a spec to open its manufacturer source. Prices exclude
-        freight/PDI, taxes and fees.
+        Canadian retail configurations and government rating variants. Check each record's status; a
+        fuel rating does not establish current retail availability. Click a spec for its source.
+        Verified prices exclude freight/PDI, taxes and fees.
       </p>
       <div className="comparison-tools">
         <button type="button" className="button secondary" onClick={onShare}>
@@ -392,7 +436,7 @@ function Comparison({
           >
             <table>
               <caption className="sr-only">
-                Manufacturer specifications for selected 2026 compact SUVs
+                Published Canadian vehicle specifications and rating variants
               </caption>
               <thead>
                 <tr>
@@ -419,6 +463,17 @@ function Comparison({
                 </tr>
               </thead>
               <tbody>
+                <tr>
+                  <th scope="row">Record and availability</th>
+                  {selected.map((car) => (
+                    <td key={car.id}>
+                      {car.recordKind === 'government-rating'
+                        ? 'Government rating; retail trim not specified.'
+                        : 'Retail configuration.'}{' '}
+                      {car.availability.note}
+                    </td>
+                  ))}
+                </tr>
                 <tr className="score-table-row">
                   <th scope="row">Your fit score</th>
                   {selected.map((car) => (
@@ -447,11 +502,22 @@ function Comparison({
                   </tr>
                 ))}
                 <tr>
-                  <th scope="row">Estimated annual fuel</th>
+                  <th scope="row">Estimated annual energy</th>
                   {selected.map((car) => {
-                    const cost = fuelInputsValid
-                      ? annualFuelCost(car, Number(kilometres), Number(gas))
-                      : null;
+                    const cost =
+                      kilometres.trim() !== '' &&
+                      ((car.fuel !== 'Electric' && car.fuel !== 'Plug-in hybrid') ||
+                        electricity.trim() !== '') &&
+                      (car.fuel !== 'Plug-in hybrid' || electricShare.trim() !== '') &&
+                      (car.fuel === 'Electric' || gas.trim() !== '')
+                        ? annualEnergyCost(
+                            car,
+                            Number(kilometres),
+                            Number(gas),
+                            Number(electricity),
+                            Number(electricShare) / 100,
+                          )
+                        : null;
                     return (
                       <td key={car.id}>
                         {cost === null ? 'Not available' : currency.format(cost)}
@@ -463,7 +529,7 @@ function Comparison({
             </table>
           </div>
           <fieldset className="fuel-calculator">
-            <legend>Make fuel costs yours</legend>
+            <legend>Make energy costs yours</legend>
             <label>
               Annual kilometres
               <input
@@ -479,7 +545,7 @@ function Comparison({
               />
             </label>
             <label>
-              Gas price · CAD / litre
+              Gas price / fuel price · CAD / litre
               <input
                 type="number"
                 min="0.01"
@@ -492,9 +558,35 @@ function Comparison({
                 aria-invalid={!fuelInputsValid}
               />
             </label>
+            <label>
+              Electricity · CAD / kWh
+              <input
+                type="number"
+                min="0"
+                max="2"
+                step="0.01"
+                inputMode="decimal"
+                value={electricity}
+                onChange={(event) => setElectricity(event.target.value)}
+                aria-describedby="fuel-note"
+              />
+            </label>
+            <label>
+              Plug-in electric-mode driving · %
+              <input
+                type="number"
+                min="0"
+                max="100"
+                step="1"
+                inputMode="numeric"
+                value={electricShare}
+                onChange={(event) => setElectricShare(event.target.value)}
+                aria-describedby="fuel-note"
+              />
+            </label>
             <p id="fuel-note">
               {fuelInputsValid
-                ? 'Estimate = annual kilometres ÷ 100 × published combined L/100 km × your gas price. Actual costs vary; this excludes maintenance, insurance and depreciation. These inputs stay in this visit and are not included in shared links.'
+                ? 'Estimate = distance × published consumption × your energy prices. EVs use kWh; plug-in hybrids use your electric-mode distance share and include any fuel burned in that mode. Use the appropriate regular, premium or diesel price and your actual charging electricity rate. Charging session fees are excluded. The default 50% plug-in share is an assumption, not a driving prediction. Inputs stay in this visit and are excluded from shared links. Maintenance, insurance and depreciation are excluded.'
                 : 'Enter 0–200,000 annual kilometres and a gas price above $0 and at most $5.'}
             </p>
           </fieldset>
@@ -519,6 +611,8 @@ export function App() {
   const [announcement, setAnnouncement] = useState('');
   const [shareUrl, setShareUrl] = useState('');
   const [sort, setSort] = useState('fit');
+  const [requestedPage, setRequestedPage] = useState(1);
+  useEffect(() => setRequestedPage(1), [filters, sort, weights, savedIds]);
   const selected = compareIds
     .map((id) => cars.find((car) => car.id === id))
     .filter((car): car is Car => !!car);
@@ -565,6 +659,16 @@ export function App() {
       );
     return ranked;
   }, [filters, weights, savedIds, sort]);
+  const totalPages = Math.max(1, Math.ceil(results.length / pageSize));
+  const currentPage = Math.min(requestedPage, totalPages);
+  const startIndex = (currentPage - 1) * pageSize;
+  const visibleResults = results.slice(startIndex, startIndex + pageSize);
+  function changePage(page: number) {
+    setRequestedPage(page);
+    document
+      .getElementById('catalog-results')
+      ?.scrollIntoView({ behavior: 'instant', block: 'start' });
+  }
 
   function toggleCompare(id: string) {
     setCompareIds((previous) =>
@@ -676,9 +780,11 @@ export function App() {
         <div className="trust-strip">
           <span>
             <Icon name="check" size={16} />
-            {cars.length} exact configurations
+            {cars.length.toLocaleString('en-CA')} catalog records · {makes.length} makes
           </span>
-          <span>2026 compact SUVs · Canada</span>
+          <span>
+            {years[years.length - 1]}–{years[0]} · Canada · retail coverage in progress
+          </span>
           <span>Reviewed {reviewedDate}</span>
           <a href="#sources">Meet the sources ↗</a>
         </div>
@@ -705,7 +811,7 @@ export function App() {
               <h2 id="catalog-title">Find what fits.</h2>
             </div>
             <p>
-              A focused collection. A clearer decision.
+              Explore Canadian vehicles across makes and powertrains.
               <br />
               Start with your needs, then get into the details.
             </p>
@@ -728,24 +834,89 @@ export function App() {
                   Reset
                 </button>
               </div>
-              <label className="field-label" htmlFor="budget">
-                Max base MSRP <strong>{currency.format(filters.budget)}</strong>
+              <label className="field-label" htmlFor="record-kind">
+                Record type
               </label>
-              <input
+              <select
+                id="record-kind"
+                value={filters.recordKind}
+                onChange={(event) => setFilters({ ...filters, recordKind: event.target.value })}
+              >
+                <option value="all">All catalog records</option>
+                <option value="retail-trim">Retail configurations</option>
+                <option value="government-rating">Government rating variants</option>
+              </select>
+              <label className="field-label" htmlFor="make">
+                Make
+              </label>
+              <select
+                id="make"
+                value={filters.make}
+                onChange={(event) => setFilters({ ...filters, make: event.target.value })}
+              >
+                <option value="all">All makes</option>
+                {makes.map((make) => (
+                  <option key={make} value={make}>
+                    {make}
+                  </option>
+                ))}
+              </select>
+              <label className="field-label" htmlFor="year">
+                Model year
+              </label>
+              <select
+                id="year"
+                value={filters.year}
+                onChange={(event) => setFilters({ ...filters, year: event.target.value })}
+              >
+                <option value="all">All model years</option>
+                {years.map((year) => (
+                  <option key={year} value={year}>
+                    {year}
+                  </option>
+                ))}
+              </select>
+              <label className="field-label" htmlFor="vehicle-class">
+                NRCan vehicle class
+              </label>
+              <select
+                id="vehicle-class"
+                value={filters.vehicleClass}
+                onChange={(event) => setFilters({ ...filters, vehicleClass: event.target.value })}
+              >
+                <option value="all">All vehicle classes</option>
+                {vehicleClasses.map((value) => (
+                  <option key={value} value={value}>
+                    {value}
+                  </option>
+                ))}
+              </select>
+              <label className="field-label" htmlFor="budget">
+                Max base MSRP
+              </label>
+              <select
                 id="budget"
-                type="range"
-                min="30000"
-                max="60000"
-                step="500"
-                value={filters.budget}
-                onChange={(event) => setFilters({ ...filters, budget: Number(event.target.value) })}
-                aria-valuetext={currency.format(filters.budget)}
-              />
-              <div className="range-endpoints">
-                <span>$30,000</span>
-                <span>$60,000</span>
-              </div>
-              <p className="field-hint">CAD, before freight/PDI, taxes & fees.</p>
+                value={filters.budget ?? 'all'}
+                onChange={(event) =>
+                  setFilters({
+                    ...filters,
+                    budget: event.target.value === 'all' ? null : Number(event.target.value),
+                  })
+                }
+              >
+                <option value="all">Any price, including unverified</option>
+                {[25000, 35000, 50000, 75000, 100000, 150000, 250000, 500000, 1000000].map(
+                  (value) => (
+                    <option key={value} value={value}>
+                      {currency.format(value)}
+                    </option>
+                  ),
+                )}
+              </select>
+              <p className="field-hint">
+                A price limit includes only verified CAD base MSRP. Unknown prices are not treated
+                as free.
+              </p>
               <label className="field-label" htmlFor="fuel">
                 Powertrain
               </label>
@@ -755,8 +926,11 @@ export function App() {
                 onChange={(event) => setFilters({ ...filters, fuel: event.target.value })}
               >
                 <option value="all">Any powertrain</option>
-                <option value="Gasoline">Gasoline</option>
-                <option value="Hybrid">Hybrid</option>
+                {fuels.map((fuel) => (
+                  <option key={fuel} value={fuel}>
+                    {fuel}
+                  </option>
+                ))}
               </select>
               <label className="field-label" htmlFor="drive">
                 Drivetrain
@@ -769,6 +943,9 @@ export function App() {
                 <option value="all">Any drivetrain</option>
                 <option value="AWD">All-wheel drive</option>
                 <option value="FWD">Front-wheel drive</option>
+                <option value="RWD">Rear-wheel drive</option>
+                <option value="4WD">Four-wheel drive</option>
+                <option value="Not verified">Not verified</option>
               </select>
               <label className="saved-filter">
                 <input
@@ -809,14 +986,16 @@ export function App() {
                 </a>
               </fieldset>
               <div className="scope-note">
-                <strong>Small by design.</strong>
+                <strong>Coverage is expanding.</strong>
                 <p>
-                  This first collection covers five configurations across three models. More
-                  coverage comes after the data is verified.
+                  {nrcanSnapshot.records.length.toLocaleString('en-CA')} government ratings are
+                  imported. Retail trim, price and current availability reviews are still in
+                  progress. NRCan groups some conventional and hybrid variants together. A rating is
+                  not a live inventory listing.
                 </p>
               </div>
             </aside>
-            <div className="results">
+            <div className="results" id="catalog-results">
               <div className="results-toolbar">
                 <label className="search-box">
                   <span className="sr-only">Search cars</span>
@@ -840,7 +1019,14 @@ export function App() {
               </div>
               <div className="results-caption">
                 <p role="status">
-                  {results.length} {results.length === 1 ? 'configuration' : 'configurations'}
+                  {results.length}{' '}
+                  {filters.recordKind === 'retail-trim'
+                    ? results.length === 1
+                      ? 'configuration'
+                      : 'configurations'
+                    : results.length === 1
+                      ? 'record'
+                      : 'records'}
                   {filters.savedOnly ? ' in your shortlist' : ' for your consideration'}
                 </p>
                 <span>
@@ -859,11 +1045,11 @@ export function App() {
               )}
               {results.length ? (
                 <div className="card-grid">
-                  {results.map(({ car }, index) => (
+                  {visibleResults.map(({ car }, index) => (
                     <Card
                       key={car.id}
                       car={car}
-                      index={index}
+                      index={startIndex + index}
                       weights={weights}
                       selected={compareIds.includes(car.id)}
                       saved={savedIds.includes(car.id)}
@@ -892,6 +1078,30 @@ export function App() {
                     Show all cars <Icon name="arrow" size={18} />
                   </button>
                 </div>
+              )}
+              {results.length > 0 && (
+                <nav className="pagination" aria-label="Result pages">
+                  <button
+                    type="button"
+                    className="button secondary"
+                    disabled={currentPage === 1}
+                    onClick={() => changePage(currentPage - 1)}
+                  >
+                    Previous page
+                  </button>
+                  <span role="status">
+                    Page {currentPage} of {totalPages} · Showing {startIndex + 1}–
+                    {startIndex + visibleResults.length} of {results.length.toLocaleString('en-CA')}
+                  </span>
+                  <button
+                    type="button"
+                    className="button secondary"
+                    disabled={currentPage === totalPages}
+                    onClick={() => changePage(currentPage + 1)}
+                  >
+                    Next page
+                  </button>
+                </nav>
               )}
               <p className="catalog-disclaimer">
                 {catalog.pricingNote} This is a specification snapshot, not live inventory. Fit
@@ -933,7 +1143,9 @@ export function App() {
                   <p>
                     Price: CAD $30k–$60k and combined consumption: 4–12 L/100 km (lower is better).
                     Cargo, seats up: 500–1,200 L and rear legroom: 850–1,150 mm (higher is better).
-                    Values outside a scale are capped at its ends.
+                    Values outside a scale are capped at its ends. Fuel economy uses liquid-fuel
+                    L/100 km; plug-in hybrids use fuel-only operation. EVs stay unscored while that
+                    priority is active. Electric consumption is shown separately in kWh/100 km.
                   </p>
                 </div>
               </li>
@@ -963,8 +1175,9 @@ export function App() {
               <h2 id="sources-title">Good decisions need good sources.</h2>
             </div>
             <p>
-              Manufacturer and NRCan publications, reviewed {reviewedDate}.<br />
-              Every numeric spec links back to its source.
+              Manufacturer and NRCan publications; review dates appear below.
+              <br />
+              Ratings retrieved {reviewedDate}. Every numeric spec links back to its source.
             </p>
           </div>
           <div className="source-grid">
@@ -980,6 +1193,18 @@ export function App() {
               </a>
             ))}
           </div>
+          <p className="catalog-disclaimer">
+            Contains information from Natural Resources Canada under the{' '}
+            <a
+              href="https://open.canada.ca/en/open-government-licence-canada"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Open Government Licence – Canada
+            </a>
+            . Independent tool; no Government of Canada endorsement. Rating publication and retail
+            availability are separate checks.
+          </p>
         </section>
       </main>
       <footer className="site-footer">

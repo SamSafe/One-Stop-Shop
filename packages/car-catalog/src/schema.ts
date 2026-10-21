@@ -1,12 +1,12 @@
 import { z } from 'zod';
 
 export const metricDefinitions = {
-  msrpCad: { label: 'Base MSRP', unit: 'CAD', min: 10000, max: 300000 },
+  msrpCad: { label: 'Base MSRP', unit: 'CAD', min: 10000, max: 10000000 },
   fuelCityL100km: { label: 'City consumption', unit: 'L/100 km', min: 1, max: 50 },
   fuelHighwayL100km: { label: 'Highway consumption', unit: 'L/100 km', min: 1, max: 50 },
   fuelCombinedL100km: { label: 'Combined consumption', unit: 'L/100 km', min: 1, max: 50 },
   horsepower: { label: 'Power', unit: 'hp', min: 50, max: 1500 },
-  seats: { label: 'Seats', unit: 'people', min: 2, max: 9 },
+  seats: { label: 'Seats', unit: 'people', min: 2, max: 15 },
   cargoSeatsUpL: { label: 'Cargo · seats up', unit: 'L', min: 10, max: 4000 },
   cargoSeatsDownL: { label: 'Cargo · seats down', unit: 'L', min: 10, max: 6000 },
   frontHeadroomMm: { label: 'Front headroom', unit: 'mm', min: 600, max: 1600 },
@@ -16,6 +16,27 @@ export const metricDefinitions = {
   lengthMm: { label: 'Length', unit: 'mm', min: 2500, max: 8000 },
   widthMm: { label: 'Published width', unit: 'mm', min: 1200, max: 2600 },
   heightMm: { label: 'Height', unit: 'mm', min: 1000, max: 3000 },
+  electricCombinedKwh100km: {
+    label: 'Electric consumption · combined',
+    unit: 'kWh/100 km',
+    min: 1,
+    max: 150,
+  },
+  electricModeFuelL100km: {
+    label: 'Fuel used in plug-in electric mode',
+    unit: 'L/100 km',
+    min: 0,
+    max: 50,
+  },
+  electricModeLe100km: {
+    label: 'Electric mode · gasoline equivalent',
+    unit: 'Le/100 km',
+    min: 0.1,
+    max: 25,
+  },
+  electricRangeKm: { label: 'Electric driving range', unit: 'km', min: 1, max: 2000 },
+  rechargeHours: { label: 'Published recharge time', unit: 'h', min: 0.1, max: 72 },
+  co2Gkm: { label: 'Tailpipe CO₂', unit: 'g/km', min: 0, max: 1500 },
 } as const;
 
 export type Metric = keyof typeof metricDefinitions;
@@ -29,6 +50,18 @@ const fact = (min: number, max: number) =>
     .strictObject({
       value: z.number().finite().min(min).max(max).nullable(),
       source: id.nullable(),
+      sourceUrl: z
+        .url()
+        .refine((value) => {
+          const url = new URL(value);
+          return (
+            url.protocol === 'https:' &&
+            manufacturerHosts.has(url.hostname) &&
+            !url.username &&
+            !url.password
+          );
+        }, 'Use a reviewed official source URL.')
+        .optional(),
       note: z.string().min(1).max(1000).optional(),
     })
     .superRefine((value, ctx) => {
@@ -41,8 +74,24 @@ const fact = (min: number, max: number) =>
     });
 
 const factsShape = Object.fromEntries(
-  Object.entries(metricDefinitions).map(([key, def]) => [key, fact(def.min, def.max)]),
-) as { [K in Metric]: ReturnType<typeof fact> };
+  Object.entries(metricDefinitions).map(([key, def]) => [
+    key,
+    [
+      'electricCombinedKwh100km',
+      'electricModeFuelL100km',
+      'electricModeLe100km',
+      'electricRangeKm',
+      'rechargeHours',
+      'co2Gkm',
+    ].includes(key)
+      ? fact(def.min, def.max).default({
+          value: null,
+          source: null,
+          note: 'Not verified for this configuration.',
+        })
+      : fact(def.min, def.max),
+  ]),
+) as { [K in Metric]: ReturnType<typeof fact> | z.ZodDefault<ReturnType<typeof fact>> };
 
 const manufacturerHosts = new Set([
   'www.honda.ca',
@@ -61,6 +110,7 @@ const manufacturerHosts = new Set([
   'vehicles.nrcan.gc.ca',
   'natural-resources.canada.ca',
   'open.canada.ca',
+  'fcr-ccc.nrcan-rncan.gc.ca',
 ]);
 
 export const sourceSchema = z.strictObject({
@@ -92,9 +142,54 @@ export const carSchema = z.strictObject({
   trim: z.string().min(1).max(100),
   year: z.number().int().min(1990).max(2100),
   market: z.literal('CA'),
-  bodyStyle: z.literal('Compact SUV'),
-  fuel: z.enum(['Gasoline', 'Hybrid']),
-  drivetrain: z.enum(['FWD', 'AWD']),
+  bodyStyle: z.enum([
+    'Compact SUV',
+    'SUV',
+    'Sedan',
+    'Hatchback',
+    'Coupe',
+    'Convertible',
+    'Wagon',
+    'Pickup',
+    'Minivan',
+    'Van',
+    'Not verified',
+  ]),
+  fuel: z.enum([
+    'Gasoline',
+    'Hybrid',
+    'Gasoline / hybrid',
+    'Diesel',
+    'Flex-fuel',
+    'Electric',
+    'Plug-in hybrid',
+    'Hydrogen',
+  ]),
+  drivetrain: z.enum(['FWD', 'RWD', 'AWD', '4WD', 'Not verified']),
+  recordKind: z.enum(['retail-trim', 'government-rating']).default('retail-trim'),
+  governmentRating: z
+    .strictObject({
+      recordId: z.number().int().positive(),
+      vehicleClass: z.string().min(1),
+      engineLitres: z.number().nonnegative(),
+      cylinders: z.number().int().nonnegative(),
+      transmission: z.string().min(1),
+      fuelType: z.string().min(1),
+    })
+    .optional(),
+  availability: z
+    .strictObject({
+      status: z.enum(['not-checked', 'manufacturer-listed', 'announced', 'discontinued']),
+      checkedAt: date.nullable(),
+      source: id.nullable(),
+      note: z.string().min(1).max(1000),
+    })
+    .default({
+      status: 'not-checked',
+      checkedAt: null,
+      source: null,
+      note: 'Current Canadian retail availability has not been rechecked.',
+    }),
   sourceIds: z.array(id).min(1),
   facts: z.strictObject(factsShape),
 });
@@ -131,7 +226,20 @@ export const catalogSchema = z
         car.trim,
         car.market,
         car.drivetrain,
+        car.recordKind === 'government-rating' ? car.governmentRating?.recordId : '',
       ].join('|');
+      if (car.recordKind === 'government-rating' && !car.governmentRating)
+        ctx.addIssue({ code: 'custom', message: `Government rating metadata missing: ${car.id}` });
+      if (
+        car.availability.status !== 'not-checked' &&
+        (!car.availability.source ||
+          !car.availability.checkedAt ||
+          !car.sourceIds.includes(car.availability.source))
+      )
+        ctx.addIssue({
+          code: 'custom',
+          message: `Availability requires dated, referenced evidence: ${car.id}`,
+        });
       if (carIds.has(car.id) || configurations.has(configuration)) {
         ctx.addIssue({ code: 'custom', message: `Duplicate configuration: ${car.id}` });
       }

@@ -17,7 +17,19 @@
 The release report records executed checks and deployment status. A checked
 implementation item is not a claim that a hosted CI run has occurred.
 
-## Next: validate the product
+## Active: all new passenger vehicles offered in Canada
+
+Full scope includes pickups and vans, all makes/models/retail trims, powertrains
+and overlapping model years. See CANADIAN-MARKET-COVERAGE.md for completion evidence.
+
+- [x] Import all paged NRCan 2025–2027 ratings with count/ID reconciliation.
+- [x] Expose the baseline with filters, pagination and EV/PHEV energy units/costs.
+- [ ] Reconcile every manufacturer's current Canadian lineup, including unrated vehicles.
+- [ ] Verify exact retail trims, current offering and model-year overlap.
+- [ ] Source Canadian MSRP and additional published specifications across the lineup.
+- [ ] Close the coverage report's identity and availability gaps before claiming completion.
+
+## Product validation
 
 - Observe a small group of Canadian buyers completing actual comparisons.
 - Measure which facts change their shortlist and record missing models/fields.

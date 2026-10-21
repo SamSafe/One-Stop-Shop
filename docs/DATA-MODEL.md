@@ -1,6 +1,6 @@
 # Data contract
 
-This describes the implemented v1 contract. The authoritative schema is
+This describes the current contract, including the market expansion. The authoritative schema is
 [packages/car-catalog/src/schema.ts](../packages/car-catalog/src/schema.ts).
 
 ## Shared catalog
@@ -9,9 +9,27 @@ The catalog contains schemaVersion, reviewedAt, scope, pricingNote, sources and
 cars. Each car identifies make, model, model year, exact trim, Canadian market,
 body style, powertrain and drivetrain with a stable ID.
 
+Records distinguish retail-trim configurations from government fuel-rating
+variants. A government variant carries its NRCan record ID, rated class, engine,
+transmission and fuel type; it is not assigned a fictional retail trim, price or
+body style. Availability has an explicit status, evidence source and check date.
+Any status other than not-checked requires dated, referenced evidence. Ratings
+alone do not prove today's retail availability.
+
 Facts are base MSRP in CAD; city/highway/combined L/100 km; horsepower; seating;
 cargo with seats up/down in litres; front/rear headroom and legroom in mm; and
 published length, width and height in mm.
+
+Electric variants also carry combined kWh/100 km, electric-mode Le/100 km,
+electric range and published recharge time. Plug-in hybrids preserve fuel burned
+in electric operation separately from fuel-only operation. Tailpipe CO₂ is g/km.
+EV gasoline consumption is null, rather than a fictional zero-cost fuel rating.
+Facts may link to the exact vehicle report through a reviewed official source URL.
+
+The checked-in NRCan snapshot preserves every selected record and per-page
+response receipts. Build-time expansion joins reviewed retail configurations by
+explicit NRCan IDs. Both Forester trims can share one rating; exact trim identities
+and existing shortlist/link IDs remain stable. Missing or incompatible joins fail.
 
 Each fact contains:
 
@@ -35,7 +53,10 @@ notes must accompany the values. Cargo measurement standards are not harmonized.
 
 ## OSS state
 
-- Filters: search, maximum base MSRP, powertrain, drivetrain and saved-only.
+- Filters: search, make, model year, NRCan vehicle class, record kind, optional
+  maximum base MSRP, powertrain, drivetrain and saved-only. No budget limit is
+  active by default; an active limit excludes unknown prices. Results render in
+  pages of 30 while selection and shortlists span the whole catalog.
 - Priorities: integer weights 0–5 for purchase price, consumption, seats-up cargo
   and rear legroom. Fixed scales live in apps/oss/src/domain.ts.
 - Shortlist: versioned local-storage record containing known catalog IDs only.
@@ -49,7 +70,10 @@ notes must accompany the values. Cargo measurement standards are not harmonized.
   fail, comparison controls remain usable and Copy comparison link still derives
   a URL from the current choices.
 - Fuel estimate: annual kilometres / 100 × combined L/100 km × CAD/litre.
-  Inputs remain in memory and are excluded from shared URLs.
+  EV energy estimates use kWh/100 km × CAD/kWh. Plug-in hybrids split distance
+  using an explicit electric-mode percentage and include fuel used in that mode.
+  The default 50% is an assumption the user can edit. Session fees and ownership
+  costs are excluded. Inputs remain in memory and are excluded from shared URLs.
 
 There is no account database or server-side shortlist in v1. Comparison query
 parameters are visible to link recipients and may appear in hosting access logs.

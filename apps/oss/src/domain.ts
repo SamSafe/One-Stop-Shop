@@ -38,18 +38,28 @@ export type Weights = Record<Priority, number>;
 export const defaultWeights: Weights = { price: 3, efficiency: 3, cargo: 2, room: 2 };
 export const priorityKeys = Object.keys(priorityDefinitions) as Priority[];
 export const fullName = (car: Car) =>
-  `${car.year} ${car.make} ${car.model} ${car.trim} ${car.drivetrain}`;
+  car.recordKind === 'government-rating'
+    ? `${car.year} ${car.make} ${car.model} · ${car.governmentRating?.engineLitres ? `${car.governmentRating.engineLitres} L · ` : ''}${car.governmentRating?.transmission} · NRCan ${car.governmentRating?.recordId}`
+    : `${car.year} ${car.make} ${car.model} ${car.trim} ${car.drivetrain}`;
 
 export interface Filters {
   query: string;
-  budget: number;
+  budget: number | null;
+  make?: string;
+  year?: string;
+  vehicleClass?: string;
+  recordKind?: string;
   fuel: string;
   drivetrain: string;
   savedOnly: boolean;
 }
 export const defaultFilters: Filters = {
   query: '',
-  budget: 60000,
+  budget: null,
+  make: 'all',
+  year: 'all',
+  vehicleClass: 'all',
+  recordKind: 'all',
   fuel: 'all',
   drivetrain: 'all',
   savedOnly: false,
@@ -60,8 +70,16 @@ export function filterCars(cars: Car[], filters: Filters, savedIds: string[] = [
   return cars.filter(
     (car) =>
       (!query || fullName(car).toLocaleLowerCase('en-CA').includes(query)) &&
-      car.facts.msrpCad.value !== null &&
-      car.facts.msrpCad.value <= filters.budget &&
+      (filters.budget === null ||
+        (car.facts.msrpCad.value !== null && car.facts.msrpCad.value <= filters.budget)) &&
+      (!filters.make || filters.make === 'all' || car.make === filters.make) &&
+      (!filters.year || filters.year === 'all' || String(car.year) === filters.year) &&
+      (!filters.vehicleClass ||
+        filters.vehicleClass === 'all' ||
+        car.governmentRating?.vehicleClass === filters.vehicleClass) &&
+      (!filters.recordKind ||
+        filters.recordKind === 'all' ||
+        car.recordKind === filters.recordKind) &&
       (filters.fuel === 'all' || car.fuel === filters.fuel) &&
       (filters.drivetrain === 'all' || car.drivetrain === filters.drivetrain) &&
       (!filters.savedOnly || savedIds.includes(car.id)),
@@ -119,6 +137,9 @@ export function rankCars(cars: Car[], weights: Weights) {
 export function annualFuelCost(car: Car, kilometres: number, cadPerLitre: number): number | null {
   const consumption = car.facts.fuelCombinedL100km.value;
   if (
+    car.fuel === 'Electric' ||
+    car.fuel === 'Plug-in hybrid' ||
+    car.fuel === 'Hydrogen' ||
     consumption === null ||
     consumption <= 0 ||
     !Number.isFinite(kilometres) ||
@@ -130,6 +151,40 @@ export function annualFuelCost(car: Car, kilometres: number, cadPerLitre: number
   )
     return null;
   return Math.round((kilometres / 100) * consumption * cadPerLitre);
+}
+
+export function annualEnergyCost(
+  car: Car,
+  kilometres: number,
+  fuelPrice: number,
+  electricityPrice: number,
+  electricFraction = 0.5,
+): number | null {
+  if (!Number.isFinite(kilometres) || kilometres < 0 || kilometres > 200000) return null;
+  if (car.fuel !== 'Electric' && car.fuel !== 'Plug-in hybrid')
+    return annualFuelCost(car, kilometres, fuelPrice);
+  if (!Number.isFinite(electricityPrice) || electricityPrice < 0 || electricityPrice > 2)
+    return null;
+  const kwh = car.facts.electricCombinedKwh100km.value;
+  if (kwh === null) return null;
+  if (car.fuel === 'Electric') return Math.round((kilometres / 100) * kwh * electricityPrice);
+  if (
+    !Number.isFinite(electricFraction) ||
+    electricFraction < 0 ||
+    electricFraction > 1 ||
+    !Number.isFinite(fuelPrice) ||
+    fuelPrice <= 0 ||
+    fuelPrice > 5
+  )
+    return null;
+  const fuel = car.facts.fuelCombinedL100km.value;
+  const electricModeFuel = car.facts.electricModeFuelL100km.value;
+  if (fuel === null || electricModeFuel === null) return null;
+  return Math.round(
+    (kilometres / 100) *
+      ((1 - electricFraction) * fuel * fuelPrice +
+        electricFraction * (kwh * electricityPrice + electricModeFuel * fuelPrice)),
+  );
 }
 
 export function knownIds(ids: unknown, cars: Car[], limit: number): string[] {

@@ -1,13 +1,25 @@
 # One Stop Shop — OSS
 
 A Canadian car comparison app that explains how each configuration fits your
-priorities. The first release covers five verified 2026 compact SUV configurations
-across Honda, Subaru and Mazda. Prices are CAD base MSRP, fuel consumption is
-L/100 km, cargo is litres and dimensions are millimetres.
+priorities. Market expansion is in progress: the working catalog includes 2,518
+NRCan rating records for 2025–2027 across 47 makes, plus five retail configurations
+with manufacturer specifications. Matching ratings are merged with those retail
+configurations instead of duplicating them. The app currently displays 2,519
+records, including gasoline/hybrid, diesel, flex-fuel, electric and plug-in hybrid
+variants, cars, SUVs, pickups and vans.
+
+This is not yet a complete list of everything currently for sale. Government
+rating variants are labeled separately from retail trims. Current availability,
+exact trim coverage, prices and specifications still need manufacturer review.
+See [the full-market coverage objective and evidence](docs/CANADIAN-MARKET-COVERAGE.md)
+and run `npm run catalog:coverage` for the current gaps.
 
 Browse and filter, set priority weights, compare 2–4 cars, estimate annual fuel
 costs, share a comparison URL and save a shortlist on your device. Every published
-numeric specification has an official source. This is a dated research catalog;
+numeric specification has an official source. Prices are CAD base MSRP; liquid
+fuel is L/100 km, electricity is kWh/100 km, cargo is litres and dimensions are
+millimetres. Unknown prices remain searchable until a budget limit is applied.
+Missing active scoring metrics leave a record unscored. This is a dated research catalog;
 it does not claim live inventory, current dealer prices, reliability ratings or
 complete market coverage.
 
@@ -62,6 +74,11 @@ A static catalog is bundled at build time. There is no runtime database,
 application account service, third-party analytics or secret configuration.
 Shortlists use local storage; comparisons and weights use URL parameters.
 Garage remains independent and will reuse the catalog when it is implemented.
+
+The NRCan baseline is attributed under the Open Government Licence – Canada.
+Refresh it explicitly with `npm run catalog:sync -- 2025 2026 2027`; ordinary builds
+use the checked-in snapshot and require no data-source network access. All pages,
+totals and unique record IDs must reconcile before the snapshot is replaced.
 
 ## Operating the project
 

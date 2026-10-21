@@ -1,7 +1,8 @@
 import { describe, expect, it } from 'vitest';
-import { catalog } from '@oss/car-catalog';
+import { catalog, retailCatalog } from '@oss/car-catalog';
 import {
   annualFuelCost,
+  annualEnergyCost,
   defaultFilters,
   defaultWeights,
   filterCars,
@@ -14,7 +15,7 @@ import {
   serializeSharedState,
 } from './domain';
 
-const cars = catalog.cars;
+const cars = retailCatalog.cars;
 const first = cars[0]!;
 const hybrid = cars.find((car) => car.fuel === 'Hybrid')!;
 const onlyPrice = { price: 5, efficiency: 0, cargo: 0, room: 0 };
@@ -86,7 +87,8 @@ describe('filters and fuel estimates', () => {
   it('does not include an unknown price under a budget', () => {
     const unknown = structuredClone(first);
     unknown.facts.msrpCad.value = null;
-    expect(filterCars([unknown], defaultFilters)).toEqual([]);
+    expect(filterCars([unknown], { ...defaultFilters, budget: 50000 })).toEqual([]);
+    expect(filterCars([unknown], defaultFilters)).toEqual([unknown]);
   });
   it('calculates annual fuel cost using combined L/100 km', () => {
     const example = structuredClone(hybrid);
@@ -103,6 +105,46 @@ describe('filters and fuel estimates', () => {
     [12000, Infinity],
   ])('rejects invalid fuel assumptions %s / %s', (miles, price) => {
     expect(annualFuelCost(first, miles!, price!)).toBeNull();
+  });
+});
+
+describe('full-market filtering and energy calculations', () => {
+  it('includes every record without a hidden budget cap and can filter makes, years and record types', () => {
+    expect(filterCars(catalog.cars, defaultFilters)).toHaveLength(catalog.cars.length);
+    const selected = filterCars(catalog.cars, {
+      ...defaultFilters,
+      make: 'Tesla',
+      year: '2027',
+      fuel: 'Electric',
+      recordKind: 'government-rating',
+    });
+    expect(selected.length).toBeGreaterThan(0);
+    expect(
+      selected.every((car) => car.make === 'Tesla' && car.year === 2027 && car.fuel === 'Electric'),
+    ).toBe(true);
+    expect(filterCars(catalog.cars, { ...defaultFilters, recordKind: 'retail-trim' })).toHaveLength(
+      5,
+    );
+  });
+  it('does not turn missing EV gasoline consumption into a free gasoline estimate', () => {
+    const ev = catalog.cars.find((car) => car.fuel === 'Electric')!;
+    expect(annualFuelCost(ev, 15000, 1.6)).toBeNull();
+    expect(ev.facts.fuelCombinedL100km.value).toBeNull();
+    const example = structuredClone(ev);
+    example.facts.electricCombinedKwh100km.value = 14.4;
+    expect(annualEnergyCost(example, 15000, NaN, 0.15)).toBe(324);
+    expect(annualEnergyCost(example, 15000, 1.6, NaN)).toBeNull();
+  });
+  it('includes fuel burned during a PHEV electric-mode share', () => {
+    const example = structuredClone(catalog.cars.find((car) => car.fuel === 'Plug-in hybrid')!);
+    example.facts.fuelCombinedL100km.value = 10;
+    example.facts.electricCombinedKwh100km.value = 20;
+    example.facts.electricModeFuelL100km.value = 2;
+    expect(annualEnergyCost(example, 10000, 1.5, 0.2, 0.5)).toBe(1100);
+    expect(annualEnergyCost(example, 10000, 1.5, 0.2, 0)).toBe(1500);
+    expect(annualEnergyCost(example, 10000, 1.5, 0.2, 1)).toBe(700);
+    example.facts.electricModeFuelL100km.value = null;
+    expect(annualEnergyCost(example, 10000, 1.5, 0.2, 0.5)).toBeNull();
   });
 });
 

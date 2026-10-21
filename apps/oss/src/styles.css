@@ -437,6 +437,26 @@ h2 {
   gap: 30px;
   align-items: start;
 }
+.record-status {
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: var(--muted);
+}
+.car-trim,
+.car-card h3 {
+  overflow-wrap: anywhere;
+}
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+.pagination span {
+  font-size: 0.8rem;
+}
 .filters {
   background: #f1f2eb;
   border: 1px solid #dfe3d8;

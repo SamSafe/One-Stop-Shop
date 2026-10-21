@@ -1,13 +1,19 @@
 import { test, expect } from '@playwright/test';
+import type { Page } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 
 const honda = '2026 Honda CR-V LX FWD';
 const hybrid = '2026 Honda CR-V Sport Hybrid AWD';
 
+async function openRetailCatalog(page: Page) {
+  await page.goto('/');
+  await page.getByLabel('Record type', { exact: true }).selectOption('retail-trim');
+}
+
 test('preserves a newer shortlist format until the user explicitly clears it', async ({ page }) => {
   const payload = JSON.stringify({ version: 2, ids: ['future-car'], note: 'Keep my data' });
   await page.addInitScript((raw) => localStorage.setItem('oss-shortlist-v1', raw), payload);
-  await page.goto('/');
+  await openRetailCatalog(page);
   await expect(page.getByRole('article')).toHaveCount(5);
   expect(await page.evaluate(() => localStorage.getItem('oss-shortlist-v1'))).toBe(payload);
   await page.getByRole('button', { name: `Save ${honda}`, exact: true }).click();
@@ -30,7 +36,7 @@ test('keeps comparisons usable when the browser refuses address-bar updates', as
       value: { writeText: () => Promise.reject(new Error('Denied')) },
     });
   });
-  await page.goto('/');
+  await openRetailCatalog(page);
   await expect(page.getByRole('article')).toHaveCount(5);
   await page.getByRole('checkbox', { name: `Compare ${honda}`, exact: true }).check();
   await expect(page.getByRole('article')).toHaveCount(5);
@@ -45,23 +51,24 @@ test('keeps comparisons usable when the browser refuses address-bar updates', as
 test('browse, filter, empty state and reset', async ({ page }) => {
   const errors: string[] = [];
   page.on('pageerror', (error) => errors.push(error.message));
-  await page.goto('/');
+  await openRetailCatalog(page);
   await expect(page.getByRole('article')).toHaveCount(5);
   await page.getByLabel('Powertrain', { exact: true }).selectOption('Hybrid');
   await expect(page.getByRole('article')).toHaveCount(1);
   await page.getByLabel('Drivetrain', { exact: true }).selectOption('FWD');
   await expect(page.getByText('No fits with these filters.')).toBeVisible();
   await page.getByRole('button', { name: 'Show all cars' }).click();
+  await page.getByLabel('Record type', { exact: true }).selectOption('retail-trim');
   await page.getByRole('searchbox', { name: 'Search cars' }).fill('mazda');
   await expect(page.getByRole('article')).toHaveCount(1);
   await expect(page.getByRole('article')).toContainText('CX-5');
   await page.getByRole('button', { name: 'Reset', exact: true }).click();
-  await expect(page.getByRole('article')).toHaveCount(5);
+  await expect(page.getByRole('article')).toHaveCount(30);
   expect(errors).toEqual([]);
 });
 
 test('shortlist persists, filters, clears and syncs across tabs', async ({ page, context }) => {
-  await page.goto('/');
+  await openRetailCatalog(page);
   await page.getByRole('button', { name: `Save ${honda}`, exact: true }).click();
   await page.reload();
   await expect(page.getByRole('button', { name: `Unsave ${honda}`, exact: true })).toHaveAttribute(
@@ -78,18 +85,18 @@ test('shortlist persists, filters, clears and syncs across tabs', async ({ page,
 });
 
 test('comparison restores from its URL and calculates fuel costs', async ({ page }) => {
-  await page.goto('/');
+  await openRetailCatalog(page);
   await page.getByRole('checkbox', { name: `Compare ${honda}`, exact: true }).check();
   await expect(page.getByRole('button', { name: 'Compare 1 cars' })).toBeDisabled();
   await page.getByRole('checkbox', { name: `Compare ${hybrid}`, exact: true }).check();
   await page.getByRole('button', { name: 'Compare 2 cars' }).click();
   await expect(page.getByRole('dialog')).toBeVisible();
-  await expect(page.getByRole('row', { name: /Estimated annual fuel/ })).toContainText('$1,872');
-  await expect(page.getByRole('row', { name: /Estimated annual fuel/ })).toContainText('$1,536');
+  await expect(page.getByRole('row', { name: /Estimated annual energy/ })).toContainText('$1,872');
+  await expect(page.getByRole('row', { name: /Estimated annual energy/ })).toContainText('$1,536');
   await page.getByLabel('Annual kilometres', { exact: true }).fill('30000');
-  await expect(page.getByRole('row', { name: /Estimated annual fuel/ })).toContainText('$3,744');
+  await expect(page.getByRole('row', { name: /Estimated annual energy/ })).toContainText('$3,744');
   await page.getByLabel('Gas price').fill('');
-  await expect(page.getByRole('row', { name: /Estimated annual fuel/ })).toContainText(
+  await expect(page.getByRole('row', { name: /Estimated annual energy/ })).toContainText(
     'Not available',
   );
   await page.reload();
@@ -101,7 +108,7 @@ test('comparison restores from its URL and calculates fuel costs', async ({ page
 });
 
 test('comparison limits selection to four and supports removing a car', async ({ page }) => {
-  await page.goto('/');
+  await openRetailCatalog(page);
   const boxes = page.getByRole('checkbox', { name: /^Compare / });
   for (let index = 0; index < 4; index++) await boxes.nth(index).check();
   await expect(boxes.nth(4)).toBeDisabled();
@@ -121,7 +128,7 @@ test('shows source links and handles clipboard denial', async ({ page }) => {
       value: { writeText: () => Promise.reject(new Error('Denied')) },
     }),
   );
-  await page.goto('/');
+  await openRetailCatalog(page);
   await page.getByRole('button', { name: 'Specs & sources' }).first().click();
   await expect(page.getByRole('link', { name: /Base MSRP: .*Source:/ }).first()).toHaveAttribute(
     'href',
@@ -138,7 +145,7 @@ test('shows source links and handles clipboard denial', async ({ page }) => {
 
 test('recovers from corrupt and blocked local storage', async ({ page }) => {
   await page.addInitScript(() => localStorage.setItem('oss-shortlist-v1', '{bad-json'));
-  await page.goto('/');
+  await openRetailCatalog(page);
   await expect(page.getByRole('article')).toHaveCount(5);
   await expect(page.getByText(/storage is unavailable or unreadable/)).toBeVisible();
   await page.addInitScript(() =>
@@ -155,7 +162,7 @@ test('recovers from corrupt and blocked local storage', async ({ page }) => {
 });
 
 test('priority sliders work from keyboard and zero weights stay unscored', async ({ page }) => {
-  await page.goto('/');
+  await openRetailCatalog(page);
   const price = page.getByRole('slider', { name: /Purchase price/ });
   await price.focus();
   await page.keyboard.press('End');
@@ -173,7 +180,7 @@ test('priority sliders work from keyboard and zero weights stay unscored', async
 test('catalog, expanded specs and comparison have no detected WCAG AA violations', async ({
   page,
 }) => {
-  await page.goto('/');
+  await openRetailCatalog(page);
   await page.getByRole('button', { name: 'Specs & sources' }).first().click();
   expect(
     (await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa']).analyze())
@@ -189,7 +196,7 @@ test('catalog, expanded specs and comparison have no detected WCAG AA violations
 });
 
 test('layout has no horizontal document overflow and dialog traps focus', async ({ page }) => {
-  await page.goto('/');
+  await openRetailCatalog(page);
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(
     true,
   );

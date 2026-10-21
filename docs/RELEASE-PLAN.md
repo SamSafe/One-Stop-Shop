@@ -1,5 +1,10 @@
 # OSS v1 release contract
 
+This records the initial release. The active expansion objective is every new
+passenger vehicle currently offered for sale in Canada, including pickups and
+vans. Its completion criteria are in
+[CANADIAN-MARKET-COVERAGE.md](CANADIAN-MARKET-COVERAGE.md).
+
 Status: implemented; release verification and publication are recorded in
 [RELEASE-REPORT.md](RELEASE-REPORT.md).
 
