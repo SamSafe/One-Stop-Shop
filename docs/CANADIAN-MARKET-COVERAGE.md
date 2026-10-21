@@ -96,7 +96,7 @@ flags, plus factory codes, transmission names and direct specification links.
 Other specifications remain unverified until their exact source/variant joins
 are reviewed. Existing Forester IDs and their reviewed facts are preserved.
 
-The working app now has 2,557 records: 43 retail configurations with verified
+At this milestone the app had 2,557 records: 43 retail configurations with verified
 prices and 2,514 rating variants. Forty retail records have dated evidence of
 current manufacturer listing. The remaining 2,517 records require current-offering
 checks; this includes rating variants and the original Honda/Mazda configurations.
@@ -129,7 +129,7 @@ vehiclePrice field. Hidden prices and zero-filled specification placeholders
 remain unknown. Fuel-equivalent values for EVs and hydrogen vehicles never become
 gasoline consumption. Ambiguous plug-in hybrid fuel modes remain unverified.
 
-The app now has 2,885 records: 371 priced retail configurations and 2,514 government
+After this pass the app had 2,885 records: 371 priced retail configurations and 2,514 government
 rating variants. Of these, 368 have dated manufacturer-listing evidence. The
 other 2,517 records still require current-offering review. Forty-four makes in the
 NRCan baseline lack a current manufacturer import; manufacturers outside that
@@ -144,3 +144,54 @@ Validation passed: 78 unit tests and 68 browser checks without retries across th
 four browser projects. The browser checks include the two current Corolla LE CVT
 packages, their distinct MSRP values, manufacturer-listing filter and exact
 official source links. Full Canadian market coverage remains unproven.
+
+## Honda and Acura current retail configurations imported
+
+The next capture adds 64 Honda and 14 Acura configurations. Honda's public
+Canadian lineup currently lists overlapping 2026/2027 years for Civic Sedan,
+Civic Hatchback, CR-V, Passport, Odyssey and Prelude. Every listed model, year,
+trim and transmission must reconcile; only taking a model's default year would
+lose current offerings. The Type R remains included with its LOW INVENTORY label
+even though online building is disabled. Acura's distinct Integra automatic and
+manual configurations remain separate.
+
+The public calculator's Transmission.Msrp is matched by exact trim key/ID and
+transmission ID. Its presentation suffix sometimes differs from the lineup's
+transmission name, such as Default versus e-CVT; both identities are preserved.
+SellingPrice, levies, freight/PDI, colour markups and discounted prices are not
+used as base MSRP. The two original CR-V IDs retain their links and now show the
+current calculator MSRP, rather than the initial price announcement.
+
+Exact trim specification responses provide published dimensions, seating, power,
+cargo and energy facts. Optional AWD wording does not establish a configuration's
+drivetrain. Where a trim contains both fuel rows, explicit configuration evidence
+selects the matching row. Hybrid total-system power takes precedence over engine
+power. Cargo behind the third row represents all seats upright; ambiguous cargo
+maximums, paired widths and missing EV consumption remain unknown. Metric and
+imperial values published together are not mixed.
+
+Two calculator-only 2027 Sport-L entries remain unresolved: Civic Sedan and Civic
+Hatchback. They are absent from the current public model/trim lineup. Acura TLX
+and ZDX model cards have no current year. These cases are in the coverage report;
+they require current-offering or remaining-new-inventory evidence before the
+full-market objective can be considered complete. They are not silently treated
+as discontinued or as confirmed current listings.
+
+The working catalog now has 2,961 records, including 447 priced retail
+configurations and 2,514 government rating variants. There are 446 dated
+manufacturer-listed configurations; 2,515 records still require current-offering
+review. Forty-two makes in the rating baseline lack a current manufacturer
+import, and makes outside that baseline remain in scope.
+
+Refresh with `npm run catalog:sync:honda`. The snapshot retains source hashes,
+configuration identities and selected specification fields; full responses remain
+in ignored data/raw/honda. The `-- --offline` option verifies those hashes and
+reconstructs the snapshot without changing its original retrieval date.
+
+Validation passed: all 88 unit tests and all 72 production browser checks without
+retries across desktop/mobile Chromium, Firefox and mobile WebKit. Checks include
+2027 CR-V drivetrain/MSRP/fuel filtering, separate Integra automatic/manual
+configurations, the existing comparison/shortlist journeys, accessibility and
+server integrity. Formatting, types, catalog validation and build checks passed.
+The local preview's health, index and current application bundle returned HTTP 200.
+These results verify this implementation milestone, not full-market completion.

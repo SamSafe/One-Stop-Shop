@@ -94,7 +94,7 @@ export type SubaruSnapshot = z.infer<typeof subaruSnapshotSchema>;
 
 // Match the browser's embedded JSON nodes without evaluating any remote script.
 export function embeddedJson(html: string, id: string, tag: 'script' | 'div'): unknown {
-  if (!/^[A-Za-z][A-Za-z0-9_-]*$/.test(id)) throw new Error('Invalid JSON node ID.');
+  if (!/^[A-Za-z_][A-Za-z0-9_-]*$/.test(id)) throw new Error('Invalid JSON node ID.');
   const opening = new RegExp(`<${tag}\\b[^>]*\\bid=["']${id}["'][^>]*>`).exec(html);
   if (!opening) throw new Error(`Manufacturer JSON node is missing: ${id}`);
   let value = html.slice(opening.index + opening[0].length).trimStart();

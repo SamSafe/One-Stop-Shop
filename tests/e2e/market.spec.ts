@@ -105,3 +105,29 @@ test('manufacturer-listed Toyota packages retain their own MSRP and published sp
     page.getByRole('link', { name: /Base MSRP: .*Source: Toyota Canada/ }),
   ).toHaveAttribute('href', /^https:\/\/www\.toyota\.ca\/graphql\/execute/);
 });
+
+test('current Honda model years and distinct Acura transmissions are available as retail configurations', async ({
+  page,
+}) => {
+  await page.goto('/');
+  await page.getByLabel('Record type', { exact: true }).selectOption('retail-trim');
+  await page
+    .getByLabel('Availability evidence', { exact: true })
+    .selectOption('manufacturer-listed');
+  await page.getByLabel('Make', { exact: true }).selectOption('Honda');
+  await page.getByLabel('Model year', { exact: true }).selectOption('2027');
+  await page.getByRole('searchbox', { name: 'Search cars' }).fill('CR-V');
+  await expect(page.getByRole('article')).toHaveCount(7);
+  await page.getByLabel('Drivetrain', { exact: true }).selectOption('FWD');
+  await expect(page.getByRole('article')).toHaveCount(1);
+  await expect(page.getByRole('article')).toContainText('$37,575');
+  await expect(page.getByRole('article')).toContainText('7.8');
+  await page.getByLabel('Drivetrain', { exact: true }).selectOption('all');
+  await page.getByLabel('Make', { exact: true }).selectOption('Acura');
+  await page.getByLabel('Model year', { exact: true }).selectOption('2026');
+  await page.getByRole('searchbox', { name: 'Search cars' }).fill('Integra Elite');
+  await expect(page.getByRole('article')).toHaveCount(2);
+  await page.getByRole('button', { name: 'Specs & sources' }).last().click();
+  await expect(page.getByRole('article').last()).toContainText('Manual');
+  await expect(page.getByRole('article').last()).toContainText('$46,675');
+});

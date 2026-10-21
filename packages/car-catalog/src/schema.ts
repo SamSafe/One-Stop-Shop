@@ -96,6 +96,9 @@ const factsShape = Object.fromEntries(
 const manufacturerHosts = new Set([
   'www.honda.ca',
   'honda.ca',
+  'api.honda.ca',
+  'www.acura.ca',
+  'acura.ca',
   'hondanews.ca',
   'www.hondanews.ca',
   'www.subaru.ca',

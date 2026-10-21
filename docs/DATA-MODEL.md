@@ -49,6 +49,20 @@ code. Third-row vehicles use cargo behind the third row for seats-up capacity.
 EV/hydrogen fuel-equivalent fields are not liquid-fuel consumption; ambiguous
 plug-in hybrid operating modes require further review before cost estimates.
 
+Honda/Acura imports retain every model card, listed model year, retail trim and
+transmission. Prices match exact trim IDs/keys and transmission IDs; presentation
+suffixes can differ between the lineup and calculator. The calculator's MSRP
+field is separate from fee-inclusive selling price, discounts and colour markups.
+Calculator-only configurations and cards without a listed year are reported as
+availability research gaps. Online-buildability is not a substitute for retail
+availability: a low-inventory listing can have online building disabled.
+
+The Honda specification adapter retains exact trim source URLs and measurement
+qualifiers. It selects fuel ratings using explicit drivetrain evidence, prefers
+combined hybrid power, uses cargo behind the third row for three-row seats-up
+capacity, and leaves unresolved width/cargo alternatives unknown. Original CR-V
+IDs remain stable while their MSRP is refreshed from the current calculator.
+
 The checked-in NRCan snapshot preserves every selected record and per-page
 response receipts. Build-time expansion joins reviewed retail configurations by
 explicit NRCan IDs. Both Forester trims can share one rating; exact trim identities

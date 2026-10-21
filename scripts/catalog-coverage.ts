@@ -1,10 +1,37 @@
 import { mkdir, writeFile } from 'node:fs/promises';
-import { catalog, nrcanSnapshot, tciSnapshot } from '../packages/car-catalog/src/index.ts';
+import {
+  catalog,
+  nrcanSnapshot,
+  tciSnapshot,
+  hondaSnapshot,
+} from '../packages/car-catalog/src/index.ts';
 import { catalogCoverage } from '../packages/car-catalog/src/coverage.ts';
 
 const report = {
   ...catalogCoverage(catalog, nrcanSnapshot),
-  manufacturerSourceGaps: tciSnapshot.gaps,
+  manufacturerSourceGaps: [
+    ...tciSnapshot.gaps,
+    ...hondaSnapshot.models.flatMap((model) =>
+      model.years.flatMap((year) =>
+        year.pricingOnlyConfigurationKeys.map((key) => ({
+          brand: model.brand,
+          model: model.name,
+          year: year.year,
+          configuration: key,
+          reason:
+            'Present in the pricing calculator but absent from the current model/trim lineup. Availability needs reconciliation.',
+        })),
+      ),
+    ),
+  ],
+  manufacturerModelsWithoutListedYears: hondaSnapshot.models
+    .filter((model) => !model.years.length)
+    .map((model) => ({
+      brand: model.brand,
+      model: model.name,
+      reason:
+        'Model card has no current year. Check remaining new inventory before excluding it from full-market coverage.',
+    })),
 };
 await mkdir('artifacts', { recursive: true });
 await writeFile('artifacts/catalog-coverage.json', JSON.stringify(report, null, 2) + '\n');
