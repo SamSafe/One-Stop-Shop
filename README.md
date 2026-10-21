@@ -2,11 +2,12 @@
 
 A Canadian car comparison app that explains how each configuration fits your
 priorities. Market expansion is in progress: the working catalog includes 2,518
-NRCan rating records for 2025–2027 across 47 makes, plus 43 retail configurations
-with verified prices, including Subaru Canada's 40 currently listed configurations.
+NRCan rating records for 2025–2027 across 47 makes, plus 371 retail configurations
+with verified prices, including 40 currently listed Subaru configurations and
+328 Toyota/Lexus factory packages.
 Five retail configurations also retain the initial manufacturer specification
 review. Matching ratings are merged with those retail
-configurations instead of duplicating them. The app currently displays 2,557
+configurations instead of duplicating them. The app currently displays 2,885
 records, including gasoline/hybrid, diesel, flex-fuel, electric and plug-in hybrid
 variants, cars, SUVs, pickups and vans.
 
@@ -82,6 +83,10 @@ Refresh it explicitly with `npm run catalog:sync -- 2025 2026 2027`; ordinary bu
 use the checked-in snapshot and require no data-source network access. All pages,
 totals and unique record IDs must reconcile before the snapshot is replaced.
 Refresh Subaru's published lineup and base MSRP with `npm run catalog:sync:subaru`.
+Refresh Toyota/Lexus with `npm run catalog:sync:tci`. That importer reconciles the
+current display years, factory models and visible packages for both brands.
+Use `npm run catalog:sync:tci -- --offline` to reconstruct the existing snapshot
+from checksum-verified raw captures without advancing its review date.
 Manufacturer listings establish a current offering, not dealer stock or delivery
 dates; older model-year inventory and additional specifications still need review.
 

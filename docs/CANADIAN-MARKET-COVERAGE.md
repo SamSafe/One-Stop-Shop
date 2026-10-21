@@ -109,3 +109,38 @@ This pass does not claim every new Subaru in Canadian inventory is covered.
 After the merge, all 69 unit tests and all 64 cross-browser checks passed without
 retries. MSRP provenance, source parsing, complete trim/model reconciliation and
 preserved Forester IDs have regression coverage.
+
+## Toyota and Lexus factory configurations imported
+
+The next pass adds 209 Toyota and 119 Lexus configurations from their Canadian
+build-and-price tools. The capture reconciles 50 displayed series, 157 current
+factory model references and every visible package. Archived factory records are
+excluded using the configured display years, even when their internal status
+still says active. Current overlapping display years remain included.
+
+Some visible packages share a parent model's source record while specifying a
+different original factory model code. The importer resolves those aliases back
+to their actual factory identity, including RZ 450e and TX 350 F SPORT variants.
+All references reconcile; no internal source gaps remain in this capture. This
+does not establish that all new dealer inventory is represented.
+
+Configuration MSRP includes the package price once, using the manufacturer's
+vehiclePrice field. Hidden prices and zero-filled specification placeholders
+remain unknown. Fuel-equivalent values for EVs and hydrogen vehicles never become
+gasoline consumption. Ambiguous plug-in hybrid fuel modes remain unverified.
+
+The app now has 2,885 records: 371 priced retail configurations and 2,514 government
+rating variants. Of these, 368 have dated manufacturer-listing evidence. The
+other 2,517 records still require current-offering review. Forty-four makes in the
+NRCan baseline lack a current manufacturer import; manufacturers outside that
+baseline and older new inventory also remain within the objective.
+
+Refresh with `npm run catalog:sync:tci`. Raw response checksums, configured model
+years, factory identities, package membership and visibility rules are retained.
+The `-- --offline` option rebuilds from verified raw captures and preserves their
+original retrieval date. Ordinary application builds use the tracked snapshot.
+
+Validation passed: 78 unit tests and 68 browser checks without retries across the
+four browser projects. The browser checks include the two current Corolla LE CVT
+packages, their distinct MSRP values, manufacturer-listing filter and exact
+official source links. Full Canadian market coverage remains unproven.

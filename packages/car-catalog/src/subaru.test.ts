@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import data from '../data/manufacturers/subaru.json';
-import { catalog, curatedCatalog, retailCatalog, subaruSnapshot } from './index';
+import { catalog, curatedCatalog, subaruSnapshot } from './index';
+import { addSubaruRetail } from './subaru';
 import {
   embeddedJson,
   subaruModels,
@@ -14,9 +15,13 @@ describe('Subaru manufacturer retail import', () => {
     expect(snapshot.trims.length).toBe(
       snapshot.models.reduce((sum, model) => sum + model.trimIds.length, 0),
     );
-    expect(retailCatalog.cars.length).toBe(curatedCatalog.cars.length + snapshot.trims.length - 2);
+    expect(addSubaruRetail(curatedCatalog, snapshot).cars.length).toBe(
+      curatedCatalog.cars.length + snapshot.trims.length - 2,
+    );
     expect(
-      catalog.cars.filter((car) => car.availability.status === 'manufacturer-listed'),
+      catalog.cars.filter(
+        (car) => car.make === 'Subaru' && car.availability.status === 'manufacturer-listed',
+      ),
     ).toHaveLength(snapshot.trims.length);
     for (const id of ['subaru-forester-2026-convenience-awd', 'subaru-forester-2026-touring-awd']) {
       expect(catalog.cars.filter((car) => car.id === id)).toHaveLength(1);

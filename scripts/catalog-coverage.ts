@@ -1,8 +1,11 @@
 import { mkdir, writeFile } from 'node:fs/promises';
-import { catalog, nrcanSnapshot } from '../packages/car-catalog/src/index.ts';
+import { catalog, nrcanSnapshot, tciSnapshot } from '../packages/car-catalog/src/index.ts';
 import { catalogCoverage } from '../packages/car-catalog/src/coverage.ts';
 
-const report = catalogCoverage(catalog, nrcanSnapshot);
+const report = {
+  ...catalogCoverage(catalog, nrcanSnapshot),
+  manufacturerSourceGaps: tciSnapshot.gaps,
+};
 await mkdir('artifacts', { recursive: true });
 await writeFile('artifacts/catalog-coverage.json', JSON.stringify(report, null, 2) + '\n');
 console.log(JSON.stringify(report, null, 2));

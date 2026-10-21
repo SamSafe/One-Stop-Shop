@@ -34,6 +34,21 @@ selling price. A manufacturer-listed status identifies the national offering;
 it does not assert dealer inventory or a delivery date. Older stock remains a
 separate availability review.
 
+Toyota/Lexus snapshots reconcile configured display years, factory model
+references and visible packages. Package aliases resolve to their original
+factory code while preserving the shared parent source. Retail identity includes
+the manufacturer configuration ID so distinct factory packages remain distinct.
+The published vehicle price already includes the package price; it is not added
+again. Hidden prices, zero-filled dimensions and suppressed specification fields
+remain unknown. Source response checksums support an offline reconstruction that
+does not advance the review date.
+
+Manufacturer body classifications are retained even when marketing labels differ.
+An explicit AWD model description takes precedence over a generic 4WD technical
+code. Third-row vehicles use cargo behind the third row for seats-up capacity.
+EV/hydrogen fuel-equivalent fields are not liquid-fuel consumption; ambiguous
+plug-in hybrid operating modes require further review before cost estimates.
+
 The checked-in NRCan snapshot preserves every selected record and per-page
 response receipts. Build-time expansion joins reviewed retail configurations by
 explicit NRCan IDs. Both Forester trims can share one rating; exact trim identities
@@ -61,7 +76,7 @@ notes must accompany the values. Cargo measurement standards are not harmonized.
 
 ## OSS state
 
-- Filters: search, make, model year, NRCan vehicle class, record kind, optional
+- Filters: search, make, model year, NRCan vehicle class, record kind, availability, optional
   maximum base MSRP, powertrain, drivetrain and saved-only. No budget limit is
   active by default; an active limit excludes unknown prices. Results render in
   pages of 30 while selection and shortlists span the whole catalog.

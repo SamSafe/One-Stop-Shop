@@ -111,6 +111,10 @@ const manufacturerHosts = new Set([
   'natural-resources.canada.ca',
   'open.canada.ca',
   'fcr-ccc.nrcan-rncan.gc.ca',
+  'www.toyota.ca',
+  'toyota.ca',
+  'www.lexus.ca',
+  'lexus.ca',
 ]);
 
 export const sourceSchema = z.strictObject({
@@ -236,7 +240,9 @@ export const catalogSchema = z
         car.market,
         car.drivetrain,
         car.variant ?? '',
-        car.recordKind === 'government-rating' ? car.governmentRating?.recordId : '',
+        car.recordKind === 'government-rating'
+          ? car.governmentRating?.recordId
+          : (car.manufacturerConfiguration?.id ?? ''),
       ].join('|');
       if (car.recordKind === 'government-rating' && !car.governmentRating)
         ctx.addIssue({ code: 'custom', message: `Government rating metadata missing: ${car.id}` });

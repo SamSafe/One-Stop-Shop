@@ -19,6 +19,18 @@ export function catalogCoverage(catalog: Catalog, snapshot: NrcanSnapshot) {
     retailConfigurations: retail.length,
     governmentRatingVariants: catalog.cars.length - retail.length,
     verifiedPrices: catalog.cars.filter((car) => car.facts.msrpCad.value !== null).length,
+    manufacturerListedConfigurations: catalog.cars.filter(
+      (car) =>
+        car.recordKind === 'retail-trim' && car.availability.status === 'manufacturer-listed',
+    ).length,
+    makesWithoutCurrentManufacturerListings: [...new Set(catalog.cars.map((car) => car.make))]
+      .filter(
+        (make) =>
+          !catalog.cars.some(
+            (car) => car.make === make && car.availability.status === 'manufacturer-listed',
+          ),
+      )
+      .sort(),
     availabilityUnchecked: catalog.cars.filter((car) => car.availability.status === 'not-checked')
       .length,
     modelYears: snapshot.modelYears,

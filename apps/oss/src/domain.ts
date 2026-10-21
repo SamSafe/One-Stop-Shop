@@ -40,7 +40,7 @@ export const priorityKeys = Object.keys(priorityDefinitions) as Priority[];
 export const fullName = (car: Car) =>
   car.recordKind === 'government-rating'
     ? `${car.year} ${car.make} ${car.model} · ${car.governmentRating?.engineLitres ? `${car.governmentRating.engineLitres} L · ` : ''}${car.governmentRating?.transmission} · NRCan ${car.governmentRating?.recordId}`
-    : `${car.year} ${car.make} ${car.model} ${car.trim}${car.variant ? ` ${car.variant}` : ''}${car.drivetrain !== 'Not verified' ? ` ${car.drivetrain}` : ''}`;
+    : `${car.year} ${car.make} ${car.model} ${car.trim}${car.variant ? ` ${car.variant}` : ''}${car.drivetrain !== 'Not verified' && !car.trim.split(/\s+/).includes(car.drivetrain) ? ` ${car.drivetrain}` : ''}`;
 
 export interface Filters {
   query: string;
@@ -49,6 +49,7 @@ export interface Filters {
   year?: string;
   vehicleClass?: string;
   recordKind?: string;
+  availability?: string;
   fuel: string;
   drivetrain: string;
   savedOnly: boolean;
@@ -60,6 +61,7 @@ export const defaultFilters: Filters = {
   year: 'all',
   vehicleClass: 'all',
   recordKind: 'all',
+  availability: 'all',
   fuel: 'all',
   drivetrain: 'all',
   savedOnly: false,
@@ -81,6 +83,9 @@ export function filterCars(cars: Car[], filters: Filters, savedIds: string[] = [
         filters.recordKind === 'all' ||
         car.recordKind === filters.recordKind) &&
       (filters.fuel === 'all' || car.fuel === filters.fuel) &&
+      (!filters.availability ||
+        filters.availability === 'all' ||
+        car.availability.status === filters.availability) &&
       (filters.drivetrain === 'all' || car.drivetrain === filters.drivetrain) &&
       (!filters.savedOnly || savedIds.includes(car.id)),
   );

@@ -80,3 +80,28 @@ test('EV and plug-in comparisons show electricity and electric-mode fuel costs w
     'current availability',
   );
 });
+
+test('manufacturer-listed Toyota packages retain their own MSRP and published specifications', async ({
+  page,
+}) => {
+  await page.goto('/');
+  await page.getByLabel('Make', { exact: true }).selectOption('Toyota');
+  await page.getByLabel('Model year', { exact: true }).selectOption('2026');
+  await page.getByLabel('Record type', { exact: true }).selectOption('retail-trim');
+  await page
+    .getByLabel('Availability evidence', { exact: true })
+    .selectOption('manufacturer-listed');
+  await page.getByRole('searchbox', { name: 'Search cars' }).fill('Corolla LE CVT');
+  await expect(page.getByRole('article')).toHaveCount(2);
+  await expect(page.getByRole('article').filter({ hasText: 'Standard Package' })).toContainText(
+    '$26,200',
+  );
+  await expect(page.getByRole('article').filter({ hasText: 'LE Upgrade' })).toContainText(
+    '$28,319',
+  );
+  await expect(page.getByRole('article').first()).toContainText('6.7');
+  await page.getByRole('button', { name: 'Specs & sources' }).first().click();
+  await expect(
+    page.getByRole('link', { name: /Base MSRP: .*Source: Toyota Canada/ }),
+  ).toHaveAttribute('href', /^https:\/\/www\.toyota\.ca\/graphql\/execute/);
+});

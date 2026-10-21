@@ -220,6 +220,7 @@ function Card({
           {car.recordKind === 'government-rating'
             ? `${car.governmentRating?.engineLitres ? `${car.governmentRating.engineLitres} L · ` : ''}${car.governmentRating?.transmission}`
             : `${car.trim} · ${car.drivetrain}`}
+          {car.variant && ` · ${car.variant}`}
         </p>
         <p className="record-status">
           {car.recordKind === 'government-rating'
@@ -465,6 +466,7 @@ function Comparison({
                       <strong>{car.model}</strong>
                       <span>
                         {car.trim} · {car.drivetrain}
+                        {car.variant && ` · ${car.variant}`}
                       </span>
                       <button
                         type="button"
@@ -610,8 +612,8 @@ function Comparison({
       )}
       <p className="comparison-footnote">
         Reviewed {reviewedDate}. Cargo measurement methods and width conventions can differ between
-        manufacturers; confirm real-world fit before buying. Hybrid power is total system
-        horsepower. Fit scores reflect only your selected priorities.
+        manufacturers; confirm real-world fit before buying. Engine versus total-system power
+        depends on each source; check field notes. Fit scores reflect only your selected priorities.
       </p>
     </dialog>
   );
@@ -962,6 +964,20 @@ export function App() {
                 <option value="RWD">Rear-wheel drive</option>
                 <option value="4WD">Four-wheel drive</option>
                 <option value="Not verified">Not verified</option>
+              </select>
+              <label className="field-label" htmlFor="availability">
+                Availability evidence
+              </label>
+              <select
+                id="availability"
+                value={filters.availability}
+                onChange={(event) => setFilters({ ...filters, availability: event.target.value })}
+              >
+                <option value="all">All evidence statuses</option>
+                <option value="manufacturer-listed">Currently manufacturer-listed</option>
+                <option value="not-checked">Not yet checked</option>
+                <option value="announced">Announced</option>
+                <option value="discontinued">Discontinued</option>
               </select>
               <label className="saved-filter">
                 <input
