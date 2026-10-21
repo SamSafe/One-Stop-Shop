@@ -1,4 +1,4 @@
-# OSS v1 verification
+# OSS v1.0.1 verification
 
 Verification date: 2026-10-20. Scope: Canadian 2026 compact SUV comparisons,
 five exact configurations across three models. This report distinguishes
@@ -7,16 +7,18 @@ executed checks from configured automation and future operational work.
 ## Executed checks
 
 - Clean container installation from package-lock.json succeeded.
-- 40 unit tests passed: catalog validation, ranking, filters, fuel estimates,
-  URL handling and device-storage recovery.
+- 53 unit tests passed: catalog validation, ranking, filters, fuel estimates,
+  URL handling, device-storage recovery and release integrity checks.
 - Catalog validation, strict TypeScript checking and package-boundary checks passed.
 - Production build passed; compressed JavaScript is approximately 95 kB and CSS
   approximately 6.4 kB.
-- 40 browser checks passed across desktop Chromium, mobile Chromium, desktop
+- 52 browser checks passed without retries across desktop Chromium, mobile Chromium, desktop
   Firefox and mobile WebKit (iPhone viewport). They
   cover filtering, shortlists/reload/cross-tab sync, comparisons, shared URLs,
   clipboard denial, storage failures, keyboard controls, focus containment,
-  mobile overflow and automated WCAG AA scans.
+  mobile overflow and automated WCAG AA scans. The suite also covers preservation
+  of newer shortlist formats, rejected browser-history updates, degraded asset
+  readiness and startup refusal for corrupted assets.
 - Expanded specifications and the comparison dialog had zero detected axe
   WCAG A/AA violations in the tested states across all three engines. This is an automated check,
   not an accessibility certification.
@@ -32,6 +34,26 @@ executed checks from configured automation and future operational work.
   remains a deployment/proxy requirement; the strict CSP no longer forces
   loopback HTTP asset requests onto an unavailable TLS listener.
 
+## Release hardening
+
+The audit reproduced two browser failures before fixing them: merely opening
+the app overwrote a newer shortlist format, and a rejected history.replaceState
+call crashed the page. Shortlist reads now preserve existing data, explicit
+updates read the latest valid stored record, and unknown formats require an
+explicit Privacy & data reset. History failures show a recoverable notice while
+comparison controls and link generation remain usable.
+
+Builds now record a source fingerprint and per-file hashes in a manifest.
+Packaging rejects stale source, changed assets and mismatched runtime helpers,
+checks the clean source commit throughout packaging, and keeps existing archives
+under unique content-based names. The server verifies hashes before listening;
+readiness becomes HTTP 503 if a required asset disappears or changes size after
+startup. Readiness uses file metadata, not continuous full-file hashing.
+
+CI now packages the checked build after the browser suite and retains the
+standalone archive with its receipt. The source transfer needed for Sites
+publication remains separate and has not been retried.
+
 ## Publication
 
 The release is ready for deployment. Sites registration created an owner-private,
@@ -42,8 +64,9 @@ explicitly authorize that payload/destination. Publication requires explicit
 user approval; the rejection was not bypassed.
 
 A standalone local release archive is generated under artifacts/ with a source
-commit, per-file SHA-256 manifest and archive checksum. It runs with Node and
-requires no dependency installation. Its receipt is stored alongside it.
+commit, source fingerprint, per-file SHA-256 manifest and archive checksum. It
+runs with Node and requires no dependency installation. Its receipt is stored
+alongside it.
 
 The full browser suite ran without retries in a disposable Ubuntu container
 because the host lacks Firefox/WebKit libraries. Browser emulation does not

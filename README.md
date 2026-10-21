@@ -29,16 +29,18 @@ The development server runs at http://127.0.0.1:5173.
     npm start
 
 The production server defaults to port 8080; configure PORT and HOST as needed.
-It serves the built dist directory with security headers, gzip and safe cache
-policies. Put it behind HTTPS. Use the production server for release checks;
+It verifies the built dist directory against its checksum manifest before
+starting, then serves it with security headers, gzip and safe cache policies.
+Put it behind HTTPS. Use the production server for release checks;
 Vite's preview command is a development convenience.
 
 To create a standalone local release archive from a clean, committed checkout:
 
     npm run package:release
 
-The archive, checksums and source receipt are written under artifacts/. Extract
-it and run node scripts/serve.mjs; no npm install is needed for the release.
+The archive, checksums and source receipt are written under artifacts/. Packaging
+rejects stale or altered builds and uses a unique, content-based archive name.
+Extract it and run node scripts/serve.mjs; no npm install is needed for the release.
 External publication is awaiting explicit approval; see the release report.
 
 To test the container:
@@ -72,6 +74,7 @@ Garage remains independent and will reuse the catalog when it is implemented.
 - [Release verification](docs/RELEASE-REPORT.md)
 
 CI checks package boundaries, unit tests, catalog freshness, types, production
-build, dependencies and browser journeys, then smoke-tests a non-root container.
+build, dependencies and browser journeys, packages the verified release, then
+smoke-tests a non-root container.
 Weekly scheduled runs catch stale data and new advisories. Dependency updates
 are proposed through Dependabot.

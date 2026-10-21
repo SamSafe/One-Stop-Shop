@@ -39,9 +39,15 @@ notes must accompany the values. Cargo measurement standards are not harmonized.
 - Priorities: integer weights 0–5 for purchase price, consumption, seats-up cargo
   and rear legroom. Fixed scales live in apps/oss/src/domain.ts.
 - Shortlist: versioned local-storage record containing known catalog IDs only.
-  Corrupt, retired, duplicate and unknown IDs are handled safely.
+  Retired, duplicate and unknown IDs are filtered on read. Corrupt payloads and
+  unknown record versions are preserved until the user explicitly clears them
+  through Privacy & data; choices work in memory while storage is unavailable.
+  Reads and cross-tab events never write back to storage. Explicit changes read
+  the latest valid record before saving.
 - Comparison: at most four known IDs and optional weights in URL parameters.
-  A shared link restores the same cars and priorities.
+  A shared link restores the same cars and priorities. If browser history updates
+  fail, comparison controls remain usable and Copy comparison link still derives
+  a URL from the current choices.
 - Fuel estimate: annual kilometres / 100 × combined L/100 km × CAD/litre.
   Inputs remain in memory and are excluded from shared URLs.
 

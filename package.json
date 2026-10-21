@@ -1,6 +1,6 @@
 {
   "name": "one-stop-shop",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "type": "module",
   "workspaces": [
@@ -12,7 +12,7 @@
   },
   "scripts": {
     "dev": "npm run dev --workspace @oss/web -- --host 127.0.0.1",
-    "build": "npm run validate:catalog && npm run typecheck && npm run build --workspace @oss/web",
+    "build": "node scripts/build.mjs",
     "preview": "npm run preview --workspace @oss/web -- --host 127.0.0.1",
     "start": "node scripts/serve.mjs",
     "package:release": "npm run check && node scripts/package-release.mjs",

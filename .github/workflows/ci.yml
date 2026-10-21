@@ -32,6 +32,8 @@ jobs:
       - run: npm audit --audit-level=moderate
       - run: npx playwright install --with-deps chromium firefox webkit
       - run: npm run test:e2e
+      - name: Package the verified build from the clean source commit
+        run: node scripts/package-release.mjs
       - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
         if: always()
         with:
@@ -42,8 +44,10 @@ jobs:
           retention-days: 7
       - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
         with:
-          name: oss-static-${{ github.sha }}
-          path: dist/
+          name: oss-release-${{ github.sha }}
+          path: |
+            dist/
+            artifacts/
           retention-days: 14
 
   container:

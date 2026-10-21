@@ -5,7 +5,11 @@ import path from 'node:path';
 import { pipeline } from 'node:stream/promises';
 import { createGzip } from 'node:zlib';
 import { fileURLToPath } from 'node:url';
+import { manifestName, verifyBuiltRelease, releaseIsReady } from './release-integrity.mjs';
 
+const releaseRoot = fileURLToPath(new URL('..', import.meta.url));
+const release = await verifyBuiltRelease(releaseRoot);
+const knownFiles = new Set([...Object.keys(release.files), manifestName]);
 const root = await realpath(fileURLToPath(new URL('../dist', import.meta.url)));
 // Refuse to advertise readiness for an absent or incomplete build.
 if (!(await stat(path.join(root, 'index.html'))).isFile()) {
@@ -13,8 +17,8 @@ if (!(await stat(path.join(root, 'index.html'))).isFile()) {
 }
 const port = Number(process.env.PORT ?? 8080);
 const host = process.env.HOST ?? '0.0.0.0';
-if (!Number.isInteger(port) || port < 1 || port > 65535)
-  throw new Error('PORT must be an integer from 1 to 65535.');
+if (!Number.isInteger(port) || port < 0 || port > 65535)
+  throw new Error('PORT must be an integer from 0 to 65535.');
 const types = {
   '.html': 'text/html; charset=utf-8',
   '.js': 'text/javascript; charset=utf-8',
@@ -64,8 +68,13 @@ const server = createServer(
       return;
     }
     if (pathname === '/healthz') {
-      response.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
-      response.end(request.method === 'HEAD' ? undefined : '{"status":"ok"}');
+      const ready = await releaseIsReady(releaseRoot, release);
+      response.writeHead(ready ? 200 : 503, { 'Content-Type': 'application/json; charset=utf-8' });
+      response.end(
+        request.method === 'HEAD'
+          ? undefined
+          : JSON.stringify({ status: ready ? 'ok' : 'unavailable' }),
+      );
       return;
     }
     if (
@@ -77,6 +86,11 @@ const server = createServer(
       return;
     }
     const candidate = path.resolve(root, `.${pathname === '/' ? '/index.html' : pathname}`);
+    const relative = pathname === '/' ? 'index.html' : pathname.slice(1);
+    if (!knownFiles.has(relative)) {
+      reply(404, 'Not found');
+      return;
+    }
     if (!candidate.startsWith(root + path.sep)) {
       reply(404, 'Not found');
       return;
@@ -131,7 +145,9 @@ const server = createServer(
   },
 );
 server.maxRequestsPerSocket = 1000;
-server.listen(port, host, () => console.log(`OSS production server: http://${host}:${port}`));
+server.listen(port, host, () =>
+  console.log(`OSS production server: http://${host}:${server.address().port}`),
+);
 const shutdown = () => {
   server.close(() => process.exit(0));
   setTimeout(() => process.exit(1), 10000).unref();

@@ -23,9 +23,19 @@ For a standalone local artifact, commit the reviewed source and run:
     npm run package:release
 
 The ignored artifacts/ directory contains a .tgz archive, its SHA-256 checksum
-and a release receipt with the source commit. Extract it, verify SHA256SUMS and
-run node scripts/serve.mjs without installing dependencies. This packaging
-command performs no upload or publication.
+and a release receipt with the source commit and source fingerprint. Archive
+names include the version, commit and content checksum; previous archives are
+never overwritten. Verify the archive using its .sha256 file, extract it, verify
+SHA256SUMS from inside the extracted oss directory, then run node scripts/serve.mjs
+without installing dependencies. This packaging command performs no upload or
+publication.
+
+Each build writes dist/build-manifest.json with hashes of all deployed files
+and the two runtime scripts. Packaging checks those hashes and the current
+build inputs against the recorded source fingerprint. A stale dist, an altered
+asset, a mismatched server or uncommitted changes block packaging. Rebuild from
+the intended clean source rather than copying an old dist into a new checkout.
+The manifest checks consistency; it is not a signed proof of publisher identity.
 
 ## Production server and container
 
@@ -40,10 +50,16 @@ preview server as the production service.
     docker run -d --name oss --restart unless-stopped --read-only --cap-drop ALL --security-opt no-new-privileges --pids-limit 100 --memory 256m -p 127.0.0.1:8080:8080 oss:release
 
 The image runs as the non-root node user, has no runtime npm dependencies and
-requires no writable application files or persistent volume.
+requires no writable application files or persistent volume. When deploying
+without the image or archive, copy all of dist plus scripts/serve.mjs and
+scripts/release-integrity.mjs from the same build. Startup verifies full file
+hashes before listening and fails if files are absent or changed.
 
-GET /healthz returns status ok for the production server. Monitor it and the
-homepage from your hosting environment. Alert on non-200 responses, increased
+GET /healthz returns HTTP 200 with status ok for the production server. If a
+required build file disappears or changes size after startup, it returns HTTP
+503 with status unavailable. This lightweight readiness check does not rehash
+every file on every request; keep production artifacts immutable. Monitor it and
+the homepage from your hosting environment. Alert on non-200 responses, increased
 5xx responses or application JS failures. The app has no third-party analytics
 or error collector; host monitoring and alert destinations must be configured
 in the actual deployment account.
@@ -100,8 +116,10 @@ If rebuilding is required, use a separate clean checkout at the known-good
 source SHA, reinstall from its lockfile and execute its release checks.
 
 After rollback, repeat the smoke checks. Browser shortlists contain stable IDs;
-removed catalog IDs are dropped on load. Changes to storage/schema versions need
-an explicit migration and rollback plan before release.
+removed catalog IDs are dropped on load. Unknown storage versions and corrupt
+payloads are preserved until the user explicitly clears them; an older release
+must not overwrite a newer shortlist format. Changes to storage/schema versions
+need an explicit migration and rollback plan before release.
 
 ## Catalog refresh
 
