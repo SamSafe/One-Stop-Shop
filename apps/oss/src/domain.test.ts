@@ -129,6 +129,12 @@ describe('shared comparisons', () => {
 });
 
 describe('device shortlists', () => {
+  it('treats unknown formats as read-only rather than authorizing an overwrite', () => {
+    const result = loadShortlist({ getItem: () => '{"version":2,"ids":["future-car"]}' }, cars);
+    expect(result.canPersist).toBe(false);
+    expect(result.warning).toContain('Clear your shortlist');
+    expect(loadShortlist({ getItem: () => null }, cars).canPersist).toBe(true);
+  });
   it('loads only unique catalog IDs and writes a versioned payload', () => {
     const stored = JSON.stringify({ version: 1, ids: [first.id, 'gone', first.id, hybrid.id, 42] });
     expect(loadShortlist({ getItem: () => stored }, cars).ids).toEqual([first.id, hybrid.id]);

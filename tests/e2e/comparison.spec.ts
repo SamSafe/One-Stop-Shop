@@ -4,6 +4,44 @@ import AxeBuilder from '@axe-core/playwright';
 const honda = '2026 Honda CR-V LX FWD';
 const hybrid = '2026 Honda CR-V Sport Hybrid AWD';
 
+test('preserves a newer shortlist format until the user explicitly clears it', async ({ page }) => {
+  const payload = JSON.stringify({ version: 2, ids: ['future-car'], note: 'Keep my data' });
+  await page.addInitScript((raw) => localStorage.setItem('oss-shortlist-v1', raw), payload);
+  await page.goto('/');
+  await expect(page.getByRole('article')).toHaveCount(5);
+  expect(await page.evaluate(() => localStorage.getItem('oss-shortlist-v1'))).toBe(payload);
+  await page.getByRole('button', { name: `Save ${honda}`, exact: true }).click();
+  await expect(page.getByRole('button', { name: `Unsave ${honda}`, exact: true })).toBeVisible();
+  expect(await page.evaluate(() => localStorage.getItem('oss-shortlist-v1'))).toBe(payload);
+  await page.getByText('How your data works', { exact: true }).click();
+  await page.getByRole('button', { name: 'Clear my shortlist' }).click();
+  expect(await page.evaluate(() => localStorage.getItem('oss-shortlist-v1'))).toBeNull();
+  await page.getByRole('button', { name: `Save ${honda}`, exact: true }).click();
+  const saved = await page.evaluate(() => JSON.parse(localStorage.getItem('oss-shortlist-v1')!));
+  expect(saved).toEqual({ version: 1, ids: ['honda-cr-v-2026-lx-fwd'] });
+});
+
+test('keeps comparisons usable when the browser refuses address-bar updates', async ({ page }) => {
+  await page.addInitScript(() => {
+    history.replaceState = () => {
+      throw new DOMException('History unavailable', 'SecurityError');
+    };
+    Object.defineProperty(navigator, 'clipboard', {
+      value: { writeText: () => Promise.reject(new Error('Denied')) },
+    });
+  });
+  await page.goto('/');
+  await expect(page.getByRole('article')).toHaveCount(5);
+  await page.getByRole('checkbox', { name: `Compare ${honda}`, exact: true }).check();
+  await expect(page.getByRole('article')).toHaveCount(5);
+  await page.getByRole('checkbox', { name: `Compare ${hybrid}`, exact: true }).check();
+  await page.getByRole('button', { name: 'Compare 2 cars' }).click();
+  await page.getByRole('button', { name: 'Copy comparison link' }).click();
+  await expect(page.getByLabel('Comparison link', { exact: true })).toHaveValue(
+    /compare=honda-cr-v/,
+  );
+});
+
 test('browse, filter, empty state and reset', async ({ page }) => {
   const errors: string[] = [];
   page.on('pageerror', (error) => errors.push(error.message));

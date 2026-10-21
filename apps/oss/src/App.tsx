@@ -7,17 +7,15 @@ import {
   defaultWeights,
   filterCars,
   fullName,
-  loadShortlist,
   parseSharedState,
   priorityDefinitions,
   priorityKeys,
   rankCars,
-  saveShortlist,
   scoreCar,
   serializeSharedState,
-  storageKey,
 } from './domain';
 import type { Filters, Weights } from './domain';
+import { useShortlist } from './useShortlist';
 
 const cars = catalog.cars;
 const sources = new Map(catalog.sources.map((source) => [source.id, source]));
@@ -154,17 +152,6 @@ function SourcedFact({ metric, fact }: { metric: Metric; fact: Fact }) {
       {fact.note && <small className="fact-note">{fact.note}</small>}
     </>
   );
-}
-
-function readSaved(): { ids: string[]; warning: string | null } {
-  try {
-    return loadShortlist(window.localStorage, cars);
-  } catch {
-    return {
-      ids: [],
-      warning: 'Device storage is unavailable. Your shortlist will work for this visit.',
-    };
-  }
 }
 
 function Card({
@@ -527,9 +514,8 @@ export function App() {
   const [weights, setWeights] = useState<Weights>(initialShared.weights);
   const [compareIds, setCompareIds] = useState<string[]>(initialShared.compare);
   const [comparisonOpen, setComparisonOpen] = useState(initialShared.compare.length >= 2);
-  const [savedState] = useState(readSaved);
-  const [savedIds, setSavedIds] = useState(savedState.ids);
-  const [storageWarning, setStorageWarning] = useState(savedState.warning);
+  const { savedIds, storageWarning, setSaved, clearShortlist } = useShortlist(cars);
+  const [urlWarning, setUrlWarning] = useState<string | null>(null);
   const [announcement, setAnnouncement] = useState('');
   const [shareUrl, setShareUrl] = useState('');
   const [sort, setSort] = useState('fit');
@@ -539,34 +525,17 @@ export function App() {
   const reviewAge = Math.floor((Date.now() - Date.parse(catalog.reviewedAt)) / 86400000);
 
   useEffect(() => {
+    const next = `${window.location.pathname}${serializeSharedState({ compare: compareIds, weights })}${window.location.hash}`;
     try {
-      if (!saveShortlist(window.localStorage, savedIds))
-        setStorageWarning(
-          'Your shortlist cannot be saved on this device. It will work for this visit.',
-        );
+      if (next !== `${window.location.pathname}${window.location.search}${window.location.hash}`) {
+        window.history.replaceState(null, '', next);
+      }
+      setUrlWarning(null);
     } catch {
-      setStorageWarning(
-        'Your shortlist cannot be saved on this device. It will work for this visit.',
+      setUrlWarning(
+        'Your browser could not update the address bar. Use Copy comparison link to share these choices.',
       );
     }
-  }, [savedIds]);
-  useEffect(() => {
-    const receiveStorage = (event: StorageEvent) => {
-      if (event.key === storageKey || event.key === null) {
-        const loaded = readSaved();
-        setSavedIds(loaded.ids);
-        setStorageWarning(loaded.warning);
-      }
-    };
-    window.addEventListener('storage', receiveStorage);
-    return () => window.removeEventListener('storage', receiveStorage);
-  }, []);
-  useEffect(() => {
-    window.history.replaceState(
-      null,
-      '',
-      `${window.location.pathname}${serializeSharedState({ compare: compareIds, weights })}${window.location.hash}`,
-    );
     setShareUrl('');
   }, [compareIds, weights]);
   useEffect(() => {
@@ -608,9 +577,7 @@ export function App() {
   }
   function toggleSave(car: Car) {
     const wasSaved = savedIds.includes(car.id);
-    setSavedIds((previous) =>
-      wasSaved ? previous.filter((id) => id !== car.id) : [...previous, car.id],
-    );
+    setSaved(car.id, !wasSaved);
     setAnnouncement(
       `${car.make} ${car.model} ${wasSaved ? 'removed from' : 'added to'} your shortlist.`,
     );
@@ -724,6 +691,11 @@ export function App() {
         {storageWarning && (
           <p className="notice" role="status">
             {storageWarning}
+          </p>
+        )}
+        {urlWarning && (
+          <p className="notice" role="status">
+            {urlWarning}
           </p>
         )}
         <section id="cars" className="catalog-section" aria-labelledby="catalog-title">
@@ -1035,8 +1007,12 @@ export function App() {
             type="button"
             className="text-button"
             onClick={() => {
-              setSavedIds([]);
-              setAnnouncement('Shortlist cleared.');
+              const cleared = clearShortlist();
+              setAnnouncement(
+                cleared
+                  ? 'Shortlist cleared from this device.'
+                  : 'Shortlist cleared for this visit. Device storage could not be cleared.',
+              );
             }}
           >
             Clear my shortlist

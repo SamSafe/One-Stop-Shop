@@ -167,10 +167,10 @@ export const storageKey = 'oss-shortlist-v1';
 export function loadShortlist(
   storage: Pick<Storage, 'getItem'>,
   cars: Car[],
-): { ids: string[]; warning: string | null } {
+): { ids: string[]; warning: string | null; canPersist: boolean } {
   try {
     const raw = storage.getItem(storageKey);
-    if (!raw) return { ids: [], warning: null };
+    if (!raw) return { ids: [], warning: null, canPersist: true };
     const data: unknown = JSON.parse(raw);
     if (
       typeof data !== 'object' ||
@@ -182,15 +182,18 @@ export function loadShortlist(
     ) {
       return {
         ids: [],
-        warning: 'Your saved shortlist could not be read. You can start a new one.',
+        warning:
+          'Your saved shortlist uses an unreadable format. Changes will only last for this visit. Clear your shortlist to start a new one.',
+        canPersist: false,
       };
     }
-    return { ids: knownIds(data.ids, cars, cars.length), warning: null };
+    return { ids: knownIds(data.ids, cars, cars.length), warning: null, canPersist: true };
   } catch {
     return {
       ids: [],
       warning:
         'Device storage is unavailable or unreadable. Your shortlist will work for this visit.',
+      canPersist: false,
     };
   }
 }
