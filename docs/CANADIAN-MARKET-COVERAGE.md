@@ -177,7 +177,7 @@ they require current-offering or remaining-new-inventory evidence before the
 full-market objective can be considered complete. They are not silently treated
 as discontinued or as confirmed current listings.
 
-The working catalog now has 2,961 records, including 447 priced retail
+After this pass the catalog had 2,961 records, including 447 priced retail
 configurations and 2,514 government rating variants. There are 446 dated
 manufacturer-listed configurations; 2,515 records still require current-offering
 review. Forty-two makes in the rating baseline lack a current manufacturer
@@ -195,3 +195,52 @@ configurations, the existing comparison/shortlist journeys, accessibility and
 server integrity. Formatting, types, catalog validation and build checks passed.
 The local preview's health, index and current application bundle returned HTTP 200.
 These results verify this implementation milestone, not full-market completion.
+
+## Ford and Lincoln default factory configurations imported
+
+The current Canadian retail showrooms identify 15 Ford and six Lincoln model-year
+entries. The import reconciles every listed trim/body variant with its exact
+default factory build: 212 configurations, including 92 Super Duty pickup variants
+and 16 Transit Passenger Van variants across 2026–2027. Pickups absent from the
+fuel-rating baseline are not excluded merely because no NRCan row exists.
+
+The source separates future-only and commercial-only showroom entries. Transit
+model-selection pages also mix passenger and cargo-only vans; 42 cargo-only
+variants are retained as explicit exclusions from the passenger-vehicle scope.
+Future-only classification does not prove that older new inventory is unavailable.
+
+Factory configuration IDs, selected engine/transmission/drive features, cab/box/
+roof/body codes and available powertrain choices are preserved. Published aliases
+such as broncosport/bronco-sport and composite marketed-series codes reconcile
+against the actual source. Unpublished consumption and dimensions stay unknown;
+no unrelated rating or nameplate marketing maximum is assigned to a build.
+
+Displayed starting prices can contain freight, levies, package discounts and
+delivery allowances. The MSRP adapter uses explicit Base and Options components,
+removing selected colour charges and explicit package discounts. For example,
+the captured F-150 XL Regular Cab 8-foot-box build displays TRIM_PRICE of $48,235,
+but its MSRP before these discounts/fees is $52,690. The exact build URL and price
+basis accompany the app's fact. Price components must be present; missing values
+are never interpreted as zero.
+
+The app now contains 3,173 records: 659 priced retail configurations, 2,514
+government rating variants and 210 official sources. There are 658 dated
+manufacturer-listed retail configurations. Forty makes in the baseline still
+lack a current manufacturer import. Additional Ford/Lincoln engine, drive,
+equipment and other relevant selections, older inventory and manufacturers
+outside the rating baseline remain in scope. Default-build coverage does not
+establish every configuration for either brand.
+
+Refresh with `npm run catalog:sync:ford`; add `-- --offline` to reconstruct the
+snapshot from checksum-verified source responses without advancing its date.
+The coverage report explicitly lists the remaining per-model configuration
+expansion. See [the source contract and next enumeration pass](FORD-CONFIGURATOR.md).
+
+Validation passed: all 98 unit tests and all 76 production browser checks without
+retries in the final run across desktop/mobile Chromium, Firefox and mobile
+WebKit. Checks include the exact F-150 cab/box MSRP and source link, unrated F-450
+pickups, passenger vans, Lincoln hybrid variants and existing accessibility,
+comparison, shortlist and server-integrity journeys. Formatting, types, catalog
+validation, build and offline source reconstruction passed. The local preview's
+health endpoint, page and current application bundle returned HTTP 200. These
+checks verify this milestone; full market/configuration coverage remains unproven.

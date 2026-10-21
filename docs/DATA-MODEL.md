@@ -63,6 +63,22 @@ combined hybrid power, uses cargo behind the third row for three-row seats-up
 capacity, and leaves unresolved width/cargo alternatives unknown. Original CR-V
 IDs remain stable while their MSRP is refreshed from the current calculator.
 
+Ford/Lincoln imports reconcile Canadian retail showroom model years with every
+model-selection trim/body variant and its default factory build. Future-only,
+commercial-only and cargo-only exclusions retain their source identities and
+reasons. Personal pickups and passenger vans are included. Exact selected WERS
+codes preserve engine/transmission/drive and body identity, including composite
+marketed-series codes. Available powertrain alternatives remain in the snapshot
+for a further configuration expansion pass; they are not multiplied into invented
+build combinations.
+
+Ford MSRP uses the explicit Base + Options fields before fees, delivery allowances,
+incentives, explicit package discounts and colour charges. The displayed Total
+and TRIM_PRICE are not substituted for MSRP. Missing components or selected
+accessories leave the price unverified. Generic 4x2/2-wheel-drive labels do not
+establish front versus rear drive. BEV, FHEV and diesel are distinguished using
+the selected configuration; absent energy or dimension facts remain unknown.
+
 The checked-in NRCan snapshot preserves every selected record and per-page
 response receipts. Build-time expansion joins reviewed retail configurations by
 explicit NRCan IDs. Both Forester trims can share one rating; exact trim identities

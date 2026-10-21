@@ -118,6 +118,10 @@ const manufacturerHosts = new Set([
   'toyota.ca',
   'www.lexus.ca',
   'lexus.ca',
+  'www.ford.ca',
+  'shop.ford.ca',
+  'www.lincolncanada.com',
+  'shop.lincolncanada.com',
 ]);
 
 export const sourceSchema = z.strictObject({

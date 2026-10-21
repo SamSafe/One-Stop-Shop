@@ -27,6 +27,7 @@
     "catalog:sync:subaru": "node --import tsx scripts/sync-subaru.ts",
     "catalog:sync:tci": "node --import tsx scripts/sync-tci.ts",
     "catalog:sync:honda": "node --import tsx scripts/sync-honda.ts",
+    "catalog:sync:ford": "node --import tsx scripts/sync-ford.ts",
     "check:boundaries": "node scripts/check-boundaries.mjs",
     "check": "npm run check:boundaries && npm run test && npm run build"
   },

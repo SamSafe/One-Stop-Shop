@@ -4,6 +4,7 @@ import {
   nrcanSnapshot,
   tciSnapshot,
   hondaSnapshot,
+  fordSnapshot,
 } from '../packages/car-catalog/src/index.ts';
 import { catalogCoverage } from '../packages/car-catalog/src/coverage.ts';
 
@@ -32,6 +33,17 @@ const report = {
       reason:
         'Model card has no current year. Check remaining new inventory before excluding it from full-market coverage.',
     })),
+  manufacturerConfigurationExpansion: fordSnapshot.models.map((model) => ({
+    brand: model.brand,
+    model: model.name,
+    year: model.year,
+    capturedDefaultConfigurations: model.variants.filter(
+      (variant) => variant.excludedReason === null,
+    ).length,
+    additionalSelectionsExhaustivelyExpanded: false,
+    remaining:
+      'Expand and reconcile additional engine, drive and equipment selections. Default-build coverage does not establish every configurable retail combination.',
+  })),
 };
 await mkdir('artifacts', { recursive: true });
 await writeFile('artifacts/catalog-coverage.json', JSON.stringify(report, null, 2) + '\n');

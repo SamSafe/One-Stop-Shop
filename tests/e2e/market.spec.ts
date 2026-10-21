@@ -131,3 +131,42 @@ test('current Honda model years and distinct Acura transmissions are available a
   await expect(page.getByRole('article').last()).toContainText('Manual');
   await expect(page.getByRole('article').last()).toContainText('$46,675');
 });
+
+test('Ford pickups and passenger vans use exact factory MSRP while Lincoln hybrids remain distinct', async ({
+  page,
+}) => {
+  await page.goto('/');
+  await page.getByLabel('Record type', { exact: true }).selectOption('retail-trim');
+  await page
+    .getByLabel('Availability evidence', { exact: true })
+    .selectOption('manufacturer-listed');
+  await page.getByLabel('Make', { exact: true }).selectOption('Ford');
+  await page.getByLabel('Model year', { exact: true }).selectOption('2026');
+  await page.getByRole('searchbox', { name: 'Search cars' }).fill('F-150 XL Cab:');
+  await expect(page.getByRole('article')).toHaveCount(5);
+  const regularEight = page
+    .getByRole('article')
+    .filter({ hasText: 'Cab: Regular Cab' })
+    .filter({ hasText: "Box: 8' Box" });
+  await expect(regularEight).toHaveCount(1);
+  await expect(regularEight).toContainText('$52,690');
+  await regularEight.getByRole('button', { name: 'Specs & sources' }).click();
+  await expect(
+    regularEight.getByRole('link', { name: /Base MSRP: .*Source: Ford Canada/ }),
+  ).toHaveAttribute(
+    'href',
+    /^https:\/\/www\.ford\.ca\/build-price\/f150\/2026\/choose-model\/build\?/,
+  );
+  await page.getByLabel('Model year', { exact: true }).selectOption('2027');
+  await page.getByRole('searchbox', { name: 'Search cars' }).fill('Super Duty F-450');
+  await expect(page.getByRole('article')).toHaveCount(7);
+  await page.getByRole('searchbox', { name: 'Search cars' }).fill('Transit');
+  await expect(page.getByRole('article')).toHaveCount(8);
+  for (const article of await page.getByRole('article').all())
+    await expect(article).toContainText('Passenger Van');
+  await page.getByLabel('Make', { exact: true }).selectOption('Lincoln');
+  await page.getByLabel('Model year', { exact: true }).selectOption('2026');
+  await page.getByLabel('Powertrain', { exact: true }).selectOption('Hybrid');
+  await page.getByRole('searchbox', { name: 'Search cars' }).fill('Nautilus');
+  await expect(page.getByRole('article')).toHaveCount(2);
+});
