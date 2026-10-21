@@ -79,6 +79,19 @@ accessories leave the price unverified. Generic 4x2/2-wheel-drive labels do not
 establish front versus rear drive. BEV, FHEV and diesel are distinguished using
 the selected configuration; absent energy or dimension facts remain unknown.
 
+Mazda imports reconcile active build-tool model years, trim IDs, engine/transmission
+variants and model-option packages. Package financial.msrp is the full configuration
+price; protection and non-model add-ons are excluded. Shared GS/GT package metadata
+does not replace a Kuro retail trim's identity. Exact model/option codes, model-year
+identity and specification trim IDs must match at every stage. Source row kinds are
+normalized for documented HEADER/Header, DATA/Data and FEATURE forms.
+
+The Mazda adapter retains measurement units and qualifiers, including mirror
+positions, roof alternatives, folded-seat heights and fuel grades. It leaves
+contradictory rear/front cargo values unknown with an explanation, without silently
+swapping them. Coming-soon flags on previous-year entries and older references
+with building disabled remain explicit availability/inventory research gaps.
+
 The checked-in NRCan snapshot preserves every selected record and per-page
 response receipts. Build-time expansion joins reviewed retail configurations by
 explicit NRCan IDs. Both Forester trims can share one rating; exact trim identities

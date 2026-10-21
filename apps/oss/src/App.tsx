@@ -228,6 +228,9 @@ function Card({
             : 'Retail configuration'}
           {car.availability.status === 'manufacturer-listed' && ' · manufacturer-listed'}
           {car.availability.status === 'not-checked' && ' · current availability not checked'}
+          {car.availability.status === 'announced' &&
+            ' · coming-soon source flag · availability needs review'}
+          {car.availability.status === 'discontinued' && ' · manufacturer discontinued'}
         </p>
         <div className="price-row">
           <div>

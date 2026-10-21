@@ -170,3 +170,42 @@ test('Ford pickups and passenger vans use exact factory MSRP while Lincoln hybri
   await page.getByRole('searchbox', { name: 'Search cars' }).fill('Nautilus');
   await expect(page.getByRole('article')).toHaveCount(2);
 });
+
+test('Mazda factory packages retain complete MSRP and source availability conflicts remain visible', async ({
+  page,
+}) => {
+  await page.goto('/');
+  await page.getByLabel('Record type', { exact: true }).selectOption('retail-trim');
+  await page.getByLabel('Make', { exact: true }).selectOption('Mazda');
+  await page.getByLabel('Model year', { exact: true }).selectOption('2026');
+  await page
+    .getByLabel('Availability evidence', { exact: true })
+    .selectOption('manufacturer-listed');
+  await page.getByRole('searchbox', { name: 'Search cars' }).fill('CX-5');
+  await expect(page.getByRole('article')).toHaveCount(5);
+  const premium = page.getByRole('article').filter({ hasText: 'PREMIUM PACKAGE' });
+  await expect(premium).toHaveCount(1);
+  await expect(premium).toContainText('$46,700');
+  await premium.getByRole('button', { name: 'Specs & sources' }).click();
+  await expect(
+    premium.getByRole('link', { name: /Base MSRP: .*Source: Mazda Canada/ }),
+  ).toHaveAttribute(
+    'href',
+    /^https:\/\/n8xgyscaa3\.execute-api\.ca-central-1\.amazonaws\.com\/prod\/api\/Packages\/NXTL86\/AA00/,
+  );
+  await page.getByLabel('Model year', { exact: true }).selectOption('2025');
+  await page.getByLabel('Availability evidence', { exact: true }).selectOption('announced');
+  await page.getByRole('searchbox', { name: 'Search cars' }).fill('CX-50');
+  await expect(page.getByRole('article')).toHaveCount(8);
+  await expect(page.getByText(/coming-soon source flag · availability needs review/)).toHaveCount(
+    8,
+  );
+  await page.getByLabel('Powertrain', { exact: true }).selectOption('Gasoline');
+  await expect(page.getByRole('article')).toHaveCount(5);
+  const first = page.getByRole('article').first();
+  await first.getByRole('button', { name: 'Specs & sources' }).click();
+  await expect(first).toContainText('not automatically swapped');
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(
+    true,
+  );
+});

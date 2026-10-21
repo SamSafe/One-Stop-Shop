@@ -122,6 +122,7 @@ const manufacturerHosts = new Set([
   'shop.ford.ca',
   'www.lincolncanada.com',
   'shop.lincolncanada.com',
+  'n8xgyscaa3.execute-api.ca-central-1.amazonaws.com',
 ]);
 
 export const sourceSchema = z.strictObject({

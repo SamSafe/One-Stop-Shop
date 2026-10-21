@@ -5,6 +5,7 @@ import subaruData from '../data/manufacturers/subaru.json';
 import tciData from '../data/manufacturers/tci.json';
 import hondaData from '../data/manufacturers/honda.json';
 import fordData from '../data/manufacturers/ford.json';
+import mazdaData from '../data/manufacturers/mazda.json';
 import { validateCatalog } from './schema';
 import { validateNrcanSnapshot } from './nrcan-schema';
 import { expandCatalog } from './expand';
@@ -16,6 +17,8 @@ import { addHondaRetail } from './honda';
 import { validateHondaSnapshot } from './honda-import';
 import { validateFordSnapshot } from './ford-import';
 import { addFordRetail } from './ford';
+import { addMazdaRetail } from './mazda';
+import { validateMazdaSnapshot } from './mazda-import';
 
 export * from './schema';
 export { ratingUrl } from './expand';
@@ -25,11 +28,15 @@ export const subaruSnapshot = validateSubaruSnapshot(subaruData);
 export const tciSnapshot = validateTciSnapshot(tciData);
 export const hondaSnapshot = validateHondaSnapshot(hondaData);
 export const fordSnapshot = validateFordSnapshot(fordData);
-export const retailCatalog = addFordRetail(
-  addHondaRetail(
-    addTciRetail(addSubaruRetail(curatedCatalog, subaruSnapshot), tciSnapshot),
-    hondaSnapshot,
+export const mazdaSnapshot = validateMazdaSnapshot(mazdaData);
+export const retailCatalog = addMazdaRetail(
+  addFordRetail(
+    addHondaRetail(
+      addTciRetail(addSubaruRetail(curatedCatalog, subaruSnapshot), tciSnapshot),
+      hondaSnapshot,
+    ),
+    fordSnapshot,
   ),
-  fordSnapshot,
+  mazdaSnapshot,
 );
 export const catalog = expandCatalog(retailCatalog, nrcanSnapshot, links);

@@ -2,14 +2,15 @@
 
 A Canadian car comparison app that explains how each configuration fits your
 priorities. Market expansion is in progress: the working catalog includes 2,518
-NRCan rating records for 2025–2027 across 47 makes, plus 659 retail configurations
+NRCan rating records for 2025–2027 across 47 makes, plus 726 retail configurations
 with verified prices, including 40 currently listed Subaru configurations and
 328 Toyota/Lexus factory packages, 78 Honda/Acura configurations and 212 default
-Ford/Lincoln factory configurations. Additional Ford/Lincoln engine, drive and
+Ford/Lincoln factory configurations and 68 Mazda model/option configurations.
+Additional Ford/Lincoln engine, drive and
 equipment selections remain in progress.
 Five retail configurations also retain the initial manufacturer specification
 review. Matching ratings are merged with those retail
-configurations instead of duplicating them. The app currently displays 3,173
+configurations instead of duplicating them. The app currently displays 3,240
 records, including gasoline/hybrid, diesel, flex-fuel, electric and plug-in hybrid
 variants, cars, SUVs, pickups and vans.
 
@@ -98,6 +99,10 @@ rebuilds the capture without changing its date. Model-year, trim and body varian
 must reconcile with their exact default builds. MSRP excludes fees, delivery
 allowances, explicit package discounts and colour charges. See
 [the configurator data contract and remaining selections](docs/FORD-CONFIGURATOR.md).
+Refresh Mazda with `npm run catalog:sync:mazda`; `-- --offline` checks the source
+captures and rebuilds without advancing their date. Factory package prices are
+complete configuration MSRP. Conflicting coming-soon flags and cargo measurements
+remain explicit gaps; see [the Mazda source contract](docs/MAZDA-CONFIGURATOR.md).
 Manufacturer listings establish a current offering, not dealer stock or delivery
 dates; older model-year inventory and additional specifications still need review.
 

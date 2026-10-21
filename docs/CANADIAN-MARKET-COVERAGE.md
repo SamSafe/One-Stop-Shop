@@ -223,7 +223,7 @@ but its MSRP before these discounts/fees is $52,690. The exact build URL and pri
 basis accompany the app's fact. Price components must be present; missing values
 are never interpreted as zero.
 
-The app now contains 3,173 records: 659 priced retail configurations, 2,514
+After this pass the app contained 3,173 records: 659 priced retail configurations, 2,514
 government rating variants and 210 official sources. There are 658 dated
 manufacturer-listed retail configurations. Forty makes in the baseline still
 lack a current manufacturer import. Additional Ford/Lincoln engine, drive,
@@ -244,3 +244,56 @@ comparison, shortlist and server-integrity journeys. Formatting, types, catalog
 validation, build and offline source reconstruction passed. The local preview's
 health endpoint, page and current application bundle returned HTTP 200. These
 checks verify this milestone; full market/configuration coverage remains unproven.
+
+## Mazda factory model/option configurations imported
+
+The next capture reconciles 12 active build-tool model-year entries, every trim,
+engine/transmission variant and factory model-option package: 68 configurations.
+This includes distinct manual/automatic MX-5 variants, Mazda3 and Mazda3 Sport,
+gasoline, mild/full hybrid and plug-in hybrid configurations. The original CX-5 GX
+ID and its exact NRCan join remain stable while its MSRP and reviewed specification
+provenance are refreshed from the manufacturer tool.
+
+The importer follows ModelYears → Trims → EngineModels → Packages and requests
+specifications for each exact model/option code. Mazda's current public client
+identifies the production API host; its source URL and checksum are retained.
+Package financial.msrp is a complete configuration price, not a surcharge added
+to the base price. Freight/PDE, fees, taxes, colours, incentives, protection and
+non-model add-ons are separate from this MSRP.
+
+Shared metadata aliases retain the retail identity: GS Kuro and GT Kuro package
+metadata can refer to their GS/GT parent while the exact factory option code and
+specification trim ID still identify the configured vehicle. Specification rows
+use several documented header/data/feature case variants; all are read without
+silently losing the published tables. Ambiguous fuel-grade power, roof alternatives,
+plug-in operating modes and unpublished cargo measurements remain unknown.
+
+Two 2025 CX-50 entries are still flagged coming soon by the source, despite being
+previous-model-year listings. Their eight configurations are labeled with that
+source flag and require availability reconciliation. Eight other older model-year
+references have building disabled and remain in the inventory-review ledger;
+neither condition is treated as proof of discontinuation or absence of new stock.
+
+Five CX-50 gasoline configurations also have contradictory published cargo
+measurements: 1,595 L behind rear seats and 889 L behind front seats. Both app
+values remain unverified, with the original numbers and conflict explained. The
+adapter does not silently swap them. These field conflicts are in the gap report.
+
+The working catalog now has 3,240 records: 726 priced retail configurations,
+2,514 government rating variants and 222 official sources. There are 718 dated
+manufacturer-listed configurations and eight with a coming-soon source flag.
+Thirty-nine makes in the rating baseline lack a current manufacturer import;
+makes outside that baseline, older new inventory and outstanding variant/field
+reconciliation remain within the full objective.
+
+Refresh with `npm run catalog:sync:mazda`. The `-- --offline` option checks the
+public client and every response hash and reconstructs the snapshot without
+advancing its retrieval date. See [the exact source contract](MAZDA-CONFIGURATOR.md).
+
+Validation passed: all 108 unit tests and all 80 production browser checks without
+retries across desktop/mobile Chromium, Firefox and mobile WebKit. The suite
+covers Mazda package MSRP/source links, visible coming-soon and cargo conflicts,
+existing comparison/shortlist journeys, accessibility and server integrity.
+Formatting, types, catalog validation, build and checksum-verified offline
+reconstruction passed. The running preview's health endpoint, page and current
+application bundle returned HTTP 200. Full Canadian coverage remains unproven.

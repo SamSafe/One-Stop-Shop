@@ -60,7 +60,7 @@ test('browse, filter, empty state and reset', async ({ page }) => {
   await expect(page.getByText('No fits with these filters.')).toBeVisible();
   await page.getByRole('button', { name: 'Show all cars' }).click();
   await page.getByLabel('Record type', { exact: true }).selectOption('retail-trim');
-  await page.getByRole('searchbox', { name: 'Search cars' }).fill('mazda');
+  await page.getByRole('searchbox', { name: 'Search cars' }).fill('2026 Mazda CX-5 GX');
   await expect(page.getByRole('article')).toHaveCount(1);
   await expect(page.getByRole('article')).toContainText('CX-5');
   await page.getByRole('button', { name: 'Reset', exact: true }).click();
