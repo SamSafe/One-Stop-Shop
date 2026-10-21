@@ -27,6 +27,10 @@ executed checks from configured automation and future operational work.
   dropped capabilities and no-new-privileges; its health check passed.
 - HTTP smoke checks confirmed homepage/health success, dotfile denial, CSP,
   safe errors, HEAD behavior, method restrictions and immutable asset caching.
+- The v1.0.1 standalone archive was extracted into an isolated temporary
+  directory. Its archive checksum and every SHA256SUMS entry passed; it served
+  the homepage, JavaScript and readiness endpoint without npm installation or
+  Git metadata.
 - npm audit reported zero known vulnerabilities in the pinned dependency graph.
 - Formatting and git diff whitespace checks passed.
 - The documented development command rendered all five cars with no page errors.
