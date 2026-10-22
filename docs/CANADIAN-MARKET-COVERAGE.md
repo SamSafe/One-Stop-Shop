@@ -370,7 +370,7 @@ minimum/maximum volumes and roof-qualified headroom remain unverified until
 their exact applicability is reconciled. Twenty-six records retain multiple FSC
 aliases whose ordering/equipment significance still requires review.
 
-The working catalog now has 3,446 records: 932 priced retail configurations,
+At the Kia milestone the catalog had 3,446 records: 932 priced retail configurations,
 2,514 government rating variants and 263 official sources. There are 924 dated
 manufacturer-listed configurations and eight Mazda configurations with a
 coming-soon source flag. Thirty-seven baseline makes still need a manufacturer
@@ -393,3 +393,61 @@ reconstruction passed. The restarted preview's health endpoint, page and current
 bundle returned HTTP 200. The JavaScript bundle is 4,973.46 kB raw / 415.74 kB gzip;
 the large-chunk performance warning remains outstanding. Full Canadian coverage
 and exhaustive ordering/equipment-variant reconciliation remain unproven.
+
+## Chevrolet, GMC, Buick and Cadillac factory matrices imported
+
+The next capture reconciles 83 Canadian model/year/body references and every
+published trim-matrix option against its nested trim configuration. Seventy-nine
+passenger/pickup entries supply 1,230 distinct style/body/drive/engine/transmission/
+axle/battery/propulsion combinations. The 2026 Silverado 1500 alone has 121
+combinations across 35 styles. Current and selectable previous years remain
+included. Two Equinox references omitted by the generic build selector are also
+confirmed by their official model pages.
+
+Four separately identified Express/Savana Cargo entries, totaling 32 combinations,
+are excluded as cargo-only bodies. Their Passenger counterparts retain all 48
+combinations, and personal HD pickups remain included. These exclusions are not
+applied to an entire make, van family or truck weight class.
+
+Exact configuration responses must match every factory identity component.
+Factory MSRP is the standard vehicle price plus selected equipment, reconciled
+to the published subtotal, with paid colours, dealer products and accessories
+removed. Freight, fees, taxes and incentives are separate. The 2026 Envista
+Preferred's $29,749 base MSRP is distinct from its $32,883 charged display. A
+Silverado WT V8 configuration includes its required differential and has $52,744
+factory MSRP, rather than the $56,278 charged total.
+
+The public calculator began returning 403 for many requests; several new
+combinations returned 422. Captured responses and exactly matching default GET
+calculations establish 376 MSRP values. The other 854 remain explicitly unverified,
+including unmatched defaults and unresolved pricing components. None use a
+fee-inclusive matrix amount as a substitute. Exact calculator horsepower and
+explicit Canadian city/highway L/100km can be shown; dimensional, cabin, cargo
+and other energy tables still need exact variant/option joins. Additional
+equipment/package combinations beyond the published matrix remain in the report.
+
+The working catalog now has 4,676 records: 2,162 retail configurations, of which
+1,308 have verified MSRP, plus 2,514 government rating variants and 342 official
+sources. There are 2,154 dated manufacturer-listed configurations and eight Mazda
+configurations with a coming-soon source flag. Thirty-three baseline makes still
+need a manufacturer import. The objective continues to include makes outside
+that baseline, older new inventory and outstanding configuration/field reviews.
+
+Reconstruct GM with `npm run catalog:sync:gm -- --offline`, or import a new reviewed
+manifest with `-- --from-captures <manifest.json>`. Both preserve the source date
+and verify captured bytes. Ordinary builds and the running app make no runtime
+manufacturer requests. Serialized states without a usable calculation are kept
+in the raw captures rather than the browser payload; verified builds retain exact
+source links. See [the source contract](GM-CONFIGURATOR.md).
+
+Validation passed: all 133 unit tests and all 92 production browser checks without
+retries across desktop/mobile Chromium, desktop Firefox and mobile WebKit.
+Regression coverage includes complete matrix joins, rejected/default substitutions,
+component/subtotal MSRP reconciliation, unavailable-price filtering, passenger vans,
+exact factory source links and existing comparison/accessibility/server journeys.
+Formatting, boundaries, types, catalog validation, build and checksum-verified
+offline reconstruction passed. The running preview's health endpoint, page and
+current bundle returned HTTP 200. Removing unnecessary serialized states reduced
+the JavaScript bundle from 912.26 kB to 603.98 kB gzip (6,343.48 kB raw); the
+large-chunk warning remains an outstanding performance improvement. Full Canadian
+market and exhaustive configuration coverage remain unproven.

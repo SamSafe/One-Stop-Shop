@@ -8,15 +8,36 @@ import {
   mazdaSnapshot,
   hyundaiSnapshot,
   kiaSnapshot,
+  gmSnapshot,
 } from '../packages/car-catalog/src/index.ts';
 import { catalogCoverage } from '../packages/car-catalog/src/coverage.ts';
 import { mazdaMeasurementConflicts } from '../packages/car-catalog/src/mazda.ts';
 import { kiaReviewGaps } from '../packages/car-catalog/src/kia.ts';
+import { gmOptionKey } from '../packages/car-catalog/src/gm-import.ts';
 
 const report = {
   ...catalogCoverage(catalog, nrcanSnapshot),
   manufacturerSourceGaps: [
     ...tciSnapshot.gaps,
+    ...gmSnapshot.records
+      .filter((record) => !record.configuration || record.configuration.msrpCad === null)
+      .map((record) => ({
+        brand: 'GM',
+        model: record.modelKey,
+        configuration: gmOptionKey(record.option),
+        field: 'msrpCad',
+        reason: record.configurationGap ?? record.configuration?.priceNote,
+      })),
+    ...gmSnapshot.models
+      .filter((model) => !model.excludedReason)
+      .map((model) => ({
+        brand: model.reference.brand,
+        model: model.key,
+        field: 'specifications',
+        sourceCaptured: model.specificationsSource !== null,
+        reason:
+          'Exact style/powertrain joins for dimensional, seating, cargo and energy tables remain under review. Default or sibling measurements are not copied into other configurations.',
+      })),
     ...kiaReviewGaps(kiaSnapshot).map((gap) => ({ brand: 'Kia', ...gap })),
     ...hyundaiSnapshot.models.map((model) => ({
       brand: 'Hyundai',
@@ -78,28 +99,53 @@ const report = {
       reason:
         'Model card has no current year. Check remaining new inventory before excluding it from full-market coverage.',
     })),
-  manufacturerCommercialOnlyExclusions: kiaSnapshot.excludedModels.map((model) => ({
-    brand: 'Kia',
-    model: model.name,
-    year: model.year,
-    configurations: model.expectedKeys,
-    reason: model.reason,
-    sourceUrl: model.source.url,
-  })),
+  manufacturerCommercialOnlyExclusions: [
+    ...kiaSnapshot.excludedModels.map((model) => ({
+      brand: 'Kia',
+      model: model.name,
+      year: model.year,
+      configurations: model.expectedKeys,
+      reason: model.reason,
+      sourceUrl: model.source.url,
+    })),
+    ...gmSnapshot.models
+      .filter((model) => model.excludedReason)
+      .map((model) => ({
+        brand: model.reference.brand,
+        model: model.key,
+        year: model.reference.year,
+        configurations: model.expectedKeys,
+        reason: model.excludedReason,
+        sourceUrl: model.source.url,
+      })),
+  ],
   manufacturerOlderModelYearsNeedingInventoryReview: mazdaSnapshot.excludedModelYears.map(
     (year) => ({ brand: 'Mazda', model: year.carline, year: year.year, reason: year.reason }),
   ),
-  manufacturerConfigurationExpansion: fordSnapshot.models.map((model) => ({
-    brand: model.brand,
-    model: model.name,
-    year: model.year,
-    capturedDefaultConfigurations: model.variants.filter(
-      (variant) => variant.excludedReason === null,
-    ).length,
-    additionalSelectionsExhaustivelyExpanded: false,
-    remaining:
-      'Expand and reconcile additional engine, drive and equipment selections. Default-build coverage does not establish every configurable retail combination.',
-  })),
+  manufacturerConfigurationExpansion: [
+    ...fordSnapshot.models.map((model) => ({
+      brand: model.brand,
+      model: model.name,
+      year: model.year,
+      capturedDefaultConfigurations: model.variants.filter(
+        (variant) => variant.excludedReason === null,
+      ).length,
+      additionalSelectionsExhaustivelyExpanded: false,
+      remaining:
+        'Expand and reconcile additional engine, drive and equipment selections. Default-build coverage does not establish every configurable retail combination.',
+    })),
+    ...gmSnapshot.models
+      .filter((model) => !model.excludedReason)
+      .map((model) => ({
+        brand: model.reference.brand,
+        model: model.key,
+        year: model.reference.year,
+        capturedMatrixConfigurations: model.expectedKeys.length,
+        additionalSelectionsExhaustivelyExpanded: false,
+        remaining:
+          'Reconcile additional equipment/package selections beyond the complete published body/drive/engine/transmission/axle/battery/propulsion matrix. Matrix coverage does not establish all ordering or dealer-inventory configurations.',
+      })),
+  ],
 };
 await mkdir('artifacts', { recursive: true });
 await writeFile('artifacts/catalog-coverage.json', JSON.stringify(report, null, 2) + '\n');

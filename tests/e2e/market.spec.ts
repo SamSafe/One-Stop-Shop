@@ -1,6 +1,46 @@
 import { test, expect } from '@playwright/test';
 import { readFileSync } from 'node:fs';
 
+test('GM factory prices exclude fees, unavailable prices remain visible, and passenger vans stay in scope', async ({
+  page,
+}) => {
+  await page.goto('/');
+  await page.getByLabel('Record type', { exact: true }).selectOption('retail-trim');
+  await page
+    .getByLabel('Availability evidence', { exact: true })
+    .selectOption('manufacturer-listed');
+  await page.getByLabel('Make', { exact: true }).selectOption('Buick');
+  await page.getByLabel('Model year', { exact: true }).selectOption('2026');
+  await page.getByRole('searchbox', { name: 'Search cars' }).fill('Envista');
+  await expect(page.getByRole('article')).toHaveCount(3);
+  await expect(page.getByRole('article').filter({ hasText: 'Preferred' })).toContainText('$29,749');
+  await page.getByRole('searchbox', { name: 'Search cars' }).fill('Envista Avenir');
+  await expect(page.getByRole('article')).toHaveCount(1);
+  await expect(page.getByRole('article')).toContainText('Not verified');
+  await page.getByLabel('Max base MSRP', { exact: true }).selectOption('50000');
+  await expect(page.getByRole('article')).toHaveCount(0);
+  await page.getByLabel('Max base MSRP', { exact: true }).selectOption('all');
+  await page.getByLabel('Make', { exact: true }).selectOption('GMC');
+  await page.getByRole('searchbox', { name: 'Search cars' }).fill('Savana');
+  await expect(page.getByRole('article')).toHaveCount(12);
+  for (const article of await page.getByRole('article').all())
+    await expect(article).toContainText('Passenger');
+  await page.goto(
+    '/?compare=gm-ca-chevrolet-2026-475054-l84-mht-gu5-none-none,honda-cr-v-2026-lx-fwd',
+  );
+  await expect(page.getByRole('dialog')).toBeVisible();
+  await expect(page.getByRole('row', { name: /^Base MSRP/ })).toContainText('$52,744');
+  await expect(
+    page.getByRole('link', { name: /Base MSRP: .*Source: Chevrolet Canada/ }),
+  ).toHaveAttribute(
+    'href',
+    /^https:\/\/www\.chevrolet\.ca\/byo-vc\/client\/en\/CA\/chevrolet\/silverado-1500\/2026\/silverado-1500\/config\?styleId=475054&ss=/,
+  );
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(
+    true,
+  );
+});
+
 test('Kia AWD packages, overlapping model years and passenger vans retain exact factory prices', async ({
   page,
 }) => {

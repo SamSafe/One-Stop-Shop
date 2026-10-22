@@ -2,16 +2,17 @@
 
 A Canadian car comparison app that explains how each configuration fits your
 priorities. Market expansion is in progress: the working catalog includes 2,518
-NRCan rating records for 2025–2027 across 47 makes, plus 932 retail configurations
-with verified prices, including 40 currently listed Subaru configurations and
+NRCan rating records for 2025–2027 across 47 makes, plus 2,162 retail configurations
+(1,308 with verified prices), including 40 currently listed Subaru configurations and
 328 Toyota/Lexus factory packages, 78 Honda/Acura configurations and 212 default
 Ford/Lincoln factory configurations, 68 Mazda model/option configurations and
-80 Hyundai factory trims/packages and 126 Kia factory trims/packages.
-Additional Ford/Lincoln engine, drive and
-equipment selections remain in progress.
+80 Hyundai factory trims/packages, 126 Kia factory trims/packages and 1,230
+Chevrolet/GMC/Buick/Cadillac factory matrix configurations. Additional Ford/Lincoln
+and GM equipment selections remain in progress; unavailable GM calculations leave
+854 MSRP values unverified.
 Five retail configurations also retain the initial manufacturer specification
 review. Matching ratings are merged with those retail
-configurations instead of duplicating them. The app currently displays 3,446
+configurations instead of duplicating them. The app currently displays 4,676
 records, including gasoline/hybrid, diesel, flex-fuel, electric and plug-in hybrid
 variants, cars, SUVs, pickups and vans.
 
@@ -118,6 +119,14 @@ including separate 2027 EV4 evidence and current 2025 offerings. Factory package
 retain their own MSRP and specifications. Commercial-only PV5 cargo variants are
 excluded with official evidence; FSC aliases and ambiguous measurements remain
 in the gap report. See [the Kia source contract](docs/KIA-CONFIGURATOR.md).
+
+Reconstruct GM from reviewed captures with `npm run catalog:sync:gm -- --offline`.
+Its Canadian selectors reconcile every body/trim/engine/transmission/axle/battery/
+propulsion tuple. Exact calculator component/subtotal checks separate factory
+MSRP from fees, colours and dealer products. Rejected or mismatched calculations
+remain unknown. A new reviewed capture can be imported with `-- --from-captures
+<manifest.json>` while preserving its original date; this command does not claim
+a fresh live retrieval. See [the GM source contract](docs/GM-CONFIGURATOR.md).
 Manufacturer listings establish a current offering, not dealer stock or delivery
 dates; older model-year inventory and additional specifications still need review.
 
