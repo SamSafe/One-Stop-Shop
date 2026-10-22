@@ -807,3 +807,18 @@ the release fingerprint matches the current source. JavaScript remains 9,018.74 
 raw / 848.83 kB gzip, with the large-chunk performance warning open. The complete
 market gate still fails as expected: missing makes, factory selections, stock
 reconciliation and specification evidence remain work toward the full objective.
+
+## MINI Canadian sources captured; import remains pending
+
+MINI's published Canadian configurator supplies 23 active exact model codes across
+2026–2027 and 90 model/line/style combinations. The cleared national new-stock
+search reconciles 1,553 distinct vehicles across all 44 reported pages, adding
+older 2025 stock and special editions beyond the carousel. There are 37 distinct
+codes across both sources. This research does not yet add MINI retail records or
+reduce the 27 makes awaiting import.
+
+Three older technical tables conflict with observed stock transmissions; one
+Paul Smith AG identity conflicts across sources; a Countryman JCW Edition pricing
+source returns HTTP 500. Supplier price discrepancies and optional equipment also
+require reconciliation. See [the research contract](MINI-CONFIGURATOR.md) before
+implementing the importer; model counts alone do not establish complete coverage.
