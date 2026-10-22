@@ -132,6 +132,9 @@ const manufacturerHosts = new Set([
   'www.infiniti.ca',
   'www.vw.ca',
   'oneapi.volkswagen.com',
+  'www.mitsubishi-motors.ca',
+  'clickshop.mitsubishi-motors.ca',
+  'www-graphql.prod.mipulse.co',
   'n8xgyscaa3.execute-api.ca-central-1.amazonaws.com',
 ]);
 

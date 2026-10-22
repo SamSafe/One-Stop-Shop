@@ -1,0 +1,4415 @@
+{
+  "schemaVersion": 1,
+  "retrievedAt": "2026-10-22T17:21:39.835Z",
+  "selectorSource": {
+    "url": "https://www.mitsubishi-motors.ca/en/buy/configure-your-mitsubishi/configurator",
+    "sha256": "248c0fa0d73b1c20631afefe06faf8ad46d84c8b5276fffdb52ce9561fe82998",
+    "requestSha256": null
+  },
+  "startSource": {
+    "url": "https://www.mitsubishi-motors.ca/en/buy/configure-your-mitsubishi",
+    "sha256": "c5b7b807c2464ff4ecb5480bafc8c3fd4ec870a9ca9e27054e769a837fcb2b8a",
+    "requestSha256": null
+  },
+  "inventorySources": [
+    {
+      "url": "https://clickshop.mitsubishi-motors.ca/api/quickshop/inventory/models/?condition=New&page=1&sort=availability",
+      "sha256": "23a90b10fd2ae4be03b371fdd5acbb37b7578369ce7941cf465197e1b5d4ed7c",
+      "requestSha256": null
+    }
+  ],
+  "inventoryReferences": [
+    {
+      "year": 2026,
+      "model": "Outlander PHEV",
+      "num_items": 2116,
+      "make": "Mitsubishi",
+      "vehicle_condition": "New",
+      "is_used": false,
+      "is_cpo": false
+    },
+    {
+      "year": 2026,
+      "model": "Outlander",
+      "num_items": 1930,
+      "make": "Mitsubishi",
+      "vehicle_condition": "New",
+      "is_used": false,
+      "is_cpo": false
+    },
+    {
+      "year": 2026,
+      "model": "Eclipse Cross",
+      "num_items": 1919,
+      "make": "Mitsubishi",
+      "vehicle_condition": "New",
+      "is_used": false,
+      "is_cpo": false
+    },
+    {
+      "year": 2027,
+      "model": "RVR",
+      "num_items": 1059,
+      "make": "Mitsubishi",
+      "vehicle_condition": "New",
+      "is_used": false,
+      "is_cpo": false
+    },
+    {
+      "year": 2026,
+      "model": "RVR",
+      "num_items": 461,
+      "make": "Mitsubishi",
+      "vehicle_condition": "New",
+      "is_used": false,
+      "is_cpo": false
+    },
+    {
+      "year": 2025,
+      "model": "Outlander",
+      "num_items": 48,
+      "make": "Mitsubishi",
+      "vehicle_condition": "New",
+      "is_used": false,
+      "is_cpo": false
+    },
+    {
+      "year": 2025,
+      "model": "RVR",
+      "num_items": 29,
+      "make": "Mitsubishi",
+      "vehicle_condition": "New",
+      "is_used": false,
+      "is_cpo": false
+    },
+    {
+      "year": 2027,
+      "model": "Outlander",
+      "num_items": 26,
+      "make": "Mitsubishi",
+      "vehicle_condition": "New",
+      "is_used": false,
+      "is_cpo": false
+    },
+    {
+      "year": 2025,
+      "model": "Eclipse Cross",
+      "num_items": 22,
+      "make": "Mitsubishi",
+      "vehicle_condition": "New",
+      "is_used": false,
+      "is_cpo": false
+    }
+  ],
+  "currentModelKeys": ["DG/2026", "DGE/2026", "NS/2026", "ZC/2027", "ZC/2026", "DME/2027"],
+  "models": [
+    {
+      "key": "DG/2025",
+      "vehicleCode": "DG",
+      "vehicleGuid": "bjp0e8elcw88ozs2ddv17l",
+      "name": "Outlander",
+      "year": 2025,
+      "currentBuildListing": false,
+      "expectedCodes": [
+        "GM4WXTMCZL3M-NA_C51",
+        "GM4WXTXCZL3M-NA_C52",
+        "GM4WXTXCZL3M-NA_F53",
+        "GM4WXTXCZL3M-NA_F55",
+        "GM4WXTUCZL3M-NA_F56",
+        "GM4WXTUCZL3M-NA_F57"
+      ],
+      "priceSource": {
+        "url": "https://www-graphql.prod.mipulse.co/prod/graphql",
+        "sha256": "b63024c6b6373718603a1287c04d0a5bb51ab2af580b4e1462377930e6882eed",
+        "requestSha256": "11b932a055d9e53075f4d39d8a49d67c5b0906868ca3739f96bda2344acdbf40"
+      },
+      "specificationsSource": null,
+      "inventoryReference": {
+        "year": 2025,
+        "model": "Outlander",
+        "num_items": 48,
+        "make": "Mitsubishi",
+        "vehicle_condition": "New",
+        "is_used": false,
+        "is_cpo": false
+      }
+    },
+    {
+      "key": "DG/2026",
+      "vehicleCode": "DG",
+      "vehicleGuid": "bjp0e8elcw88ozs2ddv17l",
+      "name": "Outlander",
+      "year": 2026,
+      "currentBuildListing": true,
+      "expectedCodes": [
+        "GM2WXTMCZL3M-NA_C61",
+        "GM2WXTXCZL3M-NA_C62",
+        "GM2WXTXCZL3M-NA_F63",
+        "GM2WXTXCZL3M-NA_F65",
+        "GM2WXTUCZL3M-NA_F66",
+        "GM2WXTUCZL3M-NA_F67",
+        "GM2WXTUCZL3M-NA_L61"
+      ],
+      "priceSource": {
+        "url": "https://www-graphql.prod.mipulse.co/prod/graphql",
+        "sha256": "255baa5deb935b4a636a464434a37c605e2f42d25465962c173a359de03231f0",
+        "requestSha256": "b0f65acfb9009e7677fb18c090a1c08d8c1f00630d28f1ef220b69d567c83c7c"
+      },
+      "specificationsSource": {
+        "url": "https://www.mitsubishi-motors.ca/en/vehicles/outlander/specs",
+        "sha256": "e56a87ff8fb38f81de3a0cd22ff6a71b4191605fb81743d8bd17b673c926e3b8",
+        "requestSha256": null
+      },
+      "inventoryReference": {
+        "year": 2026,
+        "model": "Outlander",
+        "num_items": 1930,
+        "make": "Mitsubishi",
+        "vehicle_condition": "New",
+        "is_used": false,
+        "is_cpo": false
+      }
+    },
+    {
+      "key": "DGE/2026",
+      "vehicleCode": "DGE",
+      "vehicleGuid": "xoiookxoaw0tizqht2jf3z",
+      "name": "Outlander PHEV",
+      "year": 2026,
+      "currentBuildListing": true,
+      "expectedCodes": [
+        "GN0WXDMHZL3M-NA_C61",
+        "GN0WXDXHZL3M-NA_U62",
+        "GN0WXDXHZL3M-NA_F61",
+        "GN0WXDXHZL3M-NA_F62",
+        "GN0WXDUHZL3M-NA_F63",
+        "GN0WXDUHZL3M-NA_F64",
+        "GN0WXDUHZL3M-NA_L61"
+      ],
+      "priceSource": {
+        "url": "https://www-graphql.prod.mipulse.co/prod/graphql",
+        "sha256": "7ec8a9e0e1e4c086e43311c3d1b04f41806f11f78b341ab2997f02c611501b1c",
+        "requestSha256": "91ed7cd7a5d269d820d55959beb97dcb6451b0ff5e61a2090c77e2b7c710046c"
+      },
+      "specificationsSource": {
+        "url": "https://www.mitsubishi-motors.ca/en/vehicles/outlander-phev/specs",
+        "sha256": "5da66cd31fe13186fa22dc284ab325b8e503ee2d8b107011c782abd09653e36d",
+        "requestSha256": null
+      },
+      "inventoryReference": {
+        "year": 2026,
+        "model": "Outlander PHEV",
+        "num_items": 2116,
+        "make": "Mitsubishi",
+        "vehicle_condition": "New",
+        "is_used": false,
+        "is_cpo": false
+      }
+    },
+    {
+      "key": "DME/2027",
+      "vehicleCode": "DME",
+      "vehicleGuid": "60kewf344deo3rsmnuok7j",
+      "name": "Eclipse Sportback",
+      "year": 2027,
+      "currentBuildListing": true,
+      "expectedCodes": ["00000DEAC2LC-NA_F71", "0000DEAC2LCP-NA_F72"],
+      "priceSource": {
+        "url": "https://www-graphql.prod.mipulse.co/prod/graphql",
+        "sha256": "f2fbe4faef50c68f4b698893b3e829c8156bf80b1687acf064bbe4a3a459df40",
+        "requestSha256": "50d2b22478de96f3475284b54109db8884f30d772ed7230e7ab343712bafb59f"
+      },
+      "specificationsSource": {
+        "url": "https://www.mitsubishi-motors.ca/en/vehicles/eclipse-sportback/specs",
+        "sha256": "568f2e31cb846d73fcdfb0f497d558245d24ca853a8eeac36aa03caedb8aa2a1",
+        "requestSha256": null
+      },
+      "inventoryReference": null
+    },
+    {
+      "key": "NS/2025",
+      "vehicleCode": "NS",
+      "vehicleGuid": "ohiwuwrgvyma9ez12a1eq",
+      "name": "Eclipse Cross",
+      "year": 2025,
+      "currentBuildListing": false,
+      "expectedCodes": [
+        "GK1WXTJUZL3M-NA_C51",
+        "GK1WXTXUZL3M-NA_C52",
+        "GK1WXTXUZL3M-NA_C53",
+        "GK1WXTXUZL3M-NA_L51",
+        "GK1WXTXUZL3M-NA_C54"
+      ],
+      "priceSource": {
+        "url": "https://www-graphql.prod.mipulse.co/prod/graphql",
+        "sha256": "61ea946b35e64c7b4e45978641cf155376f09adaa325540eb6d76d1b80550267",
+        "requestSha256": "732aa49e128a9faffdfb09abdcbbc75b38d984871634f8c772eee49d6f3c389a"
+      },
+      "specificationsSource": null,
+      "inventoryReference": {
+        "year": 2025,
+        "model": "Eclipse Cross",
+        "num_items": 22,
+        "make": "Mitsubishi",
+        "vehicle_condition": "New",
+        "is_used": false,
+        "is_cpo": false
+      }
+    },
+    {
+      "key": "NS/2026",
+      "vehicleCode": "NS",
+      "vehicleGuid": "ohiwuwrgvyma9ez12a1eq",
+      "name": "Eclipse Cross",
+      "year": 2026,
+      "currentBuildListing": true,
+      "expectedCodes": [
+        "GK1WXTJUZL3M-NA_C61",
+        "GK1WXTXUZL3M-NA_C62",
+        "GK1WXTXUZL3M-NA_L61",
+        "GK1WXTXUZL3M-NA_C64"
+      ],
+      "priceSource": {
+        "url": "https://www-graphql.prod.mipulse.co/prod/graphql",
+        "sha256": "f9dcc59045b45ce50cfbade1af2af2dc64d4b0eba51c1df57d0c0557b3b07017",
+        "requestSha256": "738b210905dc3dc14c6ec81cf92140fb97fc08ab3a2963035ccf179ea979c764"
+      },
+      "specificationsSource": {
+        "url": "https://www.mitsubishi-motors.ca/en/vehicles/eclipse-cross/specs",
+        "sha256": "d5ee7a1fc562ae3d52c90f7f9cfa0457cfc555c3ed2c9b572089e80e0a26dd34",
+        "requestSha256": null
+      },
+      "inventoryReference": {
+        "year": 2026,
+        "model": "Eclipse Cross",
+        "num_items": 1919,
+        "make": "Mitsubishi",
+        "vehicle_condition": "New",
+        "is_used": false,
+        "is_cpo": false
+      }
+    },
+    {
+      "key": "ZC/2025",
+      "vehicleCode": "ZC",
+      "vehicleGuid": "vde9y7wnb1d9d8xdyjo67r",
+      "name": "RVR",
+      "year": 2025,
+      "currentBuildListing": false,
+      "expectedCodes": [
+        "GA2WXTMHL3M-NA_C51",
+        "GA2WXTMHZL3M-NA_C52",
+        "GA5WXTXHZL3M-NA_C54",
+        "GA5WXTXHZL3M-NA_C55",
+        "GA5WXTXHZL3M-NA_L51",
+        "GA5WXTXHZL3M-NA_C56"
+      ],
+      "priceSource": {
+        "url": "https://www-graphql.prod.mipulse.co/prod/graphql",
+        "sha256": "82093a144e3177eddfa2b0eac05ed79d55b83af33a6d42c6b7b13813d1ff8e3a",
+        "requestSha256": "2661cd0ca8685cf961e9a9a935fe9250ef49cb089d21d1da071a52bfae8aaa1b"
+      },
+      "specificationsSource": null,
+      "inventoryReference": {
+        "year": 2025,
+        "model": "RVR",
+        "num_items": 29,
+        "make": "Mitsubishi",
+        "vehicle_condition": "New",
+        "is_used": false,
+        "is_cpo": false
+      }
+    },
+    {
+      "key": "ZC/2026",
+      "vehicleCode": "ZC",
+      "vehicleGuid": "vde9y7wnb1d9d8xdyjo67r",
+      "name": "RVR",
+      "year": 2026,
+      "currentBuildListing": true,
+      "expectedCodes": [
+        "GA2WXTMHL3M-NA_C61",
+        "GA2WXTMHZL3M-NA_C62",
+        "GA5WXTXHZL3M-NA_C64",
+        "GA5WXTXHZL3M-NA_C65",
+        "GA5WXTXHZL3M-NA_L61",
+        "GA5WXTXHZL3M-NA_C66"
+      ],
+      "priceSource": {
+        "url": "https://www-graphql.prod.mipulse.co/prod/graphql",
+        "sha256": "c53cd3792440d0e200823178967475eb105fabde5c9d7f69f80b0390b1187b43",
+        "requestSha256": "334d027341d4943d3fe52b34797a8e00b40e651bf553d3f97d0cfe7febef83e1"
+      },
+      "specificationsSource": {
+        "url": "https://www.mitsubishi-motors.ca/en/vehicles/rvr-2026/specs",
+        "sha256": "db17c9605f04071dde121554428bbfde26e5d986712aae0a9bb44e7a69baafed",
+        "requestSha256": null
+      },
+      "inventoryReference": {
+        "year": 2026,
+        "model": "RVR",
+        "num_items": 461,
+        "make": "Mitsubishi",
+        "vehicle_condition": "New",
+        "is_used": false,
+        "is_cpo": false
+      }
+    },
+    {
+      "key": "ZC/2027",
+      "vehicleCode": "ZC",
+      "vehicleGuid": "vde9y7wnb1d9d8xdyjo67r",
+      "name": "RVR",
+      "year": 2027,
+      "currentBuildListing": true,
+      "expectedCodes": [
+        "GA2WXTMHL3M-NA_C71",
+        "GA2WXTMHZL3M-NA_C72",
+        "GA5WXTXHZL3M-NA_C74",
+        "GA5WXTXHZL3M-NA_C75",
+        "GA5WXTXHZL3M-NA_L71",
+        "GA5WXTXHZL3M-NA_C76"
+      ],
+      "priceSource": {
+        "url": "https://www-graphql.prod.mipulse.co/prod/graphql",
+        "sha256": "6672543a93478a9d0b83cbf4bc9e4c063366068a426eefd2a0e717985b4041a0",
+        "requestSha256": "bdfa6e19bb3216f18fc9b8d97752423c7b5cf749baa1b435773f1c64b7f5547a"
+      },
+      "specificationsSource": {
+        "url": "https://www.mitsubishi-motors.ca/en/vehicles/rvr/specs",
+        "sha256": "b93f1c3840d6941ece205422b252dc7135da210df0106236bcd6198b8e673085",
+        "requestSha256": null
+      },
+      "inventoryReference": {
+        "year": 2027,
+        "model": "RVR",
+        "num_items": 1059,
+        "make": "Mitsubishi",
+        "vehicle_condition": "New",
+        "is_used": false,
+        "is_cpo": false
+      }
+    }
+  ],
+  "records": [
+    {
+      "modelKey": "DG/2025",
+      "model": {
+        "id": "14837",
+        "code": "GM4WXTMCZL3M-NA_C51",
+        "name": "ES S-AWC",
+        "year": 2025,
+        "trimLine": "ES S-AWC",
+        "sortOrder": "1",
+        "price": {
+          "label": "From",
+          "value": 35598,
+          "baseValue": 35598,
+          "displayValue": "From ###,###.##",
+          "fees": []
+        },
+        "allInPrice": null,
+        "description": null,
+        "descriptionList": [
+          "Super All-Wheel Control (S-AWC) with Drive Mode Selector",
+          "Dynamic Sound Yamaha Premium with 8 Speakers ",
+          "11 Airbags",
+          "Frameless Auto-Dimming Rearview Mirror ",
+          "7 Passenger Seating (5+2) "
+        ],
+        "engineCode": "PR25",
+        "engineSize": "2.5L 4 CYLINDER",
+        "engineType": "2.5L 4 CYLINDER",
+        "fuelType": "Unleaded",
+        "transmissionType": "CVT",
+        "transmissionCode": "",
+        "transmissionDescription": "CVT",
+        "drivetrain": "ALL-WHEEL DRIVE",
+        "seats": 7,
+        "doors": 5
+      },
+      "specification": null,
+      "specificationGap": "This model year appears in the new-inventory feed but is absent from the current build selector/specification routes. Exact historical technical fields and individual trim stock need review; another model year is not copied."
+    },
+    {
+      "modelKey": "DG/2025",
+      "model": {
+        "id": "14841",
+        "code": "GM4WXTUCZL3M-NA_F56",
+        "name": "GT S-AWC",
+        "year": 2025,
+        "trimLine": "GT S-AWC",
+        "sortOrder": "5",
+        "price": {
+          "label": "From",
+          "value": 46498,
+          "baseValue": 46498,
+          "displayValue": "From ###,###.##",
+          "fees": []
+        },
+        "allInPrice": null,
+        "description": null,
+        "descriptionList": [
+          "Includes all the equipment of the SEL, plus:",
+          "Dynamic Sound Yamaha Ultimate with 12 Speakers",
+          "10.8\" Head-Up Display (HUD)",
+          "Lane Departure Prevention (LDP) & Lane Keep Assist (LKA)",
+          "Active Blind Spot Assist (ABSA)",
+          "Adaptive Cruise Control (ACC) with Stop & Go"
+        ],
+        "engineCode": "PR25",
+        "engineSize": "2.5L 4 CYLINDER",
+        "engineType": "2.5L 4 CYLINDER",
+        "fuelType": "Unleaded",
+        "transmissionType": "CVT",
+        "transmissionCode": "",
+        "transmissionDescription": "CVT",
+        "drivetrain": "ALL-WHEEL DRIVE",
+        "seats": 7,
+        "doors": 5
+      },
+      "specification": null,
+      "specificationGap": "This model year appears in the new-inventory feed but is absent from the current build selector/specification routes. Exact historical technical fields and individual trim stock need review; another model year is not copied."
+    },
+    {
+      "modelKey": "DG/2025",
+      "model": {
+        "id": "14842",
+        "code": "GM4WXTUCZL3M-NA_F57",
+        "name": "GT PREMIUM S-AWC",
+        "year": 2025,
+        "trimLine": "GT PREMIUM S-AWC",
+        "sortOrder": "6",
+        "price": {
+          "label": "From",
+          "value": 47498,
+          "baseValue": 47498,
+          "displayValue": "From ###,###.##",
+          "fees": []
+        },
+        "allInPrice": null,
+        "description": null,
+        "descriptionList": [
+          "Includes all the equipment of the GT, plus:",
+          "Semi-Aniline Leather-Appointed Seats",
+          "Brown Interior Stitch Accents",
+          "Frameless Digital Rearview Mirror with Homelink®"
+        ],
+        "engineCode": "PR25",
+        "engineSize": "2.5L 4 CYLINDER",
+        "engineType": "2.5L 4 CYLINDER",
+        "fuelType": "Unleaded",
+        "transmissionType": "CVT",
+        "transmissionCode": "",
+        "transmissionDescription": "CVT",
+        "drivetrain": "ALL-WHEEL DRIVE",
+        "seats": 7,
+        "doors": 5
+      },
+      "specification": null,
+      "specificationGap": "This model year appears in the new-inventory feed but is absent from the current build selector/specification routes. Exact historical technical fields and individual trim stock need review; another model year is not copied."
+    },
+    {
+      "modelKey": "DG/2025",
+      "model": {
+        "id": "14838",
+        "code": "GM4WXTXCZL3M-NA_C52",
+        "name": "SE S-AWC",
+        "year": 2025,
+        "trimLine": "SE S-AWC",
+        "sortOrder": "2",
+        "price": {
+          "label": "From",
+          "value": 38298,
+          "baseValue": 38298,
+          "displayValue": "From ###,###.##",
+          "fees": []
+        },
+        "allInPrice": null,
+        "description": null,
+        "descriptionList": [
+          "Includes all the equipment of the ES, plus:",
+          "3-Zone Automatic Climate Control",
+          "FAST-Key Keyless Entry",
+          "Heated Steering Wheel",
+          "Hands-Free Power Liftgate with Adjustable Height",
+          "Power Panoramic Sunroof with Sunshade"
+        ],
+        "engineCode": "PR25",
+        "engineSize": "2.5L 4 CYLINDER",
+        "engineType": "2.5L 4 CYLINDER",
+        "fuelType": "Unleaded",
+        "transmissionType": "CVT",
+        "transmissionCode": "",
+        "transmissionDescription": "CVT",
+        "drivetrain": "ALL-WHEEL DRIVE",
+        "seats": 7,
+        "doors": 5
+      },
+      "specification": null,
+      "specificationGap": "This model year appears in the new-inventory feed but is absent from the current build selector/specification routes. Exact historical technical fields and individual trim stock need review; another model year is not copied."
+    },
+    {
+      "modelKey": "DG/2025",
+      "model": {
+        "id": "14839",
+        "code": "GM4WXTXCZL3M-NA_F53",
+        "name": "LE S-AWC",
+        "year": 2025,
+        "trimLine": "LE S-AWC",
+        "sortOrder": "3",
+        "price": {
+          "label": "From",
+          "value": 41298,
+          "baseValue": 41298,
+          "displayValue": "From ###,###.##",
+          "fees": []
+        },
+        "allInPrice": null,
+        "description": null,
+        "descriptionList": [
+          "Includes all the equipment of the SE, plus:",
+          "Adaptive Cruise Control (ACC)",
+          "18” Two-Tone Alloy Wheels",
+          "8-Way Power Driver’s Seat (Sliding, Reclining, Height Adjustable, Tilt, Lumbar)",
+          "Microsuede/Synthetic Leather Seats",
+          "Multi View Camera System (MVCS) with Moving Object Detection"
+        ],
+        "engineCode": "PR25",
+        "engineSize": "2.5L 4 CYLINDER",
+        "engineType": "2.5L 4 CYLINDER",
+        "fuelType": "Unleaded",
+        "transmissionType": "CVT",
+        "transmissionCode": "",
+        "transmissionDescription": "CVT",
+        "drivetrain": "ALL-WHEEL DRIVE",
+        "seats": 7,
+        "doors": 5
+      },
+      "specification": null,
+      "specificationGap": "This model year appears in the new-inventory feed but is absent from the current build selector/specification routes. Exact historical technical fields and individual trim stock need review; another model year is not copied."
+    },
+    {
+      "modelKey": "DG/2025",
+      "model": {
+        "id": "14840",
+        "code": "GM4WXTXCZL3M-NA_F55",
+        "name": "SEL S-AWC",
+        "year": 2025,
+        "trimLine": "SEL S-AWC",
+        "sortOrder": "4",
+        "price": {
+          "label": "From",
+          "value": 43998,
+          "baseValue": 43998,
+          "displayValue": "From ###,###.##",
+          "fees": []
+        },
+        "allInPrice": null,
+        "description": null,
+        "descriptionList": [
+          "Includes all the equipment of the LE, plus:",
+          "Ventilated Front Seats",
+          "20” Two-Tone Alloy Wheels",
+          "8-Way Power Driver’s Seat (Sliding, Reclining, Height Adjustable, Tilt, Lumbar) with Key-Linked Memory for Seat and Exterior Mirrors",
+          "Leather-Appointed Seats",
+          "Rain-Sensing Windshield Wipers"
+        ],
+        "engineCode": "PR25",
+        "engineSize": "2.5L 4 CYLINDER",
+        "engineType": "2.5L 4 CYLINDER",
+        "fuelType": "Unleaded",
+        "transmissionType": "CVT",
+        "transmissionCode": "",
+        "transmissionDescription": "CVT",
+        "drivetrain": "ALL-WHEEL DRIVE",
+        "seats": 7,
+        "doors": 5
+      },
+      "specification": null,
+      "specificationGap": "This model year appears in the new-inventory feed but is absent from the current build selector/specification routes. Exact historical technical fields and individual trim stock need review; another model year is not copied."
+    },
+    {
+      "modelKey": "DG/2026",
+      "model": {
+        "id": "17378",
+        "code": "GM2WXTMCZL3M-NA_C61",
+        "name": "ES S-AWC",
+        "year": 2026,
+        "trimLine": "ES",
+        "sortOrder": "1",
+        "price": {
+          "label": "From",
+          "value": 36398,
+          "baseValue": 36398,
+          "displayValue": "From ###,###.##",
+          "fees": []
+        },
+        "allInPrice": null,
+        "description": null,
+        "descriptionList": [
+          "Super All-Wheel Control (S-AWC) with Drive Mode Selector",
+          "7 Passenger Seating (5+2)",
+          "12.3” Smartphone Link Display Audio",
+          "Dynamic Sound Yamaha Premium with 8 Speakers",
+          "Wireless Android Auto™ & Wireless Apple CarPlay"
+        ],
+        "engineCode": "4B40",
+        "engineSize": "1.5L 4 CYL TURBO 48V BSG",
+        "engineType": "1.5L 4 CYL TURBO 48V BSG",
+        "fuelType": "Unleaded",
+        "transmissionType": "CVT",
+        "transmissionCode": "",
+        "transmissionDescription": "CVT",
+        "drivetrain": "ALL-WHEEL DRIVE",
+        "seats": 7,
+        "doors": 5
+      },
+      "specification": {
+        "source": {
+          "url": "https://www.mitsubishi-motors.ca/en/vehicles/outlander/specs",
+          "sha256": "e56a87ff8fb38f81de3a0cd22ff6a71b4191605fb81743d8bd17b673c926e3b8",
+          "requestSha256": null
+        },
+        "name": "ES S-AWC",
+        "priceCad": 36398,
+        "fields": [
+          {
+            "category": "Performance & Handling",
+            "label": "Horsepower (HP @ RPM)",
+            "value": "174 @ 5000",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Fuel Economy",
+            "label": "Estimated Consumption - City/Highway/Combined (L / 100 km)",
+            "value": "9.4 / 7.8 / 8.7",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Exterior Dimensions",
+            "label": "Length (mm / in)",
+            "value": "4720 / 185.8",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Exterior Dimensions",
+            "label": "Width (mm / in)",
+            "value": "2144 / 84.4",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Exterior Dimensions",
+            "label": "Height (mm / in)",
+            "value": "1745 / 68.7",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Weights & Capacities",
+            "label": "Cargo volume (behind 3rd Row Seat) (L / cu ft)",
+            "value": "308 / 10.9",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Weights & Capacities",
+            "label": "Cargo volume (behind 2nd Row Seat) (L / cu ft)",
+            "value": "866 / 30.6",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Weights & Capacities",
+            "label": "Cargo volume (behind front seat) (L / cu ft)",
+            "value": "1822 / 64.3",
+            "unitOfMeasurement": null
+          }
+        ]
+      },
+      "specificationGap": null
+    },
+    {
+      "modelKey": "DG/2026",
+      "model": {
+        "id": "17382",
+        "code": "GM2WXTUCZL3M-NA_F66",
+        "name": "GT S-AWC",
+        "year": 2026,
+        "trimLine": "GT",
+        "sortOrder": "5",
+        "price": {
+          "label": "From",
+          "value": 47398,
+          "baseValue": 47398,
+          "displayValue": "From ###,###.##",
+          "fees": []
+        },
+        "allInPrice": null,
+        "description": null,
+        "descriptionList": [
+          "Includes all the equipment of the SEL, plus:",
+          "Dynamic Sound Yamaha Ultimate with 12 Speakers",
+          "10.8\" Head-Up Display (HUD)",
+          "Active Blind Spot Assist (ABSA)",
+          "Adaptive Cruise Control (ACC) with Stop & Go",
+          "Traffic Sign Recognition (TSR)"
+        ],
+        "engineCode": "4B40",
+        "engineSize": "1.5L 4 CYL TURBO 48V BSG",
+        "engineType": "1.5L 4 CYL TURBO 48V BSG",
+        "fuelType": "Unleaded",
+        "transmissionType": "CVT",
+        "transmissionCode": "",
+        "transmissionDescription": "CVT",
+        "drivetrain": "ALL-WHEEL DRIVE",
+        "seats": 7,
+        "doors": 5
+      },
+      "specification": {
+        "source": {
+          "url": "https://www.mitsubishi-motors.ca/en/vehicles/outlander/specs",
+          "sha256": "e56a87ff8fb38f81de3a0cd22ff6a71b4191605fb81743d8bd17b673c926e3b8",
+          "requestSha256": null
+        },
+        "name": "GT S-AWC",
+        "priceCad": 47398,
+        "fields": [
+          {
+            "category": "Performance & Handling",
+            "label": "Horsepower (HP @ RPM)",
+            "value": "174 @ 5000",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Fuel Economy",
+            "label": "Estimated Consumption - City/Highway/Combined (L / 100 km)",
+            "value": "9.4 / 7.8 / 8.7",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Exterior Dimensions",
+            "label": "Length (mm / in)",
+            "value": "4720 / 185.8",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Exterior Dimensions",
+            "label": "Width (mm / in)",
+            "value": "2144 / 84.4",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Exterior Dimensions",
+            "label": "Height (mm / in)",
+            "value": "1748 / 68.8",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Weights & Capacities",
+            "label": "Cargo volume (behind 3rd Row Seat) (L / cu ft)",
+            "value": "308 / 10.9",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Weights & Capacities",
+            "label": "Cargo volume (behind 2nd Row Seat) (L / cu ft)",
+            "value": "866 / 30.6",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Weights & Capacities",
+            "label": "Cargo volume (behind front seat) (L / cu ft)",
+            "value": "1822 / 64.3",
+            "unitOfMeasurement": null
+          }
+        ]
+      },
+      "specificationGap": null
+    },
+    {
+      "modelKey": "DG/2026",
+      "model": {
+        "id": "17383",
+        "code": "GM2WXTUCZL3M-NA_F67",
+        "name": "GT PREMIUM S-AWC",
+        "year": 2026,
+        "trimLine": "GT Premium",
+        "sortOrder": "6",
+        "price": {
+          "label": "From",
+          "value": 48398,
+          "baseValue": 48398,
+          "displayValue": "From ###,###.##",
+          "fees": []
+        },
+        "allInPrice": null,
+        "description": null,
+        "descriptionList": [
+          "Includes all the equipment of the GT, plus:",
+          "Semi-Aniline Leather-Appointed Seats",
+          "Brown Interior Stitch Accents",
+          "Frameless Digital Rearview Mirror with Homelink®"
+        ],
+        "engineCode": "4B40",
+        "engineSize": "1.5L 4 CYL TURBO 48V BSG",
+        "engineType": "1.5L 4 CYL TURBO 48V BSG",
+        "fuelType": "Unleaded",
+        "transmissionType": "CVT",
+        "transmissionCode": "",
+        "transmissionDescription": "CVT",
+        "drivetrain": "ALL-WHEEL DRIVE",
+        "seats": 7,
+        "doors": 5
+      },
+      "specification": {
+        "source": {
+          "url": "https://www.mitsubishi-motors.ca/en/vehicles/outlander/specs",
+          "sha256": "e56a87ff8fb38f81de3a0cd22ff6a71b4191605fb81743d8bd17b673c926e3b8",
+          "requestSha256": null
+        },
+        "name": "GT PREMIUM S-AWC",
+        "priceCad": 48398,
+        "fields": [
+          {
+            "category": "Performance & Handling",
+            "label": "Horsepower (HP @ RPM)",
+            "value": "174 @ 5000",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Fuel Economy",
+            "label": "Estimated Consumption - City/Highway/Combined (L / 100 km)",
+            "value": "9.4 / 7.8 / 8.7",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Exterior Dimensions",
+            "label": "Length (mm / in)",
+            "value": "4720 / 185.8",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Exterior Dimensions",
+            "label": "Width (mm / in)",
+            "value": "2144 / 84.4",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Exterior Dimensions",
+            "label": "Height (mm / in)",
+            "value": "1748 / 68.8",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Weights & Capacities",
+            "label": "Cargo volume (behind 3rd Row Seat) (L / cu ft)",
+            "value": "308 / 10.9",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Weights & Capacities",
+            "label": "Cargo volume (behind 2nd Row Seat) (L / cu ft)",
+            "value": "866 / 30.6",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Weights & Capacities",
+            "label": "Cargo volume (behind front seat) (L / cu ft)",
+            "value": "1822 / 64.3",
+            "unitOfMeasurement": null
+          }
+        ]
+      },
+      "specificationGap": null
+    },
+    {
+      "modelKey": "DG/2026",
+      "model": {
+        "id": "17384",
+        "code": "GM2WXTUCZL3M-NA_L61",
+        "name": "NOIR S-AWC",
+        "year": 2026,
+        "trimLine": "NOIR S-AWC",
+        "sortOrder": "7",
+        "price": {
+          "label": "From",
+          "value": 49748,
+          "baseValue": 49748,
+          "displayValue": "From ###,###.##",
+          "fees": []
+        },
+        "allInPrice": null,
+        "description": null,
+        "descriptionList": [
+          "Includes all the equipment of the GT, plus:",
+          "20” Black-Painted Alloy Wheels",
+          "Black-Painted Dynamic Shield",
+          "Black Hood Emblem",
+          "Auto High Grade LED Headlights (NOIR)",
+          "Black Roof Rails"
+        ],
+        "engineCode": "4B40",
+        "engineSize": "1.5L 4 CYL TURBO 48V BSG",
+        "engineType": "1.5L 4 CYL TURBO 48V BSG",
+        "fuelType": "Unleaded",
+        "transmissionType": "CVT",
+        "transmissionCode": "",
+        "transmissionDescription": "CVT",
+        "drivetrain": "ALL-WHEEL DRIVE",
+        "seats": 7,
+        "doors": 5
+      },
+      "specification": {
+        "source": {
+          "url": "https://www.mitsubishi-motors.ca/en/vehicles/outlander/specs",
+          "sha256": "e56a87ff8fb38f81de3a0cd22ff6a71b4191605fb81743d8bd17b673c926e3b8",
+          "requestSha256": null
+        },
+        "name": "NOIR S-AWC",
+        "priceCad": 49748,
+        "fields": [
+          {
+            "category": "Performance & Handling",
+            "label": "Horsepower (HP @ RPM)",
+            "value": "174 @ 5000",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Fuel Economy",
+            "label": "Estimated Consumption - City/Highway/Combined (L / 100 km)",
+            "value": "9.4 / 7.8 / 8.7",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Exterior Dimensions",
+            "label": "Length (mm / in)",
+            "value": "4720 / 185.8",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Exterior Dimensions",
+            "label": "Width (mm / in)",
+            "value": "2144 / 84.4",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Exterior Dimensions",
+            "label": "Height (mm / in)",
+            "value": "1748 / 68.8",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Weights & Capacities",
+            "label": "Cargo volume (behind 3rd Row Seat) (L / cu ft)",
+            "value": "308 / 10.9",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Weights & Capacities",
+            "label": "Cargo volume (behind 2nd Row Seat) (L / cu ft)",
+            "value": "866 / 30.6",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Weights & Capacities",
+            "label": "Cargo volume (behind front seat) (L / cu ft)",
+            "value": "1822 / 64.3",
+            "unitOfMeasurement": null
+          }
+        ]
+      },
+      "specificationGap": null
+    },
+    {
+      "modelKey": "DG/2026",
+      "model": {
+        "id": "17379",
+        "code": "GM2WXTXCZL3M-NA_C62",
+        "name": "SE S-AWC",
+        "year": 2026,
+        "trimLine": "SE",
+        "sortOrder": "2",
+        "price": {
+          "label": "From",
+          "value": 39098,
+          "baseValue": 39098,
+          "displayValue": "From ###,###.##",
+          "fees": []
+        },
+        "allInPrice": null,
+        "description": null,
+        "descriptionList": [
+          "Includes all the equipment of the ES, plus:",
+          "Power Panoramic Sunroof with Sunshade",
+          "Hands-Free Power Liftgate with Adjustable Height",
+          "3-Zone Automatic Climate Control",
+          "Heated Steering Wheel",
+          "FAST-Key Keyless Entry"
+        ],
+        "engineCode": "4B40",
+        "engineSize": "1.5L 4 CYL TURBO 48V BSG",
+        "engineType": "1.5L 4 CYL TURBO 48V BSG",
+        "fuelType": "Unleaded",
+        "transmissionType": "CVT",
+        "transmissionCode": "",
+        "transmissionDescription": "CVT",
+        "drivetrain": "ALL-WHEEL DRIVE",
+        "seats": 7,
+        "doors": 5
+      },
+      "specification": {
+        "source": {
+          "url": "https://www.mitsubishi-motors.ca/en/vehicles/outlander/specs",
+          "sha256": "e56a87ff8fb38f81de3a0cd22ff6a71b4191605fb81743d8bd17b673c926e3b8",
+          "requestSha256": null
+        },
+        "name": "SE S-AWC",
+        "priceCad": 39098,
+        "fields": [
+          {
+            "category": "Performance & Handling",
+            "label": "Horsepower (HP @ RPM)",
+            "value": "174 @ 5000",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Fuel Economy",
+            "label": "Estimated Consumption - City/Highway/Combined (L / 100 km)",
+            "value": "9.4 / 7.8 / 8.7",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Exterior Dimensions",
+            "label": "Length (mm / in)",
+            "value": "4720 / 185.8",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Exterior Dimensions",
+            "label": "Width (mm / in)",
+            "value": "2144 / 84.4",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Exterior Dimensions",
+            "label": "Height (mm / in)",
+            "value": "1745 / 68.7",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Weights & Capacities",
+            "label": "Cargo volume (behind 3rd Row Seat) (L / cu ft)",
+            "value": "308 / 10.9",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Weights & Capacities",
+            "label": "Cargo volume (behind 2nd Row Seat) (L / cu ft)",
+            "value": "866 / 30.6",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Weights & Capacities",
+            "label": "Cargo volume (behind front seat) (L / cu ft)",
+            "value": "1822 / 64.3",
+            "unitOfMeasurement": null
+          }
+        ]
+      },
+      "specificationGap": null
+    },
+    {
+      "modelKey": "DG/2026",
+      "model": {
+        "id": "17380",
+        "code": "GM2WXTXCZL3M-NA_F63",
+        "name": "LE S-AWC",
+        "year": 2026,
+        "trimLine": "LE",
+        "sortOrder": "3",
+        "price": {
+          "label": "From",
+          "value": 42198,
+          "baseValue": 42198,
+          "displayValue": "From ###,###.##",
+          "fees": []
+        },
+        "allInPrice": null,
+        "description": null,
+        "descriptionList": [
+          "Includes all the equipment of the SE, plus:",
+          "18” Two-Tone Alloy Wheels",
+          "Microsuede/Synthetic Leather Seats",
+          "8-Way Power Driver’s Seat (Sliding, Reclining, Height Adjustable, Tilt, Lumbar)",
+          "SiriusXM® 360L Satellite Radio with 3 Months Complimentary Service",
+          "Mitsubishi Connect with Trial Included (Mobile App Enrollment Required)"
+        ],
+        "engineCode": "4B40",
+        "engineSize": "1.5L 4 CYL TURBO 48V BSG",
+        "engineType": "1.5L 4 CYL TURBO 48V BSG",
+        "fuelType": "Unleaded",
+        "transmissionType": "CVT",
+        "transmissionCode": "",
+        "transmissionDescription": "CVT",
+        "drivetrain": "ALL-WHEEL DRIVE",
+        "seats": 7,
+        "doors": 5
+      },
+      "specification": {
+        "source": {
+          "url": "https://www.mitsubishi-motors.ca/en/vehicles/outlander/specs",
+          "sha256": "e56a87ff8fb38f81de3a0cd22ff6a71b4191605fb81743d8bd17b673c926e3b8",
+          "requestSha256": null
+        },
+        "name": "LE S-AWC",
+        "priceCad": 42198,
+        "fields": [
+          {
+            "category": "Performance & Handling",
+            "label": "Horsepower (HP @ RPM)",
+            "value": "174 @ 5000",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Fuel Economy",
+            "label": "Estimated Consumption - City/Highway/Combined (L / 100 km)",
+            "value": "9.4 / 7.8 / 8.7",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Exterior Dimensions",
+            "label": "Length (mm / in)",
+            "value": "4720 / 185.8",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Exterior Dimensions",
+            "label": "Width (mm / in)",
+            "value": "2144 / 84.4",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Exterior Dimensions",
+            "label": "Height (mm / in)",
+            "value": "1745 / 68.7",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Weights & Capacities",
+            "label": "Cargo volume (behind 3rd Row Seat) (L / cu ft)",
+            "value": "308 / 10.9",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Weights & Capacities",
+            "label": "Cargo volume (behind 2nd Row Seat) (L / cu ft)",
+            "value": "866 / 30.6",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Weights & Capacities",
+            "label": "Cargo volume (behind front seat) (L / cu ft)",
+            "value": "1822 / 64.3",
+            "unitOfMeasurement": null
+          }
+        ]
+      },
+      "specificationGap": null
+    },
+    {
+      "modelKey": "DG/2026",
+      "model": {
+        "id": "17381",
+        "code": "GM2WXTXCZL3M-NA_F65",
+        "name": "SEL S-AWC",
+        "year": 2026,
+        "trimLine": "SEL",
+        "sortOrder": "4",
+        "price": {
+          "label": "From",
+          "value": 44898,
+          "baseValue": 44898,
+          "displayValue": "From ###,###.##",
+          "fees": []
+        },
+        "allInPrice": null,
+        "description": null,
+        "descriptionList": [
+          "Includes all the equipment of the LE, plus:",
+          "20” Two-Tone Alloy Wheels",
+          "12.3\" Full Digital Driver Display",
+          "Leather-Appointed Seats",
+          "8-Way Power Driver’s Seat (Sliding, Reclining, Height Adjustable, Tilt, Lumbar) with Key-Linked Memory for Seat and Exterior Mirrors",
+          "Ventilated Front Seats"
+        ],
+        "engineCode": "4B40",
+        "engineSize": "1.5L 4 CYL TURBO 48V BSG",
+        "engineType": "1.5L 4 CYL TURBO 48V BSG",
+        "fuelType": "Unleaded",
+        "transmissionType": "CVT",
+        "transmissionCode": "",
+        "transmissionDescription": "CVT",
+        "drivetrain": "ALL-WHEEL DRIVE",
+        "seats": 7,
+        "doors": 5
+      },
+      "specification": {
+        "source": {
+          "url": "https://www.mitsubishi-motors.ca/en/vehicles/outlander/specs",
+          "sha256": "e56a87ff8fb38f81de3a0cd22ff6a71b4191605fb81743d8bd17b673c926e3b8",
+          "requestSha256": null
+        },
+        "name": "SEL S-AWC",
+        "priceCad": 44898,
+        "fields": [
+          {
+            "category": "Performance & Handling",
+            "label": "Horsepower (HP @ RPM)",
+            "value": "174 @ 5000",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Fuel Economy",
+            "label": "Estimated Consumption - City/Highway/Combined (L / 100 km)",
+            "value": "9.4 / 7.8 / 8.7",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Exterior Dimensions",
+            "label": "Length (mm / in)",
+            "value": "4720 / 185.8",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Exterior Dimensions",
+            "label": "Width (mm / in)",
+            "value": "2144 / 84.4",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Exterior Dimensions",
+            "label": "Height (mm / in)",
+            "value": "1748 / 68.8",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Weights & Capacities",
+            "label": "Cargo volume (behind 3rd Row Seat) (L / cu ft)",
+            "value": "308 / 10.9",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Weights & Capacities",
+            "label": "Cargo volume (behind 2nd Row Seat) (L / cu ft)",
+            "value": "866 / 30.6",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Weights & Capacities",
+            "label": "Cargo volume (behind front seat) (L / cu ft)",
+            "value": "1822 / 64.3",
+            "unitOfMeasurement": null
+          }
+        ]
+      },
+      "specificationGap": null
+    },
+    {
+      "modelKey": "DGE/2026",
+      "model": {
+        "id": "19872",
+        "code": "GN0WXDMHZL3M-NA_C61",
+        "name": "ES S-AWC",
+        "year": 2026,
+        "trimLine": "ES S-AWC",
+        "sortOrder": "1",
+        "price": {
+          "label": "From",
+          "value": 46998,
+          "baseValue": 46998,
+          "displayValue": "From ###,###.##",
+          "fees": []
+        },
+        "allInPrice": null,
+        "description": null,
+        "descriptionList": [
+          "Bonus Savings: You may be eligible for a $2,500 Federal rebate. Final transaction price must not exceed $50,000. Subject to rebate eligibility.",
+          "2.4L 4 Cylinder with PHEV Twin Electric Motor System including the standard features: ",
+          "Super All-Wheel Control (S-AWC) with Drive Mode Selector",
+          "7 Passenger Seating (5+2) ",
+          "12.3\" Full Digital Driver Display"
+        ],
+        "engineCode": "4B12",
+        "engineSize": "PHEV SYSTEM",
+        "engineType": "PHEV SYSTEM",
+        "fuelType": "Unleaded",
+        "transmissionType": "1-SPEED TRANS.",
+        "transmissionCode": "",
+        "transmissionDescription": "1-SPEED TRANS.",
+        "drivetrain": "ALL-WHEEL DRIVE",
+        "seats": 7,
+        "doors": 5
+      },
+      "specification": {
+        "source": {
+          "url": "https://www.mitsubishi-motors.ca/en/vehicles/outlander-phev/specs",
+          "sha256": "5da66cd31fe13186fa22dc284ab325b8e503ee2d8b107011c782abd09653e36d",
+          "requestSha256": null
+        },
+        "name": "ES S-AWC",
+        "priceCad": 46998,
+        "fields": [
+          {
+            "category": "Engine",
+            "label": "Horsepower (HP @ RPM)",
+            "value": "131 @ 5000",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Electrification",
+            "label": "Motor Power Output (front/rear) (HP)",
+            "value": "114 / 134",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Electrification",
+            "label": "Motor Power Output (total max POWER mode) (HP)",
+            "value": "248",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Electrification",
+            "label": "Charging time:  240V /15A  EVSE",
+            "value": "approx 6.5 hours",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Electrification",
+            "label": "Charging time:  CHAdeMO quick charger (up to 80%)",
+            "value": "approx 29 minutes",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Fuel Economy & Range",
+            "label": "EV Range (km)",
+            "value": "72",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Fuel Economy & Range",
+            "label": "Total Driving Range (km)",
+            "value": "690",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Fuel Economy & Range",
+            "label": "Combined (Gas + Electric Combined) (Le / 100 km)",
+            "value": "3.2",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Fuel Economy & Range",
+            "label": "Estimated Consumption - City/Highway/Combined (L /100 km)",
+            "value": "8.6 / 8.6 / 8.6",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Exterior Dimensions",
+            "label": "Length (mm / in)",
+            "value": "4720 / 185.8",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Exterior Dimensions",
+            "label": "Width (mm / in)",
+            "value": "1862 / 73.3",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Exterior Dimensions",
+            "label": "Height (mm / in)",
+            "value": "1747 / 68.8",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Weights & Capacities",
+            "label": "Cargo volume (behind 3rd Row Seat) (L / cu ft)",
+            "value": "362 / 12.8",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Weights & Capacities",
+            "label": "Cargo volume (behind 2nd Row Seat) (L / cu ft)",
+            "value": "872 / 30.8",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Weights & Capacities",
+            "label": "Cargo volume (behind front seat) (L / cu ft)",
+            "value": "1832 / 64.7",
+            "unitOfMeasurement": null
+          }
+        ]
+      },
+      "specificationGap": null
+    },
+    {
+      "modelKey": "DGE/2026",
+      "model": {
+        "id": "19876",
+        "code": "GN0WXDUHZL3M-NA_F63",
+        "name": "GT S-AWC",
+        "year": 2026,
+        "trimLine": "GT S-AWC",
+        "sortOrder": "5",
+        "price": {
+          "label": "From",
+          "value": 60598,
+          "baseValue": 60598,
+          "displayValue": "From ###,###.##",
+          "fees": []
+        },
+        "allInPrice": null,
+        "description": null,
+        "descriptionList": [
+          "Includes all the features of the SEL S-AWC, plus: ",
+          "Active Blind Spot Assist (ABSA) ",
+          "Dynamic Sound Yamaha Ultimate with 12 Speakers",
+          "10.8\" Head-Up Display (HUD)",
+          "Adaptive Cruise Control (ACC) with Stop & Go"
+        ],
+        "engineCode": "4B12",
+        "engineSize": "PHEV SYSTEM",
+        "engineType": "PHEV SYSTEM",
+        "fuelType": "Unleaded",
+        "transmissionType": "1-SPEED TRANS.",
+        "transmissionCode": "",
+        "transmissionDescription": "1-SPEED TRANS.",
+        "drivetrain": "ALL-WHEEL DRIVE",
+        "seats": 7,
+        "doors": 5
+      },
+      "specification": {
+        "source": {
+          "url": "https://www.mitsubishi-motors.ca/en/vehicles/outlander-phev/specs",
+          "sha256": "5da66cd31fe13186fa22dc284ab325b8e503ee2d8b107011c782abd09653e36d",
+          "requestSha256": null
+        },
+        "name": "GT S-AWC",
+        "priceCad": 60598,
+        "fields": [
+          {
+            "category": "Engine",
+            "label": "Horsepower (HP @ RPM)",
+            "value": "131 @ 5000",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Electrification",
+            "label": "Motor Power Output (front/rear) (HP)",
+            "value": "114 / 134",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Electrification",
+            "label": "Motor Power Output (total max POWER mode) (HP)",
+            "value": "248",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Electrification",
+            "label": "Charging time:  240V /15A  EVSE",
+            "value": "approx 6.5 hours",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Electrification",
+            "label": "Charging time:  CHAdeMO quick charger (up to 80%)",
+            "value": "approx 29 minutes",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Fuel Economy & Range",
+            "label": "EV Range (km)",
+            "value": "72",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Fuel Economy & Range",
+            "label": "Total Driving Range (km)",
+            "value": "690",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Fuel Economy & Range",
+            "label": "Combined (Gas + Electric Combined) (Le / 100 km)",
+            "value": "3.2",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Fuel Economy & Range",
+            "label": "Estimated Consumption - City/Highway/Combined (L /100 km)",
+            "value": "8.6 / 8.6 / 8.6",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Exterior Dimensions",
+            "label": "Length (mm / in)",
+            "value": "4720 / 185.8",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Exterior Dimensions",
+            "label": "Width (mm / in)",
+            "value": "1862 / 73.3",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Exterior Dimensions",
+            "label": "Height (mm / in)",
+            "value": "1751 / 68.9",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Weights & Capacities",
+            "label": "Cargo volume (behind 3rd Row Seat) (L / cu ft)",
+            "value": "362 / 12.8",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Weights & Capacities",
+            "label": "Cargo volume (behind 2nd Row Seat) (L / cu ft)",
+            "value": "872 / 30.8",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Weights & Capacities",
+            "label": "Cargo volume (behind front seat) (L / cu ft)",
+            "value": "1832 / 64.7",
+            "unitOfMeasurement": null
+          }
+        ]
+      },
+      "specificationGap": null
+    },
+    {
+      "modelKey": "DGE/2026",
+      "model": {
+        "id": "19877",
+        "code": "GN0WXDUHZL3M-NA_F64",
+        "name": "GT PREMIUM S-AWC",
+        "year": 2026,
+        "trimLine": "GT PREMIUM S-AWC",
+        "sortOrder": "6",
+        "price": {
+          "label": "From",
+          "value": 61698,
+          "baseValue": 61698,
+          "displayValue": "From ###,###.##",
+          "fees": []
+        },
+        "allInPrice": null,
+        "description": null,
+        "descriptionList": [
+          "Includes all the features of the GT S-AWC, plus: ",
+          "Semi-Aniline Leather-Appointed Seats ",
+          "Brown Interior Stitch Accents",
+          "Front Seat Massage Function"
+        ],
+        "engineCode": "4B12",
+        "engineSize": "PHEV SYSTEM",
+        "engineType": "PHEV SYSTEM",
+        "fuelType": "Unleaded",
+        "transmissionType": "1-SPEED TRANS.",
+        "transmissionCode": "",
+        "transmissionDescription": "1-SPEED TRANS.",
+        "drivetrain": "ALL-WHEEL DRIVE",
+        "seats": 7,
+        "doors": 5
+      },
+      "specification": {
+        "source": {
+          "url": "https://www.mitsubishi-motors.ca/en/vehicles/outlander-phev/specs",
+          "sha256": "5da66cd31fe13186fa22dc284ab325b8e503ee2d8b107011c782abd09653e36d",
+          "requestSha256": null
+        },
+        "name": "GT PREMIUM S-AWC",
+        "priceCad": 61698,
+        "fields": [
+          {
+            "category": "Engine",
+            "label": "Horsepower (HP @ RPM)",
+            "value": "131 @ 5000",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Electrification",
+            "label": "Motor Power Output (front/rear) (HP)",
+            "value": "114 / 134",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Electrification",
+            "label": "Motor Power Output (total max POWER mode) (HP)",
+            "value": "248",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Electrification",
+            "label": "Charging time:  240V /15A  EVSE",
+            "value": "approx 6.5 hours",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Electrification",
+            "label": "Charging time:  CHAdeMO quick charger (up to 80%)",
+            "value": "approx 29 minutes",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Fuel Economy & Range",
+            "label": "EV Range (km)",
+            "value": "72",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Fuel Economy & Range",
+            "label": "Total Driving Range (km)",
+            "value": "690",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Fuel Economy & Range",
+            "label": "Combined (Gas + Electric Combined) (Le / 100 km)",
+            "value": "3.2",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Fuel Economy & Range",
+            "label": "Estimated Consumption - City/Highway/Combined (L /100 km)",
+            "value": "8.6 / 8.6 / 8.6",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Exterior Dimensions",
+            "label": "Length (mm / in)",
+            "value": "4720 / 185.8",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Exterior Dimensions",
+            "label": "Width (mm / in)",
+            "value": "1862 / 73.3",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Exterior Dimensions",
+            "label": "Height (mm / in)",
+            "value": "1751 / 68.9",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Weights & Capacities",
+            "label": "Cargo volume (behind 3rd Row Seat) (L / cu ft)",
+            "value": "362 / 12.8",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Weights & Capacities",
+            "label": "Cargo volume (behind 2nd Row Seat) (L / cu ft)",
+            "value": "872 / 30.8",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Weights & Capacities",
+            "label": "Cargo volume (behind front seat) (L / cu ft)",
+            "value": "1832 / 64.7",
+            "unitOfMeasurement": null
+          }
+        ]
+      },
+      "specificationGap": null
+    },
+    {
+      "modelKey": "DGE/2026",
+      "model": {
+        "id": "19878",
+        "code": "GN0WXDUHZL3M-NA_L61",
+        "name": "GT NOIR S-AWC",
+        "year": 2026,
+        "trimLine": "GT NOIR S-AWC",
+        "sortOrder": "7",
+        "price": {
+          "label": "From",
+          "value": 63048,
+          "baseValue": 63048,
+          "displayValue": "From ###,###.##",
+          "fees": []
+        },
+        "allInPrice": null,
+        "description": null,
+        "descriptionList": [
+          "Includes all the features of the GT S-AWC, plus: ",
+          "Special black exterior and interior features",
+          "Semi-Aniline Leather-Appointed Seats ",
+          "Front Seat Massage Function"
+        ],
+        "engineCode": "4B12",
+        "engineSize": "PHEV SYSTEM",
+        "engineType": "PHEV SYSTEM",
+        "fuelType": "Unleaded",
+        "transmissionType": "1-SPEED TRANS.",
+        "transmissionCode": "",
+        "transmissionDescription": "1-SPEED TRANS.",
+        "drivetrain": "ALL-WHEEL DRIVE",
+        "seats": 7,
+        "doors": 5
+      },
+      "specification": {
+        "source": {
+          "url": "https://www.mitsubishi-motors.ca/en/vehicles/outlander-phev/specs",
+          "sha256": "5da66cd31fe13186fa22dc284ab325b8e503ee2d8b107011c782abd09653e36d",
+          "requestSha256": null
+        },
+        "name": "GT NOIR S-AWC",
+        "priceCad": 63048,
+        "fields": [
+          {
+            "category": "Engine",
+            "label": "Horsepower (HP @ RPM)",
+            "value": "131 @ 5000",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Electrification",
+            "label": "Motor Power Output (front/rear) (HP)",
+            "value": "114 / 134",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Electrification",
+            "label": "Motor Power Output (total max POWER mode) (HP)",
+            "value": "248",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Electrification",
+            "label": "Charging time:  240V /15A  EVSE",
+            "value": "approx 6.5 hours",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Electrification",
+            "label": "Charging time:  CHAdeMO quick charger (up to 80%)",
+            "value": "approx 29 minutes",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Fuel Economy & Range",
+            "label": "EV Range (km)",
+            "value": "72",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Fuel Economy & Range",
+            "label": "Total Driving Range (km)",
+            "value": "690",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Fuel Economy & Range",
+            "label": "Combined (Gas + Electric Combined) (Le / 100 km)",
+            "value": "3.2",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Fuel Economy & Range",
+            "label": "Estimated Consumption - City/Highway/Combined (L /100 km)",
+            "value": "8.6 / 8.6 / 8.6",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Exterior Dimensions",
+            "label": "Length (mm / in)",
+            "value": "4720 / 185.8",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Exterior Dimensions",
+            "label": "Width (mm / in)",
+            "value": "1862 / 73.3",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Exterior Dimensions",
+            "label": "Height (mm / in)",
+            "value": "1751 / 68.9",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Weights & Capacities",
+            "label": "Cargo volume (behind 3rd Row Seat) (L / cu ft)",
+            "value": "362 / 12.8",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Weights & Capacities",
+            "label": "Cargo volume (behind 2nd Row Seat) (L / cu ft)",
+            "value": "872 / 30.8",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Weights & Capacities",
+            "label": "Cargo volume (behind front seat) (L / cu ft)",
+            "value": "1832 / 64.7",
+            "unitOfMeasurement": null
+          }
+        ]
+      },
+      "specificationGap": null
+    },
+    {
+      "modelKey": "DGE/2026",
+      "model": {
+        "id": "19874",
+        "code": "GN0WXDXHZL3M-NA_F61",
+        "name": "LE S-AWC",
+        "year": 2026,
+        "trimLine": "LE S-AWC",
+        "sortOrder": "3",
+        "price": {
+          "label": "From",
+          "value": 54798,
+          "baseValue": 54798,
+          "displayValue": "From ###,###.##",
+          "fees": []
+        },
+        "allInPrice": null,
+        "description": null,
+        "descriptionList": [
+          "Includes all the features of the SE S-AWC, plus: ",
+          "Microsuede/Synthetic Leather Seats ",
+          "18” Two-Tone Alloy Wheels",
+          "Multi View Camera System (MVCS) with Moving Object Detection",
+          "Mitsubishi Connect with Trial Included (Mobile App Enrollment Required)"
+        ],
+        "engineCode": "4B12",
+        "engineSize": "PHEV SYSTEM",
+        "engineType": "PHEV SYSTEM",
+        "fuelType": "Unleaded",
+        "transmissionType": "1-SPEED TRANS.",
+        "transmissionCode": "",
+        "transmissionDescription": "1-SPEED TRANS.",
+        "drivetrain": "ALL-WHEEL DRIVE",
+        "seats": 7,
+        "doors": 5
+      },
+      "specification": {
+        "source": {
+          "url": "https://www.mitsubishi-motors.ca/en/vehicles/outlander-phev/specs",
+          "sha256": "5da66cd31fe13186fa22dc284ab325b8e503ee2d8b107011c782abd09653e36d",
+          "requestSha256": null
+        },
+        "name": "LE S-AWC",
+        "priceCad": 54798,
+        "fields": [
+          {
+            "category": "Engine",
+            "label": "Horsepower (HP @ RPM)",
+            "value": "131 @ 5000",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Electrification",
+            "label": "Motor Power Output (front/rear) (HP)",
+            "value": "114 / 134",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Electrification",
+            "label": "Motor Power Output (total max POWER mode) (HP)",
+            "value": "248",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Electrification",
+            "label": "Charging time:  240V /15A  EVSE",
+            "value": "approx 6.5 hours",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Electrification",
+            "label": "Charging time:  CHAdeMO quick charger (up to 80%)",
+            "value": "approx 29 minutes",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Fuel Economy & Range",
+            "label": "EV Range (km)",
+            "value": "72",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Fuel Economy & Range",
+            "label": "Total Driving Range (km)",
+            "value": "690",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Fuel Economy & Range",
+            "label": "Combined (Gas + Electric Combined) (Le / 100 km)",
+            "value": "3.2",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Fuel Economy & Range",
+            "label": "Estimated Consumption - City/Highway/Combined (L /100 km)",
+            "value": "8.6 / 8.6 / 8.6",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Exterior Dimensions",
+            "label": "Length (mm / in)",
+            "value": "4720 / 185.8",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Exterior Dimensions",
+            "label": "Width (mm / in)",
+            "value": "1862 / 73.3",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Exterior Dimensions",
+            "label": "Height (mm / in)",
+            "value": "1747 / 68.8",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Weights & Capacities",
+            "label": "Cargo volume (behind 3rd Row Seat) (L / cu ft)",
+            "value": "362 / 12.8",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Weights & Capacities",
+            "label": "Cargo volume (behind 2nd Row Seat) (L / cu ft)",
+            "value": "872 / 30.8",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Weights & Capacities",
+            "label": "Cargo volume (behind front seat) (L / cu ft)",
+            "value": "1832 / 64.7",
+            "unitOfMeasurement": null
+          }
+        ]
+      },
+      "specificationGap": null
+    },
+    {
+      "modelKey": "DGE/2026",
+      "model": {
+        "id": "19875",
+        "code": "GN0WXDXHZL3M-NA_F62",
+        "name": "SEL S-AWC",
+        "year": 2026,
+        "trimLine": "SEL S-AWC",
+        "sortOrder": "4",
+        "price": {
+          "label": "From",
+          "value": 57598,
+          "baseValue": 57598,
+          "displayValue": "From ###,###.##",
+          "fees": []
+        },
+        "allInPrice": null,
+        "description": null,
+        "descriptionList": [
+          "Includes all the features of the LE S-AWC, plus: ",
+          "20” Two-Tone Alloy Wheels ",
+          "Leather-Appointed Seats",
+          "Ventilated Front Seats",
+          "Heated 2nd Row Seats"
+        ],
+        "engineCode": "4B12",
+        "engineSize": "PHEV SYSTEM",
+        "engineType": "PHEV SYSTEM",
+        "fuelType": "Unleaded",
+        "transmissionType": "1-SPEED TRANS.",
+        "transmissionCode": "",
+        "transmissionDescription": "1-SPEED TRANS.",
+        "drivetrain": "ALL-WHEEL DRIVE",
+        "seats": 7,
+        "doors": 5
+      },
+      "specification": {
+        "source": {
+          "url": "https://www.mitsubishi-motors.ca/en/vehicles/outlander-phev/specs",
+          "sha256": "5da66cd31fe13186fa22dc284ab325b8e503ee2d8b107011c782abd09653e36d",
+          "requestSha256": null
+        },
+        "name": "SEL S-AWC",
+        "priceCad": 57598,
+        "fields": [
+          {
+            "category": "Engine",
+            "label": "Horsepower (HP @ RPM)",
+            "value": "131 @ 5000",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Electrification",
+            "label": "Motor Power Output (front/rear) (HP)",
+            "value": "114 / 134",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Electrification",
+            "label": "Motor Power Output (total max POWER mode) (HP)",
+            "value": "248",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Electrification",
+            "label": "Charging time:  240V /15A  EVSE",
+            "value": "approx 6.5 hours",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Electrification",
+            "label": "Charging time:  CHAdeMO quick charger (up to 80%)",
+            "value": "approx 29 minutes",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Fuel Economy & Range",
+            "label": "EV Range (km)",
+            "value": "72",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Fuel Economy & Range",
+            "label": "Total Driving Range (km)",
+            "value": "690",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Fuel Economy & Range",
+            "label": "Combined (Gas + Electric Combined) (Le / 100 km)",
+            "value": "3.2",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Fuel Economy & Range",
+            "label": "Estimated Consumption - City/Highway/Combined (L /100 km)",
+            "value": "8.6 / 8.6 / 8.6",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Exterior Dimensions",
+            "label": "Length (mm / in)",
+            "value": "4720 / 185.8",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Exterior Dimensions",
+            "label": "Width (mm / in)",
+            "value": "1862 / 73.3",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Exterior Dimensions",
+            "label": "Height (mm / in)",
+            "value": "1751 / 68.9",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Weights & Capacities",
+            "label": "Cargo volume (behind 3rd Row Seat) (L / cu ft)",
+            "value": "362 / 12.8",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Weights & Capacities",
+            "label": "Cargo volume (behind 2nd Row Seat) (L / cu ft)",
+            "value": "872 / 30.8",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Weights & Capacities",
+            "label": "Cargo volume (behind front seat) (L / cu ft)",
+            "value": "1832 / 64.7",
+            "unitOfMeasurement": null
+          }
+        ]
+      },
+      "specificationGap": null
+    },
+    {
+      "modelKey": "DGE/2026",
+      "model": {
+        "id": "22602",
+        "code": "GN0WXDXHZL3M-NA_U62",
+        "name": "SE S-AWC",
+        "year": 2026,
+        "trimLine": "SE S-AWC",
+        "sortOrder": "2",
+        "price": {
+          "label": "From",
+          "value": 52598,
+          "baseValue": 52598,
+          "displayValue": "From ###,###.##",
+          "fees": []
+        },
+        "allInPrice": null,
+        "description": null,
+        "descriptionList": [
+          "Includes all the features of the ES S-AWC, plus: ",
+          "Power Panoramic Sunroof with Sunshade ",
+          "3-Zone Automatic Climate Control",
+          "Heated Steering Wheel"
+        ],
+        "engineCode": "4B12",
+        "engineSize": "PHEV SYSTEM",
+        "engineType": "PHEV SYSTEM",
+        "fuelType": "Unleaded",
+        "transmissionType": "1-SPEED TRANS.",
+        "transmissionCode": "",
+        "transmissionDescription": "1-SPEED TRANS.",
+        "drivetrain": "ALL-WHEEL DRIVE",
+        "seats": 7,
+        "doors": 5
+      },
+      "specification": {
+        "source": {
+          "url": "https://www.mitsubishi-motors.ca/en/vehicles/outlander-phev/specs",
+          "sha256": "5da66cd31fe13186fa22dc284ab325b8e503ee2d8b107011c782abd09653e36d",
+          "requestSha256": null
+        },
+        "name": "SE S-AWC",
+        "priceCad": 52598,
+        "fields": [
+          {
+            "category": "Engine",
+            "label": "Horsepower (HP @ RPM)",
+            "value": "131 @ 5000",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Electrification",
+            "label": "Motor Power Output (front/rear) (HP)",
+            "value": "114 / 134",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Electrification",
+            "label": "Motor Power Output (total max POWER mode) (HP)",
+            "value": "248",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Electrification",
+            "label": "Charging time:  240V /15A  EVSE",
+            "value": "approx 6.5 hours",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Electrification",
+            "label": "Charging time:  CHAdeMO quick charger (up to 80%)",
+            "value": "approx 29 minutes",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Fuel Economy & Range",
+            "label": "EV Range (km)",
+            "value": "72",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Fuel Economy & Range",
+            "label": "Total Driving Range (km)",
+            "value": "690",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Fuel Economy & Range",
+            "label": "Combined (Gas + Electric Combined) (Le / 100 km)",
+            "value": "3.2",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Fuel Economy & Range",
+            "label": "Estimated Consumption - City/Highway/Combined (L /100 km)",
+            "value": "8.6 / 8.6 / 8.6",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Exterior Dimensions",
+            "label": "Length (mm / in)",
+            "value": "4720 / 185.8",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Exterior Dimensions",
+            "label": "Width (mm / in)",
+            "value": "1862 / 73.3",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Exterior Dimensions",
+            "label": "Height (mm / in)",
+            "value": "1747 / 68.8",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Weights & Capacities",
+            "label": "Cargo volume (behind 3rd Row Seat) (L / cu ft)",
+            "value": "362 / 12.8",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Weights & Capacities",
+            "label": "Cargo volume (behind 2nd Row Seat) (L / cu ft)",
+            "value": "872 / 30.8",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Weights & Capacities",
+            "label": "Cargo volume (behind front seat) (L / cu ft)",
+            "value": "1832 / 64.7",
+            "unitOfMeasurement": null
+          }
+        ]
+      },
+      "specificationGap": null
+    },
+    {
+      "modelKey": "DME/2027",
+      "model": {
+        "id": "22608",
+        "code": "00000DEAC2LC-NA_F71",
+        "name": "EV",
+        "year": 2027,
+        "trimLine": "EV",
+        "sortOrder": "1",
+        "price": {
+          "label": "From",
+          "value": 48998,
+          "baseValue": 48998,
+          "displayValue": "From ###,###.##",
+          "fees": []
+        },
+        "allInPrice": null,
+        "description": null,
+        "descriptionList": [
+          "Bonus Savings: You may be eligible for a $5,000 Federal rebate. Final transaction price must not exceed $50,000. Subject to rebate eligibility.",
+          "Battery Electric Vehicle",
+          "Up to 454 km driving range",
+          "214 horsepower/261 lb.-ft. torque",
+          "5 seats + flexible cargo",
+          "4 drive modes"
+        ],
+        "engineCode": "YM52",
+        "engineSize": "75 kWh",
+        "engineType": "Battery, Electric Motor",
+        "fuelType": "Electric",
+        "transmissionType": "1ST",
+        "transmissionCode": "",
+        "transmissionDescription": "I3",
+        "drivetrain": "Front Wheel Drive",
+        "seats": 5,
+        "doors": 5
+      },
+      "specification": {
+        "source": {
+          "url": "https://www.mitsubishi-motors.ca/en/vehicles/eclipse-sportback/specs",
+          "sha256": "568f2e31cb846d73fcdfb0f497d558245d24ca853a8eeac36aa03caedb8aa2a1",
+          "requestSha256": null
+        },
+        "name": "EV",
+        "priceCad": 48998,
+        "fields": [
+          {
+            "category": "Performance & Handling",
+            "label": "Horsepower (HP @ RPM)",
+            "value": "214 @ 4400-11700",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Estimated Energy Consumption & Charging",
+            "label": "City/Highway/Combined (Le/100 km)",
+            "value": "1.9 / 2.3 / 2.1",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Estimated Energy Consumption & Charging",
+            "label": "Total Driving Range (km)",
+            "value": "454",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Estimated Energy Consumption & Charging",
+            "label": "240V /30A EVSE 10% to 100% State of Charge",
+            "value": "approx 11.5 hours",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Estimated Energy Consumption & Charging",
+            "label": "240V /30A EVSE 20% to 80% State of Charge",
+            "value": "approx 6.5 hours",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Safety & Driver Assistance",
+            "label": "Height Adjustable Front Seatbelts",
+            "value": "Standard",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Safety & Driver Assistance",
+            "label": "Height Adjustable Front and Rear Head Restraints",
+            "value": "Standard",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Exterior Dimensions",
+            "label": "Length (mm / in)",
+            "value": "4414 /173.8",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Exterior Dimensions",
+            "label": "Width (mm / in)",
+            "value": "2099 / 82.6",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Exterior Dimensions",
+            "label": "Height (mm / in)",
+            "value": "1557 / 61.3",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Weights & Capacities",
+            "label": "Cargo volume (behind 2nd Row Seat) (L / cu ft)",
+            "value": "566 / 20.0",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Weights & Capacities",
+            "label": "Cargo volume (behind front seat) (L / cu ft)",
+            "value": "1572 / 55.5",
+            "unitOfMeasurement": null
+          }
+        ]
+      },
+      "specificationGap": null
+    },
+    {
+      "modelKey": "DME/2027",
+      "model": {
+        "id": "22609",
+        "code": "0000DEAC2LCP-NA_F72",
+        "name": "EV Tech Pkg",
+        "year": 2027,
+        "trimLine": "EV Tech Pkg",
+        "sortOrder": "2",
+        "price": {
+          "label": "From",
+          "value": 54098,
+          "baseValue": 54098,
+          "displayValue": "From ###,###.##",
+          "fees": []
+        },
+        "allInPrice": null,
+        "description": null,
+        "descriptionList": [
+          " Includes all the features of the EV, plus:",
+          "Panoramic Roof (fixed/e-dimming)",
+          "BOSE® Premium Sound System with 10 Speakers",
+          "Hands-Free Power Liftgate",
+          "Black Roof Rails"
+        ],
+        "engineCode": "YM52",
+        "engineSize": "75 kWh",
+        "engineType": "Battery, Electric Motor",
+        "fuelType": "Electric",
+        "transmissionType": "1ST",
+        "transmissionCode": "",
+        "transmissionDescription": "I4",
+        "drivetrain": "Front Wheel Drive",
+        "seats": 5,
+        "doors": 5
+      },
+      "specification": {
+        "source": {
+          "url": "https://www.mitsubishi-motors.ca/en/vehicles/eclipse-sportback/specs",
+          "sha256": "568f2e31cb846d73fcdfb0f497d558245d24ca853a8eeac36aa03caedb8aa2a1",
+          "requestSha256": null
+        },
+        "name": "EV Tech Pkg",
+        "priceCad": 54098,
+        "fields": [
+          {
+            "category": "Performance & Handling",
+            "label": "Horsepower (HP @ RPM)",
+            "value": "214 @ 4400-11700",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Estimated Energy Consumption & Charging",
+            "label": "City/Highway/Combined (Le/100 km)",
+            "value": "1.9 / 2.3 / 2.1",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Estimated Energy Consumption & Charging",
+            "label": "Total Driving Range (km)",
+            "value": "454",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Estimated Energy Consumption & Charging",
+            "label": "240V /30A EVSE 10% to 100% State of Charge",
+            "value": "approx 11.5 hours",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Estimated Energy Consumption & Charging",
+            "label": "240V /30A EVSE 20% to 80% State of Charge",
+            "value": "approx 6.5 hours",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Safety & Driver Assistance",
+            "label": "Height Adjustable Front Seatbelts",
+            "value": "Standard",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Safety & Driver Assistance",
+            "label": "Height Adjustable Front and Rear Head Restraints",
+            "value": "Standard",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Exterior Dimensions",
+            "label": "Length (mm / in)",
+            "value": "4414 /173.8",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Exterior Dimensions",
+            "label": "Width (mm / in)",
+            "value": "2099 / 82.6",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Exterior Dimensions",
+            "label": "Height (mm / in)",
+            "value": "1557 / 61.3",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Weights & Capacities",
+            "label": "Cargo volume (behind 2nd Row Seat) (L / cu ft)",
+            "value": "566 / 20.0",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Weights & Capacities",
+            "label": "Cargo volume (behind front seat) (L / cu ft)",
+            "value": "1572 / 55.5",
+            "unitOfMeasurement": null
+          }
+        ]
+      },
+      "specificationGap": null
+    },
+    {
+      "modelKey": "NS/2025",
+      "model": {
+        "id": "13226",
+        "code": "GK1WXTJUZL3M-NA_C51",
+        "name": "ES S-AWC",
+        "year": 2025,
+        "trimLine": "ES S-AWC",
+        "sortOrder": "1",
+        "price": {
+          "label": "From",
+          "value": 29398,
+          "baseValue": 29398,
+          "displayValue": "From ###,###.##",
+          "fees": []
+        },
+        "allInPrice": null,
+        "description": null,
+        "descriptionList": [
+          "Super All-Wheel Control (S-AWC) with Drive Mode Selector",
+          "18” Alloy Wheels",
+          "Automatic Climate Control",
+          "Heated Front Seats",
+          "Android Auto & Apple CarPlay"
+        ],
+        "engineCode": "4B40",
+        "engineSize": "1.5L 4 CYLINDER TURBO",
+        "engineType": "1.5L 4 CYLINDER TURBO",
+        "fuelType": "Unleaded",
+        "transmissionType": "CVT",
+        "transmissionCode": "",
+        "transmissionDescription": "CVT",
+        "drivetrain": "ALL-WHEEL DRIVE",
+        "seats": 5,
+        "doors": 5
+      },
+      "specification": null,
+      "specificationGap": "This model year appears in the new-inventory feed but is absent from the current build selector/specification routes. Exact historical technical fields and individual trim stock need review; another model year is not copied."
+    },
+    {
+      "modelKey": "NS/2025",
+      "model": {
+        "id": "13227",
+        "code": "GK1WXTXUZL3M-NA_C52",
+        "name": "SE S-AWC",
+        "year": 2025,
+        "trimLine": "SE S-AWC",
+        "sortOrder": "2",
+        "price": {
+          "label": "From",
+          "value": 32898,
+          "baseValue": 32898,
+          "displayValue": "From ###,###.##",
+          "fees": []
+        },
+        "allInPrice": null,
+        "description": null,
+        "descriptionList": [
+          "Includes all the equipment of the ES S-AWC, plus:",
+          "Heated Steering Wheel",
+          "Dual-Zone Automatic Climate Control",
+          "FAST-Key Keyless Entry",
+          "Hands-Free Power Liftgate with Adjustable Height",
+          "Heated & Power-Folding Side-View Mirrors with Integrated Turn Signal Light"
+        ],
+        "engineCode": "4B40",
+        "engineSize": "1.5L 4 CYLINDER TURBO",
+        "engineType": "1.5L 4 CYLINDER TURBO",
+        "fuelType": "Unleaded",
+        "transmissionType": "CVT",
+        "transmissionCode": "",
+        "transmissionDescription": "CVT",
+        "drivetrain": "ALL-WHEEL DRIVE",
+        "seats": 5,
+        "doors": 5
+      },
+      "specification": null,
+      "specificationGap": "This model year appears in the new-inventory feed but is absent from the current build selector/specification routes. Exact historical technical fields and individual trim stock need review; another model year is not copied."
+    },
+    {
+      "modelKey": "NS/2025",
+      "model": {
+        "id": "13228",
+        "code": "GK1WXTXUZL3M-NA_C53",
+        "name": "SEL S-AWC",
+        "year": 2025,
+        "trimLine": "SEL S-AWC",
+        "sortOrder": "3",
+        "price": {
+          "label": "From",
+          "value": 35698,
+          "baseValue": 35698,
+          "displayValue": "From ###,###.##",
+          "fees": []
+        },
+        "allInPrice": null,
+        "description": null,
+        "descriptionList": [
+          "Includes all the equipment of the SE S-AWC, plus:",
+          "Microsuede/Synthetic Leather Seats",
+          "Heated 2nd Row Seats",
+          "Multi View Camera System (MVCS)",
+          "Head-Up Display (HUD)",
+          "Auto-Dimming Rearview Mirror with Homelink®"
+        ],
+        "engineCode": "4B40",
+        "engineSize": "1.5L 4 CYLINDER TURBO",
+        "engineType": "1.5L 4 CYLINDER TURBO",
+        "fuelType": "Unleaded",
+        "transmissionType": "CVT",
+        "transmissionCode": "",
+        "transmissionDescription": "CVT",
+        "drivetrain": "ALL-WHEEL DRIVE",
+        "seats": 5,
+        "doors": 5
+      },
+      "specification": null,
+      "specificationGap": "This model year appears in the new-inventory feed but is absent from the current build selector/specification routes. Exact historical technical fields and individual trim stock need review; another model year is not copied."
+    },
+    {
+      "modelKey": "NS/2025",
+      "model": {
+        "id": "13229",
+        "code": "GK1WXTXUZL3M-NA_C54",
+        "name": "GT S-AWC",
+        "year": 2025,
+        "trimLine": "GT S-AWC",
+        "sortOrder": "5",
+        "price": {
+          "label": "From",
+          "value": 38498,
+          "baseValue": 38498,
+          "displayValue": "From ###,###.##",
+          "fees": []
+        },
+        "allInPrice": null,
+        "description": null,
+        "descriptionList": [
+          "Includes all the equipment of the SEL S-AWC, plus:",
+          "Power Panoramic Sunroof with Dual Sunshades",
+          "Leather-Appointed Seats",
+          "6-Way Power Driver’s Seat (Sliding, Reclining & Height Adjustable)",
+          "4-Way Power Front Passenger Seat",
+          "Mitsubishi Power Sound System with 8 Speakers"
+        ],
+        "engineCode": "4B40",
+        "engineSize": "1.5L 4 CYLINDER TURBO",
+        "engineType": "1.5L 4 CYLINDER TURBO",
+        "fuelType": "Unleaded",
+        "transmissionType": "CVT",
+        "transmissionCode": "",
+        "transmissionDescription": "CVT",
+        "drivetrain": "ALL-WHEEL DRIVE",
+        "seats": 5,
+        "doors": 5
+      },
+      "specification": null,
+      "specificationGap": "This model year appears in the new-inventory feed but is absent from the current build selector/specification routes. Exact historical technical fields and individual trim stock need review; another model year is not copied."
+    },
+    {
+      "modelKey": "NS/2025",
+      "model": {
+        "id": "13230",
+        "code": "GK1WXTXUZL3M-NA_L51",
+        "name": "NOIR S-AWC",
+        "year": 2025,
+        "trimLine": "NOIR S-AWC",
+        "sortOrder": "4",
+        "price": {
+          "label": "From",
+          "value": 37998,
+          "baseValue": 37998,
+          "displayValue": "From ###,###.##",
+          "fees": []
+        },
+        "allInPrice": null,
+        "description": null,
+        "descriptionList": [
+          "Includes many of the features of the SEL S-AWC, excluding HUD, plus:",
+          "Power Panoramic Sunroof with Dual Sunshades",
+          "18” Black-Painted Alloy Wheels",
+          "Mitsubishi Power Sound System with 8 Speakers",
+          "Large Rear Spoiler (Black)",
+          "Aluminum Pedals"
+        ],
+        "engineCode": "4B40",
+        "engineSize": "1.5L 4 CYLINDER TURBO",
+        "engineType": "1.5L 4 CYLINDER TURBO",
+        "fuelType": "Unleaded",
+        "transmissionType": "CVT",
+        "transmissionCode": "",
+        "transmissionDescription": "CVT",
+        "drivetrain": "ALL-WHEEL DRIVE",
+        "seats": 5,
+        "doors": 5
+      },
+      "specification": null,
+      "specificationGap": "This model year appears in the new-inventory feed but is absent from the current build selector/specification routes. Exact historical technical fields and individual trim stock need review; another model year is not copied."
+    },
+    {
+      "modelKey": "NS/2026",
+      "model": {
+        "id": "15277",
+        "code": "GK1WXTJUZL3M-NA_C61",
+        "name": "ES S-AWC",
+        "year": 2026,
+        "trimLine": "ES S-AWC",
+        "sortOrder": "1",
+        "price": {
+          "label": "From",
+          "value": 29798,
+          "baseValue": 29798,
+          "displayValue": "From ###,###.##",
+          "fees": []
+        },
+        "allInPrice": null,
+        "description": null,
+        "descriptionList": [
+          "Super All-Wheel Control (S-AWC) with Drive Mode Selector",
+          "18” Alloy Wheels",
+          "Automatic Climate Control",
+          "Heated Front Seats",
+          "Android Auto™ & Apple CarPlay"
+        ],
+        "engineCode": "4B40",
+        "engineSize": "1.5L 4 CYLINDER TURBO",
+        "engineType": "1.5L 4 CYLINDER TURBO",
+        "fuelType": "Unleaded",
+        "transmissionType": "CVT",
+        "transmissionCode": "",
+        "transmissionDescription": "CVT",
+        "drivetrain": "ALL-WHEEL DRIVE",
+        "seats": 5,
+        "doors": 5
+      },
+      "specification": {
+        "source": {
+          "url": "https://www.mitsubishi-motors.ca/en/vehicles/eclipse-cross/specs",
+          "sha256": "d5ee7a1fc562ae3d52c90f7f9cfa0457cfc555c3ed2c9b572089e80e0a26dd34",
+          "requestSha256": null
+        },
+        "name": "ES S-AWC",
+        "priceCad": 29798,
+        "fields": [
+          {
+            "category": "Performance & Handling",
+            "label": "Horsepower (HP @ RPM)",
+            "value": "152 @ 5500",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Fuel Economy",
+            "label": "Estimated Consumption - City/Highway/Combined (L / 100 km)",
+            "value": "9.6 / 8.9 / 9.3",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Exterior Dimensions",
+            "label": "Length (mm / in)",
+            "value": "4547 / 179.0",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Exterior Dimensions",
+            "label": "Width (mm / in)",
+            "value": "1807 / 71.1",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Exterior Dimensions",
+            "label": "Height (mm / in)",
+            "value": "1688 / 66.5",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Weights & Capacities",
+            "label": "Cargo volume (L / cu ft)",
+            "value": "663 / 23.4",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Weights & Capacities",
+            "label": "Cargo volume (behind front seat) (L / cu ft)",
+            "value": "1419 / 50.1",
+            "unitOfMeasurement": null
+          }
+        ]
+      },
+      "specificationGap": null
+    },
+    {
+      "modelKey": "NS/2026",
+      "model": {
+        "id": "15278",
+        "code": "GK1WXTXUZL3M-NA_C62",
+        "name": "SE S-AWC",
+        "year": 2026,
+        "trimLine": "SE S-AWC",
+        "sortOrder": "2",
+        "price": {
+          "label": "From",
+          "value": 33298,
+          "baseValue": 33298,
+          "displayValue": "From ###,###.##",
+          "fees": []
+        },
+        "allInPrice": null,
+        "description": null,
+        "descriptionList": [
+          "Includes all the equipment of the ES, plus:",
+          "Heated Steering Wheel",
+          "Dual-Zone Automatic Climate Control",
+          "FAST-Key Keyless Entry",
+          "Hands-Free Power Liftgate with Adjustable Height",
+          "Heated & Power-Folding Side-View Mirrors with Integrated Turn Signal Light"
+        ],
+        "engineCode": "4B40",
+        "engineSize": "1.5L 4 CYLINDER TURBO",
+        "engineType": "1.5L 4 CYLINDER TURBO",
+        "fuelType": "Unleaded",
+        "transmissionType": "CVT",
+        "transmissionCode": "",
+        "transmissionDescription": "CVT",
+        "drivetrain": "ALL-WHEEL DRIVE",
+        "seats": 5,
+        "doors": 5
+      },
+      "specification": {
+        "source": {
+          "url": "https://www.mitsubishi-motors.ca/en/vehicles/eclipse-cross/specs",
+          "sha256": "d5ee7a1fc562ae3d52c90f7f9cfa0457cfc555c3ed2c9b572089e80e0a26dd34",
+          "requestSha256": null
+        },
+        "name": "SE S-AWC",
+        "priceCad": 33298,
+        "fields": [
+          {
+            "category": "Performance & Handling",
+            "label": "Horsepower (HP @ RPM)",
+            "value": "152 @ 5500",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Fuel Economy",
+            "label": "Estimated Consumption - City/Highway/Combined (L / 100 km)",
+            "value": "9.6 / 8.9 / 9.3",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Exterior Dimensions",
+            "label": "Length (mm / in)",
+            "value": "4547 / 179.0",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Exterior Dimensions",
+            "label": "Width (mm / in)",
+            "value": "1807 / 71.1",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Exterior Dimensions",
+            "label": "Height (mm / in)",
+            "value": "1688 / 66.5",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Weights & Capacities",
+            "label": "Cargo volume (L / cu ft)",
+            "value": "663 / 23.4",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Weights & Capacities",
+            "label": "Cargo volume (behind front seat) (L / cu ft)",
+            "value": "1419 / 50.1",
+            "unitOfMeasurement": null
+          }
+        ]
+      },
+      "specificationGap": null
+    },
+    {
+      "modelKey": "NS/2026",
+      "model": {
+        "id": "15279",
+        "code": "GK1WXTXUZL3M-NA_C64",
+        "name": "GT S-AWC",
+        "year": 2026,
+        "trimLine": "GT S-AWC",
+        "sortOrder": "4",
+        "price": {
+          "label": "From",
+          "value": 38898,
+          "baseValue": 38898,
+          "displayValue": "From ###,###.##",
+          "fees": []
+        },
+        "allInPrice": null,
+        "description": null,
+        "descriptionList": [
+          "Includes all the equipment of the SE, plus:",
+          "Power Panoramic Sunroof with Dual Sunshades",
+          "Leather-Appointed Seats",
+          "6-Way Power Driver’s Seat (Sliding, Reclining & Height Adjustable)",
+          "4-Way Power Front Passenger Seat",
+          "Remote Starter"
+        ],
+        "engineCode": "4B40",
+        "engineSize": "1.5L 4 CYLINDER TURBO",
+        "engineType": "1.5L 4 CYLINDER TURBO",
+        "fuelType": "Unleaded",
+        "transmissionType": "CVT",
+        "transmissionCode": "",
+        "transmissionDescription": "CVT",
+        "drivetrain": "ALL-WHEEL DRIVE",
+        "seats": 5,
+        "doors": 5
+      },
+      "specification": {
+        "source": {
+          "url": "https://www.mitsubishi-motors.ca/en/vehicles/eclipse-cross/specs",
+          "sha256": "d5ee7a1fc562ae3d52c90f7f9cfa0457cfc555c3ed2c9b572089e80e0a26dd34",
+          "requestSha256": null
+        },
+        "name": "GT S-AWC",
+        "priceCad": 38898,
+        "fields": [
+          {
+            "category": "Performance & Handling",
+            "label": "Horsepower (HP @ RPM)",
+            "value": "152 @ 5500",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Fuel Economy",
+            "label": "Estimated Consumption - City/Highway/Combined (L / 100 km)",
+            "value": "9.6 / 8.9 / 9.3",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Exterior Dimensions",
+            "label": "Length (mm / in)",
+            "value": "4547 / 179.0",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Exterior Dimensions",
+            "label": "Width (mm / in)",
+            "value": "1807 / 71.1",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Exterior Dimensions",
+            "label": "Height (mm / in)",
+            "value": "1688 / 66.5",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Weights & Capacities",
+            "label": "Cargo volume (L / cu ft)",
+            "value": "657 / 23.2",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Weights & Capacities",
+            "label": "Cargo volume (behind front seat) (L / cu ft)",
+            "value": "1407 / 49.7",
+            "unitOfMeasurement": null
+          }
+        ]
+      },
+      "specificationGap": null
+    },
+    {
+      "modelKey": "NS/2026",
+      "model": {
+        "id": "15280",
+        "code": "GK1WXTXUZL3M-NA_L61",
+        "name": "NOIR S-AWC",
+        "year": 2026,
+        "trimLine": "NOIR S-AWC",
+        "sortOrder": "3",
+        "price": {
+          "label": "From",
+          "value": 36898,
+          "baseValue": 36898,
+          "displayValue": "From ###,###.##",
+          "fees": []
+        },
+        "allInPrice": null,
+        "description": null,
+        "descriptionList": [
+          "Includes all the equipment of the SE, plus:",
+          "\"NOIR\" Badge",
+          "Black Hood Emblem",
+          "18” Black-Painted Alloy Wheels",
+          "Microsuede/Synthetic Leather Seats",
+          "6-Way Power Driver’s Seat (Sliding, Reclining & Height Adjustable)"
+        ],
+        "engineCode": "4B40",
+        "engineSize": "1.5L 4 CYLINDER TURBO",
+        "engineType": "1.5L 4 CYLINDER TURBO",
+        "fuelType": "Unleaded",
+        "transmissionType": "CVT",
+        "transmissionCode": "",
+        "transmissionDescription": "CVT",
+        "drivetrain": "ALL-WHEEL DRIVE",
+        "seats": 5,
+        "doors": 5
+      },
+      "specification": {
+        "source": {
+          "url": "https://www.mitsubishi-motors.ca/en/vehicles/eclipse-cross/specs",
+          "sha256": "d5ee7a1fc562ae3d52c90f7f9cfa0457cfc555c3ed2c9b572089e80e0a26dd34",
+          "requestSha256": null
+        },
+        "name": "NOIR S-AWC",
+        "priceCad": 36898,
+        "fields": [
+          {
+            "category": "Performance & Handling",
+            "label": "Horsepower (HP @ RPM)",
+            "value": "152 @ 5500",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Fuel Economy",
+            "label": "Estimated Consumption - City/Highway/Combined (L / 100 km)",
+            "value": "9.6 / 8.9 / 9.3",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Exterior Dimensions",
+            "label": "Length (mm / in)",
+            "value": "4547 / 179.0",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Exterior Dimensions",
+            "label": "Width (mm / in)",
+            "value": "1807 / 71.1",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Exterior Dimensions",
+            "label": "Height (mm / in)",
+            "value": "1688 / 66.5",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Weights & Capacities",
+            "label": "Cargo volume (L / cu ft)",
+            "value": "663 / 23.4",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Weights & Capacities",
+            "label": "Cargo volume (behind front seat) (L / cu ft)",
+            "value": "1419 / 50.1",
+            "unitOfMeasurement": null
+          }
+        ]
+      },
+      "specificationGap": null
+    },
+    {
+      "modelKey": "ZC/2025",
+      "model": {
+        "id": "14849",
+        "code": "GA2WXTMHL3M-NA_C51",
+        "name": "ES FWD",
+        "year": 2025,
+        "trimLine": "ES FWD",
+        "sortOrder": "1",
+        "price": {
+          "label": "From",
+          "value": 24798,
+          "baseValue": 24798,
+          "displayValue": "From ###,###.##",
+          "fees": []
+        },
+        "allInPrice": null,
+        "description": null,
+        "descriptionList": [
+          "2.0L model with CVT including the standard features below :",
+          "Automatic Climate Control ",
+          "Heated Front Seats",
+          "Android Auto™ & Apple CarPlay"
+        ],
+        "engineCode": "4B11",
+        "engineSize": "2.0L 4 CYLINDER",
+        "engineType": "2.0L 4 CYLINDER",
+        "fuelType": "Unleaded",
+        "transmissionType": "CVT",
+        "transmissionCode": "",
+        "transmissionDescription": "CVT",
+        "drivetrain": "FRONT WHEEL DRIVE",
+        "seats": 5,
+        "doors": 5
+      },
+      "specification": null,
+      "specificationGap": "This model year appears in the new-inventory feed but is absent from the current build selector/specification routes. Exact historical technical fields and individual trim stock need review; another model year is not copied."
+    },
+    {
+      "modelKey": "ZC/2025",
+      "model": {
+        "id": "14850",
+        "code": "GA2WXTMHZL3M-NA_C52",
+        "name": "ES AWC",
+        "year": 2025,
+        "trimLine": "ES AWC",
+        "sortOrder": "2",
+        "price": {
+          "label": "From",
+          "value": 26798,
+          "baseValue": 26798,
+          "displayValue": "From ###,###.##",
+          "fees": []
+        },
+        "allInPrice": null,
+        "description": null,
+        "descriptionList": [
+          "Includes all the features of the ES FWD plus:",
+          "All-Wheel Control (AWC) with Drive Mode Selector"
+        ],
+        "engineCode": "4B11",
+        "engineSize": "2.0L 4 CYLINDER",
+        "engineType": "2.0L 4 CYLINDER",
+        "fuelType": "Unleaded",
+        "transmissionType": "CVT",
+        "transmissionCode": "",
+        "transmissionDescription": "CVT",
+        "drivetrain": "ALL-WHEEL DRIVE",
+        "seats": 5,
+        "doors": 5
+      },
+      "specification": null,
+      "specificationGap": "This model year appears in the new-inventory feed but is absent from the current build selector/specification routes. Exact historical technical fields and individual trim stock need review; another model year is not copied."
+    },
+    {
+      "modelKey": "ZC/2025",
+      "model": {
+        "id": "14851",
+        "code": "GA5WXTXHZL3M-NA_C54",
+        "name": "SE AWC",
+        "year": 2025,
+        "trimLine": "SE AWC",
+        "sortOrder": "3",
+        "price": {
+          "label": "From",
+          "value": 28798,
+          "baseValue": 28798,
+          "displayValue": "From ###,###.##",
+          "fees": []
+        },
+        "allInPrice": null,
+        "description": null,
+        "descriptionList": [
+          "2.4L engine and includes all the features of the ES AWC, plus:",
+          "Blind Spot Warning (BSW) ",
+          "Rear Cross Traffic Alert (RCTA) ",
+          "Premium Fabric Seats"
+        ],
+        "engineCode": "4B12",
+        "engineSize": "2.4L 4 CYLINDER",
+        "engineType": "2.4L 4 CYLINDER",
+        "fuelType": "Unleaded",
+        "transmissionType": "CVT",
+        "transmissionCode": "",
+        "transmissionDescription": "CVT",
+        "drivetrain": "ALL-WHEEL DRIVE",
+        "seats": 5,
+        "doors": 5
+      },
+      "specification": null,
+      "specificationGap": "This model year appears in the new-inventory feed but is absent from the current build selector/specification routes. Exact historical technical fields and individual trim stock need review; another model year is not copied."
+    },
+    {
+      "modelKey": "ZC/2025",
+      "model": {
+        "id": "14852",
+        "code": "GA5WXTXHZL3M-NA_C55",
+        "name": "SEL AWC",
+        "year": 2025,
+        "trimLine": "SEL AWC",
+        "sortOrder": "4",
+        "price": {
+          "label": "From",
+          "value": 31298,
+          "baseValue": 31298,
+          "displayValue": "From ###,###.##",
+          "fees": []
+        },
+        "allInPrice": null,
+        "description": null,
+        "descriptionList": [
+          "Includes all the features of the SE AWC, plus:",
+          "18” Alloy Wheels",
+          "Microsuede/Synthetic Leather Seats",
+          "Heated Steering Wheel"
+        ],
+        "engineCode": "4B12",
+        "engineSize": "2.4L 4 CYLINDER",
+        "engineType": "2.4L 4 CYLINDER",
+        "fuelType": "Unleaded",
+        "transmissionType": "CVT",
+        "transmissionCode": "",
+        "transmissionDescription": "CVT",
+        "drivetrain": "ALL-WHEEL DRIVE",
+        "seats": 5,
+        "doors": 5
+      },
+      "specification": null,
+      "specificationGap": "This model year appears in the new-inventory feed but is absent from the current build selector/specification routes. Exact historical technical fields and individual trim stock need review; another model year is not copied."
+    },
+    {
+      "modelKey": "ZC/2025",
+      "model": {
+        "id": "14853",
+        "code": "GA5WXTXHZL3M-NA_C56",
+        "name": "GT AWC",
+        "year": 2025,
+        "trimLine": "GT AWC",
+        "sortOrder": "6",
+        "price": {
+          "label": "From",
+          "value": 35798,
+          "baseValue": 35798,
+          "displayValue": "From ###,###.##",
+          "fees": []
+        },
+        "allInPrice": null,
+        "description": null,
+        "descriptionList": [
+          "Includes all the features of the SEL AWC, plus:",
+          "Panoramic Fixed Glass Sunroof with Sunshade",
+          "Leather-Appointed Seats",
+          "710-Watt Rockford Fosgate® Audio System with 9 Speakers"
+        ],
+        "engineCode": "4B12",
+        "engineSize": "2.4L 4 CYLINDER",
+        "engineType": "2.4L 4 CYLINDER",
+        "fuelType": "Unleaded",
+        "transmissionType": "CVT",
+        "transmissionCode": "",
+        "transmissionDescription": "CVT",
+        "drivetrain": "ALL-WHEEL DRIVE",
+        "seats": 5,
+        "doors": 5
+      },
+      "specification": null,
+      "specificationGap": "This model year appears in the new-inventory feed but is absent from the current build selector/specification routes. Exact historical technical fields and individual trim stock need review; another model year is not copied."
+    },
+    {
+      "modelKey": "ZC/2025",
+      "model": {
+        "id": "14854",
+        "code": "GA5WXTXHZL3M-NA_L51",
+        "name": "NOIR AWC",
+        "year": 2025,
+        "trimLine": "NOIR AWC",
+        "sortOrder": "5",
+        "price": {
+          "label": "From",
+          "value": 32798,
+          "baseValue": 32798,
+          "displayValue": "From ###,###.##",
+          "fees": []
+        },
+        "allInPrice": null,
+        "description": null,
+        "descriptionList": [
+          "Includes all the features of the SEL AWC, plus:",
+          "18” Black-Painted Alloy Wheels",
+          "Panoramic Fixed Glass Sunroof with Sunshade",
+          "Red Interior Stitch Accents"
+        ],
+        "engineCode": "4B12",
+        "engineSize": "2.4L 4 CYLINDER",
+        "engineType": "2.4L 4 CYLINDER",
+        "fuelType": "Unleaded",
+        "transmissionType": "CVT",
+        "transmissionCode": "",
+        "transmissionDescription": "CVT",
+        "drivetrain": "ALL-WHEEL DRIVE",
+        "seats": 5,
+        "doors": 5
+      },
+      "specification": null,
+      "specificationGap": "This model year appears in the new-inventory feed but is absent from the current build selector/specification routes. Exact historical technical fields and individual trim stock need review; another model year is not copied."
+    },
+    {
+      "modelKey": "ZC/2026",
+      "model": {
+        "id": "17134",
+        "code": "GA2WXTMHL3M-NA_C61",
+        "name": "ES FWD",
+        "year": 2026,
+        "trimLine": "ES FWD",
+        "sortOrder": "1",
+        "price": {
+          "label": "From",
+          "value": 24998,
+          "baseValue": 24998,
+          "displayValue": "From ###,###.##",
+          "fees": []
+        },
+        "allInPrice": null,
+        "description": null,
+        "descriptionList": [
+          "2.0L model with CVT including the standard features below :",
+          "Automatic Climate Control ",
+          "Heated Front Seats",
+          "Android Auto™ & Apple CarPlay"
+        ],
+        "engineCode": "4B11",
+        "engineSize": "2.0L 4 CYLINDER",
+        "engineType": "2.0L 4 CYLINDER",
+        "fuelType": "Unleaded",
+        "transmissionType": "CVT",
+        "transmissionCode": "",
+        "transmissionDescription": "CVT",
+        "drivetrain": "FRONT WHEEL DRIVE",
+        "seats": 5,
+        "doors": 5
+      },
+      "specification": {
+        "source": {
+          "url": "https://www.mitsubishi-motors.ca/en/vehicles/rvr-2026/specs",
+          "sha256": "db17c9605f04071dde121554428bbfde26e5d986712aae0a9bb44e7a69baafed",
+          "requestSha256": null
+        },
+        "name": "ES FWD",
+        "priceCad": 24998,
+        "fields": [
+          {
+            "category": "Performance & Handling",
+            "label": "Horsepower (HP @ RPM)",
+            "value": "148 @ 6000",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Fuel Economy",
+            "label": "Estimated Consumption - City/Highway/Combined (L / 100 km)",
+            "value": "9.7 / 7.8 / 8.8",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Exterior Dimensions",
+            "label": "Length (mm / in)",
+            "value": "4365 / 171.9",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Exterior Dimensions",
+            "label": "Width (mm / in)",
+            "value": "1810 / 71.3",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Exterior Dimensions",
+            "label": "Height (mm / in)",
+            "value": "1645 / 64.8",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Weights & Capacities",
+            "label": "Cargo volume (behind front seat) (L / cu ft)",
+            "value": "1402 / 49.5",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Weights & Capacities",
+            "label": "Cargo volume (L / cu ft)",
+            "value": "614 / 21.7",
+            "unitOfMeasurement": null
+          }
+        ]
+      },
+      "specificationGap": null
+    },
+    {
+      "modelKey": "ZC/2026",
+      "model": {
+        "id": "17135",
+        "code": "GA2WXTMHZL3M-NA_C62",
+        "name": "ES AWC",
+        "year": 2026,
+        "trimLine": "ES AWC",
+        "sortOrder": "2",
+        "price": {
+          "label": "From",
+          "value": 26998,
+          "baseValue": 26998,
+          "displayValue": "From ###,###.##",
+          "fees": []
+        },
+        "allInPrice": null,
+        "description": null,
+        "descriptionList": [
+          "Includes all the features of the ES FWD plus:",
+          "All-Wheel Control (AWC) with Drive Mode Selector"
+        ],
+        "engineCode": "4B11",
+        "engineSize": "2.0L 4 CYLINDER",
+        "engineType": "2.0L 4 CYLINDER",
+        "fuelType": "Unleaded",
+        "transmissionType": "CVT",
+        "transmissionCode": "",
+        "transmissionDescription": "CVT",
+        "drivetrain": "ALL-WHEEL DRIVE",
+        "seats": 5,
+        "doors": 5
+      },
+      "specification": {
+        "source": {
+          "url": "https://www.mitsubishi-motors.ca/en/vehicles/rvr-2026/specs",
+          "sha256": "db17c9605f04071dde121554428bbfde26e5d986712aae0a9bb44e7a69baafed",
+          "requestSha256": null
+        },
+        "name": "ES AWC",
+        "priceCad": 26998,
+        "fields": [
+          {
+            "category": "Performance & Handling",
+            "label": "Horsepower (HP @ RPM)",
+            "value": "148 @ 6000",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Fuel Economy",
+            "label": "Estimated Consumption - City/Highway/Combined (L / 100 km)",
+            "value": "10.1 / 8.2 / 9.2",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Exterior Dimensions",
+            "label": "Length (mm / in)",
+            "value": "4365 / 171.9",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Exterior Dimensions",
+            "label": "Width (mm / in)",
+            "value": "1810 / 71.3",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Exterior Dimensions",
+            "label": "Height (mm / in)",
+            "value": "1645 / 64.8",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Weights & Capacities",
+            "label": "Cargo volume (behind front seat) (L / cu ft)",
+            "value": "1402 / 49.5",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Weights & Capacities",
+            "label": "Cargo volume (L / cu ft)",
+            "value": "614 / 21.7",
+            "unitOfMeasurement": null
+          }
+        ]
+      },
+      "specificationGap": null
+    },
+    {
+      "modelKey": "ZC/2026",
+      "model": {
+        "id": "17136",
+        "code": "GA5WXTXHZL3M-NA_C64",
+        "name": "SE AWC",
+        "year": 2026,
+        "trimLine": "SE AWC",
+        "sortOrder": "3",
+        "price": {
+          "label": "From",
+          "value": 28998,
+          "baseValue": 28998,
+          "displayValue": "From ###,###.##",
+          "fees": []
+        },
+        "allInPrice": null,
+        "description": null,
+        "descriptionList": [
+          "2.4L engine and includes all the features of the ES AWC, plus:",
+          "Blind Spot Warning (BSW) ",
+          "Rear Cross Traffic Alert (RCTA) ",
+          "Premium Fabric Seats"
+        ],
+        "engineCode": "4B12",
+        "engineSize": "2.4L 4 CYLINDER",
+        "engineType": "2.4L 4 CYLINDER",
+        "fuelType": "Unleaded",
+        "transmissionType": "CVT",
+        "transmissionCode": "",
+        "transmissionDescription": "CVT",
+        "drivetrain": "ALL-WHEEL DRIVE",
+        "seats": 5,
+        "doors": 5
+      },
+      "specification": {
+        "source": {
+          "url": "https://www.mitsubishi-motors.ca/en/vehicles/rvr-2026/specs",
+          "sha256": "db17c9605f04071dde121554428bbfde26e5d986712aae0a9bb44e7a69baafed",
+          "requestSha256": null
+        },
+        "name": "SE AWC",
+        "priceCad": 28998,
+        "fields": [
+          {
+            "category": "Performance & Handling",
+            "label": "Horsepower (HP @ RPM)",
+            "value": "168 @ 6000",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Fuel Economy",
+            "label": "Estimated Consumption - City/Highway/Combined (L / 100 km)",
+            "value": "10.3 / 8.3 / 9.4",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Exterior Dimensions",
+            "label": "Length (mm / in)",
+            "value": "4365 / 171.9",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Exterior Dimensions",
+            "label": "Width (mm / in)",
+            "value": "1810 / 71.3",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Exterior Dimensions",
+            "label": "Height (mm / in)",
+            "value": "1645 / 64.8",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Weights & Capacities",
+            "label": "Cargo volume (behind front seat) (L / cu ft)",
+            "value": "1402 / 49.5",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Weights & Capacities",
+            "label": "Cargo volume (L / cu ft)",
+            "value": "614 / 21.7",
+            "unitOfMeasurement": null
+          }
+        ]
+      },
+      "specificationGap": null
+    },
+    {
+      "modelKey": "ZC/2026",
+      "model": {
+        "id": "17137",
+        "code": "GA5WXTXHZL3M-NA_C65",
+        "name": "SEL AWC",
+        "year": 2026,
+        "trimLine": "SEL AWC",
+        "sortOrder": "4",
+        "price": {
+          "label": "From",
+          "value": 31498,
+          "baseValue": 31498,
+          "displayValue": "From ###,###.##",
+          "fees": []
+        },
+        "allInPrice": null,
+        "description": null,
+        "descriptionList": [
+          "Includes all the features of the SE AWC, plus:",
+          "18” Alloy Wheels",
+          "Microsuede/Synthetic Leather Seats",
+          "Heated Steering Wheel"
+        ],
+        "engineCode": "4B12",
+        "engineSize": "2.4L 4 CYLINDER",
+        "engineType": "2.4L 4 CYLINDER",
+        "fuelType": "Unleaded",
+        "transmissionType": "CVT",
+        "transmissionCode": "",
+        "transmissionDescription": "CVT",
+        "drivetrain": "ALL-WHEEL DRIVE",
+        "seats": 5,
+        "doors": 5
+      },
+      "specification": {
+        "source": {
+          "url": "https://www.mitsubishi-motors.ca/en/vehicles/rvr-2026/specs",
+          "sha256": "db17c9605f04071dde121554428bbfde26e5d986712aae0a9bb44e7a69baafed",
+          "requestSha256": null
+        },
+        "name": "SEL AWC",
+        "priceCad": 31498,
+        "fields": [
+          {
+            "category": "Performance & Handling",
+            "label": "Horsepower (HP @ RPM)",
+            "value": "168 @ 6000",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Fuel Economy",
+            "label": "Estimated Consumption - City/Highway/Combined (L / 100 km)",
+            "value": "10.3 / 8.3 / 9.4",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Exterior Dimensions",
+            "label": "Length (mm / in)",
+            "value": "4365 / 171.9",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Exterior Dimensions",
+            "label": "Width (mm / in)",
+            "value": "1810 / 71.3",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Exterior Dimensions",
+            "label": "Height (mm / in)",
+            "value": "1645 / 64.8",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Weights & Capacities",
+            "label": "Cargo volume (behind front seat) (L / cu ft)",
+            "value": "1402 / 49.5",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Weights & Capacities",
+            "label": "Cargo volume (L / cu ft)",
+            "value": "614 / 21.7",
+            "unitOfMeasurement": null
+          }
+        ]
+      },
+      "specificationGap": null
+    },
+    {
+      "modelKey": "ZC/2026",
+      "model": {
+        "id": "17138",
+        "code": "GA5WXTXHZL3M-NA_C66",
+        "name": "GT AWC",
+        "year": 2026,
+        "trimLine": "GT AWC",
+        "sortOrder": "6",
+        "price": {
+          "label": "From",
+          "value": 35998,
+          "baseValue": 35998,
+          "displayValue": "From ###,###.##",
+          "fees": []
+        },
+        "allInPrice": null,
+        "description": null,
+        "descriptionList": [
+          "Includes all the features of the SEL AWC, plus:",
+          "Panoramic Fixed Glass Sunroof with Sunshade",
+          "Leather-Appointed Seats",
+          "710-Watt Rockford Fosgate® Audio System with 9 Speakers"
+        ],
+        "engineCode": "4B12",
+        "engineSize": "2.4L 4 CYLINDER",
+        "engineType": "2.4L 4 CYLINDER",
+        "fuelType": "Unleaded",
+        "transmissionType": "CVT",
+        "transmissionCode": "",
+        "transmissionDescription": "CVT",
+        "drivetrain": "ALL-WHEEL DRIVE",
+        "seats": 5,
+        "doors": 5
+      },
+      "specification": {
+        "source": {
+          "url": "https://www.mitsubishi-motors.ca/en/vehicles/rvr-2026/specs",
+          "sha256": "db17c9605f04071dde121554428bbfde26e5d986712aae0a9bb44e7a69baafed",
+          "requestSha256": null
+        },
+        "name": "GT AWC",
+        "priceCad": 35998,
+        "fields": [
+          {
+            "category": "Performance & Handling",
+            "label": "Horsepower (HP @ RPM)",
+            "value": "168 @ 6000",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Fuel Economy",
+            "label": "Estimated Consumption - City/Highway/Combined (L / 100 km)",
+            "value": "10.3 / 8.3 / 9.4",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Exterior Dimensions",
+            "label": "Length (mm / in)",
+            "value": "4365 / 171.9",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Exterior Dimensions",
+            "label": "Width (mm / in)",
+            "value": "1810 / 71.3",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Exterior Dimensions",
+            "label": "Height (mm / in)",
+            "value": "1645 / 64.8",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Weights & Capacities",
+            "label": "Cargo volume (behind front seat) (L / cu ft)",
+            "value": "1382 / 48.8",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Weights & Capacities",
+            "label": "Cargo volume (L / cu ft)",
+            "value": "569 / 20.1",
+            "unitOfMeasurement": null
+          }
+        ]
+      },
+      "specificationGap": null
+    },
+    {
+      "modelKey": "ZC/2026",
+      "model": {
+        "id": "17139",
+        "code": "GA5WXTXHZL3M-NA_L61",
+        "name": "NOIR AWC",
+        "year": 2026,
+        "trimLine": "NOIR AWC",
+        "sortOrder": "5",
+        "price": {
+          "label": "From",
+          "value": 32998,
+          "baseValue": 32998,
+          "displayValue": "From ###,###.##",
+          "fees": []
+        },
+        "allInPrice": null,
+        "description": null,
+        "descriptionList": [
+          "Includes all the features of the SEL AWC, plus:",
+          "18” Black-Painted Alloy Wheels",
+          "Panoramic Fixed Glass Sunroof with Sunshade",
+          "Red Interior Stitch Accents"
+        ],
+        "engineCode": "4B12",
+        "engineSize": "2.4L 4 CYLINDER",
+        "engineType": "2.4L 4 CYLINDER",
+        "fuelType": "Unleaded",
+        "transmissionType": "CVT",
+        "transmissionCode": "",
+        "transmissionDescription": "CVT",
+        "drivetrain": "ALL-WHEEL DRIVE",
+        "seats": 5,
+        "doors": 5
+      },
+      "specification": {
+        "source": {
+          "url": "https://www.mitsubishi-motors.ca/en/vehicles/rvr-2026/specs",
+          "sha256": "db17c9605f04071dde121554428bbfde26e5d986712aae0a9bb44e7a69baafed",
+          "requestSha256": null
+        },
+        "name": "NOIR AWC",
+        "priceCad": 32998,
+        "fields": [
+          {
+            "category": "Performance & Handling",
+            "label": "Horsepower (HP @ RPM)",
+            "value": "168 @ 6000",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Fuel Economy",
+            "label": "Estimated Consumption - City/Highway/Combined (L / 100 km)",
+            "value": "10.3 / 8.3 / 9.4",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Exterior Dimensions",
+            "label": "Length (mm / in)",
+            "value": "4365 / 171.9",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Exterior Dimensions",
+            "label": "Width (mm / in)",
+            "value": "1810 / 71.3",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Exterior Dimensions",
+            "label": "Height (mm / in)",
+            "value": "1645 / 64.8",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Weights & Capacities",
+            "label": "Cargo volume (behind front seat) (L / cu ft)",
+            "value": "1382 / 48.8",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Weights & Capacities",
+            "label": "Cargo volume (L / cu ft)",
+            "value": "614 / 21.7",
+            "unitOfMeasurement": null
+          }
+        ]
+      },
+      "specificationGap": null
+    },
+    {
+      "modelKey": "ZC/2027",
+      "model": {
+        "id": "22394",
+        "code": "GA2WXTMHL3M-NA_C71",
+        "name": "ES FWD",
+        "year": 2027,
+        "trimLine": "ES FWD",
+        "sortOrder": "1",
+        "price": {
+          "label": "From",
+          "value": 25278,
+          "baseValue": 25278,
+          "displayValue": "From ###,###.##",
+          "fees": []
+        },
+        "allInPrice": null,
+        "description": null,
+        "descriptionList": [
+          "2.0L model with CVT including the standard features:",
+          "Automatic Climate Control ",
+          "Heated Front Seats",
+          "Android Auto™ & Apple CarPlay"
+        ],
+        "engineCode": "4B11",
+        "engineSize": "2.0L 4 CYLINDER",
+        "engineType": "2.0L 4 CYLINDER",
+        "fuelType": "Unleaded",
+        "transmissionType": "CVT",
+        "transmissionCode": "",
+        "transmissionDescription": "CVT",
+        "drivetrain": "FRONT WHEEL DRIVE",
+        "seats": 5,
+        "doors": 5
+      },
+      "specification": {
+        "source": {
+          "url": "https://www.mitsubishi-motors.ca/en/vehicles/rvr/specs",
+          "sha256": "b93f1c3840d6941ece205422b252dc7135da210df0106236bcd6198b8e673085",
+          "requestSha256": null
+        },
+        "name": "ES FWD",
+        "priceCad": 25278,
+        "fields": [
+          {
+            "category": "Performance & Handling",
+            "label": "Horsepower (HP @ RPM)",
+            "value": "148 @ 6000",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Fuel Economy",
+            "label": "Estimated Consumption - City/Highway/Combined (L / 100 km)",
+            "value": "9.7 / 7.8 / 8.8",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Exterior Dimensions",
+            "label": "Length (mm / in)",
+            "value": "4365 / 171.9",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Exterior Dimensions",
+            "label": "Width (mm / in)",
+            "value": "1810 / 71.3",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Exterior Dimensions",
+            "label": "Height (mm / in)",
+            "value": "1645 / 64.8",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Weights & Capacities",
+            "label": "Cargo volume (behind front seat) (L / cu ft)",
+            "value": "1402 / 49.5",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Weights & Capacities",
+            "label": "Cargo volume (L / cu ft)",
+            "value": "614 / 21.7",
+            "unitOfMeasurement": null
+          }
+        ]
+      },
+      "specificationGap": null
+    },
+    {
+      "modelKey": "ZC/2027",
+      "model": {
+        "id": "22398",
+        "code": "GA2WXTMHZL3M-NA_C72",
+        "name": "ES AWC",
+        "year": 2027,
+        "trimLine": "ES AWC",
+        "sortOrder": "2",
+        "price": {
+          "label": "From",
+          "value": 27278,
+          "baseValue": 27278,
+          "displayValue": "From ###,###.##",
+          "fees": []
+        },
+        "allInPrice": null,
+        "description": null,
+        "descriptionList": [
+          "Includes all the features of the ES FWD plus:",
+          "All-Wheel Control (AWC) with Drive Mode Selector"
+        ],
+        "engineCode": "4B11",
+        "engineSize": "2.0L 4 CYLINDER",
+        "engineType": "2.0L 4 CYLINDER",
+        "fuelType": "Unleaded",
+        "transmissionType": "CVT",
+        "transmissionCode": "",
+        "transmissionDescription": "CVT",
+        "drivetrain": "ALL-WHEEL DRIVE",
+        "seats": 5,
+        "doors": 5
+      },
+      "specification": {
+        "source": {
+          "url": "https://www.mitsubishi-motors.ca/en/vehicles/rvr/specs",
+          "sha256": "b93f1c3840d6941ece205422b252dc7135da210df0106236bcd6198b8e673085",
+          "requestSha256": null
+        },
+        "name": "ES AWC",
+        "priceCad": 27278,
+        "fields": [
+          {
+            "category": "Performance & Handling",
+            "label": "Horsepower (HP @ RPM)",
+            "value": "148 @ 6000",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Fuel Economy",
+            "label": "Estimated Consumption - City/Highway/Combined (L / 100 km)",
+            "value": "10.1 / 8.2 / 9.2",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Exterior Dimensions",
+            "label": "Length (mm / in)",
+            "value": "4365 / 171.9",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Exterior Dimensions",
+            "label": "Width (mm / in)",
+            "value": "1810 / 71.3",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Exterior Dimensions",
+            "label": "Height (mm / in)",
+            "value": "1645 / 64.8",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Weights & Capacities",
+            "label": "Cargo volume (behind front seat) (L / cu ft)",
+            "value": "1402 / 49.5",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Weights & Capacities",
+            "label": "Cargo volume (L / cu ft)",
+            "value": "614 / 21.7",
+            "unitOfMeasurement": null
+          }
+        ]
+      },
+      "specificationGap": null
+    },
+    {
+      "modelKey": "ZC/2027",
+      "model": {
+        "id": "22382",
+        "code": "GA5WXTXHZL3M-NA_C74",
+        "name": "SE AWC",
+        "year": 2027,
+        "trimLine": "SE AWC",
+        "sortOrder": "3",
+        "price": {
+          "label": "From",
+          "value": 29778,
+          "baseValue": 29778,
+          "displayValue": "From ###,###.##",
+          "fees": []
+        },
+        "allInPrice": null,
+        "description": null,
+        "descriptionList": [
+          "2.4L engine and includes all the features of the ES AWC, plus:",
+          "Heated Steering Wheel",
+          "Blind Spot Warning (BSW) ",
+          "Rear Cross Traffic Alert (RCTA) ",
+          "Premium Fabric Seats"
+        ],
+        "engineCode": "4B12",
+        "engineSize": "2.4L 4 CYLINDER",
+        "engineType": "2.4L 4 CYLINDER",
+        "fuelType": "Unleaded",
+        "transmissionType": "CVT",
+        "transmissionCode": "",
+        "transmissionDescription": "CVT",
+        "drivetrain": "ALL-WHEEL DRIVE",
+        "seats": 5,
+        "doors": 5
+      },
+      "specification": {
+        "source": {
+          "url": "https://www.mitsubishi-motors.ca/en/vehicles/rvr/specs",
+          "sha256": "b93f1c3840d6941ece205422b252dc7135da210df0106236bcd6198b8e673085",
+          "requestSha256": null
+        },
+        "name": "SE AWC",
+        "priceCad": 29778,
+        "fields": [
+          {
+            "category": "Performance & Handling",
+            "label": "Horsepower (HP @ RPM)",
+            "value": "168 @ 6000",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Fuel Economy",
+            "label": "Estimated Consumption - City/Highway/Combined (L / 100 km)",
+            "value": "10.3 / 8.3 / 9.4",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Exterior Dimensions",
+            "label": "Length (mm / in)",
+            "value": "4365 / 171.9",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Exterior Dimensions",
+            "label": "Width (mm / in)",
+            "value": "1810 / 71.3",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Exterior Dimensions",
+            "label": "Height (mm / in)",
+            "value": "1645 / 64.8",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Weights & Capacities",
+            "label": "Cargo volume (behind front seat) (L / cu ft)",
+            "value": "1402 / 49.5",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Weights & Capacities",
+            "label": "Cargo volume (L / cu ft)",
+            "value": "614 / 21.7",
+            "unitOfMeasurement": null
+          }
+        ]
+      },
+      "specificationGap": null
+    },
+    {
+      "modelKey": "ZC/2027",
+      "model": {
+        "id": "22384",
+        "code": "GA5WXTXHZL3M-NA_C75",
+        "name": "SEL AWC",
+        "year": 2027,
+        "trimLine": "SEL AWC",
+        "sortOrder": "4",
+        "price": {
+          "label": "From",
+          "value": 31998,
+          "baseValue": 31998,
+          "displayValue": "From ###,###.##",
+          "fees": []
+        },
+        "allInPrice": null,
+        "description": null,
+        "descriptionList": [
+          "Includes all the features of the SE AWC, plus:",
+          "18” Alloy Wheels",
+          "Microsuede/Synthetic Leather Seats"
+        ],
+        "engineCode": "4B12",
+        "engineSize": "2.4L 4 CYLINDER",
+        "engineType": "2.4L 4 CYLINDER",
+        "fuelType": "Unleaded",
+        "transmissionType": "CVT",
+        "transmissionCode": "",
+        "transmissionDescription": "CVT",
+        "drivetrain": "ALL-WHEEL DRIVE",
+        "seats": 5,
+        "doors": 5
+      },
+      "specification": {
+        "source": {
+          "url": "https://www.mitsubishi-motors.ca/en/vehicles/rvr/specs",
+          "sha256": "b93f1c3840d6941ece205422b252dc7135da210df0106236bcd6198b8e673085",
+          "requestSha256": null
+        },
+        "name": "SEL AWC",
+        "priceCad": 31998,
+        "fields": [
+          {
+            "category": "Performance & Handling",
+            "label": "Horsepower (HP @ RPM)",
+            "value": "168 @ 6000",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Fuel Economy",
+            "label": "Estimated Consumption - City/Highway/Combined (L / 100 km)",
+            "value": "10.3 / 8.3 / 9.4",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Exterior Dimensions",
+            "label": "Length (mm / in)",
+            "value": "4365 / 171.9",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Exterior Dimensions",
+            "label": "Width (mm / in)",
+            "value": "1810 / 71.3",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Exterior Dimensions",
+            "label": "Height (mm / in)",
+            "value": "1645 / 64.8",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Weights & Capacities",
+            "label": "Cargo volume (behind front seat) (L / cu ft)",
+            "value": "1402 / 49.5",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Weights & Capacities",
+            "label": "Cargo volume (L / cu ft)",
+            "value": "614 / 21.7",
+            "unitOfMeasurement": null
+          }
+        ]
+      },
+      "specificationGap": null
+    },
+    {
+      "modelKey": "ZC/2027",
+      "model": {
+        "id": "22386",
+        "code": "GA5WXTXHZL3M-NA_C76",
+        "name": "GT AWC",
+        "year": 2027,
+        "trimLine": "GT AWC",
+        "sortOrder": "6",
+        "price": {
+          "label": "From",
+          "value": 35958,
+          "baseValue": 35958,
+          "displayValue": "From ###,###.##",
+          "fees": []
+        },
+        "allInPrice": null,
+        "description": null,
+        "descriptionList": [
+          "Includes all the features of the SEL AWC, plus:",
+          "Panoramic Fixed Glass Sunroof with Sunshade",
+          "Leather-Appointed Seats"
+        ],
+        "engineCode": "4B12",
+        "engineSize": "2.4L 4 CYLINDER",
+        "engineType": "2.4L 4 CYLINDER",
+        "fuelType": "Unleaded",
+        "transmissionType": "CVT",
+        "transmissionCode": "",
+        "transmissionDescription": "CVT",
+        "drivetrain": "ALL-WHEEL DRIVE",
+        "seats": 5,
+        "doors": 5
+      },
+      "specification": {
+        "source": {
+          "url": "https://www.mitsubishi-motors.ca/en/vehicles/rvr/specs",
+          "sha256": "b93f1c3840d6941ece205422b252dc7135da210df0106236bcd6198b8e673085",
+          "requestSha256": null
+        },
+        "name": "GT AWC",
+        "priceCad": 35958,
+        "fields": [
+          {
+            "category": "Performance & Handling",
+            "label": "Horsepower (HP @ RPM)",
+            "value": "168 @ 6000",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Fuel Economy",
+            "label": "Estimated Consumption - City/Highway/Combined (L / 100 km)",
+            "value": "10.3 / 8.3 / 9.4",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Exterior Dimensions",
+            "label": "Length (mm / in)",
+            "value": "4365 / 171.9",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Exterior Dimensions",
+            "label": "Width (mm / in)",
+            "value": "1810 / 71.3",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Exterior Dimensions",
+            "label": "Height (mm / in)",
+            "value": "1645 / 64.8",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Weights & Capacities",
+            "label": "Cargo volume (behind front seat) (L / cu ft)",
+            "value": "1382 / 48.8",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Weights & Capacities",
+            "label": "Cargo volume (L / cu ft)",
+            "value": "614 / 21.7",
+            "unitOfMeasurement": null
+          }
+        ]
+      },
+      "specificationGap": null
+    },
+    {
+      "modelKey": "ZC/2027",
+      "model": {
+        "id": "22388",
+        "code": "GA5WXTXHZL3M-NA_L71",
+        "name": "NOIR AWC",
+        "year": 2027,
+        "trimLine": "NOIR AWC",
+        "sortOrder": "5",
+        "price": {
+          "label": "From",
+          "value": 33498,
+          "baseValue": 33498,
+          "displayValue": "From ###,###.##",
+          "fees": []
+        },
+        "allInPrice": null,
+        "description": null,
+        "descriptionList": [
+          "Includes all the features of the SEL AWC, plus:",
+          "18” Black-Painted Alloy Wheels",
+          "Panoramic Fixed Glass Sunroof with Sunshade",
+          "Red Interior Stitch Accents"
+        ],
+        "engineCode": "4B12",
+        "engineSize": "2.4L 4 CYLINDER",
+        "engineType": "2.4L 4 CYLINDER",
+        "fuelType": "Unleaded",
+        "transmissionType": "CVT",
+        "transmissionCode": "",
+        "transmissionDescription": "CVT",
+        "drivetrain": "ALL-WHEEL DRIVE",
+        "seats": 5,
+        "doors": 5
+      },
+      "specification": {
+        "source": {
+          "url": "https://www.mitsubishi-motors.ca/en/vehicles/rvr/specs",
+          "sha256": "b93f1c3840d6941ece205422b252dc7135da210df0106236bcd6198b8e673085",
+          "requestSha256": null
+        },
+        "name": "NOIR AWC",
+        "priceCad": 33498,
+        "fields": [
+          {
+            "category": "Performance & Handling",
+            "label": "Horsepower (HP @ RPM)",
+            "value": "168 @ 6000",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Fuel Economy",
+            "label": "Estimated Consumption - City/Highway/Combined (L / 100 km)",
+            "value": "10.3 / 8.3 / 9.4",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Exterior Dimensions",
+            "label": "Length (mm / in)",
+            "value": "4365 / 171.9",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Exterior Dimensions",
+            "label": "Width (mm / in)",
+            "value": "1810 / 71.3",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Exterior Dimensions",
+            "label": "Height (mm / in)",
+            "value": "1645 / 64.8",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Weights & Capacities",
+            "label": "Cargo volume (behind front seat) (L / cu ft)",
+            "value": "1382 / 48.8",
+            "unitOfMeasurement": null
+          },
+          {
+            "category": "Weights & Capacities",
+            "label": "Cargo volume (L / cu ft)",
+            "value": "614 / 21.7",
+            "unitOfMeasurement": null
+          }
+        ]
+      },
+      "specificationGap": null
+    }
+  ],
+  "inventoryGaps": [
+    {
+      "reference": {
+        "year": 2027,
+        "model": "Outlander",
+        "num_items": 26,
+        "make": "Mitsubishi",
+        "vehicle_condition": "New",
+        "is_used": false,
+        "is_cpo": false
+      },
+      "source": {
+        "url": "https://www-graphql.prod.mipulse.co/prod/graphql",
+        "sha256": "7961a76a52cdb9833344189cd650dca33884ad84a1f5a40e6401ba342785ee07",
+        "requestSha256": "be8c7e598f0e0365925a1861745a7f9e3d133529acd21292da07b07ccfcf1a01"
+      },
+      "reason": "The new-inventory feed lists this model year, but the exact Canadian factory query failed: Mitsubishi model query failed: Vehicle not found. Retail identities/prices/stock require reconciliation; no other year is substituted."
+    }
+  ]
+}

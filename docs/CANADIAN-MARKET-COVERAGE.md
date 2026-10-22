@@ -548,7 +548,7 @@ family and previous-model information are kept separate. Additional factory
 equipment, older new stock and models outside the current overview, including
 ID.4 availability and retail reconciliation, remain in scope.
 
-The catalog now has 4,810 records: 2,296 retail configurations, of which 1,425 have
+At the Volkswagen milestone the catalog had 4,810 records: 2,296 retail configurations, of which 1,425 had
 verified MSRP, plus 2,514 government rating variants and 395 official sources.
 There are 2,288 dated manufacturer-listed configurations and eight Mazda entries
 with a coming-soon flag. Thirty baseline makes still need a manufacturer import;
@@ -573,3 +573,68 @@ preview health endpoint, page and current bundle returned HTTP 200. JavaScript
 is 7,024.69 kB raw / 662.41 kB gzip; the large-chunk performance warning remains
 open. The full-market completeness gate continues to fail while coverage and
 source reconciliation are unfinished.
+
+## Mitsubishi factory trims and additional inventory years imported
+
+The Canadian build-start page, configurator active-code lists and exact factory
+queries reconcile all 32 current trims across six model years. Both 2026/2027 RVR
+years remain included, alongside 2026 Outlander, Outlander PHEV and Eclipse Cross
+and the two 2027 Eclipse Sportback EV configurations. Matching official
+specification tables establish exact trim ID/code/name and model-year joins.
+
+The national new-inventory feed independently references nine model/year groups.
+It adds 2025 Outlander, RVR and Eclipse Cross beyond the current build selector.
+Their public Canadian factory queries establish another 17 exact trims and MSRP
+values. Those records remain availability unchecked: a family-level inventory
+count does not confirm every trim. The feed also references 2027 Outlander, but
+its factory query returns “Vehicle not found.” That model year remains a gap,
+rather than inheriting another year's identities, prices or measurements.
+
+All 49 prices use the exact model's positive MSRP base value, with returned price
+and separate fee components reconciled in CA/CAD context. Optional colours,
+packages, accessories, discounts, taxes and delivery are not substituted into
+base MSRP. Current 2026 Outlander ES is $36,398; the separately retained 2025
+factory model is $35,598 and has different engine/powertrain evidence.
+
+The 2026 Outlander's 48 V BSG engine is identified as a mild hybrid in the app.
+PHEV, battery-electric and gasoline configurations retain separate identities.
+PHEV engine/motor figures do not become an invented net-system output, and generic
+fuel/equivalence fields do not establish operating-mode splits. Electric range is
+72 km for the PHEV, distinct from total hybrid range. The Eclipse Sportback EV's
+454 km range and combined 2.1 Le/100km remain distinct from liquid fuel and kWh.
+Two different AC charging windows do not become one arbitrary recharge time.
+
+Metric/imperial pairs must agree within rounding tolerance. Explicit cargo behind
+the third row represents all seats upright; generic cargo labels and unpublished
+head/legroom remain unverified. Older-year technical fields are not copied from
+current pages. The report retains these fields, additional ordering/equipment
+work and exact older-trim stock checks.
+
+The catalog now has 4,859 records: 2,345 retail configurations, of which 1,474 have
+verified MSRP, plus 2,514 government rating variants and 410 official sources.
+There are 2,320 dated manufacturer-listed configurations, eight Mazda entries with
+a coming-soon flag and 2,531 availability-unchecked records, including the 17
+older Mitsubishi trims. Twenty-nine baseline makes still need manufacturer
+imports; makes absent from that baseline remain in scope.
+
+Direct build-selector downloads for Chrysler, Dodge, Jeep, Ram and FIAT returned
+HTTP 403. A standard browser request to Jeep's model page was rejected too.
+These are dated source-access research gaps, recorded with response hashes in
+[the access review](catalog-source-access.json) and the generated coverage report.
+Indexed official model pages remain discoverable; the errors do not establish
+absence of current Canadian offerings or complete any manufacturer's coverage.
+
+Refresh with `npm run catalog:sync:mitsubishi`, reconstruct original bytes/date
+with `-- --offline`, or import reviewed captures with `-- --from-captures
+<manifest.json>`. Exact current references and all inventory model years must
+reconcile. Required source, country, year, trim or checksum failures prevent
+replacement. Ordinary builds and the running app make no runtime manufacturer
+requests. See [the source contract](MITSUBISHI-CONFIGURATOR.md).
+
+Validation passed 158 unit tests and 104 browser checks across desktop/mobile
+Chromium, Firefox and WebKit. Formatting, package boundaries, types, catalog
+validation, build and checksum-verified offline reconstruction passed. The
+preview health endpoint, page and current bundle returned HTTP 200. JavaScript
+is 7,127.92 kB raw / 674.12 kB gzip; the large-chunk performance warning remains
+open. The full-market completeness gate continues to fail while manufacturer,
+inventory, ordering and field reconciliation remain unfinished.

@@ -1,0 +1,42 @@
+[
+  {
+    "make": "Jeep",
+    "sourceUrl": "https://www.jeep.ca/en/build-and-price",
+    "observedAt": "2026-10-22T17:03:41.562Z",
+    "httpStatus": 403,
+    "responseSha256": "f917190671bb3630dfb6451806b29b078fd5da2818755ac6c6605257eb24b0bd",
+    "reason": "The direct public build-selector request was rejected with HTTP 403. A standard browser request to the Jeep model page was also rejected. Indexed official model pages remain visible, but no reproducible full factory-data capture was established. This is a source-access research gap, not evidence that the manufacturer has no current Canadian offerings."
+  },
+  {
+    "make": "Ram",
+    "sourceUrl": "https://www.ramtruck.ca/en/build-and-price",
+    "observedAt": "2026-10-22T17:03:41.562Z",
+    "httpStatus": 403,
+    "responseSha256": "c586dcb17168c7682b2bec86c4fe45862145e9549639ae2bea86316cf3337afb",
+    "reason": "The direct public build-selector request was rejected with HTTP 403. A standard browser request to the Jeep model page was also rejected. Indexed official model pages remain visible, but no reproducible full factory-data capture was established. This is a source-access research gap, not evidence that the manufacturer has no current Canadian offerings."
+  },
+  {
+    "make": "Chrysler",
+    "sourceUrl": "https://www.chrysler.ca/en/build-and-price",
+    "observedAt": "2026-10-22T17:03:41.562Z",
+    "httpStatus": 403,
+    "responseSha256": "4694f7f951e8a8d800658a2bb489ed8e8f8476475f3eaa154821a083580bf08f",
+    "reason": "The direct public build-selector request was rejected with HTTP 403. A standard browser request to the Jeep model page was also rejected. Indexed official model pages remain visible, but no reproducible full factory-data capture was established. This is a source-access research gap, not evidence that the manufacturer has no current Canadian offerings."
+  },
+  {
+    "make": "Dodge",
+    "sourceUrl": "https://www.dodge.ca/en/build-and-price",
+    "observedAt": "2026-10-22T17:03:41.562Z",
+    "httpStatus": 403,
+    "responseSha256": "9483bb543597aba0edb55ff5aa477600f53d8281aef4472a7118944f41d2cab0",
+    "reason": "The direct public build-selector request was rejected with HTTP 403. A standard browser request to the Jeep model page was also rejected. Indexed official model pages remain visible, but no reproducible full factory-data capture was established. This is a source-access research gap, not evidence that the manufacturer has no current Canadian offerings."
+  },
+  {
+    "make": "FIAT",
+    "sourceUrl": "https://www.fiatcanada.com/en/build-and-price",
+    "observedAt": "2026-10-22T17:03:41.562Z",
+    "httpStatus": 403,
+    "responseSha256": "525574994ad1f8ae74d2e8b8b24242ccc2cc7517bc7cca0f5a7383178f3ba532",
+    "reason": "The direct public build-selector request was rejected with HTTP 403. A standard browser request to the Jeep model page was also rejected. Indexed official model pages remain visible, but no reproducible full factory-data capture was established. This is a source-access research gap, not evidence that the manufacturer has no current Canadian offerings."
+  }
+]

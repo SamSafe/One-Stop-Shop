@@ -1,6 +1,60 @@
 import { test, expect } from '@playwright/test';
 import { readFileSync } from 'node:fs';
 
+test('Mitsubishi mild hybrids, PHEVs, EVs and older inventory families keep distinct factory evidence', async ({
+  page,
+}) => {
+  await page.goto('/');
+  await page.getByLabel('Record type', { exact: true }).selectOption('retail-trim');
+  await page
+    .getByLabel('Availability evidence', { exact: true })
+    .selectOption('manufacturer-listed');
+  await page.getByLabel('Make', { exact: true }).selectOption('Mitsubishi');
+  await page.getByLabel('Model year', { exact: true }).selectOption('2026');
+  await page.getByLabel('Powertrain', { exact: true }).selectOption('Hybrid');
+  await page.getByRole('searchbox', { name: 'Search cars' }).fill('Outlander');
+  await expect(page.getByRole('article')).toHaveCount(7);
+  const mild = page.getByRole('article').filter({ hasText: 'ES S-AWC' });
+  await expect(mild).toContainText('$36,398');
+  await expect(mild).toContainText('48 V mild hybrid');
+  await page.getByLabel('Powertrain', { exact: true }).selectOption('Plug-in hybrid');
+  await page.getByRole('searchbox', { name: 'Search cars' }).fill('Outlander PHEV ES');
+  await expect(page.getByRole('article')).toHaveCount(1);
+  await expect(page.getByRole('article')).toContainText('$46,998');
+  await page.getByRole('button', { name: 'Specs & sources' }).click();
+  await expect(
+    page.getByRole('link', { name: /Base MSRP: .*Source: Mitsubishi Motors Canada/ }),
+  ).toHaveAttribute(
+    'href',
+    /^https:\/\/www-graphql\.prod\.mipulse\.co\/prod\/graphql\?operationName=getModelSelector&/,
+  );
+  await expect(
+    page.getByRole('link', { name: /Electric driving range: .*Source: Mitsubishi Motors Canada/ }),
+  ).toHaveAttribute('href', 'https://www.mitsubishi-motors.ca/en/vehicles/outlander-phev/specs');
+  await page.getByLabel('Model year', { exact: true }).selectOption('2027');
+  await page.getByLabel('Powertrain', { exact: true }).selectOption('Electric');
+  await page.getByRole('searchbox', { name: 'Search cars' }).fill('Eclipse Sportback');
+  await expect(page.getByRole('article')).toHaveCount(2);
+  await expect(page.getByRole('article').filter({ hasText: 'EV Tech Pkg' })).toContainText(
+    '$54,098',
+  );
+  await page.getByLabel('Max base MSRP', { exact: true }).selectOption('50000');
+  await expect(page.getByRole('article')).toHaveCount(1);
+  await expect(page.getByRole('article')).toContainText('$48,998');
+  await page.getByRole('button', { name: 'Specs & sources' }).click();
+  await expect(page.getByRole('article')).toContainText('454');
+  await expect(page.getByRole('article')).toContainText('Combined gasoline-equivalent energy');
+  await page.getByLabel('Powertrain', { exact: true }).selectOption('all');
+  await page.getByLabel('Availability evidence', { exact: true }).selectOption('not-checked');
+  await page.getByLabel('Model year', { exact: true }).selectOption('2025');
+  await page.getByRole('searchbox', { name: 'Search cars' }).fill('Outlander');
+  await expect(page.getByRole('article')).toHaveCount(6);
+  await expect(page.getByRole('article').filter({ hasText: 'ES S-AWC' })).toContainText('$35,598');
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(
+    true,
+  );
+});
+
 test('Volkswagen transmissions keep exact fuel figures and passenger ID. Buzz variants retain seats and EV units', async ({
   page,
 }) => {

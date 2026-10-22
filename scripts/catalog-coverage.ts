@@ -11,6 +11,7 @@ import {
   gmSnapshot,
   nissanSnapshot,
   volkswagenSnapshot,
+  mitsubishiSnapshot,
 } from '../packages/car-catalog/src/index.ts';
 import { catalogCoverage } from '../packages/car-catalog/src/coverage.ts';
 import { mazdaMeasurementConflicts } from '../packages/car-catalog/src/mazda.ts';
@@ -18,13 +19,18 @@ import { kiaReviewGaps } from '../packages/car-catalog/src/kia.ts';
 import { gmOptionKey } from '../packages/car-catalog/src/gm-import.ts';
 import { nissanReviewGaps } from '../packages/car-catalog/src/nissan.ts';
 import { vwReviewGaps } from '../packages/car-catalog/src/volkswagen.ts';
+import { mitsubishiReviewGaps } from '../packages/car-catalog/src/mitsubishi.ts';
+import sourceAccessReviews from '../docs/catalog-source-access.json';
 
 const report = {
   ...catalogCoverage(catalog, nrcanSnapshot),
+  manufacturerSourceAccessReviews: sourceAccessReviews,
+  manufacturerInventoryModelSourceGaps: mitsubishiSnapshot.inventoryGaps,
   manufacturerSourceGaps: [
     ...tciSnapshot.gaps,
     ...nissanReviewGaps(nissanSnapshot),
     ...vwReviewGaps(volkswagenSnapshot),
+    ...mitsubishiReviewGaps(mitsubishiSnapshot),
     ...gmSnapshot.records
       .filter((record) => !record.configuration || record.configuration.msrpCad === null)
       .map((record) => ({
@@ -142,6 +148,16 @@ const report = {
       })),
   ],
   manufacturerOlderModelYearsNeedingInventoryReview: [
+    ...mitsubishiSnapshot.models
+      .filter((model) => !model.currentBuildListing)
+      .map((model) => ({
+        brand: 'Mitsubishi',
+        model: model.name,
+        year: model.year,
+        reportedFamilyInventoryCount: model.inventoryReference?.num_items,
+        reason:
+          'The national new-inventory feed references this family/year and the Canadian factory query supplies exact trims, but current stock has not been reconciled for every trim. These records remain availability unchecked.',
+      })),
     ...mazdaSnapshot.excludedModelYears.map((year) => ({
       brand: 'Mazda',
       model: year.carline,
@@ -160,6 +176,16 @@ const report = {
     ),
   ],
   manufacturerConfigurationExpansion: [
+    ...mitsubishiSnapshot.models.map((model) => ({
+      brand: 'Mitsubishi',
+      model: model.name,
+      year: model.year,
+      capturedFactoryConfigurations: model.expectedCodes.length,
+      currentBuildListing: model.currentBuildListing,
+      additionalSelectionsExhaustivelyExpanded: false,
+      remaining:
+        'Reconcile additional factory package compatibility, individual older-trim stock and inventory model years missing factory data. Exact Canadian trim records do not establish every currently available ordering combination.',
+    })),
     ...volkswagenSnapshot.models.map((model) => ({
       brand: 'Volkswagen',
       model: model.name,
