@@ -135,6 +135,8 @@ const manufacturerHosts = new Set([
   'www.mitsubishi-motors.ca',
   'clickshop.mitsubishi-motors.ca',
   'www-graphql.prod.mipulse.co',
+  'www.polestar.com',
+  'pc-api.polestar.com',
   'n8xgyscaa3.execute-api.ca-central-1.amazonaws.com',
 ]);
 

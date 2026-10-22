@@ -2,21 +2,24 @@
 
 A Canadian car comparison app that explains how each configuration fits your
 priorities. Market expansion is in progress: the working catalog includes 2,518
-NRCan rating records for 2025–2027 across 47 makes, plus 2,345 retail configurations
-(1,474 with verified prices), including 40 currently listed Subaru configurations and
+NRCan rating records for 2025–2027 across 47 makes, plus 2,465 retail configurations
+(1,594 with verified prices), including 40 currently listed Subaru configurations and
 328 Toyota/Lexus factory packages, 78 Honda/Acura configurations and 212 default
 Ford/Lincoln factory configurations, 68 Mazda model/option configurations and
 80 Hyundai factory trims/packages, 126 Kia factory trims/packages and 1,230
 Chevrolet/GMC/Buick/Cadillac factory matrix configurations and 101 Nissan/Infiniti
 versions and equipment packages, 33 Volkswagen factory configurations and 49
-Mitsubishi factory trims. Seventeen Mitsubishi trims belong to older model-year
+Mitsubishi factory trims and 120 Polestar factory/equipped new-stock configurations.
+Polestar includes 14 current motor/pack/option configurations and seven older-year
+stock configurations; repeated stock pages still prevent exhaustive inventory coverage.
+Seventeen Mitsubishi trims belong to older model-year
 families referenced in new inventory; their individual availability remains unchecked. Additional Ford/Lincoln
 and GM equipment selections remain in progress; unavailable GM calculations leave
 854 MSRP values unverified. Conflicting Infiniti price definitions leave another
 17 MSRP values unverified.
 Five retail configurations also retain the initial manufacturer specification
 review. Matching ratings are merged with those retail
-configurations instead of duplicating them. The app currently displays 4,859
+configurations instead of duplicating them. The app currently displays 4,979
 records, including gasoline/hybrid, diesel, flex-fuel, electric and plug-in hybrid
 variants, cars, SUVs, pickups and vans.
 
@@ -154,6 +157,14 @@ Additional inventory model years retain their own factory records and unchecked
 trim availability. A 2027 Outlander inventory reference without factory data,
 ambiguous PHEV power/modes and charging windows remain open. See
 [the Mitsubishi source contract](docs/MITSUBISHI-CONFIGURATOR.md).
+
+Refresh Polestar with `npm run catalog:sync:polestar`; `-- --offline` verifies
+original request/response hashes and reconstructs the dated snapshot. Current
+motor/pack/single-option transitions and every listed retailer/model's reported
+stock pages are captured. Discounts and delivery are separate from configured
+MSRP. Repeated inventory pages, additional equipment, missing technical fields
+and generic/EPA range conflicts remain explicit gaps. See
+[the Polestar source contract](docs/POLESTAR-CONFIGURATOR.md).
 
 Manufacturer listings establish a current offering, not dealer stock or delivery
 dates; older model-year inventory and additional specifications still need review.

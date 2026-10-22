@@ -610,7 +610,7 @@ head/legroom remain unverified. Older-year technical fields are not copied from
 current pages. The report retains these fields, additional ordering/equipment
 work and exact older-trim stock checks.
 
-The catalog now has 4,859 records: 2,345 retail configurations, of which 1,474 have
+At this milestone the catalog had 4,859 records: 2,345 retail configurations, of which 1,474 had
 verified MSRP, plus 2,514 government rating variants and 410 official sources.
 There are 2,320 dated manufacturer-listed configurations, eight Mazda entries with
 a coming-soon flag and 2,531 availability-unchecked records, including the 17
@@ -638,3 +638,68 @@ preview health endpoint, page and current bundle returned HTTP 200. JavaScript
 is 7,127.92 kB raw / 674.12 kB gzip; the large-chunk performance warning remains
 open. The full-market completeness gate continues to fail while manufacturer,
 inventory, ordering and field reconciliation remain unfinished.
+
+## Polestar factory options and equipped new stock imported
+
+The Canadian home/configure selectors and each public factory initializer agree
+on three current models. CA/CAD/en-CA context, exact model year/structure week,
+motor code/name and equipped PNO reconcile. Every exposed motor, pack and single
+option transition is followed to closure: one Polestar 2, two Polestar 3 and
+eleven Polestar 4 configurations. Compatibility changes returned by the source
+are preserved, including additional packs or motor changes required by roof and
+Performance selections.
+
+The public new-stock retailer query lists six Canadian retailers. All 18
+retailer/model combinations and reported ten-record pages were captured using
+the normal browser's DeliveryDate/Asc sorting. There are 489 reported rows and
+112 distinct equipped model-year/structure-week/PNO identities. Five retailer
+feeds still repeat Polestar 4 identities across pages, preventing proof that all
+distinct configurations were retrieved. Their counts remain explicit coverage
+gaps; filtered partitions or independent inventory references are still needed.
+These are configuration observations, not VIN quantities or delivery guarantees.
+
+Six exact factory/stock overlaps merge, yielding 120 retail configurations. Seven
+are 2026 Polestar 4 stock configurations absent from the current 2027 factory
+selector. Their own prices, hp and EPA-labelled range remain included; current
+factory dimensions, consumption and charging fields are not copied into them.
+Additional colours, wheels, upholstery, accessories and older new stock remain
+within the full objective and require further ordering/availability reconciliation.
+
+Prices are the undiscounted equipped vehicle amount before delivery, taxes,
+extras and incentives. Factory car and delivery components reconcile to the
+grand total. Polestar 2 is $69,900 and Polestar 3 Dual motor/Performance are
+$105,000/$120,000. Polestar 4 Rear motor is $64,900; its separately returned
+Plus/Performance and roof/moulding combinations retain their complete price.
+Lower discounted cash or checkout totals are not substituted into MSRP.
+
+The app uses explicitly EPA-labelled range and kWh/100 km fields, retaining
+manufacturer preliminary-data caveats. Conflicting generic Electric range
+values remain recorded, and an energy-consumption interval does not become one
+arbitrary number. Manufacturer hp is not converted from kW, charging windows
+remain explicit and published width includes mirrors. Missing cabin/cargo and
+other stock-specific facts remain unverified.
+
+The catalog now has 4,979 records: 2,465 retail configurations, 1,594 verified
+prices, 2,514 government rating variants and 417 official sources. There are
+2,440 manufacturer-listed configurations and 2,531 availability-unchecked
+records. Twenty-eight baseline makes still need manufacturer imports; makers
+absent from the baseline and unresolved source/configuration gaps remain in scope.
+
+Volvo's direct pages and a normal browser build-selector request returned HTTP 403. Audi's direct Canadian model selector returned HTTP 403. Their dated source
+hashes join the access ledger; indexed official pages remain discoverable and
+neither error establishes absence or complete coverage. BMW's public selector
+and build shell respond, but a full factory-data import remains pending.
+
+Refresh with `npm run catalog:sync:polestar`, reconstruct the original bytes/date
+with `-- --offline`, or import reviewed captures with `-- --from-captures
+<manifest.json>`. Required identity, transition, page count, checksum and catalog
+adapter failures prevent replacement. The app makes no manufacturer requests at
+runtime. See [the source contract](POLESTAR-CONFIGURATOR.md).
+
+Validation passed all 166 unit tests and 108 browser checks in desktop
+Chromium/Firefox and mobile Chromium/WebKit. Formatting, package boundaries,
+types, catalog validation, build and checksum-verified offline reconstruction
+passed. The refreshed preview health endpoint, page and current bundle returned
+HTTP 200. JavaScript is 8,397.37 kB raw / 733.19 kB gzip; the large-chunk performance
+warning remains open. The full-market completeness gate continues to fail while
+manufacturer, inventory, ordering and field reconciliation remain unfinished.

@@ -1,6 +1,59 @@
 import { test, expect } from '@playwright/test';
 import { readFileSync } from 'node:fs';
 
+test('Polestar configured prices, EPA fields and older new-stock years remain distinct', async ({
+  page,
+}) => {
+  await page.goto('/');
+  await page.getByLabel('Record type', { exact: true }).selectOption('retail-trim');
+  await page
+    .getByLabel('Availability evidence', { exact: true })
+    .selectOption('manufacturer-listed');
+  await page.getByLabel('Make', { exact: true }).selectOption('Polestar');
+  await page.getByLabel('Model year', { exact: true }).selectOption('2027');
+  await page.getByRole('searchbox', { name: 'Search cars' }).fill('Long range Dual motor');
+  const fastback = page.locator(
+    'article[aria-labelledby="title-polestar-ca-2027-b8b53c0372705370"]',
+  );
+  await expect(fastback).toContainText('$69,900');
+  await fastback.getByRole('button', { name: 'Specs & sources' }).click();
+  await expect(fastback).toContainText('447');
+  await expect(
+    fastback.getByRole('link', { name: /Base MSRP: .*Source: Polestar Canada/ }),
+  ).toHaveAttribute(
+    'href',
+    /^https:\/\/www\.polestar\.com\/en-ca\/polestar-2\/configurator\/api\/v2\/initconfig\?/,
+  );
+  await page.getByRole('searchbox', { name: 'Search cars' }).fill('4 coupe Rear motor');
+  await page.getByLabel('Max base MSRP', { exact: true }).selectOption('75000');
+  const rear = page.locator('article[aria-labelledby="title-polestar-ca-2027-69bfc628fc6d152f"]');
+  await expect(rear).toContainText('$64,900');
+  await expect(rear).toContainText('RWD');
+  await rear.getByRole('button', { name: 'Specs & sources' }).click();
+  await expect(rear).toContainText('21.8');
+  await page.getByLabel('Max base MSRP', { exact: true }).selectOption('all');
+  await page.getByRole('searchbox', { name: 'Search cars' }).fill('3 Performance');
+  const performance = page.locator(
+    'article[aria-labelledby="title-polestar-ca-2027-4cfce7283e2042b5"]',
+  );
+  await expect(performance).toContainText('$120,000');
+  await performance.getByRole('button', { name: 'Specs & sources' }).click();
+  await expect(performance).toContainText('680');
+  await page.getByLabel('Model year', { exact: true }).selectOption('2026');
+  await page.getByRole('searchbox', { name: 'Search cars' }).fill('4 coupe');
+  await expect(page.getByRole('article')).toHaveCount(7);
+  const older = page.getByRole('article').first();
+  await expect(older).toContainText('manufacturer-listed');
+  await older.getByRole('button', { name: 'Specs & sources' }).click();
+  await expect(older).toContainText('499');
+  await expect(
+    older.getByRole('link', { name: /Base MSRP: .*Source: Polestar Canada/ }),
+  ).toHaveAttribute('href', 'https://www.polestar.com/en-ca/stock-cars/polestar-4-coupe/');
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(
+    true,
+  );
+});
+
 test('Mitsubishi mild hybrids, PHEVs, EVs and older inventory families keep distinct factory evidence', async ({
   page,
 }) => {

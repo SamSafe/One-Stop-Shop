@@ -38,5 +38,21 @@
     "httpStatus": 403,
     "responseSha256": "525574994ad1f8ae74d2e8b8b24242ccc2cc7517bc7cca0f5a7383178f3ba532",
     "reason": "The direct public build-selector request was rejected with HTTP 403. A standard browser request to the Jeep model page was also rejected. Indexed official model pages remain visible, but no reproducible full factory-data capture was established. This is a source-access research gap, not evidence that the manufacturer has no current Canadian offerings."
+  },
+  {
+    "make": "Volvo",
+    "sourceUrl": "https://www.volvocars.com/en-ca/build/",
+    "observedAt": "2026-10-22T17:42:30.982535Z",
+    "httpStatus": 403,
+    "responseSha256": "49ef4104418dcdd3e2513640302416ee9392a244976cc797e717e918a40e503e",
+    "reason": "Direct public downloads and a normal browser configurator request returned HTTP 403. Indexed official pages remain discoverable; manufacturer import and full current-model/retail-trim/stock reconciliation remain open."
+  },
+  {
+    "make": "Audi",
+    "sourceUrl": "https://www.audi.ca/en/models/",
+    "observedAt": "2026-10-22T17:42:31.038955Z",
+    "httpStatus": 403,
+    "responseSha256": "ad6e2c242fefafc46c82d97497a676b3461fd4f809d0db19926ad44f3306f4a3",
+    "reason": "The direct public Canadian model selector returned HTTP 403. Indexed official model pages remain discoverable, but no full reproducible factory capture was established. This does not establish absence of Canadian offerings or complete coverage."
   }
 ]

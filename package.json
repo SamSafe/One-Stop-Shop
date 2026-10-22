@@ -35,6 +35,7 @@
     "catalog:sync:nissan": "node --import tsx scripts/sync-nissan.ts",
     "catalog:sync:volkswagen": "node --import tsx scripts/sync-volkswagen.ts",
     "catalog:sync:mitsubishi": "node --import tsx scripts/sync-mitsubishi.ts",
+    "catalog:sync:polestar": "node --import tsx scripts/sync-polestar.ts",
     "check:boundaries": "node scripts/check-boundaries.mjs",
     "check": "npm run check:boundaries && npm run test && npm run build"
   },

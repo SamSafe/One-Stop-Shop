@@ -12,6 +12,7 @@ import {
   nissanSnapshot,
   volkswagenSnapshot,
   mitsubishiSnapshot,
+  polestarSnapshot,
 } from '../packages/car-catalog/src/index.ts';
 import { catalogCoverage } from '../packages/car-catalog/src/coverage.ts';
 import { mazdaMeasurementConflicts } from '../packages/car-catalog/src/mazda.ts';
@@ -20,17 +21,37 @@ import { gmOptionKey } from '../packages/car-catalog/src/gm-import.ts';
 import { nissanReviewGaps } from '../packages/car-catalog/src/nissan.ts';
 import { vwReviewGaps } from '../packages/car-catalog/src/volkswagen.ts';
 import { mitsubishiReviewGaps } from '../packages/car-catalog/src/mitsubishi.ts';
+import { polestarReviewGaps } from '../packages/car-catalog/src/polestar.ts';
+import { polestarStockIdentity } from '../packages/car-catalog/src/polestar-import.ts';
 import sourceAccessReviews from '../docs/catalog-source-access.json';
 
 const report = {
   ...catalogCoverage(catalog, nrcanSnapshot),
   manufacturerSourceAccessReviews: sourceAccessReviews,
   manufacturerInventoryModelSourceGaps: mitsubishiSnapshot.inventoryGaps,
+  manufacturerInventoryPaginationGaps: polestarSnapshot.inventories.flatMap((inventory) => {
+    const distinct = new Set(inventory.records.map((row) => polestarStockIdentity(row.vehicle)))
+      .size;
+    return distinct === inventory.total
+      ? []
+      : [
+          {
+            brand: 'Polestar',
+            retailerId: inventory.retailerId,
+            modelCode: inventory.modelCode,
+            reportedRows: inventory.total,
+            distinctCapturedConfigurations: distinct,
+            reason:
+              'The public new-stock feed repeats exact configuration identities across ten-record pages even with the normal browser DeliveryDate/Asc sorting. Observed configurations remain useful, but distinct exhaustive stock coverage is unproven. Reconcile filtered partitions or independent inventory references before claiming completion.',
+          },
+        ];
+  }),
   manufacturerSourceGaps: [
     ...tciSnapshot.gaps,
     ...nissanReviewGaps(nissanSnapshot),
     ...vwReviewGaps(volkswagenSnapshot),
     ...mitsubishiReviewGaps(mitsubishiSnapshot),
+    ...polestarReviewGaps(polestarSnapshot),
     ...gmSnapshot.records
       .filter((record) => !record.configuration || record.configuration.msrpCad === null)
       .map((record) => ({
@@ -176,6 +197,17 @@ const report = {
     ),
   ],
   manufacturerConfigurationExpansion: [
+    ...polestarSnapshot.models.map((model) => ({
+      brand: 'Polestar',
+      model: model.initial.configuration.model.displayName,
+      year: model.initial.configuration.model.modelYear,
+      capturedFactoryConfigurations: polestarSnapshot.factoryRecords.filter(
+        (record) => record.modelSlug === model.slug,
+      ).length,
+      additionalSelectionsExhaustivelyExpanded: false,
+      remaining:
+        'Current motor, pack and single-option transitions reconcile. Enumerate additional colour, upholstery, wheel and accessory compatibility; reconcile repeated inventory pages and additional older new-stock configurations. Missing cabin/cargo specifications and EPA/generic range conflicts remain open.',
+    })),
     ...mitsubishiSnapshot.models.map((model) => ({
       brand: 'Mitsubishi',
       model: model.name,
