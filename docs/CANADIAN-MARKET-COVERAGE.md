@@ -2,8 +2,10 @@
 
 Objective: cover every new passenger vehicle currently offered for sale in
 Canada, including pickups and vans, every make/model/retail trim, all powertrains
-and overlapping model years. Used listings and commercial/heavy-duty vehicles
-are outside the user-confirmed scope. This objective is still in progress.
+and overlapping model years. Used listings and commercial-only chassis/heavy
+commercial vehicles are outside this passenger-vehicle scope. Personal-use
+pickups remain included, including unrated heavy-duty pickup variants. This
+objective is still in progress.
 
 ## Evidence required for completion
 
@@ -279,7 +281,7 @@ measurements: 1,595 L behind rear seats and 889 L behind front seats. Both app
 values remain unverified, with the original numbers and conflict explained. The
 adapter does not silently swap them. These field conflicts are in the gap report.
 
-The working catalog now has 3,240 records: 726 priced retail configurations,
+At the Mazda milestone the catalog had 3,240 records: 726 priced retail configurations,
 2,514 government rating variants and 222 official sources. There are 718 dated
 manufacturer-listed configurations and eight with a coming-soon source flag.
 Thirty-nine makes in the rating baseline lack a current manufacturer import;
@@ -297,3 +299,47 @@ existing comparison/shortlist journeys, accessibility and server integrity.
 Formatting, types, catalog validation, build and checksum-verified offline
 reconstruction passed. The running preview's health endpoint, page and current
 application bundle returned HTTP 200. Full Canadian coverage remains unproven.
+
+## Hyundai factory trims and packages imported
+
+The next capture reconciles 18 current model/year references, 55 parent trims
+and all 80 factory subtrims/packages in Hyundai Canada's build tool. Gas, hybrid
+and plug-in cards sometimes share a model ID; all trims of that model are
+imported once. Overlapping 2026/2027 years, manual/DCT Elantra N configurations,
+factory packages and seven/eight-passenger Palisade variants remain distinct.
+
+The exact trim calculator's msrp is used with includeDestination=false. Delivery,
+fees, taxes, incentives and financing are separate. The captured 2026 Kona N Line
+AWD with Ultimate Package has a $39,699 parent-option estimate versus $39,399 in
+the exact-trim calculator. The app retains this discrepancy in the source note
+and coverage report and uses the explicit exact-trim MSRP field.
+
+Exact-trim feature responses provide explicit drivetrain, transmission and
+seating evidence where published. An explicit seven/eight-passenger factory trim
+name can also establish seating. Missing features remain unverified. Seventeen
+model specification tables returned HTTP 503/504 after bounded retries; a captured
+Tucson table still needs its shared HEV/PHEV columns reconciled to exact factory
+IDs. Dimensions, power, cargo and energy facts are not guessed from those tables.
+
+The working catalog now has 3,320 records: 806 priced retail configurations,
+2,514 government rating variants and 240 official sources. There are 798 dated
+manufacturer-listed configurations and eight Mazda configurations with a
+coming-soon source flag. Thirty-eight makes in the rating baseline still lack a
+current manufacturer import. Makes outside that baseline, older new inventory,
+Ford option expansion and outstanding source/field reviews remain in scope.
+
+Refresh with `npm run catalog:sync:hyundai`; `-- --offline` reconstructs the snapshot
+from checksum-verified raw responses without advancing its capture date. The
+initial import preserves valid responses captured before Hyundai's subsequent
+backend outage; normal application builds have no runtime dependency on it.
+See [the source and reproduction contract](HYUNDAI-CONFIGURATOR.md).
+
+Validation passed: all 115 unit tests and all 84 production browser checks without
+retries across desktop/mobile Chromium, desktop Firefox and mobile WebKit.
+Hyundai package prices/source links, plug-in filtering, the visible Kona source
+conflict and separate Palisade seating choices have regression coverage. Formatting,
+package boundaries, types, catalog validation, build and checksum-verified offline
+reconstruction passed. The restarted preview's health endpoint, page and current
+bundle returned HTTP 200. The JavaScript bundle is 4,705.89 kB raw / 394.05 kB gzip;
+Vite's large-chunk warning remains an outstanding performance improvement.
+Full Canadian market/configuration coverage remains unproven.

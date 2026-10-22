@@ -2,15 +2,16 @@
 
 A Canadian car comparison app that explains how each configuration fits your
 priorities. Market expansion is in progress: the working catalog includes 2,518
-NRCan rating records for 2025–2027 across 47 makes, plus 726 retail configurations
+NRCan rating records for 2025–2027 across 47 makes, plus 806 retail configurations
 with verified prices, including 40 currently listed Subaru configurations and
 328 Toyota/Lexus factory packages, 78 Honda/Acura configurations and 212 default
-Ford/Lincoln factory configurations and 68 Mazda model/option configurations.
+Ford/Lincoln factory configurations, 68 Mazda model/option configurations and
+80 Hyundai factory trims/packages.
 Additional Ford/Lincoln engine, drive and
 equipment selections remain in progress.
 Five retail configurations also retain the initial manufacturer specification
 review. Matching ratings are merged with those retail
-configurations instead of duplicating them. The app currently displays 3,240
+configurations instead of duplicating them. The app currently displays 3,320
 records, including gasoline/hybrid, diesel, flex-fuel, electric and plug-in hybrid
 variants, cars, SUVs, pickups and vans.
 
@@ -103,6 +104,13 @@ Refresh Mazda with `npm run catalog:sync:mazda`; `-- --offline` checks the sourc
 captures and rebuilds without advancing their date. Factory package prices are
 complete configuration MSRP. Conflicting coming-soon flags and cargo measurements
 remain explicit gaps; see [the Mazda source contract](docs/MAZDA-CONFIGURATOR.md).
+
+Refresh Hyundai with `npm run catalog:sync:hyundai`; `-- --offline` verifies its
+captured source hashes and original date. Every current model/year, parent trim
+and factory subtrim/package reconciles. Exact calculator MSRP excludes delivery
+and fees. Unavailable model specification endpoints, ambiguous shared columns
+and a Kona price-source conflict remain explicit gaps. See
+[the Hyundai source contract](docs/HYUNDAI-CONFIGURATOR.md).
 Manufacturer listings establish a current offering, not dealer stock or delivery
 dates; older model-year inventory and additional specifications still need review.
 

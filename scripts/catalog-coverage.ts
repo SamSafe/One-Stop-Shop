@@ -6,6 +6,7 @@ import {
   hondaSnapshot,
   fordSnapshot,
   mazdaSnapshot,
+  hyundaiSnapshot,
 } from '../packages/car-catalog/src/index.ts';
 import { catalogCoverage } from '../packages/car-catalog/src/coverage.ts';
 import { mazdaMeasurementConflicts } from '../packages/car-catalog/src/mazda.ts';
@@ -14,6 +15,27 @@ const report = {
   ...catalogCoverage(catalog, nrcanSnapshot),
   manufacturerSourceGaps: [
     ...tciSnapshot.gaps,
+    ...hyundaiSnapshot.models.map((model) => ({
+      brand: 'Hyundai',
+      model: model.name,
+      year: model.year,
+      sourceUrl: model.specificationsReview.source.url,
+      sourceStatus: model.specificationsReview.status,
+      reason: model.specificationsReview.reason,
+    })),
+    ...hyundaiSnapshot.records
+      .filter((record) => record.optionEstimateCad !== record.msrpCad)
+      .map((record) => ({
+        brand: 'Hyundai',
+        model: record.modelName,
+        year: record.year,
+        configuration: record.trimId,
+        sourceUrl: record.priceSource.url,
+        optionEstimateCad: record.optionEstimateCad,
+        exactTrimMsrpCad: record.msrpCad,
+        reason:
+          'Parent option arithmetic differs from the exact-trim calculator MSRP. Exact-trim MSRP is displayed with a source-conflict note; independent reconciliation remains required.',
+      })),
     ...mazdaSnapshot.records.flatMap((record) =>
       mazdaMeasurementConflicts(record).map((conflict) => ({
         brand: 'Mazda',

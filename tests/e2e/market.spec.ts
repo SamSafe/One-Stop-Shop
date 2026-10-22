@@ -1,6 +1,58 @@
 import { test, expect } from '@playwright/test';
 import { readFileSync } from 'node:fs';
 
+test('Hyundai factory packages, plug-in powertrains and optional seating retain their own identities and MSRP', async ({
+  page,
+}) => {
+  await page.goto('/');
+  await page.getByLabel('Record type', { exact: true }).selectOption('retail-trim');
+  await page
+    .getByLabel('Availability evidence', { exact: true })
+    .selectOption('manufacturer-listed');
+  await page.getByLabel('Make', { exact: true }).selectOption('Hyundai');
+  await page.getByLabel('Model year', { exact: true }).selectOption('2026');
+  await page.getByRole('searchbox', { name: 'Search cars' }).fill('TUCSON');
+  await expect(page.getByRole('article')).toHaveCount(6);
+  const trend = page.getByRole('article').filter({ hasText: 'with Trend Package' });
+  await expect(trend).toContainText('$39,199');
+  await trend.getByRole('button', { name: 'Specs & sources' }).click();
+  await expect(
+    trend.getByRole('link', { name: /Base MSRP: .*Source: Hyundai Auto Canada/ }),
+  ).toHaveAttribute(
+    'href',
+    'https://www.hyundaicanada.com/api/backendservice/buildandprice/trimallpurchaseOptions?trimId=f8066429-5e3f-4326-85f4-c731cd986e28&prov=AB&lang=en',
+  );
+  await page.getByLabel('Powertrain', { exact: true }).selectOption('Plug-in hybrid');
+  await expect(page.getByRole('article')).toHaveCount(1);
+  await expect(page.getByRole('article')).toContainText('$53,299');
+  await page.getByLabel('Powertrain', { exact: true }).selectOption('all');
+  await page
+    .getByRole('searchbox', { name: 'Search cars' })
+    .fill('KONA N Line AWD with Ultimate Package');
+  await expect(page.getByRole('article')).toHaveCount(1);
+  await expect(page.getByRole('article')).toContainText('$39,399');
+  await page.getByRole('button', { name: 'Specs & sources' }).click();
+  await expect(page.getByRole('article')).toContainText('source conflict');
+  await page.getByLabel('Model year', { exact: true }).selectOption('2027');
+  await page.getByRole('searchbox', { name: 'Search cars' }).fill('PALISADE Luxury');
+  await expect(page.getByRole('article')).toHaveCount(2);
+  await expect(page.getByRole('article').filter({ hasText: '8-Passenger' })).toContainText(
+    '$61,849',
+  );
+  await expect(page.getByRole('article').filter({ hasText: '7-Passenger' })).toContainText(
+    '$62,349',
+  );
+  for (const article of await page.getByRole('article').all())
+    await article.getByRole('checkbox', { name: /^Compare / }).check();
+  await page.getByRole('button', { name: /^Compare 2 cars/ }).click();
+  const seats = page.getByRole('row', { name: /^Seats / });
+  await expect(seats).toContainText('8');
+  await expect(seats).toContainText('7');
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(
+    true,
+  );
+});
+
 const snapshot = JSON.parse(readFileSync('packages/car-catalog/data/nrcan.json', 'utf8')) as {
   records: { Make: string; Year: number; VehicleTypeId: string }[];
 };
