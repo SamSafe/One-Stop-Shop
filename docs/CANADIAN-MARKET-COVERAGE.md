@@ -808,17 +808,75 @@ raw / 848.83 kB gzip, with the large-chunk performance warning open. The complet
 market gate still fails as expected: missing makes, factory selections, stock
 reconciliation and specification evidence remain work toward the full objective.
 
-## MINI Canadian sources captured; import remains pending
+## MINI Canadian source research milestone
 
-MINI's published Canadian configurator supplies 23 active exact model codes across
+At this checkpoint MINI's published Canadian configurator supplied 23 active exact model codes across
 2026–2027 and 90 model/line/style combinations. The cleared national new-stock
 search reconciles 1,553 distinct vehicles across all 44 reported pages, adding
 older 2025 stock and special editions beyond the carousel. There are 37 distinct
-codes across both sources. This research does not yet add MINI retail records or
-reduce the 27 makes awaiting import.
+codes across both sources. This research had not yet added MINI retail records or
+reduced the 27 makes awaiting import.
 
 Three older technical tables conflict with observed stock transmissions; one
 Paul Smith AG identity conflicts across sources; a Countryman JCW Edition pricing
 source returns HTTP 500. Supplier price discrepancies and optional equipment also
 require reconciliation. See [the research contract](MINI-CONFIGURATOR.md) before
 implementing the importer; model counts alone do not establish complete coverage.
+
+## MINI factory line/style/package selections and observed new stock imported
+
+The import represents all 37 observed Canadian code/year identities. All 23 active
+carousel codes reconcile against the independently linked overview families;
+duplicate electric Countryman references merge. Exact equipment lines, style IDs,
+90 selection-context responses and the published package rules produce 175
+current model/line/style/named-package selections. Fourteen additional code/year
+profiles remain observed new-stock base profiles, including older 2025 vehicles
+and Icon, JCW, Victory, Heritage and Elementary editions.
+
+The public anonymous national search captures all 44 reported pages with photo,
+mileage, province/retailer, geographic and year/price restrictions cleared. All
+1,553 rows are distinct new, non-demo passenger vehicles. A second capture using
+the production script independently reconciles the same total. VINs and session
+headers are excluded from the normalized snapshot. Changing totals, repeated
+identities, unexpanded stock AG/transmission/fuel/drive variants and missing
+selector/line/style identities prevent replacement.
+
+There are 189 added retail profiles and 185 verified prices. MSRP combines the
+exact factory base, line, style and selected named-package increments before fees,
+paint, taxes and incentives. The 2027 Cooper C 3 door PREMIER+ with Piano Black
+Favoured style is $39,240. The 2027 Countryman S ALL4 PREMIER+ with Piano Black
+Favoured style and both named packages is $53,890. Dealer/supplier price fields
+and all-inclusive totals do not replace factory MSRP. Stock-base RRP is explicitly
+separate from equipped-stock selling price and unverified ordering.
+
+Three 2025 manual-transmission technical tables conflict with observed automatic
+stock; their technical data and automatic-configuration MSRP remain unknown.
+27HP's carousel/stock AG conflict quarantines its technical fields while retaining
+independently verified exact-code pricing. The 27YQ pricing request returns HTTP
+500, and its technical response reports an invalid CACode; its observed stock
+identity remains present with unknown facts. Only the exact reviewed failed
+response can replay from captures. Live source failures abort rather than erase
+previously verified data.
+
+Thirty-two model-code technical joins remain usable. Explicit hp, metric/mirror
+dimensions, luggage arrangements and full AC recharge at 9.6 kW retain their
+source basis. Unitless legacy values, ambiguous colon durations, DC partial-charge
+times, consumption cycles, seating and cabin fields are not copied into other
+metrics. Individual wheel/equipment-specific dimensions remain unverified.
+
+The catalog now contains 5,278 records: 2,764 retail profiles, 1,886 verified
+prices, 2,514 government rating variants and 795 official sources. There are
+2,739 dated manufacturer-listed configurations and 2,531 availability-unchecked
+records. Twenty-six baseline makes still need imports. Older equipped stock,
+additional individual options, source conflicts, independent market review and
+missing measurements remain in the full objective. See
+[the MINI source contract](MINI-CONFIGURATOR.md).
+
+Validation passed 185 unit tests and all 116 production browser checks across
+desktop Chromium/Firefox and mobile Chromium/WebKit. Formatting, package
+boundaries, catalog validation, types, build, checksum-verified offline
+reconstruction and the production stock-capture script passed. The refreshed
+preview health endpoint and current bundle return HTTP 200; its release
+fingerprint matches the source. JavaScript is 9,237.39 kB raw / 874.57 kB gzip,
+with the large-chunk performance warning still open. The complete-market gate
+continues to fail as expected; this is progress toward the full objective.

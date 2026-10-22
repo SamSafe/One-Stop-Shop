@@ -1,6 +1,68 @@
 import { test, expect } from '@playwright/test';
 import { readFileSync } from 'node:fs';
 
+test('MINI factory packages, electric stock editions and older conflicting specifications retain exact evidence', async ({
+  page,
+}) => {
+  await page.goto('/');
+  await page.getByLabel('Record type', { exact: true }).selectOption('retail-trim');
+  await page
+    .getByLabel('Availability evidence', { exact: true })
+    .selectOption('manufacturer-listed');
+  await page.getByLabel('Make', { exact: true }).selectOption('MINI');
+  await page.getByLabel('Model year', { exact: true }).selectOption('2027');
+  await page.getByRole('searchbox', { name: 'Search cars' }).fill('Cooper C 3 door');
+  const piano = page.locator('article[aria-labelledby="title-mini-ca-2027-27ha-310-60-standard"]');
+  await expect(piano).toContainText('$39,240');
+  await piano.getByRole('button', { name: 'Specs & sources' }).click();
+  await expect(piano).toContainText('161');
+  await expect(
+    piano.getByRole('link', { name: /Base MSRP: .*Source: MINI Canada/ }),
+  ).toHaveAttribute(
+    'href',
+    'https://api.minicdn.ca/v1/config/navdata?lang=en&cacode=27HA&lineid=310&styleid=60',
+  );
+  await expect(piano.getByRole('link', { name: /Power: .*Source: MINI Canada/ })).toHaveAttribute(
+    'href',
+    'https://api.minicdn.ca/v1/config/techspec?CACode=27HA&lang=en',
+  );
+  await page.getByRole('searchbox', { name: 'Search cars' }).fill('Countryman S ALL4');
+  const packages = page.locator(
+    'article[aria-labelledby="title-mini-ca-2027-27yd-305-58-zyu-zz0"]',
+  );
+  await expect(packages).toContainText('$53,890');
+  await expect(packages).toContainText('Advanced Driver Assistance Package');
+  await expect(packages).toContainText('Interior Protection Package');
+  await page.getByLabel('Max base MSRP', { exact: true }).selectOption('50000');
+  await expect(packages).toHaveCount(0);
+  await page.getByLabel('Powertrain', { exact: true }).selectOption('Electric');
+  await page.getByRole('searchbox', { name: 'Search cars' }).fill('Countryman SE ALL4');
+  await expect(page.getByRole('article')).toHaveCount(1);
+  await expect(page.getByRole('article')).toContainText('Elementary Edition');
+  await expect(page.getByRole('article')).toContainText('$49,990');
+  await page.getByLabel('Max base MSRP', { exact: true }).selectOption('all');
+  const electric = page.locator(
+    'article[aria-labelledby="title-mini-ca-2027-27ye-307-40-standard"]',
+  );
+  await electric.getByRole('button', { name: 'Specs & sources' }).click();
+  await expect(electric).toContainText('7.5');
+  await page.getByLabel('Powertrain', { exact: true }).selectOption('all');
+  await page.getByLabel('Model year', { exact: true }).selectOption('2026');
+  await page.getByRole('searchbox', { name: 'Search cars' }).fill('Victory');
+  await expect(page.getByRole('article')).toHaveCount(1);
+  await expect(page.getByRole('article')).toContainText('1965 Victory Edition');
+  await expect(page.getByRole('article')).toContainText('$55,200');
+  await page.getByLabel('Model year', { exact: true }).selectOption('2025');
+  await page.getByRole('searchbox', { name: 'Search cars' }).fill('John Cooper Works');
+  await expect(page.getByRole('article')).toHaveCount(1);
+  await expect(page.getByRole('article')).toContainText('Not verified');
+  await page.getByRole('button', { name: 'Specs & sources' }).click();
+  await expect(page.getByRole('article')).toContainText('conflicts with stock');
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(
+    true,
+  );
+});
+
 test('BMW Canadian MSRP, mild hybrids, electric models and older new stock retain their exact evidence', async ({
   page,
 }) => {

@@ -38,6 +38,8 @@
     "catalog:sync:polestar": "node --import tsx scripts/sync-polestar.ts",
     "catalog:sync:bmw": "node --import tsx scripts/sync-bmw.ts",
     "catalog:capture:bmw-stock": "node scripts/capture-bmw-stock.mjs",
+    "catalog:sync:mini": "node --import tsx scripts/sync-mini.ts",
+    "catalog:capture:mini-stock": "node scripts/capture-mini-stock.mjs",
     "check:boundaries": "node scripts/check-boundaries.mjs",
     "check": "npm run check:boundaries && npm run test && npm run build"
   },

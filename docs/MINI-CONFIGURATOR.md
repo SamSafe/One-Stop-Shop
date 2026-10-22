@@ -1,8 +1,9 @@
 # MINI Canada source research and import contract
 
-Reviewed 2026-10-22. This research has not yet added MINI retail configurations to
-the catalog. The full Canadian market objective still includes every new model,
-retail trim, overlapping model year and observed older new-stock offering.
+Reviewed 2026-10-22. The import adds 189 retail profiles: 175 current
+line/style/named-package combinations and 14 additional new-stock base profiles
+across 2025–2027. It verifies 185 prices. Older equipped stock, individual optional
+equipment and missing technical fields remain open within the full market goal.
 
 ## Published Canadian sources
 
@@ -27,11 +28,15 @@ reconcile rather than create duplicate vehicles. All 23 are active in this
 capture. Empty F56/F60 sections do not establish current retail offerings.
 
 All 23 equipment-line and technical responses and all 42 line-specific style
-responses are captured. The current selector yields 90 distinct model/line/style
+responses are captured. Each of the 90 exact current model/line/style contexts has
+its own nav-data receipt. The current selector yields 90 distinct model/line/style
 combinations, including a null style when the published style list is empty.
 PREMIER/PREMIER+, Classic/Favoured, Piano Black styles and Paul Smith editions
-must retain their separate identities. These counts are research evidence, not
-proof of complete ordering or market coverage.
+retain their separate identities. Non-accessory products in each Packages category
+are expanded into 175 selections using their published increments and package
+requirements/exclusions from the linked rules file. Individual options, paint,
+wheels and accessories do not establish additional verified configurations here.
+These counts do not prove complete ordering or market coverage.
 
 ## National stock and additional model years
 
@@ -53,19 +58,24 @@ public catalog.
 There are 36 observed year/VG/AG groups across 2025–2027. Together with the current
 carousel there are 37 distinct Canadian codes to reconcile, including older new
 stock, Icon, JCW, Victory, Heritage and Elementary editions absent from the
-current carousel. Stock line labels do not prove every style/equipment selection
-is available. Older API options must not become current ordering claims without
-matching evidence.
+current carousel. All 37 code/year identities are represented. Stock line labels
+do not prove every style/equipment selection is available. Fourteen codes outside
+the active carousel remain stock-base profiles; current ordering and exact
+equipped stock pricing require matching evidence. Published bare-model RRP is
+labeled separately from equipped stock selling price and is withheld when its
+transmission identity conflicts.
 
 ## Pricing and technical safeguards
 
 Base `Price` is separate from all-inclusive price, fees, paint and discretionary
 equipment. Line and style increments are published separately. For example,
 2027 Cooper C 3 door is $35,990; PREMIER+ adds $1,250, and its Piano Black Favoured
-style adds $2,000. Verify compatible selections and any mandatory charges before
-treating their arithmetic as a complete configuration MSRP. The nav-data response
-distinguishes zero-cost paint from optional paint. Default paint and all-inclusive
-calculations must not replace base MSRP.
+style adds $2,000, yielding $39,240 before other options and fees. Each exact
+selection response must retain zero-cost required colour/upholstery choices and
+no unresolved transmission charge. A 2027 Countryman S ALL4 PREMIER+ with Piano
+Black Favoured style, Advanced Driver Assistance and Interior Protection packages
+is $53,890. The nav-data response distinguishes zero-cost paint from optional
+paint. Default paint and all-inclusive calculations do not replace base MSRP.
 
 Stock supplier base-price values conflict within several exact codes; they are
 not a factory-price fallback. Carousel 27HP declares AG 43GD, while observed 2027
@@ -77,17 +87,37 @@ powertrain and transmission labels. Width includes mirrors. Charging fields
 distinguish AC 0–100% at 9.6 kW from DC 10–80% at 130 kW. Bare wheelbase/battery
 numbers and `7:30`/`0:29` durations require unit/format review; they are not decimal
 hours or interchangeable charging modes. Missing consumption, seating, cabin and
-range fields must remain unknown.
+range fields remain unknown. Technical data is published by exact CACode, with
+optional wheel/equipment-specific measurement differences still unverified.
+Model-level dimensions are not represented as separate option measurements.
 
 Three 2025 tables (25HC, 25HE and 25VA) describe a six-speed manual, while their
 observed new stock is automatic. Do not copy those apparently stale technical
 tables into the stock profiles. The observed 27YQ Countryman S ALL4 JCW Edition
-line endpoint returned HTTP 500 on two reads, and its technical table was empty.
-Retain its stock identity and an explicit source gap; do not borrow a sibling's
-price or specifications. A temporary/access/server failure during a future
-refresh must not overwrite previously verified data with unknowns.
+line endpoint returned HTTP 500 on two reads, and its HTTP 200 technical response
+reports an invalid CACode. Its stock identity remains present with unknown price
+and specifications. The three manual/automatic conflicts also leave MSRP unknown;
+supplier values and siblings are not substituted. AG-conflicting 27HP technical
+fields are quarantined while its exact-code factory price remains independently
+verified.
 
-Research bytes and checksum receipts are under ignored `data/raw/mini/`, with
-inventory receipts under `stock/`. A production importer, normalized snapshot,
-offline reconstruction, compatibility expansion, independent lineup review and
-browser coverage remain to implement. No MINI completeness claim is justified.
+## Refresh and reconstruction
+
+`npm run catalog:capture:mini-stock` reads the normal anonymous stock session and
+all reported pages, with `MINI_STOCK_CAPTURE_DIR` optionally selecting an isolated
+cache. New/non-demo identity, distinct VIN counts and page totals must reconcile
+before its manifest is replaced. Required source and count failures retain the
+previous manifest. No headers or VINs enter the normalized snapshot.
+
+`npm run catalog:sync:mini` uses a same-date stock capture and the official public
+factory routes. Required failures abort replacement. The initial reviewed 27YQ
+line failure is accepted only for that exact URL/status/response hash during
+explicit capture replay. Live access, server or other failures still abort;
+another error body cannot silently replace prices with unknowns.
+
+`-- --from-captures <manifest.json>` compiles reviewed bytes without advancing their
+source date. `-- --offline` verifies request/response hashes and byte-identical
+normalized reconstruction. Factory bytes and receipts stay under ignored
+`data/raw/mini/`, inventory receipts under `stock/`. Ordinary builds require no
+manufacturer requests. Additional factory/stock selections, independent market
+review and unresolved technical evidence still prevent a MINI completeness claim.

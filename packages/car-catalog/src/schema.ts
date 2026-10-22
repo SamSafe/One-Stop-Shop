@@ -141,6 +141,8 @@ const manufacturerHosts = new Set([
   'configure.bmw.ca',
   'prod.ucp.bmw.cloud',
   'inventory.bmw.ca',
+  'www.mini.ca',
+  'api.minicdn.ca',
   'n8xgyscaa3.execute-api.ca-central-1.amazonaws.com',
 ]);
 

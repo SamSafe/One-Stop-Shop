@@ -14,6 +14,7 @@ import {
   mitsubishiSnapshot,
   polestarSnapshot,
   bmwSnapshot,
+  miniSnapshot,
 } from '../packages/car-catalog/src/index.ts';
 import { catalogCoverage } from '../packages/car-catalog/src/coverage.ts';
 import { mazdaMeasurementConflicts } from '../packages/car-catalog/src/mazda.ts';
@@ -25,6 +26,7 @@ import { mitsubishiReviewGaps } from '../packages/car-catalog/src/mitsubishi.ts'
 import { polestarReviewGaps } from '../packages/car-catalog/src/polestar.ts';
 import { polestarPartitionIdentities } from '../packages/car-catalog/src/polestar-import.ts';
 import { bmwReviewGaps } from '../packages/car-catalog/src/bmw.ts';
+import { miniReviewGaps } from '../packages/car-catalog/src/mini.ts';
 import sourceAccessReviews from '../docs/catalog-source-access.json';
 
 const report = {
@@ -71,6 +73,7 @@ const report = {
     ...mitsubishiReviewGaps(mitsubishiSnapshot),
     ...polestarReviewGaps(polestarSnapshot),
     ...bmwReviewGaps(bmwSnapshot),
+    ...miniReviewGaps(miniSnapshot),
     ...gmSnapshot.records
       .filter((record) => !record.configuration || record.configuration.msrpCad === null)
       .map((record) => ({
@@ -216,6 +219,15 @@ const report = {
     ),
   ],
   manufacturerConfigurationExpansion: [
+    ...miniSnapshot.models.map((model) => ({
+      brand: 'MINI',
+      model: model.current?.name ?? model.lines?.Vehicle ?? model.code,
+      year: model.year,
+      modelCode: model.code,
+      additionalSelectionsExhaustivelyExpanded: false,
+      remaining:
+        'Reconcile additional individual options and constraints, older stock line/style/equipment identities, source AG/transmission conflicts and missing consumption/seating/cabin evidence. Current named package choices are expanded from each exact published line/style context; counts do not establish full market coverage.',
+    })),
     ...bmwSnapshot.inventory.modelReferences.map((reference) => ({
       brand: 'BMW',
       model: reference.name,
