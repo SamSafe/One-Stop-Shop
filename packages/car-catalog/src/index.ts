@@ -7,6 +7,7 @@ import hondaData from '../data/manufacturers/honda.json';
 import fordData from '../data/manufacturers/ford.json';
 import mazdaData from '../data/manufacturers/mazda.json';
 import hyundaiData from '../data/manufacturers/hyundai.json';
+import kiaData from '../data/manufacturers/kia.json';
 import { validateCatalog } from './schema';
 import { validateNrcanSnapshot } from './nrcan-schema';
 import { expandCatalog } from './expand';
@@ -22,6 +23,8 @@ import { addMazdaRetail } from './mazda';
 import { validateMazdaSnapshot } from './mazda-import';
 import { validateHyundaiSnapshot } from './hyundai-import';
 import { addHyundaiRetail } from './hyundai';
+import { validateKiaSnapshot } from './kia-import';
+import { addKiaRetail } from './kia';
 
 export * from './schema';
 export { ratingUrl } from './expand';
@@ -33,6 +36,7 @@ export const hondaSnapshot = validateHondaSnapshot(hondaData);
 export const fordSnapshot = validateFordSnapshot(fordData);
 export const mazdaSnapshot = validateMazdaSnapshot(mazdaData);
 export const hyundaiSnapshot = validateHyundaiSnapshot(hyundaiData);
+export const kiaSnapshot = validateKiaSnapshot(kiaData);
 const previouslyImportedRetail = addMazdaRetail(
   addFordRetail(
     addHondaRetail(
@@ -43,5 +47,8 @@ const previouslyImportedRetail = addMazdaRetail(
   ),
   mazdaSnapshot,
 );
-export const retailCatalog = addHyundaiRetail(previouslyImportedRetail, hyundaiSnapshot);
+export const retailCatalog = addKiaRetail(
+  addHyundaiRetail(previouslyImportedRetail, hyundaiSnapshot),
+  kiaSnapshot,
+);
 export const catalog = expandCatalog(retailCatalog, nrcanSnapshot, links);

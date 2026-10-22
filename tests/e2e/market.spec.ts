@@ -1,6 +1,51 @@
 import { test, expect } from '@playwright/test';
 import { readFileSync } from 'node:fs';
 
+test('Kia AWD packages, overlapping model years and passenger vans retain exact factory prices', async ({
+  page,
+}) => {
+  await page.goto('/');
+  await page.getByLabel('Record type', { exact: true }).selectOption('retail-trim');
+  await page
+    .getByLabel('Availability evidence', { exact: true })
+    .selectOption('manufacturer-listed');
+  await page.getByLabel('Make', { exact: true }).selectOption('Kia');
+  await page.getByLabel('Model year', { exact: true }).selectOption('2027');
+  await page.getByRole('searchbox', { name: 'Search cars' }).fill('EV4');
+  await expect(page.getByRole('article')).toHaveCount(10);
+  await page.getByLabel('Drivetrain', { exact: true }).selectOption('AWD');
+  await expect(page.getByRole('article')).toHaveCount(5);
+  await page.getByRole('searchbox', { name: 'Search cars' }).fill('EV4 Wind Premium');
+  await expect(page.getByRole('article')).toHaveCount(1);
+  await expect(page.getByRole('article')).toContainText('$48,595');
+  await page.getByRole('button', { name: 'Specs & sources' }).click();
+  await expect(page.getByRole('link', { name: /Base MSRP: .*Source: Kia Canada/ })).toHaveAttribute(
+    'href',
+    'https://www.kia.ca/en/shopping-tools/build-and-price',
+  );
+  await expect(page.getByRole('article')).toContainText('262');
+  await page.getByLabel('Model year', { exact: true }).selectOption('2026');
+  await page.getByRole('searchbox', { name: 'Search cars' }).fill('EV9');
+  const gtLine = page.getByRole('article').filter({ hasText: 'with GT-line Pkg' });
+  await expect(gtLine).toHaveCount(1);
+  await expect(gtLine).toContainText('$79,495');
+  await page.getByLabel('Drivetrain', { exact: true }).selectOption('all');
+  await page.getByLabel('Model year', { exact: true }).selectOption('2027');
+  await page.getByRole('searchbox', { name: 'Search cars' }).fill('PV5');
+  await expect(page.getByRole('article')).toHaveCount(0);
+  await page.getByRole('searchbox', { name: 'Search cars' }).fill('Carnival');
+  await expect(page.getByRole('article')).toHaveCount(11);
+  await page.getByLabel('Drivetrain', { exact: true }).selectOption('FWD');
+  await expect(page.getByRole('article')).toHaveCount(11);
+  await page.getByLabel('Powertrain', { exact: true }).selectOption('Hybrid');
+  await expect(page.getByRole('article')).toHaveCount(5);
+  await page.getByRole('article').first().getByRole('button', { name: 'Specs & sources' }).click();
+  await expect(page.getByRole('article').first()).toContainText('242');
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(
+    true,
+  );
+});
+
 test('Hyundai factory packages, plug-in powertrains and optional seating retain their own identities and MSRP', async ({
   page,
 }) => {

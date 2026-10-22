@@ -321,7 +321,7 @@ model specification tables returned HTTP 503/504 after bounded retries; a captur
 Tucson table still needs its shared HEV/PHEV columns reconciled to exact factory
 IDs. Dimensions, power, cargo and energy facts are not guessed from those tables.
 
-The working catalog now has 3,320 records: 806 priced retail configurations,
+At the Hyundai milestone the catalog had 3,320 records: 806 priced retail configurations,
 2,514 government rating variants and 240 official sources. There are 798 dated
 manufacturer-listed configurations and eight Mazda configurations with a
 coming-soon source flag. Thirty-eight makes in the rating baseline still lack a
@@ -343,3 +343,53 @@ reconstruction passed. The restarted preview's health endpoint, page and current
 bundle returned HTTP 200. The JavaScript bundle is 4,705.89 kB raw / 394.05 kB gzip;
 Vite's large-chunk warning remains an outstanding performance improvement.
 Full Canadian market/configuration coverage remains unproven.
+
+## Kia factory trims and packages imported
+
+The next capture reconciles 24 model/powertrain/year references from both Kia
+Canada's current lineup and build tool. Twenty-three passenger entries supply
+126 factory trim/package configurations, including current 2025 Telluride/EV6
+offerings and overlapping 2026/2027 model years. The 2027 EV4 is absent from the
+grouped family list but is independently confirmed by its exact official model
+page data. Two PV5 Basic/Plus trims are excluded with primary evidence identifying
+that model as a dedicated two-seat commercial cargo vehicle. Passenger Carnival
+minivans remain included.
+
+Each package retains its own factory code, complete MSRP and specifications;
+neither its price nor its missing fields are borrowed from the parent. Explicit
+package names, transmission configuration and powertrain feature labels can
+establish drive when the main drivetrain field is absent. A 2027 EV4 Wind Premium
+AWD package has a conflicting Wind source label; its exact parent relationship
+resolves the displayed identity while the original alias remains in the gap report.
+
+Captured dictionary labels establish hp, liquid-fuel L/100km, electric-range km
+and Level 2 charging units. Combined hybrid output is taken directly, without
+adding engine and motor ratings. Gasoline-equivalent EV energy never becomes
+gasoline consumed. Plug-in operating modes, cargo-floor alternatives, generic
+minimum/maximum volumes and roof-qualified headroom remain unverified until
+their exact applicability is reconciled. Twenty-six records retain multiple FSC
+aliases whose ordering/equipment significance still requires review.
+
+The working catalog now has 3,446 records: 932 priced retail configurations,
+2,514 government rating variants and 263 official sources. There are 924 dated
+manufacturer-listed configurations and eight Mazda configurations with a
+coming-soon source flag. Thirty-seven baseline makes still need a manufacturer
+import. Makes absent from that baseline, omitted models and older new inventory,
+Ford option expansion and outstanding source/field reviews remain in scope.
+
+Refresh with `npm run catalog:sync:kia`; `-- --offline` verifies raw source hashes
+and reconstructs the same snapshot with its original date. Required-source or
+identity failures prevent replacement. Ordinary builds and the running app use
+the tracked snapshot without runtime manufacturer requests. See
+[the Kia source contract](KIA-CONFIGURATOR.md).
+
+Validation passed: all 123 unit tests and all 88 production browser checks without
+retries across desktop/mobile Chromium, desktop Firefox and mobile WebKit. Kia
+AWD packages, exact MSRP/source links, the independently confirmed 2027 EV4,
+Carnival drivetrain and combined hybrid output, overlapping years and the
+passenger/commercial distinction have regression coverage. Formatting, package
+boundaries, types, catalog validation, build and checksum-verified offline
+reconstruction passed. The restarted preview's health endpoint, page and current
+bundle returned HTTP 200. The JavaScript bundle is 4,973.46 kB raw / 415.74 kB gzip;
+the large-chunk performance warning remains outstanding. Full Canadian coverage
+and exhaustive ordering/equipment-variant reconciliation remain unproven.

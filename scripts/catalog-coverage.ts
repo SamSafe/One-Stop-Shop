@@ -7,14 +7,17 @@ import {
   fordSnapshot,
   mazdaSnapshot,
   hyundaiSnapshot,
+  kiaSnapshot,
 } from '../packages/car-catalog/src/index.ts';
 import { catalogCoverage } from '../packages/car-catalog/src/coverage.ts';
 import { mazdaMeasurementConflicts } from '../packages/car-catalog/src/mazda.ts';
+import { kiaReviewGaps } from '../packages/car-catalog/src/kia.ts';
 
 const report = {
   ...catalogCoverage(catalog, nrcanSnapshot),
   manufacturerSourceGaps: [
     ...tciSnapshot.gaps,
+    ...kiaReviewGaps(kiaSnapshot).map((gap) => ({ brand: 'Kia', ...gap })),
     ...hyundaiSnapshot.models.map((model) => ({
       brand: 'Hyundai',
       model: model.name,
@@ -75,6 +78,14 @@ const report = {
       reason:
         'Model card has no current year. Check remaining new inventory before excluding it from full-market coverage.',
     })),
+  manufacturerCommercialOnlyExclusions: kiaSnapshot.excludedModels.map((model) => ({
+    brand: 'Kia',
+    model: model.name,
+    year: model.year,
+    configurations: model.expectedKeys,
+    reason: model.reason,
+    sourceUrl: model.source.url,
+  })),
   manufacturerOlderModelYearsNeedingInventoryReview: mazdaSnapshot.excludedModelYears.map(
     (year) => ({ brand: 'Mazda', model: year.carline, year: year.year, reason: year.reason }),
   ),

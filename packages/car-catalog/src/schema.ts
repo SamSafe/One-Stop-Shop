@@ -123,6 +123,7 @@ const manufacturerHosts = new Set([
   'www.lincolncanada.com',
   'shop.lincolncanada.com',
   'www.hyundaicanada.com',
+  'www.kia.ca',
   'n8xgyscaa3.execute-api.ca-central-1.amazonaws.com',
 ]);
 

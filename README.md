@@ -2,16 +2,16 @@
 
 A Canadian car comparison app that explains how each configuration fits your
 priorities. Market expansion is in progress: the working catalog includes 2,518
-NRCan rating records for 2025–2027 across 47 makes, plus 806 retail configurations
+NRCan rating records for 2025–2027 across 47 makes, plus 932 retail configurations
 with verified prices, including 40 currently listed Subaru configurations and
 328 Toyota/Lexus factory packages, 78 Honda/Acura configurations and 212 default
 Ford/Lincoln factory configurations, 68 Mazda model/option configurations and
-80 Hyundai factory trims/packages.
+80 Hyundai factory trims/packages and 126 Kia factory trims/packages.
 Additional Ford/Lincoln engine, drive and
 equipment selections remain in progress.
 Five retail configurations also retain the initial manufacturer specification
 review. Matching ratings are merged with those retail
-configurations instead of duplicating them. The app currently displays 3,320
+configurations instead of duplicating them. The app currently displays 3,446
 records, including gasoline/hybrid, diesel, flex-fuel, electric and plug-in hybrid
 variants, cars, SUVs, pickups and vans.
 
@@ -111,6 +111,13 @@ and factory subtrim/package reconciles. Exact calculator MSRP excludes delivery
 and fees. Unavailable model specification endpoints, ambiguous shared columns
 and a Kona price-source conflict remain explicit gaps. See
 [the Hyundai source contract](docs/HYUNDAI-CONFIGURATOR.md).
+
+Refresh Kia with `npm run catalog:sync:kia`; `-- --offline` verifies source hashes
+and preserves the capture date. Both grouped and flat model lists reconcile,
+including separate 2027 EV4 evidence and current 2025 offerings. Factory packages
+retain their own MSRP and specifications. Commercial-only PV5 cargo variants are
+excluded with official evidence; FSC aliases and ambiguous measurements remain
+in the gap report. See [the Kia source contract](docs/KIA-CONFIGURATOR.md).
 Manufacturer listings establish a current offering, not dealer stock or delivery
 dates; older model-year inventory and additional specifications still need review.
 
