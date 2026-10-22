@@ -1,6 +1,11 @@
 import { metricDefinitions, validateCatalog } from './schema';
 import type { Car, Catalog, Fact, Metric, Source } from './schema';
-import { polestarIdentity, polestarSelected, polestarStockIdentity } from './polestar-import';
+import {
+  polestarIdentity,
+  polestarSelected,
+  polestarStockIdentity,
+  polestarInventoryRecords,
+} from './polestar-import';
 import type {
   PolestarFactoryRecord,
   PolestarSnapshot,
@@ -236,7 +241,9 @@ export function polestarReviewGaps(snapshot: PolestarSnapshot) {
   });
   const stockGroups = new Set(
     snapshot.inventories.flatMap((inventory) =>
-      inventory.records.map((row) => `${row.vehicle.modelYear}/${inventory.modelCode}`),
+      polestarInventoryRecords(snapshot, inventory).map(
+        (row) => `${row.vehicle.modelYear}/${inventory.modelCode}`,
+      ),
     ),
   );
   return [
@@ -288,7 +295,7 @@ export function addPolestarRetail(base: Catalog, snapshot: PolestarSnapshot): Ca
   const factory = new Map(snapshot.factoryRecords.map((row) => [factoryIdentity(row), row]));
   const stock = new Map<string, PolestarStockRecord>();
   for (const inventory of snapshot.inventories)
-    for (const record of inventory.records) {
+    for (const record of polestarInventoryRecords(snapshot, inventory)) {
       const key = polestarStockIdentity(record.vehicle),
         existing = stock.get(key);
       if (

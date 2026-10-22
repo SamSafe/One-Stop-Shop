@@ -163,9 +163,10 @@ export function polestarLineup(html: string) {
 export const polestarRetailersQuery = `query FetchAllDealers($market: String!, $source: SourceType = Preconfigured) {
   getAllRetailersFunction(marketMappingCode: $market, source: $source) { code partnerId name }
 }`;
-export const polestarInventoryQuery = `query LoadResultsQuery($market: String!, $filters: [FilterValueGroupInput]!, $pagination: PaginationInput, $partnerId: String, $sort: FilterSortInput) {
-  vehicles: filteredStockCars(market: $market, includeValidFilters: false, filters: $filters, pagination: $pagination, partnerId: $partnerId, source: Preconfigured, includeLocationStock: false, customerType: "B2C", sort: $sort) {
+export const polestarInventoryQuery = `query LoadResultsQuery($market: String!, $filters: [FilterValueGroupInput]!, $pagination: PaginationInput, $partnerId: String, $sort: FilterSortInput, $includeValidFilters: Boolean!) {
+  vehicles: filteredStockCars(market: $market, includeValidFilters: $includeValidFilters, filters: $filters, pagination: $pagination, partnerId: $partnerId, source: Preconfigured, includeLocationStock: false, customerType: "B2C", sort: $sort) {
     market pagination { pageSize pageNo totalRecords }
+    validFilters { filterTypeId featureType filterValues { value featureCode } }
     filterResults {
       id pno34 modelYear startStructureWeek earliestDeliveryDateLabel
       cashPriceData { listPrice { totals { car { carTotalBasicPrice { value } carTotalPrice { value } } grandTotal { paymentTotal { paymentTotalBasicPrice { value } } } } } }
@@ -181,14 +182,29 @@ export const polestarRetailersRequest = () => ({
   variables: { market: 'en-ca', source: 'Preconfigured' },
   query: polestarRetailersQuery,
 });
-export const polestarInventoryRequest = (partnerId: string, modelCode: string, pageNo: number) => ({
+export type PolestarFilter = { filterTypeId: string; code: string };
+export const polestarPartitionTypes = ['Color', 'Engine', 'ModelYear', 'Upholstery', 'Rims'];
+export const polestarInventoryRequest = (
+  partnerId: string,
+  modelCode: string,
+  pageNo: number,
+  filters: PolestarFilter[] = [],
+  includeValidFilters = false,
+) => ({
   operationName: 'LoadResultsQuery',
   variables: {
     market: 'en-ca',
-    filters: [{ filterTypeId: '4', filterValues: [{ value: modelCode, featureCode: modelCode }] }],
+    filters: [
+      { filterTypeId: '4', filterValues: [{ value: modelCode, featureCode: modelCode }] },
+      ...filters.map((filter) => ({
+        filterTypeId: filter.filterTypeId,
+        filterValues: [{ value: filter.code, featureCode: filter.code }],
+      })),
+    ],
     pagination: { pageNo, pageSize: 10 },
     partnerId,
     sort: { attribute: 'DeliveryDate', direction: 'Asc' },
+    includeValidFilters,
   },
   query: polestarInventoryQuery,
 });
@@ -251,6 +267,11 @@ const stockVehicle = z.object({
 export type PolestarStockVehicle = z.infer<typeof stockVehicle>;
 export const polestarStockIdentity = (vehicle: PolestarStockVehicle) =>
   polestarIdentity(vehicle.modelYear, vehicle.startStructureWeek, vehicle.pno34);
+const filterGroup = z.object({
+  filterTypeId: text,
+  featureType: text,
+  filterValues: z.array(z.object({ value: text, featureCode: text })),
+});
 export function polestarInventory(value: unknown, expected: { modelCode: string; pageNo: number }) {
   const parsed = z
     .object({
@@ -265,6 +286,7 @@ export function polestarInventory(value: unknown, expected: { modelCode: string;
               totalRecords: z.number().int().nonnegative(),
             }),
             filterResults: z.array(stockVehicle),
+            validFilters: z.array(filterGroup).nullable().optional(),
           }),
         })
         .nullable(),
@@ -297,8 +319,26 @@ const factoryRecord = z.strictObject({
 export type PolestarFactoryRecord = z.infer<typeof factoryRecord>;
 const stockRecord = z.strictObject({ vehicle: stockVehicle, source: receipt });
 export type PolestarStockRecord = z.infer<typeof stockRecord>;
+export type PolestarPartition = {
+  filters: PolestarFilter[];
+  total: number;
+  observed: string[];
+  source: PolestarReceipt;
+  splitFilterId: string | null;
+  children: PolestarPartition[];
+};
+const partitionSchema: z.ZodType<PolestarPartition> = z.lazy(() =>
+  z.strictObject({
+    filters: z.array(z.strictObject({ filterTypeId: text, code: text })),
+    total: z.number().int().nonnegative(),
+    observed: z.array(text).max(10),
+    source: receipt,
+    splitFilterId: text.nullable(),
+    children: z.array(partitionSchema),
+  }),
+);
 const snapshotSchema = z.strictObject({
-  schemaVersion: z.literal(1),
+  schemaVersion: z.literal(2),
   retrievedAt: z.iso.datetime(),
   lineupSources: z.array(receipt).length(2),
   currentModelSlugs: z.array(text).min(1),
@@ -309,17 +349,97 @@ const snapshotSchema = z.strictObject({
   ),
   retailersSource: receipt,
   retailers: z.array(retailer).min(1),
+  stockVehicles: z.array(stockVehicle),
   inventories: z.array(
     z.strictObject({
       retailerId: text,
       modelCode: text,
       total: z.number().int().nonnegative(),
-      sources: z.array(receipt).min(1),
-      records: z.array(stockRecord),
+      filterGroups: z.array(filterGroup),
+      partition: partitionSchema,
+      records: z.array(
+        z.strictObject({ identity: text, source: receipt, deliveryLabel: z.string().nullable() }),
+      ),
     }),
   ),
 });
 export type PolestarSnapshot = z.infer<typeof snapshotSchema>;
+export function polestarInventoryRecords(
+  snapshot: PolestarSnapshot,
+  inventory: PolestarSnapshot['inventories'][number],
+): PolestarStockRecord[] {
+  const vehicles = new Map(
+    snapshot.stockVehicles.map((vehicle) => [polestarStockIdentity(vehicle), vehicle]),
+  );
+  return inventory.records.map((record) => {
+    const vehicle = vehicles.get(record.identity);
+    if (!vehicle) throw new Error('Missing Polestar stock configuration reference.');
+    return {
+      vehicle: { ...vehicle, earliestDeliveryDateLabel: record.deliveryLabel },
+      source: record.source,
+    };
+  });
+}
+export function polestarPartitionIdentities(
+  partition: PolestarPartition,
+  groups: z.infer<typeof filterGroup>[],
+  path: PolestarFilter[] = [],
+): Map<string, PolestarReceipt> {
+  if (
+    JSON.stringify(partition.filters) !== JSON.stringify(path) ||
+    partition.source.url !== polestarStockUrl ||
+    !partition.source.requestSha256 ||
+    new Set(partition.observed).size !== partition.observed.length ||
+    partition.observed.length !== Math.min(partition.total, 10)
+  )
+    throw new Error('Polestar inventory partition path/source/count mismatch.');
+  if (partition.splitFilterId === null) {
+    if (
+      partition.total > 10 ||
+      partition.children.length ||
+      partition.observed.length !== partition.total
+    )
+      throw new Error('Polestar inventory leaf is not a complete single page.');
+    return new Map(partition.observed.map((identity) => [identity, partition.source]));
+  }
+  const group = groups.find(
+    (group) =>
+      group.filterTypeId === partition.splitFilterId &&
+      polestarPartitionTypes.includes(group.featureType),
+  );
+  if (
+    !group ||
+    path.some((filter) => filter.filterTypeId === group.filterTypeId) ||
+    !group.filterValues.length ||
+    new Set(group.filterValues.map((value) => value.featureCode)).size !==
+      group.filterValues.length ||
+    group.filterValues.length !== partition.children.length
+  )
+    throw new Error('Polestar inventory split values do not reconcile.');
+  const result = new Map<string, PolestarReceipt>();
+  let total = 0;
+  for (const value of group.filterValues) {
+    const nextPath = [...path, { filterTypeId: group.filterTypeId, code: value.featureCode }];
+    const children = partition.children.filter(
+      (child) => JSON.stringify(child.filters) === JSON.stringify(nextPath),
+    );
+    if (children.length !== 1)
+      throw new Error('Missing or duplicate Polestar inventory partition.');
+    const child = children[0]!;
+    total += child.total;
+    for (const [identity, source] of polestarPartitionIdentities(child, groups, nextPath)) {
+      if (result.has(identity)) throw new Error('Polestar inventory partitions overlap.');
+      result.set(identity, source);
+    }
+  }
+  if (
+    total !== partition.total ||
+    result.size !== partition.total ||
+    partition.observed.some((identity) => !result.has(identity))
+  )
+    throw new Error('Polestar partition totals or observed parent identities do not reconcile.');
+  return result;
+}
 const same = (a: string[], b: string[]) =>
   JSON.stringify([...a].sort()) === JSON.stringify([...b].sort());
 export function validatePolestarSnapshot(value: unknown): PolestarSnapshot {
@@ -394,12 +514,25 @@ export function validatePolestarSnapshot(value: unknown): PolestarSnapshot {
   )
     throw new Error('Polestar retailer/model inventory coverage is incomplete.');
   for (const inventory of data.inventories) {
-    if (inventory.total !== inventory.records.length)
+    const partition = polestarPartitionIdentities(inventory.partition, inventory.filterGroups);
+    if (
+      inventory.total !== inventory.records.length ||
+      inventory.total !== inventory.partition.total ||
+      new Set(inventory.records.map((record) => record.identity)).size !== inventory.total
+    )
       throw new Error('Polestar inventory count mismatch.');
-    for (const record of inventory.records) {
+    for (const binding of inventory.records) {
+      const source = partition.get(binding.identity);
+      if (
+        !source ||
+        source.sha256 !== binding.source.sha256 ||
+        source.requestSha256 !== binding.source.requestSha256
+      )
+        throw new Error('Polestar inventory leaf reference mismatch.');
+    }
+    for (const record of polestarInventoryRecords(data, inventory)) {
       const vehicle = record.vehicle;
       if (
-        !inventory.sources.some((source) => source.sha256 === record.source.sha256) ||
         !vehicle.pno34.startsWith(inventory.modelCode) ||
         !vehicle.content.some(
           (item) => item.featureType === 'Model' && item.featureCode === inventory.modelCode,
@@ -411,5 +544,14 @@ export function validatePolestarSnapshot(value: unknown): PolestarSnapshot {
         throw new Error('Polestar stock source/model/year mismatch.');
     }
   }
+  const referenced = new Set(
+    data.inventories.flatMap((inventory) => inventory.records.map((record) => record.identity)),
+  );
+  if (
+    new Set(data.stockVehicles.map(polestarStockIdentity)).size !== data.stockVehicles.length ||
+    data.stockVehicles.length !== referenced.size ||
+    data.stockVehicles.some((vehicle) => !referenced.has(polestarStockIdentity(vehicle)))
+  )
+    throw new Error('Duplicate or unreferenced Polestar shared stock configuration.');
   return data;
 }

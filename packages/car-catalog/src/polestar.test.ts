@@ -8,6 +8,8 @@ import {
   polestarLineup,
   polestarSelected,
   polestarStockIdentity,
+  polestarInventoryRecords,
+  polestarPartitionIdentities,
   validatePolestarSnapshot,
 } from './polestar-import';
 import {
@@ -39,11 +41,9 @@ describe('Canadian Polestar exact factory and new-stock import', () => {
     ).toHaveLength(11);
     expect(snapshot.retailers).toHaveLength(6);
     expect(snapshot.inventories).toHaveLength(18);
-    expect(
-      new Set(
-        snapshot.inventories.flatMap((group) => group.records.map((row) => row.vehicle.modelYear)),
-      ),
-    ).toEqual(new Set(['2026', '2027']));
+    expect(new Set(snapshot.stockVehicles.map((row) => row.modelYear))).toEqual(
+      new Set(['2026', '2027']),
+    );
     expect(catalog.cars.find((car) => car.id === 'honda-cr-v-2026-lx-fwd')).toBeDefined();
   });
   it('rejects missing models, selected configurations, transitions and retailer groups', () => {
@@ -63,6 +63,30 @@ describe('Canadian Polestar exact factory and new-stock import', () => {
     missingStock.inventories[0]!.records.pop();
     expect(() => validatePolestarSnapshot(missingStock)).toThrow(/count mismatch/);
   });
+  it('proves every retailer count with complete, disjoint single-page partitions', () => {
+    for (const inventory of snapshot.inventories) {
+      const identities = polestarPartitionIdentities(inventory.partition, inventory.filterGroups);
+      expect(identities.size).toBe(inventory.total);
+      expect(new Set(inventory.records.map((row) => row.identity))).toEqual(
+        new Set(identities.keys()),
+      );
+    }
+    const omitted = structuredClone(data);
+    omitted.inventories
+      .find((inventory) => inventory.partition.children.length)!
+      .partition.children.pop();
+    expect(() => validatePolestarSnapshot(omitted)).toThrow(/split values/);
+    const wrongCount = structuredClone(data);
+    wrongCount.inventories.find((inventory) => inventory.partition.children.length)!.partition
+      .total++;
+    expect(() => validatePolestarSnapshot(wrongCount)).toThrow(/partition totals/);
+    const missingVehicle = structuredClone(data);
+    missingVehicle.stockVehicles.pop();
+    expect(() => validatePolestarSnapshot(missingVehicle)).toThrow(/stock configuration reference/);
+    const wrongReceipt = structuredClone(data);
+    wrongReceipt.inventories[0]!.records[0]!.source.sha256 = '0'.repeat(64);
+    expect(() => validatePolestarSnapshot(wrongReceipt)).toThrow(/leaf reference/);
+  });
   it('uses undiscounted configuration MSRP and reconciles the separate delivery amount', () => {
     expect(polestarFactoryMsrp(factory('polestar-2', 'Long range Dual motor'))).toBe(69900);
     expect(polestarFactoryMsrp(factory('polestar-3', 'Dual motor'))).toBe(105000);
@@ -72,7 +96,7 @@ describe('Canadian Polestar exact factory and new-stock import', () => {
     const invalid = structuredClone(factory('polestar-2', 'Long range Dual motor'));
     invalid.configuration.cpsPriceBreakdown.delivery.deliveryChargeBasicPrice.value += 500;
     expect(polestarFactoryMsrp(invalid)).toBeNull();
-    const stock = snapshot.inventories[0]!.records[0]!;
+    const stock = polestarInventoryRecords(snapshot, snapshot.inventories[0]!)[0]!;
     expect(polestarStockMsrp(stock)).toBe(69900);
     const invalidStock = structuredClone(stock);
     invalidStock.vehicle.cashPriceData!.listPrice!.totals.car.carTotalPrice.value -= 1000;
@@ -110,7 +134,7 @@ describe('Canadian Polestar exact factory and new-stock import', () => {
   });
   it('retains older new-stock configurations without copying current-year technical fields', () => {
     const old = snapshot.inventories
-      .flatMap((group) => group.records)
+      .flatMap((group) => polestarInventoryRecords(snapshot, group))
       .find((row) => row.vehicle.modelYear === '2026')!;
     const facts = polestarStockFacts(old);
     expect(facts.horsepower.value).toBe(272);
@@ -131,13 +155,7 @@ describe('Canadian Polestar exact factory and new-stock import', () => {
     expect(records).toHaveLength(120);
     expect(new Set(records.map((car) => car.id)).size).toBe(records.length);
     expect(records.every((car) => car.facts.msrpCad.value !== null)).toBe(true);
-    expect(
-      new Set(
-        snapshot.inventories.flatMap((group) =>
-          group.records.map((row) => polestarStockIdentity(row.vehicle)),
-        ),
-      ).size,
-    ).toBe(112);
+    expect(new Set(snapshot.stockVehicles.map(polestarStockIdentity)).size).toBe(112);
   });
   it('rejects a wrong market/year and HTTP-success GraphQL errors', () => {
     const initial = snapshot.models[0]!.initial;

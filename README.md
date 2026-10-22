@@ -11,7 +11,8 @@ Chevrolet/GMC/Buick/Cadillac factory matrix configurations and 101 Nissan/Infini
 versions and equipment packages, 33 Volkswagen factory configurations and 49
 Mitsubishi factory trims and 120 Polestar factory/equipped new-stock configurations.
 Polestar includes 14 current motor/pack/option configurations and seven older-year
-stock configurations; repeated stock pages still prevent exhaustive inventory coverage.
+stock configurations. Disjoint source-declared filters reconcile all six listed
+retailers' feeds; additional factory equipment and independent market reconciliation remain open.
 Seventeen Mitsubishi trims belong to older model-year
 families referenced in new inventory; their individual availability remains unchecked. Additional Ford/Lincoln
 and GM equipment selections remain in progress; unavailable GM calculations leave
@@ -160,9 +161,9 @@ ambiguous PHEV power/modes and charging windows remain open. See
 
 Refresh Polestar with `npm run catalog:sync:polestar`; `-- --offline` verifies
 original request/response hashes and reconstructs the dated snapshot. Current
-motor/pack/single-option transitions and every listed retailer/model's reported
-stock pages are captured. Discounts and delivery are separate from configured
-MSRP. Repeated inventory pages, additional equipment, missing technical fields
+motor/pack/single-option transitions and every listed retailer/model's distinct
+stock configurations reconcile with single-page filter partitions. Discounts and delivery are separate from configured
+MSRP. Additional equipment, independent retailer/market review, missing technical fields
 and generic/EPA range conflicts remain explicit gaps. See
 [the Polestar source contract](docs/POLESTAR-CONFIGURATOR.md).
 

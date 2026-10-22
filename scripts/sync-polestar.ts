@@ -11,6 +11,9 @@ import {
   polestarInitUrl,
   polestarInventory,
   polestarInventoryRequest,
+  polestarPartitionIdentities,
+  polestarPartitionTypes,
+  polestarStockIdentity,
   polestarLineup,
   polestarLineupUrl,
   polestarRetailers,
@@ -23,6 +26,8 @@ import {
 import type {
   PolestarReceipt,
   PolestarSnapshot,
+  PolestarPartition,
+  PolestarFilter,
 } from '../packages/car-catalog/src/polestar-import.ts';
 import { addPolestarRetail } from '../packages/car-catalog/src/polestar.ts';
 
@@ -103,7 +108,7 @@ if (JSON.stringify(slugs) !== JSON.stringify(polestarLineup(selector.text)))
   throw new Error('Polestar Canadian lineup/configure links disagree.');
 const retailerResponse = await capture(polestarStockUrl, polestarRetailersRequest());
 const snapshot: PolestarSnapshot = {
-  schemaVersion: 1,
+  schemaVersion: 2,
   retrievedAt: manifest.retrievedAt,
   lineupSources: [lineup.source, selector.source],
   currentModelSlugs: slugs,
@@ -113,6 +118,7 @@ const snapshot: PolestarSnapshot = {
   retailersSource: retailerResponse.source,
   retailers: polestarRetailers(JSON.parse(retailerResponse.text)),
   inventories: [],
+  stockVehicles: [],
 };
 for (const slug of slugs) {
   const response = await capture(polestarInitUrl(slug)),
@@ -159,40 +165,88 @@ for (const slug of slugs) {
   }
   console.log(`${slug}: ${seen.size} motor/pack/single-option configurations`);
 }
+const sharedVehicles = new Map<string, PolestarSnapshot['stockVehicles'][number]>();
 for (const retailer of snapshot.retailers) {
   for (const model of snapshot.models) {
     const modelCode = model.initial.configuration.model.pno3;
+    let filterGroups: PolestarSnapshot['inventories'][number]['filterGroups'] = [];
+    const bindings: PolestarSnapshot['inventories'][number]['records'] = [];
+    let calls = 0;
+    async function partition(
+      filters: PolestarFilter[] = [],
+      depth = 0,
+    ): Promise<PolestarPartition> {
+      if (++calls > 500) throw new Error('Polestar partition count exceeds the reviewed bound.');
+      const response = await capture(
+        polestarStockUrl,
+        polestarInventoryRequest(retailer.partnerId, modelCode, 1, filters, depth === 0),
+      );
+      const data = polestarInventory(JSON.parse(response.text), { modelCode, pageNo: 1 });
+      if (depth === 0)
+        filterGroups = (data.validFilters ?? []).filter((group) =>
+          polestarPartitionTypes.includes(group.featureType),
+        );
+      const result: PolestarPartition = {
+        filters,
+        total: data.pagination.totalRecords,
+        observed: data.filterResults.map(polestarStockIdentity),
+        source: response.source,
+        splitFilterId: null,
+        children: [],
+      };
+      if (result.total <= 10) {
+        polestarPartitionIdentities(result, filterGroups, filters);
+        for (const vehicle of data.filterResults) {
+          const identity = polestarStockIdentity(vehicle),
+            normalized = {
+              ...vehicle,
+              earliestDeliveryDateLabel: null,
+              content: vehicle.content.filter((field) => field.featureType !== 'DeliveryDate'),
+            };
+          const existing = sharedVehicles.get(identity);
+          if (existing && JSON.stringify(existing) !== JSON.stringify(normalized))
+            throw new Error('Polestar shared stock evidence conflicts across retailers.');
+          if (!existing) sharedVehicles.set(identity, normalized);
+          bindings.push({
+            identity,
+            source: response.source,
+            deliveryLabel: vehicle.earliestDeliveryDateLabel,
+          });
+        }
+      } else {
+        const group = filterGroups.find(
+          (group) => group.featureType === polestarPartitionTypes[depth],
+        );
+        if (!group?.filterValues.length)
+          throw new Error('Polestar inventory needs additional disjoint filter partitions.');
+        result.splitFilterId = group.filterTypeId;
+        for (const value of group.filterValues)
+          result.children.push(
+            await partition(
+              [...filters, { filterTypeId: group.filterTypeId, code: value.featureCode }],
+              depth + 1,
+            ),
+          );
+        polestarPartitionIdentities(result, filterGroups, filters);
+      }
+      return result;
+    }
+    const tree = await partition();
     const inventory: PolestarSnapshot['inventories'][number] = {
       retailerId: retailer.partnerId,
       modelCode,
-      total: 0,
-      sources: [],
-      records: [],
+      total: tree.total,
+      filterGroups,
+      partition: tree,
+      records: bindings,
     };
-    let expected: number | null = null;
-    for (let pageNo = 1; expected === null || inventory.records.length < expected; pageNo++) {
-      if (pageNo > 200)
-        throw new Error('Polestar inventory exceeds the reviewed pagination bound.');
-      const response = await capture(
-        polestarStockUrl,
-        polestarInventoryRequest(retailer.partnerId, modelCode, pageNo),
-      );
-      const data = polestarInventory(JSON.parse(response.text), { modelCode, pageNo });
-      if (expected !== null && expected !== data.pagination.totalRecords)
-        throw new Error('Polestar inventory total changed during pagination; retry the capture.');
-      expected = data.pagination.totalRecords;
-      if (expected > inventory.records.length && !data.filterResults.length)
-        throw new Error('Polestar inventory page is missing.');
-      inventory.sources.push(response.source);
-      inventory.records.push(
-        ...data.filterResults.map((vehicle) => ({ vehicle, source: response.source })),
-      );
-    }
-    inventory.total = expected!;
     snapshot.inventories.push(inventory);
-    console.log(`${retailer.name} / ${modelCode}: ${inventory.total} stock configurations`);
+    console.log(
+      `${retailer.name} / ${modelCode}: ${inventory.total} distinct configurations in ${calls} source partitions`,
+    );
   }
 }
+snapshot.stockVehicles = [...sharedVehicles.values()];
 if (!captured)
   await writeFile(
     `${directory}/review-capture-manifest.json`,

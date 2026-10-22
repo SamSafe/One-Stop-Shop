@@ -649,13 +649,13 @@ eleven Polestar 4 configurations. Compatibility changes returned by the source
 are preserved, including additional packs or motor changes required by roof and
 Performance selections.
 
-The public new-stock retailer query lists six Canadian retailers. All 18
+The initial public new-stock retailer query listed six Canadian retailers. All 18
 retailer/model combinations and reported ten-record pages were captured using
-the normal browser's DeliveryDate/Asc sorting. There are 489 reported rows and
+the normal browser's DeliveryDate/Asc sorting. There were 489 reported rows and
 112 distinct equipped model-year/structure-week/PNO identities. Five retailer
-feeds still repeat Polestar 4 identities across pages, preventing proof that all
-distinct configurations were retrieved. Their counts remain explicit coverage
-gaps; filtered partitions or independent inventory references are still needed.
+feeds repeated Polestar 4 identities across pages, preventing proof that all
+distinct configurations were retrieved. Their counts remained explicit coverage
+gaps pending the partition reconciliation below.
 These are configuration observations, not VIN quantities or delivery guarantees.
 
 Six exact factory/stock overlaps merge, yielding 120 retail configurations. Seven
@@ -703,3 +703,43 @@ passed. The refreshed preview health endpoint, page and current bundle returned
 HTTP 200. JavaScript is 8,397.37 kB raw / 733.19 kB gzip; the large-chunk performance
 warning remains open. The full-market completeness gate continues to fail while
 manufacturer, inventory, ordering and field reconciliation remain unfinished.
+
+## Polestar listed-retailer inventory reconciled with single-page partitions
+
+All 18 retailer/model groups now reconcile using source-declared disjoint
+filters. Colour, motor, model year, upholstery and wheel choices progressively
+split large results until each leaf fits on a single ten-record page. Every
+declared value is queried. Leaf identities must be unique; children must be
+disjoint, sum to their parent total and retain every observed parent identity.
+Missing branches, overlaps, stale totals and unresolved pagination fail refresh.
+The five previously reported pagination gaps are resolved for these listed feeds.
+
+The refreshed sources report 485 retailer/configuration references to 112
+shared equipped identities. The catalog still has 120 Polestar configurations
+after six exact factory overlaps merge; all seven 2026 stock configurations
+remain included. Source-reference counts describe configurations rather than VIN
+quantities or delivery guarantees. Other retailers, unlisted older new offerings,
+additional factory equipment and missing technical fields still need review.
+
+Snapshot schema 2 stores each stock configuration once while preserving every
+retailer's delivery label and exact leaf receipt. Conflicting shared evidence,
+missing vehicles or unmatched references prevent replacement. The normalized
+snapshot shrank from 2,084,704 to 1,297,602 bytes without dropping represented
+configurations. Offline reconstruction retains the source date and verifies all
+request/response hashes and partition proofs.
+
+BMW research has established the Canadian public vehicle-tree endpoint through
+the client settings linked by its official configurator. The dated tree supplies
+48 exact current references, but price, specification, transmission/ordering and
+independent lineup/older-stock reconciliation remain pending. These research
+references are not yet treated as imported retail configurations.
+
+Validation passed 167 unit tests and all 108 browser checks in desktop
+Chromium/Firefox and mobile Chromium/WebKit. Formatting, package boundaries,
+types, catalog validation, build and checksum-verified offline reconstruction
+passed. The refreshed preview health endpoint, page and current bundle returned
+HTTP 200. JavaScript is 8,011.35 kB raw / 736.09 kB gzip: the audit proofs add
+compressed metadata even as shared stock data reduces the raw bundle. The
+large-chunk performance warning remains open. Full Canadian market coverage
+remains unverified, with 28 baseline make imports and other inventory/ordering/
+specification gaps still outstanding.

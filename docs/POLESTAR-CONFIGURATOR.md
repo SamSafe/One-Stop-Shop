@@ -1,10 +1,11 @@
 # Polestar Canadian factory and equipped new-stock contract
 
 Reviewed 2026-10-22. The import retains 120 distinct Canadian retail configurations:
-14 current motor/pack/single-option combinations and 112 observed equipped stock
+14 current motor/pack/single-option combinations and 112 equipped stock
 identities, with six exact overlaps merged. Seven stock configurations are 2026
 Polestar 4 models omitted from the current 2027 build selector. This does not yet
-establish every ordering combination or exhaustive Canadian stock coverage.
+establish every ordering combination or exhaustive Canadian stock coverage beyond
+the six retailers listed by the public source.
 
 ## Canadian lineup and identities
 
@@ -55,24 +56,37 @@ and the payment total must not be smaller. Discounted prices and delivery totals
 are separate. Exact factory/stock overlaps merge only when their prices agree;
 conflicting same-identity price/technical evidence prevents replacement.
 
-## New stock and pagination limits
+## New stock and disjoint filter partitions
 
 The [Canadian new-stock selector](https://www.polestar.com/en-ca/stock-cars/)
 uses public GraphQL at `https://pc-api.polestar.com/eu-north-1/preconfigured-cars/`.
 Its `FetchAllDealers` query lists six Canadian retailers. Each retailer and each
 of the three model codes is queried with `source: Preconfigured`, CA-market
-context, the exact model filter, private-customer pricing, ten-record pages and
-the normal browser's `DeliveryDate`/`Asc` sorting. Pre-owned queries are separate.
-Reported totals and every returned page must reconcile; GraphQL errors fail even
-with HTTP 200. Request-body and response hashes are retained.
+context, the exact model filter, private-customer pricing and the normal browser's
+`DeliveryDate`/`Asc` sorting. Pre-owned queries are separate. GraphQL errors fail
+even with HTTP 200. Request-body and response hashes are retained.
 
-The capture contains 489 reported rows and 112 distinct year/structure-week/PNO
-identities across the retailer results. Five Polestar 4 retailer feeds repeat
-identities across pages despite explicit sorting. These are observations, not
-489 different cars or proof of exhaustive stock coverage. The coverage report
-retains each affected retailer's reported/distinct counts. Filtered partitions
-or an independent listing reconciliation are still needed to prove completeness.
-Observed 2026 configurations remain included with their own evidence.
+Ordinary multi-page results repeated identities and could omit configurations.
+The importer now uses `includeValidFilters` to obtain the source's complete
+singular filter domains. It recursively splits by colour, motor, model year,
+upholstery and wheels until every leaf fits on one ten-record page. Both `value`
+and `featureCode` carry the source code, matching the stock client's convention.
+Human labels are not substituted into requests.
+
+Every declared split value must be queried, including zero-result values.
+Children must form a disjoint union whose count equals their parent. Each leaf
+must contain exactly its reported total with unique equipped identities, and all
+parent sample identities must occur in the children. Missing branches, overlaps,
+count changes or a leaf still requiring pagination prevent replacement. This
+reconciles all 18 listed retailer/model groups without relying on unstable pages.
+
+The refreshed capture has 485 retailer/configuration references and 112 distinct
+model-year/structure-week/PNO identities. Shared configurations are stored once;
+each retailer reference retains its own delivery label and leaf-source receipt.
+Material evidence conflicts prevent sharing. Seven 2026 configurations remain
+included. Counts describe configurations, not VIN quantities or delivery promises.
+Other retailers, omitted offerings and independently listed older new stock still
+need market-wide reconciliation.
 
 Availability means a dated manufacturer listing. Future or “Announced later on”
 delivery estimates remain visible and do not become an immediate-stock promise.
@@ -101,5 +115,5 @@ verifies original request and response bytes, retains the original date and
 requires identical reconstruction. `-- --from-captures <manifest.json>` imports
 reviewed captures. Raw data lives under ignored `data/raw/polestar/`; normalized
 records and source receipts are tracked. Required source, identity, transition,
-count or adapter-validation failures prevent snapshot replacement. Ordinary
+partition/count, shared-reference or adapter-validation failures prevent snapshot replacement. Ordinary
 builds and the running application make no manufacturer requests.

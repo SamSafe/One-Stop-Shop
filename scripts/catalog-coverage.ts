@@ -22,7 +22,7 @@ import { nissanReviewGaps } from '../packages/car-catalog/src/nissan.ts';
 import { vwReviewGaps } from '../packages/car-catalog/src/volkswagen.ts';
 import { mitsubishiReviewGaps } from '../packages/car-catalog/src/mitsubishi.ts';
 import { polestarReviewGaps } from '../packages/car-catalog/src/polestar.ts';
-import { polestarStockIdentity } from '../packages/car-catalog/src/polestar-import.ts';
+import { polestarPartitionIdentities } from '../packages/car-catalog/src/polestar-import.ts';
 import sourceAccessReviews from '../docs/catalog-source-access.json';
 
 const report = {
@@ -30,8 +30,7 @@ const report = {
   manufacturerSourceAccessReviews: sourceAccessReviews,
   manufacturerInventoryModelSourceGaps: mitsubishiSnapshot.inventoryGaps,
   manufacturerInventoryPaginationGaps: polestarSnapshot.inventories.flatMap((inventory) => {
-    const distinct = new Set(inventory.records.map((row) => polestarStockIdentity(row.vehicle)))
-      .size;
+    const distinct = polestarPartitionIdentities(inventory.partition, inventory.filterGroups).size;
     return distinct === inventory.total
       ? []
       : [
@@ -42,7 +41,7 @@ const report = {
             reportedRows: inventory.total,
             distinctCapturedConfigurations: distinct,
             reason:
-              'The public new-stock feed repeats exact configuration identities across ten-record pages even with the normal browser DeliveryDate/Asc sorting. Observed configurations remain useful, but distinct exhaustive stock coverage is unproven. Reconcile filtered partitions or independent inventory references before claiming completion.',
+              'Disjoint source-declared single-page partitions do not reconcile to the parent count. Distinct inventory coverage is unproven.',
           },
         ];
   }),
@@ -206,7 +205,7 @@ const report = {
       ).length,
       additionalSelectionsExhaustivelyExpanded: false,
       remaining:
-        'Current motor, pack and single-option transitions reconcile. Enumerate additional colour, upholstery, wheel and accessory compatibility; reconcile repeated inventory pages and additional older new-stock configurations. Missing cabin/cargo specifications and EPA/generic range conflicts remain open.',
+        'Current motor, pack and single-option transitions reconcile. Listed retailer/model inventory is reconciled using disjoint single-page filter partitions. Enumerate additional factory colour, upholstery, wheel and accessory compatibility and independently reconcile additional retailers/older new-stock offerings. Missing cabin/cargo specifications and EPA/generic range conflicts remain open.',
     })),
     ...mitsubishiSnapshot.models.map((model) => ({
       brand: 'Mitsubishi',
