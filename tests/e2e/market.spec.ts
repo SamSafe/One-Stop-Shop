@@ -1,6 +1,54 @@
 import { test, expect } from '@playwright/test';
 import { readFileSync } from 'node:fs';
 
+test('Volkswagen transmissions keep exact fuel figures and passenger ID. Buzz variants retain seats and EV units', async ({
+  page,
+}) => {
+  await page.goto('/');
+  await page.getByLabel('Record type', { exact: true }).selectOption('retail-trim');
+  await page
+    .getByLabel('Availability evidence', { exact: true })
+    .selectOption('manufacturer-listed');
+  await page.getByLabel('Make', { exact: true }).selectOption('Volkswagen');
+  await page.getByLabel('Model year', { exact: true }).selectOption('2026');
+  await page.getByRole('searchbox', { name: 'Search cars' }).fill('Jetta GLI');
+  await expect(page.getByRole('article')).toHaveCount(2);
+  const manual = page.getByRole('article').filter({ hasText: '6-speed Manual' });
+  await expect(manual).toHaveCount(1);
+  await expect(manual).toContainText('$35,395');
+  await manual.getByRole('button', { name: 'Specs & sources' }).click();
+  await expect(
+    manual.getByRole('link', { name: /Base MSRP: .*Source: Volkswagen Canada/ }),
+  ).toHaveAttribute('href', /modelId-app=BU59V2&modelVersion-app=0&modelYear-app=2026/);
+  for (const article of await page.getByRole('article').all())
+    await article.getByRole('checkbox', { name: /^Compare / }).check();
+  await page.getByRole('button', { name: /^Compare 2 cars/ }).click();
+  await expect(page.getByRole('row', { name: /^Combined consumption/ })).toContainText('8.1');
+  await expect(page.getByRole('row', { name: /^Combined consumption/ })).toContainText('8.2');
+  await page.goto('/');
+  await page.getByLabel('Record type', { exact: true }).selectOption('retail-trim');
+  await page.getByLabel('Make', { exact: true }).selectOption('Volkswagen');
+  await page.getByLabel('Model year', { exact: true }).selectOption('2025');
+  await page.getByLabel('Powertrain', { exact: true }).selectOption('Electric');
+  await page.getByRole('searchbox', { name: 'Search cars' }).fill('ID. Buzz');
+  await expect(page.getByRole('article')).toHaveCount(2);
+  await page.getByLabel('Drivetrain', { exact: true }).selectOption('RWD');
+  await expect(page.getByRole('article')).toHaveCount(1);
+  await expect(page.getByRole('article')).toContainText('$77,495');
+  await page.getByRole('button', { name: 'Specs & sources' }).click();
+  await expect(page.getByRole('article')).toContainText('25.3');
+  await expect(page.getByRole('article')).toContainText('377');
+  await page.getByLabel('Drivetrain', { exact: true }).selectOption('all');
+  for (const article of await page.getByRole('article').all())
+    await article.getByRole('checkbox', { name: /^Compare / }).check();
+  await page.getByRole('button', { name: /^Compare 2 cars/ }).click();
+  await expect(page.getByRole('row', { name: /^Seats / })).toContainText('6');
+  await expect(page.getByRole('row', { name: /^Seats / })).toContainText('7');
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(
+    true,
+  );
+});
+
 test('Nissan EV versions and Infiniti equipment packages preserve prices, energy units and unknown-price filtering', async ({
   page,
 }) => {

@@ -488,7 +488,7 @@ QX50 and QX55. They remain in the coverage ledger for actual new-stock and
 configuration reconciliation. Selector metadata alone does not establish stock,
 and absence from the current build tool does not establish discontinuation.
 
-The catalog now has 4,777 records: 2,263 retail configurations, of which 1,392 have
+At the Nissan/Infiniti milestone the catalog had 4,777 records: 2,263 retail configurations, of which 1,392 had
 verified MSRP, plus 2,514 government rating variants and 381 official sources.
 There are 2,255 dated manufacturer-listed configurations and eight Mazda entries
 with a coming-soon flag. Thirty-one baseline makes still need a manufacturer
@@ -512,3 +512,64 @@ reconstruction passed. The preview health endpoint, page and current bundle
 returned HTTP 200. JavaScript is 6,867.97 kB raw / 649.21 kB gzip; the large-chunk
 performance warning remains open. The full-market completeness gate correctly
 continues to fail while availability, inventory, pricing and coverage work remains.
+
+## Volkswagen factory configurations imported
+
+The next capture reconciles the Canadian model overview and build selector against
+the public configurator's Canadian VISO catalogue. Thirty-two listed trims contain
+33 exact model/year/version references across 12 model years. Listed 2026 Taos,
+Jetta and Jetta GLI remain included even though the build selector excludes them
+from online configuration. The GLI's six-speed manual and seven-speed automatic
+retain separate factory codes and their own fuel-consumption values.
+
+Factory model prices are CAD and exclude VAT. They are the model base prices used
+by the configurator, before regional charges, optional paint/accessories and
+incentives. All 33 MSRP values are verified. The Golf R Black Edition retains its
+complete model identifier with encoded factory packages and its $54,595 complete
+model price; no package is removed or added twice. Regional selling prices can
+include large incentives, so subtracting apparent fees is not a valid MSRP method.
+
+The passenger ID. Buzz is kept despite VW's internal commercial category. Its
+RWD seven-seat and AWD six-seat versions remain distinct, with explicit electric
+consumption, range and combined-system hp. Manufacturer category labels alone do
+not exclude passenger vans. kWh is not treated as gasoline, and several published
+AC charging powers do not become one arbitrarily selected recharge time.
+
+Dimensions, power, seating and explicit cargo arrangements use exact model
+technical fields. Decimal-comma fuel values are normalized without confusing
+them with thousands separators. Different sunroof headroom alternatives remain
+unknown unless the values agree. Width excludes mirrors; cargo behind the third
+row represents all seats upright in three-row vehicles.
+
+The current overview also includes a 2026 Atlas virtual card with no exact
+trim/engine references. It remains an explicit family/retail/inventory gap,
+rather than becoming an invented default trim. Navigation cards for the SUVW
+family and previous-model information are kept separate. Additional factory
+equipment, older new stock and models outside the current overview, including
+ID.4 availability and retail reconciliation, remain in scope.
+
+The catalog now has 4,810 records: 2,296 retail configurations, of which 1,425 have
+verified MSRP, plus 2,514 government rating variants and 395 official sources.
+There are 2,288 dated manufacturer-listed configurations and eight Mazda entries
+with a coming-soon flag. Thirty baseline makes still need a manufacturer import;
+makes outside the baseline and unresolved inventory/configuration/source reviews
+remain part of the objective. Full Canadian coverage remains unproven.
+
+Refresh with `npm run catalog:sync:volkswagen`; `-- --offline` reconstructs the
+snapshot from original checksum-verified bytes without advancing its date.
+`-- --from-captures <manifest.json>` imports reviewed captures with their original
+date. Required-source, reference or country/identity failures prevent replacement.
+Ordinary builds and the running app make no runtime manufacturer requests. See
+[the source contract](VOLKSWAGEN-CONFIGURATOR.md).
+
+Validation passed: all 150 unit tests and all 100 production browser checks
+without retries across desktop/mobile Chromium, desktop Firefox and mobile
+WebKit. Coverage includes complete factory reference sets, wrong country/year/
+package rejection, factory MSRP, manual/automatic fuel distinctions, passenger
+van seating, EV energy units, roof/charger uncertainty and existing comparison,
+accessibility and server behavior. Formatting, package boundaries, types, catalog
+validation, build and checksum-verified offline reconstruction passed. The
+preview health endpoint, page and current bundle returned HTTP 200. JavaScript
+is 7,024.69 kB raw / 662.41 kB gzip; the large-chunk performance warning remains
+open. The full-market completeness gate continues to fail while coverage and
+source reconciliation are unfinished.

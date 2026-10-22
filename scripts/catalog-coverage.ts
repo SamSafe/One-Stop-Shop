@@ -10,18 +10,21 @@ import {
   kiaSnapshot,
   gmSnapshot,
   nissanSnapshot,
+  volkswagenSnapshot,
 } from '../packages/car-catalog/src/index.ts';
 import { catalogCoverage } from '../packages/car-catalog/src/coverage.ts';
 import { mazdaMeasurementConflicts } from '../packages/car-catalog/src/mazda.ts';
 import { kiaReviewGaps } from '../packages/car-catalog/src/kia.ts';
 import { gmOptionKey } from '../packages/car-catalog/src/gm-import.ts';
 import { nissanReviewGaps } from '../packages/car-catalog/src/nissan.ts';
+import { vwReviewGaps } from '../packages/car-catalog/src/volkswagen.ts';
 
 const report = {
   ...catalogCoverage(catalog, nrcanSnapshot),
   manufacturerSourceGaps: [
     ...tciSnapshot.gaps,
     ...nissanReviewGaps(nissanSnapshot),
+    ...vwReviewGaps(volkswagenSnapshot),
     ...gmSnapshot.records
       .filter((record) => !record.configuration || record.configuration.msrpCad === null)
       .map((record) => ({
@@ -102,6 +105,22 @@ const report = {
       reason:
         'Model card has no current year. Check remaining new inventory before excluding it from full-market coverage.',
     })),
+  manufacturerModelsWithoutFactoryReferences: volkswagenSnapshot.virtualVehicleReferences.map(
+    (model) => ({
+      brand: 'Volkswagen',
+      ...model,
+      sourceUrl: 'https://www.vw.ca/en/models/new-vehicles.html',
+    }),
+  ),
+  manufacturerAdditionalModelsNeedingAvailabilityReview: ['ID.4']
+    .filter((name) => !volkswagenSnapshot.models.some((model) => model.name === name))
+    .map((name) => ({
+      brand: 'Volkswagen',
+      model: name,
+      reason:
+        'Absent from the current Canadian model overview/build selector. Buyer-guide and regional price metadata alone do not prove current dealer stock or a complete retail-trim set. Reconcile remaining new offerings and inventory before completing manufacturer coverage.',
+      sourceUrl: 'https://www.vw.ca/en/buyers-guides.html',
+    })),
   manufacturerCommercialOnlyExclusions: [
     ...kiaSnapshot.excludedModels.map((model) => ({
       brand: 'Kia',
@@ -141,6 +160,16 @@ const report = {
     ),
   ],
   manufacturerConfigurationExpansion: [
+    ...volkswagenSnapshot.models.map((model) => ({
+      brand: 'Volkswagen',
+      model: model.name,
+      year: model.year,
+      capturedFactoryConfigurations: model.expectedKeys.length,
+      onlineConfigurationEnabled: model.configureEnabled,
+      additionalSelectionsExhaustivelyExpanded: false,
+      remaining:
+        'Reconcile optional equipment, roof and seating arrangements beyond the exact published trim/engine references. Current/older new stock and models without factory references remain in scope.',
+    })),
     ...nissanSnapshot.models
       .filter((model) =>
         nissanSnapshot.records.some(

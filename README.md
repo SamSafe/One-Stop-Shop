@@ -2,19 +2,19 @@
 
 A Canadian car comparison app that explains how each configuration fits your
 priorities. Market expansion is in progress: the working catalog includes 2,518
-NRCan rating records for 2025–2027 across 47 makes, plus 2,263 retail configurations
-(1,392 with verified prices), including 40 currently listed Subaru configurations and
+NRCan rating records for 2025–2027 across 47 makes, plus 2,296 retail configurations
+(1,425 with verified prices), including 40 currently listed Subaru configurations and
 328 Toyota/Lexus factory packages, 78 Honda/Acura configurations and 212 default
 Ford/Lincoln factory configurations, 68 Mazda model/option configurations and
 80 Hyundai factory trims/packages, 126 Kia factory trims/packages and 1,230
 Chevrolet/GMC/Buick/Cadillac factory matrix configurations and 101 Nissan/Infiniti
-versions and equipment packages. Additional Ford/Lincoln
+versions and equipment packages, plus 33 Volkswagen factory configurations. Additional Ford/Lincoln
 and GM equipment selections remain in progress; unavailable GM calculations leave
 854 MSRP values unverified. Conflicting Infiniti price definitions leave another
 17 MSRP values unverified.
 Five retail configurations also retain the initial manufacturer specification
 review. Matching ratings are merged with those retail
-configurations instead of duplicating them. The app currently displays 4,777
+configurations instead of duplicating them. The app currently displays 4,810
 records, including gasoline/hybrid, diesel, flex-fuel, electric and plug-in hybrid
 variants, cars, SUVs, pickups and vans.
 
@@ -136,6 +136,14 @@ all factory versions reconcile; exact specification joins keep roof, transmissio
 and equipment variants distinct. Superseded pages, ambiguous units, Infiniti price
 definitions and 35 older inventory-selector references remain explicit gaps. See
 [the Nissan/Infiniti source contract](docs/NISSAN-CONFIGURATOR.md).
+
+Refresh Volkswagen with `npm run catalog:sync:volkswagen`; `-- --offline` verifies
+source hashes and preserves their date. The model overview and build selector
+reconcile against exact Canadian catalogue models, including non-default
+transmissions, encoded factory packages and passenger ID. Buzz variants.
+MSRP uses model prices before regional charges and incentives. Virtual model
+cards, roof/charger alternatives, additional equipment and older new inventory
+remain explicit gaps. See [the Volkswagen source contract](docs/VOLKSWAGEN-CONFIGURATOR.md).
 
 Manufacturer listings establish a current offering, not dealer stock or delivery
 dates; older model-year inventory and additional specifications still need review.
