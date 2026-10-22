@@ -2,14 +2,16 @@
 
 A Canadian car comparison app that explains how each configuration fits your
 priorities. Market expansion is in progress: the working catalog includes 2,518
-NRCan rating records for 2025–2027 across 47 makes, plus 2,465 retail configurations
-(1,594 with verified prices), including 40 currently listed Subaru configurations and
+NRCan rating records for 2025–2027 across 47 makes, plus 2,575 retail configurations
+(1,701 with verified prices), including 40 currently listed Subaru configurations and
 328 Toyota/Lexus factory packages, 78 Honda/Acura configurations and 212 default
 Ford/Lincoln factory configurations, 68 Mazda model/option configurations and
 80 Hyundai factory trims/packages, 126 Kia factory trims/packages and 1,230
 Chevrolet/GMC/Buick/Cadillac factory matrix configurations and 101 Nissan/Infiniti
 versions and equipment packages, 33 Volkswagen factory configurations and 49
-Mitsubishi factory trims and 120 Polestar factory/equipped new-stock configurations.
+Mitsubishi factory trims, 120 Polestar factory/equipped new-stock configurations and
+110 BMW stock/factory model-year profiles. BMW retains observed 2025–2027 years;
+107 exact factory MSRP values and 59 configured technical joins are verified.
 Polestar includes 14 current motor/pack/option configurations and seven older-year
 stock configurations. Disjoint source-declared filters reconcile all six listed
 retailers' feeds; additional factory equipment and independent market reconciliation remain open.
@@ -17,10 +19,10 @@ Seventeen Mitsubishi trims belong to older model-year
 families referenced in new inventory; their individual availability remains unchecked. Additional Ford/Lincoln
 and GM equipment selections remain in progress; unavailable GM calculations leave
 854 MSRP values unverified. Conflicting Infiniti price definitions leave another
-17 MSRP values unverified.
+17 MSRP values unverified; three older BMW prices also remain unverified.
 Five retail configurations also retain the initial manufacturer specification
 review. Matching ratings are merged with those retail
-configurations instead of duplicating them. The app currently displays 4,979
+configurations instead of duplicating them. The app currently displays 5,089
 records, including gasoline/hybrid, diesel, flex-fuel, electric and plug-in hybrid
 variants, cars, SUVs, pickups and vans.
 
@@ -166,6 +168,16 @@ stock configurations reconcile with single-page filter partitions. Discounts and
 MSRP. Additional equipment, independent retailer/market review, missing technical fields
 and generic/EPA range conflicts remain explicit gaps. See
 [the Polestar source contract](docs/POLESTAR-CONFIGURATOR.md).
+
+Capture BMW's public new-stock feed with `npm run catalog:capture:bmw-stock`
+(Playwright Chromium required), then refresh factory data with
+`npm run catalog:sync:bmw`. The stock capture must have the same source date.
+`-- --offline` verifies exact request/response reconstruction; reviewed factory
+captures can be imported with `-- --from-captures <manifest.json>`.
+Repeated inventory pages, six current codes without an explicit year mapping,
+older ordering restrictions and additional equipment/transmission choices remain
+open. RRP excludes fees and incentives; technical country-group fields do not
+establish Canadian fuel/energy cycles. See [the BMW source contract](docs/BMW-CONFIGURATOR.md).
 
 Manufacturer listings establish a current offering, not dealer stock or delivery
 dates; older model-year inventory and additional specifications still need review.

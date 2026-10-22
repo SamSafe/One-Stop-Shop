@@ -13,6 +13,7 @@ import {
   volkswagenSnapshot,
   mitsubishiSnapshot,
   polestarSnapshot,
+  bmwSnapshot,
 } from '../packages/car-catalog/src/index.ts';
 import { catalogCoverage } from '../packages/car-catalog/src/coverage.ts';
 import { mazdaMeasurementConflicts } from '../packages/car-catalog/src/mazda.ts';
@@ -23,34 +24,53 @@ import { vwReviewGaps } from '../packages/car-catalog/src/volkswagen.ts';
 import { mitsubishiReviewGaps } from '../packages/car-catalog/src/mitsubishi.ts';
 import { polestarReviewGaps } from '../packages/car-catalog/src/polestar.ts';
 import { polestarPartitionIdentities } from '../packages/car-catalog/src/polestar-import.ts';
+import { bmwReviewGaps } from '../packages/car-catalog/src/bmw.ts';
 import sourceAccessReviews from '../docs/catalog-source-access.json';
 
 const report = {
   ...catalogCoverage(catalog, nrcanSnapshot),
   manufacturerSourceAccessReviews: sourceAccessReviews,
   manufacturerInventoryModelSourceGaps: mitsubishiSnapshot.inventoryGaps,
-  manufacturerInventoryPaginationGaps: polestarSnapshot.inventories.flatMap((inventory) => {
-    const distinct = polestarPartitionIdentities(inventory.partition, inventory.filterGroups).size;
-    return distinct === inventory.total
-      ? []
-      : [
+  manufacturerInventoryPaginationGaps: [
+    ...(bmwSnapshot.inventory.distinctStockRecords < bmwSnapshot.inventory.total
+      ? [
           {
-            brand: 'Polestar',
-            retailerId: inventory.retailerId,
-            modelCode: inventory.modelCode,
-            reportedRows: inventory.total,
-            distinctCapturedConfigurations: distinct,
+            brand: 'BMW',
+            reportedRows: bmwSnapshot.inventory.total,
+            distinctCapturedVehicleReferences: bmwSnapshot.inventory.distinctStockRecords,
+            capturedModelYearProfiles: bmwSnapshot.inventory.modelReferences.length,
             reason:
-              'Disjoint source-declared single-page partitions do not reconcile to the parent count. Distinct inventory coverage is unproven.',
+              'All reported national new-stock pages were captured, but repeated vehicle identities leave exhaustive coverage unproven. Observed explicit VG/AG/model-year profiles remain included; reconcile disjoint filters or independent inventory references before claiming completeness.',
           },
-        ];
-  }),
+        ]
+      : []),
+    ...polestarSnapshot.inventories.flatMap((inventory) => {
+      const distinct = polestarPartitionIdentities(
+        inventory.partition,
+        inventory.filterGroups,
+      ).size;
+      return distinct === inventory.total
+        ? []
+        : [
+            {
+              brand: 'Polestar',
+              retailerId: inventory.retailerId,
+              modelCode: inventory.modelCode,
+              reportedRows: inventory.total,
+              distinctCapturedConfigurations: distinct,
+              reason:
+                'Disjoint source-declared single-page partitions do not reconcile to the parent count. Distinct inventory coverage is unproven.',
+            },
+          ];
+    }),
+  ],
   manufacturerSourceGaps: [
     ...tciSnapshot.gaps,
     ...nissanReviewGaps(nissanSnapshot),
     ...vwReviewGaps(volkswagenSnapshot),
     ...mitsubishiReviewGaps(mitsubishiSnapshot),
     ...polestarReviewGaps(polestarSnapshot),
+    ...bmwReviewGaps(bmwSnapshot),
     ...gmSnapshot.records
       .filter((record) => !record.configuration || record.configuration.msrpCad === null)
       .map((record) => ({
@@ -196,6 +216,17 @@ const report = {
     ),
   ],
   manufacturerConfigurationExpansion: [
+    ...bmwSnapshot.inventory.modelReferences.map((reference) => ({
+      brand: 'BMW',
+      model: reference.name,
+      year: reference.year,
+      modelCode: reference.code,
+      agCode: reference.agCode,
+      observedStockTransmissions: reference.transmissions,
+      additionalSelectionsExhaustivelyExpanded: false,
+      remaining:
+        'Reconcile additional equipment/packages and transmission choices beyond captured solver selections, current-model references without explicit stock year mappings, repeated inventory pages, older ordering restrictions and exact consumption/cabin/cargo evidence. Bare-model MSRP does not price unverified optional configurations.',
+    })),
     ...polestarSnapshot.models.map((model) => ({
       brand: 'Polestar',
       model: model.initial.configuration.model.displayName,

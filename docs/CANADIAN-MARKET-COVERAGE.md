@@ -728,11 +728,11 @@ snapshot shrank from 2,084,704 to 1,297,602 bytes without dropping represented
 configurations. Offline reconstruction retains the source date and verifies all
 request/response hashes and partition proofs.
 
-BMW research has established the Canadian public vehicle-tree endpoint through
+At this milestone BMW research had established the Canadian public vehicle-tree endpoint through
 the client settings linked by its official configurator. The dated tree supplies
 48 exact current references, but price, specification, transmission/ordering and
 independent lineup/older-stock reconciliation remain pending. These research
-references are not yet treated as imported retail configurations.
+references had not yet been treated as imported retail configurations.
 
 Validation passed 167 unit tests and all 108 browser checks in desktop
 Chromium/Firefox and mobile Chromium/WebKit. Formatting, package boundaries,
@@ -743,3 +743,67 @@ compressed metadata even as shared stock data reduces the raw bundle. The
 large-chunk performance warning remains open. Full Canadian market coverage
 remains unverified, with 28 baseline make imports and other inventory/ordering/
 specification gaps still outstanding.
+
+## BMW observed retail years and exact factory profiles imported
+
+The Canadian overview, official configurator settings and both public BMW/BMW i
+vehicle trees are captured. There are 55 overview cards, including two concepts,
+and 49 distinct current tree codes after duplicate marketing references merge.
+The official national new-stock page supplies explicit model-year/VG/AG identities
+across 2025–2027. Years are not inferred from code prefixes, and the default
+configurator year does not replace older new stock.
+
+All 196 reported 48-record stock pages were captured. They contain 9,386 returned
+rows and 8,970 distinct vehicle identities, yielding 110 observed model/year/AG
+groups. Repeated pages leave exhaustive stock coverage unproven; the coverage
+report retains this discrepancy. VINs are used only in local source reconciliation
+and do not appear in the normalized catalog. Six current tree codes without an
+exact observed year remain gaps, alongside unmatched overview/AG placeholders and
+additional older offerings. Concept cards do not establish vehicles for sale.
+
+All 110 observed profiles are represented. Exact rule-solver VG identities,
+classified transmissions and selected equipment are retained where available.
+107 CAD/RRP_NET prices are verified before fees, freight, levies, taxes, incentives
+and discretionary equipment. A selected transmission option is included when
+applicable. The 2027 228 xDrive Gran Coupe Essential Edition is $50,900, rather
+than the calculator's $55,095 gross amount. Separate BMW i service context is used
+for iX pricing. Dealer/supplier base prices are not substituted for the three
+unsupported 2025 factory prices.
+
+51 profiles lack current ordering data and retain explicit restrictions. Published
+bare-model RRP does not price unverified optional transmission or equipment
+combinations. Older M2 stock lists manual and automatic variants requiring further
+reconciliation. Factory package and selection expansion remains open across BMW.
+
+59 exact technical joins retain configured AG/options, combined BHP, seating and
+paired metric dimensions. Published width includes mirrors. The 2026 M340i's
+classified 48 V system establishes a mild hybrid and 386 combined BHP, distinct
+from 375 engine-only hp. EV/PHEV identities remain separate. The Canadian client
+uses a technical country group named us; unresolved Canadian energy modes,
+charging, head/legroom and cargo arrangements remain unknown. Older-year technical
+fields and unverified hybrid subtypes are not filled from another configuration.
+
+The catalog now has 5,089 records: 2,575 retail configurations, 1,701 verified
+prices, 2,514 government rating variants and 587 official sources. There are
+2,550 dated manufacturer-listed configurations and 2,531 availability-unchecked
+records. Twenty-seven baseline makes still need imports; makers absent from that
+baseline and unresolved configuration/source gaps remain within the full goal.
+
+Refresh through the public anonymous stock capture followed by factory sync;
+offline reconstruction verifies hashes and retains source dates. Required source,
+identity, context and adapter errors prevent replacement. See
+[the source contract](BMW-CONFIGURATOR.md).
+
+Validation passed 176 unit tests, package boundaries, catalog validation, types,
+build, formatting and checksum-verified offline reconstruction. Browser coverage
+passed all 112 checks across desktop Chromium/Firefox and mobile Chromium/WebKit:
+106 passed in the full run, and six passed focused reruns after correcting BMW
+search-count assumptions and resolving browser runtime/timeouts. The app retains
+both matching M340i and iX3 identities. Local WebKit uses the same downloaded
+browser with isolated runtime libraries because Docker became unavailable.
+
+The refreshed preview health endpoint and current JavaScript return HTTP 200;
+the release fingerprint matches the current source. JavaScript remains 9,018.74 kB
+raw / 848.83 kB gzip, with the large-chunk performance warning open. The complete
+market gate still fails as expected: missing makes, factory selections, stock
+reconciliation and specification evidence remain work toward the full objective.

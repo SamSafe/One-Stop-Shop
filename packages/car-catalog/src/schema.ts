@@ -137,6 +137,10 @@ const manufacturerHosts = new Set([
   'www-graphql.prod.mipulse.co',
   'www.polestar.com',
   'pc-api.polestar.com',
+  'www.bmw.ca',
+  'configure.bmw.ca',
+  'prod.ucp.bmw.cloud',
+  'inventory.bmw.ca',
   'n8xgyscaa3.execute-api.ca-central-1.amazonaws.com',
 ]);
 

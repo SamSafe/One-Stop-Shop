@@ -1,6 +1,60 @@
 import { test, expect } from '@playwright/test';
 import { readFileSync } from 'node:fs';
 
+test('BMW Canadian MSRP, mild hybrids, electric models and older new stock retain their exact evidence', async ({
+  page,
+}) => {
+  await page.goto('/');
+  await page.getByLabel('Record type', { exact: true }).selectOption('retail-trim');
+  await page
+    .getByLabel('Availability evidence', { exact: true })
+    .selectOption('manufacturer-listed');
+  await page.getByLabel('Make', { exact: true }).selectOption('BMW');
+  await page.getByLabel('Model year', { exact: true }).selectOption('2027');
+  await page
+    .getByRole('searchbox', { name: 'Search cars' })
+    .fill('228 xDrive Gran Coupe Essential Edition');
+  await expect(page.getByRole('article')).toHaveCount(1);
+  await expect(page.getByRole('article')).toContainText('$50,900');
+  await page.getByRole('button', { name: 'Specs & sources' }).click();
+  await expect(page.getByRole('article')).toContainText('241');
+  await expect(page.getByRole('link', { name: /Base MSRP: .*Source: BMW Canada/ })).toHaveAttribute(
+    'href',
+    'https://configure.bmw.ca/en_CA/configure/F74/272A',
+  );
+  await expect(page.getByRole('link', { name: /Power: .*Source: BMW Canada/ })).toHaveAttribute(
+    'href',
+    /^https:\/\/prod\.ucp\.bmw\.cloud\/otd\/country-groups\/us\/ag-models\/23GG\//,
+  );
+  await page.getByLabel('Model year', { exact: true }).selectOption('2026');
+  await page.getByLabel('Powertrain', { exact: true }).selectOption('Hybrid');
+  await page.getByRole('searchbox', { name: 'Search cars' }).fill('M340i xDrive Sedan');
+  await expect(page.getByRole('article')).toHaveCount(2);
+  const mild = page.locator('article[aria-labelledby="title-bmw-ca-2026-2634-63ft-s02tb"]');
+  await expect(mild).toContainText('48 V mild hybrid');
+  await expect(mild).toContainText('$74,500');
+  await mild.getByRole('button', { name: 'Specs & sources' }).click();
+  await expect(mild).toContainText('386');
+  await page.getByLabel('Model year', { exact: true }).selectOption('2027');
+  await page.getByLabel('Powertrain', { exact: true }).selectOption('Electric');
+  await page.getByRole('searchbox', { name: 'Search cars' }).fill('iX3 50 xDrive');
+  await expect(page.getByRole('article')).toHaveCount(2);
+  const electric = page.locator('article[aria-labelledby="title-bmw-ca-2027-27c1-33hr-automatic"]');
+  await expect(electric).toContainText('$75,900');
+  await page.getByLabel('Max base MSRP', { exact: true }).selectOption('75000');
+  await expect(page.getByRole('article')).toHaveCount(0);
+  await page.getByLabel('Max base MSRP', { exact: true }).selectOption('all');
+  await page.getByLabel('Powertrain', { exact: true }).selectOption('all');
+  await page.getByLabel('Model year', { exact: true }).selectOption('2025');
+  await page.getByRole('searchbox', { name: 'Search cars' }).fill('530i xDrive Sedan');
+  await expect(page.getByRole('article')).toHaveCount(1);
+  await expect(page.getByRole('article')).toContainText('Not verified');
+  await expect(page.getByRole('article')).toContainText('manufacturer-listed');
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(
+    true,
+  );
+});
+
 test('Polestar configured prices, EPA fields and older new-stock years remain distinct', async ({
   page,
 }) => {
