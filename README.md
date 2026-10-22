@@ -2,17 +2,19 @@
 
 A Canadian car comparison app that explains how each configuration fits your
 priorities. Market expansion is in progress: the working catalog includes 2,518
-NRCan rating records for 2025–2027 across 47 makes, plus 2,162 retail configurations
-(1,308 with verified prices), including 40 currently listed Subaru configurations and
+NRCan rating records for 2025–2027 across 47 makes, plus 2,263 retail configurations
+(1,392 with verified prices), including 40 currently listed Subaru configurations and
 328 Toyota/Lexus factory packages, 78 Honda/Acura configurations and 212 default
 Ford/Lincoln factory configurations, 68 Mazda model/option configurations and
 80 Hyundai factory trims/packages, 126 Kia factory trims/packages and 1,230
-Chevrolet/GMC/Buick/Cadillac factory matrix configurations. Additional Ford/Lincoln
+Chevrolet/GMC/Buick/Cadillac factory matrix configurations and 101 Nissan/Infiniti
+versions and equipment packages. Additional Ford/Lincoln
 and GM equipment selections remain in progress; unavailable GM calculations leave
-854 MSRP values unverified.
+854 MSRP values unverified. Conflicting Infiniti price definitions leave another
+17 MSRP values unverified.
 Five retail configurations also retain the initial manufacturer specification
 review. Matching ratings are merged with those retail
-configurations instead of duplicating them. The app currently displays 4,676
+configurations instead of duplicating them. The app currently displays 4,777
 records, including gasoline/hybrid, diesel, flex-fuel, electric and plug-in hybrid
 variants, cars, SUVs, pickups and vans.
 
@@ -127,6 +129,14 @@ MSRP from fees, colours and dealer products. Rejected or mismatched calculations
 remain unknown. A new reviewed capture can be imported with `-- --from-captures
 <manifest.json>` while preserving its original date; this command does not claim
 a fresh live retrieval. See [the GM source contract](docs/GM-CONFIGURATOR.md).
+
+Refresh Nissan/Infiniti with `npm run catalog:sync:nissan`; `-- --offline` verifies
+captured source hashes and preserves the retrieval date. Both selector years and
+all factory versions reconcile; exact specification joins keep roof, transmission
+and equipment variants distinct. Superseded pages, ambiguous units, Infiniti price
+definitions and 35 older inventory-selector references remain explicit gaps. See
+[the Nissan/Infiniti source contract](docs/NISSAN-CONFIGURATOR.md).
+
 Manufacturer listings establish a current offering, not dealer stock or delivery
 dates; older model-year inventory and additional specifications still need review.
 

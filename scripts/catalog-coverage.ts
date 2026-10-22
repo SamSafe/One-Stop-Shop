@@ -9,16 +9,19 @@ import {
   hyundaiSnapshot,
   kiaSnapshot,
   gmSnapshot,
+  nissanSnapshot,
 } from '../packages/car-catalog/src/index.ts';
 import { catalogCoverage } from '../packages/car-catalog/src/coverage.ts';
 import { mazdaMeasurementConflicts } from '../packages/car-catalog/src/mazda.ts';
 import { kiaReviewGaps } from '../packages/car-catalog/src/kia.ts';
 import { gmOptionKey } from '../packages/car-catalog/src/gm-import.ts';
+import { nissanReviewGaps } from '../packages/car-catalog/src/nissan.ts';
 
 const report = {
   ...catalogCoverage(catalog, nrcanSnapshot),
   manufacturerSourceGaps: [
     ...tciSnapshot.gaps,
+    ...nissanReviewGaps(nissanSnapshot),
     ...gmSnapshot.records
       .filter((record) => !record.configuration || record.configuration.msrpCad === null)
       .map((record) => ({
@@ -119,10 +122,43 @@ const report = {
         sourceUrl: model.source.url,
       })),
   ],
-  manufacturerOlderModelYearsNeedingInventoryReview: mazdaSnapshot.excludedModelYears.map(
-    (year) => ({ brand: 'Mazda', model: year.carline, year: year.year, reason: year.reason }),
-  ),
+  manufacturerOlderModelYearsNeedingInventoryReview: [
+    ...mazdaSnapshot.excludedModelYears.map((year) => ({
+      brand: 'Mazda',
+      model: year.carline,
+      year: year.year,
+      reason: year.reason,
+    })),
+    ...nissanSnapshot.brands.flatMap((brand) =>
+      brand.inventoryOnlyModels.map((model) => ({
+        brand: brand.brand,
+        model: model.name,
+        modelCode: model.code,
+        year: model.year,
+        reason: model.reason,
+        sourceUrl: brand.inventorySource.url,
+      })),
+    ),
+  ],
   manufacturerConfigurationExpansion: [
+    ...nissanSnapshot.models
+      .filter((model) =>
+        nissanSnapshot.records.some(
+          (record) =>
+            record.brand === model.brand &&
+            record.modelCode === model.code &&
+            record.specification === null,
+        ),
+      )
+      .map((model) => ({
+        brand: model.brand,
+        model: model.name,
+        year: model.year,
+        capturedSelectorConfigurations: model.expectedKeys.length,
+        additionalSelectionsExhaustivelyExpanded: false,
+        remaining:
+          'The exact model-year specification/package table is unavailable or superseded. Reconcile additional factory packages before asserting exhaustive offering coverage.',
+      })),
     ...fordSnapshot.models.map((model) => ({
       brand: model.brand,
       model: model.name,

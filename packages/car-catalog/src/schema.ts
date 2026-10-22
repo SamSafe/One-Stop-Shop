@@ -128,6 +128,8 @@ const manufacturerHosts = new Set([
   'www.gmccanada.ca',
   'www.buick.ca',
   'www.cadillaccanada.ca',
+  'www.nissan.ca',
+  'www.infiniti.ca',
   'n8xgyscaa3.execute-api.ca-central-1.amazonaws.com',
 ]);
 

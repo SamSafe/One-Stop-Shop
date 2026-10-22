@@ -426,7 +426,7 @@ explicit Canadian city/highway L/100km can be shown; dimensional, cabin, cargo
 and other energy tables still need exact variant/option joins. Additional
 equipment/package combinations beyond the published matrix remain in the report.
 
-The working catalog now has 4,676 records: 2,162 retail configurations, of which
+At the GM milestone the catalog had 4,676 records: 2,162 retail configurations, of which
 1,308 have verified MSRP, plus 2,514 government rating variants and 342 official
 sources. There are 2,154 dated manufacturer-listed configurations and eight Mazda
 configurations with a coming-soon source flag. Thirty-three baseline makes still
@@ -451,3 +451,64 @@ current bundle returned HTTP 200. Removing unnecessary serialized states reduced
 the JavaScript bundle from 912.26 kB to 603.98 kB gzip (6,343.48 kB raw); the
 large-chunk warning remains an outstanding performance improvement. Full Canadian
 market and exhaustive configuration coverage remain unproven.
+
+## Nissan and Infiniti factory versions imported
+
+The next capture reconciles 20 Nissan and five Infiniti Canadian model years,
+including both listed 2026 and 2027 offerings. Every one of the 99 selector
+versions is included. Factory suffixes preserve Frontier Luxury SWB/LWB packages
+and the 2027 Z's distinct six-speed manual and nine-speed automatic versions.
+Two separately offered $4,200 Tech Packages on exact 2027 QX60/QX65 AUTOGRAPH
+versions add two more configurations. Zero-cost Graphite Interior colour choices
+are retained in source metadata rather than counted as additional retail trims.
+
+Exact version, grade, year and Canadian source paths establish 56 specification
+joins. The other 45 configurations retain their own identities and prices where
+verified; redirected/superseded pages and the Rogue Hybrid specification route's
+404 are explicit gaps. Measurements from a different model year are not copied.
+Rogue S and SV Moonroof retain their different cargo and headroom values.
+
+All 84 Nissan MSRP values use the selector's explicitly fee-excluded retail
+field. Infiniti's retail disclaimer says freight/PDI and charges are included,
+while its regional field contains a different amount. The 17 Infiniti prices,
+including the two Tech Package configurations, remain unknown pending independent
+reconciliation. Neither regional prices nor a plausible-looking retail number
+are silently used as base MSRP.
+
+Metric/imperial pairs must agree within rounding tolerance. Bare values under
+dual-unit labels, incompatible pairs, ranges, mirror/bracket alternatives and
+unresolved roof choices remain unknown. EV Le/100km stays energy equivalence;
+generic plug-in fuel values do not establish an operating mode. The 2027 Rogue
+Hybrid PLATINUM grade's combined value falls outside its city/highway interval;
+all three values remain unknown with a source-conflict explanation.
+
+The new-inventory selectors reference 35 additional 2024/2025 model years absent
+from the current build selectors, including Versa, Altima, GT-R, Kicks Play, Q50,
+QX50 and QX55. They remain in the coverage ledger for actual new-stock and
+configuration reconciliation. Selector metadata alone does not establish stock,
+and absence from the current build tool does not establish discontinuation.
+
+The catalog now has 4,777 records: 2,263 retail configurations, of which 1,392 have
+verified MSRP, plus 2,514 government rating variants and 381 official sources.
+There are 2,255 dated manufacturer-listed configurations and eight Mazda entries
+with a coming-soon flag. Thirty-one baseline makes still need a manufacturer
+import; makes outside that baseline and outstanding inventory/configuration/
+source reviews remain in scope. Full Canadian coverage remains unproven.
+
+Refresh with `npm run catalog:sync:nissan`, or reconstruct with `-- --offline`.
+Reviewed captures can be imported with `-- --from-captures <manifest.json>`.
+Checksummed bytes and original retrieval dates are preserved. Ordinary builds
+and the running app make no runtime manufacturer requests. See
+[the source contract](NISSAN-CONFIGURATOR.md).
+
+Validation passed: 142 unit tests and 96 production browser checks without retries
+across desktop/mobile Chromium, desktop Firefox and mobile WebKit. The import
+checks exact package/year/version joins, independent selector version references,
+metric/imperial consistency, price conflicts, EV/PHEV units and source mismatches.
+Browser checks include Nissan EV pricing/sources, pickups, Infiniti equipment
+packages, unverified-price filtering and existing accessibility/server journeys.
+Formatting, boundaries, types, catalog validation and checksum-verified offline
+reconstruction passed. The preview health endpoint, page and current bundle
+returned HTTP 200. JavaScript is 6,867.97 kB raw / 649.21 kB gzip; the large-chunk
+performance warning remains open. The full-market completeness gate correctly
+continues to fail while availability, inventory, pricing and coverage work remains.

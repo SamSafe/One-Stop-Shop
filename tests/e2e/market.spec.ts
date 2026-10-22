@@ -1,6 +1,52 @@
 import { test, expect } from '@playwright/test';
 import { readFileSync } from 'node:fs';
 
+test('Nissan EV versions and Infiniti equipment packages preserve prices, energy units and unknown-price filtering', async ({
+  page,
+}) => {
+  await page.goto('/');
+  await page.getByLabel('Record type', { exact: true }).selectOption('retail-trim');
+  await page
+    .getByLabel('Availability evidence', { exact: true })
+    .selectOption('manufacturer-listed');
+  await page.getByLabel('Make', { exact: true }).selectOption('Nissan');
+  await page.getByLabel('Model year', { exact: true }).selectOption('2027');
+  await page.getByRole('searchbox', { name: 'Search cars' }).fill('LEAF');
+  await page.getByLabel('Powertrain', { exact: true }).selectOption('Electric');
+  await expect(page.getByRole('article')).toHaveCount(4);
+  const leaf = page.getByRole('article').filter({ hasText: 'S FWD' });
+  await expect(leaf).toHaveCount(1);
+  await expect(leaf).toContainText('$34,998');
+  await leaf.getByRole('button', { name: 'Specs & sources' }).click();
+  await expect(
+    leaf.getByRole('link', { name: /Base MSRP: .*Source: Nissan Canada/ }),
+  ).toHaveAttribute('href', 'https://www.nissan.ca/shopping-tools/build-price');
+  await expect(leaf).toContainText('341');
+  await expect(leaf).toContainText('Gasoline-equivalent energy');
+  await page.getByLabel('Powertrain', { exact: true }).selectOption('all');
+  await page.getByRole('searchbox', { name: 'Search cars' }).fill('Frontier');
+  await page.getByLabel('Drivetrain', { exact: true }).selectOption('4WD');
+  await expect(page.getByRole('article')).toHaveCount(3);
+  await expect(page.getByRole('article').filter({ hasText: 'Luxury LWB' })).toContainText(
+    '$60,598',
+  );
+  await page.getByLabel('Drivetrain', { exact: true }).selectOption('all');
+  await page.getByLabel('Make', { exact: true }).selectOption('Infiniti');
+  await page.getByRole('searchbox', { name: 'Search cars' }).fill('QX60 AUTOGRAPH');
+  await expect(page.getByRole('article')).toHaveCount(2);
+  await expect(page.getByRole('article').filter({ hasText: 'Tech Package' })).toHaveCount(1);
+  await page.getByLabel('Max base MSRP', { exact: true }).selectOption('50000');
+  await expect(page.getByRole('article')).toHaveCount(0);
+  await page.getByLabel('Max base MSRP', { exact: true }).selectOption('all');
+  for (const article of await page.getByRole('article').all())
+    await article.getByRole('checkbox', { name: /^Compare / }).check();
+  await page.getByRole('button', { name: /^Compare 2 cars/ }).click();
+  await expect(page.getByRole('row', { name: /^Cargo · seats up/ })).toContainText('411');
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(
+    true,
+  );
+});
+
 test('GM factory prices exclude fees, unavailable prices remain visible, and passenger vans stay in scope', async ({
   page,
 }) => {
