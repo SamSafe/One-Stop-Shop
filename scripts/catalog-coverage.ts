@@ -16,6 +16,7 @@ import {
   bmwSnapshot,
   miniSnapshot,
   genesisSnapshot,
+  rivianSnapshot,
 } from '../packages/car-catalog/src/index.ts';
 import { catalogCoverage } from '../packages/car-catalog/src/coverage.ts';
 import { mazdaMeasurementConflicts } from '../packages/car-catalog/src/mazda.ts';
@@ -29,6 +30,7 @@ import { polestarPartitionIdentities } from '../packages/car-catalog/src/polesta
 import { bmwReviewGaps } from '../packages/car-catalog/src/bmw.ts';
 import { miniReviewGaps } from '../packages/car-catalog/src/mini.ts';
 import { genesisReviewGaps } from '../packages/car-catalog/src/genesis.ts';
+import { rivianReviewGaps } from '../packages/car-catalog/src/rivian.ts';
 import sourceAccessReviews from '../docs/catalog-source-access.json';
 
 const report = {
@@ -77,6 +79,7 @@ const report = {
     ...bmwReviewGaps(bmwSnapshot),
     ...miniReviewGaps(miniSnapshot),
     ...genesisReviewGaps(genesisSnapshot),
+    ...rivianReviewGaps(rivianSnapshot),
     ...genesisSnapshot.rejectedSpecifications.map((s) => ({
       brand: 'Genesis',
       configuration: s.label,
@@ -228,6 +231,15 @@ const report = {
     ),
   ],
   manufacturerConfigurationExpansion: [
+    ...rivianSnapshot.current.map((c) => ({
+      brand: 'Rivian',
+      model: c.builder.sku,
+      years: c.builder.ruleset.groups.MODEL_YEAR!.options.map(Number),
+      capturedFactoryProfiles: c.expectedProfileKeys.length,
+      additionalSelectionsExhaustivelyExpanded: false,
+      remaining:
+        'Independent national new-stock reconciliation beyond the sampled delivery points, older unobserved years, individual cosmetic configurations, spare tires, autonomy products, accessory quantities and exact Canadian technical measurements remain open. Wheel-derived All-Terrain and underbody equipment are not independently multiplied into phantom selections.',
+    })),
     ...genesisSnapshot.families.map((f) => ({
       brand: 'Genesis',
       model: f.model.modelNameEn,

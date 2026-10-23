@@ -16,6 +16,7 @@ import polestarData from '../data/manufacturers/polestar.json';
 import bmwData from '../data/manufacturers/bmw.json';
 import miniData from '../data/manufacturers/mini.json';
 import genesisData from '../data/manufacturers/genesis.json';
+import rivianData from '../data/manufacturers/rivian.json';
 import { validateCatalog } from './schema';
 import { validateNrcanSnapshot } from './nrcan-schema';
 import { expandCatalog } from './expand';
@@ -49,6 +50,8 @@ import { validateMiniSnapshot } from './mini-import';
 import { addMiniRetail } from './mini';
 import { validateGenesisSnapshot } from './genesis-import';
 import { addGenesisRetail } from './genesis';
+import { validateRivianSnapshot } from './rivian-import';
+import { addRivianRetail } from './rivian';
 
 export * from './schema';
 export { ratingUrl } from './expand';
@@ -69,6 +72,7 @@ export const polestarSnapshot = validatePolestarSnapshot(polestarData);
 export const bmwSnapshot = validateBmwSnapshot(bmwData);
 export const miniSnapshot = validateMiniSnapshot(miniData);
 export const genesisSnapshot = validateGenesisSnapshot(genesisData);
+export const rivianSnapshot = validateRivianSnapshot(rivianData);
 const previouslyImportedRetail = addMazdaRetail(
   addFordRetail(
     addHondaRetail(
@@ -97,8 +101,8 @@ const bmwRetailCatalog = addBmwRetail(
   ),
   bmwSnapshot,
 );
-export const retailCatalog = addGenesisRetail(
-  addMiniRetail(bmwRetailCatalog, miniSnapshot),
-  genesisSnapshot,
+export const retailCatalog = addRivianRetail(
+  addGenesisRetail(addMiniRetail(bmwRetailCatalog, miniSnapshot), genesisSnapshot),
+  rivianSnapshot,
 );
 export const catalog = expandCatalog(retailCatalog, nrcanSnapshot, links);

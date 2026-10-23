@@ -1,6 +1,66 @@
 import { test, expect } from '@playwright/test';
 import { readFileSync } from 'node:fs';
 
+test('Rivian factory packages, six-seat layouts and older new stock keep their own price and evidence', async ({
+  page,
+}) => {
+  await page.goto('/');
+  await page.getByLabel('Record type', { exact: true }).selectOption('retail-trim');
+  await page
+    .getByLabel('Availability evidence', { exact: true })
+    .selectOption('manufacturer-listed');
+  await page.getByLabel('Make', { exact: true }).selectOption('Rivian');
+  await page.getByLabel('Model year', { exact: true }).selectOption('2027');
+  await page.getByRole('searchbox', { name: 'Search cars' }).fill('R1T Premium Dual-motor AWD');
+  const truck = page.locator('article[aria-labelledby="title-rivian-ca-c1a3c0cac44a13cf"]');
+  await expect(truck.locator('.price-row')).toContainText('$144,990');
+  await expect(truck.locator('.published-price')).toHaveCount(0);
+  await truck.getByRole('button', { name: 'Specs & sources' }).click();
+  await expect(
+    truck.getByRole('link', { name: /Base MSRP: .*Source: Rivian Canada/ }),
+  ).toHaveAttribute('href', 'https://rivian.com/en-CA/configurations/builder?MODEL=R1T');
+  await truck.getByRole('checkbox', { name: /Compare/ }).check();
+  await page
+    .getByRole('searchbox', { name: 'Search cars' })
+    .fill('R1S Premium Dual-motor AWD Long Range');
+  const captains = page.locator('article[aria-labelledby="title-rivian-ca-856dc0455f074dfb"]');
+  await expect(captains).toContainText('$175,290');
+  await expect(captains).toContainText('6-seat Captain’s Chairs');
+  await expect(captains).toContainText('All-Terrain');
+  await page.getByLabel('Max base MSRP', { exact: true }).selectOption('150000');
+  await expect(page.getByRole('article')).toHaveCount(0);
+  await page.getByLabel('Max base MSRP', { exact: true }).selectOption('all');
+  await captains.getByRole('checkbox', { name: /Compare/ }).check();
+  await page.getByRole('button', { name: 'Compare 2 cars' }).click();
+  const dialog = page.getByRole('dialog');
+  const prices = dialog
+    .getByRole('row')
+    .filter({ has: page.getByRole('rowheader', { name: 'Base MSRP', exact: true }) });
+  await expect(prices).toContainText('$144,990');
+  await expect(prices).toContainText('$175,290');
+  const seats = dialog
+    .getByRole('row')
+    .filter({ has: page.getByRole('rowheader', { name: 'Seats', exact: true }) });
+  await expect(seats).toContainText('5');
+  await expect(seats).toContainText('6');
+  await dialog.getByRole('button', { name: 'Close comparison' }).click();
+  await page.getByLabel('Model year', { exact: true }).selectOption('2026');
+  await page.getByRole('searchbox', { name: 'Search cars' }).fill('R1S');
+  const older = page
+    .getByRole('article')
+    .filter({ has: page.locator('.price-row').filter({ hasText: '$139,990' }) })
+    .first();
+  await expect(older).toContainText('Observed new stock');
+  await older.getByRole('button', { name: 'Specs & sources' }).click();
+  await expect(
+    older.getByRole('link', { name: /Base MSRP: .*Source: Rivian Canada/ }),
+  ).toHaveAttribute('href', 'https://rivian.com/configurations/api/v1/vehicle-ruleset');
+  await expect(older).not.toContainText('$139,290');
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(
+    true,
+  );
+});
+
 test('Genesis regional all-inclusive prices keep their basis, missing fees and preorder status', async ({
   page,
 }) => {

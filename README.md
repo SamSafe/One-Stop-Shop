@@ -2,8 +2,8 @@
 
 A Canadian car comparison app that explains how each configuration fits your
 priorities. Market expansion is in progress: the working catalog includes 2,518
-NRCan rating records for 2025–2027 across 47 makes, plus 2,805 retail configurations
-(1,886 with verified prices), including 40 currently listed Subaru configurations and
+NRCan rating records for 2025–2027 across 47 makes, plus 2,911 retail configurations
+(1,992 with verified base prices), including 40 currently listed Subaru configurations and
 328 Toyota/Lexus factory packages, 78 Honda/Acura configurations and 212 default
 Ford/Lincoln factory configurations, 68 Mazda model/option configurations and
 80 Hyundai factory trims/packages, 126 Kia factory trims/packages and 1,230
@@ -11,7 +11,11 @@ Chevrolet/GMC/Buick/Cadillac factory matrix configurations and 101 Nissan/Infini
 versions and equipment packages, 33 Volkswagen factory configurations and 49
 Mitsubishi factory trims, 120 Polestar factory/equipped new-stock configurations and
 110 BMW stock/factory model-year profiles, 189 MINI factory/new-stock profiles and
-41 Genesis factory configurations. Genesis supplies 39 separately labeled Alberta
+41 Genesis factory configurations and 106 Rivian factory/new-stock profiles.
+Rivian includes 69 current profiles following the visible trim, drivetrain,
+wheel/package and interior choices, plus 37 additional 2026 stock profiles.
+Sampled delivery searches establish observed configurations, not an exhaustive
+national inventory count. Genesis supplies 39 separately labeled Alberta
 all-inclusive prices; its base MSRP values remain unverified. One preorder has no
 price, and another trim has incomplete regional fees. Conflicting specification
 years are quarantined rather than copied into the current model year.
@@ -29,7 +33,7 @@ and GM equipment selections remain in progress; unavailable GM calculations leav
 17 MSRP values unverified; three older BMW and four MINI prices also remain unverified.
 Five retail configurations also retain the initial manufacturer specification
 review. Matching ratings are merged with those retail
-configurations instead of duplicating them. The app currently displays 5,319
+configurations instead of duplicating them. The app currently displays 5,425
 records, including gasoline/hybrid, diesel, flex-fuel, electric and plug-in hybrid
 variants, cars, SUVs, pickups and vans.
 
@@ -206,6 +210,16 @@ colour/interior choices. Required failures, lost offerings, lost verified
 specifications or lost regional prices abort a live replacement. Regional
 all-inclusive pricing, preorder placeholders, year conflicts and older new-stock
 research remain explicit. See [the Genesis source contract](docs/GENESIS-CONFIGURATOR.md).
+
+Refresh Rivian with `npm run catalog:sync:rivian`; `-- --offline` verifies the
+original request/response hashes and reconstructs the dated snapshot. Reviewed
+captures can use `-- --from-captures <manifest.json>`. Canadian model-year rules,
+visible wheel/package dependencies, native MSRP/fee breakdowns and sampled
+new-stock identities must reconcile. A changed reviewed UI contract, required
+source failure or lost offering/served search context aborts a live replacement.
+R2/R3 ordering identities, independent national stock review, individual options
+and exact technical measurements remain open. See
+[the Rivian source contract](docs/RIVIAN-CONFIGURATOR.md).
 
 Manufacturer listings establish a current offering, not dealer stock or delivery
 dates; older model-year inventory and additional specifications still need review.

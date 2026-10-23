@@ -145,6 +145,7 @@ const manufacturerHosts = new Set([
   'api.minicdn.ca',
   'www.genesis.com',
   'acquisition.genesis.ca',
+  'rivian.com',
   'n8xgyscaa3.execute-api.ca-central-1.amazonaws.com',
 ]);
 

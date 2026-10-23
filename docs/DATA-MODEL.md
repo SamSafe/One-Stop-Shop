@@ -101,6 +101,17 @@ contradictory rear/front cargo values unknown with an explanation, without silen
 swapping them. Coming-soon flags on previous-year entries and older references
 with building disabled remain explicit availability/inventory research gaps.
 
+Rivian imports follow the Canadian builder's visible choices and exact model-year
+rules. Paired wheel packages, All-Terrain equipment and underbody protection are
+derived from those choices. Each equipment profile retains its least expensive
+compatible wheel/interior selection; individual cosmetic alternatives and
+accessory quantities remain outside that expansion. Factory MSRP excludes paint,
+accessory products, delivery, taxes, fees and incentives. Older new-stock profiles
+retain their own ruleset and stable identity independent of price. Sampled stock
+configuration references do not establish a physical or exhaustive national count.
+Current Captain's Chairs use an explicit six-seat description; older stock does
+not inherit current-year seating or technical figures.
+
 The checked-in NRCan snapshot preserves every selected record and per-page
 response receipts. Build-time expansion joins reviewed retail configurations by
 explicit NRCan IDs. Both Forester trims can share one rating; exact trim identities

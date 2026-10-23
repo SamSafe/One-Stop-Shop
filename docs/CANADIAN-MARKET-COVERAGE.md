@@ -924,3 +924,57 @@ fingerprint matches the source. JavaScript is 9,568.05 kB raw / 918.68 kB gzip,
 with the large-chunk performance warning open. Live refresh also refuses lost
 offerings, verified specification downgrades and lost regional prices pending
 review; source failures cannot silently erase previously verified data.
+
+## Rivian visible factory choices and observed older new stock imported
+
+The Canadian overview and anonymous builder reconcile R1S and R1T ordering with
+explicit 2027 Canadian model-year rules. Expansion follows the actual UI events:
+trim, drive system, Power Upgrade, wheel, interior, Sound + Vision and Captain's
+Chairs. All-Terrain, wheel packages and underbody protection derive from their
+paired selections. Internal options are not independently multiplied into
+combinations the builder does not offer.
+
+The final graph has 290 valid states, with all 2,420 explored transitions and
+state prices matching the published engine during isolated research. Equipment
+projection retains 46 R1S and 23 R1T current profiles, each using its least
+expensive compatible wheel/interior choice. Exact native MSRP reconciles before
+the separate $3,117 fee breakdown. R1S Premium is $151,990; Long Range with the
+actual All-Terrain wheel/package selection is $169,390, or $175,290 with the
+six-seat Captain's Chairs/Sound + Vision bundle. R1T Premium is $144,990. Stale
+marketing fields, discounts and fee-inclusive totals do not replace factory MSRP.
+
+Thirteen sample delivery points were queried for each model. Eight successful
+AB/BC/ON/QC searches return 132 rows and 45 distinct new-stock configuration
+references across 2026–2027. The other sampled points return NO_DC, which
+establishes a limitation at those points rather than province-wide absence.
+Physical vehicle counts and exhaustive national inventory are unverified.
+Four exact model/version stock rulesets reconcile. Four paint-only duplicate
+references merge, and four matching 2027 configurations merge with current profiles.
+Thirty-seven additional 2026 equipment profiles remain, for 106 Rivian profiles.
+All have verified factory MSRP, with paint, accessory products, fees and
+incentives excluded. Wheel and interior names explain stock price differences;
+stock identities remain stable when prices change.
+
+Two omitted charging-adapter codes are tolerated only at zero effective price
+under their exact rules; the adapter does not claim those products accompany a
+stock vehicle. Current model seating and explicit six-seat descriptions retain
+their own sources. Older seating, unjoined technical figures, EPA estimates and
+ambiguous charging/cargo arrangements remain unknown. R2 reservations and R3
+ordering identities remain explicit research gaps. See
+[the Rivian source contract](RIVIAN-CONFIGURATOR.md).
+
+The catalog now contains 5,425 records: 2,911 retail profiles, 1,992 verified base
+prices, 39 separate regional all-inclusive prices, 2,514 government rating
+variants and 906 official sources. There are 2,885 manufacturer-listed
+configurations and 2,531 availability-unchecked records. Twenty-four baseline
+makes still need manufacturer imports, alongside makers outside that baseline
+and unresolved ordering, stock, equipment and measurement gaps. The full-market
+completion check continues to fail as expected; the goal remains active.
+
+Validation passed 206 unit tests, package boundaries, catalog validation, types,
+build and checksum-verified offline reconstruction. All 124 production browser
+checks passed across desktop Chromium/Firefox and mobile Chromium/WebKit; four
+focused Rivian journeys then passed again after clarifying equipment names and
+price notes. The refreshed preview health endpoint and current bundle return
+HTTP 200, and the release fingerprint matches the source. JavaScript is
+9,797.12 kB raw / 944.52 kB gzip; the large-chunk performance warning remains open.
