@@ -238,6 +238,15 @@ each stored selection and price. Changed selection semantics, capped/inconsisten
 queries, lost current profiles and lost older year/trim evidence abort live
 replacement. See [the Lucid source contract](docs/LUCID-CONFIGURATOR.md).
 
+Refresh the initial Mercedes-Benz base profiles with
+`npm run catalog:sync:mercedes`; `-- --offline` verifies response hashes and exact
+reconstruction. Current menu identities, all published model/build pages and
+both Sprinter passenger/crew selectors must reconcile before atomic replacement.
+Package combinations, older new stock, the Maybach EQS SUV menu placeholder and
+one withheld C 300 price conflict remain open. This import does not establish
+complete Mercedes-Benz coverage. See
+[the Mercedes-Benz source contract](docs/MERCEDES-CONFIGURATOR.md).
+
 Manufacturer listings establish a current offering, not dealer stock or delivery
 dates; older model-year inventory and additional specifications still need review.
 

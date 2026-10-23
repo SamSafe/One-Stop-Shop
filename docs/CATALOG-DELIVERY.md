@@ -1,6 +1,7 @@
 # Validated catalog delivery
 
-The catalog now contains 5,846 records and 950 sources. Loading every
+At the delivery measurement milestone the catalog contained 5,846 records and
+950 sources. Loading every
 manufacturer's source tables and validators in the browser made startup costly.
 Build preparation now supplies the complete comparison catalog as a separate
 hashed data asset. Numeric facts, unknown notes, source links, optional fields,

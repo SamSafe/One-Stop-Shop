@@ -18,6 +18,7 @@ import {
   genesisSnapshot,
   rivianSnapshot,
   lucidSnapshot,
+  mercedesSnapshot,
 } from '../packages/car-catalog/src/index.ts';
 import { catalogCoverage } from '../packages/car-catalog/src/coverage.ts';
 import { mazdaMeasurementConflicts } from '../packages/car-catalog/src/mazda.ts';
@@ -33,6 +34,7 @@ import { miniReviewGaps } from '../packages/car-catalog/src/mini.ts';
 import { genesisReviewGaps } from '../packages/car-catalog/src/genesis.ts';
 import { rivianReviewGaps } from '../packages/car-catalog/src/rivian.ts';
 import { lucidReviewGaps } from '../packages/car-catalog/src/lucid.ts';
+import { mercedesReviewGaps } from '../packages/car-catalog/src/mercedes.ts';
 import sourceAccessReviews from '../docs/catalog-source-access.json';
 
 const report = {
@@ -83,6 +85,7 @@ const report = {
     ...genesisReviewGaps(genesisSnapshot),
     ...rivianReviewGaps(rivianSnapshot),
     ...lucidReviewGaps(lucidSnapshot),
+    ...mercedesReviewGaps(mercedesSnapshot),
     ...genesisSnapshot.rejectedSpecifications.map((s) => ({
       brand: 'Genesis',
       configuration: s.label,
@@ -234,6 +237,15 @@ const report = {
     ),
   ],
   manufacturerConfigurationExpansion: [
+    {
+      brand: 'Mercedes-Benz',
+      currentCarModelYears: mercedesSnapshot.cars.length,
+      currentVanModelYears: mercedesSnapshot.vans.length,
+      capturedBaseProfiles: mercedesSnapshot.cars.length + mercedesSnapshot.vans.length,
+      additionalSelectionsExhaustivelyExpanded: false,
+      remaining:
+        'Initial base profiles only. Named trim/package compatibility, optional seating, remaining new-stock years, the unidentified Maybach EQS SUV family and unjoined technical measurements remain open. One reviewed C 300 MSRP conflict is withheld.',
+    },
     ...lucidSnapshot.current.map((c) => ({
       brand: 'Lucid',
       model: c.builder.model,

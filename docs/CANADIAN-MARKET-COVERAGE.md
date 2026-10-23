@@ -1071,3 +1071,42 @@ health and catalog-asset requests return HTTP 200. The production preview remain
 at http://127.0.0.1:8080. Coverage is unchanged at 5,846 records and 3,332 retail
 profiles; the 23 remaining baseline makes and recorded market/specification gaps
 remain open, and the full-market goal remains active.
+
+## Mercedes-Benz initial Canadian base profiles
+
+The 2026-10-23 capture adds 77 base model-year profiles: all 66 explicit current
+passenger-car/SUV menu identities and 11 Sprinter passenger/crew model codes.
+Forty-eight car/SUV entries and all vans have captured factory builders. All
+required sources are HTTP 200 with exact Canadian year/model identity and hashes.
+Eighteen currently listed entries without a builder remain included with an
+ordering/inventory gap. Duplicate EV/PHEV menu references do not duplicate cars.
+
+There are 76 verified base prices. The 2026 C 300 model page and factory builder
+conflict (51,650 versus 62,250 CAD); comparable MSRP remains unknown. Active
+builder price mode is checked, including the distinction between CCS equipment
+defaults and legacy MSRP pricing. An inactive default-model amount is not
+substituted. Exact-year metric dimensions, standard seats and qualified hp are
+included; boost maxima and optional seats are not base facts. Sprinter passenger
+seating follows exact wheelbase/roof filters (12/15), while crew capacity remains
+unknown. PHEV power without explicit combined-output qualification is withheld.
+
+This is an initial base-profile import. Named trim/package compatibility,
+optional seating/wheels/roofs, older new stock, the unidentified Maybach EQS SUV
+family and additional technical joins remain open. The car inventory initdata
+endpoint returned HTTP 500 during review; an empty UI is not absence evidence.
+See [the source contract](MERCEDES-CONFIGURATOR.md).
+
+The catalog now contains 5,923 records: 3,409 retail profiles and 2,514 standalone
+government variants, with 2,489 verified base prices, 39 separately qualified
+all-inclusive prices and 1,078 official sources. There are 3,383 dated
+manufacturer-listed profiles. Twenty-two makes in the government baseline still
+lack current manufacturer listings, and the existing package, inventory and
+specification gaps remain open. The full-market gate remains false.
+
+Validation passed 230 unit tests and all 144 production browser checks across
+desktop/mobile Chromium, Firefox and mobile WebKit. Catalog validation, exact
+offline Mercedes reconstruction, types, boundaries, formatting, prepared-catalog
+parity, production build and release integrity passed. The local production
+preview remains available at http://127.0.0.1:8080. The complete expanded catalog
+asset is 4,676.92 kB raw / 722.93 kB gzip; manufacturer ingestion stays outside
+browser JavaScript.

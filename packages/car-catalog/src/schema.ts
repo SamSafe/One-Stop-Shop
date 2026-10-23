@@ -115,6 +115,10 @@ const manufacturerHosts = new Set([
   'ext.cpq.lucidmotors.com',
   'buynow.lucidmotors.com',
   'n8xgyscaa3.execute-api.ca-central-1.amazonaws.com',
+  'www.mercedes-benz.ca',
+  'www.mercedes-benz-vans.ca',
+  'nafta-service.mbusa.com',
+  'nafta-service.mbvans.com',
 ]);
 
 export const sourceSchema = z.strictObject({

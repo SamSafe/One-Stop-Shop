@@ -18,6 +18,7 @@ import miniData from '../data/manufacturers/mini.json';
 import genesisData from '../data/manufacturers/genesis.json';
 import rivianData from '../data/manufacturers/rivian.json';
 import lucidData from '../data/manufacturers/lucid.json';
+import mercedesData from '../data/manufacturers/mercedes.json';
 import { validateCatalog } from './schema';
 import { validateNrcanSnapshot } from './nrcan-schema';
 import { expandCatalog } from './expand';
@@ -55,6 +56,8 @@ import { validateRivianSnapshot } from './rivian-import';
 import { addRivianRetail } from './rivian';
 import { validateLucidSnapshot } from './lucid-import';
 import { addLucidRetail } from './lucid';
+import { validateMercedesSnapshot } from './mercedes-import';
+import { addMercedesRetail } from './mercedes';
 
 export * from './schema';
 export { ratingUrl } from './expand';
@@ -78,6 +81,7 @@ export const miniSnapshot = validateMiniSnapshot(miniData);
 export const genesisSnapshot = validateGenesisSnapshot(genesisData);
 export const rivianSnapshot = validateRivianSnapshot(rivianData);
 export const lucidSnapshot = validateLucidSnapshot(lucidData);
+export const mercedesSnapshot = validateMercedesSnapshot(mercedesData);
 const previouslyImportedRetail = addMazdaRetail(
   addFordRetail(
     addHondaRetail(
@@ -110,5 +114,8 @@ const rivianRetailCatalog = addRivianRetail(
   addGenesisRetail(addMiniRetail(bmwRetailCatalog, miniSnapshot), genesisSnapshot),
   rivianSnapshot,
 );
-export const retailCatalog = addLucidRetail(rivianRetailCatalog, lucidSnapshot);
+export const retailCatalog = addMercedesRetail(
+  addLucidRetail(rivianRetailCatalog, lucidSnapshot),
+  mercedesSnapshot,
+);
 export const catalog = expandCatalog(retailCatalog, nrcanSnapshot, links);
