@@ -44,6 +44,7 @@
     "catalog:sync:rivian": "node --import tsx scripts/sync-rivian.ts",
     "catalog:sync:lucid": "node --import tsx scripts/sync-lucid.ts",
     "catalog:sync:mercedes": "node --import tsx scripts/sync-mercedes.ts",
+    "catalog:sync:mercedes-vans": "node --import tsx scripts/sync-mercedes-vans.ts",
     "check:boundaries": "node scripts/check-boundaries.mjs",
     "check": "npm run check:boundaries && npm run test && npm run build"
   },

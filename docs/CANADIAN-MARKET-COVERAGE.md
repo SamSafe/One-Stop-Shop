@@ -1110,3 +1110,44 @@ parity, production build and release integrity passed. The local production
 preview remains available at http://127.0.0.1:8080. The complete expanded catalog
 asset is 4,676.92 kB raw / 722.93 kB gzip; manufacturer ingestion stays outside
 browser JavaScript.
+
+## Mercedes-Benz passenger/crew new-stock years
+
+The next capture reconciles every passenger/crew query page for all 54 dealers
+in the manufacturer's Canadian directory: 18 dealer groups, 19 pages and 81
+distinct manufacturer-classified NEW vehicles. All are marked available,
+non-demo and unreserved in the captured responses. The query uses 70
+source-declared passenger/crew model codes without year, price or equipment
+restrictions. It includes archived references without treating them as current
+offerings. Page numbers, row offsets, totals and unique vehicle hashes reconcile.
+
+Five observed 2025 Sprinter model-year/code profiles were absent from the current
+factory selectors. Their exact Canadian factory content supplies bare-model MSRP:
+2CV144H 74,640 CAD, 2CV144S 70,660 CAD, 2P144A 93,730 CAD, 2P144H 84,290 CAD and
+2P144S 80,200 CAD. Current base profiles gain model-level stock evidence. Optional
+stock packages, roofs, paint and configured listing amounts are not copied into
+the base profiles' prices or technical facts. An older roof-metadata conflict
+remains explicit, and roof claims are omitted from the added visible labels.
+
+The tracked source retains original receipt timestamps and hashes, with hashed
+vehicle identities and no VINs. Offline reconstruction is exact. Losing dealer
+contexts, query pages or observed model-year offerings requires review; changed
+source clients, wrong-year prices and broken joins abort replacement. A Metris
+passenger filter entry has no returned stock observation and is not imported as
+currently available. See [the van-stock contract](MERCEDES-VAN-STOCK.md).
+
+The catalog now has 5,928 records, including 3,414 retail profiles, 2,494 verified
+base prices, 39 separately qualified all-inclusive prices and 1,102 official
+sources. There are 3,388 dated manufacturer-listed profiles. All 2,518 government
+rating IDs remain represented, with 2,514 standalone rating variants. The 22
+baseline makes lacking current manufacturer imports remain open, along with
+independent inventory, passenger-car stock, equipment and specification gaps.
+The full-market gate remains false.
+
+Validation passed 238 unit tests and all 148 production browser checks across
+desktop/mobile Chromium, Firefox and mobile WebKit, without retries. Exact
+offline stock reconstruction, catalog validation, types, boundaries, formatting,
+prepared-catalog parity, production build and all ten release artifact hashes
+passed. The source fingerprint matches. The complete prepared catalog asset is
+4,707.32 kB raw / 725.66 kB gzip, and the preview remains at
+http://127.0.0.1:8080. These checks verify this milestone, not full market coverage.

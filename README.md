@@ -247,6 +247,13 @@ one withheld C 300 price conflict remain open. This import does not establish
 complete Mercedes-Benz coverage. See
 [the Mercedes-Benz source contract](docs/MERCEDES-CONFIGURATOR.md).
 
+Refresh Canadian Mercedes passenger/crew van new-stock evidence with
+`npm run catalog:sync:mercedes-vans`. All directory dealer groups, page totals,
+distinct identities and older exact-year bare-model MSRP must reconcile. The
+`-- --offline` option checks original receipt hashes and exact reconstruction.
+Stock equipment and configured selling prices remain separate from base profiles.
+See [the van-stock source contract](docs/MERCEDES-VAN-STOCK.md).
+
 Manufacturer listings establish a current offering, not dealer stock or delivery
 dates; older model-year inventory and additional specifications still need review.
 

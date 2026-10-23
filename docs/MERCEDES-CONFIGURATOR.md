@@ -101,6 +101,11 @@ tree and price ranges alone do not prove actual available vehicles. The native
 search request, distinct listings and exact older-year price components still
 need reconciliation before importing additional stock profiles.
 
+A subsequent [passenger/crew van stock pass](MERCEDES-VAN-STOCK.md) reconciles
+all 54 published Canadian dealer contexts and adds five observed older base
+profiles. It keeps bare-model MSRP separate from configured stock amounts.
+The car stock, package and independent full-market gaps above remain open.
+
 ## Refresh and validation
 
 Run `npm run catalog:sync:mercedes`. Reviewed original captures can be imported

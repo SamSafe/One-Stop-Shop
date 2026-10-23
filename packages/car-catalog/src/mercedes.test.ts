@@ -29,8 +29,8 @@ describe('Canadian Mercedes-Benz base model years, passenger and crew vans', () 
       ['passenger-van', 5],
       ['crew-van', 6],
     ]);
-    expect(retail).toHaveLength(77);
-    expect(retail.filter((c) => c.facts.msrpCad.value !== null)).toHaveLength(76);
+    expect(retail).toHaveLength(82);
+    expect(retail.filter((c) => c.facts.msrpCad.value !== null)).toHaveLength(81);
     expect(new Set(retail.map((c) => c.year))).toEqual(new Set([2025, 2026, 2027]));
     expect(snapshot.placeholders).toEqual([
       'https://www.mercedes-benz.ca/en/vehicles/class/maybach-eqs/suv',
@@ -113,7 +113,7 @@ describe('Canadian Mercedes-Benz base model years, passenger and crew vans', () 
     expect(car('DCVS2S').facts.msrpCad.value).toBe(68530);
     expect(car('DCVS2S').facts.seats.value).toBeNull();
     expect(car('DCVS2S').facts.seats.note).toContain('Mixed-year');
-    expect(retail.filter((c) => c.bodyStyle === 'Van')).toHaveLength(11);
+    expect(retail.filter((c) => c.bodyStyle === 'Van')).toHaveLength(16);
   });
   it('rejects missing menu/builder/van entries, duplicate identities, altered years and foreign receipts', () => {
     const omitted = structuredClone(snapshot);

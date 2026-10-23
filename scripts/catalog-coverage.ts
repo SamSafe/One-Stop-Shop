@@ -19,6 +19,7 @@ import {
   rivianSnapshot,
   lucidSnapshot,
   mercedesSnapshot,
+  mercedesVanStockSnapshot,
 } from '../packages/car-catalog/src/index.ts';
 import { catalogCoverage } from '../packages/car-catalog/src/coverage.ts';
 import { mazdaMeasurementConflicts } from '../packages/car-catalog/src/mazda.ts';
@@ -35,6 +36,7 @@ import { genesisReviewGaps } from '../packages/car-catalog/src/genesis.ts';
 import { rivianReviewGaps } from '../packages/car-catalog/src/rivian.ts';
 import { lucidReviewGaps } from '../packages/car-catalog/src/lucid.ts';
 import { mercedesReviewGaps } from '../packages/car-catalog/src/mercedes.ts';
+import { mercedesVanStockGaps } from '../packages/car-catalog/src/mercedes-vans.ts';
 import sourceAccessReviews from '../docs/catalog-source-access.json';
 
 const report = {
@@ -86,6 +88,7 @@ const report = {
     ...rivianReviewGaps(rivianSnapshot),
     ...lucidReviewGaps(lucidSnapshot),
     ...mercedesReviewGaps(mercedesSnapshot),
+    ...mercedesVanStockGaps(mercedesVanStockSnapshot),
     ...genesisSnapshot.rejectedSpecifications.map((s) => ({
       brand: 'Genesis',
       configuration: s.label,
@@ -237,6 +240,19 @@ const report = {
     ),
   ],
   manufacturerConfigurationExpansion: [
+    {
+      brand: 'Mercedes-Benz vans',
+      searchedCanadianDealers: mercedesVanStockSnapshot.dealers.length,
+      capturedNewStockPages: mercedesVanStockSnapshot.groups.reduce(
+        (n, g) => n + g.pages.length,
+        0,
+      ),
+      distinctNewVehicleIdentities: mercedesVanStockSnapshot.observations.length,
+      additionalOlderBaseProfiles: mercedesVanStockSnapshot.archives.length,
+      additionalSelectionsExhaustivelyExpanded: false,
+      remaining:
+        'Observed stock equipment, configured-price reconciliation, independent national inventory checks, passenger-car stock and technical joins remain open. Metris filter metadata is not current-stock proof.',
+    },
     {
       brand: 'Mercedes-Benz',
       currentCarModelYears: mercedesSnapshot.cars.length,

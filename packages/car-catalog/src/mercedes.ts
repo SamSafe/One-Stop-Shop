@@ -274,13 +274,13 @@ export function mercedesReviewGaps(snapshot: MercedesSnapshot) {
       brand: 'Mercedes-Benz',
       field: 'scope',
       reason:
-        'Initial import covers current explicitly identified Canadian base model-year profiles only. Named trim/package compatibility, optional seating/wheels/roofs, cosmetic choices, older new stock and independent national inventory reconciliation remain open. It does not establish complete Mercedes-Benz or Canadian market coverage.',
+        'Initial import covers current explicitly identified Canadian base model-year profiles only. Named trim/package compatibility, optional seating/wheels/roofs, cosmetic choices, unobserved older new stock and independent national inventory reconciliation remain open. It does not establish complete Mercedes-Benz or Canadian market coverage.',
     },
     {
       brand: 'Mercedes-Benz',
       field: 'new-stock',
       reason:
-        'A separate 2026-10-23 review of the published Canadian passenger-car inventory initdata endpoint returned HTTP 500 (upstream service failure). Normal base-profile refresh does not recheck that endpoint. An empty inventory UI is not proof of no vehicles. National car and van stock, including older model years, remains unverified.',
+        'A separate 2026-10-23 review of the published Canadian passenger-car inventory initdata endpoint returned HTTP 500 (upstream service failure). Normal base-profile refresh does not recheck that endpoint. An empty inventory UI is not proof of no vehicles. Passenger-car stock and independent nationwide van coverage beyond the separate captured dealer queries remain unverified.',
     },
     ...snapshot.placeholders.map((url) => ({
       brand: 'Mercedes-Benz',
