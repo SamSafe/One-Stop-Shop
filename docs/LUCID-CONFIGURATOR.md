@@ -66,7 +66,7 @@ not claim every cosmetic combination has its own record or copy ranges across
 wheel sizes. Stock retains its actual non-paint equipment.
 
 Complete expansion runs during synchronization and compares serialized profiles,
-counts and prices. Application startup validates each stored selection, expected
+counts and prices. Build preparation validates each stored selection, expected
 profile key and price without rerunning all 67,078 transitions.
 
 ## Price basis and reconciliation

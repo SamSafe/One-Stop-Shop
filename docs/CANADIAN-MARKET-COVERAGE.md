@@ -1038,3 +1038,36 @@ and checksum-verified offline reconstruction passed. The refreshed preview
 health endpoint and current bundle return HTTP 200, and the source fingerprint
 matches the build. JavaScript is 10,601.77 kB raw / 1,013.27 kB gzip; startup load
 and the large-chunk warning remain open production-readiness work.
+
+## Browser startup load reduced without changing catalog coverage
+
+Build preparation now validates the canonical catalog in Node and emits a
+lossless hashed data asset. Every record, fact, qualifier, source, ID, date and
+record order must survive an exact encode/decode comparison. Shared decoded
+facts are immutable. A browser-bundle gate allows only metrics, rating URLs and
+the runtime decoder from the catalog package; source snapshots, schemas and
+manufacturer importers remain in preparation tooling.
+
+JavaScript falls from 10,601.77 kB raw / 1,013.27 kB gzip to 266.02 kB raw /
+83.29 kB gzip across three chunks. The separate catalog asset is 4,547.33 kB raw /
+703.19 kB gzip and participates in release hashes, readiness and immutable
+caching. The JavaScript large-chunk warning is resolved without raising its
+threshold. Median first-card time in three fresh local Chromium contexts falls
+from 3,962 ms to 591 ms. This is a local measurement; data transfer and further
+growth remain performance considerations. See
+[catalog delivery](CATALOG-DELIVERY.md) for the format and measurements.
+
+The loader shows progress immediately. Failed data delivery offers reload while
+preserving the device shortlist. Development prepares data in a fresh Node/tsx
+process and automatically restarts/reloads after catalog source changes. A
+modification-time-only source check verified refresh with unchanged bytes, no
+browser ingestion requests and no page errors.
+
+Validation passed 221 unit tests and all 136 production browser checks across
+the four browser projects, plus focused loading/recovery checks. Catalog
+validation, types, boundaries, formatting, build, exact payload parity and all
+ten emitted artifact hashes passed. The source fingerprint matches, and preview
+health and catalog-asset requests return HTTP 200. The production preview remains
+at http://127.0.0.1:8080. Coverage is unchanged at 5,846 records and 3,332 retail
+profiles; the 23 remaining baseline makes and recorded market/specification gaps
+remain open, and the full-market goal remains active.

@@ -59,6 +59,7 @@ import { addLucidRetail } from './lucid';
 export * from './schema';
 export { ratingUrl } from './expand';
 export const nrcanSnapshot = validateNrcanSnapshot(snapshot);
+export const governmentRatingCount = nrcanSnapshot.records.length;
 export const curatedCatalog = validateCatalog(data);
 export const subaruSnapshot = validateSubaruSnapshot(subaruData);
 export const tciSnapshot = validateTciSnapshot(tciData);

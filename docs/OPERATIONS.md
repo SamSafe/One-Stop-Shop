@@ -69,6 +69,14 @@ streams gzip, uses no-cache for HTML and long immutable caching for hashed
 assets. It supplies CSP, nosniff, framing, referrer and permissions policies.
 Request URLs are not logged by the app; a reverse proxy/host may log them.
 
+The catalog is a hashed JSON asset in the release manifest, fetched from the same
+origin after the small UI loader starts. Deploy the complete `dist` directory,
+including JSON assets; use immutable caching and gzip for these assets as for
+hashed scripts. Failed catalog delivery shows a reload action while preserving
+saved device data. No manufacturer API is contacted by the browser. See
+[catalog delivery](CATALOG-DELIVERY.md) for preparation, development refresh and
+startup measurements.
+
 ## Static hosting / Sites
 
 The tracked .openai/hosting.json selects this release's owner-private Sites

@@ -1,0 +1,40 @@
+export const metricDefinitions = {
+  msrpCad: { label: 'Base MSRP', unit: 'CAD', min: 10000, max: 10000000 },
+  fuelCityL100km: { label: 'City consumption', unit: 'L/100 km', min: 1, max: 50 },
+  fuelHighwayL100km: { label: 'Highway consumption', unit: 'L/100 km', min: 1, max: 50 },
+  fuelCombinedL100km: { label: 'Combined consumption', unit: 'L/100 km', min: 1, max: 50 },
+  horsepower: { label: 'Power', unit: 'hp', min: 50, max: 1500 },
+  seats: { label: 'Seats', unit: 'people', min: 2, max: 15 },
+  cargoSeatsUpL: { label: 'Cargo · seats up', unit: 'L', min: 10, max: 4000 },
+  cargoSeatsDownL: { label: 'Cargo · seats down', unit: 'L', min: 10, max: 6000 },
+  frontHeadroomMm: { label: 'Front headroom', unit: 'mm', min: 600, max: 1600 },
+  rearHeadroomMm: { label: 'Rear headroom', unit: 'mm', min: 600, max: 1600 },
+  frontLegroomMm: { label: 'Front legroom', unit: 'mm', min: 600, max: 1600 },
+  rearLegroomMm: { label: 'Rear legroom', unit: 'mm', min: 600, max: 1600 },
+  lengthMm: { label: 'Length', unit: 'mm', min: 2500, max: 8000 },
+  widthMm: { label: 'Published width', unit: 'mm', min: 1200, max: 2600 },
+  heightMm: { label: 'Height', unit: 'mm', min: 1000, max: 3000 },
+  electricCombinedKwh100km: {
+    label: 'Electric consumption · combined',
+    unit: 'kWh/100 km',
+    min: 1,
+    max: 150,
+  },
+  electricModeFuelL100km: {
+    label: 'Fuel used in plug-in electric mode',
+    unit: 'L/100 km',
+    min: 0,
+    max: 50,
+  },
+  electricModeLe100km: {
+    label: 'Electric mode · gasoline equivalent',
+    unit: 'Le/100 km',
+    min: 0.1,
+    max: 25,
+  },
+  electricRangeKm: { label: 'Electric driving range', unit: 'km', min: 1, max: 2000 },
+  rechargeHours: { label: 'Published recharge time', unit: 'h', min: 0.1, max: 72 },
+  co2Gkm: { label: 'Tailpipe CO₂', unit: 'g/km', min: 0, max: 1500 },
+} as const;
+
+export type Metric = keyof typeof metricDefinitions;

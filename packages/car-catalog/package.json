@@ -4,7 +4,10 @@
   "private": true,
   "type": "module",
   "exports": {
-    ".": "./src/index.ts"
+    ".": "./src/index.ts",
+    "./runtime": "./src/runtime.ts",
+    "./metrics": "./src/metrics.ts",
+    "./rating-url": "./src/rating-url.ts"
   },
   "dependencies": {
     "zod": "4.1.12"

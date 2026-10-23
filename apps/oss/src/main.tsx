@@ -1,8 +1,9 @@
-import { Component, StrictMode } from 'react';
+import { Component, StrictMode, Suspense, lazy } from 'react';
 import type { ErrorInfo, ReactNode } from 'react';
 import { createRoot } from 'react-dom/client';
-import { App } from './App';
 import './styles.css';
+
+const App = lazy(() => import('./App').then(({ App }) => ({ default: App })));
 
 class ErrorBoundary extends Component<{ children: ReactNode }, { failed: boolean }> {
   state = { failed: false };
@@ -31,7 +32,17 @@ class ErrorBoundary extends Component<{ children: ReactNode }, { failed: boolean
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <ErrorBoundary>
-      <App />
+      <Suspense
+        fallback={
+          <main className="error-page" role="status">
+            <p className="eyebrow">ONE STOP SHOP</p>
+            <h1>Loading Canadian vehicles…</h1>
+            <p>Preparing comparisons and sources.</p>
+          </main>
+        }
+      >
+        <App />
+      </Suspense>
     </ErrorBoundary>
   </StrictMode>,
 );

@@ -7,8 +7,8 @@ const unknown = (): Fact => ({
   source: null,
   note: 'Not supplied by the government fuel-rating dataset; Canadian retail specifications still need verification.',
 });
-export const ratingUrl = (recordId: number) =>
-  `https://fcr-ccc.nrcan-rncan.gc.ca/en/VehicleReport/${recordId}`;
+import { ratingUrl } from './rating-url';
+export { ratingUrl } from './rating-url';
 
 export function fuelForRating(record: NrcanRecord): Car['fuel'] {
   if (record.VehicleTypeId === 'BEV') return 'Electric';

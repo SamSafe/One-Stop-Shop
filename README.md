@@ -104,8 +104,13 @@ To test the container:
 - scripts: catalog and boundary checks plus a dependency-free production server.
 - tests/e2e: real browser journeys, accessibility and HTTP production checks.
 
-A static catalog is bundled at build time. There is no runtime database,
-application account service, third-party analytics or secret configuration.
+Build preparation validates the complete source catalog and produces a lossless,
+hashed data asset. Browsers load comparison data separately from the small UI;
+manufacturer importers and their source snapshots run in Node during preparation.
+Loading and download-recovery states preserve the device shortlist. See
+[catalog delivery and startup measurements](docs/CATALOG-DELIVERY.md).
+There is no runtime database, application account service, third-party analytics
+or secret configuration.
 Shortlists use local storage; comparisons and weights use URL parameters.
 Garage remains independent and will reuse the catalog when it is implemented.
 
@@ -228,7 +233,7 @@ Refresh Lucid with `npm run catalog:sync:lucid`; `-- --offline` verifies respons
 hashes and reconstructs the dated snapshot. Reviewed captures can use
 `-- --from-captures <manifest.json>`. Menu, factory graph, exact Canadian
 model-year price components and sampled new-stock identities must reconcile.
-Full graph expansion runs during synchronization; application startup validates
+Full graph expansion runs during synchronization; build preparation validates
 each stored selection and price. Changed selection semantics, capped/inconsistent
 queries, lost current profiles and lost older year/trim evidence abort live
 replacement. See [the Lucid source contract](docs/LUCID-CONFIGURATOR.md).

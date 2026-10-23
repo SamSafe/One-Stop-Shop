@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { catalog, metricDefinitions, nrcanSnapshot, ratingUrl } from '@oss/car-catalog';
+import { catalog, metricDefinitions, governmentRatingCount, ratingUrl } from '@oss/car-catalog';
 import type { Car, Fact, Metric } from '@oss/car-catalog';
 import {
   annualEnergyCost,
@@ -1075,10 +1075,10 @@ export function App() {
               <div className="scope-note">
                 <strong>Coverage is expanding.</strong>
                 <p>
-                  {nrcanSnapshot.records.length.toLocaleString('en-CA')} government ratings are
-                  imported. Retail trim, price and current availability reviews are still in
-                  progress. NRCan groups some conventional and hybrid variants together. A rating is
-                  not a live inventory listing.
+                  {governmentRatingCount.toLocaleString('en-CA')} government ratings are imported.
+                  Retail trim, price and current availability reviews are still in progress. NRCan
+                  groups some conventional and hybrid variants together. A rating is not a live
+                  inventory listing.
                 </p>
               </div>
             </aside>
