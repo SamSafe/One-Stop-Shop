@@ -42,6 +42,7 @@
     "catalog:capture:mini-stock": "node scripts/capture-mini-stock.mjs",
     "catalog:sync:genesis": "node --import tsx scripts/sync-genesis.ts",
     "catalog:sync:rivian": "node --import tsx scripts/sync-rivian.ts",
+    "catalog:sync:lucid": "node --import tsx scripts/sync-lucid.ts",
     "check:boundaries": "node scripts/check-boundaries.mjs",
     "check": "npm run check:boundaries && npm run test && npm run build"
   },

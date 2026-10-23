@@ -2,8 +2,8 @@
 
 A Canadian car comparison app that explains how each configuration fits your
 priorities. Market expansion is in progress: the working catalog includes 2,518
-NRCan rating records for 2025–2027 across 47 makes, plus 2,911 retail configurations
-(1,992 with verified base prices), including 40 currently listed Subaru configurations and
+NRCan rating records for 2025–2027 across 47 makes, plus 3,332 retail configurations
+(2,413 with verified base prices), including 40 currently listed Subaru configurations and
 328 Toyota/Lexus factory packages, 78 Honda/Acura configurations and 212 default
 Ford/Lincoln factory configurations, 68 Mazda model/option configurations and
 80 Hyundai factory trims/packages, 126 Kia factory trims/packages and 1,230
@@ -11,7 +11,10 @@ Chevrolet/GMC/Buick/Cadillac factory matrix configurations and 101 Nissan/Infini
 versions and equipment packages, 33 Volkswagen factory configurations and 49
 Mitsubishi factory trims, 120 Polestar factory/equipped new-stock configurations and
 110 BMW stock/factory model-year profiles, 189 MINI factory/new-stock profiles and
-41 Genesis factory configurations and 106 Rivian factory/new-stock profiles.
+41 Genesis factory configurations, 106 Rivian factory/new-stock profiles and
+421 Lucid factory/new-stock profiles. Lucid includes 348 current equipment profiles
+and 73 additional stock profiles across 2025–2027; exact power and Gravity seating
+are verified while qualified ranges and other unjoined measurements remain unknown.
 Rivian includes 69 current profiles following the visible trim, drivetrain,
 wheel/package and interior choices, plus 37 additional 2026 stock profiles.
 Sampled delivery searches establish observed configurations, not an exhaustive
@@ -33,7 +36,7 @@ and GM equipment selections remain in progress; unavailable GM calculations leav
 17 MSRP values unverified; three older BMW and four MINI prices also remain unverified.
 Five retail configurations also retain the initial manufacturer specification
 review. Matching ratings are merged with those retail
-configurations instead of duplicating them. The app currently displays 5,425
+configurations instead of duplicating them. The app currently displays 5,846
 records, including gasoline/hybrid, diesel, flex-fuel, electric and plug-in hybrid
 variants, cars, SUVs, pickups and vans.
 
@@ -220,6 +223,15 @@ source failure or lost offering/served search context aborts a live replacement.
 R2/R3 ordering identities, independent national stock review, individual options
 and exact technical measurements remain open. See
 [the Rivian source contract](docs/RIVIAN-CONFIGURATOR.md).
+
+Refresh Lucid with `npm run catalog:sync:lucid`; `-- --offline` verifies response
+hashes and reconstructs the dated snapshot. Reviewed captures can use
+`-- --from-captures <manifest.json>`. Menu, factory graph, exact Canadian
+model-year price components and sampled new-stock identities must reconcile.
+Full graph expansion runs during synchronization; application startup validates
+each stored selection and price. Changed selection semantics, capped/inconsistent
+queries, lost current profiles and lost older year/trim evidence abort live
+replacement. See [the Lucid source contract](docs/LUCID-CONFIGURATOR.md).
 
 Manufacturer listings establish a current offering, not dealer stock or delivery
 dates; older model-year inventory and additional specifications still need review.

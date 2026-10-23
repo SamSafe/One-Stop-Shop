@@ -1,6 +1,63 @@
 import { test, expect } from '@playwright/test';
 import { readFileSync } from 'node:fs';
 
+test('Lucid packages, five/seven-seat Gravity and older new stock retain exact MSRP and sources', async ({
+  page,
+}) => {
+  await page.goto('/?compare=lucid-ca-69a2e39941682f00,lucid-ca-ed7ec8bfd63a5c0e');
+  const dialog = page.getByRole('dialog');
+  const prices = dialog
+    .getByRole('row')
+    .filter({ has: page.getByRole('rowheader', { name: 'Base MSRP', exact: true }) });
+  await expect(prices).toContainText('$110,700');
+  await expect(prices).toContainText('$114,700');
+  const seats = dialog
+    .getByRole('row')
+    .filter({ has: page.getByRole('rowheader', { name: 'Seats', exact: true }) });
+  await expect(seats).toContainText('5');
+  await expect(seats).toContainText('7');
+  await page.reload();
+  await expect(page.getByRole('dialog')).toBeVisible();
+  await dialog.getByRole('button', { name: 'Close comparison' }).click();
+  await page.getByLabel('Record type', { exact: true }).selectOption('retail-trim');
+  await page
+    .getByLabel('Availability evidence', { exact: true })
+    .selectOption('manufacturer-listed');
+  await page.getByLabel('Make', { exact: true }).selectOption('Lucid');
+  await page.getByLabel('Model year', { exact: true }).selectOption('2027');
+  await page.getByRole('searchbox', { name: 'Search cars' }).fill('Air Pure');
+  await expect(page.getByRole('article')).toHaveCount(3);
+  const pure = page.locator('article[aria-labelledby="title-lucid-ca-a81090c502ea4798"]');
+  await expect(pure.locator('.price-row')).toContainText('$97,600');
+  await expect(
+    page.locator('article[aria-labelledby="title-lucid-ca-481b58b35ce6a940"]'),
+  ).toContainText('$103,800');
+  await expect(
+    page.locator('article[aria-labelledby="title-lucid-ca-20ba8edcf380cf57"]'),
+  ).toContainText('$106,300');
+  await pure.getByRole('button', { name: 'Specs & sources' }).click();
+  await expect(
+    pure.getByRole('link', { name: /Base MSRP: .*Source: Lucid Canada/ }),
+  ).toHaveAttribute('href', 'https://lucidmotors.com/en-ca/configure');
+  await expect(pure).toContainText('manufacturer projections');
+  await page.getByLabel('Model year', { exact: true }).selectOption('2025');
+  await page.getByRole('searchbox', { name: 'Search cars' }).fill('Air Grand Touring');
+  const older = page.locator('article[aria-labelledby="title-lucid-ca-c6b2967d17db62cc"]');
+  await expect(older).toContainText('Observed new stock');
+  await expect(older.locator('.price-row')).toContainText('$150,000');
+  await older.getByRole('button', { name: 'Specs & sources' }).click();
+  await expect(
+    older.getByRole('link', { name: /Base MSRP: .*Source: Lucid Canada/ }),
+  ).toHaveAttribute(
+    'href',
+    'https://ext.cpq.lucidmotors.com/cpq/configurator/v2/en-ca/air/2025/prCodes',
+  );
+  await expect(older).toContainText('not the discounted stock selling price');
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(
+    true,
+  );
+});
+
 test('Rivian factory packages, six-seat layouts and older new stock keep their own price and evidence', async ({
   page,
 }) => {

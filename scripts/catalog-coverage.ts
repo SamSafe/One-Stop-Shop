@@ -17,6 +17,7 @@ import {
   miniSnapshot,
   genesisSnapshot,
   rivianSnapshot,
+  lucidSnapshot,
 } from '../packages/car-catalog/src/index.ts';
 import { catalogCoverage } from '../packages/car-catalog/src/coverage.ts';
 import { mazdaMeasurementConflicts } from '../packages/car-catalog/src/mazda.ts';
@@ -31,6 +32,7 @@ import { bmwReviewGaps } from '../packages/car-catalog/src/bmw.ts';
 import { miniReviewGaps } from '../packages/car-catalog/src/mini.ts';
 import { genesisReviewGaps } from '../packages/car-catalog/src/genesis.ts';
 import { rivianReviewGaps } from '../packages/car-catalog/src/rivian.ts';
+import { lucidReviewGaps } from '../packages/car-catalog/src/lucid.ts';
 import sourceAccessReviews from '../docs/catalog-source-access.json';
 
 const report = {
@@ -80,6 +82,7 @@ const report = {
     ...miniReviewGaps(miniSnapshot),
     ...genesisReviewGaps(genesisSnapshot),
     ...rivianReviewGaps(rivianSnapshot),
+    ...lucidReviewGaps(lucidSnapshot),
     ...genesisSnapshot.rejectedSpecifications.map((s) => ({
       brand: 'Genesis',
       configuration: s.label,
@@ -231,6 +234,15 @@ const report = {
     ),
   ],
   manufacturerConfigurationExpansion: [
+    ...lucidSnapshot.current.map((c) => ({
+      brand: 'Lucid',
+      model: c.builder.model,
+      year: c.builder.modelYear,
+      capturedFactoryProfiles: c.profiles.length,
+      additionalSelectionsExhaustivelyExpanded: false,
+      remaining:
+        'Minimum compatible wheel/interior projection, cosmetic alternatives, independent national stock reconciliation, unobserved older years and unjoined technical measurements remain open. Five zero-price menu placeholders are not current priced offerings.',
+    })),
     ...rivianSnapshot.current.map((c) => ({
       brand: 'Rivian',
       model: c.builder.sku,

@@ -978,3 +978,63 @@ focused Rivian journeys then passed again after clarifying equipment names and
 price notes. The refreshed preview health endpoint and current bundle return
 HTTP 200, and the release fingerprint matches the source. JavaScript is
 9,797.12 kB raw / 944.52 kB gzip; the large-chunk performance warning remains open.
+
+## Lucid factory equipment and exact-year new stock imported
+
+The Canadian menu and builders reconcile six priced model-year 2027 trims:
+four Air trims and two Gravity trims. Five unpriced Gravity menu placeholders
+remain ordering gaps. The importer decodes byte-framed UTF-8 Flight JSON without
+executing downloaded code. Explicit model years take precedence over older
+render-image paths.
+
+Factory expansion follows the published visible selection events, including
+Pure package component resets, forced equipment and the Gravity GT
+wheel/appearance pairing. All 67,078 explored transitions and prices match the
+published function across 5,028 reachable states during isolated research.
+Projection retains 28 Air and 320 Gravity equipment profiles with minimum
+compatible wheels/interiors; cosmetic alternatives remain a coverage limitation.
+Full expansion runs during synchronization, while application startup validates
+each stored selection, expected profile key and price.
+
+Explicit CAD/CA/trim/variant base and manufacturing prices agree, and configured
+totals reconcile to separate destination, documentation and AC charges. Pure
+starts at $97,600 factory MSRP; Stealth & Sound adds $6,200 or $8,700 once.
+Gravity Touring starts at $110,700; seven-passenger seating adds $4,000.
+Marketing delivery-charge conflicts do not become guessed price subtractions.
+Regional all-inclusive totals, discounted stock prices, trials and post-sale
+software upgrades do not replace factory MSRP.
+
+Thirty-two new-stock queries cover thirteen public sample delivery points and
+six Alberta variant partitions. Their 1,414 response rows reconcile to 115
+distinct vehicle references, including two new-titled display vehicles. The
+sampled union contains 59 Air 2026, two Air 2025, 29 Gravity 2027 and 25 Gravity
+2026 references. Equal regional counts can contain different vehicles. Every
+original configured total reconciles against its own model-year CPQ components.
+Legacy bundle/roof-colour markers are reviewed explicitly; missing prices never
+become zero. Paint-only duplicates and compatible current matches merge, leaving
+73 additional stock profiles, for 421 Lucid retail profiles. Stock identities
+remain stable under price changes. These observations do not establish a
+national physical inventory count, delivery promise or exhaustive market coverage.
+
+Exact year/variant/drive/edition power and Gravity passenger counts retain their
+sources. Projected or unjoined ranges, wheel-cover qualifications, ambiguous
+maximum storage and mirror conventions remain visible unknowns. See
+[the Lucid source contract](LUCID-CONFIGURATOR.md).
+
+The catalog now has 5,846 records: 3,332 retail profiles, 2,413 verified base
+prices, 39 separate regional all-inclusive prices, 2,514 government rating
+variants and 950 official sources. There are 3,306 manufacturer-listed
+configurations and 2,531 availability-unchecked records. Twenty-three baseline
+makes still need manufacturer imports, alongside makers outside that baseline
+and unresolved ordering, inventory, equipment and measurement gaps. The
+complete-market check continues to fail as expected; the goal remains active.
+
+Validation passed 217 unit tests and all 128 production browser checks across
+desktop Chromium/Firefox and mobile Chromium/WebKit. Two initial unbounded unit
+runs hit existing Rivian test timeouts under concurrent catalog loading;
+limiting Vitest to two workers produced a clean complete run without increasing
+test timeouts. Package boundaries, catalog validation, types, build, formatting,
+and checksum-verified offline reconstruction passed. The refreshed preview
+health endpoint and current bundle return HTTP 200, and the source fingerprint
+matches the build. JavaScript is 10,601.77 kB raw / 1,013.27 kB gzip; startup load
+and the large-chunk warning remain open production-readiness work.

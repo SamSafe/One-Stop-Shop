@@ -1,7 +1,9 @@
 # car-catalog
 
-The shared, app-independent data contract. Current coverage is a curated snapshot
-of five Canadian-market 2026 compact SUV configurations.
+The shared, app-independent data contract. It combines sourced Canadian retail
+profiles and separately labeled government rating variants. Full market
+reconciliation remains in progress; see
+[the coverage report](../../docs/CANADIAN-MARKET-COVERAGE.md).
 
 - data/catalog.json contains numeric facts, explicit units through the schema,
   source references, review dates and source-specific notes.
@@ -20,9 +22,17 @@ Every known numeric fact requires a reviewed official source. Unknown facts use
 null plus a reason. Published width and cargo measurement conventions must remain
 visible; similarly named fields are not necessarily measured the same way.
 
-The original sourcing pipeline and maintenance API are future work. This release
-uses manual curation to establish a trustworthy contract before automating it.
+Manufacturer importers retain explicit source receipts and validated snapshots.
+Raw captures stay outside the tracked package; ordinary builds require no
+external source requests.
 
 See [research](../../docs/CATALOG-RESEARCH.md),
 [data model](../../docs/DATA-MODEL.md) and
 [refresh procedure](../../docs/OPERATIONS.md).
+
+## Lucid Canadian source
+
+Lucid factory equipment, explicit model-year pricing, qualified technical facts
+and observed new stock follow [the reviewed source contract](../../docs/LUCID-CONFIGURATOR.md).
+Use `npm run catalog:sync:lucid`; offline reconstruction preserves source hashes
+and the original retrieval date. Complete-market coverage remains in progress.

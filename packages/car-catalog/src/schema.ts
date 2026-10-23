@@ -146,6 +146,9 @@ const manufacturerHosts = new Set([
   'www.genesis.com',
   'acquisition.genesis.ca',
   'rivian.com',
+  'lucidmotors.com',
+  'ext.cpq.lucidmotors.com',
+  'buynow.lucidmotors.com',
   'n8xgyscaa3.execute-api.ca-central-1.amazonaws.com',
 ]);
 
