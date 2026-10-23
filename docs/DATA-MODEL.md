@@ -20,6 +20,15 @@ Facts are base MSRP in CAD; city/highway/combined L/100 km; horsepower; seating;
 cargo with seats up/down in litres; front/rear headroom and legroom in mm; and
 published length, width and height in mm.
 
+An optional `publishedPrice` retains an official regional all-inclusive price in
+CAD, before sales tax, with its province, source and explanatory note. It is
+displayed separately and never substituted for base MSRP in ranking or budget
+filters. Genesis uses its published vehicle amount, the least expensive compatible
+colour/interior pair for the exact factory code, and all itemized Alberta fees.
+Any unknown fee, preorder or zero placeholder leaves the regional price unknown.
+The manufacturer's field name alone does not establish base MSRP: Genesis calls
+its all-inclusive vehicle amount `msrp`.
+
 Electric variants also carry combined kWh/100 km, electric-mode Le/100 km,
 electric range and published recharge time. Plug-in hybrids preserve fuel burned
 in electric operation separately from fuel-only operation. Tailpipe CO₂ is g/km.

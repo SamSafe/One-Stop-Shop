@@ -40,6 +40,7 @@
     "catalog:capture:bmw-stock": "node scripts/capture-bmw-stock.mjs",
     "catalog:sync:mini": "node --import tsx scripts/sync-mini.ts",
     "catalog:capture:mini-stock": "node scripts/capture-mini-stock.mjs",
+    "catalog:sync:genesis": "node --import tsx scripts/sync-genesis.ts",
     "check:boundaries": "node scripts/check-boundaries.mjs",
     "check": "npm run check:boundaries && npm run test && npm run build"
   },

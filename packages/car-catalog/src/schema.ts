@@ -143,6 +143,8 @@ const manufacturerHosts = new Set([
   'inventory.bmw.ca',
   'www.mini.ca',
   'api.minicdn.ca',
+  'www.genesis.com',
+  'acquisition.genesis.ca',
   'n8xgyscaa3.execute-api.ca-central-1.amazonaws.com',
 ]);
 
@@ -207,6 +209,30 @@ export const carSchema = z.strictObject({
       code: z.string().min(1).max(100),
       transmission: z.string().min(1).max(100),
       specificationsUrl: sourceSchema.shape.url.optional(),
+    })
+    .optional(),
+  publishedPrice: z
+    .strictObject({
+      value: z.number().finite().min(10000).max(10000000),
+      currency: z.literal('CAD'),
+      basis: z.literal('all-inclusive-before-sales-tax'),
+      province: z.enum([
+        'AB',
+        'BC',
+        'MB',
+        'NB',
+        'NL',
+        'NS',
+        'NT',
+        'NU',
+        'ON',
+        'PE',
+        'QC',
+        'SK',
+        'YT',
+      ]),
+      source: id,
+      note: z.string().min(1).max(1000),
     })
     .optional(),
   governmentRating: z
@@ -296,6 +322,8 @@ export const catalogSchema = z
         if (!sourceIds.has(sourceId))
           ctx.addIssue({ code: 'custom', message: `Unknown source ${sourceId} on ${car.id}` });
       }
+      if (car.publishedPrice && !car.sourceIds.includes(car.publishedPrice.source))
+        ctx.addIssue({ code: 'custom', message: `Unreferenced published price on ${car.id}` });
       for (const [key, datum] of Object.entries(car.facts)) {
         if (datum.source && !car.sourceIds.includes(datum.source)) {
           ctx.addIssue({ code: 'custom', message: `Unreferenced source on ${car.id}.${key}` });

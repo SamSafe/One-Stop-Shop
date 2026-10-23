@@ -90,6 +90,21 @@ describe('filters and fuel estimates', () => {
     expect(filterCars([unknown], { ...defaultFilters, budget: 50000 })).toEqual([]);
     expect(filterCars([unknown], defaultFilters)).toEqual([unknown]);
   });
+  it('keeps an all-inclusive published quote separate from base MSRP scoring and budgets', () => {
+    const car = structuredClone(first);
+    car.facts.msrpCad = { value: null, source: null, note: 'No comparable base MSRP.' };
+    car.publishedPrice = {
+      value: 40000,
+      currency: 'CAD',
+      basis: 'all-inclusive-before-sales-tax',
+      province: 'AB',
+      source: car.sourceIds[0]!,
+      note: 'Regional published quote with a different price basis.',
+    };
+    expect(scoreCar(car, onlyPrice).score).toBeNull();
+    expect(filterCars([car], { ...defaultFilters, budget: 50000 })).toEqual([]);
+    expect(filterCars([car], defaultFilters)).toEqual([car]);
+  });
   it('calculates annual fuel cost using combined L/100 km', () => {
     const example = structuredClone(hybrid);
     example.facts.fuelCombinedL100km.value = 6.4;

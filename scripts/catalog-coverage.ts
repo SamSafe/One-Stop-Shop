@@ -15,6 +15,7 @@ import {
   polestarSnapshot,
   bmwSnapshot,
   miniSnapshot,
+  genesisSnapshot,
 } from '../packages/car-catalog/src/index.ts';
 import { catalogCoverage } from '../packages/car-catalog/src/coverage.ts';
 import { mazdaMeasurementConflicts } from '../packages/car-catalog/src/mazda.ts';
@@ -27,6 +28,7 @@ import { polestarReviewGaps } from '../packages/car-catalog/src/polestar.ts';
 import { polestarPartitionIdentities } from '../packages/car-catalog/src/polestar-import.ts';
 import { bmwReviewGaps } from '../packages/car-catalog/src/bmw.ts';
 import { miniReviewGaps } from '../packages/car-catalog/src/mini.ts';
+import { genesisReviewGaps } from '../packages/car-catalog/src/genesis.ts';
 import sourceAccessReviews from '../docs/catalog-source-access.json';
 
 const report = {
@@ -74,6 +76,13 @@ const report = {
     ...polestarReviewGaps(polestarSnapshot),
     ...bmwReviewGaps(bmwSnapshot),
     ...miniReviewGaps(miniSnapshot),
+    ...genesisReviewGaps(genesisSnapshot),
+    ...genesisSnapshot.rejectedSpecifications.map((s) => ({
+      brand: 'Genesis',
+      configuration: s.label,
+      field: 'specification-year-conflict',
+      reason: `${s.reason} Selector year ${s.requestedYear}, returned metadata years ${s.publishedYears.join(', ')}.`,
+    })),
     ...gmSnapshot.records
       .filter((record) => !record.configuration || record.configuration.msrpCad === null)
       .map((record) => ({
@@ -219,6 +228,14 @@ const report = {
     ),
   ],
   manufacturerConfigurationExpansion: [
+    ...genesisSnapshot.families.map((f) => ({
+      brand: 'Genesis',
+      model: f.model.modelNameEn,
+      years: f.years,
+      additionalSelectionsExhaustivelyExpanded: false,
+      remaining:
+        'Reconcile individual older new-stock availability, optional equipment and seating, ambiguous specification-year metadata, missing measurements, hybrid subtypes and normalized base MSRP. Regional all-inclusive component totals retain their separate basis; preorders do not establish current stock or delivery.',
+    })),
     ...miniSnapshot.models.map((model) => ({
       brand: 'MINI',
       model: model.current?.name ?? model.lines?.Vehicle ?? model.code,

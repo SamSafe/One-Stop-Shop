@@ -880,3 +880,47 @@ preview health endpoint and current bundle return HTTP 200; its release
 fingerprint matches the source. JavaScript is 9,237.39 kB raw / 874.57 kB gzip,
 with the large-chunk performance warning still open. The complete-market gate
 continues to fail as expected; this is progress toward the full objective.
+
+## Genesis exact factory trims and provincial pricing imported
+
+The Canadian overview and all 14 latest-model families reconcile against explicit
+2026–2027 year dictionaries and 40 unique trim GUIDs. Compatible colour/interior
+pairs expose 41 factory HSC profiles, including both 2026 GV70 Sport 3.5T interior
+variants. Editions sharing a default HSC retain their separate trim identities.
+All expected family, year, trim and mapped-HSC identities must reconcile before
+replacement. Older new-stock and additional equipment review remain incomplete.
+
+Genesis explicitly calls its vehicle amount all-inclusive, despite naming the
+source field msrp. All 41 fee-exclusive base MSRP values remain unknown. A separate
+price contract displays 39 published Alberta component totals before sales tax;
+they never replace base MSRP in budget filtering or ranking. For example, 2027
+G70 Advanced 2.5T is $57,131.88 all-inclusive in Alberta. The exact compatible
+colour/interior charges and every itemized provincial fee are included, with
+incentives excluded. 2027 Electrified GV70 has null fee components and no regional
+total; 2027 GV60 Magma is a zero-price preorder marked announced. Neither becomes
+a fictional zero-price vehicle.
+
+Thirteen exact Canadian technical tables join usable model/year/trim identities.
+Eleven responses have production-year metadata conflicting with their current
+selector labels and remain quarantined. Older brochures, EPA/AWD values without
+Canadian units, unspecified cargo seating arrangements, EV motor/boost values
+and unresolved mirror conventions do not become unqualified facts. Exact-year
+factory key features remain usable where explicit. See
+[the Genesis source contract](GENESIS-CONFIGURATOR.md).
+
+The catalog now has 5,319 records: 2,805 retail profiles, 1,886 verified base prices,
+39 separate regional all-inclusive prices, 2,514 government rating variants and
+890 official sources. There are 2,779 manufacturer-listed configurations and
+2,531 availability-unchecked records. Twenty-five baseline makes still need
+manufacturer imports, alongside makers outside that baseline and unresolved
+ordering, stock, equipment and measurement gaps. The complete-market gate still
+fails as expected.
+
+Validation passed 196 unit tests and all 120 production browser checks across
+desktop Chromium/Firefox and mobile Chromium/WebKit. Package boundaries, catalog
+validation, types, build and checksum-verified offline reconstruction passed.
+The preview health endpoint and current bundle return HTTP 200; the release
+fingerprint matches the source. JavaScript is 9,568.05 kB raw / 918.68 kB gzip,
+with the large-chunk performance warning open. Live refresh also refuses lost
+offerings, verified specification downgrades and lost regional prices pending
+review; source failures cannot silently erase previously verified data.

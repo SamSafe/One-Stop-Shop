@@ -1,6 +1,65 @@
 import { test, expect } from '@playwright/test';
 import { readFileSync } from 'node:fs';
 
+test('Genesis regional all-inclusive prices keep their basis, missing fees and preorder status', async ({
+  page,
+}) => {
+  await page.goto('/');
+  await page.getByLabel('Record type', { exact: true }).selectOption('retail-trim');
+  await page
+    .getByLabel('Availability evidence', { exact: true })
+    .selectOption('manufacturer-listed');
+  await page.getByLabel('Make', { exact: true }).selectOption('Genesis');
+  await page.getByLabel('Model year', { exact: true }).selectOption('2027');
+  await page.getByRole('searchbox', { name: 'Search cars' }).fill('G70');
+  const advanced = page.locator(
+    'article[aria-labelledby="title-genesis-ca-2027-1064-g7cs4k2dga00"]',
+  );
+  const prestige = page.locator(
+    'article[aria-labelledby="title-genesis-ca-2027-1065-g7cs4k2dgp00"]',
+  );
+  await expect(advanced.locator('.price-row')).toContainText('Not verified');
+  await expect(advanced.locator('.published-price')).toContainText('$57,131.88');
+  await expect(advanced.locator('.published-price')).toContainText('AB · before sales tax');
+  await advanced.getByRole('button', { name: 'Specs & sources' }).click();
+  await expect(
+    advanced.getByRole('link', {
+      name: /Published all-inclusive price: .*Source: Genesis Motors Canada/,
+    }),
+  ).toHaveAttribute(
+    'href',
+    'https://acquisition.genesis.ca/api/genesisbackend/GenesisShowroom/GetTrimsJson?language=en&province=AB&modelName=G70&year=2027',
+  );
+  await expect(advanced).toContainText('300');
+  await page.getByLabel('Max base MSRP', { exact: true }).selectOption('75000');
+  await expect(page.getByRole('article')).toHaveCount(0);
+  await page.getByLabel('Max base MSRP', { exact: true }).selectOption('all');
+  await advanced.getByRole('checkbox', { name: /Compare/ }).check();
+  await prestige.getByRole('checkbox', { name: /Compare/ }).check();
+  await page.getByRole('button', { name: 'Compare 2 cars' }).click();
+  const dialog = page.getByRole('dialog');
+  const quote = dialog.getByRole('row').filter({
+    has: page.getByRole('rowheader', { name: 'Published all-inclusive price', exact: true }),
+  });
+  await expect(quote).toContainText('$57,131.88');
+  await expect(quote).toContainText('$62,631.88');
+  await dialog.getByRole('button', { name: 'Close comparison' }).click();
+  await page.getByRole('searchbox', { name: 'Search cars' }).fill('Electrified GV70');
+  await expect(page.getByRole('article')).toHaveCount(1);
+  await expect(page.getByRole('article').locator('.published-price')).toHaveCount(0);
+  await page.getByRole('button', { name: 'Specs & sources' }).click();
+  await expect(page.getByRole('article')).toContainText('fee amounts are missing');
+  await page.getByLabel('Availability evidence', { exact: true }).selectOption('announced');
+  await page.getByRole('searchbox', { name: 'Search cars' }).fill('Magma');
+  await expect(page.getByRole('article')).toHaveCount(1);
+  await expect(page.getByRole('article').locator('.published-price')).toHaveCount(0);
+  await page.getByRole('button', { name: 'Specs & sources' }).click();
+  await expect(page.getByRole('article')).toContainText('preorder');
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(
+    true,
+  );
+});
+
 test('MINI factory packages, electric stock editions and older conflicting specifications retain exact evidence', async ({
   page,
 }) => {

@@ -165,6 +165,34 @@ function SourcedFact({ metric, fact }: { metric: Metric; fact: Fact }) {
   );
 }
 
+const publishedCurrency = new Intl.NumberFormat('en-CA', {
+  style: 'currency',
+  currency: 'CAD',
+  minimumFractionDigits: 2,
+  maximumFractionDigits: 2,
+});
+function PublishedPrice({ car }: { car: Car }) {
+  const price = car.publishedPrice;
+  if (!price) return <span>Not verified</span>;
+  const source = sources.get(price.source)!;
+  return (
+    <>
+      <a
+        className="fact-link"
+        href={source.url}
+        target="_blank"
+        rel="noreferrer"
+        aria-label={`Published all-inclusive price: ${publishedCurrency.format(price.value)} CAD, ${price.province}, before sales tax. Source: ${source.publisher} (opens in new tab)`}
+      >
+        {publishedCurrency.format(price.value)} <span aria-hidden="true">↗</span>
+      </a>
+      <small className="fact-note">
+        {price.province} · before sales tax. {price.note}
+      </small>
+    </>
+  );
+}
+
 function Card({
   car,
   index,
@@ -249,6 +277,12 @@ function Card({
             <span>your fit score</span>
           </div>
         </div>
+        {car.publishedPrice && (
+          <p className="published-price">
+            <strong>{publishedCurrency.format(car.publishedPrice.value)}</strong> all-inclusive ·{' '}
+            {car.publishedPrice.province} · before sales tax
+          </p>
+        )}
         <dl className="quick-specs">
           <div>
             <dt>
@@ -342,6 +376,14 @@ function Card({
             )}
             <p>{car.availability.note}</p>
             <dl>
+              {car.publishedPrice && (
+                <div>
+                  <dt>Published all-inclusive price</dt>
+                  <dd>
+                    <PublishedPrice car={car} />
+                  </dd>
+                </div>
+              )}
               {metricKeys.map((metric) => (
                 <div key={metric}>
                   <dt>{metricDefinitions[metric].label}</dt>
@@ -522,6 +564,16 @@ function Comparison({
                     ))}
                   </tr>
                 ))}
+                {selected.some((car) => car.publishedPrice) && (
+                  <tr>
+                    <th scope="row">Published all-inclusive price</th>
+                    {selected.map((car) => (
+                      <td key={car.id}>
+                        <PublishedPrice car={car} />
+                      </td>
+                    ))}
+                  </tr>
+                )}
                 <tr>
                   <th scope="row">Estimated annual energy</th>
                   {selected.map((car) => {

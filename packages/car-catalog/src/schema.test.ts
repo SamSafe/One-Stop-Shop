@@ -60,4 +60,33 @@ describe('catalog quality gates', () => {
       'Duplicate source',
     );
   });
+  it('requires a sourced CAD amount and regional basis for a published all-inclusive price', () => {
+    const copy = validateCatalog(structuredClone(data));
+    copy.cars[0]!.publishedPrice = {
+      value: 57131.88,
+      currency: 'CAD',
+      basis: 'all-inclusive-before-sales-tax',
+      province: 'AB',
+      source: copy.cars[0]!.sourceIds[0]!,
+      note: 'Published vehicle price and itemized Alberta fees; sales taxes excluded.',
+    };
+    expect(validateCatalog(copy).cars[0]!.publishedPrice!.value).toBe(57131.88);
+    copy.cars[0]!.publishedPrice!.source = 'missing-source';
+    expect(() => validateCatalog(copy)).toThrow(/published price/);
+    copy.cars[0]!.publishedPrice!.source = copy.cars[0]!.sourceIds[0]!;
+    expect(() =>
+      validateCatalog({
+        ...copy,
+        cars: [
+          { ...copy.cars[0], publishedPrice: { ...copy.cars[0]!.publishedPrice, currency: 'USD' } },
+        ],
+      }),
+    ).toThrow();
+    expect(() =>
+      validateCatalog({
+        ...copy,
+        cars: [{ ...copy.cars[0], publishedPrice: { ...copy.cars[0]!.publishedPrice, value: 0 } }],
+      }),
+    ).toThrow();
+  });
 });

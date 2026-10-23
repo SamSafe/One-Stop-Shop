@@ -19,6 +19,7 @@ export function catalogCoverage(catalog: Catalog, snapshot: NrcanSnapshot) {
     retailConfigurations: retail.length,
     governmentRatingVariants: catalog.cars.length - retail.length,
     verifiedPrices: catalog.cars.filter((car) => car.facts.msrpCad.value !== null).length,
+    publishedAllInclusivePrices: catalog.cars.filter((car) => car.publishedPrice).length,
     manufacturerListedConfigurations: catalog.cars.filter(
       (car) =>
         car.recordKind === 'retail-trim' && car.availability.status === 'manufacturer-listed',

@@ -2,7 +2,7 @@
 
 A Canadian car comparison app that explains how each configuration fits your
 priorities. Market expansion is in progress: the working catalog includes 2,518
-NRCan rating records for 2025–2027 across 47 makes, plus 2,764 retail configurations
+NRCan rating records for 2025–2027 across 47 makes, plus 2,805 retail configurations
 (1,886 with verified prices), including 40 currently listed Subaru configurations and
 328 Toyota/Lexus factory packages, 78 Honda/Acura configurations and 212 default
 Ford/Lincoln factory configurations, 68 Mazda model/option configurations and
@@ -10,7 +10,11 @@ Ford/Lincoln factory configurations, 68 Mazda model/option configurations and
 Chevrolet/GMC/Buick/Cadillac factory matrix configurations and 101 Nissan/Infiniti
 versions and equipment packages, 33 Volkswagen factory configurations and 49
 Mitsubishi factory trims, 120 Polestar factory/equipped new-stock configurations and
-110 BMW stock/factory model-year profiles and 189 MINI factory/new-stock profiles.
+110 BMW stock/factory model-year profiles, 189 MINI factory/new-stock profiles and
+41 Genesis factory configurations. Genesis supplies 39 separately labeled Alberta
+all-inclusive prices; its base MSRP values remain unverified. One preorder has no
+price, and another trim has incomplete regional fees. Conflicting specification
+years are quarantined rather than copied into the current model year.
 MINI includes 175 current line/style/named-package combinations and 14 additional
 stock profiles across 2025–2027; four prices and conflicting technical fields remain
 unverified. BMW retains observed 2025–2027 years;
@@ -25,7 +29,7 @@ and GM equipment selections remain in progress; unavailable GM calculations leav
 17 MSRP values unverified; three older BMW and four MINI prices also remain unverified.
 Five retail configurations also retain the initial manufacturer specification
 review. Matching ratings are merged with those retail
-configurations instead of duplicating them. The app currently displays 5,278
+configurations instead of duplicating them. The app currently displays 5,319
 records, including gasoline/hybrid, diesel, flex-fuel, electric and plug-in hybrid
 variants, cars, SUVs, pickups and vans.
 
@@ -37,7 +41,9 @@ and run `npm run catalog:coverage` for the current gaps.
 
 Browse and filter, set priority weights, compare 2–4 cars, estimate annual fuel
 costs, share a comparison URL and save a shortlist on your device. Every published
-numeric specification has an official source. Prices are CAD base MSRP; liquid
+numeric specification has an official source. Scored and budget-filtered prices
+are CAD base MSRP. Separately labeled regional all-inclusive prices retain their
+own basis and do not replace unknown base MSRP. Liquid
 fuel is L/100 km, electricity is kWh/100 km, cargo is litres and dimensions are
 millimetres. Unknown prices remain searchable until a budget limit is applied.
 Missing active scoring metrics leave a record unscored. This is a dated research catalog;
@@ -191,6 +197,15 @@ by checksum-matched reviewed capture replay; live failures still abort. Use
 `-- --from-captures <manifest.json>` for a reviewed capture. Older stock equipment,
 AG/transmission conflicts, additional options and missing specifications remain
 explicit gaps. See [the MINI source contract](docs/MINI-CONFIGURATOR.md).
+
+Refresh Genesis with `npm run catalog:sync:genesis`; `-- --offline` verifies exact
+request/response hashes and reconstructs the dated capture. Reviewed captures
+can be imported with `-- --from-captures <manifest.json>`. Exact trim/year and
+mapped factory codes reconcile against the overview, selector and compatible
+colour/interior choices. Required failures, lost offerings, lost verified
+specifications or lost regional prices abort a live replacement. Regional
+all-inclusive pricing, preorder placeholders, year conflicts and older new-stock
+research remain explicit. See [the Genesis source contract](docs/GENESIS-CONFIGURATOR.md).
 
 Manufacturer listings establish a current offering, not dealer stock or delivery
 dates; older model-year inventory and additional specifications still need review.
