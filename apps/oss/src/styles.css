@@ -1033,6 +1033,28 @@ main > .notice {
 .sources-section h2 {
   font-size: 29px;
 }
+.source-library {
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 18px;
+}
+.source-library > summary {
+  min-height: 32px;
+  font-size: 14px;
+  font-weight: 600;
+}
+.source-search {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #c8d0c1;
+  border-radius: 4px;
+  color: var(--ink);
+  background: white;
+}
+.source-results {
+  font-size: 12px;
+  margin: 16px 0;
+}
 .source-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));

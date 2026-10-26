@@ -160,6 +160,13 @@ notes must accompany the values. Cargo measurement standards are not harmonized.
 
 ## OSS state
 
+The complete source bibliography opens on request and supports publisher/model/
+year search with 12 citations per page. Every numeric fact retains its direct
+source link regardless of the bibliography's current filter or page. The full
+source dataset remains available; closed or paginated views avoid constructing
+an unbounded grid for every catalog interaction. Bibliography search and page
+choices stay in memory and are excluded from shared comparison links.
+
 - Filters: search, make, model year, NRCan vehicle class, record kind, availability, optional
   maximum base MSRP, powertrain, drivetrain and saved-only. No budget limit is
   active by default; an active limit excludes unknown prices. Results render in

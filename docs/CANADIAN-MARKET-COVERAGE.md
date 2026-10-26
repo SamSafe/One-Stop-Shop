@@ -1232,3 +1232,17 @@ All 2,518 rating IDs remain represented. Twenty baseline makes still lack curren
 manufacturer imports; manufacturers outside that baseline and existing
 configuration, inventory and specification gaps remain in scope. The full-market
 gate remains false.
+
+Validation passed all 269 unit tests and all 172 production browser checks across
+desktop/mobile Chromium, Firefox and mobile WebKit, without retries in the final
+complete run. Porsche's checksummed source replay reconstructs exactly. Types,
+boundaries, formatting, prepared-catalog parity and the production build pass.
+The updated Zod dependency clears the current audit; bounded-array regression
+tests verify early rejection without element work.
+
+The source bibliography now opens on request, searches all 1,278 publications
+and renders 12 citations per page. Numeric facts retain direct source links.
+This removes the unbounded citation-card grid from ordinary catalog interaction;
+the formerly slow Firefox VinFast journey passed in 5.1 seconds in the focused
+run, and the complete 172-check suite passed in four minutes. These are local
+verification results, not a claim of exhaustive market coverage.

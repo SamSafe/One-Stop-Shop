@@ -17,6 +17,7 @@ import {
 } from './domain';
 import type { Filters, Weights } from './domain';
 import { useShortlist } from './useShortlist';
+import { SourceLibrary } from './SourceLibrary';
 
 const cars = catalog.cars;
 const makes = [...new Set(cars.map((car) => car.make))].sort((a, b) => a.localeCompare(b));
@@ -1278,22 +1279,10 @@ export function App() {
             <p>
               Manufacturer and NRCan publications; review dates appear below.
               <br />
-              Ratings retrieved {reviewedDate}. Every numeric spec links back to its source.
+              Catalog reviewed {reviewedDate}. Every numeric spec links back to its source.
             </p>
           </div>
-          <div className="source-grid">
-            {catalog.sources.map((source) => (
-              <a href={source.url} target="_blank" rel="noreferrer" key={source.id}>
-                <span>
-                  {source.publisher}
-                  <span aria-hidden="true">↗</span>
-                </span>
-                <strong>{source.title}</strong>
-                <small>{source.locator}</small>
-                <small>Reviewed {formatDate(source.reviewedAt)} · opens in new tab</small>
-              </a>
-            ))}
-          </div>
+          <SourceLibrary items={catalog.sources} formatDate={formatDate} />
           <p className="catalog-disclaimer">
             Contains information from Natural Resources Canada under the{' '}
             <a
