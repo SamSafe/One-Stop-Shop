@@ -38,9 +38,120 @@
           "responseSha256": "f316c0253c053cbeffc1978db02c282d8fdd5b171a1d180ed87e0c8d3fd37c12",
           "capturedAt": "2026-10-26T05:19:49.781Z",
           "locator": "New Inventory filter; three distinct new-stock references: two 2027 750s Spider and one 2026 GTS. Call for pricing. The franchise site identity/address/telephone match the manufacturer retailer page; its data are dealer listings, not manufacturer base MSRP."
+        },
+        {
+          "publisher": "McLaren",
+          "sourceUrl": "https://configurator.mclaren.com/mclaren-ui/?model/artura",
+          "capturedUrl": "https://configurator.mclaren.com/configuration/ajaxLandingPageData.do?profileName=artura&country=CA&language=en",
+          "httpStatus": 200,
+          "responseSha256": "77d7552d9fbaa34561633615d49d792b6c9f9e042a1ecdcb80ae36a551a04bf5",
+          "capturedAt": "2026-10-26T05:26:02.669Z",
+          "locator": "Public Canadian landing response: country preference CA, Canada in the country list, not restricted, loginRequired=false. This verifies public Canadian configuration selection, not a model year, exact retail trim, CAD MSRP or exhaustive national lineup."
+        },
+        {
+          "publisher": "McLaren",
+          "sourceUrl": "https://configurator.mclaren.com/mclaren-ui/?model/artura-spider",
+          "capturedUrl": "https://configurator.mclaren.com/configuration/ajaxLandingPageData.do?profileName=artura-spider&country=CA&language=en",
+          "httpStatus": 200,
+          "responseSha256": "518e0c52b457d7b99caeedb24a4df1cfc83a2bd6c901a4116f3f9bcab03f5e9d",
+          "capturedAt": "2026-10-26T05:26:02.837Z",
+          "locator": "Public Canadian landing response: country preference CA, Canada in the country list, not restricted, loginRequired=false. This verifies public Canadian configuration selection, not a model year, exact retail trim, CAD MSRP or exhaustive national lineup."
+        },
+        {
+          "publisher": "McLaren",
+          "sourceUrl": "https://configurator.mclaren.com/mclaren-ui/?model/750s",
+          "capturedUrl": "https://configurator.mclaren.com/configuration/ajaxLandingPageData.do?profileName=750s&country=CA&language=en",
+          "httpStatus": 200,
+          "responseSha256": "0e36a4b67f46733d4d98adcac804e3b96d3c42999b2b8f528a1973d7ca944d48",
+          "capturedAt": "2026-10-26T05:26:02.998Z",
+          "locator": "Public Canadian landing response: country preference CA, Canada in the country list, not restricted, loginRequired=false. This verifies public Canadian configuration selection, not a model year, exact retail trim, CAD MSRP or exhaustive national lineup."
+        },
+        {
+          "publisher": "McLaren",
+          "sourceUrl": "https://configurator.mclaren.com/mclaren-ui/?model/750s-spider",
+          "capturedUrl": "https://configurator.mclaren.com/configuration/ajaxLandingPageData.do?profileName=750s-spider&country=CA&language=en",
+          "httpStatus": 200,
+          "responseSha256": "3de11e96d39a8b3b9e256998c2362aff70b5179cae9fdb966700d3078e8c9c81",
+          "capturedAt": "2026-10-26T05:26:03.163Z",
+          "locator": "Public Canadian landing response: country preference CA, Canada in the country list, not restricted, loginRequired=false. This verifies public Canadian configuration selection, not a model year, exact retail trim, CAD MSRP or exhaustive national lineup."
+        },
+        {
+          "publisher": "McLaren",
+          "sourceUrl": "https://configurator.mclaren.com/mclaren-ui/?model/gts",
+          "capturedUrl": "https://configurator.mclaren.com/configuration/ajaxLandingPageData.do?profileName=gts&country=CA&language=en",
+          "httpStatus": 200,
+          "responseSha256": "4470c6fc73204d7d542265e8e8e8027a258b2b8ca5cf408b7e7deebd4446af26",
+          "capturedAt": "2026-10-26T05:24:20.512Z",
+          "locator": "Public Canadian landing response: country preference CA, Canada in the country list, not restricted, loginRequired=false. This verifies public Canadian configuration selection, not a model year, exact retail trim, CAD MSRP or exhaustive national lineup."
+        },
+        {
+          "publisher": "McLaren",
+          "sourceUrl": "https://configurator.mclaren.com/mclaren-ui/?model/gts",
+          "capturedUrl": "https://configurator.mclaren.com/configuration/ajaxGetInitialData.do?cacheControl=1792992412215&",
+          "httpStatus": 200,
+          "responseSha256": "876d392e00ea4e7b495a5a208849df92eeecbacb2f6c5cad9f0553d8095d7a4d",
+          "capturedAt": "2026-10-26T05:26:52.385Z",
+          "locator": "Ordinary public browser, Canada, Configure from Base Model. Initial metadata confirms country CA, loginRequired=false and both price-display flags=false. No lead, saved build, account or order submitted; no exact model-year assignment established."
+        },
+        {
+          "publisher": "McLaren",
+          "sourceUrl": "https://configurator.mclaren.com/mclaren-ui/?model/artura",
+          "capturedUrl": "https://configurator.mclaren.com/configuration/ajaxGetInitialData.do?cacheControl=1792992472682&",
+          "httpStatus": 200,
+          "responseSha256": "5fb791403b38305ba2266eafa096e097d92851367284f9c7fdc0bf98808e8891",
+          "capturedAt": "2026-10-26T05:27:52.874Z",
+          "locator": "Ordinary public browser, Canada, Configure from Base Model. Initial metadata confirms country CA, loginRequired=false and both price-display flags=false. No lead, saved build, account or order submitted; no exact model-year assignment established."
         }
       ],
-      "remaining": "Reconcile the Canadian public configurator, every national retailer, exact retail trims/equipment and current/older new stock. Global navigation, a non-live ca_en site locale and dealer configured prices do not establish a complete Canadian lineup or base MSRP."
+      "remaining": "Reconcile the Canadian public configurator, every national retailer, exact retail trims/equipment and current/older new stock. Global navigation, a non-live ca_en site locale and dealer configured prices do not establish a complete Canadian lineup or base MSRP.",
+      "canadianConfiguratorProfiles": [
+        {
+          "profileName": "artura",
+          "displayName": "McLaren Artura",
+          "canadaAllowed": true,
+          "loginRequired": false
+        },
+        {
+          "profileName": "artura-spider",
+          "displayName": "McLaren Artura Spider",
+          "canadaAllowed": true,
+          "loginRequired": false
+        },
+        {
+          "profileName": "750s",
+          "displayName": "McLaren 750S",
+          "canadaAllowed": true,
+          "loginRequired": false
+        },
+        {
+          "profileName": "750s-spider",
+          "displayName": "McLaren 750S Spider",
+          "canadaAllowed": true,
+          "loginRequired": false
+        },
+        {
+          "profileName": "gts",
+          "displayName": "McLaren GTS",
+          "canadaAllowed": true,
+          "loginRequired": false
+        }
+      ],
+      "baseConfigurationChecks": [
+        {
+          "profileName": "GTS",
+          "country": "CA",
+          "showPriceSummary": false,
+          "showPricesByCountry": false,
+          "modelYearVerified": false
+        },
+        {
+          "profileName": "ARTURA",
+          "country": "CA",
+          "showPriceSummary": false,
+          "showPricesByCountry": false,
+          "modelYearVerified": false
+        }
+      ]
     },
     {
       "make": "Karma",
