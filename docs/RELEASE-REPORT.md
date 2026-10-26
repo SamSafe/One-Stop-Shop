@@ -83,6 +83,15 @@ replace testing on physical iOS/Android devices.
 
 ## Operational boundaries
 
+Dependency review on 2026-10-26 UTC found the Zod collection-validation advisory
+[GHSA-mrhx-c7xc-m3w5](https://github.com/advisories/GHSA-mrhx-c7xc-m3w5).
+The catalog workspace now pins 4.6.7. Tests verify that oversized bounded arrays
+are rejected before element work, both directly and inside objects. All 269 unit
+tests, types and the production build pass; the current audit reports zero
+vulnerabilities. The complete catalog SHA-256 and all ten public release artifacts
+are identical before and after the dependency update. Validation runs during
+source ingestion and build preparation; the browser receives the prepared data.
+
 - GitHub Actions and Dependabot are configured. A hosted GitHub Actions run has
   not been triggered or observed in this session.
 - Static providers must apply the supplied HTTP header/cache rules. Local Node

@@ -1,8 +1,43 @@
 import { describe, expect, it } from 'vitest';
+import { z } from 'zod';
 import data from '../data/catalog.json';
 import { validateCatalog } from './schema';
 
 describe('catalog quality gates', () => {
+  it('rejects oversized constrained arrays before validating their elements', () => {
+    let visits = 0;
+    const bounded = z
+      .array(
+        z.string().superRefine(() => {
+          visits++;
+        }),
+      )
+      .max(2);
+    const oversized = bounded.safeParse(['first', 'second', 'third']);
+    expect(oversized.success).toBe(false);
+    expect(oversized.error?.issues).toHaveLength(1);
+    expect(oversized.error?.issues[0]).toMatchObject({ code: 'too_big' });
+    expect(visits).toBe(0);
+    expect(bounded.safeParse(['first']).success).toBe(true);
+    expect(visits).toBe(1);
+  });
+  it('enforces collection bounds before element work inside object validation', () => {
+    let visits = 0;
+    const schema = z.object({
+      values: z
+        .array(
+          z.string().superRefine(() => {
+            visits++;
+          }),
+        )
+        .max(1),
+    });
+    const result = schema.safeParse({ values: ['first', 'second'] });
+    expect(result.success).toBe(false);
+    expect(result.error?.issues).toHaveLength(1);
+    expect(result.error?.issues[0]).toMatchObject({ code: 'too_big', path: ['values'] });
+    expect(visits).toBe(0);
+  });
   it('requires a reason and current manufacturer evidence for offers with an unverified model year', () => {
     const copy = validateCatalog(structuredClone(data));
     const offer = copy.cars[0]!;
