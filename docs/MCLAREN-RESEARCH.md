@@ -67,3 +67,11 @@ and selected equipment packs. Other tab captures encountered the manufacturer's
 does not establish unavailable equipment. Independent national lineup checks,
 all retail trims, exact technical facts, limited/special models, allocations
 and current/older new stock remain within the goal.
+
+The subsequent October 26 stock-page captures also show 2026 Artura Spider
+and 750S Spider headings in Montreal, 2025 Artura/GTS cards in Vancouver and
+a 2026 750S card in Quebec City. Names retain their published specificity;
+exact trim/body, equipment, new/unregistered condition and price basis still
+require detail-page reconciliation. The ledger retains their original checksums
+and capture times. These observations are not promoted to the 2027 profiles or
+used as a national inventory count.

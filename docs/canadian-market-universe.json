@@ -218,6 +218,61 @@
             "capturedAt": "2026-10-26T05:50:34.953Z"
           }
         }
+      ],
+      "additionalNewStockPageReviews": [
+        {
+          "publisher": "McLaren Montreal",
+          "sourceUrl": "https://www.mclarenmontreal.com/en/new-vehicles",
+          "httpStatus": 200,
+          "responseSha256": "8239092100996000341a4f8bc503688cc55474b29eb2f5dab9e22d9d814c7133",
+          "capturedAt": "2026-10-26T06:00:38.418Z",
+          "observedModelYears": [
+            {
+              "year": 2026,
+              "model": "Artura Spider"
+            },
+            {
+              "year": 2026,
+              "model": "750S Spider"
+            }
+          ],
+          "exactTrimsAndConditionReconciled": false,
+          "note": "Observed on the retailer new-vehicle page. Family names are retained at their published specificity; exact body/trim, equipment, new/unregistered condition, price basis and stock completeness require detail-page reconciliation. These observations are not assigned to the 2027 factory profiles."
+        },
+        {
+          "publisher": "McLaren Vancouver",
+          "sourceUrl": "https://www.mclarenvancouver.com/new/inventory/McLaren.html?nfr=1",
+          "httpStatus": 200,
+          "responseSha256": "ca79458820a86758d7e4a1c8009a96802fbdb8208cc1445004475683ae6b2714",
+          "capturedAt": "2026-10-26T06:00:39.592Z",
+          "observedModelYears": [
+            {
+              "year": 2025,
+              "model": "Artura"
+            },
+            {
+              "year": 2025,
+              "model": "GTS"
+            }
+          ],
+          "exactTrimsAndConditionReconciled": false,
+          "note": "Observed on the retailer new-vehicle page. Family names are retained at their published specificity; exact body/trim, equipment, new/unregistered condition, price basis and stock completeness require detail-page reconciliation. These observations are not assigned to the 2027 factory profiles."
+        },
+        {
+          "publisher": "McLaren Ville de Quebec",
+          "sourceUrl": "https://www.mclarenvilledequebec.com/new/inventory/McLaren.html?nfr=1",
+          "httpStatus": 200,
+          "responseSha256": "9dbaf641746c74d41218fe550ce38ad7807541b82a917951c48e8dc7eb6310af",
+          "capturedAt": "2026-10-26T06:00:40.864Z",
+          "observedModelYears": [
+            {
+              "year": 2026,
+              "model": "750S"
+            }
+          ],
+          "exactTrimsAndConditionReconciled": false,
+          "note": "Observed on the retailer new-vehicle page. Family names are retained at their published specificity; exact body/trim, equipment, new/unregistered condition, price basis and stock completeness require detail-page reconciliation. These observations are not assigned to the 2027 factory profiles."
+        }
       ]
     },
     {
@@ -238,7 +293,16 @@
           "locator": "Public locator embeds Montreal, Quebec, and Langley, British Columbia addresses explicitly ending in Canada. Retailer presence alone does not establish current new-stock model years, trims or Canadian prices."
         }
       ],
-      "remaining": "Verify current Canadian Revero and other model offerings, exact years/trims, new-stock condition, prices and national availability. US offers, EPA ratings, historic brochures and upcoming global products are not substituted."
+      "remaining": "Verify current Canadian Revero and other model offerings, exact years/trims, new-stock condition, prices and national availability. US offers, EPA ratings, historic brochures and upcoming global products are not substituted.",
+      "sourceAccessReviews": [
+        {
+          "sourceUrl": "https://www.rollsroycemontreal.com/karma-revero-ad-introduction/",
+          "httpStatus": 403,
+          "responseSha256": "a68089105f63f359c17b31572721708750e7addb350f8b4cfc82ed46b80d7936",
+          "capturedAt": "2026-10-26T06:00:41.064Z",
+          "reason": "The manufacturer-linked Montreal introduction page rejected the ordinary direct GET with HTTP 403. No current new-stock year, exact trim or CAD price is established. This access gap does not establish absence of Canadian offerings."
+        }
+      ]
     }
   ]
 }
