@@ -240,3 +240,80 @@ export function checkGarageSize(raw: string) {
   if (new TextEncoder().encode(raw).byteLength > 2000000)
     fail('Garage file exceeds 2 MB. Export and reduce its size before adding more records.');
 }
+
+export type VehicleDetails = Pick<OwnedVehicle, 'make' | 'model' | 'year' | 'engine' | 'nickname'>;
+const detailsKeys = ['make', 'model', 'year', 'engine', 'nickname'] as const;
+const identityKeys = ['make', 'model', 'year', 'engine'] as const;
+export function vehicleDetails(v: VehicleDetails): VehicleDetails {
+  return { make: v.make, model: v.model, year: v.year, engine: v.engine, nickname: v.nickname };
+}
+function sameIdentity(a: VehicleDetails, b: VehicleDetails) {
+  return identityKeys.every((key) =>
+    typeof a[key] === 'string' && typeof b[key] === 'string'
+      ? String(a[key]).trim().toLowerCase() === String(b[key]).trim().toLowerCase()
+      : a[key] === b[key],
+  );
+}
+export function incompatibleManufacturerReminders(v: OwnedVehicle, details: VehicleDetails) {
+  const template = maintenanceGuidance(details)?.reminder;
+  return v.reminders.filter(
+    (r) =>
+      r.manufacturerKey &&
+      (!template ||
+        r.manufacturerKey !== template.key ||
+        r.km !== template.km ||
+        r.months !== template.months ||
+        r.title !== template.title),
+  );
+}
+export function reviseVehicleDetails(
+  current: OwnedVehicle,
+  original: OwnedVehicle,
+  details: VehicleDetails,
+  keepAsPersonal = false,
+): OwnedVehicle {
+  if (current.id !== original.id || detailsKeys.some((key) => current[key] !== original[key]))
+    fail('Vehicle details changed in another tab. Cancel and reopen the editor to review them.');
+  const changedIdentity = !sameIdentity(original, details);
+  if (changedIdentity) {
+    const manufacturerState = (v: OwnedVehicle) =>
+      JSON.stringify(v.reminders.filter((r) => r.manufacturerKey));
+    if (manufacturerState(current) !== manufacturerState(original))
+      fail('Manufacturer reminders changed in another tab. Cancel and reopen the vehicle editor.');
+  }
+  const incompatible = new Set(
+    incompatibleManufacturerReminders(current, details).map((r) => r.id),
+  );
+  if (incompatible.size && !keepAsPersonal)
+    fail(
+      'These vehicle details no longer match a manufacturer reminder. Choose whether to keep the affected intervals as personal reminders.',
+    );
+  const result = {
+    ...current,
+    ...details,
+    reminders: current.reminders.map((r) => {
+      if (!incompatible.has(r.id)) return r;
+      const { manufacturerKey: _source, ...personal } = r;
+      return personal;
+    }),
+  };
+  if (changedIdentity) delete result.catalogId;
+  return result;
+}
+export function reviseServiceRecord(
+  vehicle: OwnedVehicle,
+  original: ServiceRecord,
+  edited: ServiceRecord,
+): OwnedVehicle {
+  const current = vehicle.records.find((r) => r.id === original.id);
+  if (!current)
+    fail(
+      'This service record was removed in another tab. Cancel the editor to see the latest history.',
+    );
+  const keys = ['id', 'reminderId', 'title', 'on', 'km', 'note'] as const;
+  if (keys.some((key) => current![key] !== original[key]))
+    fail('This service record changed in another tab. Cancel and reopen it before saving.');
+  if (edited.id !== original.id)
+    fail('A corrected service record must retain its original identity.');
+  return { ...vehicle, records: vehicle.records.map((r) => (r.id === original.id ? edited : r)) };
+}

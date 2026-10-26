@@ -8,6 +8,9 @@ import {
   removeReminder,
   validDate,
   updateOdometer,
+  vehicleDetails,
+  reviseVehicleDetails,
+  reviseServiceRecord,
 } from './domain';
 import type { OwnedVehicle, Reminder } from './domain';
 const vehicle = (): OwnedVehicle => ({
@@ -105,4 +108,127 @@ it('prevents a stale form from lowering a newer odometer', () => {
 
 it('uses the same UTF-8 byte limit for stored data and imported backup files', () => {
   expect(() => readGarage('é'.repeat(1000001))).toThrow(/2 MB/);
+});
+
+function servicedVehicle(): OwnedVehicle {
+  const v = vehicle();
+  v.catalogId = 'hyundai-elantra-gl-2016';
+  v.reminders = [
+    {
+      ...reminder(),
+      title: 'Engine oil and filter',
+      manufacturerKey: 'hyundai-2016-elantra-oil-severe',
+    },
+  ];
+  v.records = [
+    {
+      id: 'service-1',
+      reminderId: 'r1',
+      title: 'Engine oil and filter',
+      on: '2026-09-01',
+      km: 118000,
+      note: 'Original receipt',
+    },
+  ];
+  return v;
+}
+describe('garage corrections', () => {
+  it('keeps history, mileage, manufacturer attribution and the catalog link when a nickname changes', () => {
+    const v = servicedVehicle(),
+      next = reviseVehicleDetails(v, structuredClone(v), {
+        ...vehicleDetails(v),
+        nickname: 'Daily driver',
+      });
+    expect(next.nickname).toBe('Daily driver');
+    expect(next.records).toEqual(v.records);
+    expect(next.reminders).toEqual(v.reminders);
+    expect(next.odometerKm).toBe(v.odometerKm);
+    expect(next.catalogId).toBe(v.catalogId);
+    expect(v.nickname).toBe('');
+  });
+  it('requires an explicit choice before an identity correction changes manufacturer reminders to personal intervals', () => {
+    const v = servicedVehicle(),
+      details = { ...vehicleDetails(v), year: 2017 };
+    expect(() => reviseVehicleDetails(v, v, details)).toThrow(/no longer match/);
+    const next = reviseVehicleDetails(v, v, details, true);
+    expect(next.year).toBe(2017);
+    expect(next.catalogId).toBeUndefined();
+    expect(next.reminders[0]?.manufacturerKey).toBeUndefined();
+    expect(next.records).toEqual(v.records);
+    expect(next.reminders[0]?.id).toBe('r1');
+    expect(parseGarage({ ...emptyGarage(), vehicles: [next] }).vehicles[0]).toEqual(next);
+  });
+  it('clears configuration-specific specs after a powertrain correction but keeps an applicable maintenance plan', () => {
+    const v = servicedVehicle(),
+      next = reviseVehicleDetails(v, v, { ...vehicleDetails(v), engine: 'GL · Nu 1.8' });
+    expect(next.catalogId).toBeUndefined();
+    expect(next.reminders[0]?.manufacturerKey).toBe('hyundai-2016-elantra-oil-severe');
+  });
+  it('preserves newer history and mileage and rejects changed details or manufacturer plans in another tab', () => {
+    const original = servicedVehicle(),
+      current = structuredClone(original);
+    current.odometerKm = 125000;
+    current.records.push({ ...current.records[0]!, id: 'service-2', km: 124000, on: '2026-10-01' });
+    const next = reviseVehicleDetails(current, original, {
+      ...vehicleDetails(original),
+      nickname: 'Elantra',
+    });
+    expect(next.records).toHaveLength(2);
+    expect(next.odometerKm).toBe(125000);
+    current.nickname = 'Other tab';
+    expect(() => reviseVehicleDetails(current, original, vehicleDetails(original))).toThrow(
+      /another tab/,
+    );
+    current.nickname = '';
+    current.reminders[0]!.lastKm = 116000;
+    expect(() =>
+      reviseVehicleDetails(current, original, { ...vehicleDetails(original), year: 2017 }, true),
+    ).toThrow(/Manufacturer reminders changed/);
+  });
+  it('corrects a record in place and recalculates the linked reminder from the corrected date and distance', () => {
+    const v = servicedVehicle(),
+      original = structuredClone(v.records[0]!),
+      edited = { ...original, on: '2026-10-01', km: 119000, note: 'Corrected receipt' };
+    const next = reviseServiceRecord(v, original, edited);
+    expect(next.records).toEqual([edited]);
+    expect(next.records[0]?.id).toBe(original.id);
+    expect(v.records[0]?.note).toBe('Original receipt');
+    expect(reminderDue(next, next.reminders[0]!, '2026-10-26')).toMatchObject({
+      dueOn: '2027-04-01',
+      dueKm: 125000,
+    });
+  });
+  it('keeps an older corrected record from superseding newer service and supports removing its reminder link', () => {
+    const v = servicedVehicle();
+    v.records.push({ ...v.records[0]!, id: 'service-2', on: '2026-10-01', km: 119000 });
+    const original = structuredClone(v.records[0]!);
+    const next = reviseServiceRecord(v, original, { ...original, on: '2026-08-01', km: 117000 });
+    expect(reminderDue(next, next.reminders[0]!, '2026-10-26')).toMatchObject({
+      dueOn: '2027-04-01',
+      dueKm: 125000,
+    });
+    const last = next.records[1]!,
+      unlinked = reviseServiceRecord(next, last, { ...last, reminderId: null });
+    expect(unlinked.records).toHaveLength(2);
+    expect(reminderDue(unlinked, unlinked.reminders[0]!, '2026-10-26')).toMatchObject({
+      dueOn: '2027-02-01',
+      dueKm: 123000,
+    });
+  });
+  it('rejects stale edits, removed records, identity replacement and invalid corrected data', () => {
+    const v = servicedVehicle(),
+      original = structuredClone(v.records[0]!);
+    v.records[0]!.note = 'Saved elsewhere';
+    expect(() => reviseServiceRecord(v, original, { ...original, note: 'Stale' })).toThrow(
+      /changed in another tab/,
+    );
+    expect(() => reviseServiceRecord({ ...v, records: [] }, original, original)).toThrow(
+      /removed in another tab/,
+    );
+    expect(() =>
+      reviseServiceRecord(v, v.records[0]!, { ...v.records[0]!, id: 'replacement' }),
+    ).toThrow(/original identity/);
+    const invalid = reviseServiceRecord(v, v.records[0]!, { ...v.records[0]!, km: 130000 });
+    expect(() => parseGarage({ ...emptyGarage(), vehicles: [invalid] })).toThrow(/allowed range/);
+  });
 });

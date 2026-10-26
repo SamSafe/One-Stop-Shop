@@ -1,30 +1,23 @@
-import { useEffect, useId, useRef, useState } from 'react';
-import type { FormEvent, ReactNode } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { maintenanceGuidance, ownerResources } from '@oss/car-catalog/maintenance';
 import type { Car, Metric } from '@oss/car-catalog';
 import { metricDefinitions } from '@oss/car-catalog/metrics';
-import { readGarage, reminderDue, removeReminder, today, updateOdometer } from './domain';
+import {
+  readGarage,
+  reminderDue,
+  removeReminder,
+  today,
+  updateOdometer,
+  reviseVehicleDetails,
+  reviseServiceRecord,
+} from './domain';
+import { Field, submitData, text, numeric } from './fields';
+import { VehicleDetailsForm } from './VehicleDetailsForm';
 import type { Garage as GarageData, OwnedVehicle, Reminder, ServiceRecord } from './domain';
 import { useGarage } from './useGarage';
 import './garage.css';
 const number = new Intl.NumberFormat('en-CA');
 const vehicleName = (v: OwnedVehicle) => v.nickname || `${v.year} ${v.make} ${v.model}`;
-function Field({ label, children }: { label: string; children: (id: string) => ReactNode }) {
-  const id = useId();
-  return (
-    <div className="garage-field">
-      <label htmlFor={id}>{label}</label>
-      {children(id)}
-    </div>
-  );
-}
-function submitData(e: FormEvent<HTMLFormElement>) {
-  e.preventDefault();
-  return new FormData(e.currentTarget);
-}
-const text = (data: FormData, key: string) => String(data.get(key) ?? '').trim();
-const numeric = (data: FormData, key: string) =>
-  text(data, key) === '' ? null : Number(text(data, key));
 function download(raw: string, name = 'oss-garage-backup.json') {
   const url = URL.createObjectURL(new Blob([raw], { type: 'application/json' })),
     a = document.createElement('a');
@@ -237,33 +230,47 @@ function ReminderForm({
 function ServiceForm({
   vehicle,
   reminderId,
+  record,
   onSave,
   onCancel,
 }: {
   vehicle: OwnedVehicle;
   reminderId: string | null;
+  record?: ServiceRecord;
   onSave: (s: ServiceRecord) => boolean;
   onCancel: () => void;
 }) {
-  const reminder = vehicle.reminders.find((r) => r.id === reminderId);
+  const reminder = vehicle.reminders.find((r) => r.id === (record?.reminderId ?? reminderId));
   return (
     <form
       className="garage-subform"
-      aria-label={`Log service for ${vehicleName(vehicle)}`}
+      aria-label={`${record ? 'Edit service' : 'Log service'} for ${vehicleName(vehicle)}`}
       onSubmit={(e) => {
         const d = submitData(e);
         onSave({
-          id: crypto.randomUUID(),
-          reminderId: reminder?.id ?? null,
-          title: reminder?.title ?? text(d, 'title'),
+          id: record?.id ?? crypto.randomUUID(),
+          reminderId: record ? text(d, 'reminderId') || null : (reminder?.id ?? null),
+          title: record ? text(d, 'title') : (reminder?.title ?? text(d, 'title')),
           on: text(d, 'on'),
           km: Number(text(d, 'km')),
           note: text(d, 'note'),
         });
       }}
     >
-      <h3>{reminder ? `Complete: ${reminder.title}` : 'Log a service'}</h3>
-      {!reminder && (
+      <h3>
+        {record
+          ? 'Edit service record'
+          : reminder
+            ? `Complete: ${reminder.title}`
+            : 'Log a service'}
+      </h3>
+      {record && (
+        <p>
+          Correct the work, date or reading. Linked reminders will be recalculated from the
+          corrected history.
+        </p>
+      )}
+      {(!reminder || record) && (
         <Field label="Service performed">
           {(id) => (
             <input
@@ -271,6 +278,7 @@ function ServiceForm({
               name="title"
               required
               maxLength={160}
+              defaultValue={record?.title}
               placeholder="e.g. Oil and filter replaced"
             />
           )}
@@ -279,7 +287,14 @@ function ServiceForm({
       <div className="garage-fields">
         <Field label="Service date">
           {(id) => (
-            <input id={id} name="on" type="date" required max={today()} defaultValue={today()} />
+            <input
+              id={id}
+              name="on"
+              type="date"
+              required
+              max={today()}
+              defaultValue={record?.on ?? today()}
+            />
           )}
         </Field>
         <Field label="Service odometer (km)">
@@ -291,7 +306,7 @@ function ServiceForm({
               min="0"
               max={vehicle.odometerKm}
               required
-              defaultValue={vehicle.odometerKm}
+              defaultValue={record?.km ?? vehicle.odometerKm}
             />
           )}
         </Field>
@@ -303,16 +318,31 @@ function ServiceForm({
             name="note"
             maxLength={1000}
             rows={3}
+            defaultValue={record?.note}
             placeholder="Work completed, shop, parts or observations"
           />
         )}
       </Field>
+      {record && (
+        <Field label="Apply to reminder (optional)">
+          {(id) => (
+            <select id={id} name="reminderId" defaultValue={record.reminderId ?? ''}>
+              <option value="">No linked reminder</option>
+              {vehicle.reminders.map((r) => (
+                <option key={r.id} value={r.id}>
+                  {r.title}
+                </option>
+              ))}
+            </select>
+          )}
+        </Field>
+      )}
       <p className="garage-fine">
         Update the vehicle’s odometer first if the service reading is higher.
       </p>
       <div className="garage-actions">
         <button type="submit" className="button primary">
-          Save service record
+          {record ? 'Save service changes' : 'Save service record'}
         </button>
         <button type="button" className="button secondary" onClick={onCancel}>
           Cancel
@@ -331,13 +361,17 @@ function VehicleCard({
   onRemove: () => boolean;
 }) {
   const [panel, setPanel] = useState<
-      null | 'odometer' | 'reminder' | 'manufacturer' | 'service' | 'remove'
+      null | 'odometer' | 'reminder' | 'manufacturer' | 'service' | 'remove' | 'edit'
     >(null),
+    [editingVehicle, setEditingVehicle] = useState<OwnedVehicle | null>(null),
+    [editingRecord, setEditingRecord] = useState<ServiceRecord | undefined>(undefined),
     [completion, setCompletion] = useState<string | null>(null),
     [deletion, setDeletion] = useState<string | null>(null),
     [specs, setSpecs] = useState<Car | null>(null),
     [specError, setSpecError] = useState(''),
     [specLoading, setSpecLoading] = useState(false);
+  const article = useRef<HTMLElement>(null);
+  const shownSpecs = specs?.id === vehicle.catalogId ? specs : null;
   const guidance = maintenanceGuidance(vehicle),
     resources = ownerResources(vehicle.make);
   const reminders = vehicle.reminders
@@ -351,6 +385,9 @@ function VehicleCard({
     if (onUpdate(update)) {
       setPanel(null);
       setCompletion(null);
+      setEditingRecord(undefined);
+      setEditingVehicle(null);
+      requestAnimationFrame(() => article.current?.focus());
       return true;
     }
     return false;
@@ -370,7 +407,12 @@ function VehicleCard({
     }
   }
   return (
-    <article className="garage-panel garage-vehicle" aria-label={vehicleName(vehicle)}>
+    <article
+      ref={article}
+      tabIndex={-1}
+      className="garage-panel garage-vehicle"
+      aria-label={vehicleName(vehicle)}
+    >
       <div className="garage-section-title">
         <div>
           <p className="eyebrow">
@@ -396,6 +438,7 @@ function VehicleCard({
           className="button secondary"
           onClick={() => {
             setCompletion(null);
+            setEditingRecord(undefined);
             setPanel('service');
           }}
         >
@@ -404,7 +447,30 @@ function VehicleCard({
         <button type="button" className="text-button" onClick={() => setPanel('reminder')}>
           Add reminder
         </button>
+        <button
+          type="button"
+          className="text-button"
+          onClick={() => {
+            setEditingVehicle(structuredClone(vehicle));
+            setPanel('edit');
+          }}
+        >
+          Edit vehicle
+        </button>
       </div>
+      {panel === 'edit' && editingVehicle && (
+        <VehicleDetailsForm
+          original={editingVehicle}
+          onSave={(details, personal) =>
+            success((v) => reviseVehicleDetails(v, editingVehicle, details, personal))
+          }
+          onCancel={() => {
+            setPanel(null);
+            setEditingVehicle(null);
+            article.current?.focus();
+          }}
+        />
+      )}
       {panel === 'odometer' && (
         <form
           className="garage-subform"
@@ -511,12 +577,22 @@ function VehicleCard({
       )}
       {panel === 'service' && (
         <ServiceForm
+          key={editingRecord?.id ?? completion ?? 'new-service'}
           vehicle={vehicle}
           reminderId={completion}
-          onSave={(s) => success((v) => ({ ...v, records: [...v.records, s] }))}
+          record={editingRecord}
+          onSave={(s) =>
+            success((v) =>
+              editingRecord
+                ? reviseServiceRecord(v, editingRecord, s)
+                : { ...v, records: [...v.records, s] },
+            )
+          }
           onCancel={() => {
             setPanel(null);
             setCompletion(null);
+            setEditingRecord(undefined);
+            article.current?.focus();
           }}
         />
       )}
@@ -564,6 +640,7 @@ function VehicleCard({
                 aria-label={`Mark completed: ${r.title}`}
                 onClick={() => {
                   setCompletion(r.id);
+                  setEditingRecord(undefined);
                   setPanel('service');
                 }}
               >
@@ -612,6 +689,18 @@ function VehicleCard({
               <button
                 type="button"
                 className="text-button"
+                aria-label={`Edit record: ${s.title} on ${s.on}`}
+                onClick={() => {
+                  setEditingRecord(structuredClone(s));
+                  setCompletion(null);
+                  setPanel('service');
+                }}
+              >
+                Edit record
+              </button>
+              <button
+                type="button"
+                className="text-button"
                 onClick={() => setDeletion(`record-${s.id}`)}
               >
                 Delete
@@ -653,7 +742,7 @@ function VehicleCard({
             Published specifications describe the saved catalog configuration. Verify equipment
             against your own vehicle.
           </p>
-          {!specs && (
+          {!shownSpecs && (
             <button
               className="text-button"
               type="button"
@@ -664,23 +753,23 @@ function VehicleCard({
             </button>
           )}
           {specError && <p role="status">{specError}</p>}
-          {specs && (
+          {shownSpecs && (
             <dl className="garage-specs">
               {(Object.keys(metricDefinitions) as Metric[])
-                .filter((k) => specs.facts[k].value !== null)
+                .filter((k) => shownSpecs.facts[k].value !== null)
                 .map((k) => (
                   <div key={k}>
                     <dt>{metricDefinitions[k].label}</dt>
                     <dd>
-                      {number.format(specs.facts[k].value!)} {metricDefinitions[k].unit}
+                      {number.format(shownSpecs.facts[k].value!)} {metricDefinitions[k].unit}
                     </dd>
                   </div>
                 ))}
             </dl>
           )}
-          {specs?.manufacturerConfiguration?.specificationsUrl && (
+          {shownSpecs?.manufacturerConfiguration?.specificationsUrl && (
             <a
-              href={specs.manufacturerConfiguration.specificationsUrl}
+              href={shownSpecs.manufacturerConfiguration.specificationsUrl}
               target="_blank"
               rel="noreferrer"
             >
