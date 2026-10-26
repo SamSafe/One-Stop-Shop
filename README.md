@@ -1,20 +1,20 @@
 # One Stop Shop — OSS
 
 A Canadian car comparison app that explains how each configuration fits your
-priorities. The working catalog contains 6,026 records across 47 makes: 3,509
-year-qualified retail configurations, three manufacturer offers with unverified
+priorities. The working catalog contains 6,035 records across 47 makes: 3,509
+year-qualified retail configurations, 12 manufacturer offers with unverified
 model years, and 2,514 standalone government rating variants. All 2,518 NRCan
 rating IDs for 2025–2027 remain represented; matched ratings are merged into
 retail configurations. Manufacturer listings include overlapping 2024–2027 years.
 
 Base MSRP is verified for 2,588 year-qualified retail profiles and published for
-the three year-unverified offers. Genesis supplies 39 separately labeled Alberta
+three of the year-unverified offers. Genesis supplies 39 separately labeled Alberta
 all-inclusive prices. Unknown facts retain their reasons; preliminary technical
 figures, configured stock prices and expired finance examples do not become
 exact-year base facts. Manufacturer-listed profiles and observed new stock carry
 dated source evidence, without promising delivery or exhaustive national inventory.
 
-Full Canadian market coverage remains in progress. Twenty makes in the
+Full Canadian market coverage remains in progress. Nineteen makes in the
 rating baseline still lack a current manufacturer import. Independent lineup
 checks, equipment combinations, older new stock, exact model years, prices and
 technical specifications remain open across the market. Government rating

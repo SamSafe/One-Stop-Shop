@@ -122,6 +122,8 @@ const manufacturerHosts = new Set([
   'vinfastauto.ca',
   'www.porsche.com',
   'configurator.porsche.com',
+  'configurator.astonmartin.com',
+  'www.astonmartin.com',
 ]);
 
 export const sourceSchema = z.strictObject({

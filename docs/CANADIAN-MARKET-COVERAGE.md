@@ -1246,3 +1246,41 @@ This removes the unbounded citation-card grid from ordinary catalog interaction;
 the formerly slow Firefox VinFast journey passed in 5.1 seconds in the focused
 run, and the complete 172-check suite passed in four minutes. These are local
 verification results, not a claim of exhaustive market coverage.
+
+## Aston Martin Canadian manufacturer listings
+
+The October 26 UTC public capture reconciles all 15 products in the configurator's
+Canadian country view. Nine enter the app as manufacturer offers with unverified
+model years: Valhalla, Vanquish Coupe/Volante, DBX GT/S, DB12 S Coupe/Volante and
+Vantage S Coupe/Roadster. The Canadian menu and anonymous configuration responses
+publish neither an exact model year nor a CAD price. Those fields remain unknown.
+Product-specific bhp and explicit standard seating retain their source and year
+qualifications; PS, global WLTP values and unrelated model-year ratings are not
+substituted.
+
+Five client-declared stock-only products remain in the reconciliation, with new
+Canadian inventory still to verify: Vantage Coupe/Roadster, DB12 Coupe/Volante and
+DBX707. Valen is withheld because its announcement schedules first deliveries for
+Q2 2027 and a current Canadian allocation remains unverified. A delivery date is
+not assigned as a model year. None of these exclusions establishes that the
+model is unavailable in Canada. See [the source contract](ASTON-MARTIN-CONFIGURATOR.md).
+
+The catalog now contains 6,035 records: 3,509 year-qualified retail profiles,
+12 manufacturer offers with unverified years and 2,514 standalone government
+variants. There are still 2,591 published base prices, including three of the
+12 offers, plus 39 separately qualified all-inclusive prices and 1,281 official
+sources. Manufacturer-listing evidence covers 3,483 retail profiles and the
+12 offers. All 2,518 rating IDs remain represented. Nineteen baseline makes
+still lack current manufacturer imports. The full-market gate remains false;
+exact years, equipment, pricing, stock and independent national offering checks
+remain open, including manufacturers outside NRCan.
+
+Validation passed all 276 unit tests and all 176 production browser checks
+without retries across desktop/mobile Chromium, Firefox and mobile WebKit.
+Types, catalog validation, package boundaries, formatting, original-source
+checksum replay and exact offline reconstruction pass. The complete prepared
+catalog matches its validated JSON source representation. All ten release
+artifacts and the current source fingerprint verify; the running preview serves
+the matching catalog bytes and returns HTTP 200 for health at
+http://127.0.0.1:8080. The catalog asset is 4,863.98 kB raw / 748.33 kB gzip.
+These checks verify the implementation, not full Canadian-market coverage.

@@ -1,0 +1,417 @@
+{
+  "schemaVersion": 1,
+  "market": "CA",
+  "retrievedAt": "2026-10-26T05:08:12.183Z",
+  "sources": {
+    "bootstrap": {
+      "url": "https://configurator.astonmartin.com/",
+      "status": 200,
+      "sha256": "ab040a3a73bbe47dbcbad9234bed0f68b0a52daf84c17ac2f0ac377cd3518c3c",
+      "capturedAt": "2026-10-26T02:36:57.975Z"
+    },
+    "countries": {
+      "url": "https://configurator.astonmartin.com/data/api/country-list",
+      "status": 200,
+      "sha256": "a238521e6f8d214bcea3066ef6829a2a7e2c03bc26db098af9da72c4ac1cff8c",
+      "capturedAt": "2026-10-26T05:01:01.122Z"
+    },
+    "menu": {
+      "url": "https://configurator.astonmartin.com/models/products/CA",
+      "status": 200,
+      "sha256": "f91ff47dc7e1418e4f5350ff9579fd14f1108c32ee182d7c34121c3295d7fe56",
+      "capturedAt": "2026-10-26T05:01:01.326Z"
+    },
+    "translations": {
+      "url": "https://configurator.astonmartin.com/static/assets/translations/en.json",
+      "status": 200,
+      "sha256": "bbfe92941a71487c4354740acef23f13b85848ba4f6e16708b0cce688f1b14d5",
+      "capturedAt": "2026-10-26T05:04:58.124Z"
+    },
+    "client": {
+      "url": "https://configurator.astonmartin.com/chunk-BTNBP6WG.js",
+      "status": 200,
+      "sha256": "270d18e2da338dbe863cfd5a9ebac312345a582b2f059d82759c189a3bcf83ee",
+      "capturedAt": "2026-10-26T04:58:11.397Z"
+    },
+    "entryClient": {
+      "url": "https://configurator.astonmartin.com/main-REOVSZF3.js",
+      "status": 200,
+      "sha256": "54221addd504ee01002b220b73eeeaac4be2a74155254025e35432d308b0fa44",
+      "capturedAt": "2026-10-26T02:38:12.331Z"
+    },
+    "valen": {
+      "url": "https://www.astonmartin.com/en/our-world/news/2026/8/14/aston-martin-valen-the-most-powerful-front-engined-supercar",
+      "status": 200,
+      "sha256": "784399b23ce0663b89010f726e05b297e144b86c2c9012808aef9c60bf0cd24e",
+      "capturedAt": "2026-10-26T05:06:45.378Z"
+    },
+    "valhalla": {
+      "url": "https://www.astonmartin.com/en/models/valhalla",
+      "status": 200,
+      "sha256": "4608f0ce5e68f35e7bb43372a9e42d367c65c0dfce27e85c31e920e3090c0d47",
+      "capturedAt": "2026-10-26T05:06:46.182Z"
+    }
+  },
+  "menuIds": [
+    "AM003A",
+    "AM374",
+    "AM384",
+    "AM546A",
+    "AM576A",
+    "AM617",
+    "AM647",
+    "AM810",
+    "AM842",
+    "AM890",
+    "AM548",
+    "AM578",
+    "AM662",
+    "AM682",
+    "AM390"
+  ],
+  "countries": [
+    "AE",
+    "AT",
+    "AU",
+    "AZ",
+    "BE",
+    "BG",
+    "BH",
+    "BR",
+    "CA",
+    "CH",
+    "CL",
+    "CN",
+    "CY",
+    "CZ",
+    "DE",
+    "DK",
+    "EG",
+    "ES",
+    "FR",
+    "GB",
+    "HK",
+    "HU",
+    "ID",
+    "IL",
+    "IN",
+    "IT",
+    "JP",
+    "KH",
+    "KR",
+    "KW",
+    "LB",
+    "LT",
+    "LU",
+    "LV",
+    "MA",
+    "MX",
+    "MY",
+    "NL",
+    "NO",
+    "NZ",
+    "OM",
+    "PE",
+    "PH",
+    "PL",
+    "PT",
+    "QA",
+    "RO",
+    "SA",
+    "SE",
+    "SG",
+    "TH",
+    "TR",
+    "TW",
+    "UA",
+    "US",
+    "VN",
+    "ZA",
+    "MO",
+    "MC",
+    "JE"
+  ],
+  "products": [
+    {
+      "id": "AM003A",
+      "family": "M255",
+      "model": "Valhalla",
+      "name": "Valhalla",
+      "convertible": false,
+      "role": "menu-offer",
+      "powerBhp": 1064,
+      "seats": null,
+      "transmission": "Eight-speed DCT",
+      "configuration": {
+        "source": {
+          "url": "https://configurator.astonmartin.com/rules/configuration/AM003A?options=NoIgsgEgCgwg8gEQKIBkDiAVBAlFIC6QA&country=CA",
+          "status": 200,
+          "sha256": "00b9f86314bac04e07c68e80dbad46d7eafc716f712cb36ce3819bdda2923728",
+          "capturedAt": "2026-10-26T05:07:57.796Z"
+        },
+        "selectedOptionCount": 47,
+        "modelYearPublished": false,
+        "pricePublished": false
+      }
+    },
+    {
+      "id": "AM374",
+      "family": "M222",
+      "model": "Vanquish",
+      "name": "Vanquish Coupe",
+      "convertible": false,
+      "role": "menu-offer",
+      "powerBhp": 824,
+      "seats": 2,
+      "transmission": "Eight-speed automatic",
+      "configuration": {
+        "source": {
+          "url": "https://configurator.astonmartin.com/rules/configuration/AM374?options=NoIgsgEgCgwg8gEQKIBkDiAVBAlFIC6QA&country=CA",
+          "status": 200,
+          "sha256": "df29f21683b179b1d23f6acb4d2c9d32a2a2bb33d4ad827beff627e7043bce78",
+          "capturedAt": "2026-10-26T05:07:59.492Z"
+        },
+        "selectedOptionCount": 69,
+        "modelYearPublished": false,
+        "pricePublished": false
+      }
+    },
+    {
+      "id": "AM384",
+      "family": "M222",
+      "model": "Vanquish",
+      "name": "Vanquish Volante",
+      "convertible": true,
+      "role": "menu-offer",
+      "powerBhp": 824,
+      "seats": 2,
+      "transmission": "Eight-speed automatic",
+      "configuration": {
+        "source": {
+          "url": "https://configurator.astonmartin.com/rules/configuration/AM384?options=NoIgsgEgCgwg8gEQKIBkDiAVBAlFIC6QA&country=CA",
+          "status": 200,
+          "sha256": "3559a8977da0ca69a256a93f31877f1351387059c99e7f9b5b4e70ff798dadc8",
+          "capturedAt": "2026-10-26T05:08:01.224Z"
+        },
+        "selectedOptionCount": 68,
+        "modelYearPublished": false,
+        "pricePublished": false
+      }
+    },
+    {
+      "id": "AM546A",
+      "family": "M200",
+      "model": "DB12",
+      "name": "DB12 Volante",
+      "convertible": true,
+      "role": "stock-only",
+      "powerBhp": 671,
+      "seats": 4,
+      "transmission": "Eight-speed automatic",
+      "configuration": null
+    },
+    {
+      "id": "AM576A",
+      "family": "M200",
+      "model": "DB12",
+      "name": "DB12 Coupe",
+      "convertible": false,
+      "role": "stock-only",
+      "powerBhp": 671,
+      "seats": 4,
+      "transmission": "Eight-speed automatic",
+      "configuration": null
+    },
+    {
+      "id": "AM617",
+      "family": "M210",
+      "model": "Vantage",
+      "name": "Vantage Coupe",
+      "convertible": false,
+      "role": "stock-only",
+      "powerBhp": 671,
+      "seats": 2,
+      "transmission": "Eight-speed automatic",
+      "configuration": null
+    },
+    {
+      "id": "AM647",
+      "family": "M210",
+      "model": "Vantage",
+      "name": "Vantage Roadster",
+      "convertible": true,
+      "role": "stock-only",
+      "powerBhp": 671,
+      "seats": 2,
+      "transmission": "Eight-speed automatic",
+      "configuration": null
+    },
+    {
+      "id": "AM810",
+      "family": "M230",
+      "model": "DBX",
+      "name": "DBX GT",
+      "convertible": false,
+      "role": "menu-offer",
+      "powerBhp": 717,
+      "seats": 5,
+      "transmission": "Nine-speed automatic",
+      "configuration": {
+        "source": {
+          "url": "https://configurator.astonmartin.com/rules/configuration/AM810?options=NoIgsgEgCgwg8gEQKIBkDiAVBAlFIC6QA&country=CA",
+          "status": 200,
+          "sha256": "f5fa3e02317ceca609c579072a03ae3e0b418d6e77695b7877e88060d10c5650",
+          "capturedAt": "2026-10-26T05:08:02.610Z"
+        },
+        "selectedOptionCount": 70,
+        "modelYearPublished": false,
+        "pricePublished": false
+      }
+    },
+    {
+      "id": "AM842",
+      "family": "M230",
+      "model": "DBX",
+      "name": "DBX S",
+      "convertible": false,
+      "role": "menu-offer",
+      "powerBhp": 717,
+      "seats": 5,
+      "transmission": "Nine-speed automatic",
+      "configuration": {
+        "source": {
+          "url": "https://configurator.astonmartin.com/rules/configuration/AM842?options=NoIgsgEgCgwg8gEQKIBkDiAVBAlFIC6QA&country=CA",
+          "status": 200,
+          "sha256": "8a153bafcc3e9c20cbcee82143f459c6d066ada8c6c4229d12c73df5abb4ee7a",
+          "capturedAt": "2026-10-26T05:08:03.692Z"
+        },
+        "selectedOptionCount": 67,
+        "modelYearPublished": false,
+        "pricePublished": false
+      }
+    },
+    {
+      "id": "AM890",
+      "family": "M230",
+      "model": "DBX",
+      "name": "DBX707",
+      "convertible": false,
+      "role": "stock-only",
+      "powerBhp": 697,
+      "seats": 5,
+      "transmission": "Nine-speed automatic",
+      "configuration": null
+    },
+    {
+      "id": "AM548",
+      "family": "M200",
+      "model": "DB12",
+      "name": "DB12 S Volante",
+      "convertible": true,
+      "role": "menu-offer",
+      "powerBhp": 690,
+      "seats": 4,
+      "transmission": "Eight-speed automatic",
+      "configuration": {
+        "source": {
+          "url": "https://configurator.astonmartin.com/rules/configuration/AM548?options=NoIgsgEgCgwg8gEQKIBkDiAVBAlFIC6QA&country=CA",
+          "status": 200,
+          "sha256": "b574beb3d98163a63f6ae5713b3a44b2537d6622b23f90d04c57e821b41a5cb3",
+          "capturedAt": "2026-10-26T05:08:07.053Z"
+        },
+        "selectedOptionCount": 69,
+        "modelYearPublished": false,
+        "pricePublished": false
+      }
+    },
+    {
+      "id": "AM578",
+      "family": "M200",
+      "model": "DB12",
+      "name": "DB12 S Coupe",
+      "convertible": false,
+      "role": "menu-offer",
+      "powerBhp": 690,
+      "seats": 4,
+      "transmission": "Eight-speed automatic",
+      "configuration": {
+        "source": {
+          "url": "https://configurator.astonmartin.com/rules/configuration/AM578?options=NoIgsgEgCgwg8gEQKIBkDiAVBAlFIC6QA&country=CA",
+          "status": 200,
+          "sha256": "5902d3ae2940a910d41abb874ac8326d91431717ad854721037bd06f5269bc8d",
+          "capturedAt": "2026-10-26T05:08:08.615Z"
+        },
+        "selectedOptionCount": 72,
+        "modelYearPublished": false,
+        "pricePublished": false
+      }
+    },
+    {
+      "id": "AM662",
+      "family": "M210",
+      "model": "Vantage",
+      "name": "Vantage S Coupe",
+      "convertible": false,
+      "role": "menu-offer",
+      "powerBhp": 671,
+      "seats": 2,
+      "transmission": "Eight-speed automatic",
+      "configuration": {
+        "source": {
+          "url": "https://configurator.astonmartin.com/rules/configuration/AM662?options=NoIgsgEgCgwg8gEQKIBkDiAVBAlFIC6QA&country=CA",
+          "status": 200,
+          "sha256": "1b3de5767e2f6810c4694dc2dc53ceb1ea7958654da9bbf6e2d3fcc74bcf405d",
+          "capturedAt": "2026-10-26T05:05:47.669Z"
+        },
+        "selectedOptionCount": 76,
+        "modelYearPublished": false,
+        "pricePublished": false
+      }
+    },
+    {
+      "id": "AM682",
+      "family": "M210",
+      "model": "Vantage",
+      "name": "Vantage S Roadster",
+      "convertible": true,
+      "role": "menu-offer",
+      "powerBhp": 671,
+      "seats": 2,
+      "transmission": "Eight-speed automatic",
+      "configuration": {
+        "source": {
+          "url": "https://configurator.astonmartin.com/rules/configuration/AM682?options=NoIgsgEgCgwg8gEQKIBkDiAVBAlFIC6QA&country=CA",
+          "status": 200,
+          "sha256": "3ce24a4a50fb27784e2ecb0d12cb79a5f4c1c42636bb4c110c1198410b9c1477",
+          "capturedAt": "2026-10-26T05:08:10.012Z"
+        },
+        "selectedOptionCount": 76,
+        "modelYearPublished": false,
+        "pricePublished": false
+      }
+    },
+    {
+      "id": "AM390",
+      "family": "M224",
+      "model": "Valen",
+      "name": "Valen",
+      "convertible": false,
+      "role": "announced-only",
+      "powerBhp": 838,
+      "seats": 2,
+      "transmission": "Eight-speed automatic",
+      "configuration": {
+        "source": {
+          "url": "https://configurator.astonmartin.com/rules/configuration/AM390?options=NoIgsgEgCgwg8gEQKIBkDiAVBAlFIC6QA&country=CA",
+          "status": 200,
+          "sha256": "2e8e4280ea5debd79063660253f17fbf7c589ad9badc9bd98a5d10c33a77f090",
+          "capturedAt": "2026-10-26T05:08:12.183Z"
+        },
+        "selectedOptionCount": 78,
+        "modelYearPublished": false,
+        "pricePublished": false
+      }
+    }
+  ],
+  "valenFirstDeliveryQuarter": "2027-Q2"
+}

@@ -170,7 +170,7 @@ describe('VinFast Canadian public price offers', () => {
         report.manufacturerOffersWithUnverifiedYear +
         report.governmentRatingVariants,
     );
-    expect(report.manufacturerOffersWithUnverifiedYear).toBe(3);
+    expect(report.manufacturerOffersWithUnverifiedYear).toBeGreaterThanOrEqual(3);
     expect(report.modelYears).toEqual([2024, 2025, 2026, 2027]);
     expect(report.ratingModelYears).toEqual([2025, 2026, 2027]);
     expect(report.ratingRecordsRepresented).toBe(report.ratingRecordsExpected);

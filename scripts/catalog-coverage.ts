@@ -22,6 +22,7 @@ import {
   mercedesVanStockSnapshot,
   vinfastSnapshot,
   porscheSnapshot,
+  astonSnapshot,
 } from '../packages/car-catalog/src/index.ts';
 import { catalogCoverage } from '../packages/car-catalog/src/coverage.ts';
 import { mazdaMeasurementConflicts } from '../packages/car-catalog/src/mazda.ts';
@@ -42,6 +43,7 @@ import { mercedesVanStockGaps } from '../packages/car-catalog/src/mercedes-vans.
 import { vinfastReviewGaps } from '../packages/car-catalog/src/vinfast.ts';
 import { vinfastProfiles } from '../packages/car-catalog/src/vinfast-import.ts';
 import { porscheReviewGaps } from '../packages/car-catalog/src/porsche.ts';
+import { astonReviewGaps } from '../packages/car-catalog/src/aston-martin.ts';
 import sourceAccessReviews from '../docs/catalog-source-access.json';
 
 const report = {
@@ -96,6 +98,7 @@ const report = {
     ...mercedesVanStockGaps(mercedesVanStockSnapshot),
     ...vinfastReviewGaps(vinfastSnapshot),
     ...porscheReviewGaps(porscheSnapshot),
+    ...astonReviewGaps(astonSnapshot),
     ...genesisSnapshot.rejectedSpecifications.map((s) => ({
       brand: 'Genesis',
       configuration: s.label,
@@ -247,6 +250,21 @@ const report = {
     ),
   ],
   manufacturerConfigurationExpansion: [
+    {
+      brand: 'Aston Martin',
+      canadianMenuProducts: astonSnapshot.products.length,
+      manufacturerOffersWithUnverifiedYear: astonSnapshot.products.filter(
+        (p) => p.role === 'menu-offer',
+      ).length,
+      stockOnlyProductsAwaitingNewStockEvidence: astonSnapshot.products.filter(
+        (p) => p.role === 'stock-only',
+      ).length,
+      announcedProductsWithheld: astonSnapshot.products.filter((p) => p.role === 'announced-only')
+        .length,
+      additionalSelectionsExhaustivelyExpanded: false,
+      remaining:
+        'Exact model years, base CAD MSRP, packages, current and older new inventory, allocations and independent national offering checks remain open. Valen first deliveries are scheduled for Q2 2027; that is not its model year.',
+    },
     {
       brand: 'Porsche',
       currentMenuModels: porscheSnapshot.models.length,
