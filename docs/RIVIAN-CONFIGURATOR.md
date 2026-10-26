@@ -22,6 +22,15 @@ unsupported typed references and cyclic/invalid references abort the import.
 Rules retain their exact version, model, base price, groups, options and selection
 conditions. Unknown conditions, groups and option references require review.
 
+Turbo Stream's `-5` reference represents `null`; `-7` represents `undefined`,
+as defined by [the transport's source constants](https://github.com/jacob-ebey/turbo-stream/blob/v2.4.1/src/utils.ts).
+The decoder preserves that distinction before schema projection and JSON
+serialization. Reconstructing the original capture after correcting these two
+sentinels removes fabricated nulls from optional source flags. Response hashes
+and original review dates are preserved; all catalog vehicles, prices, facts and
+sources remain identical. A regression fixture covers both sentinels in object
+fields and arrays.
+
 Current Premium, Performance and Quad builds reconcile for both models. Premium
 has distinct ordinary/Long Range drive systems and a Power Upgrade. The actual
 wheel and interior selectors expose required packages, Sound + Vision and

@@ -1180,3 +1180,19 @@ three manufacturer offers. All 2,518 rating IDs remain represented. Twenty-one
 baseline makes still lack current manufacturer imports; independent national
 lineups, equipment combinations, older new stock and missing technical facts
 remain open. The full-market gate remains false.
+
+Validation of the VinFast milestone and subsequent source-decoder correction
+passed all 252 unit tests and all 156 production browser checks across
+desktop/mobile Chromium, Firefox and mobile WebKit, without retries in the final
+complete pass. VinFast and Rivian reconstruct exactly offline from their original
+checksummed captures. The Rivian correction preserves Turbo Stream null versus
+undefined values. A SHA-256 comparison confirms that every catalog record, fact
+and source is unchanged by that correction. Types, package boundaries and
+formatting passed. These checks verify the implementation and preserve known
+coverage gaps; they do not establish complete Canadian market coverage.
+
+The final production build, prepared-catalog parity, all ten release artifact
+hashes and current source fingerprint passed. The complete catalog asset is
+4,713.96 kB raw / 726.43 kB gzip and is unchanged by the source-decoder correction.
+The running preview's health check and current catalog asset return HTTP 200 at
+http://127.0.0.1:8080.

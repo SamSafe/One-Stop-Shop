@@ -198,4 +198,25 @@ describe('Canadian Rivian visible factory choices and dated new-stock evidence',
     expect(() => rivianBuilderLoader(html(cycle))).toThrow(/reference/);
     expect(() => rivianBuilderLoader(html(flat) + html(flat))).toThrow(/stream/);
   });
+  it('preserves Turbo Stream null and undefined values without exchanging their meanings', () => {
+    const flat = [
+      { _1: 2 },
+      'loaderData',
+      { _3: 4, _7: 8 },
+      'root',
+      { _5: 6 },
+      'IS_AUTHENTICATED',
+      false,
+      'routes/builder/vehicleProduct',
+      { _9: -5, _10: -7, _11: 12 },
+      'nullValue',
+      'omittedValue',
+      'items',
+      [-5, -7],
+    ];
+    const html = `<script>window.__reactRouterContext.streamController.enqueue(${JSON.stringify(JSON.stringify(flat))})</script>`;
+    const decoded = rivianBuilderLoader(html);
+    expect(decoded).toEqual({ nullValue: null, omittedValue: undefined, items: [null, undefined] });
+    expect(JSON.stringify(decoded)).toBe('{"nullValue":null,"items":[null,null]}');
+  });
 });

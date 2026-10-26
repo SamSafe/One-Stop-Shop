@@ -604,8 +604,8 @@ export function rivianBuilderLoader(html: string): unknown {
   function decode(id: number): unknown {
     if (!Number.isInteger(id) || id >= flat.length || id < -7 || --budget < 0)
       throw new Error('Invalid Rivian stream reference.');
-    if (id === -5) return undefined;
-    if (id === -7) return null;
+    if (id === -5) return null;
+    if (id === -7) return undefined;
     if (id < 0 || visiting.has(id)) throw new Error('Unsupported Rivian stream reference.');
     if (cache.has(id)) return cache.get(id);
     const raw = flat[id];

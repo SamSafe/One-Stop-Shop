@@ -270,817 +270,197 @@
             "2027": {
               "fullName": { "en-CA": "2027" },
               "price": 0,
-              "disabled": null,
               "hidden": true,
-              "required": true,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
+              "required": true
             },
             "INT-PBMP": {
               "fullName": { "en-CA": "Black Mountain Signature interior" },
-              "price": 0,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
+              "price": 0
             },
-            "WHL-2SP": {
-              "fullName": { "en-CA": "22\" Super Sport wheels" },
-              "price": 0,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
-            },
+            "WHL-2SP": { "fullName": { "en-CA": "22\" Super Sport wheels" }, "price": 0 },
             "PROC36F3QD": {
               "fullName": { "en-CA": "Cargo Crossbars (Dark)" },
               "price": 1100,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": true,
-              "availability": null
+              "orderItem": true
             },
             "PROCMUH5EP": {
               "fullName": { "en-CA": "R1 Screen Protector" },
               "price": 105,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": true,
-              "availability": null
+              "orderItem": true
             },
-            "BLD-DR1S": {
-              "fullName": { "en-CA": "R1S Premium" },
-              "price": 0,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
-            },
-            "WHL-2SD": {
-              "fullName": { "en-CA": "22\" Sport Dark wheels" },
-              "price": 1500,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
-            },
-            "BAT-B01": {
-              "fullName": { "en-CA": "Large battery" },
-              "price": 0,
-              "disabled": null,
-              "hidden": true,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
-            },
+            "BLD-DR1S": { "fullName": { "en-CA": "R1S Premium" }, "price": 0 },
+            "WHL-2SD": { "fullName": { "en-CA": "22\" Sport Dark wheels" }, "price": 1500 },
+            "BAT-B01": { "fullName": { "en-CA": "Large battery" }, "price": 0, "hidden": true },
             "WHL-2SB": {
               "fullName": { "en-CA": "22\" Sport Burnished Bronze wheels" },
-              "price": 0,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
+              "price": 0
             },
-            "INT-BMP": {
-              "fullName": { "en-CA": "Black Mountain interior" },
-              "price": 0,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
-            },
+            "INT-BMP": { "fullName": { "en-CA": "Black Mountain interior" }, "price": 0 },
             "PROCVPNA7O": {
               "fullName": { "en-CA": "R1 Front Sunshade" },
               "price": 180,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": true,
-              "availability": null
+              "orderItem": true
             },
-            "ACERKFS001": {
-              "fullName": { "en-CA": "Key Fob" },
-              "price": 0,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": true,
-              "availability": null
-            },
-            "CONN-A01": {
-              "fullName": { "en-CA": "Connect+ Lifetime Upgrade" },
-              "price": 0,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
-            },
-            "ACTBDG-DRK": {
-              "fullName": { "en-CA": "Darkout Package" },
-              "price": 0,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
-            },
+            "ACERKFS001": { "fullName": { "en-CA": "Key Fob" }, "price": 0, "orderItem": true },
+            "CONN-A01": { "fullName": { "en-CA": "Connect+ Lifetime Upgrade" }, "price": 0 },
+            "ACTBDG-DRK": { "fullName": { "en-CA": "Darkout Package" }, "price": 0 },
             "PROC7DQTIG": {
               "fullName": { "en-CA": "Combo CCS1 Adapter" },
               "price": 325,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": true,
-              "availability": null
+              "orderItem": true
             },
-            "MOT-401": {
-              "fullName": { "en-CA": "Quad" },
-              "price": 0,
-              "disabled": null,
-              "hidden": true,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
-            },
-            "SWUP-PERF01": {
-              "fullName": { "en-CA": "Power Upgrade" },
-              "price": 7400,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
-            },
-            "PKG-ADV": {
-              "fullName": { "en-CA": "Adventure trim" },
-              "price": 0,
-              "disabled": null,
-              "hidden": true,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
-            },
-            "MOT-201": {
-              "fullName": { "en-CA": "Dual" },
-              "price": 0,
-              "disabled": null,
-              "hidden": true,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
-            },
+            "MOT-401": { "fullName": { "en-CA": "Quad" }, "price": 0, "hidden": true },
+            "SWUP-PERF01": { "fullName": { "en-CA": "Power Upgrade" }, "price": 7400 },
+            "PKG-ADV": { "fullName": { "en-CA": "Adventure trim" }, "price": 0, "hidden": true },
+            "MOT-201": { "fullName": { "en-CA": "Dual" }, "price": 0, "hidden": true },
             "ACERRTT001": {
               "fullName": { "en-CA": "R1S Tent + Crossbars (Pewter)" },
               "price": 4300,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": true,
-              "availability": null
+              "orderItem": true
             },
-            "AUTO-RAP01": {
-              "fullName": { "en-CA": "Autonomy+" },
-              "price": 3500,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
-            },
+            "AUTO-RAP01": { "fullName": { "en-CA": "Autonomy+" }, "price": 3500 },
             "WHLPKG-2SD": {
               "fullName": { "en-CA": "22\" Sport Dark Wheel Package" },
-              "price": 3000,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
+              "price": 3000
             },
-            "ACTBDG-BRT": {
-              "fullName": { "en-CA": "Bright Package" },
-              "price": 0,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
-            },
-            "EXP-GWT": {
-              "fullName": { "en-CA": "Glacier White paint" },
-              "price": 2900,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
-            },
+            "ACTBDG-BRT": { "fullName": { "en-CA": "Bright Package" }, "price": 0 },
+            "EXP-GWT": { "fullName": { "en-CA": "Glacier White paint" }, "price": 2900 },
             "WHL-0DD": {
               "fullName": { "en-CA": "20\" Dune Satin Graphite All-Terrain wheels" },
-              "price": 0,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
+              "price": 0
             },
             "PROC40WJ94": {
               "fullName": { "en-CA": "J1772 AC Adapter" },
               "price": 0,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": true,
-              "availability": null
+              "orderItem": true
             },
-            "EXP-HMG": {
-              "fullName": { "en-CA": "Half Moon Grey" },
-              "price": 3700,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
-            },
-            "ATP-001": {
-              "fullName": { "en-CA": "All-Terrain Package" },
-              "price": 5400,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
-            },
+            "EXP-HMG": { "fullName": { "en-CA": "Half Moon Grey" }, "price": 3700 },
+            "ATP-001": { "fullName": { "en-CA": "All-Terrain Package" }, "price": 5400 },
             "ACERRPC001": {
               "fullName": { "en-CA": "Rivian Portable Charger - NACS" },
               "price": 550,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": true,
-              "availability": null
+              "orderItem": true
             },
-            "INT-SSWW": {
-              "fullName": { "en-CA": "Slate Sky Signature interior" },
-              "price": 6600,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
-            },
-            "EXP-ESV": {
-              "fullName": { "en-CA": "Esker Silver paint" },
-              "price": 0,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
-            },
+            "INT-SSWW": { "fullName": { "en-CA": "Slate Sky Signature interior" }, "price": 6600 },
+            "EXP-ESV": { "fullName": { "en-CA": "Esker Silver paint" }, "price": 0 },
             "ACERCSB003": {
               "fullName": { "en-CA": "Cargo Crossbars (Bright)" },
               "price": 1000,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": true,
-              "availability": null
+              "orderItem": true
             },
-            "EXP-SBL": {
-              "fullName": { "en-CA": "Storm Blue paint" },
-              "price": 4400,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
-            },
-            "DTN-301": {
-              "fullName": { "en-CA": "Tri-motor AWD" },
-              "price": 0,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
-            },
+            "EXP-SBL": { "fullName": { "en-CA": "Storm Blue paint" }, "price": 4400 },
+            "DTN-301": { "fullName": { "en-CA": "Tri-motor AWD" }, "price": 0 },
             "PROCC79AX5": {
               "fullName": { "en-CA": "R1S Cargo Cover" },
               "price": 375,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": true,
-              "availability": null
+              "orderItem": true
             },
-            "WHL-2SS": {
-              "fullName": { "en-CA": "22\" Sport Bright wheels" },
-              "price": 1500,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
-            },
+            "WHL-2SS": { "fullName": { "en-CA": "22\" Sport Bright wheels" }, "price": 1500 },
             "AUD-P01": {
               "fullName": { "en-CA": "Rivian Premium Audio" },
               "price": 0,
-              "disabled": null,
-              "hidden": true,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
+              "hidden": true
             },
-            "BLD-QR1S": {
-              "fullName": { "en-CA": "R1S Quad" },
-              "price": 51000,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
-            },
+            "BLD-QR1S": { "fullName": { "en-CA": "R1S Quad" }, "price": 51000 },
             "BUND-AR02": {
               "fullName": { "en-CA": "Captain's Chairs With Sound + Vision Package" },
-              "price": 5900,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
+              "price": 5900
             },
-            "BUND-AR01": {
-              "fullName": { "en-CA": "Sound + Vision Package" },
-              "price": 0,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
-            },
-            "PROCLOJG0Z": {
-              "fullName": { "en-CA": "Key Fob" },
-              "price": 350,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": true,
-              "availability": null
-            },
-            "UND-SH01": {
-              "fullName": { "en-CA": "Reinforced Underbody Shield" },
-              "price": 0,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
-            },
+            "BUND-AR01": { "fullName": { "en-CA": "Sound + Vision Package" }, "price": 0 },
+            "PROCLOJG0Z": { "fullName": { "en-CA": "Key Fob" }, "price": 350, "orderItem": true },
+            "UND-SH01": { "fullName": { "en-CA": "Reinforced Underbody Shield" }, "price": 0 },
             "WHLPKG-0AD": {
               "fullName": { "en-CA": "20\" All-Terrain Dark Wheel Package" },
-              "price": 6900,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
+              "price": 6900
             },
             "CHRG-NACS01": {
               "fullName": { "en-CA": "NACS Charging Port" },
               "price": 0,
-              "disabled": null,
-              "hidden": null,
-              "required": true,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
+              "required": true
             },
             "PROC7AVMF3": {
               "fullName": { "en-CA": "Travel Kitchen" },
               "price": 1925,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": true,
-              "availability": null
+              "orderItem": true
             },
-            "BAT-A01": {
-              "fullName": { "en-CA": "Max battery" },
-              "price": 0,
-              "disabled": null,
-              "hidden": true,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
-            },
+            "BAT-A01": { "fullName": { "en-CA": "Max battery" }, "price": 0, "hidden": true },
             "PROCDERMLE": {
               "fullName": { "en-CA": "Seatback Device Holder" },
               "price": 215,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": true,
-              "availability": null
+              "orderItem": true
             },
             "PROCKRCVHG": {
               "fullName": { "en-CA": "R1S All-Weather Mat Captain's Chairs" },
               "price": 350,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": true,
-              "availability": null
+              "orderItem": true
             },
-            "EXP-FGR": {
-              "fullName": { "en-CA": "Forest Green paint" },
-              "price": 3700,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
-            },
-            "INT-GYP": {
-              "fullName": { "en-CA": "Ocean Coast interior" },
-              "price": 6600,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
-            },
+            "EXP-FGR": { "fullName": { "en-CA": "Forest Green paint" }, "price": 3700 },
+            "INT-GYP": { "fullName": { "en-CA": "Ocean Coast interior" }, "price": 6600 },
             "PROCI6NGZX": {
               "fullName": { "en-CA": "Kammok Crosswing Awning" },
               "price": 1900,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": true,
-              "availability": null
+              "orderItem": true
             },
             "PROCV9QMGB": {
               "fullName": { "en-CA": "R1S Outdoor Car Cover" },
               "price": 680,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": true,
-              "availability": null
+              "orderItem": true
             },
-            "UTL-S01": {
-              "fullName": { "en-CA": "Air Compressor" },
-              "price": 0,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
-            },
-            "MOT-301": {
-              "fullName": { "en-CA": "Tri" },
-              "price": 0,
-              "disabled": null,
-              "hidden": true,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
-            },
+            "UTL-S01": { "fullName": { "en-CA": "Air Compressor" }, "price": 0 },
+            "MOT-301": { "fullName": { "en-CA": "Tri" }, "price": 0, "hidden": true },
             "PROC8ADYDJ": {
               "fullName": { "en-CA": "All-Weather Mats (R1S, Yellow)" },
               "price": 350,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": true,
-              "availability": null
+              "orderItem": true
             },
             "RGN-CAN": {
               "fullName": { "en-CA": "Canada" },
               "price": 0,
-              "disabled": null,
               "hidden": true,
-              "required": true,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
+              "required": true
             },
-            "PKG-ASC": {
-              "fullName": { "en-CA": "Ascend trim" },
-              "price": 0,
-              "disabled": null,
-              "hidden": true,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
-            },
+            "PKG-ASC": { "fullName": { "en-CA": "Ascend trim" }, "price": 0, "hidden": true },
             "GEN-2": {
               "fullName": { "en-CA": "Generation Two" },
               "price": 0,
-              "disabled": null,
               "hidden": true,
-              "required": true,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
+              "required": true
             },
             "ROOF-FGP": {
               "fullName": { "en-CA": "Panoramic Glass Roof" },
               "price": 0,
-              "disabled": null,
-              "hidden": true,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
+              "hidden": true
             },
-            "SWH-CST": {
-              "fullName": { "en-CA": "Compact spare tire" },
-              "price": 0,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
-            },
+            "SWH-CST": { "fullName": { "en-CA": "Compact spare tire" }, "price": 0 },
             "ROOF-DGP": {
               "fullName": { "en-CA": "Dynamic Glass Roof" },
               "price": 0,
-              "disabled": null,
-              "hidden": true,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
+              "hidden": true
             },
-            "BLD-TR1S": {
-              "fullName": { "en-CA": "R1S Performance" },
-              "price": 30000,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
-            },
-            "SEAT-CAPT": {
-              "fullName": { "en-CA": "Captain's Chairs" },
-              "price": 2200,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
-            },
-            "WHL-2AR": {
-              "fullName": { "en-CA": "22\" Range wheels" },
-              "price": 0,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
-            },
-            "EXP-MDN": {
-              "fullName": { "en-CA": "Midnight paint" },
-              "price": 4400,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
-            },
+            "BLD-TR1S": { "fullName": { "en-CA": "R1S Performance" }, "price": 30000 },
+            "SEAT-CAPT": { "fullName": { "en-CA": "Captain's Chairs" }, "price": 2200 },
+            "WHL-2AR": { "fullName": { "en-CA": "22\" Range wheels" }, "price": 0 },
+            "EXP-MDN": { "fullName": { "en-CA": "Midnight paint" }, "price": 4400 },
             "PROCGR9EN2": {
               "fullName": { "en-CA": "Rivian Wall Charger - NACS" },
               "price": 1100,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": true,
-              "availability": null
+              "orderItem": true
             },
             "INT-OCDW": {
               "fullName": { "en-CA": "Ocean Coast Signature interior" },
-              "price": 5900,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
+              "price": 5900
             },
             "PROC1195GT": {
               "fullName": { "en-CA": "Center Console Organizer" },
               "price": 75,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": true,
-              "availability": null
+              "orderItem": true
             },
-            "EXP-RBL": {
-              "fullName": { "en-CA": "Rivian Blue paint" },
-              "price": 3700,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
-            },
-            "DTN-401": {
-              "fullName": { "en-CA": "Quad-motor AWD" },
-              "price": 0,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
-            },
-            "DTN-202": {
-              "fullName": { "en-CA": "Dual-motor AWD Long Range" },
-              "price": 9000,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
-            },
-            "ACEREGC001": {
-              "fullName": { "en-CA": "Gear Guard Cable" },
-              "price": 100,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
-            },
-            "DTN-201": {
-              "fullName": { "en-CA": "Dual-motor AWD" },
-              "price": 0,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
-            },
-            "WHL-0AD": {
-              "fullName": { "en-CA": "20\" All-Terrain Dark wheels" },
-              "price": 0,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
-            },
+            "EXP-RBL": { "fullName": { "en-CA": "Rivian Blue paint" }, "price": 3700 },
+            "DTN-401": { "fullName": { "en-CA": "Quad-motor AWD" }, "price": 0 },
+            "DTN-202": { "fullName": { "en-CA": "Dual-motor AWD Long Range" }, "price": 9000 },
+            "ACEREGC001": { "fullName": { "en-CA": "Gear Guard Cable" }, "price": 100 },
+            "DTN-201": { "fullName": { "en-CA": "Dual-motor AWD" }, "price": 0 },
+            "WHL-0AD": { "fullName": { "en-CA": "20\" All-Terrain Dark wheels" }, "price": 0 },
             "EXP-LST": {
               "fullName": { "en-CA": "Limestone paint" },
               "price": 0,
@@ -1976,784 +1356,184 @@
             "2027": {
               "fullName": { "en-CA": "2027" },
               "price": 0,
-              "disabled": null,
               "hidden": true,
-              "required": true,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
+              "required": true
             },
-            "SWH-FSST": {
-              "fullName": { "en-CA": "Full-size spare tire" },
-              "price": 0,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
-            },
+            "SWH-FSST": { "fullName": { "en-CA": "Full-size spare tire" }, "price": 0 },
             "INT-PBMP": {
               "fullName": { "en-CA": "Black Mountain Signature interior" },
-              "price": 0,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
+              "price": 0
             },
-            "WHL-2SP": {
-              "fullName": { "en-CA": "22\" Super Sport wheels" },
-              "price": 0,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
-            },
-            "TON-P02": {
-              "fullName": { "en-CA": "Powered Tonneau Cover" },
-              "price": 0,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
-            },
+            "WHL-2SP": { "fullName": { "en-CA": "22\" Super Sport wheels" }, "price": 0 },
+            "TON-P02": { "fullName": { "en-CA": "Powered Tonneau Cover" }, "price": 0 },
             "PROC36F3QD": {
               "fullName": { "en-CA": "Cargo Crossbars (Dark)" },
               "price": 1100,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": true,
-              "availability": null
+              "orderItem": true
             },
             "PROCMUH5EP": {
               "fullName": { "en-CA": "R1 Screen Protector" },
               "price": 105,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": true,
-              "availability": null
+              "orderItem": true
             },
-            "BLD-DR1T": {
-              "fullName": { "en-CA": "R1T Premium" },
-              "price": 0,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
-            },
-            "WHL-2SD": {
-              "fullName": { "en-CA": "22\" Sport Dark wheels" },
-              "price": 1500,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
-            },
-            "BAT-B01": {
-              "fullName": { "en-CA": "Large battery" },
-              "price": 0,
-              "disabled": null,
-              "hidden": true,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
-            },
+            "BLD-DR1T": { "fullName": { "en-CA": "R1T Premium" }, "price": 0 },
+            "WHL-2SD": { "fullName": { "en-CA": "22\" Sport Dark wheels" }, "price": 1500 },
+            "BAT-B01": { "fullName": { "en-CA": "Large battery" }, "price": 0, "hidden": true },
             "WHL-2SB": {
               "fullName": { "en-CA": "22\" Sport Burnished Bronze wheels" },
-              "price": 0,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
+              "price": 0
             },
-            "INT-BMP": {
-              "fullName": { "en-CA": "Black Mountain interior" },
-              "price": 0,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
-            },
+            "INT-BMP": { "fullName": { "en-CA": "Black Mountain interior" }, "price": 0 },
             "PROCVPNA7O": {
               "fullName": { "en-CA": "R1 Front Sunshade" },
               "price": 180,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": true,
-              "availability": null
+              "orderItem": true
             },
-            "CONN-A01": {
-              "fullName": { "en-CA": "Connect+ Lifetime Upgrade" },
-              "price": 0,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
-            },
-            "ACTBDG-DRK": {
-              "fullName": { "en-CA": "Darkout Package" },
-              "price": 0,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
-            },
-            "UTL-T01": {
-              "fullName": { "en-CA": "Utility Panel" },
-              "price": 0,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
-            },
+            "CONN-A01": { "fullName": { "en-CA": "Connect+ Lifetime Upgrade" }, "price": 0 },
+            "ACTBDG-DRK": { "fullName": { "en-CA": "Darkout Package" }, "price": 0 },
+            "UTL-T01": { "fullName": { "en-CA": "Utility Panel" }, "price": 0 },
             "PROC7DQTIG": {
               "fullName": { "en-CA": "Combo CCS1 Adapter" },
               "price": 325,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": true,
-              "availability": null
+              "orderItem": true
             },
-            "MOT-401": {
-              "fullName": { "en-CA": "Quad" },
-              "price": 0,
-              "disabled": null,
-              "hidden": true,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
-            },
-            "SWUP-PERF01": {
-              "fullName": { "en-CA": "Power Upgrade" },
-              "price": 7400,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
-            },
-            "PKG-ADV": {
-              "fullName": { "en-CA": "Adventure trim" },
-              "price": 0,
-              "disabled": null,
-              "hidden": true,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
-            },
-            "MOT-201": {
-              "fullName": { "en-CA": "Dual" },
-              "price": 0,
-              "disabled": null,
-              "hidden": true,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
-            },
-            "AUTO-RAP01": {
-              "fullName": { "en-CA": "Autonomy+" },
-              "price": 3500,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
-            },
+            "MOT-401": { "fullName": { "en-CA": "Quad" }, "price": 0, "hidden": true },
+            "SWUP-PERF01": { "fullName": { "en-CA": "Power Upgrade" }, "price": 7400 },
+            "PKG-ADV": { "fullName": { "en-CA": "Adventure trim" }, "price": 0, "hidden": true },
+            "MOT-201": { "fullName": { "en-CA": "Dual" }, "price": 0, "hidden": true },
+            "AUTO-RAP01": { "fullName": { "en-CA": "Autonomy+" }, "price": 3500 },
             "WHLPKG-2SD": {
               "fullName": { "en-CA": "22\" Sport Dark Wheel Package" },
-              "price": 3000,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
+              "price": 3000
             },
-            "ACTBDG-BRT": {
-              "fullName": { "en-CA": "Bright Package" },
-              "price": 0,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
-            },
-            "EXP-GWT": {
-              "fullName": { "en-CA": "Glacier White paint" },
-              "price": 2900,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
-            },
+            "ACTBDG-BRT": { "fullName": { "en-CA": "Bright Package" }, "price": 0 },
+            "EXP-GWT": { "fullName": { "en-CA": "Glacier White paint" }, "price": 2900 },
             "WHL-0DD": {
               "fullName": { "en-CA": "20\" Dune Satin Graphite All-Terrain wheels" },
-              "price": 0,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
+              "price": 0
             },
             "PROCKPHW41": {
               "fullName": { "en-CA": "R1T Outdoor Car Cover" },
               "price": 680,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": true,
-              "availability": null
+              "orderItem": true
             },
             "PROC40WJ94": {
               "fullName": { "en-CA": "J1772 AC Adapter" },
               "price": 0,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": true,
-              "availability": null
+              "orderItem": true
             },
-            "EXP-HMG": {
-              "fullName": { "en-CA": "Half Moon Grey" },
-              "price": 3700,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
-            },
-            "ATP-001": {
-              "fullName": { "en-CA": "All-Terrain Package" },
-              "price": 5800,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
-            },
+            "EXP-HMG": { "fullName": { "en-CA": "Half Moon Grey" }, "price": 3700 },
+            "ATP-001": { "fullName": { "en-CA": "All-Terrain Package" }, "price": 5800 },
             "ACERRPC001": {
               "fullName": { "en-CA": "Rivian Portable Charger - NACS" },
               "price": 550,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": true,
-              "availability": null
+              "orderItem": true
             },
-            "INT-SSWW": {
-              "fullName": { "en-CA": "Slate Sky Signature interior" },
-              "price": 4400,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
-            },
-            "EXP-ESV": {
-              "fullName": { "en-CA": "Esker Silver paint" },
-              "price": 0,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
-            },
+            "INT-SSWW": { "fullName": { "en-CA": "Slate Sky Signature interior" }, "price": 4400 },
+            "EXP-ESV": { "fullName": { "en-CA": "Esker Silver paint" }, "price": 0 },
             "ACERCSB003": {
               "fullName": { "en-CA": "Cargo Crossbars (Bright)" },
               "price": 1000,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": true,
-              "availability": null
+              "orderItem": true
             },
-            "EXP-SBL": {
-              "fullName": { "en-CA": "Storm Blue paint" },
-              "price": 4400,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
-            },
-            "DTN-301": {
-              "fullName": { "en-CA": "Tri-motor AWD" },
-              "price": 0,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
-            },
-            "ACERKFT001": {
-              "fullName": { "en-CA": "Key Fob" },
-              "price": 0,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": true,
-              "availability": null
-            },
+            "EXP-SBL": { "fullName": { "en-CA": "Storm Blue paint" }, "price": 4400 },
+            "DTN-301": { "fullName": { "en-CA": "Tri-motor AWD" }, "price": 0 },
+            "ACERKFT001": { "fullName": { "en-CA": "Key Fob" }, "price": 0, "orderItem": true },
             "AUD-P01": {
               "fullName": { "en-CA": "Rivian Premium Audio" },
               "price": 0,
-              "disabled": null,
-              "hidden": true,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
+              "hidden": true
             },
-            "BLD-QR1T": {
-              "fullName": { "en-CA": "R1T Quad" },
-              "price": 49000,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
-            },
-            "BUND-AR01": {
-              "fullName": { "en-CA": "Sound + Vision Package" },
-              "price": 0,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
-            },
-            "UND-SH01": {
-              "fullName": { "en-CA": "Reinforced Underbody Shield" },
-              "price": 0,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
-            },
+            "BLD-QR1T": { "fullName": { "en-CA": "R1T Quad" }, "price": 49000 },
+            "BUND-AR01": { "fullName": { "en-CA": "Sound + Vision Package" }, "price": 0 },
+            "UND-SH01": { "fullName": { "en-CA": "Reinforced Underbody Shield" }, "price": 0 },
             "WHLPKG-0AD": {
               "fullName": { "en-CA": "20\" All-Terrain Dark Wheel Package" },
-              "price": 7300,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
+              "price": 7300
             },
             "CHRG-NACS01": {
               "fullName": { "en-CA": "NACS Charging Port" },
               "price": 0,
-              "disabled": null,
-              "hidden": null,
-              "required": true,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
+              "required": true
             },
             "PROC7AVMF3": {
               "fullName": { "en-CA": "Travel Kitchen" },
               "price": 1925,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": true,
-              "availability": null
+              "orderItem": true
             },
-            "BAT-A01": {
-              "fullName": { "en-CA": "Max battery" },
-              "price": 0,
-              "disabled": null,
-              "hidden": true,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
-            },
-            "PROCDPFBCD": {
-              "fullName": { "en-CA": "Key Fob" },
-              "price": 350,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": true,
-              "availability": null
-            },
+            "BAT-A01": { "fullName": { "en-CA": "Max battery" }, "price": 0, "hidden": true },
+            "PROCDPFBCD": { "fullName": { "en-CA": "Key Fob" }, "price": 350, "orderItem": true },
             "PROCDERMLE": {
               "fullName": { "en-CA": "Seatback Device Holder" },
               "price": 215,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": true,
-              "availability": null
+              "orderItem": true
             },
-            "EXP-FGR": {
-              "fullName": { "en-CA": "Forest Green paint" },
-              "price": 3700,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
-            },
-            "INT-GYP": {
-              "fullName": { "en-CA": "Ocean Coast interior" },
-              "price": 6600,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
-            },
+            "EXP-FGR": { "fullName": { "en-CA": "Forest Green paint" }, "price": 3700 },
+            "INT-GYP": { "fullName": { "en-CA": "Ocean Coast interior" }, "price": 6600 },
             "PROCI6NGZX": {
               "fullName": { "en-CA": "Kammok Crosswing Awning" },
               "price": 1900,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": true,
-              "availability": null
+              "orderItem": true
             },
-            "MOT-301": {
-              "fullName": { "en-CA": "Tri" },
-              "price": 0,
-              "disabled": null,
-              "hidden": true,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
-            },
+            "MOT-301": { "fullName": { "en-CA": "Tri" }, "price": 0, "hidden": true },
             "RGN-CAN": {
               "fullName": { "en-CA": "Canada" },
               "price": 0,
-              "disabled": null,
               "hidden": true,
-              "required": true,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
+              "required": true
             },
             "PROCUG0ARL": {
               "fullName": { "en-CA": "R1T Cargo Bed Net" },
               "price": 305,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": true,
-              "availability": null
+              "orderItem": true
             },
-            "PKG-ASC": {
-              "fullName": { "en-CA": "Ascend trim" },
-              "price": 0,
-              "disabled": null,
-              "hidden": true,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
-            },
+            "PKG-ASC": { "fullName": { "en-CA": "Ascend trim" }, "price": 0, "hidden": true },
             "GEN-2": {
               "fullName": { "en-CA": "Generation Two" },
               "price": 0,
-              "disabled": null,
               "hidden": true,
-              "required": true,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
+              "required": true
             },
             "ROOF-FGP": {
               "fullName": { "en-CA": "Panoramic Glass Roof" },
               "price": 0,
-              "disabled": null,
-              "hidden": true,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
+              "hidden": true
             },
             "ROOF-DGP": {
               "fullName": { "en-CA": "Dynamic Glass Roof" },
               "price": 0,
-              "disabled": null,
-              "hidden": true,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
+              "hidden": true
             },
             "PROCHZ5Z81": {
               "fullName": { "en-CA": "All-Weather Mats (R1T, Yellow)" },
               "price": 325,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": true,
-              "availability": null
+              "orderItem": true
             },
-            "BLD-TR1T": {
-              "fullName": { "en-CA": "R1T Performance" },
-              "price": 28000,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
-            },
-            "WHL-2AR": {
-              "fullName": { "en-CA": "22\" Range wheels" },
-              "price": 0,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
-            },
+            "BLD-TR1T": { "fullName": { "en-CA": "R1T Performance" }, "price": 28000 },
+            "WHL-2AR": { "fullName": { "en-CA": "22\" Range wheels" }, "price": 0 },
             "PROC0WQQP8": {
               "fullName": { "en-CA": "Tailgate Pad" },
               "price": 290,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": true,
-              "availability": null
+              "orderItem": true
             },
-            "EXP-MDN": {
-              "fullName": { "en-CA": "Midnight paint" },
-              "price": 4400,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
-            },
+            "EXP-MDN": { "fullName": { "en-CA": "Midnight paint" }, "price": 4400 },
             "PROCGR9EN2": {
               "fullName": { "en-CA": "Rivian Wall Charger - NACS" },
               "price": 1100,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": true,
-              "availability": null
+              "orderItem": true
             },
             "PROC1195GT": {
               "fullName": { "en-CA": "Center Console Organizer" },
               "price": 75,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": true,
-              "availability": null
+              "orderItem": true
             },
-            "EXP-RBL": {
-              "fullName": { "en-CA": "Rivian Blue paint" },
-              "price": 3700,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
-            },
-            "DTN-401": {
-              "fullName": { "en-CA": "Quad-motor AWD" },
-              "price": 0,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
-            },
-            "DTN-202": {
-              "fullName": { "en-CA": "Dual-motor AWD Long Range" },
-              "price": 9000,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
-            },
-            "ACEREGC001": {
-              "fullName": { "en-CA": "Gear Guard Cable" },
-              "price": 100,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
-            },
-            "DTN-201": {
-              "fullName": { "en-CA": "Dual-motor AWD" },
-              "price": 0,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
-            },
-            "WHL-0AAS": {
-              "fullName": { "en-CA": "20\" Adventure All-Season wheels" },
-              "price": 0,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
-            },
-            "WHL-0AD": {
-              "fullName": { "en-CA": "20\" All-Terrain Dark wheels" },
-              "price": 0,
-              "disabled": null,
-              "hidden": null,
-              "required": null,
-              "tempUnavailable": null,
-              "availableInFuture": null,
-              "orderItem": null,
-              "availability": null
-            },
+            "EXP-RBL": { "fullName": { "en-CA": "Rivian Blue paint" }, "price": 3700 },
+            "DTN-401": { "fullName": { "en-CA": "Quad-motor AWD" }, "price": 0 },
+            "DTN-202": { "fullName": { "en-CA": "Dual-motor AWD Long Range" }, "price": 9000 },
+            "ACEREGC001": { "fullName": { "en-CA": "Gear Guard Cable" }, "price": 100 },
+            "DTN-201": { "fullName": { "en-CA": "Dual-motor AWD" }, "price": 0 },
+            "WHL-0AAS": { "fullName": { "en-CA": "20\" Adventure All-Season wheels" }, "price": 0 },
+            "WHL-0AD": { "fullName": { "en-CA": "20\" All-Terrain Dark wheels" }, "price": 0 },
             "EXP-LST": {
               "fullName": { "en-CA": "Limestone paint" },
               "price": 0,
