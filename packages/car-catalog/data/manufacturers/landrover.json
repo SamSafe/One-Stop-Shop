@@ -1,0 +1,979 @@
+{
+  "schemaVersion": 1,
+  "market": "CA",
+  "retrievedAt": "2026-10-26T07:49:30.950Z",
+  "normalizer": {
+    "url": "https://modules.jaguarlandrover.com/modules/config-ipr-frontend/2.60.0/assets/normalisationMiddleware.js",
+    "status": 200,
+    "sha256": "861ad3af418f09ed2d0b5453f755504f0bb3388bea40c7b7f38509421c2caee0",
+    "capturedAt": "2026-10-26T06:30:30.836Z"
+  },
+  "lineup": {
+    "url": "https://www.landrover.ca/en/build-your-own/index.html",
+    "status": 200,
+    "sha256": "86e1a4425e80c4569b2257c02487f864eb2d312142bafd0db888fa8493361065",
+    "capturedAt": "2026-10-26T06:11:31.425Z"
+  },
+  "yearSource": {
+    "url": "https://www.rangerover.com/en-ca/range-rover/index.html",
+    "status": 200,
+    "sha256": "5d400894a87d4f3c7ef63ffb033a95dbdc39edb513716bac5c8af15e51567bc9",
+    "capturedAt": "2026-10-26T06:37:16.740Z"
+  },
+  "families": [
+    {
+      "family": "l663",
+      "source": {
+        "url": "https://rules.config.landrover.com/rc/lr/en_ca/l663_k27/4d5qi/a-110/.jsonp?view=personalise&callback=config_rcjson",
+        "status": 200,
+        "sha256": "1924d8e7df2d8b9ba5e809dab7ccb6ab80232e985de1378e13f5772d82b03b52",
+        "capturedAt": "2026-10-26T06:22:19.537Z"
+      },
+      "productIds": [
+        "A-SV1-P635-110",
+        "A-SV3-P635-110",
+        "A-S-P300-I6",
+        "A-XDYN-SE-P400",
+        "A-XS-P400",
+        "A-S-P300-I6-110",
+        "A-XDYN-SE-P400-110",
+        "A-X-P400-110",
+        "A-XS-P400-110",
+        "A-LE17-P400-110",
+        "A-LE20-P400-110",
+        "A-S-P300-130",
+        "A-XDYN-SE-P400-130",
+        "A-XS-P400-130"
+      ],
+      "excluded": ["A-S-P400-110", "A-X-P400", "A-X-P400-130"]
+    },
+    {
+      "family": "l462",
+      "source": {
+        "url": "https://rules.config.landrover.com/rc/lr/en_ca/l462_k27/4d5lq.jsonp?view=personalise&callback=config_rcjson",
+        "status": 200,
+        "sha256": "a61282ae7bafe319b5a0b17fcdd3c5959382ba6860720b94f7d33325079d5112",
+        "capturedAt": "2026-10-26T06:32:21.866Z"
+      },
+      "productIds": ["A-P360-VD2", "A-P360-LE9"],
+      "excluded": []
+    },
+    {
+      "family": "l550",
+      "source": {
+        "url": "https://rules.config.landrover.com/rc/lr/en_ca/l550_k265/4d5lq.jsonp?view=personalise&callback=config_rcjson",
+        "status": 200,
+        "sha256": "3553fd78cde29e813a8465ce83177488cb86be9a1e2bed7f52e83885a56526d1",
+        "capturedAt": "2026-10-26T06:32:22.732Z"
+      },
+      "productIds": ["A-20P-249AAWD-VD2"],
+      "excluded": []
+    },
+    {
+      "family": "l460",
+      "source": {
+        "url": "https://rules.config.landrover.com/rc/lr/en_ca/l460_k27/4d5np.jsonp?view=personalise&callback=config_rcjson",
+        "status": 200,
+        "sha256": "b1478ab3ee6cf6f5b6f9be1428df140eba5dbb2fb70f12f4fc2080f01dd482ca",
+        "capturedAt": "2026-10-26T06:32:23.203Z"
+      },
+      "productIds": [
+        "A-SI6-400-SP2",
+        "A-SI6-550-SP2",
+        "A-V8-530-SP2",
+        "A-V8-530-SA1",
+        "A-V8-615-SV1",
+        "A-V8-615-SV2",
+        "A-EV-550-SA1",
+        "A-V8-530-SA1-LWB",
+        "A-V8-615-SV1-LWB",
+        "A-V8-615-SV2-LWB",
+        "A-SI6-400-SP2-LWB-7",
+        "A-V8-530-SP2-LWB-7",
+        "A-V8-530-SA1-LWB-7"
+      ],
+      "excluded": [
+        "A-EV-450-SP2",
+        "A-EV-550-FE",
+        "A-EV-550-FE-LWB",
+        "A-EV-550-SA1-LWB",
+        "A-EV-550-SP2",
+        "A-EV-550-SV1",
+        "A-EV-550-SV1-LWB",
+        "A-EV-550-SV2",
+        "A-EV-550-SV2-LWB",
+        "A-EV-550-SV3",
+        "A-EV-550-SV3-LWB",
+        "A-SI6-360-SP0-LWB-7",
+        "A-SI6-400-LE9",
+        "A-SI6-400-LE9-LWB-7",
+        "A-SI6-400-SA1-LWB-7",
+        "A-SI6-400-SP0",
+        "A-SI6-460-LE9",
+        "A-SI6-460-SP2",
+        "A-SI6-550-LE9",
+        "A-SI6-550-SA1",
+        "A-V8-530-LE9",
+        "A-V8-530-LE9-LWB-7",
+        "A-V8-615-SV3",
+        "A-V8-615-SV3-LWB"
+      ]
+    },
+    {
+      "family": "l461",
+      "source": {
+        "url": "https://rules.config.landrover.com/rc/lr/en_ca/l461_k27/4d5n3.jsonp?view=personalise&callback=config_rcjson",
+        "status": 200,
+        "sha256": "7718744940d50cd34c6b8775fc13630cd6ee04d888ca2558edf0589151ee316f",
+        "capturedAt": "2026-10-26T06:32:23.594Z"
+      },
+      "productIds": [
+        "A-E460-VD2",
+        "A-E550-LE5",
+        "A-P360-SP1",
+        "A-P400-VD2",
+        "A-P530-VD2",
+        "A-P530-LE6",
+        "A-P530-SA1",
+        "A-P635-SV0",
+        "A-P635-SV2",
+        "A-P635-SV3"
+      ],
+      "excluded": [
+        "A-E460-LE5",
+        "A-E460-SA1",
+        "A-E460-VD3",
+        "A-E550-LE6",
+        "A-E550-SA1",
+        "A-E550-VD2",
+        "A-P360-SP2",
+        "A-P400-LE5",
+        "A-P400-SA1",
+        "A-P400-VD3",
+        "A-P530-LE5"
+      ]
+    },
+    {
+      "family": "l560",
+      "source": {
+        "url": "https://rules.config.landrover.com/rc/lr/en_ca/l560_k2675/4d5lr.jsonp?view=personalise&callback=config_rcjson",
+        "status": 200,
+        "sha256": "a8b3865bc555bb94c240df72a18f9105321a4e6e1e3f1ac3ff1f4cc1e8960497",
+        "capturedAt": "2026-10-26T06:32:24.273Z"
+      },
+      "productIds": ["A-SA-400"],
+      "excluded": ["A-LE5-250SI4", "A-LE5-340"]
+    },
+    {
+      "family": "l551",
+      "source": {
+        "url": "https://rules.config.landrover.com/rc/lr/en_ca/l551_k2675/4d5nd.jsonp?view=personalise&callback=config_rcjson",
+        "status": 200,
+        "sha256": "55883defdad614072d0c6e59796dd87c0a322fc41f9ea747d83735b99c40c8f0",
+        "capturedAt": "2026-10-26T06:32:24.313Z"
+      },
+      "productIds": ["N-LE5-P249-A-AWD"],
+      "excluded": ["N-AB-P249-A-AWD", "N-S-P249-A-AWD"]
+    }
+  ],
+  "profiles": [
+    {
+      "family": "l663",
+      "id": "A-SV1-P635-110",
+      "body": "Defender OCTA",
+      "model": "Defender OCTA",
+      "engine": "4.4L Turbocharged V8",
+      "year": 2027,
+      "yearBasis": "native-description",
+      "price": 179400,
+      "fuel": "Hybrid",
+      "drivetrain": "AWD",
+      "transmission": "Automatic",
+      "source": {
+        "url": "https://rules.config.landrover.com/rc/lr/en_ca/l663_k27/4d5qi/a-p635-110_a-sv-110_a-sv1_p/.jsonp?view=personalise&callback=config_rcjson",
+        "status": 200,
+        "sha256": "2ec2434d7db5cc20a2debf2d495af00c069f02eff65d2d5ab067fa272828f101",
+        "capturedAt": "2026-10-26T07:49:27.514Z"
+      }
+    },
+    {
+      "family": "l663",
+      "id": "A-SV3-P635-110",
+      "body": "Defender OCTA",
+      "model": "Defender OCTA Black",
+      "engine": "4.4L Turbocharged V8",
+      "year": 2027,
+      "yearBasis": "native-description",
+      "price": 191600,
+      "fuel": "Hybrid",
+      "drivetrain": "AWD",
+      "transmission": "Automatic",
+      "source": {
+        "url": "https://rules.config.landrover.com/rc/lr/en_ca/l663_k27/4d5qi/a-p635-110_a-sv-110_a-sv3_p/.jsonp?view=personalise&callback=config_rcjson",
+        "status": 200,
+        "sha256": "6acddd1cfed5475dd014754fb34c5e5708ba3badd1ed19d27a7c136b64c219a6",
+        "capturedAt": "2026-10-26T07:49:27.557Z"
+      }
+    },
+    {
+      "family": "l663",
+      "id": "A-S-P300-I6",
+      "body": "Defender 90",
+      "model": "Defender S",
+      "engine": "3.0L 6 Cylinder",
+      "year": 2027,
+      "yearBasis": "native-description",
+      "price": 77100,
+      "fuel": "Hybrid",
+      "drivetrain": "AWD",
+      "transmission": "Automatic",
+      "source": {
+        "url": "https://rules.config.landrover.com/rc/lr/en_ca/l663_k27/4d5qi/a-90_a-l663-s_a-p300-i6_p/.jsonp?view=personalise&callback=config_rcjson",
+        "status": 200,
+        "sha256": "acefc0137a0c6519107d91a567ee69a97002f70c618fc085a5db84c2630bc904",
+        "capturedAt": "2026-10-26T07:49:27.742Z"
+      }
+    },
+    {
+      "family": "l663",
+      "id": "A-XDYN-SE-P400",
+      "body": "Defender 90",
+      "model": "Defender X-Dynamic SE",
+      "engine": "3.0L 6 Cylinder",
+      "year": 2027,
+      "yearBasis": "native-description",
+      "price": 87000,
+      "fuel": "Hybrid",
+      "drivetrain": "AWD",
+      "transmission": "Automatic",
+      "source": {
+        "url": "https://rules.config.landrover.com/rc/lr/en_ca/l663_k27/4d5qi/a-90_a-p400_a-xdyn-se_p/.jsonp?view=personalise&callback=config_rcjson",
+        "status": 200,
+        "sha256": "6b5574bb3d31a72b88bd35450ac0b8d0d0106e82eb749dd7c8a3cd2a67a821f3",
+        "capturedAt": "2026-10-26T07:49:28.104Z"
+      }
+    },
+    {
+      "family": "l663",
+      "id": "A-XS-P400",
+      "body": "Defender 90",
+      "model": "Defender Vertex",
+      "engine": "3.0L 6 Cylinder",
+      "year": 2027,
+      "yearBasis": "native-description",
+      "price": 107200,
+      "fuel": "Hybrid",
+      "drivetrain": "AWD",
+      "transmission": "Automatic",
+      "source": {
+        "url": "https://rules.config.landrover.com/rc/lr/en_ca/l663_k27/4d5qi/a-90_a-p400_a-xs_p/.jsonp?view=personalise&callback=config_rcjson",
+        "status": 200,
+        "sha256": "db62d29f4aabd7a9e5eb688e0d983deeb391651f1ee6edca45790132a885bb33",
+        "capturedAt": "2026-10-26T07:49:28.150Z"
+      }
+    },
+    {
+      "family": "l663",
+      "id": "A-S-P300-I6-110",
+      "body": "Defender 110",
+      "model": "Defender S",
+      "engine": "3.0L 6 Cylinder",
+      "year": 2027,
+      "yearBasis": "native-description",
+      "price": 78700,
+      "fuel": "Hybrid",
+      "drivetrain": "AWD",
+      "transmission": "Automatic",
+      "source": {
+        "url": "https://rules.config.landrover.com/rc/lr/en_ca/l663_k27/4d5qi/a-110_a-l663-s_a-p300-i6-110_p/.jsonp?view=personalise&callback=config_rcjson",
+        "status": 200,
+        "sha256": "00035eba42414158c28559de5b4c072b13b8e5b7ca210bb6c88de752ba16a035",
+        "capturedAt": "2026-10-26T07:49:28.195Z"
+      }
+    },
+    {
+      "family": "l663",
+      "id": "A-XDYN-SE-P400-110",
+      "body": "Defender 110",
+      "model": "Defender X-Dynamic SE",
+      "engine": "3.0L 6 Cylinder",
+      "year": 2027,
+      "yearBasis": "native-description",
+      "price": 90500,
+      "fuel": "Hybrid",
+      "drivetrain": "AWD",
+      "transmission": "Automatic",
+      "source": {
+        "url": "https://rules.config.landrover.com/rc/lr/en_ca/l663_k27/4d5qi/a-110_a-p400-110_a-xdyn-se_p/.jsonp?view=personalise&callback=config_rcjson",
+        "status": 200,
+        "sha256": "359e81b008846e11b82c852c259537adf799762723be3994acd68bfd39768be4",
+        "capturedAt": "2026-10-26T07:49:27.670Z"
+      }
+    },
+    {
+      "family": "l663",
+      "id": "A-X-P400-110",
+      "body": "Defender 110",
+      "model": "Defender X",
+      "engine": "3.0L 6 Cylinder",
+      "year": 2027,
+      "yearBasis": "native-description",
+      "price": 109200,
+      "fuel": "Hybrid",
+      "drivetrain": "AWD",
+      "transmission": "Automatic",
+      "source": {
+        "url": "https://rules.config.landrover.com/rc/lr/en_ca/l663_k27/4d5qi/a-110_a-p400-110_a-x_p/.jsonp?view=personalise&callback=config_rcjson",
+        "status": 200,
+        "sha256": "e89fd764b2cc88b861829f49a7f4e9142bd6f1c15e34fefd635df7d8a11b941e",
+        "capturedAt": "2026-10-26T07:49:27.713Z"
+      }
+    },
+    {
+      "family": "l663",
+      "id": "A-XS-P400-110",
+      "body": "Defender 110",
+      "model": "Defender Vertex",
+      "engine": "3.0L 6 Cylinder",
+      "year": 2027,
+      "yearBasis": "native-description",
+      "price": 109200,
+      "fuel": "Hybrid",
+      "drivetrain": "AWD",
+      "transmission": "Automatic",
+      "source": {
+        "url": "https://rules.config.landrover.com/rc/lr/en_ca/l663_k27/4d5qi/a-110_a-p400-110_a-xs_p/.jsonp?view=personalise&callback=config_rcjson",
+        "status": 200,
+        "sha256": "2738e8e49f0763fe304171b4405910de213cd7834dbafe43bc9acb1c517a74fe",
+        "capturedAt": "2026-10-26T07:49:27.755Z"
+      }
+    },
+    {
+      "family": "l663",
+      "id": "A-LE17-P400-110",
+      "body": "Defender 110",
+      "model": "Defender Trophy Edition in Deep Sandglow Yellow",
+      "engine": "3.0L 6 Cylinder",
+      "year": 2027,
+      "yearBasis": "native-description",
+      "price": 101100,
+      "fuel": "Hybrid",
+      "drivetrain": "AWD",
+      "transmission": "Automatic",
+      "source": {
+        "url": "https://rules.config.landrover.com/rc/lr/en_ca/l663_k27/4d5qi/a-110_a-le17_a-p400-110_p/.jsonp?view=personalise&callback=config_rcjson",
+        "status": 200,
+        "sha256": "ca3335aaaa5eaade5683ce958a460833a63bcef656632b5e329a101b7d74668f",
+        "capturedAt": "2026-10-26T07:49:26.998Z"
+      }
+    },
+    {
+      "family": "l663",
+      "id": "A-LE20-P400-110",
+      "body": "Defender 110",
+      "model": "Defender Trophy Edition in Santorini Black",
+      "engine": "3.0L 6 Cylinder",
+      "year": 2027,
+      "yearBasis": "native-description",
+      "price": 101100,
+      "fuel": "Hybrid",
+      "drivetrain": "AWD",
+      "transmission": "Automatic",
+      "source": {
+        "url": "https://rules.config.landrover.com/rc/lr/en_ca/l663_k27/4d5qi/a-110_a-le20_a-p400-110_p/.jsonp?view=personalise&callback=config_rcjson",
+        "status": 200,
+        "sha256": "8a0b14a4382372094f80f65a95f1b5247e9c1d4dfc4a32aa02d11aee039bb750",
+        "capturedAt": "2026-10-26T07:49:27.038Z"
+      }
+    },
+    {
+      "family": "l663",
+      "id": "A-S-P300-130",
+      "body": "Defender 130",
+      "model": "Defender S",
+      "engine": "3.0L 6 Cylinder",
+      "year": 2027,
+      "yearBasis": "native-description",
+      "price": 86700,
+      "fuel": "Gasoline / hybrid",
+      "drivetrain": "AWD",
+      "transmission": "Automatic",
+      "source": {
+        "url": "https://rules.config.landrover.com/rc/lr/en_ca/l663_k27/4d5qi/a-130_a-l663-s_a-p300-130_p/.jsonp?view=personalise&callback=config_rcjson",
+        "status": 200,
+        "sha256": "5a7d7dd815aa941084bbe64a68f203f4e86a0d842ee43b77020de02bb05a3409",
+        "capturedAt": "2026-10-26T07:49:27.147Z"
+      }
+    },
+    {
+      "family": "l663",
+      "id": "A-XDYN-SE-P400-130",
+      "body": "Defender 130",
+      "model": "Defender X-Dynamic SE",
+      "engine": "3.0L 6 Cylinder",
+      "year": 2027,
+      "yearBasis": "native-description",
+      "price": 99800,
+      "fuel": "Hybrid",
+      "drivetrain": "AWD",
+      "transmission": "Automatic",
+      "source": {
+        "url": "https://rules.config.landrover.com/rc/lr/en_ca/l663_k27/4d5qi/a-130_a-p400-130_a-xdyn-se_p/.jsonp?view=personalise&callback=config_rcjson",
+        "status": 200,
+        "sha256": "d22779d70b3109a876fdddd8a5115e768c3418c9f4e03ed60ebaa7d591328731",
+        "capturedAt": "2026-10-26T07:49:27.191Z"
+      }
+    },
+    {
+      "family": "l663",
+      "id": "A-XS-P400-130",
+      "body": "Defender 130",
+      "model": "Defender Vertex",
+      "engine": "3.0L 6 Cylinder",
+      "year": 2027,
+      "yearBasis": "native-description",
+      "price": 117500,
+      "fuel": "Hybrid",
+      "drivetrain": "AWD",
+      "transmission": "Automatic",
+      "source": {
+        "url": "https://rules.config.landrover.com/rc/lr/en_ca/l663_k27/4d5qi/a-130_a-p400-130_a-xs_p/.jsonp?view=personalise&callback=config_rcjson",
+        "status": 200,
+        "sha256": "46bd6c76342e4caa3febab3768db7446edaf2d38b96cb73da3a0f9798138e331",
+        "capturedAt": "2026-10-26T07:49:27.237Z"
+      }
+    },
+    {
+      "family": "l462",
+      "id": "A-P360-VD2",
+      "body": "Discovery",
+      "model": "Discovery Landmark",
+      "engine": "3.0L 6 Cylinder",
+      "year": null,
+      "yearBasis": "unverified",
+      "price": 87000,
+      "fuel": "Gasoline / hybrid",
+      "drivetrain": "AWD",
+      "transmission": "Automatic",
+      "source": {
+        "url": "https://rules.config.landrover.com/rc/lr/en_ca/l462_k27/4d5lq/a-p360_a-std-wb_a-vdyn_p/.jsonp?view=personalise&callback=config_rcjson",
+        "status": 200,
+        "sha256": "35849f1635ea76f1ddbe049981493944db9368fc09a55f8692c679f9d4a9deda",
+        "capturedAt": "2026-10-26T07:49:27.508Z"
+      }
+    },
+    {
+      "family": "l462",
+      "id": "A-P360-LE9",
+      "body": "Discovery",
+      "model": "Discovery Tempest",
+      "engine": "3.0L 6 Cylinder",
+      "year": null,
+      "yearBasis": "unverified",
+      "price": 95000,
+      "fuel": "Gasoline / hybrid",
+      "drivetrain": "AWD",
+      "transmission": "Automatic",
+      "source": {
+        "url": "https://rules.config.landrover.com/rc/lr/en_ca/l462_k27/4d5lq/a-le9_a-p360_a-std-wb_p/.jsonp?view=personalise&callback=config_rcjson",
+        "status": 200,
+        "sha256": "3301d720f9be439a339ba4bb69b2b717bca8a12aff0ba921cb106c53328a9e18",
+        "capturedAt": "2026-10-26T07:49:27.734Z"
+      }
+    },
+    {
+      "family": "l550",
+      "id": "A-20P-249AAWD-VD2",
+      "body": "Standard Wheelbase",
+      "model": "Discovery Sport Landmark",
+      "engine": "2.0L 4-Cylinder",
+      "year": 2026,
+      "yearBasis": "native-description",
+      "price": 59800,
+      "fuel": "Hybrid",
+      "drivetrain": "AWD",
+      "transmission": "Automatic",
+      "source": {
+        "url": "https://rules.config.landrover.com/rc/lr/en_ca/l550_k265/4d5lq/a-p249_a-rdyn-se_a-swb_p/.jsonp?view=personalise&callback=config_rcjson",
+        "status": 200,
+        "sha256": "71839cc2ffa9b01c94e21d9c96fb382461324b1db74f309cefa29dc7fa16b2f9",
+        "capturedAt": "2026-10-26T07:49:27.774Z"
+      }
+    },
+    {
+      "family": "l460",
+      "id": "A-SI6-400-SP2",
+      "body": "Standard Wheelbase",
+      "model": "Range Rover SE",
+      "engine": "3.0L 6-Cylinder",
+      "year": 2027,
+      "yearBasis": "canadian-overview-title",
+      "price": 136400,
+      "fuel": "Hybrid",
+      "drivetrain": "AWD",
+      "transmission": "Automatic",
+      "source": {
+        "url": "https://rules.config.landrover.com/rc/lr/en_ca/l460_k27/4d5np/a-si6-400_a-std-se_a-swb_p/.jsonp?view=personalise&callback=config_rcjson",
+        "status": 200,
+        "sha256": "02bfac41850bf3ea9f78ccd49ae80bf79f221b9534d060be3ab66eaa8f1b9af6",
+        "capturedAt": "2026-10-26T07:49:27.828Z"
+      }
+    },
+    {
+      "family": "l460",
+      "id": "A-SI6-550-SP2",
+      "body": "Standard Wheelbase",
+      "model": "Range Rover SE",
+      "engine": "3.0L 6-Cylinder Gas Plug-In Hybrid",
+      "year": 2027,
+      "yearBasis": "canadian-overview-title",
+      "price": 159600,
+      "fuel": "Plug-in hybrid",
+      "drivetrain": "AWD",
+      "transmission": "Automatic",
+      "source": {
+        "url": "https://rules.config.landrover.com/rc/lr/en_ca/l460_k27/4d5np/a-si6-550_a-std-se_a-swb_h/.jsonp?view=personalise&callback=config_rcjson",
+        "status": 200,
+        "sha256": "70d34062a4f15f3d48882358f44b84e1eb612bba5abce23187cbe98c640f18f2",
+        "capturedAt": "2026-10-26T07:49:27.870Z"
+      }
+    },
+    {
+      "family": "l460",
+      "id": "A-V8-530-SP2",
+      "body": "Standard Wheelbase",
+      "model": "Range Rover SE",
+      "engine": "4.4L 8-Cylinder",
+      "year": 2027,
+      "yearBasis": "canadian-overview-title",
+      "price": 158500,
+      "fuel": "Gasoline / hybrid",
+      "drivetrain": "AWD",
+      "transmission": "Automatic",
+      "source": {
+        "url": "https://rules.config.landrover.com/rc/lr/en_ca/l460_k27/4d5np/a-std-se_a-swb_a-v8-530_p/.jsonp?view=personalise&callback=config_rcjson",
+        "status": 200,
+        "sha256": "47092b13ae2d793de53ff946d926eea22619f6bf441202f05fdcaf9720a9d285",
+        "capturedAt": "2026-10-26T07:49:27.914Z"
+      }
+    },
+    {
+      "family": "l460",
+      "id": "A-V8-530-SA1",
+      "body": "Standard Wheelbase",
+      "model": "Range Rover Autobiography",
+      "engine": "4.4L 8-Cylinder",
+      "year": 2027,
+      "yearBasis": "canadian-overview-title",
+      "price": 198900,
+      "fuel": "Gasoline / hybrid",
+      "drivetrain": "AWD",
+      "transmission": "Automatic",
+      "source": {
+        "url": "https://rules.config.landrover.com/rc/lr/en_ca/l460_k27/4d5np/a-ab_a-swb_a-v8-530_p/.jsonp?view=personalise&callback=config_rcjson",
+        "status": 200,
+        "sha256": "af07a086345e8c13cd3ac9ae159920b485663a1303cb8b0f422505f90ce856b8",
+        "capturedAt": "2026-10-26T07:49:28.002Z"
+      }
+    },
+    {
+      "family": "l460",
+      "id": "A-V8-615-SV1",
+      "body": "Standard Wheelbase",
+      "model": "Range Rover SV",
+      "engine": "4.4L 8-Cylinder",
+      "year": 2027,
+      "yearBasis": "canadian-overview-title",
+      "price": 247600,
+      "fuel": "Gasoline / hybrid",
+      "drivetrain": "AWD",
+      "transmission": "Automatic",
+      "source": {
+        "url": "https://rules.config.landrover.com/rc/lr/en_ca/l460_k27/4d5np/a-sv_a-swb_a-v8-615_p/.jsonp?view=personalise&callback=config_rcjson",
+        "status": 200,
+        "sha256": "210a34f0f0f851bab9bbb8104cc20df54f79e8e484f90acb7e5950944cb86f0c",
+        "capturedAt": "2026-10-26T07:49:28.045Z"
+      }
+    },
+    {
+      "family": "l460",
+      "id": "A-V8-615-SV2",
+      "body": "Standard Wheelbase",
+      "model": "Range Rover SV Black",
+      "engine": "4.4L 8-Cylinder",
+      "year": 2027,
+      "yearBasis": "canadian-overview-title",
+      "price": 267300,
+      "fuel": "Gasoline / hybrid",
+      "drivetrain": "AWD",
+      "transmission": "Automatic",
+      "source": {
+        "url": "https://rules.config.landrover.com/rc/lr/en_ca/l460_k27/4d5np/a-svb_a-swb_a-v8-615_p/.jsonp?view=personalise&callback=config_rcjson",
+        "status": 200,
+        "sha256": "793d07f2255aae96806c7ded69838656aec382f8bb6f65ceaa2f8b8270eb8e1c",
+        "capturedAt": "2026-10-26T07:49:28.101Z"
+      }
+    },
+    {
+      "family": "l460",
+      "id": "A-EV-550-SA1",
+      "body": "Standard Wheelbase",
+      "model": "Range Rover Autobiography",
+      "engine": "EV550 118.5 kWh Electric",
+      "year": 2027,
+      "yearBasis": "canadian-overview-title",
+      "price": 200800,
+      "fuel": "Electric",
+      "drivetrain": "AWD",
+      "transmission": "Automatic",
+      "source": {
+        "url": "https://rules.config.landrover.com/rc/lr/en_ca/l460_k27/4d5np/a-ab_a-ev-550_a-swb_e/.jsonp?view=personalise&callback=config_rcjson",
+        "status": 200,
+        "sha256": "d0f80098c85fe33d46c387873273c1e22be1a96ee714c5e4c3289389288f52ba",
+        "capturedAt": "2026-10-26T07:49:28.143Z"
+      }
+    },
+    {
+      "family": "l460",
+      "id": "A-V8-530-SA1-LWB",
+      "body": "Long Wheelbase",
+      "model": "Range Rover Autobiography",
+      "engine": "4.4L 8-Cylinder",
+      "year": 2027,
+      "yearBasis": "canadian-overview-title",
+      "price": 202200,
+      "fuel": "Gasoline / hybrid",
+      "drivetrain": "AWD",
+      "transmission": "Automatic",
+      "source": {
+        "url": "https://rules.config.landrover.com/rc/lr/en_ca/l460_k27/4d5np/a-ab_a-lwb_a-v8-530_p/.jsonp?view=personalise&callback=config_rcjson",
+        "status": 200,
+        "sha256": "21271ea9402ea8f27a0319ea59847019d709f87749f34a87d29131b68be29285",
+        "capturedAt": "2026-10-26T07:49:28.582Z"
+      }
+    },
+    {
+      "family": "l460",
+      "id": "A-V8-615-SV1-LWB",
+      "body": "Long Wheelbase",
+      "model": "Range Rover SV",
+      "engine": "4.4L 8-Cylinder",
+      "year": 2027,
+      "yearBasis": "canadian-overview-title",
+      "price": 278800,
+      "fuel": "Gasoline / hybrid",
+      "drivetrain": "AWD",
+      "transmission": "Automatic",
+      "source": {
+        "url": "https://rules.config.landrover.com/rc/lr/en_ca/l460_k27/4d5np/a-lwb_a-sv_a-v8-615_p/.jsonp?view=personalise&callback=config_rcjson",
+        "status": 200,
+        "sha256": "3efc40081595688c97ef67fd08005c7068572027ff3331b4f2c8b6a2799ecf19",
+        "capturedAt": "2026-10-26T07:49:28.630Z"
+      }
+    },
+    {
+      "family": "l460",
+      "id": "A-V8-615-SV2-LWB",
+      "body": "Long Wheelbase",
+      "model": "Range Rover SV Black",
+      "engine": "4.4L 8-Cylinder",
+      "year": 2027,
+      "yearBasis": "canadian-overview-title",
+      "price": 294100,
+      "fuel": "Gasoline / hybrid",
+      "drivetrain": "AWD",
+      "transmission": "Automatic",
+      "source": {
+        "url": "https://rules.config.landrover.com/rc/lr/en_ca/l460_k27/4d5np/a-lwb_a-svb_a-v8-615_p/.jsonp?view=personalise&callback=config_rcjson",
+        "status": 200,
+        "sha256": "7d58532b7d9a9b9a3edac54ea73ab6cc0d291a307b1d923f3d5923f39528925d",
+        "capturedAt": "2026-10-26T07:49:28.674Z"
+      }
+    },
+    {
+      "family": "l460",
+      "id": "A-SI6-400-SP2-LWB-7",
+      "body": "Long Wheelbase Seven Seats",
+      "model": "Range Rover SE",
+      "engine": "3.0L 6-Cylinder",
+      "year": 2027,
+      "yearBasis": "canadian-overview-title",
+      "price": 140100,
+      "fuel": "Hybrid",
+      "drivetrain": "AWD",
+      "transmission": "Automatic",
+      "source": {
+        "url": "https://rules.config.landrover.com/rc/lr/en_ca/l460_k27/4d5np/a-lwb-7_a-si6-400_a-std-se_p/.jsonp?view=personalise&callback=config_rcjson",
+        "status": 200,
+        "sha256": "dbc08457448428f372b78d0a9fceb6cb5926f87bedee03eeb91a0892315ccc03",
+        "capturedAt": "2026-10-26T07:49:28.761Z"
+      }
+    },
+    {
+      "family": "l460",
+      "id": "A-V8-530-SP2-LWB-7",
+      "body": "Long Wheelbase Seven Seats",
+      "model": "Range Rover SE",
+      "engine": "4.4L 8-Cylinder",
+      "year": 2027,
+      "yearBasis": "canadian-overview-title",
+      "price": 165500,
+      "fuel": "Gasoline / hybrid",
+      "drivetrain": "AWD",
+      "transmission": "Automatic",
+      "source": {
+        "url": "https://rules.config.landrover.com/rc/lr/en_ca/l460_k27/4d5np/a-lwb-7_a-std-se_a-v8-530_p/.jsonp?view=personalise&callback=config_rcjson",
+        "status": 200,
+        "sha256": "975a9673f14286a8c417adbf0994e9800ce92f168f0e3216ff52d5c2d1bd1b71",
+        "capturedAt": "2026-10-26T07:49:28.805Z"
+      }
+    },
+    {
+      "family": "l460",
+      "id": "A-V8-530-SA1-LWB-7",
+      "body": "Long Wheelbase Seven Seats",
+      "model": "Range Rover Autobiography",
+      "engine": "4.4L 8-Cylinder",
+      "year": 2027,
+      "yearBasis": "canadian-overview-title",
+      "price": 202500,
+      "fuel": "Gasoline / hybrid",
+      "drivetrain": "AWD",
+      "transmission": "Automatic",
+      "source": {
+        "url": "https://rules.config.landrover.com/rc/lr/en_ca/l460_k27/4d5np/a-ab_a-lwb-7_a-v8-530_p/.jsonp?view=personalise&callback=config_rcjson",
+        "status": 200,
+        "sha256": "e6b1632558e70cf46fcff7c8955b987c5c825f020d502a916fcd5a36289fae0c",
+        "capturedAt": "2026-10-26T07:49:28.855Z"
+      }
+    },
+    {
+      "family": "l461",
+      "id": "A-E460-VD2",
+      "body": "RANGE ROVER SPORT",
+      "model": "Range Rover Sport Dynamic SE",
+      "engine": "P460e Gas Plug-in Hybrid",
+      "year": null,
+      "yearBasis": "unverified",
+      "price": 123230,
+      "fuel": "Plug-in hybrid",
+      "drivetrain": "AWD",
+      "transmission": "Automatic",
+      "source": {
+        "url": "https://rules.config.landrover.com/rc/lr/en_ca/l461_k27/4d5n3/a-dyn-se_a-e460_a-swb_h/.jsonp?view=personalise&callback=config_rcjson",
+        "status": 200,
+        "sha256": "fa6dc5fc3bd2e520dbc2fefb1692a8aff25934a08b192edb2e1a7f1fb69d3178",
+        "capturedAt": "2026-10-26T07:49:28.904Z"
+      }
+    },
+    {
+      "family": "l461",
+      "id": "A-E550-LE5",
+      "body": "RANGE ROVER SPORT",
+      "model": "Range Rover Sport Battersea Edition",
+      "engine": "P550e Gas Plug-in Hybrid",
+      "year": null,
+      "yearBasis": "unverified",
+      "price": 137570,
+      "fuel": "Plug-in hybrid",
+      "drivetrain": "AWD",
+      "transmission": "Automatic",
+      "source": {
+        "url": "https://rules.config.landrover.com/rc/lr/en_ca/l461_k27/4d5n3/a-e550_a-le-5_a-swb_h/.jsonp?view=personalise&callback=config_rcjson",
+        "status": 200,
+        "sha256": "1bf2d7ce97a346dac19de6286f3f9c19d1719ca3ee6bd420d99ec05ad45eec3a",
+        "capturedAt": "2026-10-26T07:49:29.200Z"
+      }
+    },
+    {
+      "family": "l461",
+      "id": "A-P360-SP1",
+      "body": "RANGE ROVER SPORT",
+      "model": "Range Rover Sport S",
+      "engine": "P360 Gas Mild Hybrid",
+      "year": null,
+      "yearBasis": "unverified",
+      "price": 94950,
+      "fuel": "Hybrid",
+      "drivetrain": "AWD",
+      "transmission": "Automatic",
+      "source": {
+        "url": "https://rules.config.landrover.com/rc/lr/en_ca/l461_k27/4d5n3/a-p360_a-std-s_a-swb_p/.jsonp?view=personalise&callback=config_rcjson",
+        "status": 200,
+        "sha256": "15041cc0f427ccf778201c88919c5fb3442baead808a2ee154a59c4f28af2a4b",
+        "capturedAt": "2026-10-26T07:49:29.260Z"
+      }
+    },
+    {
+      "family": "l461",
+      "id": "A-P400-VD2",
+      "body": "RANGE ROVER SPORT",
+      "model": "Range Rover Sport Dynamic SE",
+      "engine": "P400 Gas Mild Hybrid",
+      "year": null,
+      "yearBasis": "unverified",
+      "price": 111530,
+      "fuel": "Hybrid",
+      "drivetrain": "AWD",
+      "transmission": "Automatic",
+      "source": {
+        "url": "https://rules.config.landrover.com/rc/lr/en_ca/l461_k27/4d5n3/a-dyn-se_a-p400_a-swb_p/.jsonp?view=personalise&callback=config_rcjson",
+        "status": 200,
+        "sha256": "51d1de5f17c4f8ad061732a61f8d284a69f6f04447e29dd06dbc400aea892534",
+        "capturedAt": "2026-10-26T07:49:29.321Z"
+      }
+    },
+    {
+      "family": "l461",
+      "id": "A-P530-VD2",
+      "body": "RANGE ROVER SPORT",
+      "model": "Range Rover Sport Dynamic SE",
+      "engine": "P530 Gas Mild Hybrid",
+      "year": null,
+      "yearBasis": "unverified",
+      "price": 128930,
+      "fuel": "Hybrid",
+      "drivetrain": "AWD",
+      "transmission": "Automatic",
+      "source": {
+        "url": "https://rules.config.landrover.com/rc/lr/en_ca/l461_k27/4d5n3/a-dyn-se_a-p530_a-swb_p/.jsonp?view=personalise&callback=config_rcjson",
+        "status": 200,
+        "sha256": "20c4cc37f226e34e63ba5d0775c7d11b7b1768988ee84551dd28608b51654103",
+        "capturedAt": "2026-10-26T07:49:29.578Z"
+      }
+    },
+    {
+      "family": "l461",
+      "id": "A-P530-LE6",
+      "body": "RANGE ROVER SPORT",
+      "model": "Range Rover Sport Twenty Edition",
+      "engine": "P530 Gas Mild Hybrid",
+      "year": null,
+      "yearBasis": "unverified",
+      "price": 145400,
+      "fuel": "Hybrid",
+      "drivetrain": "AWD",
+      "transmission": "Automatic",
+      "source": {
+        "url": "https://rules.config.landrover.com/rc/lr/en_ca/l461_k27/4d5n3/a-le-6_a-p530_a-swb_p/.jsonp?view=personalise&callback=config_rcjson",
+        "status": 200,
+        "sha256": "982097e719521f4872f4e96a068a592bb76196298cce67938b564da0265a4531",
+        "capturedAt": "2026-10-26T07:49:30.471Z"
+      }
+    },
+    {
+      "family": "l461",
+      "id": "A-P530-SA1",
+      "body": "RANGE ROVER SPORT",
+      "model": "Range Rover Sport Autobiography",
+      "engine": "P530 Gas Mild Hybrid",
+      "year": null,
+      "yearBasis": "unverified",
+      "price": 140800,
+      "fuel": "Hybrid",
+      "drivetrain": "AWD",
+      "transmission": "Automatic",
+      "source": {
+        "url": "https://rules.config.landrover.com/rc/lr/en_ca/l461_k27/4d5n3/a-ab_a-p530_a-swb_p/.jsonp?view=personalise&callback=config_rcjson",
+        "status": 200,
+        "sha256": "958cd106f85df0ba9a22eb1b50c392a88c6b6224c55e1e919a4c486ac3bb9697",
+        "capturedAt": "2026-10-26T07:49:30.513Z"
+      }
+    },
+    {
+      "family": "l461",
+      "id": "A-P635-SV0",
+      "body": "RANGE ROVER SPORT",
+      "model": "Range Rover Sport SV",
+      "engine": "P635 Gas Mild Hybrid",
+      "year": null,
+      "yearBasis": "unverified",
+      "price": 162300,
+      "fuel": "Hybrid",
+      "drivetrain": "AWD",
+      "transmission": "Automatic",
+      "source": {
+        "url": "https://rules.config.landrover.com/rc/lr/en_ca/l461_k27/4d5n3/a-p635_a-sv-0_a-swb_p/.jsonp?view=personalise&callback=config_rcjson",
+        "status": 200,
+        "sha256": "6db30c264a2cce921dda769a81f4779293af45cb2c1073c43df8d08ea71bbcda",
+        "capturedAt": "2026-10-26T07:49:30.565Z"
+      }
+    },
+    {
+      "family": "l461",
+      "id": "A-P635-SV2",
+      "body": "RANGE ROVER SPORT",
+      "model": "Range Rover Sport SV Black",
+      "engine": "P635 Gas Mild Hybrid",
+      "year": null,
+      "yearBasis": "unverified",
+      "price": 177300,
+      "fuel": "Hybrid",
+      "drivetrain": "AWD",
+      "transmission": "Automatic",
+      "source": {
+        "url": "https://rules.config.landrover.com/rc/lr/en_ca/l461_k27/4d5n3/a-p635_a-sv-2_a-swb_p/.jsonp?view=personalise&callback=config_rcjson",
+        "status": 200,
+        "sha256": "53706340532872047ec53de58c1504a49befb1faae6fe615995326cb17ab60f7",
+        "capturedAt": "2026-10-26T07:49:30.820Z"
+      }
+    },
+    {
+      "family": "l461",
+      "id": "A-P635-SV3",
+      "body": "RANGE ROVER SPORT",
+      "model": "Range Rover Sport SV Carbon",
+      "engine": "P635 Gas Mild Hybrid",
+      "year": null,
+      "yearBasis": "unverified",
+      "price": 198700,
+      "fuel": "Hybrid",
+      "drivetrain": "AWD",
+      "transmission": "Automatic",
+      "source": {
+        "url": "https://rules.config.landrover.com/rc/lr/en_ca/l461_k27/4d5n3/a-p635_a-sv-3_a-swb_p/.jsonp?view=personalise&callback=config_rcjson",
+        "status": 200,
+        "sha256": "0329473505d83e45bd958fe90fbc1ebd06278a128283c6fd6d59f985da183118",
+        "capturedAt": "2026-10-26T07:49:30.862Z"
+      }
+    },
+    {
+      "family": "l560",
+      "id": "A-SA-400",
+      "body": "Standard Wheelbase",
+      "model": "Range Rover Velar Autobiography",
+      "engine": "P400 Gas Mild Hybrid",
+      "year": null,
+      "yearBasis": "unverified",
+      "price": 89950,
+      "fuel": "Hybrid",
+      "drivetrain": "AWD",
+      "transmission": "Automatic",
+      "source": {
+        "url": "https://rules.config.landrover.com/rc/lr/en_ca/l560_k2675/4d5lr/a-p400_a-sa_a-swb_p/.jsonp?view=personalise&callback=config_rcjson",
+        "status": 200,
+        "sha256": "d31434df72aa807891de9e3b4721b83c8c96b16900e4c96624c2e24101492894",
+        "capturedAt": "2026-10-26T07:49:30.906Z"
+      }
+    },
+    {
+      "family": "l551",
+      "id": "N-LE5-P249-A-AWD",
+      "body": "Standard Wheelbase",
+      "model": "Range Rover Evoque Hoxton Edition",
+      "engine": "2.0L 4-Cylinder",
+      "year": 2026,
+      "yearBasis": "native-description",
+      "price": 61250,
+      "fuel": "Gasoline / hybrid",
+      "drivetrain": "AWD",
+      "transmission": "Not verified",
+      "source": {
+        "url": "https://rules.config.landrover.com/rc/lr/en_ca/l551_k2675/4d5nd/a-p249-a-awd_a-swb_le5_p/.jsonp?view=personalise&callback=config_rcjson",
+        "status": 200,
+        "sha256": "b4f0f376ad7454e1827f5d89e2e2d93a9e4985f70bd138a3e50a71d3cb9f5e84",
+        "capturedAt": "2026-10-26T07:49:30.950Z"
+      }
+    }
+  ]
+}

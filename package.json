@@ -51,7 +51,8 @@
     "catalog:sync:mclaren": "node --import tsx scripts/sync-mclaren.ts",
     "catalog:capture:mclaren": "node scripts/capture-mclaren.mjs",
     "check:boundaries": "node scripts/check-boundaries.mjs",
-    "check": "npm run check:boundaries && npm run test && npm run build"
+    "check": "npm run check:boundaries && npm run test && npm run build",
+    "catalog:sync:landrover": "node --import tsx scripts/sync-landrover.ts"
   },
   "devDependencies": {
     "@axe-core/playwright": "4.14.0",

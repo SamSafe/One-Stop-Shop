@@ -1,3 +1,6 @@
+import landroverData from '../data/manufacturers/landrover.json';
+import { validateLandroverSnapshot } from './landrover-import';
+import { addLandroverRetail } from './landrover';
 import data from '../data/catalog.json';
 import snapshot from '../data/nrcan.json';
 import links from '../data/retail-rating-links.json';
@@ -141,13 +144,15 @@ const previouslyListedRetail = addMercedesVanStock(
   addMercedesRetail(addLucidRetail(rivianRetailCatalog, lucidSnapshot), mercedesSnapshot),
   mercedesVanStockSnapshot,
 );
-export const manufacturerCatalog = addMclarenRetail(
+const beforeLandrover = addMclarenRetail(
   addAstonOffers(
     addVinfastOffers(addPorscheRetail(previouslyListedRetail, porscheSnapshot), vinfastSnapshot),
     astonSnapshot,
   ),
   mclarenSnapshot,
 );
+export const landroverSnapshot = validateLandroverSnapshot(landroverData);
+export const manufacturerCatalog = addLandroverRetail(beforeLandrover, landroverSnapshot);
 export const retailCatalog = validateCatalog({
   ...manufacturerCatalog,
   cars: manufacturerCatalog.cars.filter((car) => car.recordKind === 'retail-trim'),

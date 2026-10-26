@@ -24,6 +24,7 @@ import {
   porscheSnapshot,
   astonSnapshot,
   mclarenSnapshot,
+  landroverSnapshot,
 } from '../packages/car-catalog/src/index.ts';
 import { catalogCoverage } from '../packages/car-catalog/src/coverage.ts';
 import { mazdaMeasurementConflicts } from '../packages/car-catalog/src/mazda.ts';
@@ -112,6 +113,11 @@ const report = {
     ...porscheReviewGaps(porscheSnapshot),
     ...astonReviewGaps(astonSnapshot),
     ...mclarenReviewGaps(mclarenSnapshot),
+    {
+      brand: 'Land Rover',
+      field: 'scope',
+      reason: `${landroverSnapshot.profiles.length} current visible derivatives are represented; 13 lack a literal model year. National inventory, older new stock, equipment combinations and technical metrics remain unverified. See docs/LAND-ROVER-SOURCES.md.`,
+    },
     ...genesisSnapshot.rejectedSpecifications.map((s) => ({
       brand: 'Genesis',
       configuration: s.label,

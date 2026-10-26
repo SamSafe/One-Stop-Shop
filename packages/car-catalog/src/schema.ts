@@ -126,6 +126,9 @@ const manufacturerHosts = new Set([
   'www.astonmartin.com',
   'configurator.mclaren.com',
   'www.mclaren.com',
+  'www.landrover.ca',
+  'www.rangerover.com',
+  'rules.config.landrover.com',
 ]);
 
 export const sourceSchema = z.strictObject({
