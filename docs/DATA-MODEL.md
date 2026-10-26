@@ -123,6 +123,16 @@ configuration references do not establish a physical or exhaustive national coun
 Current Captain's Chairs use an explicit six-seat description; older stock does
 not inherit current-year seating or technical figures.
 
+Porsche snapshots reconcile the Canadian model menu, exact-year detail metadata,
+native factory initializers and completed transmission/rear-seat selections.
+Unselected transmission placeholders do not become configured vehicles. Stable
+identity includes the model year/code, selected transmission and rear-seat state.
+Numeric base and option amounts remain separate from fees and taxes. Technical
+rows join the selected transmission; combined power and ordinary EV maxima remain
+separate from engine-only output and Launch Control overboost. Width excludes
+mirrors, and height requires the standard suspension/roof context. A limited
+menu-only model keeps unqualified technical tables, price and allocation unknown.
+
 The checked-in NRCan snapshot preserves every selected record and per-page
 response receipts. Build-time expansion joins reviewed retail configurations by
 explicit NRCan IDs. Both Forester trims can share one rating; exact trim identities

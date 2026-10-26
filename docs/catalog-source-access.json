@@ -62,5 +62,13 @@
     "httpStatus": 403,
     "responseSha256": "15c3346934d2079a99d6829c24461d2d527f520bb23b38fad660311db8856b25",
     "reason": "Direct Canadian overview, Model 3 designer and new-inventory GETs returned HTTP 403. A standard anonymous browser overview also returned HTTP 403. Indexed official pages remain readable, but a full reproducible model-year/trim/CAD-price/new-stock capture was not established. This is a source-access research gap, not evidence that no vehicles are offered in Canada."
+  },
+  {
+    "make": "Porsche",
+    "sourceUrl": "https://finder.porsche.com/ca/en-CA",
+    "observedAt": "2026-10-26T01:32:11.623Z",
+    "httpStatus": 429,
+    "responseSha256": "0bc5d132b03323d0a90f014ba6d83e7ce11b1c146ec86eddabc6f84520c0e770",
+    "reason": "One ordinary public Canadian finder GET returned HTTP 429. No authentication or challenge boundary was bypassed. The Canadian menu, detail pages and public configurators remain accessible and imported separately. The finder response is not evidence of absent stock or exhaustive coverage; current/older new inventory and independent national offering reconciliation remain open."
   }
 ]

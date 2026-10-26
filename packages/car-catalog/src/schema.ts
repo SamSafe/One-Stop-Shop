@@ -120,6 +120,8 @@ const manufacturerHosts = new Set([
   'nafta-service.mbusa.com',
   'nafta-service.mbvans.com',
   'vinfastauto.ca',
+  'www.porsche.com',
+  'configurator.porsche.com',
 ]);
 
 export const sourceSchema = z.strictObject({

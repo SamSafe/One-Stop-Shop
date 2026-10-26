@@ -1,20 +1,20 @@
 # One Stop Shop — OSS
 
 A Canadian car comparison app that explains how each configuration fits your
-priorities. The working catalog contains 5,932 records across 47 makes: 3,415
+priorities. The working catalog contains 6,026 records across 47 makes: 3,509
 year-qualified retail configurations, three manufacturer offers with unverified
 model years, and 2,514 standalone government rating variants. All 2,518 NRCan
 rating IDs for 2025–2027 remain represented; matched ratings are merged into
 retail configurations. Manufacturer listings include overlapping 2024–2027 years.
 
-Base MSRP is verified for 2,495 year-qualified retail profiles and published for
+Base MSRP is verified for 2,588 year-qualified retail profiles and published for
 the three year-unverified offers. Genesis supplies 39 separately labeled Alberta
 all-inclusive prices. Unknown facts retain their reasons; preliminary technical
 figures, configured stock prices and expired finance examples do not become
 exact-year base facts. Manufacturer-listed profiles and observed new stock carry
 dated source evidence, without promising delivery or exhaustive national inventory.
 
-Full Canadian market coverage remains in progress. Twenty-one makes in the
+Full Canadian market coverage remains in progress. Twenty makes in the
 rating baseline still lack a current manufacturer import. Independent lineup
 checks, equipment combinations, older new stock, exact model years, prices and
 technical specifications remain open across the market. Government rating
@@ -237,6 +237,12 @@ views must all reconcile. Three offers retain an unverified model year; only the
 VF 9 ECO has an exact current cash-price/model-year join. Login redirects,
 expired finance examples and preliminary specifications remain explicit gaps.
 See [the VinFast source contract](docs/VINFAST-PRICING.md).
+
+Refresh Porsche with `npm run catalog:sync:porsche`; `-- --offline` reconstructs
+all dated sources exactly. The Canadian menu, exact-year technical tables and
+completed transmission/rear-seat selections reconcile before replacement.
+Other packages, the limited menu-only allocation and remaining older new stock
+remain open. See [the Porsche source contract](docs/PORSCHE-CONFIGURATOR.md).
 
 Manufacturer listings establish a current offering, not dealer stock or delivery
 dates; older model-year inventory and additional specifications still need review.

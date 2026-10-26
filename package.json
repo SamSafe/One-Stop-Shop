@@ -46,6 +46,7 @@
     "catalog:sync:mercedes": "node --import tsx scripts/sync-mercedes.ts",
     "catalog:sync:mercedes-vans": "node --import tsx scripts/sync-mercedes-vans.ts",
     "catalog:sync:vinfast": "node --import tsx scripts/sync-vinfast.ts",
+    "catalog:sync:porsche": "node --import tsx scripts/sync-porsche.ts",
     "check:boundaries": "node scripts/check-boundaries.mjs",
     "check": "npm run check:boundaries && npm run test && npm run build"
   },

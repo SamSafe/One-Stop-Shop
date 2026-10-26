@@ -21,6 +21,7 @@ import {
   mercedesSnapshot,
   mercedesVanStockSnapshot,
   vinfastSnapshot,
+  porscheSnapshot,
 } from '../packages/car-catalog/src/index.ts';
 import { catalogCoverage } from '../packages/car-catalog/src/coverage.ts';
 import { mazdaMeasurementConflicts } from '../packages/car-catalog/src/mazda.ts';
@@ -40,6 +41,7 @@ import { mercedesReviewGaps } from '../packages/car-catalog/src/mercedes.ts';
 import { mercedesVanStockGaps } from '../packages/car-catalog/src/mercedes-vans.ts';
 import { vinfastReviewGaps } from '../packages/car-catalog/src/vinfast.ts';
 import { vinfastProfiles } from '../packages/car-catalog/src/vinfast-import.ts';
+import { porscheReviewGaps } from '../packages/car-catalog/src/porsche.ts';
 import sourceAccessReviews from '../docs/catalog-source-access.json';
 
 const report = {
@@ -93,6 +95,7 @@ const report = {
     ...mercedesReviewGaps(mercedesSnapshot),
     ...mercedesVanStockGaps(mercedesVanStockSnapshot),
     ...vinfastReviewGaps(vinfastSnapshot),
+    ...porscheReviewGaps(porscheSnapshot),
     ...genesisSnapshot.rejectedSpecifications.map((s) => ({
       brand: 'Genesis',
       configuration: s.label,
@@ -244,6 +247,15 @@ const report = {
     ),
   ],
   manufacturerConfigurationExpansion: [
+    {
+      brand: 'Porsche',
+      currentMenuModels: porscheSnapshot.models.length,
+      completedFactoryProfiles: porscheSnapshot.models.reduce((n, m) => n + m.profiles.length, 0),
+      menuOnlyModels: porscheSnapshot.models.filter((m) => !m.initial).length,
+      additionalSelectionsExhaustivelyExpanded: false,
+      remaining:
+        'Transmission and explicit rear-seat choices reconcile. Additional equipment packages, other seating/suspension arrangements, cosmetics, older new inventory and independent national offering checks remain incomplete.',
+    },
     {
       brand: 'VinFast',
       publicModelProvinceViews: vinfastSnapshot.pages.length,

@@ -1196,3 +1196,39 @@ hashes and current source fingerprint passed. The complete catalog asset is
 4,713.96 kB raw / 726.43 kB gzip and is unchanged by the source-decoder correction.
 The running preview's health check and current catalog asset return HTTP 200 at
 http://127.0.0.1:8080.
+
+## Porsche exact-year transmissions and rear seats
+
+The October 26 UTC capture (October 25 in Edmonton) reconciles every one of the
+74 Canadian model-menu identities across 2025–2027, all 74 linked detail pages
+and 73 public factory initializers. Ten model entries offer both transmissions;
+nine offer explicit rear seats. Twenty-two additional completed selections yield
+93 factory profiles. The Cayman and Boxster Style Edition initializers leave
+their transmissions unselected, so both offered choices are resolved explicitly.
+No guessed default becomes a configuration.
+
+The two/four-seat 911 profiles retain distinct identities even when rear seats
+cost zero. The GT3 Touring has four resolved transmission/seating combinations.
+Native base and option amounts remain separate from destination, dealer fees,
+levies and tax. Exact transmission-suffixed technical rows distinguish combined
+system power, ordinary EV maxima and temporary overboost; metric width excludes
+mirrors and height requires the standard suspension/roof context. Unqualified
+cargo, charging, cabin and energy-cycle facts remain unknown.
+
+The limited 911 GT3 90 F. A. Porsche remains a menu-only record. Its menu directly
+verifies 2027, two seats and 502 hp; price, current allocation and the detail
+table's exact-year join remain unverified. One ordinary Canadian finder GET
+returned HTTP 429 on October 26 at 01:32:11.623Z. That is a source-access gap,
+not evidence of absent stock. Additional packages, equipment arrangements,
+independent national offerings and all remaining older new stock stay open.
+See [the Porsche source contract](PORSCHE-CONFIGURATOR.md).
+
+The catalog now contains 6,026 records: 3,509 year-qualified retail profiles,
+three manufacturer offers with unverified years and 2,514 standalone government
+variants. There are 2,591 published base prices (including those three offers),
+39 separately qualified all-inclusive prices and 1,278 official sources.
+Manufacturer-listing evidence covers 3,483 retail profiles and the three offers.
+All 2,518 rating IDs remain represented. Twenty baseline makes still lack current
+manufacturer imports; manufacturers outside that baseline and existing
+configuration, inventory and specification gaps remain in scope. The full-market
+gate remains false.
