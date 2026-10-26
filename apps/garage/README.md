@@ -1,61 +1,13 @@
-# Garage — car maintenance reminder app
+# Garage
 
-Standalone app. Build a garage of the cars you _own_ and get reminded to do
-maintenance at the right intervals. Must stand entirely on its own — most users
-already own a car and have never heard of OSS. One-sentence pitch: _"track your
-cars, never miss a service."_
+The first garage release is implemented as an independent page at `/garage` within the existing OSS deployment. Its UI and local ownership model live in `apps/oss/src/garage`; shared Canadian manufacturer guidance and document metadata live in `packages/car-catalog/src/maintenance.ts`.
 
-Adding a car you already own is the **primary** flow. Importing a car from OSS
-is a rare convenience, never an assumption.
+Adding an already-owned vehicle is the primary flow and works without downloading the comparison catalog. Any model year can be entered manually. Comparison cards offer a convenience link to preselect a catalog configuration; that catalog is loaded only on demand.
 
-## Original notes
+Implemented: vehicle entry, odometer updates, service records, personal recurring reminders, selected manufacturer guidance, due/overdue status, backup export, explicit restore confirmation and cross-tab synchronization. Owned data stays in this browser. Unknown saved formats are preserved; storage failures offer a session-only workflow and export.
 
-The app should be extended into an owned garage.
+Initial supported guidance: Canadian 2016 Elantra sedan severe-use oil/filter reminder and manual specifications; Toyota 2025 general service visits; selected Honda Maintenance Minder A/0 models. See [source review](../../docs/MAINTENANCE-SOURCES.md).
 
-Scrape for your own use case:
+Reminder intervals need explicit completion baselines. Actual completed service resets the next due date/distance; historical entries cannot move a newer baseline backwards. Removing a reminder retains its service history. Removing a vehicle requires confirmation. No automatic reminder is inferred for an unsupported schedule.
 
-- find specs
-- download and parse schedules
-- store the data on a DB
-- get users to add vehicles to a garage
-- dashboard provides details, upcoming items, controls (date/mileage
-  preferences) and average mileage a week they drive.
-- for user cars:
-  - load maintenance schedule
-  - create and attach new table for user containing schedule and items to be done
-  - allow tracking so follow-ups are personalized:
-    - "did change at x, next is due at x+y"
-    - consider wear items, consider seasonal items (winter tires)
-
-## Note on the data layer
-
-The "find specs / download & parse schedules / store on a DB" part is **not**
-garage-specific — it's the shared catalog. That logic lives in
-`packages/car-catalog`. The garage app owns only the per-user concerns:
-garages, owned vehicles, mileage, personalized schedules, reminders.
-
-## Feature ideas
-
-- Add an owned vehicle (manual entry must work even when the trim isn't in the
-  catalog yet) — this is the primary onboarding flow.
-- Load the catalog maintenance schedule and personalize it per vehicle.
-- Dashboard: upcoming items, overdue items, per-vehicle details and controls.
-- Mileage model: current mileage + avg miles/week → predict next-due dates.
-- Tracking: "did change at X, next is due at X+Y"; full service history.
-- Wear items and seasonal items (e.g. winter tires) handled distinctly.
-- Reminders (in-app first; email/push later).
-
-## MVP scope
-
-In: add vehicle, attach + personalize a schedule, dashboard of upcoming/overdue,
-mileage + date preferences, mark items done with history.
-
-Out (for MVP): multi-user garages/sharing, OSS import bridge, deep notification
-channels, cost tracking/receipts.
-
-## Personalization model
-
-Each owned vehicle gets its **own copy** of the catalog schedule so it can
-diverge per user (different mileage, skipped/added items). Next-due is computed
-from the item's mileage/time interval against the vehicle's current mileage and
-average weekly mileage. See `docs/DATA-MODEL.md` (UserVehicle / PersonalizedSchedule).
+Future: more Canadian manual providers, complete model-specific task lists, one-time milestones, editing and corrections, driving-distance forecasts, accounts and notification channels. A separately deployable garage app remains an architectural option; the initial `/garage` page shares the deployment while keeping comparison data optional.

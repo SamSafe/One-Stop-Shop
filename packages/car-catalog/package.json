@@ -7,7 +7,8 @@
     ".": "./src/index.ts",
     "./runtime": "./src/runtime.ts",
     "./metrics": "./src/metrics.ts",
-    "./rating-url": "./src/rating-url.ts"
+    "./rating-url": "./src/rating-url.ts",
+    "./maintenance": "./src/maintenance.ts"
   },
   "dependencies": {
     "zod": "4.6.7"

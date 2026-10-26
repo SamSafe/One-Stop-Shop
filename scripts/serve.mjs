@@ -85,8 +85,9 @@ const server = createServer(
       reply(404, 'Not found');
       return;
     }
-    const candidate = path.resolve(root, `.${pathname === '/' ? '/index.html' : pathname}`);
-    const relative = pathname === '/' ? 'index.html' : pathname.slice(1);
+    const appPage = ['/', '/garage', '/garage/'].includes(pathname);
+    const candidate = path.resolve(root, `.${appPage ? '/index.html' : pathname}`);
+    const relative = appPage ? 'index.html' : pathname.slice(1);
     if (!knownFiles.has(relative)) {
       reply(404, 'Not found');
       return;

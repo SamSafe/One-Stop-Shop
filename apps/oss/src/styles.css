@@ -1423,3 +1423,12 @@ td:last-child {
     padding: 7px;
   }
 }
+
+:root .site-header nav > a.garage-nav {
+  display: inline-flex;
+}
+@media (max-width: 360px) {
+  :root .site-header nav {
+    gap: 12px;
+  }
+}

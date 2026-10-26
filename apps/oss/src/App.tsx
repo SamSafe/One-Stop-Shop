@@ -357,6 +357,9 @@ function Card({
         </div>
         {expanded && (
           <div id={`specs-${car.id}`} className="expanded-specs">
+            <a className="text-button" href={`/garage?vehicle=${encodeURIComponent(car.id)}`}>
+              Add to your garage →
+            </a>
             <h4>Published specifications</h4>
             {car.manufacturerConfiguration && (
               <p>
@@ -808,6 +811,9 @@ export function App() {
         <nav aria-label="Main navigation">
           <a href="#cars">Find your fit</a>
           <a href="#methodology">How it works</a>
+          <a className="garage-nav" href="/garage">
+            Garage
+          </a>
           <button
             type="button"
             className="shortlist-nav"
@@ -1305,7 +1311,7 @@ export function App() {
         <p>
           Independent comparison tool. No manufacturer affiliation.
           <br />
-          Shortlists stay in this browser. No app accounts or analytics.
+          Shortlists and garage records stay in this browser. No app accounts or analytics.
         </p>
         <a href="#privacy">Privacy & data</a>
         <details id="privacy">
@@ -1316,7 +1322,9 @@ export function App() {
             appear in shareable URLs, so anyone with a link can see those choices. We do not collect
             search, priority or fuel-cost inputs. The hosting provider receives standard connection
             and access information when serving the site. External manufacturer links follow their
-            own privacy policies.
+            own privacy policies. Garage vehicles, odometer readings, reminders and service history
+            are also saved locally. Export a garage backup before clearing site data; clearing site
+            data removes these records. Manage individual vehicles and backups on the Garage page.
           </p>
           <button
             type="button"

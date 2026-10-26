@@ -86,7 +86,7 @@ export const governmentRatingCount = ${generated.governmentRatingCount};`;
       });
     },
     generateBundle(_options, bundle) {
-      const allowed = new Set(['metrics.ts', 'rating-url.ts', 'runtime.ts']);
+      const allowed = new Set(['metrics.ts', 'rating-url.ts', 'runtime.ts', 'maintenance.ts']);
       for (const output of Object.values(bundle)) {
         if (output.type !== 'chunk') continue;
         for (const module of Object.keys(output.modules)) {
