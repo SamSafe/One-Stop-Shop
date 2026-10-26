@@ -45,9 +45,17 @@ and overlapping model years. See CANADIAN-MARKET-COVERAGE.md for completion evid
 - Broader Canadian models, powertrains and French-language content.
 - Add reliability or safety inputs only with justified sources and methodology.
 
-## Later: Garage
+## Garage — first review milestone implemented
 
-Build Garage independently. Start with manually adding an owned vehicle.
-Source and validate maintenance schedules before implementing schedule-dependent
-workflows. Define time/distance rules and service history first. Sharing auth,
-a design system and the one-way OSS handoff follow demonstrated demand.
+- [x] Manual owned-vehicle entry independent of comparison data.
+- [x] Odometer updates, service history, recurring reminders and due status.
+- [x] Local persistence, cross-tab changes, export and explicit backup restore.
+- [x] Canadian 2016 Elantra sedan oil/filter guidance and selected manual specs.
+- [x] Toyota 2025 visit guidance and selected Honda Maintenance Minder guidance.
+- [x] On-demand checksummed manual chapter cache with conditional refresh.
+- [ ] User feedback on the first garage workflow and the Elantra guidance.
+- [ ] Broader exact-vehicle schedules, one-time milestones and additional providers.
+- [ ] Identity/history editing, distance forecasts and notification channels.
+- [ ] Accounts and cloud sync if needed after feedback.
+
+The requested stopping point is [REVIEW-MILESTONE.md](REVIEW-MILESTONE.md).

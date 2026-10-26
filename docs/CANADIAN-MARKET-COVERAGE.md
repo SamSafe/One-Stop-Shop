@@ -1342,3 +1342,31 @@ running preview serves the matching catalog bytes and returns health HTTP 200
 at http://127.0.0.1:8080. The catalog asset is 4,869.16 kB raw / 749.73 kB gzip.
 These results verify the implementation and preserve the outstanding scope;
 they do not prove full Canadian-market coverage.
+
+## Land Rover and first garage review milestone
+
+The next Canadian import resolves 42 visible factory derivatives across seven
+Land Rover nameplates. Production hide-register compatibility excludes retired
+products; all accepted profiles resolve to their requested product identity.
+29 have literal manufacturer model years, while 13 remain explicitly year-unverified.
+All 42 prices use the selected PRODUCT's equal CAD GROSS/NET base amount, excluding
+configured totals, optional equipment, freight/delivery and taxes. Conditional
+technical metrics remain unknown. See [source qualification](LAND-ROVER-SOURCES.md).
+
+The catalog now has 6,082 records across 48 makes: 3,543 year-qualified retail
+profiles, 25 year-unverified offers and 2,514 standalone government variants.
+There are 2,633 known base prices, 39 separately qualified regional all-inclusive
+prices and 1,328 official sources. Manufacturer-listing evidence covers 3,517
+retail profiles and all 25 offers. All 2,518 NRCan IDs remain represented.
+18 baseline makes still lack current manufacturer imports. The full-market gate
+remains false; additional makes, older new stock, equipment combinations and
+exact-year facts remain open.
+
+The user's expanded objective now includes a garage and manufacturer maintenance
+information. A working `/garage` page supports owned vehicles of any age, service
+history, reminders and backup/restore. Its first manual-backed example is the
+Canadian 2016 Elantra sedan. This does not add a used 2016 car to the new-vehicle
+sales catalog. Owner data and shared manufacturer facts remain separate.
+
+The user requested a reasonable stopping point for feedback. This increment and
+the first garage form that checkpoint; see [review notes](REVIEW-MILESTONE.md).

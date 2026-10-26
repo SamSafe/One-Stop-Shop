@@ -1,20 +1,20 @@
 # One Stop Shop — OSS
 
 A Canadian car comparison app that explains how each configuration fits your
-priorities. The working catalog contains 6,040 records across 48 makes: 3,514
-year-qualified retail configurations, 12 manufacturer offers with unverified
+priorities. The working catalog contains 6,082 records across 48 makes: 3,543
+year-qualified retail configurations, 25 manufacturer offers with unverified
 model years, and 2,514 standalone government rating variants. All 2,518 NRCan
 rating IDs for 2025–2027 remain represented; matched ratings are merged into
 retail configurations. Manufacturer listings include overlapping 2024–2027 years.
 
-Base MSRP is verified for 2,588 year-qualified retail profiles and published for
-three of the year-unverified offers. Genesis supplies 39 separately labeled Alberta
+Base MSRP is verified for 2,617 year-qualified retail profiles and published for
+16 of the year-unverified offers. Genesis supplies 39 separately labeled Alberta
 all-inclusive prices. Unknown facts retain their reasons; preliminary technical
 figures, configured stock prices and expired finance examples do not become
 exact-year base facts. Manufacturer-listed profiles and observed new stock carry
 dated source evidence, without promising delivery or exhaustive national inventory.
 
-Full Canadian market coverage remains in progress. Nineteen makes in the
+Full Canadian market coverage remains in progress. Eighteen makes in the
 rating baseline still lack a current manufacturer import. McLaren now has five
 explicit 2027 Canadian factory profiles outside that baseline; its remaining
 lineup/stock checks and Karma's Canadian retailer evidence remain in the
@@ -36,6 +36,13 @@ Missing active scoring metrics leave a record unscored. This is a dated research
 it does not claim live inventory, current dealer prices, reliability ratings or
 complete market coverage.
 
+The garage at `/garage` supports vehicles of any age, odometer updates, service
+history, recurring reminders and backup export/restore. Canadian 2016 Elantra
+sedan oil/filter guidance and manual specifications are verified; selected Toyota
+and Honda guidance is also available. Unsupported schedules remain unset.
+Garage records stay in this browser. See [maintenance sources](docs/MAINTENANCE-SOURCES.md)
+and the [feedback milestone](docs/REVIEW-MILESTONE.md).
+
 ## Run locally
 
 Requires Node 22.12+ or Node 24; CI and Docker use Node 22.22.2.
@@ -43,7 +50,7 @@ Requires Node 22.12+ or Node 24; CI and Docker use Node 22.22.2.
     npm ci
     npm run dev
 
-The development server runs at http://127.0.0.1:5173.
+The development server runs at http://127.0.0.1:5173. Open `/garage` for owned vehicles.
 
 ## Verify and serve the release
 
@@ -79,7 +86,8 @@ To test the container:
   and device persistence.
 - packages/car-catalog: versioned Canadian data, runtime schema, field-level
   provenance, units and validation. It never imports an application.
-- apps/garage: future maintenance product; documentation only.
+- apps/oss/src/garage: independent garage page, owned vehicles, local service history,
+  reminders and backup/restore. apps/garage documents its product boundary.
 - scripts: catalog and boundary checks plus a dependency-free production server.
 - tests/e2e: real browser journeys, accessibility and HTTP production checks.
 

@@ -2,8 +2,10 @@
 
 ## D1 — Two products with separate purposes
 
-OSS supports buying decisions; Garage will support ownership. Garage must work
-for someone who has never used OSS. It is currently documentation only.
+OSS supports buying decisions; Garage supports ownership. The first Garage page
+is implemented at `/garage` in the existing deployment and works without loading
+the comparison catalog. Manual entry supports someone who has never used OSS.
+A separate deployment remains an option after feedback.
 
 ## D2 — Monorepo with an enforced boundary
 
@@ -11,9 +13,10 @@ car-catalog imports no application. Applications never import one another.
 Repository separation is deferred until an independent consumer or deployment
 need justifies it. Boundary checks run in CI.
 
-## D3 — Manual owned-vehicle entry remains Garage's primary future flow
+## D3 — Manual owned-vehicle entry is Garage's primary flow
 
-The OSS handoff is optional future convenience, not Garage onboarding.
+The comparison-card handoff is optional. Older vehicles can be entered directly
+without a catalog match.
 
 ## D4 — Explain decisions with sourced data
 
@@ -58,9 +61,23 @@ explicit permission before uploading repository source/build artifacts to that
 external destination. No public sharing or custom domain is implied. The same
 dist artifact and production container can be hosted elsewhere; see OPERATIONS.md.
 
+## D10 — Review maintenance by Canadian vehicle and document revision
+
+The first maintenance provider indexes only the needed Canadian manual chapters.
+Checksummed, conditional retrieval avoids downloading a whole manual library.
+The app ships normalized facts and source/page links. Exact applicability and
+usage conditions are reviewed before a manufacturer interval is offered;
+personal reminders remain labelled separately. See MAINTENANCE-SOURCES.md.
+
+## D11 — Pause at a reviewable garage milestone
+
+The user requested a reasonable stopping point and feedback before more
+improvements. The 26 October checkpoint is documented in REVIEW-MILESTONE.md.
+Incomplete market and maintenance coverage remain explicit.
+
 ## Deferred decisions
 
-Maintenance data sourcing and licensing, the Garage stack, account sync,
+Broader maintenance providers and source rights, account sync,
 commercial distribution, monetization and wider-market coverage need separate
 product decisions. Resolve source rights before redistributing documents or
 licensed media; the current catalog stores factual values and source links,
