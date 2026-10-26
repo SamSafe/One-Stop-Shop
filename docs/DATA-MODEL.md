@@ -192,10 +192,39 @@ choices stay in memory and are excluded from shared comparison links.
 There is no account database or server-side shortlist in v1. Comparison query
 parameters are visible to link recipients and may appear in hosting access logs.
 
-## Future Garage model
+## Garage data on device
 
-Garage, owned vehicles, mileage observations, service history, personalized
-schedules and reminders remain app-specific future entities. A maintenance
-implementation must define calendar-versus-distance deadlines, unknown service
-history, severe-use schedules and source-version updates before shipping.
-Neither maintenance data nor reminders are part of this release.
+The garage uses a separate local-storage record, `oss-garage-v1`. The authoritative
+owned-data validator and correction rules are in
+[domain.ts](../apps/oss/src/garage/domain.ts). The comparison catalog remains
+optional for owned-vehicle entry.
+
+- The root stores version 1, a revision identifier and up to 50 owned vehicles.
+- A vehicle stores its identity, optional nickname/powertrain and catalog reference,
+  current integer kilometre reading, reading date, reminders and service records.
+- A recurring reminder has a distance interval, calendar-month interval, or both,
+  with an explicit last-completion baseline for each configured interval.
+  Manufacturer attribution is accepted only for a matching reviewed vehicle,
+  task and interval. User-defined intervals remain personal.
+- A service record has a stable ID, task, date, odometer, notes and an optional
+  reminder reference. Correcting a record retains its ID; removing a reminder
+  detaches the reference while preserving the record.
+- The next deadline uses applicable completion history and the explicit baseline.
+  Calendar months clamp to the end of the target month. Distance and date deadlines
+  use whichever occurs first. “Due soon” is an app display threshold of 30 days or
+  1,000 km, not an additional manufacturer instruction. No elapsed distance is
+  inferred between user-entered odometer updates.
+
+Files and stored data share a 2 MB UTF-8 limit. Unknown formats and unreadable
+saved data are preserved; session-only changes and export remain available.
+Backup replacement requires an explicit user action after validation and review.
+Vehicle removal requires confirmation. There is no cloud ownership database or
+background notification service.
+
+Corrections preserve attached history and unrelated newer changes. A vehicle
+identity/powertrain change removes the former comparison reference. Invalidated
+manufacturer intervals require explicit consent to remain as personal reminders.
+Saving a stale editor rejects changes to the same vehicle details or service
+record, including a record deleted in another tab. Local storage does not provide
+transactional multi-user writes. See [correction behavior](GARAGE-CORRECTIONS.md)
+and [maintenance sources](MAINTENANCE-SOURCES.md).

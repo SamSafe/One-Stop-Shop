@@ -1,5 +1,7 @@
 # Review milestone — 26 October 2026
 
+The [follow-up correction increment](GARAGE-CORRECTIONS.md) adds editable vehicle details and service history, with its latest verification results.
+
 This is the requested stopping point for feedback on the expanded app. It is not a claim that every Canadian offering or every maintenance schedule has been verified. The older v1.0.1 release report describes an earlier, much smaller release.
 
 ## What to try
@@ -29,7 +31,7 @@ The two indexed Elantra chapters are retrieved on demand, stored by checksum and
 
 ## Feedback to prioritize next
 
-Verify the Elantra’s displayed source guidance against your own manual, then assess entry, reminder setup, service logging and the browsing flow. Editing identity/history, distance forecasts, additional schedules and accounts can be prioritized from actual use after this checkpoint.
+Verify the Elantra’s displayed source guidance against your own manual, then assess entry, reminder setup, service logging and the browsing flow. Vehicle and service corrections are now implemented in the [follow-up increment](GARAGE-CORRECTIONS.md). Distance forecasts, additional schedules and accounts can be prioritized from actual use after this checkpoint.
 
 ## Implementation commits
 

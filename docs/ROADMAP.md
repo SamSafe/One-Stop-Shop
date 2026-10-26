@@ -55,7 +55,8 @@ and overlapping model years. See CANADIAN-MARKET-COVERAGE.md for completion evid
 - [x] On-demand checksummed manual chapter cache with conditional refresh.
 - [ ] User feedback on the first garage workflow and the Elantra guidance.
 - [ ] Broader exact-vehicle schedules, one-time milestones and additional providers.
-- [ ] Identity/history editing, distance forecasts and notification channels.
+- [x] Correct vehicle details and service records while preserving history and reviewing manufacturer attribution.
+- [ ] Distance forecasts and notification channels.
 - [ ] Accounts and cloud sync if needed after feedback.
 
 The requested stopping point is [REVIEW-MILESTONE.md](REVIEW-MILESTONE.md).

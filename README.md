@@ -36,8 +36,8 @@ Missing active scoring metrics leave a record unscored. This is a dated research
 it does not claim live inventory, current dealer prices, reliability ratings or
 complete market coverage.
 
-The garage at `/garage` supports vehicles of any age, odometer updates, service
-history, recurring reminders and backup export/restore. Canadian 2016 Elantra
+The garage at `/garage` supports vehicles of any age, editable vehicle details and
+service history, odometer updates, recurring reminders and backup export/restore. Canadian 2016 Elantra
 sedan oil/filter guidance and manual specifications are verified; selected Toyota
 and Honda guidance is also available. Unsupported schedules remain unset.
 Garage records stay in this browser. See [maintenance sources](docs/MAINTENANCE-SOURCES.md)
