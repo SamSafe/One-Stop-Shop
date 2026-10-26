@@ -16,6 +16,17 @@ body style. Availability has an explicit status, evidence source and check date.
 Any status other than not-checked requires dated, referenced evidence. Ratings
 alone do not prove today's retail availability.
 
+A `manufacturer-offer` is a current Canadian manufacturer listing whose model
+year is not established. It must have `year: null`, a visible `modelYearNote`,
+dated manufacturer-listing evidence and a referenced source. It cannot carry an
+exact government rating. Retail configurations and rating variants still require
+a numeric year. Search, comparison headers and saved controls say “Year not
+verified”; filters and coverage reports count these offers separately from retail
+configurations and government variants. A published MSRP can be retained for an
+offer with its year uncertainty, without assigning it to a particular model year.
+VinFast's expired finance/lease examples, projected technical tables and image or
+product identifiers do not establish current offer years or exact technical facts.
+
 Facts are base MSRP in CAD; city/highway/combined L/100 km; horsepower; seating;
 cargo with seats up/down in litres; front/rear headroom and legroom in mm; and
 published length, width and height in mm.

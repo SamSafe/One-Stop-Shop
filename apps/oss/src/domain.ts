@@ -37,10 +37,12 @@ export type Priority = keyof typeof priorityDefinitions;
 export type Weights = Record<Priority, number>;
 export const defaultWeights: Weights = { price: 3, efficiency: 3, cargo: 2, room: 2 };
 export const priorityKeys = Object.keys(priorityDefinitions) as Priority[];
+export const modelYearLabel = (car: Pick<Car, 'year'>) =>
+  car.year === null ? 'Year not verified' : String(car.year);
 export const fullName = (car: Car) =>
   car.recordKind === 'government-rating'
-    ? `${car.year} ${car.make} ${car.model} · ${car.governmentRating?.engineLitres ? `${car.governmentRating.engineLitres} L · ` : ''}${car.governmentRating?.transmission} · NRCan ${car.governmentRating?.recordId}`
-    : `${car.year} ${car.make} ${car.model} ${car.trim}${car.variant ? ` ${car.variant}` : ''}${car.drivetrain !== 'Not verified' && !car.trim.split(/\s+/).includes(car.drivetrain) ? ` ${car.drivetrain}` : ''}`;
+    ? `${modelYearLabel(car)} ${car.make} ${car.model} · ${car.governmentRating?.engineLitres ? `${car.governmentRating.engineLitres} L · ` : ''}${car.governmentRating?.transmission} · NRCan ${car.governmentRating?.recordId}`
+    : `${modelYearLabel(car)} ${car.make} ${car.model} ${car.trim}${car.variant ? ` ${car.variant}` : ''}${car.drivetrain !== 'Not verified' && !car.trim.split(/\s+/).includes(car.drivetrain) ? ` ${car.drivetrain}` : ''}`;
 
 export interface Filters {
   query: string;
@@ -75,7 +77,9 @@ export function filterCars(cars: Car[], filters: Filters, savedIds: string[] = [
       (filters.budget === null ||
         (car.facts.msrpCad.value !== null && car.facts.msrpCad.value <= filters.budget)) &&
       (!filters.make || filters.make === 'all' || car.make === filters.make) &&
-      (!filters.year || filters.year === 'all' || String(car.year) === filters.year) &&
+      (!filters.year ||
+        filters.year === 'all' ||
+        (car.year === null ? filters.year === 'unverified' : String(car.year) === filters.year)) &&
       (!filters.vehicleClass ||
         filters.vehicleClass === 'all' ||
         car.governmentRating?.vehicleClass === filters.vehicleClass) &&

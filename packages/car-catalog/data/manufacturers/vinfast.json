@@ -1,0 +1,242 @@
+{
+  "schemaVersion": 1,
+  "market": "CA",
+  "currency": "CAD",
+  "retrievedAt": "2026-10-26T00:26:19.341Z",
+  "overviewSource": {
+    "url": "https://vinfastauto.ca/en",
+    "status": 200,
+    "sha256": "98eb3f44e04ae7ea91ca488b2fcf8573323b37612e78c510d3d0789ea1516991",
+    "capturedAt": "2026-10-26T00:26:11.127Z",
+    "province": null
+  },
+  "pricingClient": {
+    "url": "https://vinfastauto.ca/modules/custom/vinfast_price/assets/js/vinfast_price.js?tnax8z",
+    "status": 200,
+    "sha256": "941498c9d79528ab1df1d7555ddebd227e3e81c5ef0168ee9b8f13f54eb8b560",
+    "capturedAt": "2026-10-26T00:26:11.253Z",
+    "province": null
+  },
+  "models": ["vf-8", "vf-9"],
+  "pages": [
+    {
+      "model": "vf-8",
+      "province": "BC",
+      "source": {
+        "url": "https://vinfastauto.ca/en/vehicles/vf-8",
+        "status": 200,
+        "sha256": "bab25433785ee28a1f48e290046bdc43c212a4a6458d3005a68a5da5b4bf0f68",
+        "capturedAt": "2026-10-26T00:26:12.503Z",
+        "province": "BC"
+      },
+      "cards": [
+        {
+          "model": "vf-8",
+          "trim": "ECO",
+          "msrpCad": 54490,
+          "publishedAllInCad": 57801,
+          "termsId": "vf8-eco-terms-modal",
+          "year": null,
+          "cashYearEvidence": null,
+          "unqualifiedYearCandidates": []
+        },
+        {
+          "model": "vf-8",
+          "trim": "PLUS",
+          "msrpCad": 61490,
+          "publishedAllInCad": 64801,
+          "termsId": "vf8-plus-terms-modal",
+          "year": null,
+          "cashYearEvidence": null,
+          "unqualifiedYearCandidates": [2024]
+        }
+      ]
+    },
+    {
+      "model": "vf-8",
+      "province": "ON",
+      "source": {
+        "url": "https://vinfastauto.ca/en/vehicles/vf-8",
+        "status": 200,
+        "sha256": "8cbce1b7ef30890cccb3299ad583d1d6a7abc69ccdd2c09013a4dcf2dcfb1dc8",
+        "capturedAt": "2026-10-26T00:26:14.010Z",
+        "province": "ON"
+      },
+      "cards": [
+        {
+          "model": "vf-8",
+          "trim": "ECO",
+          "msrpCad": 54490,
+          "publishedAllInCad": 57801,
+          "termsId": "vf8-eco-terms-modal",
+          "year": null,
+          "cashYearEvidence": null,
+          "unqualifiedYearCandidates": []
+        },
+        {
+          "model": "vf-8",
+          "trim": "PLUS",
+          "msrpCad": 61490,
+          "publishedAllInCad": 64801,
+          "termsId": "vf8-plus-terms-modal",
+          "year": null,
+          "cashYearEvidence": null,
+          "unqualifiedYearCandidates": [2024]
+        }
+      ]
+    },
+    {
+      "model": "vf-8",
+      "province": "QC",
+      "source": {
+        "url": "https://vinfastauto.ca/en/vehicles/vf-8",
+        "status": 200,
+        "sha256": "48c60fa2cbab0351be91a468eb39478d132b7371ee2383b0cbb432c31b9b5d0f",
+        "capturedAt": "2026-10-26T00:26:15.146Z",
+        "province": "QC"
+      },
+      "cards": [
+        {
+          "model": "vf-8",
+          "trim": "ECO",
+          "msrpCad": 54490,
+          "publishedAllInCad": 57801,
+          "termsId": "vf8-eco-terms-modal",
+          "year": null,
+          "cashYearEvidence": null,
+          "unqualifiedYearCandidates": []
+        },
+        {
+          "model": "vf-8",
+          "trim": "PLUS",
+          "msrpCad": 61490,
+          "publishedAllInCad": 64801,
+          "termsId": "vf8-plus-terms-modal",
+          "year": null,
+          "cashYearEvidence": null,
+          "unqualifiedYearCandidates": [2024]
+        }
+      ]
+    },
+    {
+      "model": "vf-9",
+      "province": "BC",
+      "source": {
+        "url": "https://vinfastauto.ca/en/vehicles/vf-9",
+        "status": 200,
+        "sha256": "726768cec2eb3280e877d9e934d44168cd6afed6d9b59e3912542307233eeef2",
+        "capturedAt": "2026-10-26T00:26:16.669Z",
+        "province": "BC"
+      },
+      "cards": [
+        {
+          "model": "vf-9",
+          "trim": "ECO",
+          "msrpCad": 74890,
+          "publishedAllInCad": 77310,
+          "termsId": "vf9-eco-terms-modal",
+          "year": 2024,
+          "cashYearEvidence": {
+            "kind": "new-unregistered-cash-msrp",
+            "model": "vf-9",
+            "trim": "ECO",
+            "year": 2024,
+            "msrpCad": 74890,
+            "publishedAllInCad": 77310
+          },
+          "unqualifiedYearCandidates": []
+        },
+        {
+          "model": "vf-9",
+          "trim": "PLUS",
+          "msrpCad": 78890,
+          "publishedAllInCad": 81310,
+          "termsId": "vf9-plus-terms-modal",
+          "year": null,
+          "cashYearEvidence": null,
+          "unqualifiedYearCandidates": [2024]
+        }
+      ]
+    },
+    {
+      "model": "vf-9",
+      "province": "ON",
+      "source": {
+        "url": "https://vinfastauto.ca/en/vehicles/vf-9",
+        "status": 200,
+        "sha256": "8ae67bb9385710ff55b7aba1b2072a1f4ddf9d72fbf7f496341628bd650b5349",
+        "capturedAt": "2026-10-26T00:26:17.837Z",
+        "province": "ON"
+      },
+      "cards": [
+        {
+          "model": "vf-9",
+          "trim": "ECO",
+          "msrpCad": 74890,
+          "publishedAllInCad": 77321,
+          "termsId": "vf9-eco-terms-modal",
+          "year": 2024,
+          "cashYearEvidence": {
+            "kind": "new-unregistered-cash-msrp",
+            "model": "vf-9",
+            "trim": "ECO",
+            "year": 2024,
+            "msrpCad": 74890,
+            "publishedAllInCad": 77321
+          },
+          "unqualifiedYearCandidates": []
+        },
+        {
+          "model": "vf-9",
+          "trim": "PLUS",
+          "msrpCad": 78890,
+          "publishedAllInCad": 81321,
+          "termsId": "vf9-plus-terms-modal",
+          "year": null,
+          "cashYearEvidence": null,
+          "unqualifiedYearCandidates": [2024]
+        }
+      ]
+    },
+    {
+      "model": "vf-9",
+      "province": "QC",
+      "source": {
+        "url": "https://vinfastauto.ca/en/vehicles/vf-9",
+        "status": 200,
+        "sha256": "d194526defd969981fc778adcd1e4e1a8eb23c3c804b9feb88dd1dd7e05cbf6b",
+        "capturedAt": "2026-10-26T00:26:19.341Z",
+        "province": "QC"
+      },
+      "cards": [
+        {
+          "model": "vf-9",
+          "trim": "ECO",
+          "msrpCad": 74890,
+          "publishedAllInCad": 77308,
+          "termsId": "vf9-eco-terms-modal",
+          "year": 2024,
+          "cashYearEvidence": {
+            "kind": "new-unregistered-cash-msrp",
+            "model": "vf-9",
+            "trim": "ECO",
+            "year": 2024,
+            "msrpCad": 74890,
+            "publishedAllInCad": 77308
+          },
+          "unqualifiedYearCandidates": []
+        },
+        {
+          "model": "vf-9",
+          "trim": "PLUS",
+          "msrpCad": 78890,
+          "publishedAllInCad": 81308,
+          "termsId": "vf9-plus-terms-modal",
+          "year": null,
+          "cashYearEvidence": null,
+          "unqualifiedYearCandidates": [2024]
+        }
+      ]
+    }
+  ]
+}

@@ -1,49 +1,25 @@
 # One Stop Shop — OSS
 
 A Canadian car comparison app that explains how each configuration fits your
-priorities. Market expansion is in progress: the working catalog includes 2,518
-NRCan rating records for 2025–2027 across 47 makes, plus 3,332 retail configurations
-(2,413 with verified base prices), including 40 currently listed Subaru configurations and
-328 Toyota/Lexus factory packages, 78 Honda/Acura configurations and 212 default
-Ford/Lincoln factory configurations, 68 Mazda model/option configurations and
-80 Hyundai factory trims/packages, 126 Kia factory trims/packages and 1,230
-Chevrolet/GMC/Buick/Cadillac factory matrix configurations and 101 Nissan/Infiniti
-versions and equipment packages, 33 Volkswagen factory configurations and 49
-Mitsubishi factory trims, 120 Polestar factory/equipped new-stock configurations and
-110 BMW stock/factory model-year profiles, 189 MINI factory/new-stock profiles and
-41 Genesis factory configurations, 106 Rivian factory/new-stock profiles and
-421 Lucid factory/new-stock profiles. Lucid includes 348 current equipment profiles
-and 73 additional stock profiles across 2025–2027; exact power and Gravity seating
-are verified while qualified ranges and other unjoined measurements remain unknown.
-Rivian includes 69 current profiles following the visible trim, drivetrain,
-wheel/package and interior choices, plus 37 additional 2026 stock profiles.
-Sampled delivery searches establish observed configurations, not an exhaustive
-national inventory count. Genesis supplies 39 separately labeled Alberta
-all-inclusive prices; its base MSRP values remain unverified. One preorder has no
-price, and another trim has incomplete regional fees. Conflicting specification
-years are quarantined rather than copied into the current model year.
-MINI includes 175 current line/style/named-package combinations and 14 additional
-stock profiles across 2025–2027; four prices and conflicting technical fields remain
-unverified. BMW retains observed 2025–2027 years;
-107 exact factory MSRP values and 59 configured technical joins are verified.
-Polestar includes 14 current motor/pack/option configurations and seven older-year
-stock configurations. Disjoint source-declared filters reconcile all six listed
-retailers' feeds; additional factory equipment and independent market reconciliation remain open.
-Seventeen Mitsubishi trims belong to older model-year
-families referenced in new inventory; their individual availability remains unchecked. Additional Ford/Lincoln
-and GM equipment selections remain in progress; unavailable GM calculations leave
-854 MSRP values unverified. Conflicting Infiniti price definitions leave another
-17 MSRP values unverified; three older BMW and four MINI prices also remain unverified.
-Five retail configurations also retain the initial manufacturer specification
-review. Matching ratings are merged with those retail
-configurations instead of duplicating them. The app currently displays 5,846
-records, including gasoline/hybrid, diesel, flex-fuel, electric and plug-in hybrid
-variants, cars, SUVs, pickups and vans.
+priorities. The working catalog contains 5,932 records across 47 makes: 3,415
+year-qualified retail configurations, three manufacturer offers with unverified
+model years, and 2,514 standalone government rating variants. All 2,518 NRCan
+rating IDs for 2025–2027 remain represented; matched ratings are merged into
+retail configurations. Manufacturer listings include overlapping 2024–2027 years.
 
-This is not yet a complete list of everything currently for sale. Government
-rating variants are labeled separately from retail trims. Current availability,
-exact trim coverage, prices and specifications still need manufacturer review.
-See [the full-market coverage objective and evidence](docs/CANADIAN-MARKET-COVERAGE.md)
+Base MSRP is verified for 2,495 year-qualified retail profiles and published for
+the three year-unverified offers. Genesis supplies 39 separately labeled Alberta
+all-inclusive prices. Unknown facts retain their reasons; preliminary technical
+figures, configured stock prices and expired finance examples do not become
+exact-year base facts. Manufacturer-listed profiles and observed new stock carry
+dated source evidence, without promising delivery or exhaustive national inventory.
+
+Full Canadian market coverage remains in progress. Twenty-one makes in the
+rating baseline still lack a current manufacturer import. Independent lineup
+checks, equipment combinations, older new stock, exact model years, prices and
+technical specifications remain open across the market. Government rating
+variants and year-unverified manufacturer offers are labeled separately from
+retail configurations. See [the coverage evidence and milestones](docs/CANADIAN-MARKET-COVERAGE.md)
 and run `npm run catalog:coverage` for the current gaps.
 
 Browse and filter, set priority weights, compare 2–4 cars, estimate annual fuel
@@ -253,6 +229,14 @@ distinct identities and older exact-year bare-model MSRP must reconcile. The
 `-- --offline` option checks original receipt hashes and exact reconstruction.
 Stock equipment and configured selling prices remain separate from base profiles.
 See [the van-stock source contract](docs/MERCEDES-VAN-STOCK.md).
+
+Refresh VinFast's public Canadian Eco/Plus price cards with
+`npm run catalog:sync:vinfast`; `-- --offline` verifies response hashes and exact
+reconstruction without advancing source dates. The public BC/ON/QC preference
+views must all reconcile. Three offers retain an unverified model year; only the
+VF 9 ECO has an exact current cash-price/model-year join. Login redirects,
+expired finance examples and preliminary specifications remain explicit gaps.
+See [the VinFast source contract](docs/VINFAST-PRICING.md).
 
 Manufacturer listings establish a current offering, not dealer stock or delivery
 dates; older model-year inventory and additional specifications still need review.

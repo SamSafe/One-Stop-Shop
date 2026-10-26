@@ -20,6 +20,7 @@ import {
   lucidSnapshot,
   mercedesSnapshot,
   mercedesVanStockSnapshot,
+  vinfastSnapshot,
 } from '../packages/car-catalog/src/index.ts';
 import { catalogCoverage } from '../packages/car-catalog/src/coverage.ts';
 import { mazdaMeasurementConflicts } from '../packages/car-catalog/src/mazda.ts';
@@ -37,6 +38,8 @@ import { rivianReviewGaps } from '../packages/car-catalog/src/rivian.ts';
 import { lucidReviewGaps } from '../packages/car-catalog/src/lucid.ts';
 import { mercedesReviewGaps } from '../packages/car-catalog/src/mercedes.ts';
 import { mercedesVanStockGaps } from '../packages/car-catalog/src/mercedes-vans.ts';
+import { vinfastReviewGaps } from '../packages/car-catalog/src/vinfast.ts';
+import { vinfastProfiles } from '../packages/car-catalog/src/vinfast-import.ts';
 import sourceAccessReviews from '../docs/catalog-source-access.json';
 
 const report = {
@@ -89,6 +92,7 @@ const report = {
     ...lucidReviewGaps(lucidSnapshot),
     ...mercedesReviewGaps(mercedesSnapshot),
     ...mercedesVanStockGaps(mercedesVanStockSnapshot),
+    ...vinfastReviewGaps(vinfastSnapshot),
     ...genesisSnapshot.rejectedSpecifications.map((s) => ({
       brand: 'Genesis',
       configuration: s.label,
@@ -240,6 +244,18 @@ const report = {
     ),
   ],
   manufacturerConfigurationExpansion: [
+    {
+      brand: 'VinFast',
+      publicModelProvinceViews: vinfastSnapshot.pages.length,
+      yearQualifiedRetailProfiles: vinfastProfiles(vinfastSnapshot).filter((p) => p.year !== null)
+        .length,
+      manufacturerOffersWithUnverifiedYear: vinfastProfiles(vinfastSnapshot).filter(
+        (p) => p.year === null,
+      ).length,
+      additionalSelectionsExhaustivelyExpanded: false,
+      remaining:
+        'Three current public price offers lack an exact model year. Login redirects do not establish unavailable offerings. Reconcile factory equipment, exact technical facts, current/older new stock and independent national availability.',
+    },
     {
       brand: 'Mercedes-Benz vans',
       searchedCanadianDealers: mercedesVanStockSnapshot.dealers.length,

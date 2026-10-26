@@ -3,6 +3,27 @@ import data from '../data/catalog.json';
 import { validateCatalog } from './schema';
 
 describe('catalog quality gates', () => {
+  it('requires a reason and current manufacturer evidence for offers with an unverified model year', () => {
+    const copy = validateCatalog(structuredClone(data));
+    const offer = copy.cars[0]!;
+    offer.year = null;
+    expect(() => validateCatalog(copy)).toThrow(/Unverified model years/);
+    offer.recordKind = 'manufacturer-offer';
+    offer.modelYearNote =
+      'The current Canadian manufacturer pricing card does not publish a model year.';
+    expect(() => validateCatalog(copy)).toThrow(/current listing evidence/);
+    offer.availability = {
+      status: 'manufacturer-listed',
+      checkedAt: copy.reviewedAt,
+      source: offer.sourceIds[0]!,
+      note: 'Current Canadian public price card; stock requires confirmation.',
+    };
+    expect(validateCatalog(copy).cars[0]!.year).toBeNull();
+    offer.year = 2026;
+    expect(() => validateCatalog(copy)).toThrow(
+      /Manufacturer offers have an unverified model year/,
+    );
+  });
   it('validates the release catalog', () => {
     expect(validateCatalog(data, '2026-10-20').cars).toHaveLength(5);
   });

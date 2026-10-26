@@ -119,6 +119,7 @@ const manufacturerHosts = new Set([
   'www.mercedes-benz-vans.ca',
   'nafta-service.mbusa.com',
   'nafta-service.mbvans.com',
+  'vinfastauto.ca',
 ]);
 
 export const sourceSchema = z.strictObject({
@@ -143,97 +144,124 @@ export const sourceSchema = z.strictObject({
   locator: z.string().min(1).max(1000),
 });
 
-export const carSchema = z.strictObject({
-  id,
-  make: z.string().min(1).max(100),
-  model: z.string().min(1).max(100),
-  trim: z.string().min(1).max(100),
-  year: z.number().int().min(1990).max(2100),
-  market: z.literal('CA'),
-  bodyStyle: z.enum([
-    'Compact SUV',
-    'SUV',
-    'Sedan',
-    'Hatchback',
-    'Coupe',
-    'Convertible',
-    'Wagon',
-    'Pickup',
-    'Minivan',
-    'Van',
-    'Not verified',
-  ]),
-  fuel: z.enum([
-    'Gasoline',
-    'Hybrid',
-    'Gasoline / hybrid',
-    'Diesel',
-    'Flex-fuel',
-    'Electric',
-    'Plug-in hybrid',
-    'Hydrogen',
-  ]),
-  drivetrain: z.enum(['FWD', 'RWD', 'AWD', '4WD', 'Not verified']),
-  recordKind: z.enum(['retail-trim', 'government-rating']).default('retail-trim'),
-  variant: z.string().min(1).max(200).optional(),
-  manufacturerConfiguration: z
-    .strictObject({
-      id: z.string().min(1).max(100),
-      code: z.string().min(1).max(100),
-      transmission: z.string().min(1).max(100),
-      specificationsUrl: sourceSchema.shape.url.optional(),
-    })
-    .optional(),
-  publishedPrice: z
-    .strictObject({
-      value: z.number().finite().min(10000).max(10000000),
-      currency: z.literal('CAD'),
-      basis: z.literal('all-inclusive-before-sales-tax'),
-      province: z.enum([
-        'AB',
-        'BC',
-        'MB',
-        'NB',
-        'NL',
-        'NS',
-        'NT',
-        'NU',
-        'ON',
-        'PE',
-        'QC',
-        'SK',
-        'YT',
-      ]),
-      source: id,
-      note: z.string().min(1).max(1000),
-    })
-    .optional(),
-  governmentRating: z
-    .strictObject({
-      recordId: z.number().int().positive(),
-      vehicleClass: z.string().min(1),
-      engineLitres: z.number().nonnegative(),
-      cylinders: z.number().int().nonnegative(),
-      transmission: z.string().min(1),
-      fuelType: z.string().min(1),
-    })
-    .optional(),
-  availability: z
-    .strictObject({
-      status: z.enum(['not-checked', 'manufacturer-listed', 'announced', 'discontinued']),
-      checkedAt: date.nullable(),
-      source: id.nullable(),
-      note: z.string().min(1).max(1000),
-    })
-    .default({
-      status: 'not-checked',
-      checkedAt: null,
-      source: null,
-      note: 'Current Canadian retail availability has not been rechecked.',
-    }),
-  sourceIds: z.array(id).min(1),
-  facts: z.strictObject(factsShape),
-});
+export const carSchema = z
+  .strictObject({
+    id,
+    make: z.string().min(1).max(100),
+    model: z.string().min(1).max(100),
+    trim: z.string().min(1).max(100),
+    year: z.number().int().min(1990).max(2100).nullable(),
+    modelYearNote: z.string().min(1).max(1000).optional(),
+    market: z.literal('CA'),
+    bodyStyle: z.enum([
+      'Compact SUV',
+      'SUV',
+      'Sedan',
+      'Hatchback',
+      'Coupe',
+      'Convertible',
+      'Wagon',
+      'Pickup',
+      'Minivan',
+      'Van',
+      'Not verified',
+    ]),
+    fuel: z.enum([
+      'Gasoline',
+      'Hybrid',
+      'Gasoline / hybrid',
+      'Diesel',
+      'Flex-fuel',
+      'Electric',
+      'Plug-in hybrid',
+      'Hydrogen',
+    ]),
+    drivetrain: z.enum(['FWD', 'RWD', 'AWD', '4WD', 'Not verified']),
+    recordKind: z
+      .enum(['retail-trim', 'government-rating', 'manufacturer-offer'])
+      .default('retail-trim'),
+    variant: z.string().min(1).max(200).optional(),
+    manufacturerConfiguration: z
+      .strictObject({
+        id: z.string().min(1).max(100),
+        code: z.string().min(1).max(100),
+        transmission: z.string().min(1).max(100),
+        specificationsUrl: sourceSchema.shape.url.optional(),
+      })
+      .optional(),
+    publishedPrice: z
+      .strictObject({
+        value: z.number().finite().min(10000).max(10000000),
+        currency: z.literal('CAD'),
+        basis: z.literal('all-inclusive-before-sales-tax'),
+        province: z.enum([
+          'AB',
+          'BC',
+          'MB',
+          'NB',
+          'NL',
+          'NS',
+          'NT',
+          'NU',
+          'ON',
+          'PE',
+          'QC',
+          'SK',
+          'YT',
+        ]),
+        source: id,
+        note: z.string().min(1).max(1000),
+      })
+      .optional(),
+    governmentRating: z
+      .strictObject({
+        recordId: z.number().int().positive(),
+        vehicleClass: z.string().min(1),
+        engineLitres: z.number().nonnegative(),
+        cylinders: z.number().int().nonnegative(),
+        transmission: z.string().min(1),
+        fuelType: z.string().min(1),
+      })
+      .optional(),
+    availability: z
+      .strictObject({
+        status: z.enum(['not-checked', 'manufacturer-listed', 'announced', 'discontinued']),
+        checkedAt: date.nullable(),
+        source: id.nullable(),
+        note: z.string().min(1).max(1000),
+      })
+      .default({
+        status: 'not-checked',
+        checkedAt: null,
+        source: null,
+        note: 'Current Canadian retail availability has not been rechecked.',
+      }),
+    sourceIds: z.array(id).min(1),
+    facts: z.strictObject(factsShape),
+  })
+  .superRefine((car, ctx) => {
+    if (car.year === null && (car.recordKind !== 'manufacturer-offer' || !car.modelYearNote))
+      ctx.addIssue({
+        code: 'custom',
+        message: `Unverified model years require a manufacturer offer and explanation: ${car.id}`,
+      });
+    if (car.recordKind === 'manufacturer-offer' && (car.year !== null || car.governmentRating))
+      ctx.addIssue({
+        code: 'custom',
+        message: `Manufacturer offers have an unverified model year and cannot carry an exact government rating: ${car.id}`,
+      });
+    if (
+      car.recordKind === 'manufacturer-offer' &&
+      (car.availability.status !== 'manufacturer-listed' ||
+        !car.availability.source ||
+        !car.availability.checkedAt ||
+        !car.sourceIds.includes(car.availability.source))
+    )
+      ctx.addIssue({
+        code: 'custom',
+        message: `Manufacturer offers require dated current listing evidence: ${car.id}`,
+      });
+  });
 
 export const catalogSchema = z
   .strictObject({

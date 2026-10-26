@@ -6,6 +6,8 @@ import {
   defaultFilters,
   defaultWeights,
   filterCars,
+  fullName,
+  modelYearLabel,
   knownIds,
   loadShortlist,
   parseSharedState,
@@ -124,6 +126,34 @@ describe('filters and fuel estimates', () => {
 });
 
 describe('full-market filtering and energy calculations', () => {
+  it('keeps year-unverified manufacturer offers visible without assigning them a model year', () => {
+    const offer = {
+      ...structuredClone(first),
+      id: 'fixture-current-offer',
+      recordKind: 'manufacturer-offer' as const,
+      year: null,
+      modelYearNote: 'Current pricing does not identify the model year.',
+    };
+    const mixed = [...cars, offer];
+    expect(modelYearLabel(offer)).toBe('Year not verified');
+    expect(fullName(offer)).toContain('Year not verified');
+    expect(fullName(offer)).not.toContain('null');
+    expect(filterCars(mixed, defaultFilters)).toHaveLength(mixed.length);
+    expect(filterCars(mixed, { ...defaultFilters, year: 'unverified' })).toEqual([offer]);
+    expect(filterCars(mixed, { ...defaultFilters, recordKind: 'manufacturer-offer' })).toEqual([
+      offer,
+    ]);
+    expect(filterCars(mixed, { ...defaultFilters, year: '2026' })).not.toContain(offer);
+    expect(filterCars(mixed, { ...defaultFilters, recordKind: 'retail-trim' })).not.toContain(
+      offer,
+    );
+    expect(
+      parseSharedState(
+        serializeSharedState({ compare: [offer.id], weights: defaultWeights }),
+        mixed,
+      ).compare,
+    ).toEqual([offer.id]);
+  });
   it('includes every record without a hidden budget cap and can filter makes, years and record types', () => {
     expect(filterCars(catalog.cars, defaultFilters)).toHaveLength(catalog.cars.length);
     const selected = filterCars(catalog.cars, {

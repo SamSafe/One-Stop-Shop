@@ -1151,3 +1151,32 @@ prepared-catalog parity, production build and all ten release artifact hashes
 passed. The source fingerprint matches. The complete prepared catalog asset is
 4,707.32 kB raw / 725.66 kB gzip, and the preview remains at
 http://127.0.0.1:8080. These checks verify this milestone, not full market coverage.
+
+## VinFast public price cards and unverified model years
+
+The October 26 UTC capture (October 25 in Edmonton) reconciles both ECO/PLUS
+cards for VF 8 and VF 9 across all six BC/ON/QC model/province views. Their
+published MSRP amounts agree: 54,490 and 61,490 CAD for VF 8; 74,890 and
+78,890 CAD for VF 9. Fees, all-in prices and conditional credits remain separate.
+Only the VF 9 ECO's matching new/unregistered cash terms establish a model year, 2024. The other three current cards omit a verified year; historical dated
+finance/lease examples cannot supply it.
+
+Those three records use the separate `manufacturer-offer` category and display
+“Year not verified” in cards, filters, comparisons and saved controls. They are
+not counted as retail configurations or government variants. Dated listing
+evidence and a year explanation are required; an exact government-rating join
+is prohibited. Generic preliminary technical tables and projected ranges remain
+unknown rather than being copied across years. Published shop/order links
+redirected anonymous visitors to login in the earlier October 23 access review;
+the current public price cards do not resolve factory equipment or new stock.
+See [the VinFast source contract](VINFAST-PRICING.md).
+
+The catalog now has 5,932 records: 3,415 year-qualified retail profiles, three
+year-unverified manufacturer offers and 2,514 standalone government variants.
+There are 2,498 published base MSRP amounts, including the three offers whose
+years remain unverified, 39 separately qualified all-inclusive prices and 1,108
+official sources. Dated listing evidence covers 3,389 retail profiles and the
+three manufacturer offers. All 2,518 rating IDs remain represented. Twenty-one
+baseline makes still lack current manufacturer imports; independent national
+lineups, equipment combinations, older new stock and missing technical facts
+remain open. The full-market gate remains false.

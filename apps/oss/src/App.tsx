@@ -7,6 +7,7 @@ import {
   defaultWeights,
   filterCars,
   fullName,
+  modelYearLabel,
   parseSharedState,
   priorityDefinitions,
   priorityKeys,
@@ -19,7 +20,10 @@ import { useShortlist } from './useShortlist';
 
 const cars = catalog.cars;
 const makes = [...new Set(cars.map((car) => car.make))].sort((a, b) => a.localeCompare(b));
-const years = [...new Set(cars.map((car) => car.year))].sort((a, b) => b - a);
+const years = [
+  ...new Set(cars.map((car) => car.year).filter((year): year is number => year !== null)),
+].sort((a, b) => b - a);
+const unverifiedYearCount = cars.filter((car) => car.year === null).length;
 const vehicleClasses = [
   ...new Set(
     cars
@@ -241,7 +245,7 @@ function Card({
       </div>
       <div className="card-content">
         <p className="car-make">
-          {car.year} {car.make}
+          {modelYearLabel(car)} {car.make}
         </p>
         <h3 id={`title-${car.id}`}>{car.model}</h3>
         <p className="car-trim">
@@ -253,13 +257,16 @@ function Card({
         <p className="record-status">
           {car.recordKind === 'government-rating'
             ? 'NRCan rating · retail trim not checked'
-            : 'Retail configuration'}
+            : car.recordKind === 'manufacturer-offer'
+              ? 'Manufacturer offer · model year unverified'
+              : 'Retail configuration'}
           {car.availability.status === 'manufacturer-listed' && ' · manufacturer-listed'}
           {car.availability.status === 'not-checked' && ' · current availability not checked'}
           {car.availability.status === 'announced' &&
             ' · coming-soon source flag · availability needs review'}
           {car.availability.status === 'discontinued' && ' · manufacturer discontinued'}
         </p>
+        {car.modelYearNote && <p className="record-status">{car.modelYearNote}</p>}
         <div className="price-row">
           <div>
             <strong>
@@ -506,7 +513,7 @@ function Comparison({
                   {selected.map((car) => (
                     <th scope="col" key={car.id}>
                       <span className="car-make">
-                        {car.make} · {car.year}
+                        {car.make} · {modelYearLabel(car)}
                       </span>
                       <strong>{car.model}</strong>
                       <span>
@@ -532,7 +539,10 @@ function Comparison({
                     <td key={car.id}>
                       {car.recordKind === 'government-rating'
                         ? 'Government rating; retail trim not specified.'
-                        : 'Retail configuration.'}{' '}
+                        : car.recordKind === 'manufacturer-offer'
+                          ? 'Manufacturer offer; model year not verified.'
+                          : 'Retail configuration.'}{' '}
+                      {car.modelYearNote && `${car.modelYearNote} `}
                       {car.availability.note}
                     </td>
                   ))}
@@ -856,7 +866,9 @@ export function App() {
             {cars.length.toLocaleString('en-CA')} catalog records · {makes.length} makes
           </span>
           <span>
-            {years[years.length - 1]}–{years[0]} · Canada · retail coverage in progress
+            {years.length ? `${years[years.length - 1]}–${years[0]}` : 'Model years unverified'}
+            {unverifiedYearCount > 0 && ` · ${unverifiedYearCount} year-unverified offers`} · Canada
+            · retail coverage in progress
           </span>
           <span>Reviewed {reviewedDate}</span>
           <a href="#sources">Meet the sources ↗</a>
@@ -918,6 +930,7 @@ export function App() {
                 <option value="all">All catalog records</option>
                 <option value="retail-trim">Retail configurations</option>
                 <option value="government-rating">Government rating variants</option>
+                <option value="manufacturer-offer">Manufacturer offers · year unverified</option>
               </select>
               <label className="field-label" htmlFor="make">
                 Make
@@ -948,6 +961,7 @@ export function App() {
                     {year}
                   </option>
                 ))}
+                {unverifiedYearCount > 0 && <option value="unverified">Year not verified</option>}
               </select>
               <label className="field-label" htmlFor="vehicle-class">
                 NRCan vehicle class

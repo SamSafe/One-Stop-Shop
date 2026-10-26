@@ -3,6 +3,7 @@ import type { NrcanSnapshot } from './nrcan-schema';
 
 export function catalogCoverage(catalog: Catalog, snapshot: NrcanSnapshot) {
   const retail = catalog.cars.filter((car) => car.recordKind === 'retail-trim');
+  const offers = catalog.cars.filter((car) => car.recordKind === 'manufacturer-offer');
   const rated = new Set(
     catalog.cars.flatMap((car) => (car.governmentRating ? [car.governmentRating.recordId] : [])),
   );
@@ -17,12 +18,20 @@ export function catalogCoverage(catalog: Catalog, snapshot: NrcanSnapshot) {
     ratingRecordsRepresented: rated.size,
     catalogRecords: catalog.cars.length,
     retailConfigurations: retail.length,
-    governmentRatingVariants: catalog.cars.length - retail.length,
+    manufacturerOffersWithUnverifiedYear: offers.length,
+    manufacturerOfferPricesWithUnverifiedYear: offers.filter(
+      (car) => car.facts.msrpCad.value !== null,
+    ).length,
+    governmentRatingVariants: catalog.cars.filter((car) => car.recordKind === 'government-rating')
+      .length,
     verifiedPrices: catalog.cars.filter((car) => car.facts.msrpCad.value !== null).length,
     publishedAllInclusivePrices: catalog.cars.filter((car) => car.publishedPrice).length,
     manufacturerListedConfigurations: catalog.cars.filter(
       (car) =>
         car.recordKind === 'retail-trim' && car.availability.status === 'manufacturer-listed',
+    ).length,
+    manufacturerListedOffersWithUnverifiedYear: offers.filter(
+      (car) => car.availability.status === 'manufacturer-listed',
     ).length,
     makesWithoutCurrentManufacturerListings: [...new Set(catalog.cars.map((car) => car.make))]
       .filter(
@@ -34,13 +43,19 @@ export function catalogCoverage(catalog: Catalog, snapshot: NrcanSnapshot) {
       .sort(),
     availabilityUnchecked: catalog.cars.filter((car) => car.availability.status === 'not-checked')
       .length,
-    modelYears: snapshot.modelYears,
+    modelYears: [
+      ...new Set(catalog.cars.flatMap((car) => (car.year === null ? [] : [car.year]))),
+    ].sort(),
+    ratingModelYears: snapshot.modelYears,
     byMake: [...new Set(catalog.cars.map((car) => car.make))].sort().map((make) => {
       const cars = catalog.cars.filter((car) => car.make === make);
       return {
         make,
         records: cars.length,
         retailConfigurations: cars.filter((car) => car.recordKind === 'retail-trim').length,
+        manufacturerOffersWithUnverifiedYear: cars.filter(
+          (car) => car.recordKind === 'manufacturer-offer',
+        ).length,
         verifiedPrices: cars.filter((car) => car.facts.msrpCad.value !== null).length,
         availabilityUnchecked: cars.filter((car) => car.availability.status === 'not-checked')
           .length,
