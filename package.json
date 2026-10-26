@@ -48,6 +48,8 @@
     "catalog:sync:vinfast": "node --import tsx scripts/sync-vinfast.ts",
     "catalog:sync:porsche": "node --import tsx scripts/sync-porsche.ts",
     "catalog:sync:aston-martin": "node --import tsx scripts/sync-aston-martin.ts",
+    "catalog:sync:mclaren": "node --import tsx scripts/sync-mclaren.ts",
+    "catalog:capture:mclaren": "node scripts/capture-mclaren.mjs",
     "check:boundaries": "node scripts/check-boundaries.mjs",
     "check": "npm run check:boundaries && npm run test && npm run build"
   },

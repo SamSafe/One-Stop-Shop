@@ -1,50 +1,69 @@
-# McLaren Canadian source research
+# McLaren Canadian factory identities
 
-Research status on October 26, 2026 UTC: Canadian presence and anonymous
-configuration access are verified; an app import and full national lineup/trim
-reconciliation remain open. McLaren is absent from the current NRCan snapshot.
-See [the additional-make ledger](canadian-market-universe.json) for checksummed
-receipts and unresolved work.
+The October 26, 2026 UTC import adds five explicit 2027 Canadian factory
+profiles: Artura Coupe/Spider, 750S Coupe/Spider and GTS. McLaren is absent
+from the current NRCan snapshot. These records expand the catalog to 48 makes;
+they do not establish complete Canadian McLaren or national market coverage.
 
-The current manufacturer navigation links five configurator profiles: Artura,
-Artura Spider, 750S, 750S Spider and GTS. Each public landing response includes
-Canada in the country list, accepts `country=CA`, returns country preference CA,
-does not restrict Canada and sets `loginRequired=false`. These observations
-establish public Canadian configuration selection; they do not assign a model
-year, base MSRP, exact retail trim or complete Canadian offering universe.
+The public configurator accepts Canada for all five. Its ordinary General
+response explicitly supplies `CH_GEN_COUNTRY=CA`, `CH_GEN_MODEL_YEAR=2027`,
+model family P16/P28/P22S, body COUPE/SPIDER/GT and the hybrid classification.
+The named model-year field is delivered to the normal public browser, although
+it is not displayed in the summary. Neither a copyright date, image name,
+product code nor dealer inventory supplies this factory model year. Initial
+profile metadata must match the model, country and English language and confirm
+public access.
 
-The public configurator bootstrap currently loads
-`/mclaren-ui/assets/index-8XucOWk-.js`, SHA-256
-`27cec051d887efdaae7e5f57fc1545bc7ecf79cdd32f601ae7a1f73af679f540`.
-Its native landing GET is `/configuration/ajaxLandingPageData.do` with
-`profileName`, `country` and `language`. Ordinary browser selection of Canada
-followed by **Configure from Base Model** starts an unsaved configuration with
-`configCountry=CA`. The GTS and Artura initial responses confirm country CA,
-public access and disabled `webui.showPriceSummary` and
-`webui.showPricesByCountry` flags. No exact model-year assignment is established
-by those profile metadata. Neither a calendar footer nor a first-delivery year
-can supply one. No lead, saved build, account, reservation or order was submitted.
+Canadian `webui.showPriceSummary` and `webui.showPricesByCountry` flags are
+false. The loaded defaults can include optional equipment and selected packs;
+they are not represented as bare models with zero-cost equipment. Base MSRP,
+transmission and numerical specifications remain unknown with reasons. Current
+global model pages publish power and EU WLTP values without an exact Canadian
+year/equipment qualification; those figures are not copied into these records.
+Road-going Artura profiles retain their plug-in hybrid category; racing models
+are excluded from this passenger-vehicle import.
 
-The official manufacturer Toronto page identifies a certified Canadian
-new/pre-owned retailer. Its matching franchise inventory currently lists three
-new references: two 2027 750S Spider vehicles and one 2026 GTS, all with pricing
-on request. These are observed dealer stock years, not proof of the year for a
-particular factory profile. Different indexed copies report different counts;
-the dated captured response takes precedence for this observation. This is one
-retailer's inventory, not a complete national stock count.
+## Source replay and refresh
 
-The manufacturer public website's live site list does not include `ca_en`.
-An ordinary attempt at that locale renders a page-not-found state, while the
-global Toronto retailer route works. A direct CMS GET without the site context
-returns an invalid-origin error; the ordinary public website browser retrieves
-the public retailer content successfully. These observations do not establish
-absence of Canadian offerings or require an account.
+Run `npm run catalog:sync:mclaren`. It invokes the anonymous public browser
+capture, verifies 18 source receipts and atomically replaces the factual
+snapshot only after every model, country, year and source join validates.
+`-- --offline` exactly reconstructs the snapshot from the original checksummed
+raw responses and preserves their dates. `-- --from-captures path/to/manifest.json`
+imports a reviewed capture set. Ordinary builds use the tracked snapshot and
+never contact a manufacturer.
 
-Next work: normalize exact Canadian offering identities and model-year evidence;
-review the current public model pages, limited/special models and every Canadian
-retailer's new stock; distinguish base MSRP from configured quotes and incentives;
-source exact technical facts; implement atomic source replay, validation and
-coverage reporting. The five linked profiles are not an exhaustive denominator.
-Original responses remain in the ignored raw cache; tracked records retain
-receipt metadata and factual projections without session identifiers or full
-marketing descriptions.
+`npm run catalog:capture:mclaren` collects a review manifest without replacing
+the accepted snapshot or its replay manifest. A normal browser loads the public
+manufacturer navigation, chooses Canada and opens each Configure from Base
+Model flow. Capture stops after identity responses, before the 3D preview is
+needed. No lead, saved build, account, reservation or order is submitted.
+Original responses and ephemeral session data remain in the ignored raw cache;
+the tracked snapshot retains receipt metadata and factual identities.
+
+The bootstrap currently references `/mclaren-ui/assets/index-8XucOWk-.js`,
+SHA-256 `27cec051d887efdaae7e5f57fc1545bc7ecf79cdd32f601ae7a1f73af679f540`.
+Changed bootstrap/client, country restrictions, private access, profile aliases,
+price-display flags, missing/ambiguous model-year fields, stale captures and
+lost model/year coverage require review. A year advance requires older-new-stock
+reconciliation before replacing the accepted snapshot.
+
+## Remaining coverage
+
+The manufacturer navigation also lists 788HS, 788HS Spider and W1 without a
+Canadian public configuration link. Their current Canadian offerings and
+allocations remain unverified. Motorsport categories do not enter this catalog.
+
+Toronto's separately captured new inventory lists two 2027 750S Spider vehicles
+and one 2026 GTS, with pricing on request. The 2026 stock observation is not
+assigned to the current 2027 GTS factory profile. Exact older-year trims,
+equipment, base MSRP and national stock remain open. The matching franchise
+dealer and manufacturer retailer page are documented in the
+[additional-make ledger](canadian-market-universe.json).
+
+Further public tab inspection found Artura Performance and TechLux interiors
+and selected equipment packs. Other tab captures encountered the manufacturer's
+3D GPU error overlay. Alternate configurations remain unresolved; that error
+does not establish unavailable equipment. Independent national lineup checks,
+all retail trims, exact technical facts, limited/special models, allocations
+and current/older new stock remain within the goal.

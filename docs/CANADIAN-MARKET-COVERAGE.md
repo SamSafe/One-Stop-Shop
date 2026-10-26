@@ -1303,3 +1303,42 @@ false. Neither the 47-make rating baseline nor these two additional reviews is
 an exhaustive market denominator. Other manufacturers outside NRCan still need
 investigation; current Canadian offerings require evidence beyond a global
 model menu, a historical brochure, a US price or a retailer address alone.
+
+## McLaren explicit Canadian factory model years
+
+The public Canada configurator now contributes five year-qualified 2027 factory
+profiles: Artura Coupe/Spider, 750S Coupe/Spider and GTS. Its ordinary General
+response explicitly identifies country CA, model year, family and body. This
+is a named model-year field delivered to the public browser, although not shown
+in the visible summary. Calendar footers, product codes and dealer stock years
+are not used to infer it. McLaren adds a 48th make outside the government baseline.
+
+Canadian price-display flags are false. Loaded defaults can contain selected
+equipment and packs; the app does not treat them as bare models with zero-cost
+options. Base MSRP and exact-year technical facts remain unknown, including
+unqualified global power and EU WLTP figures. Further Artura interior themes
+and equipment require resolved choices. The global 788HS, 788HS Spider and W1
+menu entries have no public Canadian configuration profile and remain separate
+availability checks. The observed 2026 GTS in Toronto new stock is not assigned
+to the current 2027 factory profile. See [the source contract](MCLAREN-RESEARCH.md).
+
+The catalog now has 6,040 records: 3,514 year-qualified retail profiles,
+12 manufacturer offers with unverified years and 2,514 standalone government
+variants. There are 2,591 published base prices, 39 separately qualified
+all-inclusive prices and 1,286 official sources. Manufacturer-listing evidence
+covers 3,488 retail profiles and the 12 offers. All 2,518 NRCan rating IDs remain
+represented. Nineteen baseline makes still lack a current manufacturer import;
+Karma and other manufacturers outside NRCan, remaining retail trims, exact
+facts, special models, older new stock and independent availability checks
+remain within the goal. The full-market gate remains false.
+
+Validation passed all 283 unit tests and all 180 production browser checks
+without retries across desktop/mobile Chromium, Firefox and mobile WebKit.
+The full live McLaren refresh succeeds, and its 18 original receipts reconstruct
+exactly offline. Types, catalog validation, package boundaries and formatting
+pass. The complete prepared catalog matches its validated JSON representation;
+all ten release artifacts and the current source fingerprint verify. The
+running preview serves the matching catalog bytes and returns health HTTP 200
+at http://127.0.0.1:8080. The catalog asset is 4,869.16 kB raw / 749.73 kB gzip.
+These results verify the implementation and preserve the outstanding scope;
+they do not prove full Canadian-market coverage.

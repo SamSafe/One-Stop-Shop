@@ -23,6 +23,7 @@ import {
   vinfastSnapshot,
   porscheSnapshot,
   astonSnapshot,
+  mclarenSnapshot,
 } from '../packages/car-catalog/src/index.ts';
 import { catalogCoverage } from '../packages/car-catalog/src/coverage.ts';
 import { mazdaMeasurementConflicts } from '../packages/car-catalog/src/mazda.ts';
@@ -44,6 +45,7 @@ import { vinfastReviewGaps } from '../packages/car-catalog/src/vinfast.ts';
 import { vinfastProfiles } from '../packages/car-catalog/src/vinfast-import.ts';
 import { porscheReviewGaps } from '../packages/car-catalog/src/porsche.ts';
 import { astonReviewGaps } from '../packages/car-catalog/src/aston-martin.ts';
+import { mclarenReviewGaps } from '../packages/car-catalog/src/mclaren.ts';
 import sourceAccessReviews from '../docs/catalog-source-access.json';
 import manufacturerUniverse from '../docs/canadian-market-universe.json';
 
@@ -109,6 +111,7 @@ const report = {
     ...vinfastReviewGaps(vinfastSnapshot),
     ...porscheReviewGaps(porscheSnapshot),
     ...astonReviewGaps(astonSnapshot),
+    ...mclarenReviewGaps(mclarenSnapshot),
     ...genesisSnapshot.rejectedSpecifications.map((s) => ({
       brand: 'Genesis',
       configuration: s.label,
@@ -260,6 +263,17 @@ const report = {
     ),
   ],
   manufacturerConfigurationExpansion: [
+    {
+      brand: 'McLaren',
+      canadianFactoryProfiles: mclarenSnapshot.profiles.length,
+      explicitFactoryModelYears: [...new Set(mclarenSnapshot.profiles.map((p) => p.year))],
+      menuOnlyRoadModels: mclarenSnapshot.navigation
+        .filter((n) => !n.profile && n.category !== 'Motorsport')
+        .map((n) => n.name),
+      additionalSelectionsExhaustivelyExpanded: false,
+      remaining:
+        'Reconcile alternate interiors and equipment, hidden Canadian base prices, exact-year technical facts, limited/special Canadian offerings, allocations and current/older new stock, including the separately observed 2026 GTS.',
+    },
     {
       brand: 'Aston Martin',
       canadianMenuProducts: astonSnapshot.products.length,

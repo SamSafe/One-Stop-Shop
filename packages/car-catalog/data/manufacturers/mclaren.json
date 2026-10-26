@@ -1,0 +1,231 @@
+{
+  "schemaVersion": 1,
+  "market": "CA",
+  "retrievedAt": "2026-10-26T05:50:34.953Z",
+  "sources": {
+    "bootstrap": {
+      "url": "https://configurator.mclaren.com/mclaren-ui/?model/gts",
+      "status": 200,
+      "sha256": "703cd6cc063b29ab7ace41198ae89b1c8a3fbef4d7fed452dda6ba8306794ebf",
+      "capturedAt": "2026-10-26T05:50:11.758Z"
+    },
+    "client": {
+      "url": "https://configurator.mclaren.com/mclaren-ui/assets/index-8XucOWk-.js",
+      "status": 200,
+      "sha256": "27cec051d887efdaae7e5f57fc1545bc7ecf79cdd32f601ae7a1f73af679f540",
+      "capturedAt": "2026-10-26T05:50:13.102Z"
+    },
+    "menu": {
+      "url": "https://mclaren-cms.production.aws.mclaren.com/api/mainnav?site=1",
+      "status": 200,
+      "sha256": "c1ca9bf3b9913bb01b32d3f9dcb9e69c046a14ff1fde413a412844b78662f713",
+      "capturedAt": "2026-10-26T05:50:17.199Z"
+    }
+  },
+  "navigation": [
+    { "category": "Supercars", "name": "Artura", "slug": "cars/gl_en/artura", "profile": "artura" },
+    {
+      "category": "Supercars",
+      "name": "Artura Spider",
+      "slug": "cars/gl_en/artura-spider",
+      "profile": "artura-spider"
+    },
+    { "category": "Supercars", "name": "750s", "slug": "cars/gl_en/750s", "profile": "750s" },
+    {
+      "category": "Supercars",
+      "name": "750s Spider",
+      "slug": "cars/gl_en/750s-spider",
+      "profile": "750s-spider"
+    },
+    { "category": "Supercars", "name": "788HS", "slug": "cars/gl_en/788hs", "profile": null },
+    {
+      "category": "Supercars",
+      "name": "788HS SPIDER",
+      "slug": "cars/gl_en/788hs-spider",
+      "profile": null
+    },
+    { "category": "Grand Tourer", "name": "GTS", "slug": "cars/gl_en/gts", "profile": "gts" },
+    { "category": "Hypercar", "name": "W1", "slug": "cars/gl_en/W1", "profile": null },
+    {
+      "category": "Motorsport",
+      "name": "GT3 EVO",
+      "slug": "cars/gl_en/customer-racing/models-customer/720s-gt3-evo",
+      "profile": null
+    },
+    {
+      "category": "Motorsport",
+      "name": "ARTURA GT4",
+      "slug": "cars/gl_en/customer-racing/models-customer/artura-gt4",
+      "profile": null
+    },
+    {
+      "category": "Motorsport",
+      "name": "ARTURA TROPHY EVO",
+      "slug": "cars/gl_en/customer-racing/models-customer/artura-trophy-evo",
+      "profile": null
+    },
+    {
+      "category": "Motorsport",
+      "name": "MCL-HY-GTR",
+      "slug": "cars/gl_en/project-endurance",
+      "profile": null
+    }
+  ],
+  "profiles": [
+    {
+      "id": "artura",
+      "name": "McLaren Artura",
+      "profileName": "ARTURA",
+      "country": "CA",
+      "modelCode": "P16",
+      "body": "COUPE",
+      "year": 2027,
+      "hybrid": true,
+      "priceDisplay": false,
+      "sources": {
+        "landing": {
+          "url": "https://configurator.mclaren.com/configuration/ajaxLandingPageData.do?profileName=artura&country=CA&language=en",
+          "status": 200,
+          "sha256": "77d7552d9fbaa34561633615d49d792b6c9f9e042a1ecdcb80ae36a551a04bf5",
+          "capturedAt": "2026-10-26T05:50:19.574Z"
+        },
+        "initial": {
+          "url": "https://configurator.mclaren.com/configuration/ajaxGetInitialData.do?cacheControl=1792993820197&",
+          "status": 200,
+          "sha256": "f6be9270ed86030dd683cdfef7a90a5f19d20ce0b623e5aebcc361970b717b02",
+          "capturedAt": "2026-10-26T05:50:20.369Z"
+        },
+        "general": {
+          "url": "https://configurator.mclaren.com/configuration/ajaxGetCharacteristics.do?instanceId=1&csticViewId=CSTIC_VIEW_0&cacheControl=1792993820797&",
+          "status": 200,
+          "sha256": "bcac40dca0819b80283142efc99fe8e97b85452c7b43d44a515f0ef1e38fafc8",
+          "capturedAt": "2026-10-26T05:50:21.034Z"
+        }
+      }
+    },
+    {
+      "id": "artura-spider",
+      "name": "McLaren Artura Spider",
+      "profileName": "ARTURA-SPIDER",
+      "country": "CA",
+      "modelCode": "P16",
+      "body": "SPIDER",
+      "year": 2027,
+      "hybrid": true,
+      "priceDisplay": false,
+      "sources": {
+        "landing": {
+          "url": "https://configurator.mclaren.com/configuration/ajaxLandingPageData.do?profileName=artura-spider&country=CA&language=en",
+          "status": 200,
+          "sha256": "518e0c52b457d7b99caeedb24a4df1cfc83a2bd6c901a4116f3f9bcab03f5e9d",
+          "capturedAt": "2026-10-26T05:50:23.404Z"
+        },
+        "initial": {
+          "url": "https://configurator.mclaren.com/configuration/ajaxGetInitialData.do?cacheControl=1792993824028&",
+          "status": 200,
+          "sha256": "b9d66f8f9eceb20527d03f9d44aa5a3de47da3132a8d76293743b9412da82a8f",
+          "capturedAt": "2026-10-26T05:50:24.198Z"
+        },
+        "general": {
+          "url": "https://configurator.mclaren.com/configuration/ajaxGetCharacteristics.do?instanceId=1&csticViewId=CSTIC_VIEW_0&cacheControl=1792993824595&",
+          "status": 200,
+          "sha256": "dada3bc520e3360c19d00cf42817cadcdbbf0c59709af976f57955c6435bed0a",
+          "capturedAt": "2026-10-26T05:50:24.813Z"
+        }
+      }
+    },
+    {
+      "id": "750s",
+      "name": "McLaren 750S",
+      "profileName": "750s",
+      "country": "CA",
+      "modelCode": "P28",
+      "body": "COUPE",
+      "year": 2027,
+      "hybrid": false,
+      "priceDisplay": false,
+      "sources": {
+        "landing": {
+          "url": "https://configurator.mclaren.com/configuration/ajaxLandingPageData.do?profileName=750s&country=CA&language=en",
+          "status": 200,
+          "sha256": "0e36a4b67f46733d4d98adcac804e3b96d3c42999b2b8f528a1973d7ca944d48",
+          "capturedAt": "2026-10-26T05:50:27.165Z"
+        },
+        "initial": {
+          "url": "https://configurator.mclaren.com/configuration/ajaxGetInitialData.do?cacheControl=1792993827859&",
+          "status": 200,
+          "sha256": "55ba6a750e6987b11b9fc093153d81f656261034a3a15261262d00cb7b671720",
+          "capturedAt": "2026-10-26T05:50:28.034Z"
+        },
+        "general": {
+          "url": "https://configurator.mclaren.com/configuration/ajaxGetCharacteristics.do?instanceId=1&csticViewId=CSTIC_VIEW_0&cacheControl=1792993828430&",
+          "status": 200,
+          "sha256": "c4cc427f2b4fcabc04b3e87062b23fed8f46ccec029e4a94a04ff07b31501de6",
+          "capturedAt": "2026-10-26T05:50:28.628Z"
+        }
+      }
+    },
+    {
+      "id": "750s-spider",
+      "name": "McLaren 750S Spider",
+      "profileName": "750s-spider",
+      "country": "CA",
+      "modelCode": "P28",
+      "body": "SPIDER",
+      "year": 2027,
+      "hybrid": false,
+      "priceDisplay": false,
+      "sources": {
+        "landing": {
+          "url": "https://configurator.mclaren.com/configuration/ajaxLandingPageData.do?profileName=750s-spider&country=CA&language=en",
+          "status": 200,
+          "sha256": "3de11e96d39a8b3b9e256998c2362aff70b5179cae9fdb966700d3078e8c9c81",
+          "capturedAt": "2026-10-26T05:50:30.842Z"
+        },
+        "initial": {
+          "url": "https://configurator.mclaren.com/configuration/ajaxGetInitialData.do?cacheControl=1792993830506&",
+          "status": 200,
+          "sha256": "4ac0a87fda6426c8dba3242edc871be8eca4d45672a9148813a27683f5a13c6f",
+          "capturedAt": "2026-10-26T05:50:30.683Z"
+        },
+        "general": {
+          "url": "https://configurator.mclaren.com/configuration/ajaxGetCharacteristics.do?instanceId=1&csticViewId=CSTIC_VIEW_0&cacheControl=1792993831085&",
+          "status": 200,
+          "sha256": "785f161df5dbd67d90831f1719f090b3a44433e004fd147f25e34d43f8d0151a",
+          "capturedAt": "2026-10-26T05:50:31.334Z"
+        }
+      }
+    },
+    {
+      "id": "gts",
+      "name": "McLaren GTS",
+      "profileName": "GTS",
+      "country": "CA",
+      "modelCode": "P22S",
+      "body": "GT",
+      "year": 2027,
+      "hybrid": false,
+      "priceDisplay": false,
+      "sources": {
+        "landing": {
+          "url": "https://configurator.mclaren.com/configuration/ajaxLandingPageData.do?profileName=gts&country=CA&language=en",
+          "status": 200,
+          "sha256": "4470c6fc73204d7d542265e8e8e8027a258b2b8ca5cf408b7e7deebd4446af26",
+          "capturedAt": "2026-10-26T05:50:33.653Z"
+        },
+        "initial": {
+          "url": "https://configurator.mclaren.com/configuration/ajaxGetInitialData.do?cacheControl=1792993834253&",
+          "status": 200,
+          "sha256": "b1a43eabceb12d88e599142fd8a1245bffce8ebd6fdac4735163890d7854a3b9",
+          "capturedAt": "2026-10-26T05:50:34.445Z"
+        },
+        "general": {
+          "url": "https://configurator.mclaren.com/configuration/ajaxGetCharacteristics.do?instanceId=1&csticViewId=CSTIC_VIEW_0&cacheControl=1792993834780&",
+          "status": 200,
+          "sha256": "d77d965f96f81b5559b3c7bd93084d64751f2f2f16f70870a5dee0341caee1c7",
+          "capturedAt": "2026-10-26T05:50:34.953Z"
+        }
+      }
+    }
+  ]
+}

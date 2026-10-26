@@ -103,7 +103,7 @@
           "locator": "Ordinary public browser, Canada, Configure from Base Model. Initial metadata confirms country CA, loginRequired=false and both price-display flags=false. No lead, saved build, account or order submitted; no exact model-year assignment established."
         }
       ],
-      "remaining": "Reconcile the Canadian public configurator, every national retailer, exact retail trims/equipment and current/older new stock. Global navigation, a non-live ca_en site locale and dealer configured prices do not establish a complete Canadian lineup or base MSRP.",
+      "remaining": "Five explicit 2027 Canadian factory profiles now enter the app. Reconcile alternate interiors/equipment, base CAD MSRP, exact-year technical facts, limited/special Canadian offerings, every national retailer and current/older new stock, including the separately observed 2026 GTS. Global navigation and configured dealer prices are not a complete Canadian lineup or base MSRP.",
       "canadianConfiguratorProfiles": [
         {
           "profileName": "artura",
@@ -136,20 +136,87 @@
           "loginRequired": false
         }
       ],
-      "baseConfigurationChecks": [
+      "initialProfileMetadataChecks": [
         {
           "profileName": "GTS",
           "country": "CA",
           "showPriceSummary": false,
           "showPricesByCountry": false,
-          "modelYearVerified": false
+          "initialMetadataPublishesModelYear": false
         },
         {
           "profileName": "ARTURA",
           "country": "CA",
           "showPriceSummary": false,
           "showPricesByCountry": false,
-          "modelYearVerified": false
+          "initialMetadataPublishesModelYear": false
+        }
+      ],
+      "acceptedFactoryModelYearChecks": [
+        {
+          "profileName": "artura",
+          "country": "CA",
+          "modelCode": "P16",
+          "body": "COUPE",
+          "year": 2027,
+          "source": {
+            "url": "https://configurator.mclaren.com/configuration/ajaxGetCharacteristics.do?instanceId=1&csticViewId=CSTIC_VIEW_0&cacheControl=1792993820797&",
+            "status": 200,
+            "sha256": "bcac40dca0819b80283142efc99fe8e97b85452c7b43d44a515f0ef1e38fafc8",
+            "capturedAt": "2026-10-26T05:50:21.034Z"
+          }
+        },
+        {
+          "profileName": "artura-spider",
+          "country": "CA",
+          "modelCode": "P16",
+          "body": "SPIDER",
+          "year": 2027,
+          "source": {
+            "url": "https://configurator.mclaren.com/configuration/ajaxGetCharacteristics.do?instanceId=1&csticViewId=CSTIC_VIEW_0&cacheControl=1792993824595&",
+            "status": 200,
+            "sha256": "dada3bc520e3360c19d00cf42817cadcdbbf0c59709af976f57955c6435bed0a",
+            "capturedAt": "2026-10-26T05:50:24.813Z"
+          }
+        },
+        {
+          "profileName": "750s",
+          "country": "CA",
+          "modelCode": "P28",
+          "body": "COUPE",
+          "year": 2027,
+          "source": {
+            "url": "https://configurator.mclaren.com/configuration/ajaxGetCharacteristics.do?instanceId=1&csticViewId=CSTIC_VIEW_0&cacheControl=1792993828430&",
+            "status": 200,
+            "sha256": "c4cc427f2b4fcabc04b3e87062b23fed8f46ccec029e4a94a04ff07b31501de6",
+            "capturedAt": "2026-10-26T05:50:28.628Z"
+          }
+        },
+        {
+          "profileName": "750s-spider",
+          "country": "CA",
+          "modelCode": "P28",
+          "body": "SPIDER",
+          "year": 2027,
+          "source": {
+            "url": "https://configurator.mclaren.com/configuration/ajaxGetCharacteristics.do?instanceId=1&csticViewId=CSTIC_VIEW_0&cacheControl=1792993831085&",
+            "status": 200,
+            "sha256": "785f161df5dbd67d90831f1719f090b3a44433e004fd147f25e34d43f8d0151a",
+            "capturedAt": "2026-10-26T05:50:31.334Z"
+          }
+        },
+        {
+          "profileName": "gts",
+          "country": "CA",
+          "modelCode": "P22S",
+          "body": "GT",
+          "year": 2027,
+          "source": {
+            "url": "https://configurator.mclaren.com/configuration/ajaxGetCharacteristics.do?instanceId=1&csticViewId=CSTIC_VIEW_0&cacheControl=1792993834780&",
+            "status": 200,
+            "sha256": "d77d965f96f81b5559b3c7bd93084d64751f2f2f16f70870a5dee0341caee1c7",
+            "capturedAt": "2026-10-26T05:50:34.953Z"
+          }
         }
       ]
     },

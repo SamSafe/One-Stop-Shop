@@ -23,6 +23,7 @@ import mercedesVansData from '../data/manufacturers/mercedes-vans.json';
 import vinfastData from '../data/manufacturers/vinfast.json';
 import porscheData from '../data/manufacturers/porsche.json';
 import astonData from '../data/manufacturers/aston-martin.json';
+import mclarenData from '../data/manufacturers/mclaren.json';
 import { validateCatalog } from './schema';
 import { validateNrcanSnapshot } from './nrcan-schema';
 import { expandCatalog } from './expand';
@@ -70,6 +71,8 @@ import { validatePorscheSnapshot } from './porsche-import';
 import { addPorscheRetail } from './porsche';
 import { validateAstonSnapshot } from './aston-martin-import';
 import { addAstonOffers } from './aston-martin';
+import { validateMclarenSnapshot } from './mclaren-import';
+import { addMclarenRetail } from './mclaren';
 
 export * from './schema';
 export { ratingUrl } from './expand';
@@ -101,6 +104,7 @@ export const mercedesVanStockSnapshot = validateMercedesVanStockSnapshot(
 export const vinfastSnapshot = validateVinfastSnapshot(vinfastData);
 export const porscheSnapshot = validatePorscheSnapshot(porscheData);
 export const astonSnapshot = validateAstonSnapshot(astonData);
+export const mclarenSnapshot = validateMclarenSnapshot(mclarenData);
 const previouslyImportedRetail = addMazdaRetail(
   addFordRetail(
     addHondaRetail(
@@ -137,9 +141,12 @@ const previouslyListedRetail = addMercedesVanStock(
   addMercedesRetail(addLucidRetail(rivianRetailCatalog, lucidSnapshot), mercedesSnapshot),
   mercedesVanStockSnapshot,
 );
-export const manufacturerCatalog = addAstonOffers(
-  addVinfastOffers(addPorscheRetail(previouslyListedRetail, porscheSnapshot), vinfastSnapshot),
-  astonSnapshot,
+export const manufacturerCatalog = addMclarenRetail(
+  addAstonOffers(
+    addVinfastOffers(addPorscheRetail(previouslyListedRetail, porscheSnapshot), vinfastSnapshot),
+    astonSnapshot,
+  ),
+  mclarenSnapshot,
 );
 export const retailCatalog = validateCatalog({
   ...manufacturerCatalog,
