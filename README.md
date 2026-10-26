@@ -15,8 +15,10 @@ exact-year base facts. Manufacturer-listed profiles and observed new stock carry
 dated source evidence, without promising delivery or exhaustive national inventory.
 
 Full Canadian market coverage remains in progress. Nineteen makes in the
-rating baseline still lack a current manufacturer import. Independent lineup
-checks, equipment combinations, older new stock, exact model years, prices and
+rating baseline still lack a current manufacturer import. McLaren and Karma have
+dated Canadian retailer evidence outside that baseline and remain in the
+reconciliation ledger. Independent lineup checks, equipment combinations,
+older new stock, exact model years, prices and
 technical specifications remain open across the market. Government rating
 variants and year-unverified manufacturer offers are labeled separately from
 retail configurations. See [the coverage evidence and milestones](docs/CANADIAN-MARKET-COVERAGE.md)

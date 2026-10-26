@@ -45,9 +45,19 @@ import { vinfastProfiles } from '../packages/car-catalog/src/vinfast-import.ts';
 import { porscheReviewGaps } from '../packages/car-catalog/src/porsche.ts';
 import { astonReviewGaps } from '../packages/car-catalog/src/aston-martin.ts';
 import sourceAccessReviews from '../docs/catalog-source-access.json';
+import manufacturerUniverse from '../docs/canadian-market-universe.json';
 
 const report = {
   ...catalogCoverage(catalog, nrcanSnapshot),
+  manufacturerUniverseReview: {
+    ...manufacturerUniverse,
+    governmentBaselineMakes: [...new Set(nrcanSnapshot.records.map((record) => record.Make))]
+      .length,
+    currentCatalogMakes: [...new Set(catalog.cars.map((car) => car.make))].length,
+    additionalMakesWithoutCatalogRecords: manufacturerUniverse.additionalMakes
+      .filter((review) => !catalog.cars.some((car) => car.make === review.make))
+      .map((review) => review.make),
+  },
   manufacturerSourceAccessReviews: sourceAccessReviews,
   manufacturerInventoryModelSourceGaps: mitsubishiSnapshot.inventoryGaps,
   manufacturerInventoryPaginationGaps: [

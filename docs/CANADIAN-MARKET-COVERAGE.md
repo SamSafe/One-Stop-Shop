@@ -1284,3 +1284,22 @@ artifacts and the current source fingerprint verify; the running preview serves
 the matching catalog bytes and returns HTTP 200 for health at
 http://127.0.0.1:8080. The catalog asset is 4,863.98 kB raw / 748.33 kB gzip.
 These checks verify the implementation, not full Canadian-market coverage.
+
+## Manufacturer universe beyond the rating baseline
+
+The [additional-make ledger](canadian-market-universe.json) records dated primary
+evidence for makes absent from the 47-make NRCan snapshot. McLaren's official
+Toronto retailer page identifies its Canadian new/pre-owned dealership. A fresh
+read of that retailer's public new inventory found three distinct references:
+two 2027 750S Spider vehicles and one 2026 GTS, all with prices on request. These
+are dealer stock observations, not manufacturer base MSRP, a national inventory
+count or a completed exact-trim import. Karma's public manufacturer locator
+embeds Canadian retailers in Montreal and Langley; current new-stock years,
+models, trims and prices remain to verify.
+
+`catalog:coverage` includes this ledger and explicitly reports additional makes
+without catalog records. Its manufacturer-universe reconciliation flag remains
+false. Neither the 47-make rating baseline nor these two additional reviews is
+an exhaustive market denominator. Other manufacturers outside NRCan still need
+investigation; current Canadian offerings require evidence beyond a global
+model menu, a historical brochure, a US price or a retailer address alone.

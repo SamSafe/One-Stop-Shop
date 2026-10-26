@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-26",
+  "universeReconciliationComplete": false,
+  "note": "Additional makes with dated Canadian retailer evidence, outside the current NRCan snapshot. This is an incomplete research ledger, not an exhaustive market denominator or completed lineup/trim reconciliation.",
+  "additionalMakes": [
+    {
+      "make": "McLaren",
+      "canadianRetailerPresenceVerified": true,
+      "currentCanadianLineupReconciled": false,
+      "currentRetailTrimsReconciled": false,
+      "retailerNames": ["McLaren Toronto"],
+      "observedNewStockModelYears": [
+        {
+          "model": "GTS",
+          "year": 2026
+        },
+        {
+          "model": "750S Spider",
+          "year": 2027
+        }
+      ],
+      "sources": [
+        {
+          "publisher": "McLaren",
+          "sourceUrl": "https://www.mclaren.com/cars/gl_en/retailers/Toronto",
+          "capturedUrl": "https://mclaren-cms.production.aws.mclaren.com/api/page?slug=cars/gl_en/retailers/Toronto",
+          "httpStatus": 200,
+          "responseSha256": "1205a1a550b9482a41e03a750fa0aa3cad6e5944f4ff2ec39bfc5cdff06ad9bd",
+          "capturedAt": "2026-10-26T05:16:31.846Z",
+          "locator": "Manufacturer retailer page identifies Toronto in Woodbridge, Ontario, and describes a certified new/pre-owned dealership. Captured through the ordinary public browser; the CMS response uses the official page origin."
+        },
+        {
+          "publisher": "McLaren Toronto",
+          "sourceUrl": "https://www.mclarentoronto.ca/new/inventory/McLaren.html?nfr=1",
+          "capturedUrl": "https://www.mclarentoronto.ca/new/inventory/McLaren.html?nfr=1",
+          "httpStatus": 200,
+          "responseSha256": "f316c0253c053cbeffc1978db02c282d8fdd5b171a1d180ed87e0c8d3fd37c12",
+          "capturedAt": "2026-10-26T05:19:49.781Z",
+          "locator": "New Inventory filter; three distinct new-stock references: two 2027 750s Spider and one 2026 GTS. Call for pricing. The franchise site identity/address/telephone match the manufacturer retailer page; its data are dealer listings, not manufacturer base MSRP."
+        }
+      ],
+      "remaining": "Reconcile the Canadian public configurator, every national retailer, exact retail trims/equipment and current/older new stock. Global navigation, a non-live ca_en site locale and dealer configured prices do not establish a complete Canadian lineup or base MSRP."
+    },
+    {
+      "make": "Karma",
+      "canadianRetailerPresenceVerified": true,
+      "currentCanadianLineupReconciled": false,
+      "currentRetailTrimsReconciled": false,
+      "retailerNames": ["Karma Montreal", "Karma Vancouver"],
+      "observedNewStockModelYears": [],
+      "sources": [
+        {
+          "publisher": "Karma Automotive",
+          "sourceUrl": "https://karmaautomotive.com/find-a-location/",
+          "capturedUrl": "https://karmaautomotive.com/find-a-location/",
+          "httpStatus": 200,
+          "responseSha256": "1f0c3177398d1ae25b150ff7147de05990ac10b58153c8b08e65482eed9613fd",
+          "capturedAt": "2026-10-26T05:18:35.254Z",
+          "locator": "Public locator embeds Montreal, Quebec, and Langley, British Columbia addresses explicitly ending in Canada. Retailer presence alone does not establish current new-stock model years, trims or Canadian prices."
+        }
+      ],
+      "remaining": "Verify current Canadian Revero and other model offerings, exact years/trims, new-stock condition, prices and national availability. US offers, EPA ratings, historic brochures and upcoming global products are not substituted."
+    }
+  ]
+}
