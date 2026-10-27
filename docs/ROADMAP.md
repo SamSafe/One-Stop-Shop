@@ -64,10 +64,14 @@ The requested stopping point is [REVIEW-MILESTONE.md](REVIEW-MILESTONE.md).
 
 ## Workspace redesign
 
+Current priority: simplify vehicle comparison. Further garage functionality is deferred to its separate side of the app.
+
 - [x] Task-focused comparison page with dependent model filtering and compact specification cards.
 - [x] Shared navigation and light/dark/system appearance across comparison and garage.
 - [x] Compact mobile filtering, with technical record controls under More filters.
 - [x] Historical owner directory with validated source receipts and a deferred packed download.
+- [x] Search and primary vehicle filters with one optional panel for additional filters and ranking controls.
+- [x] Named comparison selections, matching-specification filtering and optional source notes without concealing unknown facts.
 - [ ] Further verified Canadian trim lists, engine-specific manual matches and optional VIN lookup.
 
 See [workspace redesign](WORKSPACE-REDESIGN.md) for behavior and verification.
