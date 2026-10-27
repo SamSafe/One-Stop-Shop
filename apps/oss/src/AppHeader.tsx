@@ -13,12 +13,8 @@ export function AppHeader({
   return (
     <header className="site-header workspace-header">
       <a className="brand" href="/">
-        <span className="brand-mark" aria-hidden="true">
-          o
-        </span>
-        <span className="brand-word">
-          OSS<span>Vehicle workspace</span>
-        </span>
+        <span className="brand-word">OSS</span>
+        <span className="brand-name">One Stop Shop</span>
       </a>
       <nav className="workspace-nav" aria-label="Main navigation">
         <a href="/" aria-current={page === 'compare' ? 'page' : undefined}>

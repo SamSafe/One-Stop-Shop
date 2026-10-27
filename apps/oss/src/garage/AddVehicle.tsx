@@ -210,7 +210,6 @@ export function AddVehicle({
     >
       <div className="garage-section-title">
         <div>
-          <p className="eyebrow">ADD TO YOUR GARAGE</p>
           <h2>Which vehicle do you own?</h2>
         </div>
         <button type="button" className="text-button" onClick={onCancel}>

@@ -310,9 +310,11 @@ function VehicleCard({
     >
       <div className="garage-section-title">
         <div>
-          <p className="eyebrow">
-            {vehicle.year} · {vehicle.make}
-          </p>
+          {vehicle.nickname && (
+            <p className="eyebrow">
+              {vehicle.year} · {vehicle.make}
+            </p>
+          )}
           <h2>{vehicleName(vehicle)}</h2>
           {vehicle.nickname && <p>{vehicle.model}</p>}
         </div>
@@ -774,9 +776,8 @@ export function Garage() {
       <main id="garage-main" className="garage-main">
         <div className={`garage-intro ${garage.vehicles.length ? 'has-vehicles' : ''}`}>
           <div>
-            <p className="eyebrow">VEHICLE OWNERSHIP</p>
             <h1>Your garage</h1>
-            <p>Track mileage, keep service records, and see what needs attention.</p>
+            <p>Mileage, service history and maintenance reminders.</p>
           </div>
           <button
             type="button"
@@ -794,7 +795,7 @@ export function Garage() {
         <div className="garage-summary">
           <div>
             <strong>{garage.vehicles.length}</strong>
-            <span>Vehicles</span>
+            <span>{garage.vehicles.length === 1 ? 'Vehicle' : 'Vehicles'}</span>
           </div>
           <div>
             <strong>{dueCount}</strong>
@@ -871,18 +872,8 @@ export function Garage() {
         )}
         {!garage.vehicles.length && !adding && (
           <section className="garage-panel garage-empty">
-            <span className="garage-empty-icon" aria-hidden="true">
-              ⌂
-            </span>
-            <h2>
-              Add your vehicle.
-              <br />
-              Keep its history here.
-            </h2>
-            <p>
-              Add the car you already own, enter its odometer, and keep a record of the care it
-              gets.
-            </p>
+            <h2>No vehicles added</h2>
+            <p>Choose your vehicle and enter its current odometer to start a service record.</p>
             <button className="button primary" type="button" onClick={() => setAdding(true)}>
               Add your first vehicle
             </button>
@@ -905,7 +896,7 @@ export function Garage() {
         </div>
         <section className="garage-backup garage-panel" aria-labelledby="garage-backup-title">
           <div>
-            <h2 id="garage-backup-title">Keep a copy.</h2>
+            <h2 id="garage-backup-title">Backup and restore</h2>
             <p>Back up vehicles, reminders and service history as a JSON file.</p>
           </div>
           <div className="garage-actions">
@@ -962,7 +953,7 @@ export function Garage() {
             Canadian manufacturer guidance is available for selected vehicles. Exact schedules and
             specifications are still being expanded.
           </p>
-          <a href="/">Find your next vehicle →</a>
+          <a href="/">Compare vehicles</a>
         </footer>
       </main>
     </>

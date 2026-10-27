@@ -1,8 +1,8 @@
 # One Stop Shop — OSS
 
-A vehicle workspace with a comparison catalog and an owned-vehicle garage. Search,
-filters and side-by-side specifications are the main interface; light, dark and
-system appearance settings apply across both areas.
+A comparison catalog and an owned-vehicle garage. Search, filters and vehicle
+specification rows lead into side-by-side comparisons; light, dark and system
+appearance settings apply across both areas.
 
 A Canadian car comparison app that explains how each configuration fits your
 priorities. The working catalog contains 6,082 records across 48 makes: 3,543

@@ -4,9 +4,9 @@ The interface now reflects two jobs: compare published vehicle specifications, a
 
 ## Comparison page and theme
 
-The large promotional hero and repeated generic car drawings are removed. Search, year/make/model filters, compact specification cards, the shortlist and side-by-side comparison are the main workspace. Model choices follow the selected make/year and reset when those change. Technical record, NRCan class and availability controls live under **More filters**. Mobile filters are collapsed until requested.
+Search, year/make/model filters, the shortlist and side-by-side comparison are the main interface. Vehicles appear in rows with identity, price and specifications aligned for scanning. Model choices follow the selected make/year and reset when those change. Technical record, NRCan class and availability controls live under **More filters**. Mobile filters are collapsed until requested.
 
-Both areas share a header and light/dark/system appearance. The preference persists on this device; system mode follows OS changes. Search, priorities, sources, data uncertainty, comparison links, keyboard navigation and garage records remain functional parts of the app. The redesign does not claim that current market coverage is complete.
+Both areas share simple text navigation and light/dark/system appearance. Pages use neutral backgrounds, ordinary controls, restrained link colour and separators. Promotional slogans, decorative badges, repeated bordered cards and shadows have been removed. The garage uses service-record sections and an inline summary. The preference persists on this device; system mode follows OS changes. Search, priorities, sources, data uncertainty, comparison links, keyboard navigation and garage records remain functional parts of the app. The redesign does not claim that current market coverage is complete.
 
 ## Adding an owned vehicle
 
@@ -29,7 +29,13 @@ VIN lookup is future work. Any decoder must be checked against Canadian market i
 
 This is the next review point for the revised interface and adding flow. Full Canadian sale coverage and complete maintenance coverage remain open.
 
-## Verification
+## Reference layout draft
+
+The simpler reference layout is a reviewable draft. Visual direction remains open while ownership, vehicle research and comparison concepts are considered.
+
+The draft passes 40 focused browser cases across desktop Chromium, mobile Chromium, desktop Firefox and mobile WebKit. These cover light/dark accessibility, comparisons, keyboard focus, dependent filters, appearance persistence, vehicle entry, service reminders and fallback paths. Visual checks cover 320, 390, 1000 and 1920 px widths without document overflow. Strict types, formatting and the production build pass; release sources and both served data assets match the validated build.
+
+## Original directory and finder verification
 
 - All 313 unit tests pass across 33 files.
 - All 264 browser cases pass across desktop Chromium, mobile Chromium, desktop Firefox and mobile WebKit. These include existing comparisons, sources, shortlist persistence, garage corrections, reminders, backups and storage recovery. A final 28-case workspace pass also verifies the built manual-fallback correction in all four configurations.

@@ -206,29 +206,31 @@ function Card({
         </button>
       </div>
       <div className="card-content">
-        <p className="car-make">
-          {modelYearLabel(car)} {car.make}
-        </p>
-        <h3 id={`title-${car.id}`}>{car.model}</h3>
-        <p className="car-trim">
-          {car.recordKind === 'government-rating'
-            ? `${car.governmentRating?.engineLitres ? `${car.governmentRating.engineLitres} L · ` : ''}${car.governmentRating?.transmission}`
-            : `${car.trim} · ${car.drivetrain}`}
-          {car.variant && ` · ${car.variant}`}
-        </p>
-        <p className="record-status">
-          {car.recordKind === 'government-rating'
-            ? 'NRCan rating · retail trim not checked'
-            : car.recordKind === 'manufacturer-offer'
-              ? 'Manufacturer offer · model year unverified'
-              : 'Retail configuration'}
-          {car.availability.status === 'manufacturer-listed' && ' · manufacturer-listed'}
-          {car.availability.status === 'not-checked' && ' · current availability not checked'}
-          {car.availability.status === 'announced' &&
-            ' · coming-soon source flag · availability needs review'}
-          {car.availability.status === 'discontinued' && ' · manufacturer discontinued'}
-        </p>
-        {car.modelYearNote && <p className="record-status">{car.modelYearNote}</p>}
+        <div className="vehicle-description">
+          <p className="car-make">
+            {modelYearLabel(car)} {car.make}
+          </p>
+          <h3 id={`title-${car.id}`}>{car.model}</h3>
+          <p className="car-trim">
+            {car.recordKind === 'government-rating'
+              ? `${car.governmentRating?.engineLitres ? `${car.governmentRating.engineLitres} L · ` : ''}${car.governmentRating?.transmission}`
+              : `${car.trim} · ${car.drivetrain}`}
+            {car.variant && ` · ${car.variant}`}
+          </p>
+          <p className="record-status">
+            {car.recordKind === 'government-rating'
+              ? 'NRCan rating · retail trim not checked'
+              : car.recordKind === 'manufacturer-offer'
+                ? 'Manufacturer offer · model year unverified'
+                : 'Retail configuration'}
+            {car.availability.status === 'manufacturer-listed' && ' · manufacturer-listed'}
+            {car.availability.status === 'not-checked' && ' · current availability not checked'}
+            {car.availability.status === 'announced' &&
+              ' · coming-soon source flag · availability needs review'}
+            {car.availability.status === 'discontinued' && ' · manufacturer discontinued'}
+          </p>
+          {car.modelYearNote && <p className="record-status">{car.modelYearNote}</p>}
+        </div>
         <div className="price-row">
           <div>
             <strong>
@@ -243,7 +245,7 @@ function Card({
               {ranking.score === null ? '—' : ranking.score}
               <span>/100</span>
             </strong>
-            <span>your fit score</span>
+            <span>fit score</span>
           </div>
         </div>
         {car.publishedPrice && (
@@ -421,7 +423,6 @@ function Comparison({
     >
       <div className="dialog-header">
         <div>
-          <p className="eyebrow">YOUR COMPARISON</p>
           <h2 id="comparison-title">Compare specifications</h2>
         </div>
         <button
@@ -791,22 +792,12 @@ export function App() {
       <main>
         <section className="workspace-intro" aria-labelledby="workspace-title">
           <div>
-            <p className="eyebrow">CANADIAN VEHICLE COMPARISONS</p>
             <h1 id="workspace-title">Compare vehicles</h1>
-            <p>
-              Filter the catalog, save a shortlist, and compare up to four vehicles side by side.
-            </p>
+            <p>Canadian prices and specifications. Select up to four vehicles to compare.</p>
           </div>
-          <a className="ownership-link" href="/garage">
-            <span>Already own a vehicle?</span>
-            <strong>
-              Open your garage <Icon name="arrow" size={17} />
-            </strong>
-          </a>
         </section>
         <div className="trust-strip">
           <span>
-            <Icon name="check" size={16} />
             {cars.length.toLocaleString('en-CA')} catalog records · {makes.length} makes
           </span>
           <span>
@@ -1198,12 +1189,7 @@ export function App() {
           aria-labelledby="methodology-title"
         >
           <div>
-            <p className="eyebrow">NOT A MYSTERY NUMBER</p>
-            <h2 id="methodology-title">
-              Your priorities.
-              <br />
-              Our working, shown.
-            </h2>
+            <h2 id="methodology-title">How scoring works</h2>
             <p>
               The best car depends on what you need. Your fit score makes those tradeoffs explicit.
             </p>
@@ -1252,8 +1238,7 @@ export function App() {
         <section id="sources" className="sources-section" aria-labelledby="sources-title">
           <div className="section-heading">
             <div>
-              <p className="eyebrow">CHECK OUR WORK</p>
-              <h2 id="sources-title">Good decisions need good sources.</h2>
+              <h2 id="sources-title">Sources</h2>
             </div>
             <p>
               Manufacturer and NRCan publications; review dates appear below.
@@ -1277,10 +1262,7 @@ export function App() {
         </section>
       </main>
       <footer className="site-footer">
-        <div className="footer-brand">
-          oss<span>.</span>
-          <small>FIND YOUR FIT.</small>
-        </div>
+        <div className="footer-brand">OSS</div>
         <p>
           Independent comparison tool. No manufacturer affiliation.
           <br />
