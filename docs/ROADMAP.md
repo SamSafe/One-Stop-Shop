@@ -47,7 +47,8 @@ and overlapping model years. See CANADIAN-MARKET-COVERAGE.md for completion evid
 
 ## Garage — first review milestone implemented
 
-- [x] Manual owned-vehicle entry independent of comparison data.
+- [x] Guided Canadian year/make/model/configuration lookup for older owned vehicles, independent of comparison data.
+- [x] Manual fallback for unlisted vehicles and unknown details.
 - [x] Odometer updates, service history, recurring reminders and due status.
 - [x] Local persistence, cross-tab changes, export and explicit backup restore.
 - [x] Canadian 2016 Elantra sedan oil/filter guidance and selected manual specs.
@@ -60,3 +61,13 @@ and overlapping model years. See CANADIAN-MARKET-COVERAGE.md for completion evid
 - [ ] Accounts and cloud sync if needed after feedback.
 
 The requested stopping point is [REVIEW-MILESTONE.md](REVIEW-MILESTONE.md).
+
+## Workspace redesign
+
+- [x] Task-focused comparison page with dependent model filtering and compact specification cards.
+- [x] Shared navigation and light/dark/system appearance across comparison and garage.
+- [x] Compact mobile filtering, with technical record controls under More filters.
+- [x] Historical owner directory with validated source receipts and a deferred packed download.
+- [ ] Further verified Canadian trim lists, engine-specific manual matches and optional VIN lookup.
+
+See [workspace redesign](WORKSPACE-REDESIGN.md) for behavior and verification.

@@ -228,3 +228,18 @@ Saving a stale editor rejects changes to the same vehicle details or service
 record, including a record deleted in another tab. Local storage does not provide
 transactional multi-user writes. See [correction behavior](GARAGE-CORRECTIONS.md)
 and [maintenance sources](MAINTENANCE-SOURCES.md).
+
+## Owner lookup and appearance
+
+The shared owner directory identifies published Canadian year/make/model and
+powertrain choices from 1995 onward, with additional existing retail references.
+It is separate from current retail availability and pricing. No historical price,
+trim equivalence, odometer or service history is inferred from a model match.
+The finder loads a losslessly packed asset on demand; manual entry remains
+available when a year/vehicle is absent or lookup fails. See
+[the directory contract](OWNER-VEHICLE-DIRECTORY.md).
+
+Appearance uses a separate `oss-appearance-v1` preference (`system`, `light` or
+`dark`). It follows system changes when selected and synchronizes across pages
+and browser tabs. Storage denial leaves the chosen appearance usable for the
+visit. It does not change or migrate garage records or comparison state.

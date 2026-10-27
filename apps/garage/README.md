@@ -2,7 +2,7 @@
 
 The first garage release is implemented as an independent page at `/garage` within the existing OSS deployment. Its UI and local ownership model live in `apps/oss/src/garage`; shared Canadian manufacturer guidance and document metadata live in `packages/car-catalog/src/maintenance.ts`.
 
-Adding an already-owned vehicle is the primary flow and works without downloading the comparison catalog. Any model year can be entered manually. Comparison cards offer a convenience link to preselect a catalog configuration; that catalog is loaded only on demand.
+Adding an already-owned vehicle is the primary flow and works without downloading the comparison catalog. Guided selection covers published Canadian model-year entries from 1995–2027; any unlisted vehicle can still be entered manually. The selected engine/transmission or a verified catalog configuration fills known details, while trim can be left unknown. Comparison cards offer a convenience link to preselect a catalog configuration; that catalog is loaded only on demand.
 
 Implemented: vehicle entry and detail corrections, odometer updates, editable service records, personal recurring reminders, selected manufacturer guidance, due/overdue status, backup export, explicit restore confirmation and cross-tab synchronization. Owned data stays in this browser. Unknown saved formats are preserved; storage failures offer a session-only workflow and export.
 

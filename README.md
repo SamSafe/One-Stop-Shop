@@ -1,5 +1,9 @@
 # One Stop Shop — OSS
 
+A vehicle workspace with a comparison catalog and an owned-vehicle garage. Search,
+filters and side-by-side specifications are the main interface; light, dark and
+system appearance settings apply across both areas.
+
 A Canadian car comparison app that explains how each configuration fits your
 priorities. The working catalog contains 6,082 records across 48 makes: 3,543
 year-qualified retail configurations, 25 manufacturer offers with unverified
@@ -36,12 +40,16 @@ Missing active scoring metrics leave a record unscored. This is a dated research
 it does not claim live inventory, current dealer prices, reliability ratings or
 complete market coverage.
 
-The garage at `/garage` supports vehicles of any age, editable vehicle details and
-service history, odometer updates, recurring reminders and backup export/restore. Canadian 2016 Elantra
+The garage at `/garage` starts with a guided Canadian vehicle finder: year, make,
+model and optional configuration, then odometer and personal details. Its separate
+owner directory covers published model-year entries from 1995–2027 across 66 makes.
+Unlisted vehicles can be entered manually. Vehicle details and service history
+remain editable, with recurring reminders and backup export/restore. Canadian 2016 Elantra
 sedan oil/filter guidance and manual specifications are verified; selected Toyota
 and Honda guidance is also available. Unsupported schedules remain unset.
 Garage records stay in this browser. See [maintenance sources](docs/MAINTENANCE-SOURCES.md)
-and the [feedback milestone](docs/REVIEW-MILESTONE.md).
+and the [workspace redesign](docs/WORKSPACE-REDESIGN.md). Lookup sources and refresh
+commands are documented in [the owner directory contract](docs/OWNER-VEHICLE-DIRECTORY.md).
 
 ## Run locally
 
