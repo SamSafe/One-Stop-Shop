@@ -53,7 +53,9 @@
     "check:boundaries": "node scripts/check-boundaries.mjs",
     "check": "npm run check:boundaries && npm run test && npm run build",
     "catalog:sync:landrover": "node --import tsx scripts/sync-landrover.ts",
-    "maintenance:cache": "node --import tsx scripts/cache-owner-documents.ts"
+    "maintenance:cache": "node --import tsx scripts/cache-owner-documents.ts",
+    "garage:sync:directory": "node --import tsx scripts/sync-owner-directory.ts",
+    "garage:capture:directory": "node scripts/capture-owner-directory.mjs"
   },
   "devDependencies": {
     "@axe-core/playwright": "4.14.0",

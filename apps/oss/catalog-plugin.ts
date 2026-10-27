@@ -4,16 +4,22 @@ import { mkdtemp, readFile, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import type { OwnerDirectoryPacket } from '../../packages/car-catalog/src/owner-directory.ts';
 import type { RuntimeCatalog } from '../../packages/car-catalog/src/runtime.ts';
 
 export async function validatedCatalogPlugin(command: 'build' | 'serve'): Promise<Plugin> {
   const id = '\0oss-validated-catalog',
+    ownerId = '\0oss-owner-directory-url',
     root = fileURLToPath(new URL('../..', import.meta.url)),
     prepare = fileURLToPath(new URL('../../scripts/prepare-runtime-catalog.ts', import.meta.url)),
     catalogDirectory = fileURLToPath(new URL('../../packages/car-catalog/', import.meta.url));
   // A fresh process keeps config loading independent of tsx/JSON resolution and
   // avoids stale manufacturer modules after a development-server restart.
-  let generated: { packed: RuntimeCatalog; governmentRatingCount: number };
+  let generated: {
+    packed: RuntimeCatalog;
+    governmentRatingCount: number;
+    ownerDirectory: OwnerDirectoryPacket;
+  };
   const temporary = await mkdtemp(join(tmpdir(), 'oss-runtime-catalog-'));
   try {
     const filename = join(temporary, 'catalog.json');
@@ -33,14 +39,25 @@ export async function validatedCatalogPlugin(command: 'build' | 'serve'): Promis
   } finally {
     await rm(temporary, { recursive: true, force: true });
   }
-  const payload = JSON.stringify(generated.packed);
+  const payload = JSON.stringify(generated.packed),
+    ownerPayload = JSON.stringify(generated.ownerDirectory);
   return {
     name: 'vite-plugin-validated-catalog',
     enforce: 'pre',
     resolveId(source) {
       if (source === '@oss/car-catalog') return id;
+      if (source === 'virtual:oss-owner-directory-url') return ownerId;
     },
     load(source) {
+      if (source === ownerId) {
+        if (command === 'serve') return 'export default "/__owner-directory.json"';
+        const reference = this.emitFile({
+          type: 'asset',
+          name: 'owner-directory.json',
+          source: ownerPayload,
+        });
+        return `export default import.meta.ROLLDOWN_FILE_URL_${reference};`;
+      }
       if (source !== id) return;
       const read =
         command === 'build'
@@ -63,6 +80,11 @@ export const catalog = decodeRuntimeCatalog(packed);
 export const governmentRatingCount = ${generated.governmentRatingCount};`;
     },
     configureServer(server) {
+      server.middlewares.use('/__owner-directory.json', (_request, response) => {
+        response.setHeader('Content-Type', 'application/json');
+        response.setHeader('Cache-Control', 'no-cache');
+        response.end(ownerPayload);
+      });
       let timer: ReturnType<typeof setTimeout> | undefined;
       const source = (file: string) =>
         file === prepare ||
@@ -86,7 +108,13 @@ export const governmentRatingCount = ${generated.governmentRatingCount};`;
       });
     },
     generateBundle(_options, bundle) {
-      const allowed = new Set(['metrics.ts', 'rating-url.ts', 'runtime.ts', 'maintenance.ts']);
+      const allowed = new Set([
+        'metrics.ts',
+        'rating-url.ts',
+        'runtime.ts',
+        'maintenance.ts',
+        'owner-directory.ts',
+      ]);
       for (const output of Object.values(bundle)) {
         if (output.type !== 'chunk') continue;
         for (const module of Object.keys(output.modules)) {

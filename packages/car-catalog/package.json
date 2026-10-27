@@ -8,7 +8,8 @@
     "./runtime": "./src/runtime.ts",
     "./metrics": "./src/metrics.ts",
     "./rating-url": "./src/rating-url.ts",
-    "./maintenance": "./src/maintenance.ts"
+    "./maintenance": "./src/maintenance.ts",
+    "./owner-directory": "./src/owner-directory.ts"
   },
   "dependencies": {
     "zod": "4.6.7"
