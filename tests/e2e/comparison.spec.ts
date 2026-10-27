@@ -1,3 +1,4 @@
+import { revealCatalogFilters } from './catalog-helpers';
 import { test, expect } from '@playwright/test';
 import type { Page } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
@@ -7,6 +8,7 @@ const hybrid = '2026 Honda CR-V Sport Hybrid AWD';
 
 async function openRetailCatalog(page: Page) {
   await page.goto('/');
+  await revealCatalogFilters(page);
   await page.getByLabel('Record type', { exact: true }).selectOption('retail-trim');
 }
 
@@ -72,6 +74,7 @@ test('shortlist persists, filters, clears and syncs across tabs', async ({ page,
   await openRetailCatalog(page);
   await page.getByRole('button', { name: `Save ${honda}`, exact: true }).click();
   await page.reload();
+  await revealCatalogFilters(page);
   await expect(page.getByRole('button', { name: `Unsave ${honda}`, exact: true })).toHaveAttribute(
     'aria-pressed',
     'true',
@@ -101,6 +104,7 @@ test('comparison restores from its URL and calculates fuel costs', async ({ page
     'Not available',
   );
   await page.reload();
+  await revealCatalogFilters(page);
   await expect(page.getByRole('dialog')).toBeVisible();
   await expect(page.getByRole('columnheader')).toHaveCount(3);
   await page.keyboard.press('Escape');
@@ -120,6 +124,7 @@ test('comparison limits selection to four and supports removing a car', async ({
     .click();
   await expect(page.getByRole('columnheader')).toHaveCount(4);
   await page.getByRole('button', { name: 'Close comparison' }).click();
+  await revealCatalogFilters(page, true);
   await expect(boxes.nth(4)).toBeEnabled();
 });
 
@@ -157,6 +162,7 @@ test('recovers from corrupt and blocked local storage', async ({ page }) => {
     }),
   );
   await page.reload();
+  await revealCatalogFilters(page);
   await page.getByRole('button', { name: `Save ${honda}`, exact: true }).click();
   await expect(page.getByRole('button', { name: `Unsave ${honda}`, exact: true })).toBeVisible();
   await expect(page.getByText(/cannot be saved on this device/)).toBeVisible();

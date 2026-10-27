@@ -2,6 +2,8 @@ import { Component, StrictMode, Suspense, lazy } from 'react';
 import type { ErrorInfo, ReactNode } from 'react';
 import { createRoot } from 'react-dom/client';
 import './styles.css';
+import { applyAppearance } from './ThemePicker';
+applyAppearance();
 
 const garageRoute = /^\/garage\/?$/.test(window.location.pathname);
 const App = lazy(() =>

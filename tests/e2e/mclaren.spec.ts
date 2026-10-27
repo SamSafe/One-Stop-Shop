@@ -1,9 +1,11 @@
+import { revealCatalogFilters } from './catalog-helpers';
 import { expect, test } from '@playwright/test';
 
 test('McLaren Canadian factory years stay distinct from unknown prices and unresolved stock and special models', async ({
   page,
 }) => {
   await page.goto('/');
+  await revealCatalogFilters(page);
   await page.getByLabel('Make', { exact: true }).selectOption('McLaren');
   await page
     .getByLabel('Availability evidence', { exact: true })
@@ -25,6 +27,7 @@ test('McLaren Canadian factory years stay distinct from unknown prices and unres
   await page.getByLabel('Max base MSRP', { exact: true }).selectOption('75000');
   await expect(page.getByRole('article')).toHaveCount(0);
   await page.goto('/?compare=mclaren-ca-artura-2027,mclaren-ca-gts-2027');
+  await revealCatalogFilters(page);
   const dialog = page.getByRole('dialog');
   await expect(dialog).toBeVisible();
   await expect(dialog.getByRole('columnheader').nth(1)).toContainText('2027');

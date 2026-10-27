@@ -1,9 +1,11 @@
+import { revealCatalogFilters } from './catalog-helpers';
 import { expect, test } from '@playwright/test';
 
 test('older Canadian Sprinter stock retains its own bare-model price and unknown seating', async ({
   page,
 }) => {
   await page.goto('/?compare=mercedes-ca-2025-2p144s,mercedes-ca-2026-dpvs2s');
+  await revealCatalogFilters(page);
   const dialog = page.getByRole('dialog');
   const prices = dialog
     .getByRole('row')
@@ -16,6 +18,7 @@ test('older Canadian Sprinter stock retains its own bare-model price and unknown
   await expect(seats).toContainText('Not verified');
   await expect(seats).toContainText('12');
   await dialog.getByRole('button', { name: 'Close comparison' }).click();
+  await revealCatalogFilters(page, true);
   await page.getByLabel('Record type', { exact: true }).selectOption('retail-trim');
   await page
     .getByLabel('Availability evidence', { exact: true })
@@ -49,6 +52,7 @@ test('Mercedes base comparisons retain exact Canadian prices, passenger seats an
   page,
 }) => {
   await page.goto('/?compare=mercedes-ca-2027-glc300w4,mercedes-ca-2026-dpvh2l');
+  await revealCatalogFilters(page);
   const dialog = page.getByRole('dialog');
   const prices = dialog
     .getByRole('row')
@@ -61,8 +65,10 @@ test('Mercedes base comparisons retain exact Canadian prices, passenger seats an
   await expect(seats).toContainText('5');
   await expect(seats).toContainText('15');
   await page.reload();
+  await revealCatalogFilters(page);
   await expect(page.getByRole('dialog')).toBeVisible();
   await dialog.getByRole('button', { name: 'Close comparison' }).click();
+  await revealCatalogFilters(page, true);
   await page.getByLabel('Record type', { exact: true }).selectOption('retail-trim');
   await page
     .getByLabel('Availability evidence', { exact: true })
@@ -93,6 +99,7 @@ test('Mercedes price conflicts remain visible and cannot pass a known-price budg
   page,
 }) => {
   await page.goto('/');
+  await revealCatalogFilters(page);
   await page.getByLabel('Record type', { exact: true }).selectOption('retail-trim');
   await page.getByLabel('Make', { exact: true }).selectOption('Mercedes-Benz');
   await page.getByLabel('Model year', { exact: true }).selectOption('2026');

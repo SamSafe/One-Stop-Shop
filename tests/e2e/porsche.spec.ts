@@ -1,3 +1,4 @@
+import { revealCatalogFilters } from './catalog-helpers';
 import { expect, test } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 
@@ -7,6 +8,7 @@ test('Porsche rear seats and manual/PDK choices retain distinct identities and n
   await page.goto(
     '/?compare=porsche-ca-9921b2-2027-g1f-base,porsche-ca-9921b2-2027-g1f-rear,porsche-ca-982120-2025-250-base,porsche-ca-982120-2025-480-base',
   );
+  await revealCatalogFilters(page);
   const dialog = page.getByRole('dialog');
   await expect(dialog).toBeVisible();
   const seats = dialog
@@ -32,8 +34,10 @@ test('Porsche rear seats and manual/PDK choices retain distinct identities and n
   await expect(dialog.getByRole('columnheader').nth(3)).toContainText('PDK');
   await expect(dialog.getByRole('columnheader').nth(4)).toContainText('manual');
   await page.reload();
+  await revealCatalogFilters(page);
   await expect(dialog).toBeVisible();
   await dialog.getByRole('button', { name: 'Close comparison' }).click();
+  await revealCatalogFilters(page, true);
   await page.getByLabel('Make', { exact: true }).selectOption('Porsche');
   await page.getByLabel('Record type', { exact: true }).selectOption('retail-trim');
   await page
@@ -60,6 +64,7 @@ test('Porsche powertrain filters preserve qualified power and the menu-only allo
   page,
 }) => {
   await page.goto('/');
+  await revealCatalogFilters(page);
   await page.getByLabel('Record type', { exact: true }).selectOption('retail-trim');
   await page.getByLabel('Make', { exact: true }).selectOption('Porsche');
   await page.getByLabel('Model year', { exact: true }).selectOption('2027');
@@ -94,6 +99,7 @@ test('Porsche menu-only specifications and source qualifications remain accessib
   page,
 }) => {
   await page.goto('/');
+  await revealCatalogFilters(page);
   await page.getByLabel('Record type', { exact: true }).selectOption('retail-trim');
   await page.getByLabel('Make', { exact: true }).selectOption('Porsche');
   await page.getByRole('searchbox', { name: 'Search cars' }).fill('911 GT3 90 F. A. Porsche');

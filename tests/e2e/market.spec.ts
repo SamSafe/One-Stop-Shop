@@ -1,3 +1,4 @@
+import { revealCatalogFilters } from './catalog-helpers';
 import { test, expect } from '@playwright/test';
 import { readFileSync } from 'node:fs';
 
@@ -5,6 +6,7 @@ test('Lucid packages, five/seven-seat Gravity and older new stock retain exact M
   page,
 }) => {
   await page.goto('/?compare=lucid-ca-69a2e39941682f00,lucid-ca-ed7ec8bfd63a5c0e');
+  await revealCatalogFilters(page);
   const dialog = page.getByRole('dialog');
   const prices = dialog
     .getByRole('row')
@@ -17,8 +19,10 @@ test('Lucid packages, five/seven-seat Gravity and older new stock retain exact M
   await expect(seats).toContainText('5');
   await expect(seats).toContainText('7');
   await page.reload();
+  await revealCatalogFilters(page);
   await expect(page.getByRole('dialog')).toBeVisible();
   await dialog.getByRole('button', { name: 'Close comparison' }).click();
+  await revealCatalogFilters(page, true);
   await page.getByLabel('Record type', { exact: true }).selectOption('retail-trim');
   await page
     .getByLabel('Availability evidence', { exact: true })
@@ -62,6 +66,7 @@ test('Rivian factory packages, six-seat layouts and older new stock keep their o
   page,
 }) => {
   await page.goto('/');
+  await revealCatalogFilters(page);
   await page.getByLabel('Record type', { exact: true }).selectOption('retail-trim');
   await page
     .getByLabel('Availability evidence', { exact: true })
@@ -101,6 +106,7 @@ test('Rivian factory packages, six-seat layouts and older new stock keep their o
   await expect(seats).toContainText('5');
   await expect(seats).toContainText('6');
   await dialog.getByRole('button', { name: 'Close comparison' }).click();
+  await revealCatalogFilters(page, true);
   await page.getByLabel('Model year', { exact: true }).selectOption('2026');
   await page.getByRole('searchbox', { name: 'Search cars' }).fill('R1S');
   const older = page
@@ -122,6 +128,7 @@ test('Genesis regional all-inclusive prices keep their basis, missing fees and p
   page,
 }) => {
   await page.goto('/');
+  await revealCatalogFilters(page);
   await page.getByLabel('Record type', { exact: true }).selectOption('retail-trim');
   await page
     .getByLabel('Availability evidence', { exact: true })
@@ -161,6 +168,7 @@ test('Genesis regional all-inclusive prices keep their basis, missing fees and p
   await expect(quote).toContainText('$57,131.88');
   await expect(quote).toContainText('$62,631.88');
   await dialog.getByRole('button', { name: 'Close comparison' }).click();
+  await revealCatalogFilters(page, true);
   await page.getByRole('searchbox', { name: 'Search cars' }).fill('Electrified GV70');
   await expect(page.getByRole('article')).toHaveCount(1);
   await expect(page.getByRole('article').locator('.published-price')).toHaveCount(0);
@@ -181,6 +189,7 @@ test('MINI factory packages, electric stock editions and older conflicting speci
   page,
 }) => {
   await page.goto('/');
+  await revealCatalogFilters(page);
   await page.getByLabel('Record type', { exact: true }).selectOption('retail-trim');
   await page
     .getByLabel('Availability evidence', { exact: true })
@@ -243,6 +252,7 @@ test('BMW Canadian MSRP, mild hybrids, electric models and older new stock retai
   page,
 }) => {
   await page.goto('/');
+  await revealCatalogFilters(page);
   await page.getByLabel('Record type', { exact: true }).selectOption('retail-trim');
   await page
     .getByLabel('Availability evidence', { exact: true })
@@ -297,6 +307,7 @@ test('Polestar configured prices, EPA fields and older new-stock years remain di
   page,
 }) => {
   await page.goto('/');
+  await revealCatalogFilters(page);
   await page.getByLabel('Record type', { exact: true }).selectOption('retail-trim');
   await page
     .getByLabel('Availability evidence', { exact: true })
@@ -350,6 +361,7 @@ test('Mitsubishi mild hybrids, PHEVs, EVs and older inventory families keep dist
   page,
 }) => {
   await page.goto('/');
+  await revealCatalogFilters(page);
   await page.getByLabel('Record type', { exact: true }).selectOption('retail-trim');
   await page
     .getByLabel('Availability evidence', { exact: true })
@@ -404,6 +416,7 @@ test('Volkswagen transmissions keep exact fuel figures and passenger ID. Buzz va
   page,
 }) => {
   await page.goto('/');
+  await revealCatalogFilters(page);
   await page.getByLabel('Record type', { exact: true }).selectOption('retail-trim');
   await page
     .getByLabel('Availability evidence', { exact: true })
@@ -425,6 +438,7 @@ test('Volkswagen transmissions keep exact fuel figures and passenger ID. Buzz va
   await expect(page.getByRole('row', { name: /^Combined consumption/ })).toContainText('8.1');
   await expect(page.getByRole('row', { name: /^Combined consumption/ })).toContainText('8.2');
   await page.goto('/');
+  await revealCatalogFilters(page);
   await page.getByLabel('Record type', { exact: true }).selectOption('retail-trim');
   await page.getByLabel('Make', { exact: true }).selectOption('Volkswagen');
   await page.getByLabel('Model year', { exact: true }).selectOption('2025');
@@ -452,6 +466,7 @@ test('Nissan EV versions and Infiniti equipment packages preserve prices, energy
   page,
 }) => {
   await page.goto('/');
+  await revealCatalogFilters(page);
   await page.getByLabel('Record type', { exact: true }).selectOption('retail-trim');
   await page
     .getByLabel('Availability evidence', { exact: true })
@@ -498,6 +513,7 @@ test('GM factory prices exclude fees, unavailable prices remain visible, and pas
   page,
 }) => {
   await page.goto('/');
+  await revealCatalogFilters(page);
   await page.getByLabel('Record type', { exact: true }).selectOption('retail-trim');
   await page
     .getByLabel('Availability evidence', { exact: true })
@@ -521,6 +537,7 @@ test('GM factory prices exclude fees, unavailable prices remain visible, and pas
   await page.goto(
     '/?compare=gm-ca-chevrolet-2026-475054-l84-mht-gu5-none-none,honda-cr-v-2026-lx-fwd',
   );
+  await revealCatalogFilters(page);
   await expect(page.getByRole('dialog')).toBeVisible();
   await expect(page.getByRole('row', { name: /^Base MSRP/ })).toContainText('$52,744');
   await expect(
@@ -538,6 +555,7 @@ test('Kia AWD packages, overlapping model years and passenger vans retain exact 
   page,
 }) => {
   await page.goto('/');
+  await revealCatalogFilters(page);
   await page.getByLabel('Record type', { exact: true }).selectOption('retail-trim');
   await page
     .getByLabel('Availability evidence', { exact: true })
@@ -583,6 +601,7 @@ test('Hyundai factory packages, plug-in powertrains and optional seating retain 
   page,
 }) => {
   await page.goto('/');
+  await revealCatalogFilters(page);
   await page.getByLabel('Record type', { exact: true }).selectOption('retail-trim');
   await page
     .getByLabel('Availability evidence', { exact: true })
@@ -641,11 +660,12 @@ test('full catalog is paged, retains a shortlist across pages, and supports make
   const errors: string[] = [];
   page.on('pageerror', (error) => errors.push(error.message));
   await page.goto('/');
+  await revealCatalogFilters(page);
   await expect(page.getByRole('article')).toHaveCount(30);
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(
     true,
   );
-  await expect(page.locator('.results-caption')).toContainText('records for your consideration');
+  await expect(page.locator('.results-caption')).toContainText('records matching your filters');
   const save = page.getByRole('button', { name: /^Save / }).first();
   const name = await save.getAttribute('aria-label');
   await save.click();
@@ -676,6 +696,7 @@ test('full catalog is paged, retains a shortlist across pages, and supports make
 
 test('price limits exclude unverified prices without hiding them by default', async ({ page }) => {
   await page.goto('/');
+  await revealCatalogFilters(page);
   await page.getByLabel('Max base MSRP', { exact: true }).selectOption('50000');
   await expect(page.locator('.price-row').filter({ hasText: 'Not verified' })).toHaveCount(0);
   const pricedCount = Number(
@@ -695,6 +716,7 @@ test('EV and plug-in comparisons show electricity and electric-mode fuel costs w
   page,
 }) => {
   await page.goto('/?compare=nrcan-29063,nrcan-29292');
+  await revealCatalogFilters(page);
   await expect(page.getByRole('dialog')).toBeVisible();
   const row = page.getByRole('row', { name: /Estimated annual energy/ });
   await expect(row).toContainText('$324');
@@ -715,6 +737,7 @@ test('manufacturer-listed Toyota packages retain their own MSRP and published sp
   page,
 }) => {
   await page.goto('/');
+  await revealCatalogFilters(page);
   await page.getByLabel('Make', { exact: true }).selectOption('Toyota');
   await page.getByLabel('Model year', { exact: true }).selectOption('2026');
   await page.getByLabel('Record type', { exact: true }).selectOption('retail-trim');
@@ -740,6 +763,7 @@ test('current Honda model years and distinct Acura transmissions are available a
   page,
 }) => {
   await page.goto('/');
+  await revealCatalogFilters(page);
   await page.getByLabel('Record type', { exact: true }).selectOption('retail-trim');
   await page
     .getByLabel('Availability evidence', { exact: true })
@@ -766,6 +790,7 @@ test('Ford pickups and passenger vans use exact factory MSRP while Lincoln hybri
   page,
 }) => {
   await page.goto('/');
+  await revealCatalogFilters(page);
   await page.getByLabel('Record type', { exact: true }).selectOption('retail-trim');
   await page
     .getByLabel('Availability evidence', { exact: true })
@@ -805,6 +830,7 @@ test('Mazda factory packages retain complete MSRP and source availability confli
   page,
 }) => {
   await page.goto('/');
+  await revealCatalogFilters(page);
   await page.getByLabel('Record type', { exact: true }).selectOption('retail-trim');
   await page.getByLabel('Make', { exact: true }).selectOption('Mazda');
   await page.getByLabel('Model year', { exact: true }).selectOption('2026');

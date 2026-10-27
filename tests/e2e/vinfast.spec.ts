@@ -1,3 +1,4 @@
+import { revealCatalogFilters } from './catalog-helpers';
 import { expect, test } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 
@@ -5,6 +6,7 @@ test('VinFast price cards distinguish year-unverified offers from year-qualified
   page,
 }) => {
   await page.goto('/');
+  await revealCatalogFilters(page);
   await page.getByLabel('Make', { exact: true }).selectOption('VinFast');
   await page
     .getByLabel('Availability evidence', { exact: true })
@@ -44,6 +46,7 @@ test('year-unverified offers retain their labels, unknown facts and stable links
   page,
 }) => {
   await page.goto('/?compare=vinfast-ca-vf8-plus,vinfast-ca-vf9-eco');
+  await revealCatalogFilters(page);
   const dialog = page.getByRole('dialog');
   await expect(dialog).toBeVisible();
   await expect(dialog.getByRole('columnheader').nth(1)).toContainText('Year not verified');
@@ -59,15 +62,19 @@ test('year-unverified offers retain their labels, unknown facts and stable links
   await expect(seats.getByRole('cell').nth(0)).toContainText('Not verified');
   await expect(dialog).toContainText('Manufacturer offer; model year not verified.');
   await page.reload();
+  await revealCatalogFilters(page);
   await expect(dialog).toBeVisible();
   await expect(dialog.getByRole('columnheader').nth(1)).toContainText('Year not verified');
   await dialog.getByRole('button', { name: 'Close comparison' }).click();
+  await revealCatalogFilters(page, true);
   await page.getByLabel('Make', { exact: true }).selectOption('VinFast');
   await page.getByLabel('Record type', { exact: true }).selectOption('manufacturer-offer');
   const plus = page.locator('article[aria-labelledby="title-vinfast-ca-vf8-plus"]');
   await plus.getByRole('button', { name: /^Save / }).click();
   await page.reload();
+  await revealCatalogFilters(page);
   await page.getByRole('dialog').getByRole('button', { name: 'Close comparison' }).click();
+  await revealCatalogFilters(page, true);
   await page.getByLabel('Only my shortlist').check();
   await expect(page.getByRole('article')).toHaveCount(1);
   await expect(plus.locator('.car-make')).toHaveText('Year not verified VinFast');

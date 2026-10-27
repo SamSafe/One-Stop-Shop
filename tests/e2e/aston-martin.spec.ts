@@ -1,9 +1,11 @@
+import { revealCatalogFilters } from './catalog-helpers';
 import { expect, test } from '@playwright/test';
 
 test('Aston Martin listings preserve unknown years and prices and withhold stock-only and future products', async ({
   page,
 }) => {
   await page.goto('/');
+  await revealCatalogFilters(page);
   await page.getByLabel('Make', { exact: true }).selectOption('Aston Martin');
   await page
     .getByLabel('Availability evidence', { exact: true })
@@ -31,6 +33,7 @@ test('Aston Martin listings preserve unknown years and prices and withhold stock
   await page.getByLabel('Max base MSRP', { exact: true }).selectOption('75000');
   await expect(page.getByRole('article')).toHaveCount(0);
   await page.goto('/?compare=aston-martin-ca-am662,aston-martin-ca-am003a');
+  await revealCatalogFilters(page);
   const dialog = page.getByRole('dialog');
   await expect(dialog).toBeVisible();
   await expect(dialog.getByRole('columnheader').nth(1)).toContainText('Year not verified');

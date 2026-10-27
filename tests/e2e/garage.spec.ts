@@ -6,11 +6,11 @@ const storageKey = 'oss-garage-v1';
 async function addElantra(page: Page) {
   await page.getByRole('button', { name: 'Add your first vehicle' }).click();
   const form = page.getByRole('form', { name: 'Add a vehicle', exact: true });
-  await form.getByLabel('Make', { exact: true }).fill('Hyundai');
-  await form.getByLabel('Model', { exact: true }).fill('Elantra');
-  await form.getByLabel('Model year', { exact: true }).fill('2016');
+  await form.getByLabel('Model year', { exact: true }).selectOption('2016');
+  await form.getByLabel('Make', { exact: true }).selectOption('Hyundai');
+  await form.getByLabel('Model', { exact: true }).selectOption('Elantra');
   await form.getByLabel('Current odometer (km)').fill('170000');
-  await form.getByLabel('Engine / powertrain (optional)').fill('GL');
+  await form.getByLabel('Canadian trim (optional)').fill('GL');
   await form.getByRole('button', { name: 'Save vehicle' }).click();
   await expect(page.getByRole('article', { name: '2016 Hyundai Elantra' })).toBeVisible();
 }

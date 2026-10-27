@@ -48,6 +48,7 @@ export interface Filters {
   query: string;
   budget: number | null;
   make?: string;
+  model?: string;
   year?: string;
   vehicleClass?: string;
   recordKind?: string;
@@ -60,6 +61,7 @@ export const defaultFilters: Filters = {
   query: '',
   budget: null,
   make: 'all',
+  model: 'all',
   year: 'all',
   vehicleClass: 'all',
   recordKind: 'all',
@@ -77,6 +79,7 @@ export function filterCars(cars: Car[], filters: Filters, savedIds: string[] = [
       (filters.budget === null ||
         (car.facts.msrpCad.value !== null && car.facts.msrpCad.value <= filters.budget)) &&
       (!filters.make || filters.make === 'all' || car.make === filters.make) &&
+      (!filters.model || filters.model === 'all' || car.model === filters.model) &&
       (!filters.year ||
         filters.year === 'all' ||
         (car.year === null ? filters.year === 'unverified' : String(car.year) === filters.year)) &&

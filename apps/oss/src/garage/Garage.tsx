@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, lazy, Suspense } from 'react';
 import { maintenanceGuidance, ownerResources } from '@oss/car-catalog/maintenance';
 import type { Car, Metric } from '@oss/car-catalog';
 import { metricDefinitions } from '@oss/car-catalog/metrics';
@@ -16,6 +16,9 @@ import { VehicleDetailsForm } from './VehicleDetailsForm';
 import type { Garage as GarageData, OwnedVehicle, Reminder, ServiceRecord } from './domain';
 import { useGarage } from './useGarage';
 import './garage.css';
+import { AppHeader } from '../AppHeader';
+const AddVehicle = lazy(() => import('./AddVehicle').then((m) => ({ default: m.AddVehicle })));
+
 const number = new Intl.NumberFormat('en-CA');
 const vehicleName = (v: OwnedVehicle) => v.nickname || `${v.year} ${v.make} ${v.model}`;
 function download(raw: string, name = 'oss-garage-backup.json') {
@@ -27,114 +30,6 @@ function download(raw: string, name = 'oss-garage-backup.json') {
   setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
 
-function AddVehicle({
-  candidate,
-  onAdd,
-  onCancel,
-}: {
-  candidate: Car | null;
-  onAdd: (v: OwnedVehicle) => boolean;
-  onCancel: () => void;
-}) {
-  return (
-    <form
-      className="garage-panel garage-form"
-      onSubmit={(e) => {
-        const d = submitData(e);
-        onAdd({
-          id: crypto.randomUUID(),
-          make: text(d, 'make'),
-          model: text(d, 'model'),
-          year: Number(text(d, 'year')),
-          engine: text(d, 'engine'),
-          nickname: text(d, 'nickname'),
-          odometerKm: Number(text(d, 'km')),
-          updatedOn: today(),
-          ...(candidate &&
-          text(d, 'make') === candidate.make &&
-          text(d, 'model') === candidate.model &&
-          Number(text(d, 'year')) === candidate.year &&
-          text(d, 'engine') === candidate.trim
-            ? { catalogId: candidate.id }
-            : {}),
-          reminders: [],
-          records: [],
-        });
-      }}
-      aria-label="Add a vehicle"
-    >
-      <div className="garage-section-title">
-        <h2>Add a vehicle</h2>
-        <button type="button" className="text-button" onClick={onCancel}>
-          Cancel
-        </button>
-      </div>
-      <p>Enter the vehicle you own. Canadian vehicles of any age can be saved here.</p>
-      {candidate && (
-        <p className="garage-notice">
-          Imported from the comparison catalog. Confirm the model year and powertrain against your
-          vehicle.
-        </p>
-      )}
-      <div className="garage-fields">
-        <Field label="Make">
-          {(id) => (
-            <input
-              id={id}
-              name="make"
-              required
-              maxLength={100}
-              defaultValue={candidate?.make}
-              autoComplete="off"
-            />
-          )}
-        </Field>
-        <Field label="Model">
-          {(id) => (
-            <input id={id} name="model" required maxLength={100} defaultValue={candidate?.model} />
-          )}
-        </Field>
-        <Field label="Model year">
-          {(id) => (
-            <input
-              id={id}
-              name="year"
-              type="number"
-              min="1886"
-              max={new Date().getFullYear() + 2}
-              required
-              defaultValue={candidate?.year ?? undefined}
-            />
-          )}
-        </Field>
-        <Field label="Current odometer (km)">
-          {(id) => (
-            <input id={id} name="km" type="number" min="0" max="5000000" step="1" required />
-          )}
-        </Field>
-        <Field label="Engine / powertrain (optional)">
-          {(id) => (
-            <input
-              id={id}
-              name="engine"
-              maxLength={200}
-              defaultValue={candidate?.trim}
-              placeholder="e.g. 2.0 L gasoline, hybrid, electric"
-            />
-          )}
-        </Field>
-        <Field label="Nickname (optional)">
-          {(id) => (
-            <input id={id} name="nickname" maxLength={100} placeholder="e.g. The daily driver" />
-          )}
-        </Field>
-      </div>
-      <button className="button primary" type="submit">
-        Save vehicle
-      </button>
-    </form>
-  );
-}
 function ReminderForm({
   vehicle,
   manufacturer,
@@ -875,33 +770,13 @@ export function Garage() {
       <a className="skip-link" href="#garage-main">
         Skip to garage
       </a>
-      <header className="site-header garage-header">
-        <a className="brand" href="/" aria-label="OSS home">
-          oss<span className="brand-dot">.</span>
-        </a>
-        <nav aria-label="Main navigation">
-          <a href="/">Compare cars ↗</a>
-          <a href="/garage" aria-current="page">
-            Your garage
-          </a>
-        </nav>
-      </header>
+      <AppHeader page="garage" />
       <main id="garage-main" className="garage-main">
         <div className={`garage-intro ${garage.vehicles.length ? 'has-vehicles' : ''}`}>
           <div>
-            <p className="eyebrow">YOUR CARS, TAKEN CARE OF</p>
-            <h1>
-              {garage.vehicles.length ? (
-                'Your garage.'
-              ) : (
-                <>
-                  A little care.
-                  <br />
-                  <span>A longer road.</span>
-                </>
-              )}
-            </h1>
-            <p>Keep your vehicles, service history and next steps together.</p>
+            <p className="eyebrow">VEHICLE OWNERSHIP</p>
+            <h1>Your garage</h1>
+            <p>Track mileage, keep service records, and see what needs attention.</p>
           </div>
           <button
             type="button"
@@ -966,21 +841,33 @@ export function Garage() {
           {notice}
         </div>
         {adding && (
-          <AddVehicle
-            key={candidate?.id ?? 'manual'}
-            candidate={candidate}
-            onCancel={() => setAdding(false)}
-            onAdd={(v) => {
-              if (change((g) => ({ ...g, vehicles: [...g.vehicles, v] }))) {
-                setAdding(false);
-                setCandidate(null);
-                setNotice(`${vehicleName(v)} added to your garage.`);
-                history.replaceState(null, '', '/garage');
-                return true;
-              }
-              return false;
-            }}
-          />
+          <Suspense
+            fallback={
+              <div className="garage-panel" role="status">
+                Opening vehicle finder…
+              </div>
+            }
+          >
+            <AddVehicle
+              key={candidate?.id ?? 'manual'}
+              candidate={candidate}
+              onCancel={() => setAdding(false)}
+              onAdd={(v) => {
+                if (change((g) => ({ ...g, vehicles: [...g.vehicles, v] }))) {
+                  setAdding(false);
+                  setCandidate(null);
+                  setNotice(`${vehicleName(v)} added to your garage.`);
+                  try {
+                    history.replaceState(null, '', '/garage');
+                  } catch {
+                    /* Saved vehicle remains usable when address updates are unavailable. */
+                  }
+                  return true;
+                }
+                return false;
+              }}
+            />
+          </Suspense>
         )}
         {!garage.vehicles.length && !adding && (
           <section className="garage-panel garage-empty">
@@ -988,9 +875,9 @@ export function Garage() {
               ⌂
             </span>
             <h2>
-              Every car has a story.
+              Add your vehicle.
               <br />
-              Start keeping yours.
+              Keep its history here.
             </h2>
             <p>
               Add the car you already own, enter its odometer, and keep a record of the care it
@@ -999,7 +886,9 @@ export function Garage() {
             <button className="button primary" type="button" onClick={() => setAdding(true)}>
               Add your first vehicle
             </button>
-            <p className="garage-fine">No account needed. Any model year welcome.</p>
+            <p className="garage-fine">
+              Select a vehicle from the Canadian directory, or enter one that is not listed.
+            </p>
           </section>
         )}
         <div className="garage-vehicles">

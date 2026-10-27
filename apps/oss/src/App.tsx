@@ -18,6 +18,7 @@ import {
 import type { Filters, Weights } from './domain';
 import { useShortlist } from './useShortlist';
 import { SourceLibrary } from './SourceLibrary';
+import { AppHeader } from './AppHeader';
 
 const cars = catalog.cars;
 const makes = [...new Set(cars.map((car) => car.make))].sort((a, b) => a.localeCompare(b));
@@ -102,42 +103,6 @@ function Icon({
       aria-hidden="true"
     >
       {paths[name]}
-    </svg>
-  );
-}
-
-function CarArt({ make }: { make: string }) {
-  return (
-    <svg
-      className={`car-art car-${make.toLowerCase().replace(/[^a-z0-9]/g, '-')}`}
-      viewBox="0 0 420 180"
-      fill="none"
-      aria-hidden="true"
-    >
-      <ellipse cx="212" cy="149" rx="164" ry="9" fill="currentColor" opacity=".09" />
-      <path
-        d="M37 119 48 91l41-13 43-41h124l64 40 43 11 19 28-4 24h-28a33 33 0 0 0-66 0H132a33 33 0 0 0-66 0H40l-3-21Z"
-        className="car-body"
-      />
-      <path d="m103 78 38-33h108l53 33H103Z" fill="#263d43" />
-      <path d="m144 48-33 28h73V48h-40Zm49 0v28h95l-43-28h-52Z" fill="#d1dfdc" opacity=".8" />
-      <path
-        d="M49 102h37m247-6 28 9M194 87v42m-90-43 17 15m103-14h14m-91 0h14M45 125h29m271 0h29"
-        stroke="#263d43"
-        strokeWidth="3"
-        strokeLinecap="round"
-        opacity=".6"
-      />
-      <path d="M87 79h232M122 39h134" stroke="#263d43" strokeWidth="3" opacity=".4" />
-      {[99, 317].map((cx) => (
-        <g key={cx}>
-          <circle cx={cx} cy="139" r="25" fill="#203032" />
-          <circle cx={cx} cy="139" r="15" fill="#dce1df" />
-          <circle cx={cx} cy="139" r="6" fill="#6e7c7a" />
-          <path d={`M${cx} 125v28m-14-14h28`} stroke="#9aa8a4" strokeWidth="3" />
-        </g>
-      ))}
-      <path d="m366 105 10 12h-22v-12h12ZM46 99h17v9H43l3-9Z" fill="#fff9e3" />
     </svg>
   );
 }
@@ -239,10 +204,6 @@ function Card({
         >
           <Icon name="save" />
         </button>
-      </div>
-      <div className="car-illustration">
-        <CarArt make={car.make} />
-        <span>Illustration · not model-specific</span>
       </div>
       <div className="card-content">
         <p className="car-make">
@@ -460,8 +421,8 @@ function Comparison({
     >
       <div className="dialog-header">
         <div>
-          <p className="eyebrow">THE SIDE-BY-SIDE</p>
-          <h2 id="comparison-title">See the tradeoffs.</h2>
+          <p className="eyebrow">YOUR COMPARISON</p>
+          <h2 id="comparison-title">Compare specifications</h2>
         </div>
         <button
           type="button"
@@ -689,7 +650,27 @@ function Comparison({
 }
 
 export function App() {
+  const [filtersOpen, setFiltersOpen] = useState(false);
+  const [advancedOpen, setAdvancedOpen] = useState(false);
   const [filters, setFilters] = useState<Filters>({ ...defaultFilters });
+  const models = useMemo(
+    () =>
+      [
+        ...new Set(
+          cars
+            .filter(
+              (c) =>
+                (filters.make === 'all' || c.make === filters.make) &&
+                (filters.year === 'all' ||
+                  (c.year === null
+                    ? filters.year === 'unverified'
+                    : String(c.year) === filters.year)),
+            )
+            .map((c) => c.model),
+        ),
+      ].sort((a, b) => a.localeCompare(b, 'en-CA')),
+    [filters.make, filters.year],
+  );
   const [weights, setWeights] = useState<Weights>(initialShared.weights);
   const [compareIds, setCompareIds] = useState<string[]>(initialShared.compare);
   const [comparisonOpen, setComparisonOpen] = useState(initialShared.compare.length >= 2);
@@ -794,78 +775,34 @@ export function App() {
       <a className="skip-link" href="#cars">
         Skip to cars
       </a>
-      <header className="site-header">
-        <a className="brand" href="/" aria-label="OSS — One Stop Shop home">
-          <span className="brand-mark">
-            <Icon name="garage" size={26} />
-          </span>
-          <span>
-            oss<span className="brand-dot">.</span>
-          </span>
-          <span className="brand-full">
-            ONE STOP
-            <br />
-            SHOP
-          </span>
-        </a>
-        <nav aria-label="Main navigation">
-          <a href="#cars">Find your fit</a>
-          <a href="#methodology">How it works</a>
-          <a className="garage-nav" href="/garage">
-            Garage
-          </a>
-          <button
-            type="button"
-            className="shortlist-nav"
-            onClick={() => {
-              setFilters((previous) => ({ ...previous, savedOnly: !previous.savedOnly }));
-              document.getElementById('cars')?.scrollIntoView({
-                behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches
-                  ? 'auto'
-                  : 'smooth',
-              });
-            }}
-            aria-pressed={filters.savedOnly}
-          >
-            <Icon name="save" size={18} />
-            Shortlist <span>{savedIds.length}</span>
-          </button>
-        </nav>
-      </header>
+      <AppHeader
+        page="compare"
+        savedCount={savedIds.length}
+        savedOnly={filters.savedOnly}
+        onShortlist={() => {
+          setFilters((previous) => ({ ...previous, savedOnly: !previous.savedOnly }));
+          document.getElementById('cars')?.scrollIntoView({
+            behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches
+              ? 'auto'
+              : 'smooth',
+          });
+        }}
+      />
       <main>
-        <section className="hero" aria-labelledby="hero-title">
-          <div className="hero-copy">
-            <p className="eyebrow">
-              <span className="status-dot" /> THE RIGHT CAR STARTS WITH YOU
+        <section className="workspace-intro" aria-labelledby="workspace-title">
+          <div>
+            <p className="eyebrow">CANADIAN VEHICLE COMPARISONS</p>
+            <h1 id="workspace-title">Compare vehicles</h1>
+            <p>
+              Filter the catalog, save a shortlist, and compare up to four vehicles side by side.
             </p>
-            <h1 id="hero-title">
-              Less scrolling.
-              <br />
-              <span>More certainty.</span>
-            </h1>
-            <p className="hero-description">
-              Your next car, without the rabbit hole. Compare the details that matter and find the
-              fit for your everyday.
-            </p>
-            <a className="button primary" href="#cars">
-              Find your fit <Icon name="arrow" />
-            </a>
-            <p className="hero-proof">Official sources. Your priorities. No app account needed.</p>
           </div>
-          <div className="hero-visual" aria-hidden="true">
-            <div className="hero-orbit orbit-one" />
-            <div className="hero-orbit orbit-two" />
-            <span className="visual-coordinate">YOUR LIFE ↗ YOUR CAR</span>
-            <CarArt make="Honda" />
-            <div className="visual-label">
-              <span className="visual-check">✓</span>
-              <div>
-                <strong>A little more clarity.</strong>
-                <span>A lot less second-guessing.</span>
-              </div>
-            </div>
-            <span className="visual-index">01 / FIND YOUR FIT</span>
-          </div>
+          <a className="ownership-link" href="/garage">
+            <span>Already own a vehicle?</span>
+            <strong>
+              Open your garage <Icon name="arrow" size={17} />
+            </strong>
+          </a>
         </section>
         <div className="trust-strip">
           <span>
@@ -878,7 +815,7 @@ export function App() {
             · retail coverage in progress
           </span>
           <span>Reviewed {reviewedDate}</span>
-          <a href="#sources">Meet the sources ↗</a>
+          <a href="#sources">Sources & coverage ↗</a>
         </div>
         {reviewAge > 90 && (
           <p className="notice stale-notice">
@@ -897,23 +834,29 @@ export function App() {
           </p>
         )}
         <section id="cars" className="catalog-section" aria-labelledby="catalog-title">
-          <div className="section-heading">
-            <div>
-              <p className="eyebrow">A SHORTLIST STARTS HERE</p>
-              <h2 id="catalog-title">Find what fits.</h2>
-            </div>
-            <p>
-              Explore Canadian vehicles across makes and powertrains.
-              <br />
-              Start with your needs, then get into the details.
-            </p>
-          </div>
+          <h2 id="catalog-title" className="sr-only">
+            Vehicle catalog
+          </h2>
           <div className="catalog-layout">
-            <aside className="filters" aria-label="Filters and priorities">
+            <button
+              className="filter-toggle button secondary"
+              type="button"
+              aria-expanded={filtersOpen}
+              aria-controls="vehicle-filters"
+              onClick={() => setFiltersOpen(!filtersOpen)}
+            >
+              <Icon name="sliders" size={17} />
+              {filtersOpen ? 'Hide filters' : 'Filters & priorities'}
+            </button>
+            <aside
+              id="vehicle-filters"
+              className={`filters ${filtersOpen ? 'is-open' : ''}`}
+              aria-label="Filters and priorities"
+            >
               <div className="filter-heading">
                 <h3>
                   <Icon name="sliders" size={18} />
-                  Make it yours
+                  Filters
                 </h3>
                 <button
                   type="button"
@@ -926,41 +869,15 @@ export function App() {
                   Reset
                 </button>
               </div>
-              <label className="field-label" htmlFor="record-kind">
-                Record type
-              </label>
-              <select
-                id="record-kind"
-                value={filters.recordKind}
-                onChange={(event) => setFilters({ ...filters, recordKind: event.target.value })}
-              >
-                <option value="all">All catalog records</option>
-                <option value="retail-trim">Retail configurations</option>
-                <option value="government-rating">Government rating variants</option>
-                <option value="manufacturer-offer">Manufacturer offers · year unverified</option>
-              </select>
-              <label className="field-label" htmlFor="make">
-                Make
-              </label>
-              <select
-                id="make"
-                value={filters.make}
-                onChange={(event) => setFilters({ ...filters, make: event.target.value })}
-              >
-                <option value="all">All makes</option>
-                {makes.map((make) => (
-                  <option key={make} value={make}>
-                    {make}
-                  </option>
-                ))}
-              </select>
               <label className="field-label" htmlFor="year">
                 Model year
               </label>
               <select
                 id="year"
                 value={filters.year}
-                onChange={(event) => setFilters({ ...filters, year: event.target.value })}
+                onChange={(event) =>
+                  setFilters({ ...filters, year: event.target.value, model: 'all' })
+                }
               >
                 <option value="all">All model years</option>
                 {years.map((year) => (
@@ -970,20 +887,41 @@ export function App() {
                 ))}
                 {unverifiedYearCount > 0 && <option value="unverified">Year not verified</option>}
               </select>
-              <label className="field-label" htmlFor="vehicle-class">
-                NRCan vehicle class
+              <label className="field-label" htmlFor="make">
+                Make
               </label>
               <select
-                id="vehicle-class"
-                value={filters.vehicleClass}
-                onChange={(event) => setFilters({ ...filters, vehicleClass: event.target.value })}
+                id="make"
+                value={filters.make}
+                onChange={(event) =>
+                  setFilters({ ...filters, make: event.target.value, model: 'all' })
+                }
               >
-                <option value="all">All vehicle classes</option>
-                {vehicleClasses.map((value) => (
-                  <option key={value} value={value}>
-                    {value}
+                <option value="all">All makes</option>
+                {makes.map((make) => (
+                  <option key={make} value={make}>
+                    {make}
                   </option>
                 ))}
+              </select>
+              <label className="field-label" htmlFor="model">
+                Model
+              </label>
+              <select
+                id="model"
+                disabled={filters.make === 'all'}
+                value={filters.model ?? 'all'}
+                onChange={(e) => setFilters({ ...filters, model: e.target.value })}
+              >
+                <option value="all">
+                  {filters.make === 'all' ? 'Choose a make first' : 'All models'}
+                </option>
+                {filters.make !== 'all' &&
+                  models.map((model) => (
+                    <option key={model} value={model}>
+                      {model}
+                    </option>
+                  ))}
               </select>
               <label className="field-label" htmlFor="budget">
                 Max base MSRP
@@ -1041,20 +979,6 @@ export function App() {
                 <option value="4WD">Four-wheel drive</option>
                 <option value="Not verified">Not verified</option>
               </select>
-              <label className="field-label" htmlFor="availability">
-                Availability evidence
-              </label>
-              <select
-                id="availability"
-                value={filters.availability}
-                onChange={(event) => setFilters({ ...filters, availability: event.target.value })}
-              >
-                <option value="all">All evidence statuses</option>
-                <option value="manufacturer-listed">Currently manufacturer-listed</option>
-                <option value="not-checked">Not yet checked</option>
-                <option value="announced">Announced</option>
-                <option value="discontinued">Discontinued</option>
-              </select>
               <label className="saved-filter">
                 <input
                   type="checkbox"
@@ -1063,6 +987,55 @@ export function App() {
                 />
                 Only my shortlist <span>{savedIds.length}</span>
               </label>
+              <details
+                className="advanced-filters"
+                open={advancedOpen}
+                onToggle={(e) => setAdvancedOpen(e.currentTarget.open)}
+              >
+                <summary>More filters</summary>{' '}
+                <label className="field-label" htmlFor="record-kind">
+                  Record type
+                </label>
+                <select
+                  id="record-kind"
+                  value={filters.recordKind}
+                  onChange={(event) => setFilters({ ...filters, recordKind: event.target.value })}
+                >
+                  <option value="all">All catalog records</option>
+                  <option value="retail-trim">Retail configurations</option>
+                  <option value="government-rating">Government rating variants</option>
+                  <option value="manufacturer-offer">Manufacturer offers · year unverified</option>
+                </select>
+                <label className="field-label" htmlFor="vehicle-class">
+                  NRCan vehicle class
+                </label>
+                <select
+                  id="vehicle-class"
+                  value={filters.vehicleClass}
+                  onChange={(event) => setFilters({ ...filters, vehicleClass: event.target.value })}
+                >
+                  <option value="all">All vehicle classes</option>
+                  {vehicleClasses.map((value) => (
+                    <option key={value} value={value}>
+                      {value}
+                    </option>
+                  ))}
+                </select>
+                <label className="field-label" htmlFor="availability">
+                  Availability evidence
+                </label>
+                <select
+                  id="availability"
+                  value={filters.availability}
+                  onChange={(event) => setFilters({ ...filters, availability: event.target.value })}
+                >
+                  <option value="all">All evidence statuses</option>
+                  <option value="manufacturer-listed">Currently manufacturer-listed</option>
+                  <option value="not-checked">Not yet checked</option>
+                  <option value="announced">Announced</option>
+                  <option value="discontinued">Discontinued</option>
+                </select>
+              </details>
               <fieldset className="priorities">
                 <legend>What matters most?</legend>
                 <p>
@@ -1135,11 +1108,11 @@ export function App() {
                     : results.length === 1
                       ? 'record'
                       : 'records'}
-                  {filters.savedOnly ? ' in your shortlist' : ' for your consideration'}
+                  {filters.savedOnly ? ' in your shortlist' : ' matching your filters'}
                 </p>
                 <span>
                   {sort === 'fit'
-                    ? 'Ranked around you'
+                    ? 'Sorted by your priorities'
                     : sort === 'price'
                       ? 'Lowest base MSRP first'
                       : 'Lowest combined L/100 km first'}

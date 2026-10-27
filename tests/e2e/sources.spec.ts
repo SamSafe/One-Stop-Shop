@@ -1,3 +1,4 @@
+import { revealCatalogFilters } from './catalog-helpers';
 import { expect, test } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 
@@ -5,6 +6,7 @@ test('the full source library supports keyboard discovery, pagination, search an
   page,
 }) => {
   await page.goto('/');
+  await revealCatalogFilters(page);
   const library = page.locator('.source-library'),
     summary = library.locator('summary');
   await expect(summary).toContainText('official sources');
