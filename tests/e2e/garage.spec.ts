@@ -140,18 +140,23 @@ test('catalog bridge preselects a vehicle and retains its specifications referen
   await expect(page).toHaveURL(/\/garage$/);
 });
 
-test('Canadian Elantra guidance creates a qualified oil reminder and links exact manual chapters', async ({
+test('Canadian Elantra guidance automatically schedules reviewed work and links exact manual chapters', async ({
   page,
 }) => {
   await page.goto('/garage');
   await addElantra(page);
   const car = page.getByRole('article', { name: '2016 Hyundai Elantra' });
   await expect(car).toContainText('6,000 km or 6 months');
-  await car.getByRole('button', { name: 'Set up oil change reminders' }).click();
-  const reminder = page.getByRole('form', { name: 'Add reminder for 2016 Hyundai Elantra' });
-  await reminder.getByLabel('Last completed date').fill('2026-10-01');
-  await reminder.getByLabel('Last completed odometer (km)').fill('168000');
-  await reminder.getByRole('button', { name: 'Save reminder' }).click();
+  await expect(car.locator('.garage-reminder')).toHaveCount(6);
+  await car
+    .getByRole('button', { name: 'Add service history: Engine oil and filter', exact: true })
+    .click();
+  const reminder = page.getByRole('form', { name: 'Log service for 2016 Hyundai Elantra' });
+  await expect(reminder.getByLabel('Service date', { exact: true })).toHaveValue('');
+  await expect(reminder.getByLabel('Service odometer (km)')).toHaveValue('');
+  await reminder.getByLabel('Service date', { exact: true }).fill('2026-10-01');
+  await reminder.getByLabel('Service odometer (km)').fill('168000');
+  await reminder.getByRole('button', { name: 'Save service record' }).click();
   await expect(car).toContainText('174,000 km');
   await expect(car).toContainText('Hyundai Canada · severe-use oil schedule');
   await car.getByText('Owner’s manual & service specifications', { exact: true }).click();

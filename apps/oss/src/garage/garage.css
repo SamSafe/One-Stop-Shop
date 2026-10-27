@@ -64,8 +64,9 @@
   margin-bottom: 28px;
 }
 .garage-panel {
-  border-top: 1px solid var(--line);
-  padding: 24px 0;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 28px;
   background: var(--surface);
   min-width: 0;
 }
@@ -195,7 +196,7 @@
   gap: 28px;
 }
 .garage-vehicle {
-  border-top: 2px solid var(--ink);
+  border-color: var(--line);
 }
 .garage-vehicle > .garage-actions {
   margin: 20px 0;
@@ -425,7 +426,7 @@
     font-size: 13px;
   }
   .garage-panel {
-    padding: 24px 0;
+    padding: 22px 18px;
   }
   .garage-fields {
     grid-template-columns: 1fr;
@@ -580,4 +581,21 @@
 }
 .finder-back {
   margin-bottom: 12px;
+}
+.garage-status.pending {
+  color: var(--muted);
+  background: var(--surface-alt);
+}
+.garage-task-source {
+  font-size: 12px;
+  line-height: 1.6;
+  margin-top: 10px;
+  max-width: 650px;
+}
+.garage-task-source summary {
+  color: var(--green);
+}
+.garage-task-source p {
+  font-size: 12px;
+  margin: 10px 0;
 }

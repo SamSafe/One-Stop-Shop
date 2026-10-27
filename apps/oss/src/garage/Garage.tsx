@@ -1,5 +1,9 @@
 import { useEffect, useRef, useState, lazy, Suspense } from 'react';
-import { maintenanceGuidance, ownerResources } from '@oss/car-catalog/maintenance';
+import {
+  maintenanceGuidance,
+  maintenanceTasks,
+  ownerResources,
+} from '@oss/car-catalog/maintenance';
 import type { Car, Metric } from '@oss/car-catalog';
 import { metricDefinitions } from '@oss/car-catalog/metrics';
 import {
@@ -32,16 +36,13 @@ function download(raw: string, name = 'oss-garage-backup.json') {
 
 function ReminderForm({
   vehicle,
-  manufacturer,
   onSave,
   onCancel,
 }: {
   vehicle: OwnedVehicle;
-  manufacturer: boolean;
   onSave: (r: Reminder) => boolean;
   onCancel: () => void;
 }) {
-  const template = manufacturer ? maintenanceGuidance(vehicle)?.reminder : undefined;
   return (
     <form
       className="garage-subform"
@@ -50,66 +51,47 @@ function ReminderForm({
         const d = submitData(e);
         onSave({
           id: crypto.randomUUID(),
-          title: template?.title ?? text(d, 'title'),
-          km: template?.km ?? numeric(d, 'km'),
-          months: template?.months ?? numeric(d, 'months'),
+          title: text(d, 'title'),
+          km: numeric(d, 'km'),
+          months: numeric(d, 'months'),
           lastOn: text(d, 'lastOn') || null,
           lastKm: numeric(d, 'lastKm'),
-          ...(template ? { manufacturerKey: template.key } : {}),
         });
       }}
     >
-      <h3>{template ? `Set up: ${template.title}` : 'Add a personal reminder'}</h3>
+      <h3>Add a personal reminder</h3>
       <p>
-        {manufacturer
-          ? `Every ${number.format(template!.km)} km or ${template!.months} months, whichever comes first. ${template!.setupNote}`
-          : 'Choose an interval from your manual or service provider. Personal reminders are labelled as your own plan.'}
+        Choose an interval from your manual or service provider. Personal reminders are labelled as
+        your own plan.
       </p>
-      {!manufacturer && (
-        <Field label="Reminder name">
-          {(id) => (
-            <input
-              id={id}
-              name="title"
-              required
-              maxLength={160}
-              placeholder="e.g. Seasonal tire change"
-            />
-          )}
-        </Field>
-      )}
-      {!manufacturer && (
-        <div className="garage-fields">
-          <Field label="Repeat every (km, optional)">
-            {(id) => <input id={id} name="km" type="number" min="1" max="1000000" />}
-          </Field>
-          <Field label="Repeat every (months, optional)">
-            {(id) => <input id={id} name="months" type="number" min="1" max="240" />}
-          </Field>
-        </div>
-      )}
+      <Field label="Reminder name">
+        {(id) => (
+          <input
+            id={id}
+            name="title"
+            required
+            maxLength={160}
+            placeholder="e.g. Seasonal tire change"
+          />
+        )}
+      </Field>
       <div className="garage-fields">
+        <Field label="Repeat every (km, optional)">
+          {(id) => <input id={id} name="km" type="number" min="1" max="1000000" />}
+        </Field>
+        <Field label="Repeat every (months, optional)">
+          {(id) => <input id={id} name="months" type="number" min="1" max="240" />}
+        </Field>
         <Field label="Last completed date">
-          {(id) => (
-            <input id={id} name="lastOn" type="date" max={today()} required={manufacturer} />
-          )}
+          {(id) => <input id={id} name="lastOn" type="date" max={today()} />}
         </Field>
         <Field label="Last completed odometer (km)">
-          {(id) => (
-            <input
-              id={id}
-              name="lastKm"
-              type="number"
-              min="0"
-              max={vehicle.odometerKm}
-              required={manufacturer}
-            />
-          )}
+          {(id) => <input id={id} name="lastKm" type="number" min="0" max={vehicle.odometerKm} />}
         </Field>
       </div>
       <p className="garage-fine">
-        Enter at least one interval and its last completion value. Due reminders use your recorded
-        odometer.
+        Choose an interval and add the last completion if known. Otherwise this plan needs service
+        history before its next due date can be calculated.
       </p>
       <div className="garage-actions">
         <button type="submit" className="button primary">
@@ -136,16 +118,20 @@ function ServiceForm({
   onCancel: () => void;
 }) {
   const reminder = vehicle.reminders.find((r) => r.id === (record?.reminderId ?? reminderId));
+  const needsHistory =
+    !record && reminder && reminderDue(vehicle, reminder).status === 'Needs history';
   return (
     <form
       className="garage-subform"
       aria-label={`${record ? 'Edit service' : 'Log service'} for ${vehicleName(vehicle)}`}
       onSubmit={(e) => {
         const d = submitData(e);
+        const linkedId = record || !reminder ? text(d, 'reminderId') || null : reminder.id;
+        const linked = vehicle.reminders.find((r) => r.id === linkedId);
         onSave({
           id: record?.id ?? crypto.randomUUID(),
-          reminderId: record ? text(d, 'reminderId') || null : (reminder?.id ?? null),
-          title: record ? text(d, 'title') : (reminder?.title ?? text(d, 'title')),
+          reminderId: linkedId,
+          title: record ? text(d, 'title') : (linked?.title ?? text(d, 'title')),
           on: text(d, 'on'),
           km: Number(text(d, 'km')),
           note: text(d, 'note'),
@@ -156,9 +142,12 @@ function ServiceForm({
         {record
           ? 'Edit service record'
           : reminder
-            ? `Complete: ${reminder.title}`
+            ? `${needsHistory ? 'Add service history' : 'Complete'}: ${reminder.title}`
             : 'Log a service'}
       </h3>
+      {needsHistory && (
+        <p>Add the last actual completion date and odometer. No previous service is assumed.</p>
+      )}
       {record && (
         <p>
           Correct the work, date or reading. Linked reminders will be recalculated from the
@@ -188,7 +177,9 @@ function ServiceForm({
               type="date"
               required
               max={today()}
-              defaultValue={record?.on ?? today()}
+              defaultValue={
+                needsHistory ? (reminder?.lastOn ?? undefined) : (record?.on ?? today())
+              }
             />
           )}
         </Field>
@@ -201,7 +192,9 @@ function ServiceForm({
               min="0"
               max={vehicle.odometerKm}
               required
-              defaultValue={record?.km ?? vehicle.odometerKm}
+              defaultValue={
+                needsHistory ? (reminder?.lastKm ?? undefined) : (record?.km ?? vehicle.odometerKm)
+              }
             />
           )}
         </Field>
@@ -218,10 +211,10 @@ function ServiceForm({
           />
         )}
       </Field>
-      {record && (
+      {(record || !reminder) && (
         <Field label="Apply to reminder (optional)">
           {(id) => (
-            <select id={id} name="reminderId" defaultValue={record.reminderId ?? ''}>
+            <select id={id} name="reminderId" defaultValue={record?.reminderId ?? ''}>
               <option value="">No linked reminder</option>
               {vehicle.reminders.map((r) => (
                 <option key={r.id} value={r.id}>
@@ -256,7 +249,7 @@ function VehicleCard({
   onRemove: () => boolean;
 }) {
   const [panel, setPanel] = useState<
-      null | 'odometer' | 'reminder' | 'manufacturer' | 'service' | 'remove' | 'edit'
+      null | 'odometer' | 'reminder' | 'service' | 'remove' | 'edit'
     >(null),
     [editingVehicle, setEditingVehicle] = useState<OwnedVehicle | null>(null),
     [editingRecord, setEditingRecord] = useState<ServiceRecord | undefined>(undefined),
@@ -273,8 +266,8 @@ function VehicleCard({
     .map((r) => ({ r, due: reminderDue(vehicle, r) }))
     .sort(
       (a, b) =>
-        ['Overdue', 'Due now', 'Due soon', 'Upcoming'].indexOf(a.due.status) -
-        ['Overdue', 'Due now', 'Due soon', 'Upcoming'].indexOf(b.due.status),
+        ['Overdue', 'Due now', 'Due soon', 'Needs history', 'Upcoming'].indexOf(a.due.status) -
+        ['Overdue', 'Due now', 'Due soon', 'Needs history', 'Upcoming'].indexOf(b.due.status),
     );
   const success = (update: (v: OwnedVehicle) => OwnedVehicle) => {
     if (onUpdate(update)) {
@@ -424,14 +417,21 @@ function VehicleCard({
             </a>
           </div>
         )}
-        {guidance?.reminder &&
-          !vehicle.reminders.some((r) => r.manufacturerKey === guidance.reminder!.key) && (
-            <button type="button" className="text-button" onClick={() => setPanel('manufacturer')}>
-              {guidance.reminder.key === 'toyota-2025-visit'
-                ? 'Set up service visit reminders'
-                : 'Set up oil change reminders'}
-            </button>
-          )}
+        {maintenanceTasks(vehicle).length > 0 && (
+          <p className="garage-fine">
+            Reviewed manufacturer tasks are added automatically. Enter actual service history to
+            establish due dates; this is a selected task list, not a complete maintenance schedule.
+          </p>
+        )}
+        {!!vehicle.suppressedMaintenance?.length && (
+          <button
+            type="button"
+            className="text-button"
+            onClick={() => success((v) => ({ ...v, suppressedMaintenance: [] }))}
+          >
+            Restore removed manufacturer tasks
+          </button>
+        )}
       </div>
       {guidance?.documents && (
         <details className="garage-history">
@@ -464,10 +464,9 @@ function VehicleCard({
           </dl>
         </details>
       )}
-      {(panel === 'reminder' || panel === 'manufacturer') && (
+      {panel === 'reminder' && (
         <ReminderForm
           vehicle={vehicle}
-          manufacturer={panel === 'manufacturer'}
           onSave={(r) => success((v) => ({ ...v, reminders: [...v.reminders, r] }))}
           onCancel={() => setPanel(null)}
         />
@@ -495,81 +494,96 @@ function VehicleCard({
       )}
       <section className="garage-reminders" aria-label={`Reminders for ${vehicleName(vehicle)}`}>
         <h3>
-          Upcoming maintenance <span className="garage-count">{vehicle.reminders.length}</span>
+          Maintenance schedule <span className="garage-count">{vehicle.reminders.length}</span>
         </h3>
         {!reminders.length && (
           <p className="garage-empty-note">
             No reminders yet. Add a personal interval or use a supported manufacturer plan above.
           </p>
         )}
-        {reminders.map(({ r, due }) => (
-          <div className="garage-reminder" key={r.id}>
-            <div>
-              <span
-                className={`garage-status ${due.status === 'Overdue' || due.status === 'Due now' ? 'urgent' : due.status === 'Due soon' ? 'soon' : ''}`}
-              >
-                {due.status}
-              </span>
-              <h4>{r.title}</h4>
-              <p>
-                {due.dueKm !== null && `${number.format(due.dueKm)} km`}
-                {due.dueKm !== null && due.dueOn && ' or '}
-                {due.dueOn}
-                {due.dueKm !== null && due.dueOn && ' · whichever comes first'}
-              </p>
-              <small>
-                {r.manufacturerKey
-                  ? (guidance?.reminder?.label ?? 'Manufacturer interval')
-                  : 'Personal interval'}{' '}
-                ·{' '}
-                {[
-                  r.km !== null ? `${number.format(r.km)} km` : null,
-                  r.months !== null ? `${r.months} months` : null,
-                ]
-                  .filter(Boolean)
-                  .join(' / ')}
-              </small>
-            </div>
-            <div className="garage-actions">
-              <button
-                type="button"
-                className="button secondary"
-                aria-label={`Mark completed: ${r.title}`}
-                onClick={() => {
-                  setCompletion(r.id);
-                  setEditingRecord(undefined);
-                  setPanel('service');
-                }}
-              >
-                Mark completed<span className="sr-only">: {r.title}</span>
-              </button>
-              <button
-                type="button"
-                className="text-button"
-                onClick={() => setDeletion(`reminder-${r.id}`)}
-              >
-                Remove<span className="sr-only"> reminder: {r.title}</span>
-              </button>
-            </div>
-            {deletion === `reminder-${r.id}` && (
-              <div className="garage-confirm">
-                <p>Remove this reminder? Service history will be kept.</p>
+        {reminders.map(({ r, due }) => {
+          const task = maintenanceTasks(vehicle).find((task) => task.key === r.manufacturerKey);
+          return (
+            <div className="garage-reminder" key={r.id}>
+              <div>
+                <span
+                  className={`garage-status ${due.status === 'Overdue' || due.status === 'Due now' ? 'urgent' : due.status === 'Due soon' ? 'soon' : due.status === 'Needs history' ? 'pending' : ''}`}
+                >
+                  {due.status}
+                </span>
+                <h4>{r.title}</h4>
+                <p>
+                  {due.status === 'Needs history' &&
+                    'Service history is incomplete — add the missing details to calculate the next due thresholds. '}
+                  {due.dueKm !== null && `${number.format(due.dueKm)} km`}
+                  {due.dueKm !== null && due.dueOn && ' or '}
+                  {due.dueOn}
+                  {due.dueKm !== null && due.dueOn && ' · whichever comes first'}
+                </p>
+                <small>
+                  {r.manufacturerKey
+                    ? (task?.label ?? 'Manufacturer interval')
+                    : 'Personal interval'}{' '}
+                  ·{' '}
+                  {[
+                    r.km !== null ? `${number.format(r.km)} km` : null,
+                    r.months !== null ? `${r.months} months` : null,
+                  ]
+                    .filter(Boolean)
+                    .join(' / ')}
+                </small>
+                {task && (
+                  <details className="garage-task-source">
+                    <summary>Schedule source &amp; conditions</summary>
+                    <p>{task.setupNote}</p>
+                    <a href={task.sourceUrl} target="_blank" rel="noreferrer">
+                      {task.locator} ↗
+                    </a>
+                  </details>
+                )}
+              </div>
+              <div className="garage-actions">
+                <button
+                  type="button"
+                  className="button secondary"
+                  aria-label={`${due.status === 'Needs history' ? 'Add service history' : 'Mark completed'}: ${r.title}`}
+                  onClick={() => {
+                    setCompletion(r.id);
+                    setEditingRecord(undefined);
+                    setPanel('service');
+                  }}
+                >
+                  {due.status === 'Needs history' ? 'Add service history' : 'Mark completed'}
+                  <span className="sr-only">: {r.title}</span>
+                </button>
                 <button
                   type="button"
                   className="text-button"
-                  onClick={() => {
-                    if (onUpdate((v) => removeReminder(v, r.id))) setDeletion(null);
-                  }}
+                  onClick={() => setDeletion(`reminder-${r.id}`)}
                 >
-                  Remove reminder
-                </button>
-                <button type="button" className="text-button" onClick={() => setDeletion(null)}>
-                  Cancel
+                  Remove<span className="sr-only"> reminder: {r.title}</span>
                 </button>
               </div>
-            )}
-          </div>
-        ))}
+              {deletion === `reminder-${r.id}` && (
+                <div className="garage-confirm">
+                  <p>Remove this reminder? Service history will be kept.</p>
+                  <button
+                    type="button"
+                    className="text-button"
+                    onClick={() => {
+                      if (onUpdate((v) => removeReminder(v, r.id))) setDeletion(null);
+                    }}
+                  >
+                    Remove reminder
+                  </button>
+                  <button type="button" className="text-button" onClick={() => setDeletion(null)}>
+                    Cancel
+                  </button>
+                </div>
+              )}
+            </div>
+          );
+        })}
       </section>
       <details className="garage-history">
         <summary>Service history ({vehicle.records.length})</summary>
@@ -746,9 +760,13 @@ export function Garage() {
       active = false;
     };
   }, []);
-  const dueCount = garage.vehicles
-    .flatMap((v) => v.reminders.map((r) => reminderDue(v, r, day)))
-    .filter((r) => r.status === 'Overdue' || r.status === 'Due now').length;
+  const scheduleStates = garage.vehicles.flatMap((v) =>
+    v.reminders.map((r) => reminderDue(v, r, day)),
+  );
+  const dueCount = scheduleStates.filter(
+    (r) => r.status === 'Overdue' || r.status === 'Due now',
+  ).length;
+  const historyCount = scheduleStates.filter((r) => r.status === 'Needs history').length;
   function update(id: string, f: (v: OwnedVehicle) => OwnedVehicle) {
     return change((g) => {
       if (!g.vehicles.some((v) => v.id === id))
@@ -793,6 +811,12 @@ export function Garage() {
           </button>
         </div>
         <div className="garage-summary">
+          {historyCount > 0 && (
+            <div>
+              <strong>{historyCount}</strong>
+              <span>Need service history</span>
+            </div>
+          )}
           <div>
             <strong>{garage.vehicles.length}</strong>
             <span>{garage.vehicles.length === 1 ? 'Vehicle' : 'Vehicles'}</span>

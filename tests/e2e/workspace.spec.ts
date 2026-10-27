@@ -188,13 +188,16 @@ test('older vehicle lookup supplies Canadian model and powertrain choices withou
   const car = page.getByRole('article', { name: '2016 Hyundai Elantra' });
   await expect(car).toContainText('GL · 1.8 L');
   await expect(car).toContainText('150,000');
-  await expect(car.getByRole('button', { name: 'Set up oil change reminders' })).toBeVisible();
+  await expect(
+    car.getByRole('button', { name: 'Add service history: Engine oil and filter', exact: true }),
+  ).toBeVisible();
   expect(catalogs).toBe(0);
   const saved = await page.evaluate(
     () => JSON.parse(localStorage.getItem('oss-garage-v1')!).vehicles[0],
   );
   expect(saved.catalogId).toBeUndefined();
   expect(saved.records).toEqual([]);
+  expect(saved.reminders).toHaveLength(6);
 });
 
 test('a vehicle outside lookup coverage can still be added manually', async ({ page }) => {

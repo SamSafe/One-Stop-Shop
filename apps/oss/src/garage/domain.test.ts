@@ -11,6 +11,7 @@ import {
   vehicleDetails,
   reviseVehicleDetails,
   reviseServiceRecord,
+  automaticallySchedule,
 } from './domain';
 import type { OwnedVehicle, Reminder } from './domain';
 const vehicle = (): OwnedVehicle => ({
@@ -32,6 +33,126 @@ const reminder = (): Reminder => ({
   months: 6,
   lastOn: '2026-05-01',
   lastKm: 115000,
+});
+
+describe('automatic manufacturer maintenance', () => {
+  it('adds reviewed tasks without inventing completions, mileage or dates', () => {
+    const v = automaticallySchedule(vehicle());
+    expect(v.reminders).toHaveLength(6);
+    expect(v.records).toEqual([]);
+    for (const r of v.reminders) {
+      expect(r).toMatchObject({ lastOn: null, lastKm: null });
+      expect(reminderDue(v, r, '2026-10-27')).toMatchObject({
+        status: 'Needs history',
+        dueOn: null,
+        dueKm: null,
+      });
+    }
+    expect(parseGarage({ ...emptyGarage(), vehicles: [v] }).vehicles[0]).toEqual(v);
+    expect(automaticallySchedule(v)).toBe(v);
+  });
+  it('uses actual linked work and returns to an unknown baseline if that history is removed', () => {
+    let v = automaticallySchedule(vehicle());
+    const oil = v.reminders.find((r) => r.manufacturerKey === 'hyundai-2016-elantra-oil-severe')!;
+    v = {
+      ...v,
+      records: [
+        {
+          id: 'receipt',
+          reminderId: oil.id,
+          title: oil.title,
+          on: '2026-10-01',
+          km: 119000,
+          note: 'Actual service',
+        },
+      ],
+    };
+    expect(reminderDue(v, oil, '2026-10-27')).toMatchObject({
+      dueOn: '2027-04-01',
+      dueKm: 125000,
+      status: 'Upcoming',
+    });
+    expect(reminderDue({ ...v, odometerKm: 125001 }, oil, '2026-10-27').status).toBe('Overdue');
+    expect(reminderDue({ ...v, records: [] }, oil).status).toBe('Needs history');
+  });
+  it('keeps existing sourced reminders and remembers removals until explicitly restored', () => {
+    const old = servicedVehicle();
+    const v = automaticallySchedule(old);
+    expect(
+      v.reminders.filter((r) => r.manufacturerKey === 'hyundai-2016-elantra-oil-severe'),
+    ).toHaveLength(1);
+    expect(v.reminders[0]).toEqual(old.reminders[0]);
+    const removed = automaticallySchedule(removeReminder(v, 'r1'));
+    expect(removed.reminders).toHaveLength(5);
+    expect(removed.records[0]).toMatchObject({
+      id: 'service-1',
+      reminderId: null,
+      note: 'Original receipt',
+    });
+    expect(
+      readGarage(JSON.stringify({ ...emptyGarage(), vehicles: [removed] })).vehicles[0]
+        ?.suppressedMaintenance,
+    ).toEqual(['hyundai-2016-elantra-oil-severe']);
+    expect(automaticallySchedule({ ...removed, suppressedMaintenance: [] }).reminders).toHaveLength(
+      6,
+    );
+  });
+  it('replaces unconfigured plans on identity corrections without manufacturing personal intervals', () => {
+    const v = automaticallySchedule(vehicle());
+    const revised = reviseVehicleDetails(v, structuredClone(v), {
+      ...vehicleDetails(v),
+      make: 'Unknown',
+      model: 'Vehicle',
+    });
+    expect(automaticallySchedule(revised).reminders).toEqual([]);
+    expect(revised.records).toEqual([]);
+    expect(parseGarage({ ...emptyGarage(), vehicles: [revised] }).vehicles).toHaveLength(1);
+  });
+  it('preserves a configured automatic task as personal only after explicit review', () => {
+    const v = automaticallySchedule(vehicle());
+    const oil = v.reminders.find((r) => r.manufacturerKey === 'hyundai-2016-elantra-oil-severe')!;
+    v.records = [
+      {
+        id: 'receipt',
+        reminderId: oil.id,
+        title: oil.title,
+        on: '2026-10-01',
+        km: 119000,
+        note: 'Receipt',
+      },
+    ];
+    const details = { ...vehicleDetails(v), model: 'Different vehicle' };
+    expect(() => reviseVehicleDetails(v, structuredClone(v), details)).toThrow(/personal/);
+    const revised = reviseVehicleDetails(v, structuredClone(v), details, true);
+    expect(revised.reminders).toHaveLength(1);
+    expect(revised.reminders[0]).toMatchObject({ lastOn: null, lastKm: null });
+    expect(revised.reminders[0]?.manufacturerKey).toBeUndefined();
+    expect(parseGarage({ ...emptyGarage(), vehicles: [revised] }).vehicles).toHaveLength(1);
+    const corrected = reviseServiceRecord(revised, revised.records[0]!, {
+      ...revised.records[0]!,
+      on: '2026-09-01',
+      km: 118000,
+    });
+    expect(reminderDue(corrected, corrected.reminders[0]!, '2026-10-27')).toMatchObject({
+      dueOn: '2027-03-01',
+      dueKm: 124000,
+    });
+    expect(reminderDue({ ...corrected, records: [] }, corrected.reminders[0]!).status).toBe(
+      'Needs history',
+    );
+  });
+  it('does not infer fixed schedules for unreviewed vehicles or dashboard-driven Honda service', () => {
+    for (const details of [
+      { make: 'Honda', model: 'CR-V', year: 2025 },
+      { make: 'Hyundai', model: 'Elantra GT', year: 2016 },
+      { make: 'Unknown', model: 'Car', year: 2020 },
+    ])
+      expect(automaticallySchedule({ ...vehicle(), ...details }).reminders).toEqual([]);
+    expect(
+      automaticallySchedule({ ...vehicle(), make: 'Toyota', model: 'Corolla', year: 2025 })
+        .reminders,
+    ).toHaveLength(1);
+  });
 });
 describe('owned garage', () => {
   it('uses calendar months, clamps month ends and handles leap years', () => {
@@ -92,10 +213,15 @@ describe('owned garage', () => {
       expect(() => parseGarage(input)).toThrow();
     expect(() => readGarage('x'.repeat(2000001))).toThrow(/2 MB/);
   });
-  it('requires real reminder baselines and prevents falsely attributed manufacturer intervals', () => {
+  it('keeps incomplete history explicit and prevents falsely attributed manufacturer intervals', () => {
     const v = vehicle();
     v.reminders = [{ ...reminder(), lastKm: null }];
-    expect(() => parseGarage({ ...emptyGarage(), vehicles: [v] })).toThrow(/last completion/);
+    const parsed = parseGarage({ ...emptyGarage(), vehicles: [v] }).vehicles[0]!;
+    expect(reminderDue(parsed, parsed.reminders[0]!, '2026-10-26')).toMatchObject({
+      dueOn: '2026-11-01',
+      dueKm: null,
+      status: 'Needs history',
+    });
     v.reminders = [{ ...reminder(), manufacturerKey: 'toyota-2025-visit' }];
     expect(() => parseGarage({ ...emptyGarage(), vehicles: [v] })).toThrow(/Manufacturer/);
   });

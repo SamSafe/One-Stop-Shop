@@ -86,7 +86,10 @@ test('vehicle corrections preserve odometer, reminders and service history; canc
   await expect(car).toBeFocused();
   const after = await saved(page);
   expect(after.vehicles[0].records).toEqual(before.vehicles[0].records);
-  expect(after.vehicles[0].reminders).toEqual(before.vehicles[0].reminders);
+  expect(after.vehicles[0].reminders.find((r: { id: string }) => r.id === 'oil')).toEqual(
+    before.vehicles[0].reminders[0],
+  );
+  expect(after.vehicles[0].reminders).toHaveLength(6);
   expect(after.vehicles[0].odometerKm).toBe(170000);
   await page.reload();
   await expect(car).toBeVisible();

@@ -1,6 +1,13 @@
 // Reviewed Canadian owner guidance. Directory links are not exact vehicle schedules.
 // Keep this module small: browser use must not load ingestion code or complete manuals.
-export type ManufacturerReminderKey = 'toyota-2025-visit' | 'hyundai-2016-elantra-oil-severe';
+export type ManufacturerReminderKey =
+  | 'toyota-2025-visit'
+  | 'hyundai-2016-elantra-oil-severe'
+  | 'hyundai-2016-elantra-tires'
+  | 'hyundai-2016-elantra-lights'
+  | 'hyundai-2016-elantra-coolant-check'
+  | 'hyundai-2016-elantra-battery'
+  | 'hyundai-2016-elantra-rotation';
 export interface ManufacturerReminder {
   key: ManufacturerReminderKey;
   title: string;
@@ -8,6 +15,13 @@ export interface ManufacturerReminder {
   months: number;
   label: string;
   setupNote: string;
+}
+export interface MaintenanceTask extends Omit<ManufacturerReminder, 'km' | 'months'> {
+  km: number | null;
+  months: number | null;
+  sourceUrl: string;
+  locator: string;
+  reviewedAt: string;
 }
 export const ownerDocuments = [
   {
@@ -138,6 +152,88 @@ export function maintenanceGuidance(vehicle: {
     };
   return null;
 }
+// Fixed owner checks supplement the severe-use oil interval. Conditional and
+// dashboard-driven work is not converted into invented recurring intervals.
+export function maintenanceTasks(vehicle: {
+  make: string;
+  model: string;
+  year: number;
+}): MaintenanceTask[] {
+  const guidance = maintenanceGuidance(vehicle);
+  if (!guidance?.reminder) return [];
+  const tasks: MaintenanceTask[] = [
+    {
+      ...guidance.reminder,
+      sourceUrl: guidance.sourceUrl,
+      locator: guidance.locator,
+      reviewedAt: guidance.reviewedAt,
+    },
+  ];
+  if (guidance.reminder.key !== 'hyundai-2016-elantra-oil-severe') return tasks;
+  const source = ownerDocuments[0].url;
+  const checks: MaintenanceTask[] = [
+    {
+      key: 'hyundai-2016-elantra-tires',
+      title: 'Tire pressure and condition',
+      km: null,
+      months: 1,
+      label: 'Hyundai Canada · monthly owner check',
+      setupNote:
+        'Check all tires, including the spare, as described in the manual. This is an inspection, not a tire replacement interval.',
+      sourceUrl: source + '#page=7',
+      locator: 'Chapter 7, page 7 · At least monthly',
+      reviewedAt: '2026-10-27',
+    },
+    {
+      key: 'hyundai-2016-elantra-lights',
+      title: 'Exterior lights check',
+      km: null,
+      months: 1,
+      label: 'Hyundai Canada · monthly owner check',
+      setupNote: 'Check exterior lights, including stoplights, turn signals and hazard lights.',
+      sourceUrl: source + '#page=7',
+      locator: 'Chapter 7, page 7 · At least monthly',
+      reviewedAt: '2026-10-27',
+    },
+    {
+      key: 'hyundai-2016-elantra-coolant-check',
+      title: 'Engine coolant level check',
+      km: null,
+      months: 1,
+      label: 'Hyundai Canada · monthly owner check',
+      setupNote:
+        'Follow the manual’s cool-engine precautions. This level check is separate from coolant replacement.',
+      sourceUrl: source + '#page=7',
+      locator: 'Chapter 7, page 7 · At least monthly',
+      reviewedAt: '2026-10-27',
+    },
+    {
+      key: 'hyundai-2016-elantra-battery',
+      title: 'Clean battery and terminals',
+      km: null,
+      months: 12,
+      label: 'Hyundai Canada · annual owner maintenance',
+      setupNote: 'Follow the battery safety and cleaning instructions in the manual.',
+      sourceUrl: source + '#page=8',
+      locator: 'Chapter 7, page 8 · At least once a year',
+      reviewedAt: '2026-10-27',
+    },
+    {
+      key: 'hyundai-2016-elantra-rotation',
+      title: 'Tire rotation',
+      km: 12000,
+      months: 6,
+      label: 'Hyundai Canada · scheduled tire rotation',
+      setupNote:
+        'The regular schedule lists rotation every 12,000 km or 6 months. Follow the manual’s tire-rotation instructions and equipment restrictions.',
+      sourceUrl: source + '#page=9',
+      locator: 'Chapter 7, pages 9–18 · Scheduled maintenance',
+      reviewedAt: '2026-10-27',
+    },
+  ];
+  return [...tasks, ...checks];
+}
+
 export function ownerResources(make: string) {
   switch (make.trim().toLowerCase()) {
     case 'toyota':

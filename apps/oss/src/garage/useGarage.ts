@@ -1,12 +1,19 @@
 import { useEffect, useRef, useState } from 'react';
-import { emptyGarage, garageStorageKey, parseGarage, readGarage, checkGarageSize } from './domain';
+import {
+  emptyGarage,
+  garageStorageKey,
+  parseGarage,
+  readGarage,
+  checkGarageSize,
+  automaticallyScheduleGarage,
+} from './domain';
 import type { Garage } from './domain';
 const sessionWarning = 'Changes are only kept for this visit. Export a backup before leaving.';
 export function useGarage() {
   const load = () => {
     try {
       return {
-        garage: readGarage(localStorage.getItem(garageStorageKey)),
+        garage: automaticallyScheduleGarage(readGarage(localStorage.getItem(garageStorageKey))),
         warning: '',
         persist: true,
       };
@@ -43,13 +50,17 @@ export function useGarage() {
       if (replace) persist.current = true;
       if (persist.current && !replace) {
         try {
-          base = readGarage(localStorage.getItem(garageStorageKey));
+          base = automaticallyScheduleGarage(readGarage(localStorage.getItem(garageStorageKey)));
         } catch {
           persist.current = false;
           setWarning('Existing saved data was preserved. ' + sessionWarning);
         }
       }
-      const next = parseGarage({ ...update(base), revision: crypto.randomUUID() });
+      const next = parseGarage(
+        automaticallyScheduleGarage(
+          parseGarage({ ...update(base), revision: crypto.randomUUID() }),
+        ),
+      );
       const serialized = JSON.stringify(next);
       checkGarageSize(serialized);
       if (persist.current) {

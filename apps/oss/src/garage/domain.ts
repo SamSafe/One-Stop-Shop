@@ -1,4 +1,4 @@
-import { maintenanceGuidance } from '@oss/car-catalog/maintenance';
+import { maintenanceTasks } from '@oss/car-catalog/maintenance';
 import type { ManufacturerReminderKey } from '@oss/car-catalog/maintenance';
 export const garageStorageKey = 'oss-garage-v1';
 export interface Reminder {
@@ -30,6 +30,7 @@ export interface OwnedVehicle {
   catalogId?: string;
   reminders: Reminder[];
   records: ServiceRecord[];
+  suppressedMaintenance?: ManufacturerReminderKey[];
 }
 export interface Garage {
   version: 1;
@@ -107,11 +108,21 @@ export function parseGarage(input: unknown): Garage {
       'catalogId',
       'reminders',
       'records',
+      'suppressedMaintenance',
     ]);
     const odometerKm = number(v.odometerKm, 0, 5000000),
       year = number(v.year, 1886, new Date().getFullYear() + 2),
       make = string(v.make),
       model = string(v.model);
+    const tasks = maintenanceTasks({ make, model, year });
+    const suppressedMaintenance =
+      v.suppressedMaintenance === undefined
+        ? undefined
+        : array(v.suppressedMaintenance, 100).map((key) => {
+            const task = tasks.find((task) => task.key === key);
+            if (!task) return fail('Suppressed maintenance task does not match this vehicle.');
+            return task.key;
+          });
     const reminders = array(v.reminders, 100).map((input) => {
       const r = object(input, [
         'id',
@@ -127,10 +138,8 @@ export function parseGarage(input: unknown): Garage {
       if (km === null && months === null) fail('A reminder needs a distance or time interval.');
       const lastOn = r.lastOn === null ? null : date(r.lastOn),
         lastKm = r.lastKm === null ? null : number(r.lastKm, 0, odometerKm);
-      if ((km !== null && lastKm === null) || (months !== null && lastOn === null))
-        fail('Enter the last completion date and odometer needed by this reminder.');
       const title = string(r.title, 160);
-      const template = maintenanceGuidance({ make, model, year })?.reminder;
+      const template = tasks.find((task) => task.key === r.manufacturerKey);
       if (
         r.manufacturerKey !== undefined &&
         (!template ||
@@ -179,6 +188,9 @@ export function parseGarage(input: unknown): Garage {
       ...(v.catalogId !== undefined ? { catalogId: identifier(v.catalogId) } : {}),
       reminders,
       records,
+      ...(suppressedMaintenance !== undefined
+        ? { suppressedMaintenance: [...new Set(suppressedMaintenance)] }
+        : {}),
     };
   });
   unique(vehicles);
@@ -197,7 +209,7 @@ export function addMonths(on: string, months: number) {
   );
   return d.toISOString().slice(0, 10);
 }
-export function reminderDue(v: OwnedVehicle, r: Reminder, on = today()) {
+export function reminderBaseline(v: OwnedVehicle, r: Reminder) {
   const history = v.records
     .filter((s) => s.reminderId === r.id)
     .sort((a, b) => b.on.localeCompare(a.on) || b.km - a.km);
@@ -205,6 +217,10 @@ export function reminderDue(v: OwnedVehicle, r: Reminder, on = today()) {
   // An imported historical entry must not move an explicit newer baseline backwards.
   const lastOn = last && (!r.lastOn || last.on >= r.lastOn) ? last.on : r.lastOn;
   const lastKm = last && last.km >= (r.lastKm ?? 0) ? last.km : r.lastKm;
+  return { lastOn, lastKm };
+}
+export function reminderDue(v: OwnedVehicle, r: Reminder, on = today()) {
+  const { lastOn, lastKm } = reminderBaseline(v, r);
   const dueOn = r.months !== null && lastOn ? addMonths(lastOn, r.months) : null;
   const dueKm = r.km !== null && lastKm !== null ? lastKm + r.km : null;
   const overdue = (dueOn !== null && dueOn < on) || (dueKm !== null && dueKm < v.odometerKm);
@@ -214,18 +230,63 @@ export function reminderDue(v: OwnedVehicle, r: Reminder, on = today()) {
     !due &&
     ((dueOn !== null && Date.parse(dueOn) - Date.parse(on) <= 30 * 86400000) ||
       (dueKm !== null && dueKm - v.odometerKm <= 1000));
+  const missingHistory =
+    (r.km !== null && lastKm === null) || (r.months !== null && lastOn === null);
   return {
     dueOn,
     dueKm,
-    status: overdue ? 'Overdue' : due ? 'Due now' : soon ? 'Due soon' : 'Upcoming',
+    status: overdue
+      ? 'Overdue'
+      : due
+        ? 'Due now'
+        : missingHistory
+          ? 'Needs history'
+          : soon
+            ? 'Due soon'
+            : 'Upcoming',
   } as const;
 }
 export function removeReminder(v: OwnedVehicle, id: string): OwnedVehicle {
+  const key = v.reminders.find((r) => r.id === id)?.manufacturerKey;
   return {
     ...v,
     reminders: v.reminders.filter((r) => r.id !== id),
     records: v.records.map((r) => (r.reminderId === id ? { ...r, reminderId: null } : r)),
+    ...(key
+      ? { suppressedMaintenance: [...new Set([...(v.suppressedMaintenance ?? []), key])] }
+      : {}),
   };
+}
+
+export function automaticallySchedule(v: OwnedVehicle): OwnedVehicle {
+  const templates = maintenanceTasks(v)
+    .filter(
+      (task) =>
+        !v.suppressedMaintenance?.includes(task.key) &&
+        !v.reminders.some((r) => r.manufacturerKey === task.key),
+    )
+    .slice(0, Math.max(0, 100 - v.reminders.length));
+  if (!templates.length) return v;
+  const used = new Set(v.reminders.map((r) => r.id));
+  const added = templates.map((task) => {
+    let id = `automatic-${task.key}`,
+      suffix = 1;
+    while (used.has(id)) id = `automatic-${task.key}-${suffix++}`;
+    used.add(id);
+    return {
+      id,
+      title: task.title,
+      km: task.km,
+      months: task.months,
+      lastOn: null,
+      lastKm: null,
+      manufacturerKey: task.key,
+    };
+  });
+  return { ...v, reminders: [...v.reminders, ...added] };
+}
+export function automaticallyScheduleGarage(g: Garage): Garage {
+  return { ...g, vehicles: g.vehicles.map(automaticallySchedule) };
 }
 
 export function updateOdometer(v: OwnedVehicle, km: number): OwnedVehicle {
@@ -255,15 +316,24 @@ function sameIdentity(a: VehicleDetails, b: VehicleDetails) {
   );
 }
 export function incompatibleManufacturerReminders(v: OwnedVehicle, details: VehicleDetails) {
-  const template = maintenanceGuidance(details)?.reminder;
-  return v.reminders.filter(
-    (r) =>
+  const tasks = maintenanceTasks(details);
+  return v.reminders.filter((r) => {
+    const template = tasks.find((task) => task.key === r.manufacturerKey);
+    return (
       r.manufacturerKey &&
+      !unconfiguredPlan(v, r) &&
       (!template ||
-        r.manufacturerKey !== template.key ||
         r.km !== template.km ||
         r.months !== template.months ||
-        r.title !== template.title),
+        r.title !== template.title)
+    );
+  });
+}
+function unconfiguredPlan(v: OwnedVehicle, r: Reminder) {
+  return (
+    r.lastOn === null &&
+    r.lastKm === null &&
+    !v.records.some((record) => record.reminderId === r.id)
   );
 }
 export function reviseVehicleDetails(
@@ -291,12 +361,24 @@ export function reviseVehicleDetails(
   const result = {
     ...current,
     ...details,
-    reminders: current.reminders.map((r) => {
-      if (!incompatible.has(r.id)) return r;
+    reminders: current.reminders.flatMap((r) => {
+      const matches = maintenanceTasks(details).some(
+        (task) =>
+          task.key === r.manufacturerKey &&
+          task.km === r.km &&
+          task.months === r.months &&
+          task.title === r.title,
+      );
+      if (r.manufacturerKey && !matches && unconfiguredPlan(current, r)) return [];
+      if (!incompatible.has(r.id)) return [r];
       const { manufacturerKey: _source, ...personal } = r;
-      return personal;
+      return [personal];
     }),
   };
+  if (result.suppressedMaintenance) {
+    const keys = new Set(maintenanceTasks(details).map((task) => task.key));
+    result.suppressedMaintenance = result.suppressedMaintenance.filter((key) => keys.has(key));
+  }
   if (changedIdentity) delete result.catalogId;
   return result;
 }
