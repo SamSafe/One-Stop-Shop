@@ -91,7 +91,7 @@ test('shortlist persists, filters, clears and syncs across tabs', async ({ page,
 test('comparison restores from its URL and calculates fuel costs', async ({ page }) => {
   await openRetailCatalog(page);
   await page.getByRole('checkbox', { name: `Compare ${honda}`, exact: true }).check();
-  await expect(page.getByRole('button', { name: 'Compare 1 cars' })).toBeDisabled();
+  await expect(page.getByRole('button', { name: 'Compare 1 car' })).toBeDisabled();
   await page.getByRole('checkbox', { name: `Compare ${hybrid}`, exact: true }).check();
   await page.getByRole('button', { name: 'Compare 2 cars' }).click();
   await expect(page.getByRole('dialog')).toBeVisible();

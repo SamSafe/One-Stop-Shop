@@ -1,5 +1,5 @@
 import type { Page } from '@playwright/test';
-// Filter journeys explicitly reveal the compact mobile filter panel.
+// Detailed filtering and ranking are available in one expandable panel.
 export async function revealCatalogFilters(page: Page, afterComparison = false) {
   if (
     new URL(page.url()).pathname !== '/' ||
@@ -7,9 +7,6 @@ export async function revealCatalogFilters(page: Page, afterComparison = false) 
   )
     return;
   await page.getByRole('searchbox', { name: 'Search cars' }).waitFor();
-  const toggle = page.getByRole('button', { name: 'Filters & priorities', exact: true });
-  if (await toggle.isVisible()) await toggle.click();
-  const advanced = page.locator('.advanced-filters');
-  if (!(await advanced.evaluate((e) => (e as HTMLDetailsElement).open)))
-    await advanced.locator('summary').click();
+  const toggle = page.getByRole('button', { name: /^(Filters & priorities|Hide filters)$/ });
+  if ((await toggle.getAttribute('aria-expanded')) !== 'true') await toggle.click();
 }

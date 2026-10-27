@@ -17,9 +17,10 @@ test('Land Rover shows visible Canadian derivatives while keeping unknown model 
   await expect(octa.locator('.price-row')).toContainText('$179,400');
   await octa.getByRole('button', { name: 'Specs & sources' }).click();
   await expect(octa).toContainText('Configured summary and RETAIL totals are excluded');
-  await expect(octa.getByRole('link', { name: 'Add to your garage →' })).toHaveAttribute(
+  await expect(octa.getByRole('link', { name: 'Add to your garage →' })).toHaveCount(0);
+  await expect(page.getByRole('link', { name: 'My garage', exact: true })).toHaveAttribute(
     'href',
-    /\/garage\?vehicle=land-rover/,
+    '/garage',
   );
   await page.getByLabel('Model year', { exact: true }).selectOption('2026');
   await expect(page.getByRole('article')).toHaveCount(2);

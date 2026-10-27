@@ -24,15 +24,16 @@ test('comparison workspace puts vehicles first and hides technical filters until
   await page.goto('/');
   await expect(page.getByRole('heading', { name: 'Compare vehicles', level: 1 })).toBeVisible();
   await expect(page.locator('.hero,.car-illustration')).toHaveCount(0);
-  const mobile = await page
-    .getByRole('button', { name: 'Filters & priorities', exact: true })
-    .isVisible();
-  if (mobile) await expect(page.getByLabel('Make', { exact: true })).not.toBeVisible();
-  await openFilters(page);
   await expect(page.getByLabel('Make', { exact: true })).toBeVisible();
   await expect(page.getByLabel('Record type', { exact: true })).not.toBeVisible();
-  await page.locator('.advanced-filters summary').click();
+  await expect(page.getByRole('slider', { name: 'Purchase price' })).not.toBeVisible();
+  await openFilters(page);
   await expect(page.getByLabel('Record type', { exact: true })).toBeVisible();
+  await expect(page.getByRole('slider', { name: 'Purchase price' })).toBeVisible();
+  await page.getByLabel('Powertrain', { exact: true }).selectOption('Hybrid');
+  await page.getByRole('button', { name: 'Hide filters', exact: true }).click();
+  await expect(page.getByLabel('Record type', { exact: true })).not.toBeVisible();
+  await expect(page.getByRole('article').first()).toContainText('Hybrid');
   await expect(
     page
       .getByRole('navigation', { name: 'Main navigation' })
@@ -62,6 +63,58 @@ test('model filter follows the selected make and resets on a year or make change
   await page.getByLabel('Model', { exact: true }).selectOption('Elantra');
   await page.getByLabel('Model year', { exact: true }).selectOption('2025');
   await expect(page.getByLabel('Model', { exact: true })).toHaveValue('all');
+});
+
+test('comparison selections identify exact trims and can be removed while browsing other results', async ({
+  page,
+}) => {
+  await page.goto('/');
+  const checks = page.getByRole('checkbox', { name: /^Compare / });
+  const first = (await checks.nth(0).getAttribute('aria-label'))!.replace(/^Compare /, '');
+  const second = (await checks.nth(1).getAttribute('aria-label'))!.replace(/^Compare /, '');
+  await checks.nth(0).check();
+  await checks.nth(1).check();
+  const selection = page.getByRole('region', { name: 'Selected cars', exact: true });
+  await expect(selection.getByTitle(first, { exact: true })).toBeVisible();
+  await expect(selection.getByTitle(second, { exact: true })).toBeVisible();
+  await page.getByRole('searchbox', { name: 'Search cars' }).fill('Honda');
+  await selection
+    .getByRole('button', { name: `Remove ${first} from selection`, exact: true })
+    .click();
+  await expect(
+    selection.getByRole('button', { name: 'Compare 1 car', exact: true }),
+  ).toBeDisabled();
+  await expect(selection.getByTitle(second, { exact: true })).toBeVisible();
+  await selection
+    .getByRole('button', { name: `Remove ${second} from selection`, exact: true })
+    .click();
+  await expect(selection).toHaveCount(0);
+  await expect(page.getByRole('searchbox', { name: 'Search cars' })).toHaveValue('Honda');
+});
+
+test('matching specs can be hidden and restored while unknown values and sources remain available', async ({
+  page,
+}) => {
+  await page.goto('/?compare=honda-cr-v-2026-lx-fwd,honda-cr-v-2026-sport-hybrid-awd');
+  const dialog = page.getByRole('dialog');
+  const seats = dialog.getByRole('row', { name: /^Seats / });
+  const range = dialog.getByRole('row', { name: /^Electric driving range / });
+  const priceNotes = dialog.getByRole('row', { name: /^Base MSRP / }).locator('.fact-note');
+  await expect(seats).toBeVisible();
+  await expect(priceNotes.first()).not.toBeVisible();
+  await expect(range.locator('.fact-note').first()).toBeVisible();
+  await dialog.getByRole('checkbox', { name: 'Show source notes', exact: true }).check();
+  await expect(priceNotes.first()).toBeVisible();
+  await dialog.getByRole('checkbox', { name: 'Show source notes', exact: true }).uncheck();
+  await expect(seats.getByRole('link').first()).toHaveAttribute('href', /^https:\/\//);
+  await dialog.getByRole('checkbox', { name: 'Hide matching specs', exact: true }).check();
+  await expect(seats).toHaveCount(0);
+  await expect(range).toContainText('Not verified');
+  await expect(dialog.getByRole('status')).toContainText('unverified values stay visible');
+  await expect(dialog.getByRole('row', { name: /^Base MSRP / })).toBeVisible();
+  await dialog.getByRole('checkbox', { name: 'Hide matching specs', exact: true }).uncheck();
+  await expect(seats).toBeVisible();
+  await expect(seats.getByRole('link').first()).toHaveAttribute('href', /^https:\/\//);
 });
 
 test('appearance follows system settings and explicit preference persists across workspace pages', async ({

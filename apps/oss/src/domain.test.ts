@@ -6,6 +6,7 @@ import {
   defaultFilters,
   defaultWeights,
   filterCars,
+  hasMatchingSpecification,
   fullName,
   modelYearLabel,
   knownIds,
@@ -21,6 +22,32 @@ const cars = curatedCatalog.cars;
 const first = cars[0]!;
 const hybrid = cars.find((car) => car.fuel === 'Hybrid')!;
 const onlyPrice = { price: 5, efficiency: 0, cargo: 0, room: 0 };
+
+describe('matching comparison specifications', () => {
+  it('recognizes a known match across separate publications', () => {
+    const second = structuredClone(first);
+    second.facts.seats = { ...first.facts.seats, source: 'another-publication' };
+    expect(hasMatchingSpecification([first, second], 'seats')).toBe(true);
+  });
+  it('keeps matching numbers visible when their measurement notes differ', () => {
+    const second = structuredClone(first);
+    second.facts.widthMm.note = 'Measured including mirrors.';
+    expect(hasMatchingSpecification([first, second], 'widthMm')).toBe(false);
+  });
+  it('does not treat unknown values as matching specifications', () => {
+    const unknown = structuredClone(first);
+    unknown.facts.seats = { value: null, source: null, note: 'Not published.' };
+    expect(hasMatchingSpecification([unknown, unknown], 'seats')).toBe(false);
+    expect(hasMatchingSpecification([first, unknown], 'seats')).toBe(false);
+  });
+  it('requires at least two vehicles and agreement across every selected vehicle', () => {
+    const different = structuredClone(first);
+    different.facts.seats.value = first.facts.seats.value! + 1;
+    expect(hasMatchingSpecification([], 'seats')).toBe(false);
+    expect(hasMatchingSpecification([first], 'seats')).toBe(false);
+    expect(hasMatchingSpecification([first, first, different], 'seats')).toBe(false);
+  });
+});
 
 describe('ranking', () => {
   it('matches a hand-calculated weighted score', () => {

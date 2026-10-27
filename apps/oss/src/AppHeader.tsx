@@ -20,7 +20,11 @@ export function AppHeader({
         <a href="/" aria-current={page === 'compare' ? 'page' : undefined}>
           Compare vehicles
         </a>
-        <a href="/garage" aria-current={page === 'garage' ? 'page' : undefined}>
+        <a
+          href="/garage"
+          className={page === 'compare' ? 'secondary-nav-link' : undefined}
+          aria-current={page === 'garage' ? 'page' : undefined}
+        >
           My garage
         </a>
       </nav>

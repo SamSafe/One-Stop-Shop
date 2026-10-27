@@ -7,6 +7,7 @@ import {
   defaultWeights,
   filterCars,
   fullName,
+  hasMatchingSpecification,
   modelYearLabel,
   parseSharedState,
   priorityDefinitions,
@@ -113,7 +114,15 @@ function displayFact(metric: Metric, fact: Fact): string {
   return `${fact.value.toLocaleString('en-CA', { maximumFractionDigits: 1 })} ${metricDefinitions[metric].unit}`;
 }
 
-function SourcedFact({ metric, fact }: { metric: Metric; fact: Fact }) {
+function SourcedFact({
+  metric,
+  fact,
+  showNotes = true,
+}: {
+  metric: Metric;
+  fact: Fact;
+  showNotes?: boolean;
+}) {
   const source = fact.source ? sources.get(fact.source) : null;
   return (
     <>
@@ -130,7 +139,11 @@ function SourcedFact({ metric, fact }: { metric: Metric; fact: Fact }) {
       ) : (
         <span>{displayFact(metric, fact)}</span>
       )}
-      {fact.note && <small className="fact-note">{fact.note}</small>}
+      {fact.note && (
+        <small className="fact-note" hidden={fact.value !== null && !showNotes}>
+          {fact.note}
+        </small>
+      )}
     </>
   );
 }
@@ -141,7 +154,7 @@ const publishedCurrency = new Intl.NumberFormat('en-CA', {
   minimumFractionDigits: 2,
   maximumFractionDigits: 2,
 });
-function PublishedPrice({ car }: { car: Car }) {
+function PublishedPrice({ car, showNotes = true }: { car: Car; showNotes?: boolean }) {
   const price = car.publishedPrice;
   if (!price) return <span>Not verified</span>;
   const source = sources.get(price.source)!;
@@ -156,7 +169,7 @@ function PublishedPrice({ car }: { car: Car }) {
       >
         {publishedCurrency.format(price.value)} <span aria-hidden="true">↗</span>
       </a>
-      <small className="fact-note">
+      <small className="fact-note" hidden={!showNotes}>
         {price.province} · before sales tax. {price.note}
       </small>
     </>
@@ -286,17 +299,7 @@ function Card({
             </dd>
           </div>
         </dl>
-        <p className="fit-reason">
-          {ranking.reason ?? (
-            <>
-              Largest score contribution:{' '}
-              <strong>
-                {largest ? priorityDefinitions[largest.priority].label.toLowerCase() : ''}
-              </strong>
-              .
-            </>
-          )}
-        </p>
+
         <div className="card-actions">
           <label className={`compare-checkbox ${atLimit && !selected ? 'is-disabled' : ''}`}>
             <input
@@ -320,10 +323,18 @@ function Card({
         </div>
         {expanded && (
           <div id={`specs-${car.id}`} className="expanded-specs">
-            <a className="text-button" href={`/garage?vehicle=${encodeURIComponent(car.id)}`}>
-              Add to your garage →
-            </a>
             <h4>Published specifications</h4>
+            <p className="fit-reason">
+              {ranking.reason ?? (
+                <>
+                  Largest score contribution:{' '}
+                  <strong>
+                    {largest ? priorityDefinitions[largest.priority].label.toLowerCase() : ''}
+                  </strong>
+                  .
+                </>
+              )}
+            </p>
             {car.manufacturerConfiguration && (
               <p>
                 Manufacturer code: {car.manufacturerConfiguration.code}.{' '}
@@ -400,6 +411,21 @@ function Comparison({
   const [gas, setGas] = useState('1.60');
   const [electricity, setElectricity] = useState('0.15');
   const [electricShare, setElectricShare] = useState('50');
+  const [hideMatching, setHideMatching] = useState(false);
+  const [showNotes, setShowNotes] = useState(false);
+  const visibleMetrics = metricKeys.filter(
+    (metric) => !hideMatching || !hasMatchingSpecification(selected, metric),
+  );
+  const matchingPowertrain =
+    selected.length >= 2 &&
+    selected.every(
+      (car) =>
+        car.fuel === selected[0]!.fuel &&
+        car.drivetrain !== 'Not verified' &&
+        car.drivetrain === selected[0]!.drivetrain,
+    );
+  const hiddenCount =
+    metricKeys.length - visibleMetrics.length + Number(hideMatching && matchingPowertrain);
   const fuelInputsValid =
     kilometres.trim() !== '' &&
     gas.trim() !== '' &&
@@ -436,16 +462,34 @@ function Comparison({
         </button>
       </div>
       <p className="dialog-intro">
-        Canadian retail configurations and government rating variants. Check each record's status; a
-        fuel rating does not establish current retail availability. Click a spec for its source.
-        Verified prices exclude freight/PDI, taxes and fees.
+        Select a specification to open its source. Base prices exclude freight/PDI, taxes and fees.
       </p>
       <div className="comparison-tools">
+        <label className="matching-filter">
+          <input
+            type="checkbox"
+            checked={hideMatching}
+            onChange={(event) => setHideMatching(event.target.checked)}
+          />
+          Hide matching specs
+        </label>
+        <label className="matching-filter">
+          <input
+            type="checkbox"
+            checked={showNotes}
+            onChange={(event) => setShowNotes(event.target.checked)}
+          />
+          Show source notes
+        </label>
+        <span className="matching-status" role="status">
+          {hideMatching
+            ? `${hiddenCount} matching ${hiddenCount === 1 ? 'row' : 'rows'} hidden · unverified values stay visible`
+            : 'All specifications shown'}
+        </span>
         <button type="button" className="button secondary" onClick={onShare}>
           <Icon name="link" size={17} />
           Copy comparison link
         </button>
-        <span>Includes these cars and your priority weights.</span>
       </div>
       {shareUrl && (
         <label className="share-fallback">
@@ -509,7 +553,11 @@ function Comparison({
                           ? 'Manufacturer offer; model year not verified.'
                           : 'Retail configuration.'}{' '}
                       {car.modelYearNote && `${car.modelYearNote} `}
-                      {car.availability.note}
+                      <span>{car.availability.status.replaceAll('-', ' ')}.</span>
+                      <span className="availability-note" hidden={!showNotes}>
+                        {' '}
+                        {car.availability.note}
+                      </span>
                     </td>
                   ))}
                 </tr>
@@ -522,20 +570,26 @@ function Comparison({
                     </td>
                   ))}
                 </tr>
-                <tr>
-                  <th scope="row">Powertrain</th>
-                  {selected.map((car) => (
-                    <td key={car.id}>
-                      {car.fuel} · {car.drivetrain}
-                    </td>
-                  ))}
-                </tr>
-                {metricKeys.map((metric) => (
+                {(!hideMatching || !matchingPowertrain) && (
+                  <tr>
+                    <th scope="row">Powertrain</th>
+                    {selected.map((car) => (
+                      <td key={car.id}>
+                        {car.fuel} · {car.drivetrain}
+                      </td>
+                    ))}
+                  </tr>
+                )}
+                {visibleMetrics.map((metric) => (
                   <tr key={metric}>
                     <th scope="row">{metricDefinitions[metric].label}</th>
                     {selected.map((car) => (
                       <td key={car.id}>
-                        <SourcedFact metric={metric} fact={car.facts[metric]} />
+                        <SourcedFact
+                          metric={metric}
+                          fact={car.facts[metric]}
+                          showNotes={showNotes}
+                        />
                       </td>
                     ))}
                   </tr>
@@ -545,7 +599,7 @@ function Comparison({
                     <th scope="row">Published all-inclusive price</th>
                     {selected.map((car) => (
                       <td key={car.id}>
-                        <PublishedPrice car={car} />
+                        <PublishedPrice car={car} showNotes={showNotes} />
                       </td>
                     ))}
                   </tr>
@@ -652,7 +706,6 @@ function Comparison({
 
 export function App() {
   const [filtersOpen, setFiltersOpen] = useState(false);
-  const [advancedOpen, setAdvancedOpen] = useState(false);
   const [filters, setFilters] = useState<Filters>({ ...defaultFilters });
   const models = useMemo(
     () =>
@@ -796,18 +849,23 @@ export function App() {
             <p>Canadian prices and specifications. Select up to four vehicles to compare.</p>
           </div>
         </section>
-        <div className="trust-strip">
-          <span>
-            {cars.length.toLocaleString('en-CA')} catalog records · {makes.length} makes
-          </span>
-          <span>
-            {years.length ? `${years[years.length - 1]}–${years[0]}` : 'Model years unverified'}
-            {unverifiedYearCount > 0 && ` · ${unverifiedYearCount} year-unverified offers`} · Canada
-            · retail coverage in progress
-          </span>
-          <span>Reviewed {reviewedDate}</span>
-          <a href="#sources">Sources & coverage ↗</a>
-        </div>
+        <details className="catalog-coverage">
+          <summary>
+            Canadian catalog <span>Coverage in progress · details &amp; sources</span>
+          </summary>{' '}
+          <div className="trust-strip">
+            <span>
+              {cars.length.toLocaleString('en-CA')} catalog records · {makes.length} makes
+            </span>
+            <span>
+              {years.length ? `${years[years.length - 1]}–${years[0]}` : 'Model years unverified'}
+              {unverifiedYearCount > 0 && ` · ${unverifiedYearCount} year-unverified offers`} ·
+              Canada · retail coverage in progress
+            </span>
+            <span>Reviewed {reviewedDate}</span>
+            <a href="#sources">Sources & coverage ↗</a>
+          </div>
+        </details>
         {reviewAge > 90 && (
           <p className="notice stale-notice">
             This catalog was reviewed {reviewedDate}. Prices and specifications may have changed;
@@ -829,244 +887,6 @@ export function App() {
             Vehicle catalog
           </h2>
           <div className="catalog-layout">
-            <button
-              className="filter-toggle button secondary"
-              type="button"
-              aria-expanded={filtersOpen}
-              aria-controls="vehicle-filters"
-              onClick={() => setFiltersOpen(!filtersOpen)}
-            >
-              <Icon name="sliders" size={17} />
-              {filtersOpen ? 'Hide filters' : 'Filters & priorities'}
-            </button>
-            <aside
-              id="vehicle-filters"
-              className={`filters ${filtersOpen ? 'is-open' : ''}`}
-              aria-label="Filters and priorities"
-            >
-              <div className="filter-heading">
-                <h3>
-                  <Icon name="sliders" size={18} />
-                  Filters
-                </h3>
-                <button
-                  type="button"
-                  className="text-button"
-                  onClick={() => {
-                    resetFilters();
-                    setWeights({ ...defaultWeights });
-                  }}
-                >
-                  Reset
-                </button>
-              </div>
-              <label className="field-label" htmlFor="year">
-                Model year
-              </label>
-              <select
-                id="year"
-                value={filters.year}
-                onChange={(event) =>
-                  setFilters({ ...filters, year: event.target.value, model: 'all' })
-                }
-              >
-                <option value="all">All model years</option>
-                {years.map((year) => (
-                  <option key={year} value={year}>
-                    {year}
-                  </option>
-                ))}
-                {unverifiedYearCount > 0 && <option value="unverified">Year not verified</option>}
-              </select>
-              <label className="field-label" htmlFor="make">
-                Make
-              </label>
-              <select
-                id="make"
-                value={filters.make}
-                onChange={(event) =>
-                  setFilters({ ...filters, make: event.target.value, model: 'all' })
-                }
-              >
-                <option value="all">All makes</option>
-                {makes.map((make) => (
-                  <option key={make} value={make}>
-                    {make}
-                  </option>
-                ))}
-              </select>
-              <label className="field-label" htmlFor="model">
-                Model
-              </label>
-              <select
-                id="model"
-                disabled={filters.make === 'all'}
-                value={filters.model ?? 'all'}
-                onChange={(e) => setFilters({ ...filters, model: e.target.value })}
-              >
-                <option value="all">
-                  {filters.make === 'all' ? 'Choose a make first' : 'All models'}
-                </option>
-                {filters.make !== 'all' &&
-                  models.map((model) => (
-                    <option key={model} value={model}>
-                      {model}
-                    </option>
-                  ))}
-              </select>
-              <label className="field-label" htmlFor="budget">
-                Max base MSRP
-              </label>
-              <select
-                id="budget"
-                value={filters.budget ?? 'all'}
-                onChange={(event) =>
-                  setFilters({
-                    ...filters,
-                    budget: event.target.value === 'all' ? null : Number(event.target.value),
-                  })
-                }
-              >
-                <option value="all">Any price, including unverified</option>
-                {[25000, 35000, 50000, 75000, 100000, 150000, 250000, 500000, 1000000].map(
-                  (value) => (
-                    <option key={value} value={value}>
-                      {currency.format(value)}
-                    </option>
-                  ),
-                )}
-              </select>
-              <p className="field-hint">
-                A price limit includes only verified CAD base MSRP. Unknown prices are not treated
-                as free.
-              </p>
-              <label className="field-label" htmlFor="fuel">
-                Powertrain
-              </label>
-              <select
-                id="fuel"
-                value={filters.fuel}
-                onChange={(event) => setFilters({ ...filters, fuel: event.target.value })}
-              >
-                <option value="all">Any powertrain</option>
-                {fuels.map((fuel) => (
-                  <option key={fuel} value={fuel}>
-                    {fuel}
-                  </option>
-                ))}
-              </select>
-              <label className="field-label" htmlFor="drive">
-                Drivetrain
-              </label>
-              <select
-                id="drive"
-                value={filters.drivetrain}
-                onChange={(event) => setFilters({ ...filters, drivetrain: event.target.value })}
-              >
-                <option value="all">Any drivetrain</option>
-                <option value="AWD">All-wheel drive</option>
-                <option value="FWD">Front-wheel drive</option>
-                <option value="RWD">Rear-wheel drive</option>
-                <option value="4WD">Four-wheel drive</option>
-                <option value="Not verified">Not verified</option>
-              </select>
-              <label className="saved-filter">
-                <input
-                  type="checkbox"
-                  checked={filters.savedOnly}
-                  onChange={(event) => setFilters({ ...filters, savedOnly: event.target.checked })}
-                />
-                Only my shortlist <span>{savedIds.length}</span>
-              </label>
-              <details
-                className="advanced-filters"
-                open={advancedOpen}
-                onToggle={(e) => setAdvancedOpen(e.currentTarget.open)}
-              >
-                <summary>More filters</summary>{' '}
-                <label className="field-label" htmlFor="record-kind">
-                  Record type
-                </label>
-                <select
-                  id="record-kind"
-                  value={filters.recordKind}
-                  onChange={(event) => setFilters({ ...filters, recordKind: event.target.value })}
-                >
-                  <option value="all">All catalog records</option>
-                  <option value="retail-trim">Retail configurations</option>
-                  <option value="government-rating">Government rating variants</option>
-                  <option value="manufacturer-offer">Manufacturer offers · year unverified</option>
-                </select>
-                <label className="field-label" htmlFor="vehicle-class">
-                  NRCan vehicle class
-                </label>
-                <select
-                  id="vehicle-class"
-                  value={filters.vehicleClass}
-                  onChange={(event) => setFilters({ ...filters, vehicleClass: event.target.value })}
-                >
-                  <option value="all">All vehicle classes</option>
-                  {vehicleClasses.map((value) => (
-                    <option key={value} value={value}>
-                      {value}
-                    </option>
-                  ))}
-                </select>
-                <label className="field-label" htmlFor="availability">
-                  Availability evidence
-                </label>
-                <select
-                  id="availability"
-                  value={filters.availability}
-                  onChange={(event) => setFilters({ ...filters, availability: event.target.value })}
-                >
-                  <option value="all">All evidence statuses</option>
-                  <option value="manufacturer-listed">Currently manufacturer-listed</option>
-                  <option value="not-checked">Not yet checked</option>
-                  <option value="announced">Announced</option>
-                  <option value="discontinued">Discontinued</option>
-                </select>
-              </details>
-              <fieldset className="priorities">
-                <legend>What matters most?</legend>
-                <p>
-                  Give each priority a weight.
-                  <br />0 = ignore · 5 = matters most
-                </p>
-                {priorityKeys.map((key) => (
-                  <div className="priority" key={key}>
-                    <label htmlFor={`weight-${key}`}>
-                      {priorityDefinitions[key].label}
-                      <output htmlFor={`weight-${key}`}>{weights[key]}</output>
-                    </label>
-                    <input
-                      id={`weight-${key}`}
-                      type="range"
-                      min="0"
-                      max="5"
-                      step="1"
-                      value={weights[key]}
-                      onChange={(event) =>
-                        setWeights({ ...weights, [key]: Number(event.target.value) })
-                      }
-                      aria-valuetext={`${weights[key]} out of 5`}
-                    />
-                  </div>
-                ))}
-                <a href="#methodology" className="methodology-link">
-                  How your fit score works ↗
-                </a>
-              </fieldset>
-              <div className="scope-note">
-                <strong>Coverage is expanding.</strong>
-                <p>
-                  {governmentRatingCount.toLocaleString('en-CA')} government ratings are imported.
-                  Retail trim, price and current availability reviews are still in progress. NRCan
-                  groups some conventional and hybrid variants together. A rating is not a live
-                  inventory listing.
-                </p>
-              </div>
-            </aside>
             <div className="results" id="catalog-results">
               <div className="results-toolbar">
                 <label className="search-box">
@@ -1089,6 +909,267 @@ export function App() {
                   </select>
                 </label>
               </div>
+              <div className="catalog-primary-filters">
+                <div className="catalog-field">
+                  <label className="field-label" htmlFor="year">
+                    Model year
+                  </label>
+                  <select
+                    id="year"
+                    value={filters.year}
+                    onChange={(event) =>
+                      setFilters({ ...filters, year: event.target.value, model: 'all' })
+                    }
+                  >
+                    <option value="all">All model years</option>
+                    {years.map((year) => (
+                      <option key={year} value={year}>
+                        {year}
+                      </option>
+                    ))}
+                    {unverifiedYearCount > 0 && (
+                      <option value="unverified">Year not verified</option>
+                    )}
+                  </select>
+                </div>
+                <div className="catalog-field">
+                  <label className="field-label" htmlFor="make">
+                    Make
+                  </label>
+                  <select
+                    id="make"
+                    value={filters.make}
+                    onChange={(event) =>
+                      setFilters({ ...filters, make: event.target.value, model: 'all' })
+                    }
+                  >
+                    <option value="all">All makes</option>
+                    {makes.map((make) => (
+                      <option key={make} value={make}>
+                        {make}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+                <div className="catalog-field">
+                  <label className="field-label" htmlFor="model">
+                    Model
+                  </label>
+                  <select
+                    id="model"
+                    disabled={filters.make === 'all'}
+                    value={filters.model ?? 'all'}
+                    onChange={(e) => setFilters({ ...filters, model: e.target.value })}
+                  >
+                    <option value="all">
+                      {filters.make === 'all' ? 'Choose a make first' : 'All models'}
+                    </option>
+                    {filters.make !== 'all' &&
+                      models.map((model) => (
+                        <option key={model} value={model}>
+                          {model}
+                        </option>
+                      ))}
+                  </select>
+                </div>
+                <button
+                  className="filter-toggle button secondary"
+                  type="button"
+                  aria-expanded={filtersOpen}
+                  aria-controls="vehicle-filters"
+                  onClick={() => setFiltersOpen(!filtersOpen)}
+                >
+                  <Icon name="sliders" size={17} />
+                  {filtersOpen ? 'Hide filters' : 'Filters & priorities'}
+                </button>
+                <button
+                  type="button"
+                  className="text-button filter-reset"
+                  onClick={() => {
+                    resetFilters();
+                    setWeights({ ...defaultWeights });
+                  }}
+                >
+                  Reset
+                </button>
+              </div>
+              <aside
+                id="vehicle-filters"
+                className={`filters ${filtersOpen ? 'is-open' : ''}`}
+                aria-label="Filters and priorities"
+              >
+                <div className="advanced-filters">
+                  <div className="catalog-field">
+                    <label className="field-label" htmlFor="budget">
+                      Max base MSRP
+                    </label>
+                    <select
+                      id="budget"
+                      value={filters.budget ?? 'all'}
+                      onChange={(event) =>
+                        setFilters({
+                          ...filters,
+                          budget: event.target.value === 'all' ? null : Number(event.target.value),
+                        })
+                      }
+                    >
+                      <option value="all">Any price, including unverified</option>
+                      {[25000, 35000, 50000, 75000, 100000, 150000, 250000, 500000, 1000000].map(
+                        (value) => (
+                          <option key={value} value={value}>
+                            {currency.format(value)}
+                          </option>
+                        ),
+                      )}
+                    </select>
+                    <p className="field-hint">
+                      A price limit includes only verified CAD base MSRP. Unknown prices are not
+                      treated as free.
+                    </p>
+                  </div>
+                  <div className="catalog-field">
+                    <label className="field-label" htmlFor="fuel">
+                      Powertrain
+                    </label>
+                    <select
+                      id="fuel"
+                      value={filters.fuel}
+                      onChange={(event) => setFilters({ ...filters, fuel: event.target.value })}
+                    >
+                      <option value="all">Any powertrain</option>
+                      {fuels.map((fuel) => (
+                        <option key={fuel} value={fuel}>
+                          {fuel}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                  <div className="catalog-field">
+                    <label className="field-label" htmlFor="drive">
+                      Drivetrain
+                    </label>
+                    <select
+                      id="drive"
+                      value={filters.drivetrain}
+                      onChange={(event) =>
+                        setFilters({ ...filters, drivetrain: event.target.value })
+                      }
+                    >
+                      <option value="all">Any drivetrain</option>
+                      <option value="AWD">All-wheel drive</option>
+                      <option value="FWD">Front-wheel drive</option>
+                      <option value="RWD">Rear-wheel drive</option>
+                      <option value="4WD">Four-wheel drive</option>
+                      <option value="Not verified">Not verified</option>
+                    </select>
+                  </div>
+                  <div className="catalog-field">
+                    <label className="field-label" htmlFor="record-kind">
+                      Record type
+                    </label>
+                    <select
+                      id="record-kind"
+                      value={filters.recordKind}
+                      onChange={(event) =>
+                        setFilters({ ...filters, recordKind: event.target.value })
+                      }
+                    >
+                      <option value="all">All catalog records</option>
+                      <option value="retail-trim">Retail configurations</option>
+                      <option value="government-rating">Government rating variants</option>
+                      <option value="manufacturer-offer">
+                        Manufacturer offers · year unverified
+                      </option>
+                    </select>
+                  </div>
+                  <div className="catalog-field">
+                    <label className="field-label" htmlFor="vehicle-class">
+                      NRCan vehicle class
+                    </label>
+                    <select
+                      id="vehicle-class"
+                      value={filters.vehicleClass}
+                      onChange={(event) =>
+                        setFilters({ ...filters, vehicleClass: event.target.value })
+                      }
+                    >
+                      <option value="all">All vehicle classes</option>
+                      {vehicleClasses.map((value) => (
+                        <option key={value} value={value}>
+                          {value}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                  <div className="catalog-field">
+                    <label className="field-label" htmlFor="availability">
+                      Availability evidence
+                    </label>
+                    <select
+                      id="availability"
+                      value={filters.availability}
+                      onChange={(event) =>
+                        setFilters({ ...filters, availability: event.target.value })
+                      }
+                    >
+                      <option value="all">All evidence statuses</option>
+                      <option value="manufacturer-listed">Currently manufacturer-listed</option>
+                      <option value="not-checked">Not yet checked</option>
+                      <option value="announced">Announced</option>
+                      <option value="discontinued">Discontinued</option>
+                    </select>
+                  </div>
+                  <label className="saved-filter">
+                    <input
+                      type="checkbox"
+                      checked={filters.savedOnly}
+                      onChange={(event) =>
+                        setFilters({ ...filters, savedOnly: event.target.checked })
+                      }
+                    />
+                    Only my shortlist <span>{savedIds.length}</span>
+                  </label>
+                </div>
+                <fieldset className="priorities">
+                  <legend>What matters most?</legend>
+                  <p>
+                    Give each priority a weight.
+                    <br />0 = ignore · 5 = matters most
+                  </p>
+                  {priorityKeys.map((key) => (
+                    <div className="priority" key={key}>
+                      <label htmlFor={`weight-${key}`}>
+                        {priorityDefinitions[key].label}
+                        <output htmlFor={`weight-${key}`}>{weights[key]}</output>
+                      </label>
+                      <input
+                        id={`weight-${key}`}
+                        type="range"
+                        min="0"
+                        max="5"
+                        step="1"
+                        value={weights[key]}
+                        onChange={(event) =>
+                          setWeights({ ...weights, [key]: Number(event.target.value) })
+                        }
+                        aria-valuetext={`${weights[key]} out of 5`}
+                      />
+                    </div>
+                  ))}
+                  <a href="#methodology" className="methodology-link">
+                    How your fit score works ↗
+                  </a>
+                </fieldset>
+                <div className="scope-note">
+                  <strong>Coverage is expanding.</strong>
+                  <p>
+                    {governmentRatingCount.toLocaleString('en-CA')} government ratings are imported.
+                    Retail trim, price and current availability reviews are still in progress. NRCan
+                    groups some conventional and hybrid variants together. A rating is not a live
+                    inventory listing.
+                  </p>
+                </div>
+              </aside>
               <div className="results-caption">
                 <p role="status">
                   {results.length}{' '}
@@ -1301,20 +1382,34 @@ export function App() {
         {announcement}
       </div>
       {compareIds.length > 0 && (
-        <div className="compare-tray" aria-label="Selected cars">
-          <div className="tray-copy">
-            <span className="tray-count">
-              {compareIds.length}
-              <small>/4</small>
+        <div className="compare-tray" role="region" aria-label="Selected cars">
+          <div className="tray-selection">
+            <span className="tray-label">
+              Your comparison <small>{selected.length}/4</small>
             </span>
-            <div>
-              <strong>{compareIds.length === 4 ? 'Comparison full' : 'Your comparison'}</strong>
-              <span>
-                {compareIds.length === 1
-                  ? 'Choose at least one more car'
-                  : selected.map((car) => `${car.make} ${car.model}`).join(' · ')}
-              </span>
-            </div>
+            <ul className="selected-vehicles">
+              {selected.map((car) => (
+                <li key={car.id}>
+                  <span className="selected-vehicle-copy" title={fullName(car)}>
+                    <strong>
+                      {car.make} {car.model}
+                    </strong>
+                    <small>
+                      {modelYearLabel(car)} · {car.trim}
+                      {car.variant && ` · ${car.variant}`}
+                    </small>
+                  </span>
+                  <button
+                    type="button"
+                    className="icon-button"
+                    aria-label={`Remove ${fullName(car)} from selection`}
+                    onClick={() => toggleCompare(car.id)}
+                  >
+                    <Icon name="close" size={16} />
+                  </button>
+                </li>
+              ))}
+            </ul>
           </div>
           <div className="tray-actions">
             <button type="button" className="text-button" onClick={() => setCompareIds([])}>
@@ -1326,7 +1421,8 @@ export function App() {
               disabled={compareIds.length < 2}
               onClick={() => setComparisonOpen(true)}
             >
-              Compare {compareIds.length} cars <Icon name="arrow" size={18} />
+              Compare {compareIds.length} {compareIds.length === 1 ? 'car' : 'cars'}{' '}
+              <Icon name="arrow" size={18} />
             </button>
           </div>
         </div>

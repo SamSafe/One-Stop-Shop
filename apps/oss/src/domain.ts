@@ -71,6 +71,19 @@ export const defaultFilters: Filters = {
   savedOnly: false,
 };
 
+export function hasMatchingSpecification(cars: Car[], metric: Metric): boolean {
+  if (cars.length < 2) return false;
+  const first = cars[0]!.facts[metric];
+  return (
+    first.value !== null &&
+    cars.every(
+      (car) =>
+        car.facts[metric].value === first.value &&
+        (car.facts[metric].note ?? '') === (first.note ?? ''),
+    )
+  );
+}
+
 export function filterCars(cars: Car[], filters: Filters, savedIds: string[] = []): Car[] {
   const query = filters.query.trim().toLocaleLowerCase('en-CA');
   return cars.filter(
