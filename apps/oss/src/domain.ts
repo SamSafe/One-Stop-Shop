@@ -39,10 +39,12 @@ export const defaultWeights: Weights = { price: 3, efficiency: 3, cargo: 2, room
 export const priorityKeys = Object.keys(priorityDefinitions) as Priority[];
 export const modelYearLabel = (car: Pick<Car, 'year'>) =>
   car.year === null ? 'Year not verified' : String(car.year);
-export const fullName = (car: Car) =>
+export const configurationLabel = (car: Car) =>
   car.recordKind === 'government-rating'
-    ? `${modelYearLabel(car)} ${car.make} ${car.model} · ${car.governmentRating?.engineLitres ? `${car.governmentRating.engineLitres} L · ` : ''}${car.governmentRating?.transmission} · NRCan ${car.governmentRating?.recordId}`
-    : `${modelYearLabel(car)} ${car.make} ${car.model} ${car.trim}${car.variant ? ` ${car.variant}` : ''}${car.drivetrain !== 'Not verified' && !car.trim.split(/\s+/).includes(car.drivetrain) ? ` ${car.drivetrain}` : ''}`;
+    ? `${car.governmentRating?.engineLitres ? `${car.governmentRating.engineLitres} L · ` : ''}${car.governmentRating?.transmission} · NRCan ${car.governmentRating?.recordId}`
+    : `${car.trim}${car.variant ? ` ${car.variant}` : ''}${car.drivetrain !== 'Not verified' && !car.trim.split(/\s+/).includes(car.drivetrain) ? ` ${car.drivetrain}` : ''}`;
+export const fullName = (car: Car) =>
+  `${modelYearLabel(car)} ${car.make} ${car.model}${car.recordKind === 'government-rating' ? ' · ' : ' '}${configurationLabel(car)}`;
 
 export interface Filters {
   query: string;
@@ -82,6 +84,46 @@ export function hasMatchingSpecification(cars: Car[], metric: Metric): boolean {
         (car.facts[metric].note ?? '') === (first.note ?? ''),
     )
   );
+}
+
+export type SummaryMetric = 'msrpCad' | 'seats' | 'cargoSeatsUpL' | 'rearLegroomMm';
+export function specificationDifference(reference: Car, other: Car, metric: SummaryMetric) {
+  const a = reference.facts[metric],
+    b = other.facts[metric];
+  const values = { referenceValue: a.value, value: b.value };
+  if (a.value === null || b.value === null)
+    return {
+      ...values,
+      kind: 'unknown' as const,
+      delta: null,
+      reason: 'Not verified for both vehicles',
+    };
+  if (
+    metric === 'cargoSeatsUpL' &&
+    (reference.facts.seats.value === null ||
+      other.facts.seats.value === null ||
+      reference.facts.seats.value !== other.facts.seats.value)
+  )
+    return {
+      ...values,
+      kind: 'context' as const,
+      delta: null,
+      reason: 'Seating layouts differ or are unverified',
+    };
+  if (metric !== 'msrpCad' && metric !== 'seats' && (a.note ?? '') !== (b.note ?? ''))
+    return {
+      ...values,
+      kind: 'context' as const,
+      delta: null,
+      reason: 'Measurement or qualification notes differ',
+    };
+  const delta = b.value - a.value;
+  return {
+    ...values,
+    kind: delta === 0 ? ('same' as const) : ('different' as const),
+    delta,
+    reason: null,
+  };
 }
 
 export function filterCars(cars: Car[], filters: Filters, savedIds: string[] = []): Car[] {
@@ -223,6 +265,7 @@ export function knownIds(ids: unknown, cars: Car[], limit: number): string[] {
 export interface SharedState {
   compare: string[];
   weights: Weights;
+  reference?: string;
 }
 export function parseSharedState(search: string, cars: Car[]): SharedState {
   const params = new URLSearchParams(search.slice(0, 4096));
@@ -231,12 +274,24 @@ export function parseSharedState(search: string, cars: Car[]): SharedState {
     const raw = params.get(key);
     if (raw !== null && /^[0-5]$/.test(raw)) weights[key] = Number(raw);
   }
-  return { compare: knownIds(params.get('compare')?.split(','), cars, 4), weights };
+  const compare = knownIds(params.get('compare')?.split(','), cars, 4);
+  const reference = params.get('reference');
+  return {
+    compare,
+    weights,
+    ...(reference && compare.includes(reference) && reference !== compare[0] ? { reference } : {}),
+  };
 }
 
 export function serializeSharedState(state: SharedState): string {
   const params = new URLSearchParams();
   if (state.compare.length) params.set('compare', state.compare.join(','));
+  if (
+    state.reference &&
+    state.compare.includes(state.reference) &&
+    state.reference !== state.compare[0]
+  )
+    params.set('reference', state.reference);
   for (const key of priorityKeys)
     if (state.weights[key] !== defaultWeights[key]) params.set(key, String(state.weights[key]));
   const query = params.toString();

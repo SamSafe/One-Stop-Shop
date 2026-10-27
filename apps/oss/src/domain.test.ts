@@ -7,6 +7,7 @@ import {
   defaultWeights,
   filterCars,
   hasMatchingSpecification,
+  specificationDifference,
   fullName,
   modelYearLabel,
   knownIds,
@@ -22,6 +23,66 @@ const cars = curatedCatalog.cars;
 const first = cars[0]!;
 const hybrid = cars.find((car) => car.fuel === 'Hybrid')!;
 const onlyPrice = { price: 5, efficiency: 0, cargo: 0, room: 0 };
+
+describe('meaningful specification differences', () => {
+  it('roundtrips a selected reference through the shared comparison URL', () => {
+    const state = { compare: [first.id, hybrid.id], weights: defaultWeights, reference: hybrid.id };
+    expect(parseSharedState(serializeSharedState(state), cars)).toEqual(state);
+  });
+  it('does not accept a reference outside the selected comparison or redundantly encode the first car', () => {
+    const parsed = parseSharedState(`?compare=${first.id}&reference=${hybrid.id}`, cars);
+    expect(parsed.reference).toBeUndefined();
+    expect(serializeSharedState({ ...parsed, reference: first.id })).not.toContain('reference=');
+  });
+  it('compares base CAD prices and reverses the delta when the reference changes', () => {
+    const other = structuredClone(first);
+    other.facts.msrpCad.value = first.facts.msrpCad.value! + 2000;
+    other.facts.msrpCad.note = 'A different Canadian publication.';
+    expect(specificationDifference(first, other, 'msrpCad')).toMatchObject({
+      kind: 'different',
+      delta: 2000,
+    });
+    expect(specificationDifference(other, first, 'msrpCad').delta).toBe(-2000);
+  });
+  it('keeps a missing value unknown rather than manufacturing a numeric saving', () => {
+    const other = structuredClone(first);
+    other.facts.msrpCad = { value: null, source: null, note: 'Not published.' };
+    expect(specificationDifference(first, other, 'msrpCad')).toMatchObject({
+      kind: 'unknown',
+      delta: null,
+    });
+  });
+  it('flags differing measurement notes even when the published numbers are equal', () => {
+    const other = structuredClone(first);
+    other.facts.rearLegroomMm.note = 'Second-row seats in a different position.';
+    expect(specificationDifference(first, other, 'rearLegroomMm')).toMatchObject({
+      kind: 'context',
+      delta: null,
+    });
+  });
+  it('does not call cargo volumes directly comparable across different seating layouts', () => {
+    const other = structuredClone(first);
+    other.facts.seats.value = 7;
+    expect(specificationDifference(first, other, 'cargoSeatsUpL')).toMatchObject({
+      kind: 'context',
+      delta: null,
+    });
+    other.facts.seats.value = null;
+    expect(specificationDifference(first, other, 'cargoSeatsUpL').kind).toBe('context');
+  });
+  it('calculates a published spatial delta when the recorded context agrees', () => {
+    const other = structuredClone(first);
+    other.facts.rearLegroomMm.value = first.facts.rearLegroomMm.value! + 35;
+    expect(specificationDifference(first, other, 'rearLegroomMm')).toMatchObject({
+      kind: 'different',
+      delta: 35,
+    });
+    expect(specificationDifference(first, first, 'seats')).toMatchObject({
+      kind: 'same',
+      delta: 0,
+    });
+  });
+});
 
 describe('matching comparison specifications', () => {
   it('recognizes a known match across separate publications', () => {

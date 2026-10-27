@@ -7,6 +7,7 @@ import {
   defaultWeights,
   filterCars,
   fullName,
+  configurationLabel,
   hasMatchingSpecification,
   modelYearLabel,
   parseSharedState,
@@ -20,6 +21,7 @@ import type { Filters, Weights } from './domain';
 import { useShortlist } from './useShortlist';
 import { SourceLibrary } from './SourceLibrary';
 import { AppHeader } from './AppHeader';
+import { ComparisonSummary } from './ComparisonSummary';
 
 const cars = catalog.cars;
 const makes = [...new Set(cars.map((car) => car.make))].sort((a, b) => a.localeCompare(b));
@@ -397,6 +399,8 @@ function Comparison({
   onRemove,
   onShare,
   shareUrl,
+  referenceId,
+  onReferenceChange,
 }: {
   selected: Car[];
   weights: Weights;
@@ -405,6 +409,8 @@ function Comparison({
   onRemove: (id: string) => void;
   onShare: () => void;
   shareUrl: string;
+  referenceId: string;
+  onReferenceChange: (id: string) => void;
 }) {
   const dialog = useRef<HTMLDialogElement>(null);
   const [kilometres, setKilometres] = useState('15000');
@@ -435,6 +441,19 @@ function Comparison({
     Number.isFinite(Number(gas)) &&
     Number(gas) > 0 &&
     Number(gas) <= 5;
+  const energyCostFor = (car: Car) =>
+    kilometres.trim() !== '' &&
+    ((car.fuel !== 'Electric' && car.fuel !== 'Plug-in hybrid') || electricity.trim() !== '') &&
+    (car.fuel !== 'Plug-in hybrid' || electricShare.trim() !== '') &&
+    (car.fuel === 'Electric' || gas.trim() !== '')
+      ? annualEnergyCost(
+          car,
+          Number(kilometres),
+          Number(gas),
+          Number(electricity),
+          Number(electricShare) / 100,
+        )
+      : null;
   useEffect(() => {
     if (open && !dialog.current?.open) dialog.current?.showModal();
     if (!open && dialog.current?.open) dialog.current?.close();
@@ -507,6 +526,12 @@ function Comparison({
         </div>
       ) : (
         <>
+          <ComparisonSummary
+            selected={selected}
+            energyCost={energyCostFor}
+            referenceId={referenceId}
+            onReferenceChange={onReferenceChange}
+          />
           <div
             className="table-scroll"
             role="region"
@@ -526,10 +551,11 @@ function Comparison({
                         {car.make} · {modelYearLabel(car)}
                       </span>
                       <strong>{car.model}</strong>
-                      <span>
-                        {car.trim} · {car.drivetrain}
-                        {car.variant && ` · ${car.variant}`}
-                      </span>
+                      {car.id ===
+                        (selected.find((car) => car.id === referenceId) ?? selected[0])?.id && (
+                        <span className="reference-label">Reference vehicle</span>
+                      )}
+                      <span>{configurationLabel(car)}</span>
                       <button
                         type="button"
                         className="text-button"
@@ -607,20 +633,7 @@ function Comparison({
                 <tr>
                   <th scope="row">Estimated annual energy</th>
                   {selected.map((car) => {
-                    const cost =
-                      kilometres.trim() !== '' &&
-                      ((car.fuel !== 'Electric' && car.fuel !== 'Plug-in hybrid') ||
-                        electricity.trim() !== '') &&
-                      (car.fuel !== 'Plug-in hybrid' || electricShare.trim() !== '') &&
-                      (car.fuel === 'Electric' || gas.trim() !== '')
-                        ? annualEnergyCost(
-                            car,
-                            Number(kilometres),
-                            Number(gas),
-                            Number(electricity),
-                            Number(electricShare) / 100,
-                          )
-                        : null;
+                    const cost = energyCostFor(car);
                     return (
                       <td key={car.id}>
                         {cost === null ? 'Not available' : currency.format(cost)}
@@ -727,6 +740,12 @@ export function App() {
   );
   const [weights, setWeights] = useState<Weights>(initialShared.weights);
   const [compareIds, setCompareIds] = useState<string[]>(initialShared.compare);
+  const [referenceId, setReferenceId] = useState(
+    initialShared.reference ?? initialShared.compare[0] ?? '',
+  );
+  useEffect(() => {
+    if (!compareIds.includes(referenceId)) setReferenceId(compareIds[0] ?? '');
+  }, [compareIds, referenceId]);
   const [comparisonOpen, setComparisonOpen] = useState(initialShared.compare.length >= 2);
   const { savedIds, storageWarning, setSaved, clearShortlist } = useShortlist(cars);
   const [urlWarning, setUrlWarning] = useState<string | null>(null);
@@ -741,7 +760,7 @@ export function App() {
   const reviewAge = Math.floor((Date.now() - Date.parse(catalog.reviewedAt)) / 86400000);
 
   useEffect(() => {
-    const next = `${window.location.pathname}${serializeSharedState({ compare: compareIds, weights })}${window.location.hash}`;
+    const next = `${window.location.pathname}${serializeSharedState({ compare: compareIds, weights, reference: referenceId })}${window.location.hash}`;
     try {
       if (next !== `${window.location.pathname}${window.location.search}${window.location.hash}`) {
         window.history.replaceState(null, '', next);
@@ -753,12 +772,13 @@ export function App() {
       );
     }
     setShareUrl('');
-  }, [compareIds, weights]);
+  }, [compareIds, weights, referenceId]);
   useEffect(() => {
     const navigate = () => {
       const next = parseSharedState(window.location.search, cars);
       setCompareIds(next.compare);
       setWeights(next.weights);
+      setReferenceId(next.reference ?? next.compare[0] ?? '');
       setComparisonOpen(next.compare.length >= 2);
     };
     window.addEventListener('popstate', navigate);
@@ -811,7 +831,7 @@ export function App() {
   async function shareComparison() {
     const url = new URL(window.location.href);
     url.hash = '';
-    url.search = serializeSharedState({ compare: compareIds, weights });
+    url.search = serializeSharedState({ compare: compareIds, weights, reference: referenceId });
     try {
       await navigator.clipboard.writeText(url.toString());
       setAnnouncement('Comparison link copied.');
@@ -845,7 +865,9 @@ export function App() {
       <main>
         <section className="workspace-intro" aria-labelledby="workspace-title">
           <div>
-            <h1 id="workspace-title">Compare vehicles</h1>
+            <h1 id="workspace-title">
+              Compare <span>vehicles</span>
+            </h1>
             <p>Canadian prices and specifications. Select up to four vehicles to compare.</p>
           </div>
         </section>
@@ -1343,7 +1365,9 @@ export function App() {
         </section>
       </main>
       <footer className="site-footer">
-        <div className="footer-brand">OSS</div>
+        <div className="footer-brand">
+          oss<span>.</span>
+        </div>
         <p>
           Independent comparison tool. No manufacturer affiliation.
           <br />
@@ -1395,8 +1419,7 @@ export function App() {
                       {car.make} {car.model}
                     </strong>
                     <small>
-                      {modelYearLabel(car)} · {car.trim}
-                      {car.variant && ` · ${car.variant}`}
+                      {modelYearLabel(car)} · {configurationLabel(car)}
                     </small>
                   </span>
                   <button
@@ -1435,6 +1458,8 @@ export function App() {
         onRemove={toggleCompare}
         onShare={() => void shareComparison()}
         shareUrl={shareUrl}
+        referenceId={referenceId}
+        onReferenceChange={setReferenceId}
       />
     </>
   );

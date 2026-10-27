@@ -13,8 +13,19 @@ export function AppHeader({
   return (
     <header className="site-header workspace-header">
       <a className="brand" href="/">
-        <span className="brand-word">OSS</span>
-        <span className="brand-name">One Stop Shop</span>
+        <span className="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+            <path d="M4 20V9l8-5 8 5v11H4Zm4 0V11h8v9M8 15h8" />
+          </svg>
+        </span>
+        <span className="brand-word">
+          oss<span className="brand-dot">.</span>
+        </span>
+        <span className="brand-name">
+          ONE STOP
+          <br />
+          SHOP
+        </span>
       </a>
       <nav className="workspace-nav" aria-label="Main navigation">
         <a href="/" aria-current={page === 'compare' ? 'page' : undefined}>
