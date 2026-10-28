@@ -17,7 +17,10 @@ export interface ServiceRecord {
   on: string;
   km: number;
   note: string;
+  costCents?: number;
+  provider?: string;
 }
+export const maxServiceCostCents = 100_000_000;
 export interface OwnedVehicle {
   id: string;
   make: string;
@@ -161,7 +164,16 @@ export function parseGarage(input: unknown): Garage {
     });
     unique(reminders);
     const records = array(v.records, 2000).map((input) => {
-      const r = object(input, ['id', 'reminderId', 'title', 'on', 'km', 'note']);
+      const r = object(input, [
+        'id',
+        'reminderId',
+        'title',
+        'on',
+        'km',
+        'note',
+        'costCents',
+        'provider',
+      ]);
       const reminderId = r.reminderId === null ? null : identifier(r.reminderId);
       if (reminderId !== null && !reminders.some((x) => x.id === reminderId))
         fail('Service record references an unknown reminder.');
@@ -172,6 +184,10 @@ export function parseGarage(input: unknown): Garage {
         on: date(r.on),
         km: number(r.km, 0, odometerKm),
         note: string(r.note, 1000, true),
+        ...(r.costCents !== undefined
+          ? { costCents: number(r.costCents, 0, maxServiceCostCents) }
+          : {}),
+        ...(r.provider !== undefined ? { provider: string(r.provider, 100) } : {}),
       };
     });
     unique(records);
@@ -256,6 +272,43 @@ export function removeReminder(v: OwnedVehicle, id: string): OwnedVehicle {
       ? { suppressedMaintenance: [...new Set([...(v.suppressedMaintenance ?? []), key])] }
       : {}),
   };
+}
+
+function assertCurrentReminder(vehicle: OwnedVehicle, original: Reminder) {
+  const current = vehicle.reminders.find((reminder) => reminder.id === original.id);
+  if (!current)
+    fail(
+      'This reminder was removed in another tab. Cancel this action to see the latest schedule.',
+    );
+  const keys = ['id', 'title', 'km', 'months', 'lastOn', 'lastKm', 'manufacturerKey'] as const;
+  if (keys.some((key) => current![key] !== original[key]))
+    fail(
+      'This reminder changed in another tab. Cancel this action and review it before trying again.',
+    );
+}
+
+export function reviseReminder(
+  vehicle: OwnedVehicle,
+  original: Reminder,
+  edited: Reminder,
+): OwnedVehicle {
+  assertCurrentReminder(vehicle, original);
+  if (edited.id !== original.id) fail('A corrected reminder must retain its original identity.');
+  if (original.manufacturerKey || edited.manufacturerKey)
+    fail(
+      'Reviewed manufacturer reminders use verified intervals. Add a personal reminder for your own plan.',
+    );
+  return {
+    ...vehicle,
+    reminders: vehicle.reminders.map((reminder) =>
+      reminder.id === original.id ? edited : reminder,
+    ),
+  };
+}
+
+export function deleteReminder(vehicle: OwnedVehicle, original: Reminder): OwnedVehicle {
+  assertCurrentReminder(vehicle, original);
+  return removeReminder(vehicle, original.id);
 }
 
 export function automaticallySchedule(v: OwnedVehicle): OwnedVehicle {
@@ -387,15 +440,26 @@ export function reviseServiceRecord(
   original: ServiceRecord,
   edited: ServiceRecord,
 ): OwnedVehicle {
-  const current = vehicle.records.find((r) => r.id === original.id);
-  if (!current)
-    fail(
-      'This service record was removed in another tab. Cancel the editor to see the latest history.',
-    );
-  const keys = ['id', 'reminderId', 'title', 'on', 'km', 'note'] as const;
-  if (keys.some((key) => current![key] !== original[key]))
-    fail('This service record changed in another tab. Cancel and reopen it before saving.');
+  assertCurrentServiceRecord(vehicle, original);
   if (edited.id !== original.id)
     fail('A corrected service record must retain its original identity.');
   return { ...vehicle, records: vehicle.records.map((r) => (r.id === original.id ? edited : r)) };
+}
+
+function assertCurrentServiceRecord(vehicle: OwnedVehicle, original: ServiceRecord) {
+  const current = vehicle.records.find((r) => r.id === original.id);
+  if (!current)
+    fail(
+      'This service record was removed in another tab. Cancel this action to see the latest history.',
+    );
+  const keys = ['id', 'reminderId', 'title', 'on', 'km', 'note', 'costCents', 'provider'] as const;
+  if (keys.some((key) => current![key] !== original[key]))
+    fail(
+      'This service record changed in another tab. Cancel this action and review the latest history before trying again.',
+    );
+}
+
+export function deleteServiceRecord(vehicle: OwnedVehicle, original: ServiceRecord): OwnedVehicle {
+  assertCurrentServiceRecord(vehicle, original);
+  return { ...vehicle, records: vehicle.records.filter((record) => record.id !== original.id) };
 }

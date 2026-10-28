@@ -1370,3 +1370,26 @@ sales catalog. Owner data and shared manufacturer facts remain separate.
 
 The user requested a reasonable stopping point for feedback. This increment and
 the first garage form that checkpoint; see [review notes](REVIEW-MILESTONE.md).
+
+## Subaru specification review — 27 October 2026
+
+All nine current Canadian specification pages reconcile to 41 exact factory IDs.
+The refreshed lineup/pricing adds the 2027 BRZ Kagayaki Edition (CarID 1625) at
+$39,995 base MSRP; the prior 40 IDs and base prices remain unchanged. Exact-column
+measurements, standard powertrain evidence and qualified up-to electric range
+are imported. Eighteen explicitly audited rating joins supply combined fuel
+consumption without averaging city/highway figures.
+
+The current catalog contains 6,083 records, 3,544 year-qualified retail profiles,
+25 year-unverified offers and 2,514 standalone government variants. All 2,518
+NRCan IDs remain represented. There are 2,634 known base prices, 47 rated retail
+profiles and 1,337 official sources. Default scoring covers 643 records; 36
+electric retail profiles are scorable. Broad priced-SUV discovery exposes 1,236
+records, including 791 with at least five verified seats.
+
+The WRX GT fuel-unit contradiction and Outback Touring cylinder-layout gap remain
+reported explicitly. Subaru EV consumption remains unknown. See
+[the exact sources, identities and refresh contract](SUBARU-SPECIFICATIONS.md).
+The missing-manufacturer count remains 18 and full market verification remains
+false; this increment establishes neither national stock completeness nor every
+equipment combination. Earlier sections retain their dated milestone counts.

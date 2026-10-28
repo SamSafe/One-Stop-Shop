@@ -2,6 +2,8 @@
 
 The original review milestone lacked a way to correct a vehicle or service entry without removing it. The resumed goal adds these corrections in place.
 
+This report records the 26 October checkpoint. See [project status](PROJECT-STATUS.md) for current verification and the subsequent personal-reminder increment below.
+
 ## Vehicle details
 
 Use **Edit vehicle** on a garage card to correct the make, model, model year, powertrain or nickname. The odometer, personal reminders and service history remain attached to the vehicle.
@@ -31,3 +33,11 @@ Implementation commit: `c4ddbe1`.
 - The correction form was visually reviewed on desktop and a 320 px mobile viewport, with no horizontal document overflow.
 
 The preview remains at `http://localhost:8080/garage`. Try correcting a vehicle's nickname or a service record, then confirm its history and next reminder. The goal's requested feedback stop remains appropriate here: the garage entry, recording, correction and backup loop is now usable, while broader catalog and maintenance coverage is explicitly unfinished.
+
+## Personal reminders — 27 October
+
+Choose **Edit reminder** on a personal task to correct its name, time/distance interval or starting completion details. Saving retains the reminder ID, linked records and calendar event identity. At least one interval is required; an inline error identifies missing intervals. Unknown starting history remains unknown. Clearing starting details does not remove actual service records; later logged work still participates in the due calculation. Reviewed manufacturer intervals retain their verified values.
+
+Saving or cancelling returns focus to the reminder, or to the vehicle if another tab removed it. Edits and pending removals check the original reminder snapshot. A newer correction cannot be overwritten or silently removed, and a deleted reminder cannot be recreated by an old editor. Unrelated service completions and odometer updates remain intact.
+
+Switching between adding, editing and recording a completion creates the correct form state even when imported service and reminder identifiers match. Old dates, notes or expenses cannot carry into the new completion through that switch. Regression cases reproduced both overlapping-identifier failures before the fix.

@@ -17,6 +17,7 @@ test('automatic tasks use actual history, survive reloads, and respect removal a
   const car = await addElantra(page);
   await expect(car.locator('.garage-reminder')).toHaveCount(6);
   await expect(car.getByText('Needs history', { exact: true })).toHaveCount(6);
+  await expect(car.getByRole('button', { name: /^Edit reminder:/ })).toHaveCount(0);
   const initial = await page.evaluate(
     () => JSON.parse(localStorage.getItem('oss-garage-v1')!).vehicles[0],
   );

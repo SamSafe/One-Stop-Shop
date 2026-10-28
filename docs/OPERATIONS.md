@@ -15,6 +15,18 @@ them with Playwright's --with-deps option. Build failures are release blockers.
 Automated accessibility checks supplement keyboard/visual review; they do not
 certify accessibility.
 
+On a constrained local machine, run host browser projects and a separate WebKit
+container sequentially, and finish catalog validation or ingestion probes before
+starting browser tests. Worker limits apply per invocation; concurrent commands
+can exceed the intended total. If traces show slow loading or accessibility work
+exhausting a test budget, recheck the affected project alone with `--workers=1`
+while keeping its assertions, test timeouts and retry settings unchanged. During the
+fuel-price increment, three cases exhausted their 30-second budgets under shared
+load; the complete affected browser projects passed when run alone with one
+worker. Three fresh Chromium contexts against the local production server then
+reached search in 1,183, 1,122 and 1,123 ms. These measurements belong to that
+increment; current verification is recorded in [project status](PROJECT-STATUS.md).
+
 Deploy the resulting dist artifact as a unit. Keep the previous artifact and
 source SHA for rollback. Never mix old HTML with only some newly built assets.
 
@@ -93,8 +105,7 @@ artifact and deploys a saved version. Preserve the current private audience.
 Record returned source SHA, version ID and deployment URL in the release report.
 Retain version IDs for rollback; do not recreate the project.
 
-For another static host, serve / as index.html and return 404 for unknown files.
-Query parameters require no server routing or SPA fallback. Apply the policies
+For another static host, serve `/`, `/garage` and `/garage/` with index.html and return 404 for unknown files. Configure those explicit route mappings; query parameters need no additional routing. Apply the policies
 in dist/_headers if the host supports that convention. Otherwise configure
 equivalent response headers and cache rules in that host. HTML includes a CSP
 fallback, but framing and HTTP cache policies require actual response headers.
@@ -106,11 +117,15 @@ artifact for that URL; it does not need the Node server.
 
 ## Smoke checks after deployment
 
-- Open the homepage and verify five Canadian configurations and CAD labels.
+- Open the homepage and verify Canadian catalog records and CAD labels. Try the priced-retail and electric quick views.
 - Filter to Hybrid, then restore all cars.
-- Compare two configurations and reload the copied URL.
+- Change search/filter/sort settings, navigate to another result page and reload; verify the same view returns. Copy a search link into a fresh browser context and confirm the private shortlist filter is omitted.
+- Compare two configurations, change energy assumptions and reload the copied URL to verify both the selection and assumptions.
 - Save a shortlist, reload, and clear it through Privacy & data.
+- Open Manage shortlist with restrictive catalog filters and verify all saved choices appear. Export a backup, preview importing it with duplicates/unavailable IDs, cancel once, then merge without losing newer choices from another tab. Check direct comparison selection and keyboard return after closing the manager.
 - Inspect a source link, the data review date and pricing exclusions.
+- Open `/garage`, confirm per-vehicle maintenance coverage and export a calendar snapshot from a vehicle with known service-date history.
+- Log an optional service amount/provider, filter its history and export matching CSV rows. Check a JSON backup/restore retains the expense and keeps unknown amounts distinct from zero.
 - Check the homepage, health endpoint, headers and a hashed asset cache policy.
 
 A successful native Sites deployment verifies publication. External uptime
@@ -144,6 +159,13 @@ Known numeric facts need official provenance. Unknown values require null plus
 a reason. Do not guess combined fuel consumption from city/highway ratings.
 Do not advance review dates without checking the sources.
 
+For Subaru, run `npm run catalog:sync:subaru` for lineup/pricing followed by
+`npm run catalog:sync:subaru-specifications` for exact specification columns.
+Review the [source contract and unresolved conflicts](SUBARU-SPECIFICATIONS.md)
+and audited rating links before accepting changed snapshots. Specification-only
+refreshes do not advance pricing receipts. `npm run catalog:coverage` reports
+unresolved Subaru fuel-unit and powertrain evidence alongside other market gaps.
+
 The UI warns after 90 days and builds fail for sources older than 180 days.
 Weekly CI checks surface expiry and dependency advisories when the repository's
 Actions service is enabled. Reverify inaccessible sources or replace them with
@@ -151,7 +173,4 @@ an authoritative reference; do not remove provenance to make validation pass.
 
 ## Support limits
 
-This release is English-language Canada only, with five configurations and dated
-base MSRP. It provides no live inventory, cloud sync, reliability ratings,
-service reminders or purchase transactions. Cargo and width methods differ;
-the UI preserves those limits. Broader coverage and French content are planned.
+The app is English-language Canada only, with a dated and incomplete Canadian catalog. It includes local garage service history, selected manufacturer tasks, personal reminders and calendar snapshots. It provides no cloud sync, background notification service, live inventory, reliability ratings or purchase transactions. Calendar notifications depend on the calendar app. Cargo and width methods differ; the UI preserves those limits. See [current project status](PROJECT-STATUS.md) for exact coverage; French content remains planned.

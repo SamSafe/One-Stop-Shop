@@ -40,7 +40,7 @@ export function useShortlist(cars: Car[]) {
     return () => window.removeEventListener('storage', receiveStorage);
   }, [cars]);
 
-  function setSaved(id: string, wanted: boolean) {
+  function change(update: (ids: string[]) => string[]) {
     let latest = current.current;
     if (canPersist.current) {
       const loaded = read();
@@ -50,16 +50,16 @@ export function useShortlist(cars: Car[]) {
         setStorageWarning(loaded.warning);
       }
     }
-    const next = wanted
-      ? knownIds([...latest, id], cars, cars.length)
-      : latest.filter((item) => item !== id);
+    const next = knownIds(update(latest), cars, cars.length);
+    const previous = new Set(latest);
+    const added = next.filter((id) => !previous.has(id)).length;
     show(next);
     if (canPersist.current) {
       try {
         if (saveShortlist(window.localStorage, next)) {
           unsavedChanges.current = false;
           setStorageWarning(null);
-          return;
+          return added;
         }
       } catch {
         /* Browser storage access itself can throw. Keep the local choice. */
@@ -68,6 +68,15 @@ export function useShortlist(cars: Car[]) {
       setStorageWarning(unavailable);
     }
     unsavedChanges.current = true;
+    return added;
+  }
+
+  function setSaved(id: string, wanted: boolean) {
+    change((latest) => (wanted ? [...latest, id] : latest.filter((item) => item !== id)));
+  }
+
+  function addMany(ids: string[]) {
+    return change((latest) => [...latest, ...ids]);
   }
 
   function clearShortlist() {
@@ -87,5 +96,5 @@ export function useShortlist(cars: Car[]) {
     }
   }
 
-  return { savedIds, storageWarning, setSaved, clearShortlist };
+  return { savedIds, storageWarning, setSaved, addMany, clearShortlist };
 }

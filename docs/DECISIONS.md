@@ -41,7 +41,7 @@ This keeps the first product operable while gathering evidence for a backend.
 ## D7 — Transparent ranking with explicit missing values
 
 Four priorities, integer weights, fixed normalization scales and deterministic
-tie handling. Lower price and fuel consumption are better. Missing an active
+tie handling. Lower price and estimated energy cost are better. Default weights now enable price and energy only; spatial priorities are opt-in. Gas, hybrid, EV and plug-in hybrid scoring uses the same editable, shareable energy assumptions. Missing an active
 metric leaves a car unscored. Reliability, safety and total ownership cost are
 not inferred from proxies.
 
@@ -73,7 +73,7 @@ personal reminders remain labelled separately. See MAINTENANCE-SOURCES.md.
 
 The user requested a reasonable stopping point and feedback before more
 improvements. The 26 October checkpoint is documented in REVIEW-MILESTONE.md.
-Incomplete market and maintenance coverage remain explicit.
+The user authorized the next quality and app-improvement increment on 27 October, superseding that pause. Incomplete market and maintenance coverage remain explicit.
 
 ## Deferred decisions
 

@@ -1,19 +1,23 @@
 # One Stop Shop — OSS
 
+Current implementation, coverage limits and verification: [project status](docs/PROJECT-STATUS.md).
+
 A Canadian vehicle comparison tool. Search and year/make/model selection lead
 into specification rows and side-by-side comparisons. Additional filters and
-ranking controls open on demand; matching specifications and source notes can
-be toggled in the comparison table. The garage is a separate section for later
-expansion. Light, dark and system appearance settings apply across both areas.
+ranking controls open on demand; priced retail, electric and family-SUV quick views help narrow the catalog; matching specifications and source notes can
+be toggled in the comparison table. Vehicle headings and row labels stay visible
+while scrolling, with mobile columns sized to fit and keyboard focus kept in view. Key differences explain trade-offs relative
+to a shareable reference vehicle. The original ivory, green and rust design
+language applies across comparison and the separate garage.
 
 A Canadian car comparison app that explains how each configuration fits your
-priorities. The working catalog contains 6,082 records across 48 makes: 3,543
+priorities. The working catalog contains 6,083 records across 48 makes: 3,544
 year-qualified retail configurations, 25 manufacturer offers with unverified
 model years, and 2,514 standalone government rating variants. All 2,518 NRCan
-rating IDs for 2025–2027 remain represented; matched ratings are merged into
+rating IDs for 2025–2027 remain represented; 47 retail configurations carry reviewed exact-rating links; matched ratings are merged into
 retail configurations. Manufacturer listings include overlapping 2024–2027 years.
 
-Base MSRP is verified for 2,617 year-qualified retail profiles and published for
+Base MSRP is verified for 2,618 year-qualified retail profiles and published for
 16 of the year-unverified offers. Genesis supplies 39 separately labeled Alberta
 all-inclusive prices. Unknown facts retain their reasons; preliminary technical
 figures, configured stock prices and expired finance examples do not become
@@ -32,23 +36,29 @@ retail configurations. See [the coverage evidence and milestones](docs/CANADIAN-
 and run `npm run catalog:coverage` for the current gaps.
 
 Browse and filter, set priority weights, compare 2–4 cars, estimate annual fuel
-costs, share a comparison URL and save a shortlist on your device. Every published
+costs, share search or comparison URLs and save a shortlist on your device. Search, filters, sorting and result pages survive reloads; copied links omit the device-only shortlist filter. Searches and filters in URLs are visible to link recipients and may appear in host access logs. Every published
 numeric specification has an official source. Scored and budget-filtered prices
 are CAD base MSRP. Separately labeled regional all-inclusive prices retain their
 own basis and do not replace unknown base MSRP. Liquid
 fuel is L/100 km, electricity is kWh/100 km, cargo is litres and dimensions are
 millimetres. Unknown prices remain searchable until a budget limit is applied.
-Missing active scoring metrics leave a record unscored. This is a dated research catalog;
+Cards preview estimated CAD energy cost per 100 km; comparisons split fuel and electricity costs and explain unavailable estimates. Inapplicable energy fields stay distinct from unverified facts. Optional premium, diesel and E85 prices apply to verified fuel types, with explicit shared-price fallback for unverified grades. Valid price assumptions are included in shared search and comparison links. Default fit scores use verified base price and estimated energy cost across gas, hybrid, EV and plug-in hybrid vehicles. Cargo and rear-legroom priorities are optional. Missing active scoring metrics leave a record unscored; the results show how many records can be scored. Energy inputs are editable and included in shared comparison links. This is a dated research catalog;
 it does not claim live inventory, current dealer prices, reliability ratings or
 complete market coverage.
 
 The garage at `/garage` starts with a guided Canadian vehicle finder: year, make,
 model and optional configuration, then odometer and personal details. Its separate
 owner directory covers published model-year entries from 1995–2027 across 66 makes.
-Unlisted vehicles can be entered manually. Vehicle details and service history
-remain editable, with recurring reminders and backup export/restore. Canadian 2016 Elantra
+Unlisted vehicles can be entered manually. Reviewed manufacturer tasks are
+scheduled automatically, with due dates and mileage calculated from actual
+service history. The Canadian 2016 Elantra plan contains six sourced tasks;
+unreviewed vehicles do not receive invented manufacturer intervals. See
+[automatic maintenance coverage](docs/AUTOMATIC-MAINTENANCE.md). Vehicle details and service history
+remain editable, with recurring reminders and backup export/restore. Service records support optional CAD amounts and providers, searchable paged history, inclusive date filters and CSV export. Unknown amounts stay explicit; recorded expense totals exclude them. Canadian 2016 Elantra
 sedan oil/filter guidance and manual specifications are verified; selected Toyota
 and Honda guidance is also available. Unsupported schedules remain unset.
+The maintenance overview prioritizes reminders across vehicles, with vehicle/status filters and direct keyboard navigation to the matching task. Overview and history pages move focus and the viewport to new results.
+Personal reminders can be corrected without losing linked receipts. Changed or removed reminders reject stale edits and pending removals; newer actual service and odometer readings remain intact.
 Garage records stay in this browser. See [maintenance sources](docs/MAINTENANCE-SOURCES.md)
 and the [workspace redesign](docs/WORKSPACE-REDESIGN.md). Lookup sources and refresh
 commands are documented in [the owner directory contract](docs/OWNER-VEHICLE-DIRECTORY.md).
@@ -108,8 +118,9 @@ Loading and download-recovery states preserve the device shortlist. See
 [catalog delivery and startup measurements](docs/CATALOG-DELIVERY.md).
 There is no runtime database, application account service, third-party analytics
 or secret configuration.
-Shortlists use local storage; comparisons and weights use URL parameters.
-Garage remains independent and will reuse the catalog when it is implemented.
+Shortlists use local storage; browsing context, comparisons, weights and energy assumptions use URL parameters.
+Manage shortlist shows all saved configurations independently of filters and supports direct comparison, complete JSON export and previewed import/merge. Backups contain configuration IDs and go only where you choose to save or share the file. Imports keep existing choices and the active comparison; unavailable configurations are reported explicitly.
+Garage loads independently and requests comparison specifications only when needed. Known service dates can be exported as a calendar snapshot; background notifications depend on the chosen calendar app.
 
 The NRCan baseline is attributed under the Open Government Licence – Canada.
 Refresh it explicitly with `npm run catalog:sync -- 2025 2026 2027`; ordinary builds

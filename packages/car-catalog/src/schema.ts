@@ -10,7 +10,7 @@ const id = z
   .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/)
   .max(100);
 const date = z.iso.date();
-const fact = (min: number, max: number) =>
+const fact = (min: number, max: number, allowUpTo = false) =>
   z
     .strictObject({
       value: z.number().finite().min(min).max(max).nullable(),
@@ -28,8 +28,14 @@ const fact = (min: number, max: number) =>
         }, 'Use a reviewed official source URL.')
         .optional(),
       note: z.string().min(1).max(1000).optional(),
+      qualifier: z.literal('up-to').optional(),
     })
     .superRefine((value, ctx) => {
+      if (value.qualifier && (!allowUpTo || value.value === null))
+        ctx.addIssue({
+          code: 'custom',
+          message: 'Only a known electric range can carry an up-to qualifier.',
+        });
       if (value.value !== null && value.source === null) {
         ctx.addIssue({ code: 'custom', message: 'Known facts require a source.' });
       }
@@ -49,7 +55,7 @@ const factsShape = Object.fromEntries(
       'rechargeHours',
       'co2Gkm',
     ].includes(key)
-      ? fact(def.min, def.max).default({
+      ? fact(def.min, def.max, key === 'electricRangeKm').default({
           value: null,
           source: null,
           note: 'Not verified for this configuration.',

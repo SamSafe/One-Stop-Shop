@@ -1,4 +1,6 @@
 import type { Car, Metric } from '@oss/car-catalog';
+import { estimateEnergy, annualEnergyEstimate } from './energy';
+import { nonApplicableReason } from './specifications';
 
 export const priorityDefinitions = {
   price: {
@@ -9,10 +11,10 @@ export const priorityDefinitions = {
     lowerIsBetter: true,
   },
   efficiency: {
-    label: 'Fuel economy',
+    label: 'Energy cost',
     metric: 'fuelCombinedL100km',
-    min: 4,
-    max: 12,
+    min: 0,
+    max: 24,
     lowerIsBetter: true,
   },
   cargo: {
@@ -35,7 +37,27 @@ export const priorityDefinitions = {
 >;
 export type Priority = keyof typeof priorityDefinitions;
 export type Weights = Record<Priority, number>;
-export const defaultWeights: Weights = { price: 3, efficiency: 3, cargo: 2, room: 2 };
+export const defaultWeights: Weights = { price: 3, efficiency: 3, cargo: 0, room: 0 };
+export interface EnergySettings {
+  kilometres: number;
+  fuelPrice: number;
+  electricityPrice: number;
+  electricFraction: number;
+  premiumPrice?: number;
+  dieselPrice?: number;
+  e85Price?: number;
+}
+export const defaultEnergy = {
+  kilometres: 15000,
+  fuelPrice: 1.6,
+  electricityPrice: 0.15,
+  electricFraction: 0.5,
+} satisfies EnergySettings;
+export const priorityPresets: { label: string; weights: Weights }[] = [
+  { label: 'Price & energy', weights: defaultWeights },
+  { label: 'Family space', weights: { price: 3, efficiency: 2, cargo: 3, room: 3 } },
+  { label: 'Price only', weights: { price: 5, efficiency: 0, cargo: 0, room: 0 } },
+];
 export const priorityKeys = Object.keys(priorityDefinitions) as Priority[];
 export const modelYearLabel = (car: Pick<Car, 'year'>) =>
   car.year === null ? 'Year not verified' : String(car.year);
@@ -55,6 +77,9 @@ export interface Filters {
   vehicleClass?: string;
   recordKind?: string;
   availability?: string;
+  bodyStyle?: string;
+  minSeats?: number | null;
+  pricedOnly?: boolean;
   fuel: string;
   drivetrain: string;
   savedOnly: boolean;
@@ -71,16 +96,37 @@ export const defaultFilters: Filters = {
   fuel: 'all',
   drivetrain: 'all',
   savedOnly: false,
+  bodyStyle: 'all',
+  minSeats: null,
+  pricedOnly: false,
 };
+
+// This is a broad browsing category, distinct from NRCan's precise size classes.
+// Unknown body styles stay unknown; no trim or exact rating is inferred.
+export function vehicleBodyStyle(car: Car): string {
+  if (car.bodyStyle !== 'Not verified')
+    return car.bodyStyle === 'Compact SUV' ? 'SUV' : car.bodyStyle;
+  const ratingClass = car.governmentRating?.vehicleClass ?? '';
+  if (/^Sport utility vehicle:/i.test(ratingClass)) return 'SUV';
+  if (/^Pickup truck:/i.test(ratingClass)) return 'Pickup';
+  if (/^Minivan/i.test(ratingClass)) return 'Minivan';
+  if (/^Station wagon:/i.test(ratingClass)) return 'Wagon';
+  if (/^Van:/i.test(ratingClass)) return 'Van';
+  return 'Not verified';
+}
 
 export function hasMatchingSpecification(cars: Car[], metric: Metric): boolean {
   if (cars.length < 2) return false;
+  const applicability = cars.map((car) => nonApplicableReason(car, metric));
+  if (applicability.some(Boolean))
+    return applicability.every((reason) => reason === applicability[0]);
   const first = cars[0]!.facts[metric];
   return (
     first.value !== null &&
     cars.every(
       (car) =>
         car.facts[metric].value === first.value &&
+        car.facts[metric].qualifier === first.qualifier &&
         (car.facts[metric].note ?? '') === (first.note ?? ''),
     )
   );
@@ -126,13 +172,56 @@ export function specificationDifference(reference: Car, other: Car, metric: Summ
   };
 }
 
+const searchWords = (value: string) =>
+  value
+    .normalize('NFKD')
+    .replace(/\p{M}/gu, '')
+    .toLocaleLowerCase('en-CA')
+    .replace(/[-‐‑‒–—−'’]/g, '')
+    .replace(/[^\p{L}\p{N}]+/gu, ' ')
+    .trim()
+    .split(/\s+/)
+    .filter(Boolean);
+
 export function filterCars(cars: Car[], filters: Filters, savedIds: string[] = []): Car[] {
-  const query = filters.query.trim().toLocaleLowerCase('en-CA');
+  const phrases: string[] = [];
+  const query = searchWords(
+    filters.query.replace(/"([^"]*)"/g, (_match, phrase: string) => {
+      const normalized = searchWords(phrase).join(' ');
+      if (normalized) phrases.push(normalized);
+      return ' ';
+    }),
+  );
+  const partialLast = !/[\s"]$/.test(filters.query);
+  const matches = (car: Car) => {
+    const words = searchWords(
+      `${fullName(car)} ${car.fuel} ${car.drivetrain} ${vehicleBodyStyle(car)}`,
+    );
+    const text = ` ${words.join(' ')} `;
+    return (
+      phrases.every((phrase) => text.includes(` ${phrase} `)) &&
+      query.every((term, index) =>
+        words.some(
+          (word) =>
+            (word === term ||
+              (partialLast && index === query.length - 1 && word.startsWith(term))) &&
+            // CX-5 and CX-50 (or X5 and X50) are different model identities.
+            !(/[\p{L}].*\d$/u.test(term) && /^\d/.test(word.slice(term.length))),
+        ),
+      )
+    );
+  };
   return cars.filter(
     (car) =>
-      (!query || fullName(car).toLocaleLowerCase('en-CA').includes(query)) &&
+      ((!query.length && !phrases.length) || matches(car)) &&
       (filters.budget === null ||
         (car.facts.msrpCad.value !== null && car.facts.msrpCad.value <= filters.budget)) &&
+      (!filters.pricedOnly || car.facts.msrpCad.value !== null) &&
+      (!filters.minSeats ||
+        (car.facts.seats.value !== null && car.facts.seats.value >= filters.minSeats)) &&
+      (!filters.bodyStyle ||
+        filters.bodyStyle === 'all' ||
+        vehicleBodyStyle(car) === filters.bodyStyle) &&
       (!filters.make || filters.make === 'all' || car.make === filters.make) &&
       (!filters.model || filters.model === 'all' || car.model === filters.model) &&
       (!filters.year ||
@@ -153,7 +242,15 @@ export function filterCars(cars: Car[], filters: Filters, savedIds: string[] = [
   );
 }
 
-export function scoreCar(car: Car, weights: Weights) {
+export function energyCostPer100km(
+  car: Car,
+  energy: EnergySettings = defaultEnergy,
+): number | null {
+  const estimate = estimateEnergy(car, energy);
+  return estimate.available ? Math.round(estimate.total * 100) / 100 : null;
+}
+
+export function scoreCar(car: Car, weights: Weights, energy: EnergySettings = defaultEnergy) {
   const contributions: { priority: Priority; value: number; weight: number; points: number }[] = [];
   let totalWeight = 0;
   for (const key of priorityKeys) {
@@ -168,12 +265,16 @@ export function scoreCar(car: Car, weights: Weights) {
     const weight = weights[key];
     if (weight === 0) continue;
     const definition = priorityDefinitions[key];
-    const value = car.facts[definition.metric].value;
+    const value =
+      key === 'efficiency' ? energyCostPer100km(car, energy) : car.facts[definition.metric].value;
     if (value === null)
       return {
         score: null,
         contributions: [],
-        reason: `Missing ${definition.label.toLowerCase()} data.`,
+        reason:
+          key === 'efficiency'
+            ? 'Energy estimate unavailable: check published consumption and energy inputs.'
+            : `Missing ${definition.label.toLowerCase()} data.`,
       };
     const normalized = Math.max(
       0,
@@ -190,9 +291,9 @@ export function scoreCar(car: Car, weights: Weights) {
   };
 }
 
-export function rankCars(cars: Car[], weights: Weights) {
+export function rankCars(cars: Car[], weights: Weights, energy: EnergySettings = defaultEnergy) {
   return cars
-    .map((car) => ({ car, ...scoreCar(car, weights) }))
+    .map((car) => ({ car, ...scoreCar(car, weights, energy) }))
     .sort(
       (a, b) =>
         (b.score ?? -1) - (a.score ?? -1) ||
@@ -202,22 +303,8 @@ export function rankCars(cars: Car[], weights: Weights) {
 }
 
 export function annualFuelCost(car: Car, kilometres: number, cadPerLitre: number): number | null {
-  const consumption = car.facts.fuelCombinedL100km.value;
-  if (
-    car.fuel === 'Electric' ||
-    car.fuel === 'Plug-in hybrid' ||
-    car.fuel === 'Hydrogen' ||
-    consumption === null ||
-    consumption <= 0 ||
-    !Number.isFinite(kilometres) ||
-    kilometres < 0 ||
-    kilometres > 200000 ||
-    !Number.isFinite(cadPerLitre) ||
-    cadPerLitre <= 0 ||
-    cadPerLitre > 5
-  )
-    return null;
-  return Math.round((kilometres / 100) * consumption * cadPerLitre);
+  if (['Electric', 'Plug-in hybrid', 'Hydrogen'].includes(car.fuel)) return null;
+  return annualEnergyCost(car, kilometres, cadPerLitre, NaN);
 }
 
 export function annualEnergyCost(
@@ -227,31 +314,10 @@ export function annualEnergyCost(
   electricityPrice: number,
   electricFraction = 0.5,
 ): number | null {
-  if (!Number.isFinite(kilometres) || kilometres < 0 || kilometres > 200000) return null;
-  if (car.fuel !== 'Electric' && car.fuel !== 'Plug-in hybrid')
-    return annualFuelCost(car, kilometres, fuelPrice);
-  if (!Number.isFinite(electricityPrice) || electricityPrice < 0 || electricityPrice > 2)
-    return null;
-  const kwh = car.facts.electricCombinedKwh100km.value;
-  if (kwh === null) return null;
-  if (car.fuel === 'Electric') return Math.round((kilometres / 100) * kwh * electricityPrice);
-  if (
-    !Number.isFinite(electricFraction) ||
-    electricFraction < 0 ||
-    electricFraction > 1 ||
-    !Number.isFinite(fuelPrice) ||
-    fuelPrice <= 0 ||
-    fuelPrice > 5
-  )
-    return null;
-  const fuel = car.facts.fuelCombinedL100km.value;
-  const electricModeFuel = car.facts.electricModeFuelL100km.value;
-  if (fuel === null || electricModeFuel === null) return null;
-  return Math.round(
-    (kilometres / 100) *
-      ((1 - electricFraction) * fuel * fuelPrice +
-        electricFraction * (kwh * electricityPrice + electricModeFuel * fuelPrice)),
-  );
+  return annualEnergyEstimate(
+    estimateEnergy(car, { kilometres, fuelPrice, electricityPrice, electricFraction }),
+    kilometres,
+  ).cost;
 }
 
 export function knownIds(ids: unknown, cars: Car[], limit: number): string[] {
@@ -266,6 +332,30 @@ export interface SharedState {
   compare: string[];
   weights: Weights;
   reference?: string;
+  energy?: EnergySettings;
+}
+const energyLimits = {
+  kilometres: [0, 200000],
+  fuelPrice: [0.01, 5],
+  electricityPrice: [0, 2],
+  electricFraction: [0, 1],
+} satisfies Record<keyof typeof defaultEnergy, [number, number]>;
+const fuelPriceKeys = ['premiumPrice', 'dieselPrice', 'e85Price'] as const;
+export function readSharedEnergy(search: string): EnergySettings {
+  const params = new URLSearchParams(search.slice(0, 4096));
+  const energy: EnergySettings = { ...defaultEnergy };
+  for (const key of Object.keys(energyLimits) as (keyof typeof energyLimits)[]) {
+    const raw = params.get(key),
+      [min, max] = energyLimits[key];
+    if (raw !== null && /^\d+(?:\.\d+)?$/.test(raw) && Number(raw) >= min && Number(raw) <= max)
+      energy[key] = Number(raw);
+  }
+  for (const key of fuelPriceKeys) {
+    const raw = params.get(key);
+    if (raw !== null && /^\d+(?:\.\d+)?$/.test(raw) && Number(raw) >= 0.01 && Number(raw) <= 5)
+      energy[key] = Number(raw);
+  }
+  return energy;
 }
 export function parseSharedState(search: string, cars: Car[]): SharedState {
   const params = new URLSearchParams(search.slice(0, 4096));
@@ -276,10 +366,18 @@ export function parseSharedState(search: string, cars: Car[]): SharedState {
   }
   const compare = knownIds(params.get('compare')?.split(','), cars, 4);
   const reference = params.get('reference');
+  const energy = readSharedEnergy(search);
   return {
     compare,
     weights,
     ...(reference && compare.includes(reference) && reference !== compare[0] ? { reference } : {}),
+    ...(Object.keys(energyLimits).some(
+      (key) =>
+        energy[key as keyof typeof energyLimits] !==
+        defaultEnergy[key as keyof typeof energyLimits],
+    ) || fuelPriceKeys.some((key) => energy[key] !== undefined)
+      ? { energy }
+      : {}),
   };
 }
 
@@ -294,6 +392,21 @@ export function serializeSharedState(state: SharedState): string {
     params.set('reference', state.reference);
   for (const key of priorityKeys)
     if (state.weights[key] !== defaultWeights[key]) params.set(key, String(state.weights[key]));
+  if (state.energy)
+    for (const key of Object.keys(energyLimits) as (keyof typeof energyLimits)[])
+      if (
+        Number.isFinite(state.energy[key]) &&
+        state.energy[key] >= energyLimits[key][0] &&
+        state.energy[key] <= energyLimits[key][1] &&
+        state.energy[key] !== defaultEnergy[key]
+      )
+        params.set(key, String(state.energy[key]));
+  if (state.energy)
+    for (const key of fuelPriceKeys) {
+      const value = state.energy[key];
+      if (value !== undefined && Number.isFinite(value) && value >= 0.01 && value <= 5)
+        params.set(key, String(value));
+    }
   const query = params.toString();
   return query ? `?${query}` : '';
 }

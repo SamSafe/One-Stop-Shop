@@ -46,7 +46,7 @@ test('Porsche rear seats and manual/PDK choices retain distinct identities and n
   await page.getByLabel('Model year', { exact: true }).selectOption('2025');
   await page
     .getByRole('searchbox', { name: 'Search cars' })
-    .fill('2025 Porsche 718 Boxster 6-speed');
+    .fill('"2025 Porsche 718 Boxster 6-speed"');
   await expect(page.getByRole('article')).toHaveCount(1);
   const manual = page.locator('article[aria-labelledby="title-porsche-ca-982320-2025-480-base"]');
   await expect(manual.locator('.price-row')).toContainText('$81,900');

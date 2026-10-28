@@ -1,9 +1,45 @@
 import { describe, expect, it } from 'vitest';
 import { catalog, nrcanSnapshot, retailCatalog } from './index';
 import links from '../data/retail-rating-links.json';
+import reviewedLinks from '../data/reviewed-rating-links.json';
 import { expandCatalog } from './expand';
 
 describe('rating baseline and retail overlays', () => {
+  it('adds audited Honda and Subaru joins while preserving existing rating URLs and manufacturer facts', () => {
+    expect(
+      catalog.cars.filter((car) => car.recordKind === 'retail-trim' && car.governmentRating),
+    ).toHaveLength(47);
+    for (const link of reviewedLinks.links) {
+      const car = catalog.cars.find((car) => car.id === link.retailId)!;
+      const original = retailCatalog.cars.find((car) => car.id === link.retailId)!;
+      expect(car.governmentRating?.recordId).toBe(link.recordId);
+      if (!Object.values(links).includes(link.recordId))
+        expect(catalog.cars.find((car) => car.id === `nrcan-${link.recordId}`)).toBeDefined();
+      if (original.facts.fuelCombinedL100km.value !== null)
+        expect(car.facts.fuelCombinedL100km).toEqual(original.facts.fuelCombinedL100km);
+      expect(car.facts.widthMm).toEqual(original.facts.widthMm);
+      expect(car.facts.co2Gkm.sourceUrl).toContain(`/VehicleReport/${link.recordId}`);
+    }
+  });
+  it('rejects audited joins when a trim identity or any consumption mode changes', () => {
+    const wrong = structuredClone(reviewedLinks);
+    wrong.links[0]!.retail.drivetrain = wrong.links[0]!.retail.drivetrain === 'FWD' ? 'AWD' : 'FWD';
+    expect(() => expandCatalog(retailCatalog, nrcanSnapshot, links, wrong)).toThrow(
+      'audited retail-to-rating mapping',
+    );
+    const changed = structuredClone(nrcanSnapshot);
+    changed.records.find(
+      (record) => record.RecordId === reviewedLinks.links[0]!.recordId,
+    )!.CityGasConsumption += 0.1;
+    expect(() => expandCatalog(retailCatalog, changed, links, reviewedLinks)).toThrow(
+      'audited retail-to-rating mapping',
+    );
+    const wrongEngine = structuredClone(reviewedLinks);
+    wrongEngine.links[0]!.engineEvidence = '3.5-litre, V6';
+    expect(() => expandCatalog(retailCatalog, nrcanSnapshot, links, wrongEngine)).toThrow(
+      'audited retail-to-rating mapping',
+    );
+  });
   it('accounts for every rating ID without duplicating matched variants', () => {
     const records = catalog.cars.flatMap((car) =>
       car.governmentRating ? [car.governmentRating.recordId] : [],

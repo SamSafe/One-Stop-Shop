@@ -34,7 +34,9 @@ describe('Subaru manufacturer retail import', () => {
     expect(trim.facts.msrpCad.value).toBe(40995);
     expect(trim.facts.msrpCad.sourceUrl).toContain('CarID=1606');
     expect(trim.availability.status).toBe('manufacturer-listed');
-    expect(trim.facts.horsepower.value).toBeNull();
+    expect(trim.facts.horsepower.value).toBe(165);
+    expect(trim.facts.electricRangeKm.qualifier).toBe('up-to');
+    expect(trim.facts.electricCombinedKwh100km.value).toBeNull();
     expect(trim.facts.fuelCombinedL100km.value).toBeNull();
     expect(trim.manufacturerConfiguration?.specificationsUrl).toMatch(/^https:\/\/m\.subaru.ca\//);
     expect(

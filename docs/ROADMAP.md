@@ -64,7 +64,7 @@ The requested stopping point is [REVIEW-MILESTONE.md](REVIEW-MILESTONE.md).
 
 ## Workspace redesign
 
-Current priority: simplify vehicle comparison. Further garage functionality is deferred to its separate side of the app.
+The workspace redesign and quality pass have reached the handoff point described in [project status](PROJECT-STATUS.md). Further changes will be selected through individual feature requests.
 
 - [x] Task-focused comparison page with dependent model filtering and compact specification cards.
 - [x] Shared navigation and light/dark/system appearance across comparison and garage.
@@ -72,6 +72,86 @@ Current priority: simplify vehicle comparison. Further garage functionality is d
 - [x] Historical owner directory with validated source receipts and a deferred packed download.
 - [x] Search and primary vehicle filters with one optional panel for additional filters and ranking controls.
 - [x] Named comparison selections, matching-specification filtering and optional source notes without concealing unknown facts.
+- [x] Original ivory/green/rust branding and card styling alongside the simplified comparison flow.
+- [x] Reference-based trade-off summaries, qualified spatial comparisons and shared reference links.
+- [x] Automatic reviewed maintenance plans, explicit missing-history states and persistent task removals/restoration.
 - [ ] Further verified Canadian trim lists, engine-specific manual matches and optional VIN lookup.
 
 See [workspace redesign](WORKSPACE-REDESIGN.md) for behavior and verification.
+
+## Quality and usability increment — 27 October
+
+- [x] Shared energy-cost scoring and sorting across gas, hybrid, EV and plug-in hybrid records.
+- [x] Optional spatial priorities, explicit scoring coverage and priority presets.
+- [x] Broad body-style, verified seating and priced-record discovery with quick views and removable filters.
+- [x] Additional audited retail/rating joins with source and identity checks, retaining shared IDs.
+- [x] Split large comparison and garage UI modules into focused components.
+- [x] Explicit per-vehicle maintenance coverage and calendar snapshot export.
+- [x] Consolidate current state in PROJECT-STATUS.md and correct stale app/operations documentation.
+- [ ] Observe buyers completing a shortlist and owners logging real service history.
+
+This authorized increment follows the earlier review milestone; full market and maintenance coverage remain open.
+
+## Browsing continuity increment
+
+- [x] Retain filters, sorting and pagination in validated URLs through reloads and garage round trips.
+- [x] Share search views with clipboard fallback while keeping device shortlist state local.
+- [x] Match reordered search terms and common model spelling without numeric-model conflation.
+- [x] Calculate plug-in scenarios using only the modes selected, with explained unused inputs.
+
+## Ownership history increment
+
+- [x] Optional CAD service expenses and provider details with exact cents and explicit unknown amounts.
+- [x] Search, inclusive date filtering, cost/date order and bounded service-history rendering.
+- [x] Export all matching history pages to a spreadsheet CSV, retaining JSON backup/restore for editable data.
+- [x] Protect new expense fields and pending deletions from stale cross-tab actions.
+
+- [x] Move keyboard focus and the viewport to new history records when changing pages.
+- [x] Prioritize reminders across vehicles with status/vehicle filters, bounded pages and direct keyboard navigation.
+- [x] Keep overview and vehicle reminder states synchronized after midnight and cross-tab service changes.
+- [x] Correct personal reminder names, intervals and starting history while retaining linked records and calendar identity.
+- [x] Reject stale reminder edits and removals while preserving concurrent mileage and actual service.
+- [x] Reset add/completion forms when imported record and reminder identifiers overlap, preventing old dates or expenses from carrying into new work.
+
+## Shortlist continuity increment
+
+- [x] Manage all saved configurations independently of active catalog filters, with bounded pages and comparison selection.
+- [x] Export the entire shortlist to a portable JSON file and preview imports before merging recognized choices.
+- [x] Preserve newer cross-tab choices, active comparisons, unknown saved formats and session exports when storage is unavailable.
+
+## Subaru specification increment
+
+- [x] Reconcile all 41 current Canadian factory IDs with exact per-column specification evidence and pricing, including the new BRZ edition.
+- [x] Import published dimensions, cargo, room, power, fuel figures and qualified up-to electric range.
+- [x] Add 18 reviewed government rating joins while preserving existing public IDs and known manufacturer provenance.
+- [x] Keep source-unit conflicts, incomplete cylinder evidence and missing electric consumption explicit and visible in coverage reporting.
+
+## Energy explanation increment
+
+- [x] Expose estimated energy cost per 100 km on cards and comparison tables.
+- [x] Separate fuel and electricity quantities/costs, including fuel burned during plug-in electric operation.
+- [x] Explain missing active consumption and invalid used prices without partial totals.
+- [x] Share active-mode requirements between inputs and calculations; separate annual-distance validity from per-distance estimates.
+- [x] Distinguish inapplicable powertrain fields from unverified applicable facts and preserve published provenance.
+
+## Comparison context increment
+
+- [x] Keep vehicle headings and specification labels visible during two-dimensional table scrolling.
+- [x] Fit mobile vehicle columns to the measured scroll viewport and keep the dialog close control visible.
+- [x] Keep keyboard source links unobstructed, reveal the focused column and preserve pointer link activation.
+- [x] Restore focus after removing a comparison vehicle, including the one-vehicle empty state.
+
+## Fuel-price assumptions increment
+
+- [x] Optional premium, diesel and E85 prices with explicit shared-price fallback.
+- [x] Select prices from verified fuel labels, preserving unverified grades instead of inferring from names.
+- [x] Expose the applied fuel type, unit price and basis on cards and in comparisons.
+- [x] Include overrides in ranking, sorting, mixed plug-in calculations and validated search/comparison links.
+- [x] Disable unused comparison prices and keep invalid unused values from blocking estimates.
+
+## Outer comparison context increment
+
+- [x] Keep headings visible when the outer dialog clips the top of the comparison table.
+- [x] Release headings while preserving final totals and unobstructed energy inputs.
+- [x] Reveal source links and vehicle context when keyboard navigation returns from the energy controls.
+- [x] Batch scroll work per frame and clean up listeners/observers on close.

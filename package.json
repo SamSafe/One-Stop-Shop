@@ -25,6 +25,7 @@
     "catalog:sync": "node --import tsx scripts/sync-nrcan.ts",
     "catalog:coverage": "node --import tsx scripts/catalog-coverage.ts",
     "catalog:sync:subaru": "node --import tsx scripts/sync-subaru.ts",
+    "catalog:sync:subaru-specifications": "node --import tsx scripts/sync-subaru-specifications.ts",
     "catalog:sync:tci": "node --import tsx scripts/sync-tci.ts",
     "catalog:sync:honda": "node --import tsx scripts/sync-honda.ts",
     "catalog:sync:ford": "node --import tsx scripts/sync-ford.ts",

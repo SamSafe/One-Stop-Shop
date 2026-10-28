@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "retrievedAt": "2026-10-21T05:58:39.529Z",
+  "retrievedAt": "2026-10-27T22:03:48.130Z",
   "lineup": {
     "url": "https://www.subaru.ca/WebPage.aspx?WebPageID=16564",
-    "sha256": "40fe03f0703914b8d8d143e28e89beb4c9382a8c480833bb18469dda79dec8be"
+    "sha256": "116aadab1fc91a0fd8ca3b3ef0bb88466e7a343b8259d2e55ea4c283d24bf644"
   },
   "models": [
     {
@@ -11,7 +11,7 @@
       "year": 2026,
       "rangeId": 1,
       "pricingUrl": "https://m.subaru.ca/WebPage.aspx?WebSiteID=282&WebPageID=26171&ModelYear=2026",
-      "pricingSha256": "06c0f794602ed3c31ea495226b06e9bca26167cc56ada6c7c6af2d4d70a819f1",
+      "pricingSha256": "24899aec64de61215dd2b91949ef8f985af68e6bbae1a682a95debe271674724",
       "trimIds": [1562, 1563, 1564, 1567, 1568, 1569]
     },
     {
@@ -19,7 +19,7 @@
       "year": 2026,
       "rangeId": 2,
       "pricingUrl": "https://m.subaru.ca/WebPage.aspx?WebSiteID=282&WebPageID=26284&ModelYear=2026",
-      "pricingSha256": "e1e3b729650e3e2c5cce718f3374b8d98158981efcae52d5fa5db5ddc643db9c",
+      "pricingSha256": "f05ee9f9eedb438c25e93b58055c87e558c826226fd0f2269f476c2906af1ab8",
       "trimIds": [1579, 1580, 1581]
     },
     {
@@ -27,7 +27,7 @@
       "year": 2026,
       "rangeId": 4,
       "pricingUrl": "https://m.subaru.ca/WebPage.aspx?WebSiteID=282&WebPageID=25924&ModelYear=2026",
-      "pricingSha256": "48189e529dcc604b9eefe212fd3c6d3572222edb270152689b9403133328cc84",
+      "pricingSha256": "fdd89727389e063b2e6cbca7749cf30b4b5fa349f1e8a5491cadef7f256ad889",
       "trimIds": [1582, 1583, 1584, 1585]
     },
     {
@@ -35,7 +35,7 @@
       "year": 2026,
       "rangeId": 7,
       "pricingUrl": "https://m.subaru.ca/WebPage.aspx?WebSiteID=282&WebPageID=26435&ModelYear=2026",
-      "pricingSha256": "b853f8d279cf214960d7f818ef305216bbd8e74ad39b463457a7b3f5cb86ee12",
+      "pricingSha256": "ed1428bae1f106868baa5e1be4e0996585d25072a099665ed9b436ebbd83a0db",
       "trimIds": [1592, 1594, 1595, 1596, 1597]
     },
     {
@@ -43,15 +43,15 @@
       "year": 2027,
       "rangeId": 9,
       "pricingUrl": "https://m.subaru.ca/WebPage.aspx?WebSiteID=282&WebPageID=26732&ModelYear=2027",
-      "pricingSha256": "99a93d60fdf9c3b899d80a7994aab6d3644dc36310c2ff8b3c03d285dcb5eab9",
-      "trimIds": [1622, 1623, 1624]
+      "pricingSha256": "a43ec742cb93e3afb0565d5449f07129e333e7d4eee273ee698a6f61c0743c3d",
+      "trimIds": [1622, 1623, 1624, 1625]
     },
     {
       "name": "Crosstrek",
       "year": 2027,
       "rangeId": 10,
       "pricingUrl": "https://m.subaru.ca/WebPage.aspx?WebSiteID=282&WebPageID=26862&ModelYear=2027",
-      "pricingSha256": "ae31803b159c349626d85ab5278217075ad0677b0116c6b0a781d5175e5dbd6d",
+      "pricingSha256": "5af8cbddee2e530e5d88da6a2fd4432354f0805ee30325e9e1fba86ff9c9f248",
       "trimIds": [1634, 1635, 1636, 1637, 1638, 1639]
     },
     {
@@ -59,7 +59,7 @@
       "year": 2027,
       "rangeId": 12,
       "pricingUrl": "https://m.subaru.ca/WebPage.aspx?WebSiteID=282&WebPageID=26628&ModelYear=2027",
-      "pricingSha256": "ca89aba28ced52d2054b8ce4841128eb844be5065d08663f888a1f840202c742",
+      "pricingSha256": "55ad5380584b584eafeac8c226508539feb6d9a99be3d058d1c1d2ff73f1fffc",
       "trimIds": [1612, 1613, 1614, 1615, 1616, 1617]
     },
     {
@@ -67,7 +67,7 @@
       "year": 2027,
       "rangeId": 13,
       "pricingUrl": "https://m.subaru.ca/WebPage.aspx?WebSiteID=282&WebPageID=26680&ModelYear=2027",
-      "pricingSha256": "3c5e35d9066245cac1219763f496274a9045ecdcff1057131bbedfeea943b2c3",
+      "pricingSha256": "f57bd406582de54002e59170a4dd52b8010462d9d93a23562e15f93b10124f49",
       "trimIds": [1618, 1619, 1620]
     },
     {
@@ -75,7 +75,7 @@
       "year": 2027,
       "rangeId": 14,
       "pricingUrl": "https://m.subaru.ca/WebPage.aspx?WebSiteID=282&WebPageID=26576&ModelYear=2027",
-      "pricingSha256": "3f6d57ec1eb79248fa3603eff7e6a4d387a092bc1973e14adad904837def18ad",
+      "pricingSha256": "9540b6a836d6a42d4d5431d987f0c20a3c43a57d5b4b33d450f6606bdd36f91f",
       "trimIds": [1606, 1607, 1608, 1609]
     }
   ],
@@ -348,6 +348,19 @@
       "modelCode": "VVMTS",
       "transmission": "Manual",
       "msrpCad": 38295,
+      "seats": 4,
+      "powertrain": "Gasoline",
+      "pricingUrl": "https://m.subaru.ca/WebPage.aspx?WebSiteID=282&WebPageID=26732&ModelYear=2027",
+      "specificationsUrl": "https://m.subaru.ca/WebPage.aspx?WebSiteID=282&WebPageID=26729&ModelYear=2027"
+    },
+    {
+      "manufacturerId": 1625,
+      "model": "BRZ",
+      "year": 2027,
+      "trim": "輝 Kagayaki Edition",
+      "modelCode": "VVMSE",
+      "transmission": "Manual",
+      "msrpCad": 39995,
       "seats": 4,
       "powertrain": "Gasoline",
       "pricingUrl": "https://m.subaru.ca/WebPage.aspx?WebSiteID=282&WebPageID=26732&ModelYear=2027",

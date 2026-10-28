@@ -1,0 +1,996 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-27",
+  "links": [
+    {
+      "retailId": "honda-ca-2027-10937-10986",
+      "recordId": 31491,
+      "retail": {
+        "make": "Honda",
+        "model": "HR-V",
+        "year": 2027,
+        "fuel": "Gasoline",
+        "drivetrain": "FWD",
+        "transmission": "CVT"
+      },
+      "rating": {
+        "model": "HR-V",
+        "engineLitres": 2,
+        "cylinders": 4,
+        "transmission": "Continuously variable"
+      },
+      "manufacturerSource": "honda-ca-2027-trim-10937-specifications",
+      "engineEvidence": "2.0-litre inline 4-cylinder",
+      "note": "Reviewed captured Canadian engine, drivetrain, transmission and exact city/highway/combined consumption. TrailSport Hybrid retains its distinct rating; no join is inferred by model name or combined consumption alone."
+    },
+    {
+      "retailId": "honda-ca-2027-10938-10987",
+      "recordId": 31492,
+      "retail": {
+        "make": "Honda",
+        "model": "HR-V",
+        "year": 2027,
+        "fuel": "Gasoline",
+        "drivetrain": "AWD",
+        "transmission": "CVT"
+      },
+      "rating": {
+        "model": "HR-V AWD",
+        "engineLitres": 2,
+        "cylinders": 4,
+        "transmission": "Continuously variable"
+      },
+      "manufacturerSource": "honda-ca-2027-trim-10938-specifications",
+      "engineEvidence": "2.0-litre inline 4-cylinder",
+      "note": "Reviewed captured Canadian engine, drivetrain, transmission and exact city/highway/combined consumption. TrailSport Hybrid retains its distinct rating; no join is inferred by model name or combined consumption alone."
+    },
+    {
+      "retailId": "honda-ca-2027-10939-10988",
+      "recordId": 31492,
+      "retail": {
+        "make": "Honda",
+        "model": "HR-V",
+        "year": 2027,
+        "fuel": "Gasoline",
+        "drivetrain": "AWD",
+        "transmission": "CVT"
+      },
+      "rating": {
+        "model": "HR-V AWD",
+        "engineLitres": 2,
+        "cylinders": 4,
+        "transmission": "Continuously variable"
+      },
+      "manufacturerSource": "honda-ca-2027-trim-10939-specifications",
+      "engineEvidence": "2.0-litre inline 4-cylinder",
+      "note": "Reviewed captured Canadian engine, drivetrain, transmission and exact city/highway/combined consumption. TrailSport Hybrid retains its distinct rating; no join is inferred by model name or combined consumption alone."
+    },
+    {
+      "retailId": "honda-ca-2027-10940-10989",
+      "recordId": 31492,
+      "retail": {
+        "make": "Honda",
+        "model": "HR-V",
+        "year": 2027,
+        "fuel": "Gasoline",
+        "drivetrain": "AWD",
+        "transmission": "CVT"
+      },
+      "rating": {
+        "model": "HR-V AWD",
+        "engineLitres": 2,
+        "cylinders": 4,
+        "transmission": "Continuously variable"
+      },
+      "manufacturerSource": "honda-ca-2027-trim-10940-specifications",
+      "engineEvidence": "2.0-litre inline 4-cylinder",
+      "note": "Reviewed captured Canadian engine, drivetrain, transmission and exact city/highway/combined consumption. TrailSport Hybrid retains its distinct rating; no join is inferred by model name or combined consumption alone."
+    },
+    {
+      "retailId": "honda-ca-2026-10902-10950",
+      "recordId": 30702,
+      "retail": {
+        "make": "Honda",
+        "model": "CR-V",
+        "year": 2026,
+        "fuel": "Gasoline",
+        "drivetrain": "AWD",
+        "transmission": "CVT"
+      },
+      "rating": {
+        "model": "CR-V AWD",
+        "engineLitres": 1.5,
+        "cylinders": 4,
+        "transmission": "Continuously variable"
+      },
+      "manufacturerSource": "honda-ca-2026-trim-10902-specifications",
+      "engineEvidence": "1.5-litre inline 4-cylinder with Turbocharger",
+      "note": "Reviewed captured Canadian engine, drivetrain, transmission and exact city/highway/combined consumption. TrailSport Hybrid retains its distinct rating; no join is inferred by model name or combined consumption alone."
+    },
+    {
+      "retailId": "honda-ca-2026-10903-10951",
+      "recordId": 30702,
+      "retail": {
+        "make": "Honda",
+        "model": "CR-V",
+        "year": 2026,
+        "fuel": "Gasoline",
+        "drivetrain": "AWD",
+        "transmission": "CVT"
+      },
+      "rating": {
+        "model": "CR-V AWD",
+        "engineLitres": 1.5,
+        "cylinders": 4,
+        "transmission": "Continuously variable"
+      },
+      "manufacturerSource": "honda-ca-2026-trim-10903-specifications",
+      "engineEvidence": "1.5-litre inline 4-cylinder with Turbocharger",
+      "note": "Reviewed captured Canadian engine, drivetrain, transmission and exact city/highway/combined consumption. TrailSport Hybrid retains its distinct rating; no join is inferred by model name or combined consumption alone."
+    },
+    {
+      "retailId": "honda-ca-2026-10905-10953",
+      "recordId": 30704,
+      "retail": {
+        "make": "Honda",
+        "model": "CR-V",
+        "year": 2026,
+        "fuel": "Hybrid",
+        "drivetrain": "AWD",
+        "transmission": "e-CVT"
+      },
+      "rating": {
+        "model": "CR-V Hybrid AWD TrailSport",
+        "engineLitres": 2,
+        "cylinders": 4,
+        "transmission": "Continuously variable"
+      },
+      "manufacturerSource": "honda-ca-2026-trim-10905-specifications",
+      "engineEvidence": "2.0-litre inline 4-cylinder",
+      "note": "Reviewed captured Canadian engine, drivetrain, transmission and exact city/highway/combined consumption. TrailSport Hybrid retains its distinct rating; no join is inferred by model name or combined consumption alone."
+    },
+    {
+      "retailId": "honda-ca-2026-10906-10954",
+      "recordId": 30703,
+      "retail": {
+        "make": "Honda",
+        "model": "CR-V",
+        "year": 2026,
+        "fuel": "Hybrid",
+        "drivetrain": "AWD",
+        "transmission": "e-CVT"
+      },
+      "rating": {
+        "model": "CR-V Hybrid AWD",
+        "engineLitres": 2,
+        "cylinders": 4,
+        "transmission": "Continuously variable"
+      },
+      "manufacturerSource": "honda-ca-2026-trim-10906-specifications",
+      "engineEvidence": "2.0-litre inline 4-cylinder",
+      "note": "Reviewed captured Canadian engine, drivetrain, transmission and exact city/highway/combined consumption. TrailSport Hybrid retains its distinct rating; no join is inferred by model name or combined consumption alone."
+    },
+    {
+      "retailId": "honda-ca-2026-10907-10955",
+      "recordId": 30703,
+      "retail": {
+        "make": "Honda",
+        "model": "CR-V",
+        "year": 2026,
+        "fuel": "Hybrid",
+        "drivetrain": "AWD",
+        "transmission": "e-CVT"
+      },
+      "rating": {
+        "model": "CR-V Hybrid AWD",
+        "engineLitres": 2,
+        "cylinders": 4,
+        "transmission": "Continuously variable"
+      },
+      "manufacturerSource": "honda-ca-2026-trim-10907-specifications",
+      "engineEvidence": "2.0-litre inline 4-cylinder",
+      "note": "Reviewed captured Canadian engine, drivetrain, transmission and exact city/highway/combined consumption. TrailSport Hybrid retains its distinct rating; no join is inferred by model name or combined consumption alone."
+    },
+    {
+      "retailId": "honda-ca-2027-10947-10995",
+      "recordId": 31487,
+      "retail": {
+        "make": "Honda",
+        "model": "CR-V",
+        "year": 2027,
+        "fuel": "Gasoline",
+        "drivetrain": "FWD",
+        "transmission": "CVT"
+      },
+      "rating": {
+        "model": "CR-V",
+        "engineLitres": 1.5,
+        "cylinders": 4,
+        "transmission": "Continuously variable"
+      },
+      "manufacturerSource": "honda-ca-2027-trim-10947-specifications",
+      "engineEvidence": "1.5-litre inline 4-cylinder with Turbocharger",
+      "note": "Reviewed captured Canadian engine, drivetrain, transmission and exact city/highway/combined consumption. TrailSport Hybrid retains its distinct rating; no join is inferred by model name or combined consumption alone."
+    },
+    {
+      "retailId": "honda-ca-2027-10948-10996",
+      "recordId": 31488,
+      "retail": {
+        "make": "Honda",
+        "model": "CR-V",
+        "year": 2027,
+        "fuel": "Gasoline",
+        "drivetrain": "AWD",
+        "transmission": "CVT"
+      },
+      "rating": {
+        "model": "CR-V AWD",
+        "engineLitres": 1.5,
+        "cylinders": 4,
+        "transmission": "Continuously variable"
+      },
+      "manufacturerSource": "honda-ca-2027-trim-10948-specifications",
+      "engineEvidence": "1.5-litre inline 4-cylinder with Turbocharger",
+      "note": "Reviewed captured Canadian engine, drivetrain, transmission and exact city/highway/combined consumption. TrailSport Hybrid retains its distinct rating; no join is inferred by model name or combined consumption alone."
+    },
+    {
+      "retailId": "honda-ca-2027-10949-10997",
+      "recordId": 31488,
+      "retail": {
+        "make": "Honda",
+        "model": "CR-V",
+        "year": 2027,
+        "fuel": "Gasoline",
+        "drivetrain": "AWD",
+        "transmission": "CVT"
+      },
+      "rating": {
+        "model": "CR-V AWD",
+        "engineLitres": 1.5,
+        "cylinders": 4,
+        "transmission": "Continuously variable"
+      },
+      "manufacturerSource": "honda-ca-2027-trim-10949-specifications",
+      "engineEvidence": "1.5-litre inline 4-cylinder with Turbocharger",
+      "note": "Reviewed captured Canadian engine, drivetrain, transmission and exact city/highway/combined consumption. TrailSport Hybrid retains its distinct rating; no join is inferred by model name or combined consumption alone."
+    },
+    {
+      "retailId": "honda-ca-2027-10950-10998",
+      "recordId": 31489,
+      "retail": {
+        "make": "Honda",
+        "model": "CR-V",
+        "year": 2027,
+        "fuel": "Hybrid",
+        "drivetrain": "AWD",
+        "transmission": "e-CVT"
+      },
+      "rating": {
+        "model": "CR-V Hybrid AWD",
+        "engineLitres": 2,
+        "cylinders": 4,
+        "transmission": "Continuously variable"
+      },
+      "manufacturerSource": "honda-ca-2027-trim-10950-specifications",
+      "engineEvidence": "2.0-litre inline 4-cylinder",
+      "note": "Reviewed captured Canadian engine, drivetrain, transmission and exact city/highway/combined consumption. TrailSport Hybrid retains its distinct rating; no join is inferred by model name or combined consumption alone."
+    },
+    {
+      "retailId": "honda-ca-2027-10951-10999",
+      "recordId": 31490,
+      "retail": {
+        "make": "Honda",
+        "model": "CR-V",
+        "year": 2027,
+        "fuel": "Hybrid",
+        "drivetrain": "AWD",
+        "transmission": "e-CVT"
+      },
+      "rating": {
+        "model": "CR-V Hybrid AWD TrailSport",
+        "engineLitres": 2,
+        "cylinders": 4,
+        "transmission": "Continuously variable"
+      },
+      "manufacturerSource": "honda-ca-2027-trim-10951-specifications",
+      "engineEvidence": "2.0-litre inline 4-cylinder",
+      "note": "Reviewed captured Canadian engine, drivetrain, transmission and exact city/highway/combined consumption. TrailSport Hybrid retains its distinct rating; no join is inferred by model name or combined consumption alone."
+    },
+    {
+      "retailId": "honda-ca-2027-10952-11000",
+      "recordId": 31489,
+      "retail": {
+        "make": "Honda",
+        "model": "CR-V",
+        "year": 2027,
+        "fuel": "Hybrid",
+        "drivetrain": "AWD",
+        "transmission": "e-CVT"
+      },
+      "rating": {
+        "model": "CR-V Hybrid AWD",
+        "engineLitres": 2,
+        "cylinders": 4,
+        "transmission": "Continuously variable"
+      },
+      "manufacturerSource": "honda-ca-2027-trim-10952-specifications",
+      "engineEvidence": "2.0-litre inline 4-cylinder",
+      "note": "Reviewed captured Canadian engine, drivetrain, transmission and exact city/highway/combined consumption. TrailSport Hybrid retains its distinct rating; no join is inferred by model name or combined consumption alone."
+    },
+    {
+      "retailId": "honda-ca-2027-10953-11001",
+      "recordId": 31489,
+      "retail": {
+        "make": "Honda",
+        "model": "CR-V",
+        "year": 2027,
+        "fuel": "Hybrid",
+        "drivetrain": "AWD",
+        "transmission": "e-CVT"
+      },
+      "rating": {
+        "model": "CR-V Hybrid AWD",
+        "engineLitres": 2,
+        "cylinders": 4,
+        "transmission": "Continuously variable"
+      },
+      "manufacturerSource": "honda-ca-2027-trim-10953-specifications",
+      "engineEvidence": "2.0-litre inline 4-cylinder",
+      "note": "Reviewed captured Canadian engine, drivetrain, transmission and exact city/highway/combined consumption. TrailSport Hybrid retains its distinct rating; no join is inferred by model name or combined consumption alone."
+    },
+    {
+      "retailId": "honda-ca-2026-10916-10964",
+      "recordId": 30707,
+      "retail": {
+        "make": "Honda",
+        "model": "Odyssey",
+        "year": 2026,
+        "fuel": "Gasoline",
+        "drivetrain": "FWD",
+        "transmission": "Automatic"
+      },
+      "rating": {
+        "model": "Odyssey",
+        "engineLitres": 3.5,
+        "cylinders": 6,
+        "transmission": "10-speed automatic with select shift"
+      },
+      "manufacturerSource": "honda-ca-2026-trim-10916-specifications",
+      "engineEvidence": "3.5-litre, V6",
+      "note": "Reviewed captured Canadian engine, drivetrain, transmission and exact city/highway/combined consumption. TrailSport Hybrid retains its distinct rating; no join is inferred by model name or combined consumption alone."
+    },
+    {
+      "retailId": "honda-ca-2026-10917-10965",
+      "recordId": 30707,
+      "retail": {
+        "make": "Honda",
+        "model": "Odyssey",
+        "year": 2026,
+        "fuel": "Gasoline",
+        "drivetrain": "FWD",
+        "transmission": "Automatic"
+      },
+      "rating": {
+        "model": "Odyssey",
+        "engineLitres": 3.5,
+        "cylinders": 6,
+        "transmission": "10-speed automatic with select shift"
+      },
+      "manufacturerSource": "honda-ca-2026-trim-10917-specifications",
+      "engineEvidence": "3.5-litre, V6",
+      "note": "Reviewed captured Canadian engine, drivetrain, transmission and exact city/highway/combined consumption. TrailSport Hybrid retains its distinct rating; no join is inferred by model name or combined consumption alone."
+    },
+    {
+      "retailId": "honda-ca-2026-10918-10966",
+      "recordId": 30707,
+      "retail": {
+        "make": "Honda",
+        "model": "Odyssey",
+        "year": 2026,
+        "fuel": "Gasoline",
+        "drivetrain": "FWD",
+        "transmission": "Automatic"
+      },
+      "rating": {
+        "model": "Odyssey",
+        "engineLitres": 3.5,
+        "cylinders": 6,
+        "transmission": "10-speed automatic with select shift"
+      },
+      "manufacturerSource": "honda-ca-2026-trim-10918-specifications",
+      "engineEvidence": "3.5-litre, V6",
+      "note": "Reviewed captured Canadian engine, drivetrain, transmission and exact city/highway/combined consumption. TrailSport Hybrid retains its distinct rating; no join is inferred by model name or combined consumption alone."
+    },
+    {
+      "retailId": "honda-ca-2026-10919-10967",
+      "recordId": 30707,
+      "retail": {
+        "make": "Honda",
+        "model": "Odyssey",
+        "year": 2026,
+        "fuel": "Gasoline",
+        "drivetrain": "FWD",
+        "transmission": "Automatic"
+      },
+      "rating": {
+        "model": "Odyssey",
+        "engineLitres": 3.5,
+        "cylinders": 6,
+        "transmission": "10-speed automatic with select shift"
+      },
+      "manufacturerSource": "honda-ca-2026-trim-10919-specifications",
+      "engineEvidence": "3.5-litre, V6",
+      "note": "Reviewed captured Canadian engine, drivetrain, transmission and exact city/highway/combined consumption. TrailSport Hybrid retains its distinct rating; no join is inferred by model name or combined consumption alone."
+    },
+    {
+      "retailId": "honda-ca-2027-10941-10990",
+      "recordId": 31493,
+      "retail": {
+        "make": "Honda",
+        "model": "Odyssey",
+        "year": 2027,
+        "fuel": "Gasoline",
+        "drivetrain": "FWD",
+        "transmission": "Automatic"
+      },
+      "rating": {
+        "model": "Odyssey",
+        "engineLitres": 3.5,
+        "cylinders": 6,
+        "transmission": "10-speed automatic with select shift"
+      },
+      "manufacturerSource": "honda-ca-2027-trim-10941-specifications",
+      "engineEvidence": "3.5-litre, V6",
+      "note": "Reviewed captured Canadian engine, drivetrain, transmission and exact city/highway/combined consumption. TrailSport Hybrid retains its distinct rating; no join is inferred by model name or combined consumption alone."
+    },
+    {
+      "retailId": "honda-ca-2027-10942-10991",
+      "recordId": 31493,
+      "retail": {
+        "make": "Honda",
+        "model": "Odyssey",
+        "year": 2027,
+        "fuel": "Gasoline",
+        "drivetrain": "FWD",
+        "transmission": "Automatic"
+      },
+      "rating": {
+        "model": "Odyssey",
+        "engineLitres": 3.5,
+        "cylinders": 6,
+        "transmission": "10-speed automatic with select shift"
+      },
+      "manufacturerSource": "honda-ca-2027-trim-10942-specifications",
+      "engineEvidence": "3.5-litre, V6",
+      "note": "Reviewed captured Canadian engine, drivetrain, transmission and exact city/highway/combined consumption. TrailSport Hybrid retains its distinct rating; no join is inferred by model name or combined consumption alone."
+    },
+    {
+      "retailId": "honda-ca-2027-10943-10992",
+      "recordId": 31493,
+      "retail": {
+        "make": "Honda",
+        "model": "Odyssey",
+        "year": 2027,
+        "fuel": "Gasoline",
+        "drivetrain": "FWD",
+        "transmission": "Automatic"
+      },
+      "rating": {
+        "model": "Odyssey",
+        "engineLitres": 3.5,
+        "cylinders": 6,
+        "transmission": "10-speed automatic with select shift"
+      },
+      "manufacturerSource": "honda-ca-2027-trim-10943-specifications",
+      "engineEvidence": "3.5-litre, V6",
+      "note": "Reviewed captured Canadian engine, drivetrain, transmission and exact city/highway/combined consumption. TrailSport Hybrid retains its distinct rating; no join is inferred by model name or combined consumption alone."
+    },
+    {
+      "retailId": "honda-ca-2027-10944-10993",
+      "recordId": 31493,
+      "retail": {
+        "make": "Honda",
+        "model": "Odyssey",
+        "year": 2027,
+        "fuel": "Gasoline",
+        "drivetrain": "FWD",
+        "transmission": "Automatic"
+      },
+      "rating": {
+        "model": "Odyssey",
+        "engineLitres": 3.5,
+        "cylinders": 6,
+        "transmission": "10-speed automatic with select shift"
+      },
+      "manufacturerSource": "honda-ca-2027-trim-10944-specifications",
+      "engineEvidence": "3.5-litre, V6",
+      "note": "Reviewed captured Canadian engine, drivetrain, transmission and exact city/highway/combined consumption. TrailSport Hybrid retains its distinct rating; no join is inferred by model name or combined consumption alone."
+    },
+    {
+      "retailId": "subaru-ca-1564",
+      "evidenceProvider": "subaru-specifications",
+      "recordId": 30785,
+      "retail": {
+        "make": "Subaru",
+        "model": "Forester",
+        "year": 2026,
+        "fuel": "Gasoline",
+        "drivetrain": "AWD",
+        "transmission": "Automatic"
+      },
+      "rating": {
+        "model": "Forester AWD",
+        "engineLitres": 2.5,
+        "cylinders": 4,
+        "transmission": "8-speed continuously variable",
+        "vehicleType": "ICE",
+        "fuelType": "X"
+      },
+      "manufacturerSource": "subaru-ca-2026-forester-trim-specifications",
+      "engineEvidence": "Engine: 180-hp, 2.5-L Direct Injection, SUBARU BOXER",
+      "engineLayoutEvidence": "Engine layout: Horizontally-opposed, 4-cylinder",
+      "transmissionEvidence": "Transmission: Lineartronic CVT",
+      "drivetrainEvidence": "Drivetrain: Subaru Symmetrical Full-Time All-wheel Drive system (AWD)",
+      "note": "Reviewed exact CarID/model code, standard engine/cylinders, drive/transmission and city/highway consumption against the pinned NRCan variant. Combined consumption and emissions come from NRCan; existing public rating IDs remain reachable."
+    },
+    {
+      "retailId": "subaru-ca-1567",
+      "evidenceProvider": "subaru-specifications",
+      "recordId": 30785,
+      "retail": {
+        "make": "Subaru",
+        "model": "Forester",
+        "year": 2026,
+        "fuel": "Gasoline",
+        "drivetrain": "AWD",
+        "transmission": "Automatic"
+      },
+      "rating": {
+        "model": "Forester AWD",
+        "engineLitres": 2.5,
+        "cylinders": 4,
+        "transmission": "8-speed continuously variable",
+        "vehicleType": "ICE",
+        "fuelType": "X"
+      },
+      "manufacturerSource": "subaru-ca-2026-forester-trim-specifications",
+      "engineEvidence": "Engine: 180-hp, 2.5-L Direct Injection, SUBARU BOXER",
+      "engineLayoutEvidence": "Engine layout: Horizontally-opposed, 4-cylinder",
+      "transmissionEvidence": "Transmission: Lineartronic CVT",
+      "drivetrainEvidence": "Drivetrain: Subaru Symmetrical Full-Time All-wheel Drive system (AWD)",
+      "note": "Reviewed exact CarID/model code, standard engine/cylinders, drive/transmission and city/highway consumption against the pinned NRCan variant. Combined consumption and emissions come from NRCan; existing public rating IDs remain reachable."
+    },
+    {
+      "retailId": "subaru-ca-1568",
+      "evidenceProvider": "subaru-specifications",
+      "recordId": 30785,
+      "retail": {
+        "make": "Subaru",
+        "model": "Forester",
+        "year": 2026,
+        "fuel": "Gasoline",
+        "drivetrain": "AWD",
+        "transmission": "Automatic"
+      },
+      "rating": {
+        "model": "Forester AWD",
+        "engineLitres": 2.5,
+        "cylinders": 4,
+        "transmission": "8-speed continuously variable",
+        "vehicleType": "ICE",
+        "fuelType": "X"
+      },
+      "manufacturerSource": "subaru-ca-2026-forester-trim-specifications",
+      "engineEvidence": "Engine: 180-hp, 2.5-L Direct Injection, SUBARU BOXER",
+      "engineLayoutEvidence": "Engine layout: Horizontally-opposed, 4-cylinder",
+      "transmissionEvidence": "Transmission: Lineartronic CVT",
+      "drivetrainEvidence": "Drivetrain: Subaru Symmetrical Full-Time All-wheel Drive system (AWD)",
+      "note": "Reviewed exact CarID/model code, standard engine/cylinders, drive/transmission and city/highway consumption against the pinned NRCan variant. Combined consumption and emissions come from NRCan; existing public rating IDs remain reachable."
+    },
+    {
+      "retailId": "subaru-ca-1569",
+      "evidenceProvider": "subaru-specifications",
+      "recordId": 30787,
+      "retail": {
+        "make": "Subaru",
+        "model": "Forester",
+        "year": 2026,
+        "fuel": "Hybrid",
+        "drivetrain": "AWD",
+        "transmission": "Automatic"
+      },
+      "rating": {
+        "model": "Forester Hybrid AWD",
+        "engineLitres": 2.5,
+        "cylinders": 4,
+        "transmission": "6-speed continuously variable",
+        "vehicleType": "ICE",
+        "fuelType": "X"
+      },
+      "manufacturerSource": "subaru-ca-2026-forester-trim-specifications",
+      "engineEvidence": "Engine: 194-hp, 2.5-L Direct Injection, SUBARU Hybrid",
+      "engineLayoutEvidence": "Engine layout: Horizontally-opposed, 4-cylinder",
+      "transmissionEvidence": "Transmission: Hybrid Lineartronic CVT",
+      "drivetrainEvidence": "Drivetrain: Subaru Symmetrical Full-Time All-wheel Drive system (AWD)",
+      "note": "Reviewed exact CarID/model code, standard engine/cylinders, drive/transmission and city/highway consumption against the pinned NRCan variant. Combined consumption and emissions come from NRCan; existing public rating IDs remain reachable."
+    },
+    {
+      "retailId": "subaru-ca-1579",
+      "evidenceProvider": "subaru-specifications",
+      "recordId": 30788,
+      "retail": {
+        "make": "Subaru",
+        "model": "Impreza",
+        "year": 2026,
+        "fuel": "Gasoline",
+        "drivetrain": "AWD",
+        "transmission": "Automatic"
+      },
+      "rating": {
+        "model": "Impreza AWD",
+        "engineLitres": 2,
+        "cylinders": 4,
+        "transmission": "8-speed continuously variable",
+        "vehicleType": "ICE",
+        "fuelType": "X"
+      },
+      "manufacturerSource": "subaru-ca-2026-impreza-trim-specifications",
+      "engineEvidence": "Engine: 152-hp, 2.0-L Direct Injection, SUBARU BOXER",
+      "engineLayoutEvidence": "Engine layout: Horizontally-opposed, 4-cylinder",
+      "transmissionEvidence": "Transmission: Lineartronic CVT",
+      "drivetrainEvidence": "Drivetrain: Subaru Symmetrical Full-Time All-wheel Drive system (AWD)",
+      "note": "Reviewed exact CarID/model code, standard engine/cylinders, drive/transmission and city/highway consumption against the pinned NRCan variant. Combined consumption and emissions come from NRCan; existing public rating IDs remain reachable."
+    },
+    {
+      "retailId": "subaru-ca-1580",
+      "evidenceProvider": "subaru-specifications",
+      "recordId": 30788,
+      "retail": {
+        "make": "Subaru",
+        "model": "Impreza",
+        "year": 2026,
+        "fuel": "Gasoline",
+        "drivetrain": "AWD",
+        "transmission": "Automatic"
+      },
+      "rating": {
+        "model": "Impreza AWD",
+        "engineLitres": 2,
+        "cylinders": 4,
+        "transmission": "8-speed continuously variable",
+        "vehicleType": "ICE",
+        "fuelType": "X"
+      },
+      "manufacturerSource": "subaru-ca-2026-impreza-trim-specifications",
+      "engineEvidence": "Engine: 152-hp, 2.0-L Direct Injection, SUBARU BOXER",
+      "engineLayoutEvidence": "Engine layout: Horizontally-opposed, 4-cylinder",
+      "transmissionEvidence": "Transmission: Lineartronic CVT",
+      "drivetrainEvidence": "Drivetrain: Subaru Symmetrical Full-Time All-wheel Drive system (AWD)",
+      "note": "Reviewed exact CarID/model code, standard engine/cylinders, drive/transmission and city/highway consumption against the pinned NRCan variant. Combined consumption and emissions come from NRCan; existing public rating IDs remain reachable."
+    },
+    {
+      "retailId": "subaru-ca-1581",
+      "evidenceProvider": "subaru-specifications",
+      "recordId": 30789,
+      "retail": {
+        "make": "Subaru",
+        "model": "Impreza",
+        "year": 2026,
+        "fuel": "Gasoline",
+        "drivetrain": "AWD",
+        "transmission": "Automatic"
+      },
+      "rating": {
+        "model": "Impreza AWD",
+        "engineLitres": 2.5,
+        "cylinders": 4,
+        "transmission": "8-speed continuously variable",
+        "vehicleType": "ICE",
+        "fuelType": "X"
+      },
+      "manufacturerSource": "subaru-ca-2026-impreza-trim-specifications",
+      "engineEvidence": "Engine: 182-hp, 2.5-L Direct Injection, SUBARU BOXER",
+      "engineLayoutEvidence": "Engine layout: Horizontally-opposed, 4-cylinder",
+      "transmissionEvidence": "Transmission: Lineartronic CVT",
+      "drivetrainEvidence": "Drivetrain: Subaru Symmetrical Full-Time All-wheel Drive system (AWD)",
+      "note": "Reviewed exact CarID/model code, standard engine/cylinders, drive/transmission and city/highway consumption against the pinned NRCan variant. Combined consumption and emissions come from NRCan; existing public rating IDs remain reachable."
+    },
+    {
+      "retailId": "subaru-ca-1583",
+      "evidenceProvider": "subaru-specifications",
+      "recordId": 30790,
+      "retail": {
+        "make": "Subaru",
+        "model": "Outback",
+        "year": 2026,
+        "fuel": "Gasoline",
+        "drivetrain": "AWD",
+        "transmission": "Automatic"
+      },
+      "rating": {
+        "model": "Outback AWD",
+        "engineLitres": 2.4,
+        "cylinders": 4,
+        "transmission": "8-speed continuously variable",
+        "vehicleType": "ICE",
+        "fuelType": "X"
+      },
+      "manufacturerSource": "subaru-ca-2026-outback-trim-specifications",
+      "engineEvidence": "Engine: 260-hp, 2.4-L Turbocharged Direct Injection, SUBARU BOXER",
+      "engineLayoutEvidence": "Engine layout: Horizontally-opposed, 4-cylinder",
+      "transmissionEvidence": "Transmission: High-torque Lineartronic CVT",
+      "drivetrainEvidence": "Drivetrain: Subaru Symmetrical Full-Time All-wheel Drive system (AWD)",
+      "note": "Reviewed exact CarID/model code, standard engine/cylinders, drive/transmission and city/highway consumption against the pinned NRCan variant. Combined consumption and emissions come from NRCan; existing public rating IDs remain reachable."
+    },
+    {
+      "retailId": "subaru-ca-1584",
+      "evidenceProvider": "subaru-specifications",
+      "recordId": 30792,
+      "retail": {
+        "make": "Subaru",
+        "model": "Outback",
+        "year": 2026,
+        "fuel": "Gasoline",
+        "drivetrain": "AWD",
+        "transmission": "Automatic"
+      },
+      "rating": {
+        "model": "Outback Wilderness AWD",
+        "engineLitres": 2.4,
+        "cylinders": 4,
+        "transmission": "8-speed continuously variable",
+        "vehicleType": "ICE",
+        "fuelType": "X"
+      },
+      "manufacturerSource": "subaru-ca-2026-outback-trim-specifications",
+      "engineEvidence": "Engine: 260-hp, 2.4-L Turbocharged Direct Injection, SUBARU BOXER",
+      "engineLayoutEvidence": "Engine layout: Horizontally-opposed, 4-cylinder",
+      "transmissionEvidence": "Transmission: High-torque Lineartronic CVT",
+      "drivetrainEvidence": "Drivetrain: Subaru Symmetrical Full-Time All-wheel Drive system (AWD)",
+      "note": "Reviewed exact CarID/model code, standard engine/cylinders, drive/transmission and city/highway consumption against the pinned NRCan variant. Combined consumption and emissions come from NRCan; existing public rating IDs remain reachable."
+    },
+    {
+      "retailId": "subaru-ca-1585",
+      "evidenceProvider": "subaru-specifications",
+      "recordId": 30790,
+      "retail": {
+        "make": "Subaru",
+        "model": "Outback",
+        "year": 2026,
+        "fuel": "Gasoline",
+        "drivetrain": "AWD",
+        "transmission": "Automatic"
+      },
+      "rating": {
+        "model": "Outback AWD",
+        "engineLitres": 2.4,
+        "cylinders": 4,
+        "transmission": "8-speed continuously variable",
+        "vehicleType": "ICE",
+        "fuelType": "X"
+      },
+      "manufacturerSource": "subaru-ca-2026-outback-trim-specifications",
+      "engineEvidence": "Engine: 260-hp, 2.4-L Turbocharged Direct Injection, SUBARU BOXER",
+      "engineLayoutEvidence": "Engine layout: Horizontally-opposed, 4-cylinder",
+      "transmissionEvidence": "Transmission: High-torque Lineartronic CVT",
+      "drivetrainEvidence": "Drivetrain: Subaru Symmetrical Full-Time All-wheel Drive system (AWD)",
+      "note": "Reviewed exact CarID/model code, standard engine/cylinders, drive/transmission and city/highway consumption against the pinned NRCan variant. Combined consumption and emissions come from NRCan; existing public rating IDs remain reachable."
+    },
+    {
+      "retailId": "subaru-ca-1622",
+      "evidenceProvider": "subaru-specifications",
+      "recordId": 31326,
+      "retail": {
+        "make": "Subaru",
+        "model": "BRZ",
+        "year": 2027,
+        "fuel": "Gasoline",
+        "drivetrain": "RWD",
+        "transmission": "Manual"
+      },
+      "rating": {
+        "model": "BRZ",
+        "engineLitres": 2.4,
+        "cylinders": 4,
+        "transmission": "6-speed manual",
+        "vehicleType": "ICE",
+        "fuelType": "Z"
+      },
+      "manufacturerSource": "subaru-ca-2027-brz-trim-specifications",
+      "engineEvidence": "Engine: 228-hp, 2.4-L Direct Injection, SUBARU BOXER",
+      "engineLayoutEvidence": "Engine layout: Horizontally-opposed, 4-cylinder",
+      "transmissionEvidence": "Transmission: 6-speed manual, close-ratio",
+      "drivetrainEvidence": "Drivetrain: Rear-Wheel Drive (RWD)",
+      "note": "Reviewed exact CarID/model code, standard engine/cylinders, drive/transmission and city/highway consumption against the pinned NRCan variant. Combined consumption and emissions come from NRCan; existing public rating IDs remain reachable."
+    },
+    {
+      "retailId": "subaru-ca-1623",
+      "evidenceProvider": "subaru-specifications",
+      "recordId": 31325,
+      "retail": {
+        "make": "Subaru",
+        "model": "BRZ",
+        "year": 2027,
+        "fuel": "Gasoline",
+        "drivetrain": "RWD",
+        "transmission": "Automatic"
+      },
+      "rating": {
+        "model": "BRZ",
+        "engineLitres": 2.4,
+        "cylinders": 4,
+        "transmission": "6-speed automatic with select shift",
+        "vehicleType": "ICE",
+        "fuelType": "Z"
+      },
+      "manufacturerSource": "subaru-ca-2027-brz-trim-specifications",
+      "engineEvidence": "Engine: 228-hp, 2.4-L Direct Injection, SUBARU BOXER",
+      "engineLayoutEvidence": "Engine layout: Horizontally-opposed, 4-cylinder",
+      "transmissionEvidence": "Transmission: 6-speed automatic",
+      "drivetrainEvidence": "Drivetrain: Rear-Wheel Drive (RWD)",
+      "note": "Reviewed exact CarID/model code, standard engine/cylinders, drive/transmission and city/highway consumption against the pinned NRCan variant. Combined consumption and emissions come from NRCan; existing public rating IDs remain reachable."
+    },
+    {
+      "retailId": "subaru-ca-1624",
+      "evidenceProvider": "subaru-specifications",
+      "recordId": 31326,
+      "retail": {
+        "make": "Subaru",
+        "model": "BRZ",
+        "year": 2027,
+        "fuel": "Gasoline",
+        "drivetrain": "RWD",
+        "transmission": "Manual"
+      },
+      "rating": {
+        "model": "BRZ",
+        "engineLitres": 2.4,
+        "cylinders": 4,
+        "transmission": "6-speed manual",
+        "vehicleType": "ICE",
+        "fuelType": "Z"
+      },
+      "manufacturerSource": "subaru-ca-2027-brz-trim-specifications",
+      "engineEvidence": "Engine: 228-hp, 2.4-L Direct Injection, SUBARU BOXER",
+      "engineLayoutEvidence": "Engine layout: Horizontally-opposed, 4-cylinder",
+      "transmissionEvidence": "Transmission: 6-speed manual, close-ratio",
+      "drivetrainEvidence": "Drivetrain: Rear-Wheel Drive (RWD)",
+      "note": "Reviewed exact CarID/model code, standard engine/cylinders, drive/transmission and city/highway consumption against the pinned NRCan variant. Combined consumption and emissions come from NRCan; existing public rating IDs remain reachable."
+    },
+    {
+      "retailId": "subaru-ca-1625",
+      "evidenceProvider": "subaru-specifications",
+      "recordId": 31326,
+      "retail": {
+        "make": "Subaru",
+        "model": "BRZ",
+        "year": 2027,
+        "fuel": "Gasoline",
+        "drivetrain": "RWD",
+        "transmission": "Manual"
+      },
+      "rating": {
+        "model": "BRZ",
+        "engineLitres": 2.4,
+        "cylinders": 4,
+        "transmission": "6-speed manual",
+        "vehicleType": "ICE",
+        "fuelType": "Z"
+      },
+      "manufacturerSource": "subaru-ca-2027-brz-trim-specifications",
+      "engineEvidence": "Engine: 228-hp, 2.4-L Direct Injection, SUBARU BOXER",
+      "engineLayoutEvidence": "Engine layout: Horizontally-opposed, 4-cylinder",
+      "transmissionEvidence": "Transmission: 6-speed manual, close-ratio",
+      "drivetrainEvidence": "Drivetrain: Rear-Wheel Drive (RWD)",
+      "note": "Reviewed exact CarID/model code, standard engine/cylinders, drive/transmission and city/highway consumption against the pinned NRCan variant. Combined consumption and emissions come from NRCan; existing public rating IDs remain reachable."
+    },
+    {
+      "retailId": "subaru-ca-1634",
+      "evidenceProvider": "subaru-specifications",
+      "recordId": 31327,
+      "retail": {
+        "make": "Subaru",
+        "model": "Crosstrek",
+        "year": 2027,
+        "fuel": "Gasoline",
+        "drivetrain": "AWD",
+        "transmission": "Automatic"
+      },
+      "rating": {
+        "model": "Crosstrek AWD",
+        "engineLitres": 2.5,
+        "cylinders": 4,
+        "transmission": "8-speed continuously variable",
+        "vehicleType": "ICE",
+        "fuelType": "X"
+      },
+      "manufacturerSource": "subaru-ca-2027-crosstrek-trim-specifications",
+      "engineEvidence": "Engine: 180-hp, 2.5-L Direct Injection, SUBARU BOXER",
+      "engineLayoutEvidence": "Engine layout: Horizontally-opposed, 4-cylinder",
+      "transmissionEvidence": "Transmission: Lineartronic CVT",
+      "drivetrainEvidence": "Drivetrain: Subaru Symmetrical Full-Time All-wheel Drive system (AWD)",
+      "note": "Reviewed exact CarID/model code, standard engine/cylinders, drive/transmission and city/highway consumption against the pinned NRCan variant. Combined consumption and emissions come from NRCan; existing public rating IDs remain reachable."
+    },
+    {
+      "retailId": "subaru-ca-1635",
+      "evidenceProvider": "subaru-specifications",
+      "recordId": 31327,
+      "retail": {
+        "make": "Subaru",
+        "model": "Crosstrek",
+        "year": 2027,
+        "fuel": "Gasoline",
+        "drivetrain": "AWD",
+        "transmission": "Automatic"
+      },
+      "rating": {
+        "model": "Crosstrek AWD",
+        "engineLitres": 2.5,
+        "cylinders": 4,
+        "transmission": "8-speed continuously variable",
+        "vehicleType": "ICE",
+        "fuelType": "X"
+      },
+      "manufacturerSource": "subaru-ca-2027-crosstrek-trim-specifications",
+      "engineEvidence": "Engine: 180-hp, 2.5-L Direct Injection, SUBARU BOXER",
+      "engineLayoutEvidence": "Engine layout: Horizontally-opposed, 4-cylinder",
+      "transmissionEvidence": "Transmission: Lineartronic CVT",
+      "drivetrainEvidence": "Drivetrain: Subaru Symmetrical Full-Time All-wheel Drive system (AWD)",
+      "note": "Reviewed exact CarID/model code, standard engine/cylinders, drive/transmission and city/highway consumption against the pinned NRCan variant. Combined consumption and emissions come from NRCan; existing public rating IDs remain reachable."
+    },
+    {
+      "retailId": "subaru-ca-1636",
+      "evidenceProvider": "subaru-specifications",
+      "recordId": 31327,
+      "retail": {
+        "make": "Subaru",
+        "model": "Crosstrek",
+        "year": 2027,
+        "fuel": "Gasoline",
+        "drivetrain": "AWD",
+        "transmission": "Automatic"
+      },
+      "rating": {
+        "model": "Crosstrek AWD",
+        "engineLitres": 2.5,
+        "cylinders": 4,
+        "transmission": "8-speed continuously variable",
+        "vehicleType": "ICE",
+        "fuelType": "X"
+      },
+      "manufacturerSource": "subaru-ca-2027-crosstrek-trim-specifications",
+      "engineEvidence": "Engine: 180-hp, 2.5-L Direct Injection, SUBARU BOXER",
+      "engineLayoutEvidence": "Engine layout: Horizontally-opposed, 4-cylinder",
+      "transmissionEvidence": "Transmission: Lineartronic CVT",
+      "drivetrainEvidence": "Drivetrain: Subaru Symmetrical Full-Time All-wheel Drive system (AWD)",
+      "note": "Reviewed exact CarID/model code, standard engine/cylinders, drive/transmission and city/highway consumption against the pinned NRCan variant. Combined consumption and emissions come from NRCan; existing public rating IDs remain reachable."
+    },
+    {
+      "retailId": "subaru-ca-1638",
+      "evidenceProvider": "subaru-specifications",
+      "recordId": 31327,
+      "retail": {
+        "make": "Subaru",
+        "model": "Crosstrek",
+        "year": 2027,
+        "fuel": "Gasoline",
+        "drivetrain": "AWD",
+        "transmission": "Automatic"
+      },
+      "rating": {
+        "model": "Crosstrek AWD",
+        "engineLitres": 2.5,
+        "cylinders": 4,
+        "transmission": "8-speed continuously variable",
+        "vehicleType": "ICE",
+        "fuelType": "X"
+      },
+      "manufacturerSource": "subaru-ca-2027-crosstrek-trim-specifications",
+      "engineEvidence": "Engine: 180-hp, 2.5-L Direct Injection, SUBARU BOXER",
+      "engineLayoutEvidence": "Engine layout: Horizontally-opposed, 4-cylinder",
+      "transmissionEvidence": "Transmission: Lineartronic CVT",
+      "drivetrainEvidence": "Drivetrain: Subaru Symmetrical Full-Time All-wheel Drive system (AWD)",
+      "note": "Reviewed exact CarID/model code, standard engine/cylinders, drive/transmission and city/highway consumption against the pinned NRCan variant. Combined consumption and emissions come from NRCan; existing public rating IDs remain reachable."
+    }
+  ]
+}

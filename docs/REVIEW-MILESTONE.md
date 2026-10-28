@@ -1,5 +1,7 @@
 # Review milestone — 26 October 2026
 
+Historical checkpoint. See [current project status](PROJECT-STATUS.md) for the later authorized improvements and present behavior.
+
 The [follow-up correction increment](GARAGE-CORRECTIONS.md) adds editable vehicle details and service history, with its latest verification results.
 
 This is the requested stopping point for feedback on the expanded app. It is not a claim that every Canadian offering or every maintenance schedule has been verified. The older v1.0.1 release report describes an earlier, much smaller release.

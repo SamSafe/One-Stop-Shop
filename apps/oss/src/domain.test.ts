@@ -1,10 +1,21 @@
 import { describe, expect, it } from 'vitest';
 import { catalog, curatedCatalog, retailCatalog } from '@oss/car-catalog';
 import {
+  estimateEnergy,
+  annualEnergyEstimate,
+  energyInputsUsed,
+  fuelPriceFor,
+  fuelTypeForPricing,
+} from './energy';
+import { nonApplicableReason } from './specifications';
+import {
   annualFuelCost,
   annualEnergyCost,
   defaultFilters,
   defaultWeights,
+  defaultEnergy,
+  energyCostPer100km,
+  vehicleBodyStyle,
   filterCars,
   hasMatchingSpecification,
   specificationDifference,
@@ -23,6 +34,233 @@ const cars = curatedCatalog.cars;
 const first = cars[0]!;
 const hybrid = cars.find((car) => car.fuel === 'Hybrid')!;
 const onlyPrice = { price: 5, efficiency: 0, cargo: 0, room: 0 };
+
+describe('explainable energy estimates and applicability', () => {
+  const plugIn = () => {
+    const car = structuredClone(first);
+    car.fuel = 'Plug-in hybrid';
+    car.facts.fuelCombinedL100km.value = 10;
+    car.facts.electricCombinedKwh100km.value = 20;
+    car.facts.electricModeFuelL100km.value = 2;
+    return car;
+  };
+  it('separates fuel and electricity, including fuel burned in electric operation', () => {
+    const estimate = estimateEnergy(plugIn(), {
+      ...defaultEnergy,
+      fuelPrice: 1.5,
+      electricityPrice: 0.2,
+    });
+    expect(estimate).toEqual({
+      available: true,
+      fuelLitres: 6,
+      electricityKwh: 10,
+      fuelCost: 9,
+      electricityCost: 2,
+      total: 11,
+      usesFuel: true,
+      usesElectricity: true,
+      fuelPrice: { key: null, label: 'Fuel grade not verified', price: 1.5, basis: 'shared' },
+    });
+    expect(annualEnergyEstimate(estimate, 10000).cost).toBe(1100);
+    expect(annualEnergyEstimate(estimate, 0).cost).toBe(0);
+  });
+  it('explains missing active consumption and invalid prices without a partial total', () => {
+    const car = plugIn();
+    car.facts.electricModeFuelL100km.value = null;
+    expect(estimateEnergy(car, { ...defaultEnergy, fuelPrice: NaN })).toEqual({
+      available: false,
+      reasons: [
+        'Fuel consumption during plug-in electric operation has not been verified.',
+        'Enter a fuel price from $0.01 to $5 per litre.',
+      ],
+    });
+    expect(estimateEnergy(first, { ...defaultEnergy, fuelPrice: 0.001 }).available).toBe(false);
+  });
+  it('keeps per-distance costs available when only annual distance is invalid', () => {
+    const estimate = estimateEnergy(plugIn(), { ...defaultEnergy, kilometres: NaN });
+    expect(estimate.available).toBe(true);
+    expect(annualEnergyEstimate(estimate, NaN)).toEqual({
+      cost: null,
+      reasons: ['Enter annual kilometres from 0 to 200,000.'],
+    });
+  });
+  it('shares active-mode requirements with the inputs, including zero fuel and invalid shares', () => {
+    const car = plugIn();
+    expect(energyInputsUsed(car, 0)).toEqual({ fuel: true, electricity: false, share: true });
+    expect(energyInputsUsed(car, 1).fuel).toBe(true);
+    car.facts.electricModeFuelL100km.value = 0;
+    expect(energyInputsUsed(car, 1)).toEqual({ fuel: false, electricity: true, share: true });
+    expect(
+      estimateEnergy(car, { ...defaultEnergy, fuelPrice: NaN, electricFraction: 1 }),
+    ).toMatchObject({ available: true, total: 3 });
+    expect(energyInputsUsed(car, 2)).toEqual({ fuel: true, electricity: true, share: true });
+    expect(estimateEnergy(car, { ...defaultEnergy, electricFraction: 2 })).toEqual({
+      available: false,
+      reasons: ['Enter an electric-mode share from 0% to 100%.'],
+    });
+  });
+  it('allows a free charging rate only with verified consumption and does not estimate hydrogen costs', () => {
+    const ev = plugIn();
+    ev.fuel = 'Electric';
+    const energy = { ...defaultEnergy, electricityPrice: 0, fuelPrice: NaN };
+    expect(estimateEnergy(ev, energy)).toMatchObject({
+      available: true,
+      total: 0,
+      usesFuel: false,
+    });
+    ev.facts.electricCombinedKwh100km.value = null;
+    expect(annualEnergyEstimate(estimateEnergy(ev, energy), 0).cost).toBeNull();
+    ev.fuel = 'Hydrogen';
+    expect(estimateEnergy(ev, defaultEnergy)).toEqual({
+      available: false,
+      reasons: ['Hydrogen energy costs are not supported.'],
+    });
+  });
+  it('distinguishes irrelevant fields from unknown applicable data and preserves published values', () => {
+    const car = plugIn();
+    car.fuel = 'Electric';
+    car.facts.fuelCombinedL100km.value = null;
+    expect(nonApplicableReason(car, 'fuelCombinedL100km')).toContain('does not use liquid fuel');
+    car.facts.electricCombinedKwh100km.value = null;
+    expect(nonApplicableReason(car, 'electricCombinedKwh100km')).toBeNull();
+    car.fuel = 'Hybrid';
+    expect(nonApplicableReason(car, 'electricCombinedKwh100km')).toContain('do not apply');
+    expect(nonApplicableReason(car, 'fuelCombinedL100km')).toBeNull();
+    car.facts.electricCombinedKwh100km.value = 20;
+    expect(nonApplicableReason(car, 'electricCombinedKwh100km')).toBeNull();
+    car.facts.electricModeFuelL100km.value = null;
+    expect(nonApplicableReason(car, 'electricModeFuelL100km')).toContain('only to plug-in hybrid');
+    car.fuel = 'Plug-in hybrid';
+    expect(nonApplicableReason(car, 'electricModeFuelL100km')).toBeNull();
+  });
+  it('hides matching inapplicable fields while keeping missing facts and mixed applicability visible', () => {
+    const car = structuredClone(first);
+    car.facts.electricRangeKm.value = null;
+    expect(hasMatchingSpecification([car, car], 'electricRangeKm')).toBe(true);
+    const ev = structuredClone(car);
+    ev.fuel = 'Electric';
+    expect(hasMatchingSpecification([car, ev], 'electricRangeKm')).toBe(false);
+    expect(hasMatchingSpecification([ev, ev], 'electricRangeKm')).toBe(false);
+    car.facts.electricRangeKm.value = 100;
+    expect(hasMatchingSpecification([car, ev], 'electricRangeKm')).toBe(false);
+  });
+});
+
+describe('fuel-specific price assumptions', () => {
+  const priced = {
+    ...defaultEnergy,
+    premiumPrice: 2,
+    dieselPrice: 1.8,
+    e85Price: 1.3,
+  };
+  const rated = (fuelType: string) =>
+    structuredClone(catalog.cars.find((car) => car.governmentRating?.fuelType === fuelType)!);
+
+  it('uses only the matching verified fuel price and includes its basis in the breakdown', () => {
+    for (const [type, price] of [
+      ['Regular gasoline', 1.6],
+      ['Premium gasoline', 2],
+      ['Diesel', 1.8],
+      ['Ethanol (E85)', 1.3],
+    ] as const) {
+      const car = rated(type);
+      car.facts.fuelCombinedL100km.value = 8;
+      const estimate = estimateEnergy(car, priced);
+      expect(estimate.available).toBe(true);
+      if (!estimate.available) throw Error('Expected a known fuel estimate.');
+      expect(estimate.total).toBeCloseTo(8 * price);
+      expect(estimate.fuelPrice?.price).toBe(price);
+      expect(estimate.fuelPrice?.basis).toBe(type === 'Regular gasoline' ? 'shared' : 'specific');
+    }
+  });
+  it('retains shared assumptions when no override is supplied and does not guess premium or E85 from names', () => {
+    const premium = rated('Premium gasoline');
+    expect(fuelPriceFor(premium, defaultEnergy)).toMatchObject({ price: 1.6, basis: 'shared' });
+    const unknown = structuredClone(first);
+    delete unknown.governmentRating;
+    unknown.make = 'Porsche';
+    unknown.trim = 'Premium Turbo';
+    expect(fuelPriceFor(unknown, priced)).toEqual({
+      key: null,
+      label: 'Fuel grade not verified',
+      price: 1.6,
+      basis: 'shared',
+    });
+    unknown.fuel = 'Flex-fuel';
+    expect(fuelPriceFor(unknown, priced).price).toBe(1.6);
+    unknown.fuel = 'Diesel';
+    expect(fuelPriceFor(unknown, priced)).toMatchObject({
+      key: 'dieselPrice',
+      price: 1.8,
+      basis: 'specific',
+    });
+  });
+  it('rejects only invalid prices used by the selected fuel and operating mode', () => {
+    const premium = rated('Premium gasoline');
+    premium.facts.fuelCombinedL100km.value = 8;
+    expect(estimateEnergy(premium, { ...priced, fuelPrice: NaN }).available).toBe(true);
+    expect(estimateEnergy(premium, { ...priced, premiumPrice: NaN })).toEqual({
+      available: false,
+      reasons: ['Enter a premium gasoline price from $0.01 to $5 per litre.'],
+    });
+    const regular = rated('Regular gasoline');
+    expect(
+      estimateEnergy(regular, { ...priced, premiumPrice: NaN, dieselPrice: 0 }).available,
+    ).toBe(true);
+    premium.fuel = 'Plug-in hybrid';
+    premium.facts.electricCombinedKwh100km.value = 20;
+    premium.facts.electricModeFuelL100km.value = 0;
+    expect(
+      estimateEnergy(premium, {
+        ...priced,
+        premiumPrice: NaN,
+        fuelPrice: NaN,
+        electricFraction: 1,
+      }),
+    ).toMatchObject({ available: true, total: 3, usesFuel: false, fuelPrice: null });
+    expect(fuelTypeForPricing(regular).key).toBeNull();
+  });
+  it('applies fuel-specific assumptions to ranking without making annual distance a scoring input', () => {
+    const car = rated('Premium gasoline');
+    expect(scoreCar(car, defaultWeights, priced).score).toBeLessThan(
+      scoreCar(car, defaultWeights).score!,
+    );
+    expect(scoreCar(car, defaultWeights, { ...priced, kilometres: NaN }).score).toBe(
+      scoreCar(car, defaultWeights, priced).score,
+    );
+    expect(scoreCar(car, onlyPrice, { ...priced, premiumPrice: NaN }).score).not.toBeNull();
+  });
+  it('roundtrips optional prices in shared state, including a price equal to the shared assumption', () => {
+    for (const overrides of [
+      { premiumPrice: 2 },
+      { dieselPrice: 1.8, e85Price: 1.3 },
+      { premiumPrice: 1.6 },
+    ]) {
+      const state = {
+        compare: [first.id],
+        weights: defaultWeights,
+        energy: { ...defaultEnergy, ...overrides },
+      };
+      expect(parseSharedState(serializeSharedState(state), cars)).toEqual(state);
+    }
+  });
+  it('ignores malformed URL overrides and omits invalid values when sharing', () => {
+    expect(
+      parseSharedState('?premiumPrice=Infinity&dieselPrice=0&e85Price=5.01', cars).energy,
+    ).toBeUndefined();
+    expect(parseSharedState('?premiumPrice=2&dieselPrice=-1&e85Price=NaN', cars).energy).toEqual({
+      ...defaultEnergy,
+      premiumPrice: 2,
+    });
+    expect(
+      serializeSharedState({
+        compare: [],
+        weights: defaultWeights,
+        energy: { ...defaultEnergy, premiumPrice: NaN, dieselPrice: 0, e85Price: 6 },
+      }),
+    ).toBe('');
+  });
+});
 
 describe('meaningful specification differences', () => {
   it('roundtrips a selected reference through the shared comparison URL', () => {
@@ -85,6 +323,21 @@ describe('meaningful specification differences', () => {
 });
 
 describe('matching comparison specifications', () => {
+  it('keeps an up-to range distinct from an unqualified range with the same numeric value', () => {
+    const bounded = structuredClone(first),
+      fixed = structuredClone(first);
+    bounded.facts.electricRangeKm = {
+      value: 400,
+      source: first.facts.msrpCad.source,
+      note: 'Same source context.',
+      qualifier: 'up-to',
+    };
+    fixed.facts.electricRangeKm = { ...bounded.facts.electricRangeKm };
+    delete fixed.facts.electricRangeKm.qualifier;
+    expect(hasMatchingSpecification([bounded, fixed], 'electricRangeKm')).toBe(false);
+    fixed.facts.electricRangeKm.qualifier = 'up-to';
+    expect(hasMatchingSpecification([bounded, fixed], 'electricRangeKm')).toBe(true);
+  });
   it('recognizes a known match across separate publications', () => {
     const second = structuredClone(first);
     second.facts.seats = { ...first.facts.seats, source: 'another-publication' };
@@ -112,13 +365,13 @@ describe('matching comparison specifications', () => {
 
 describe('ranking', () => {
   it('matches a hand-calculated weighted score', () => {
-    // LX: price .704×.3 + L/100 km .3333×.3 + cargo .772×.2 + room .7×.2 = .6056
+    // Price .704×.3 + energy (1 - 14.93/24)×.3 + cargo .772×.2 + room .7×.2.
     const example = structuredClone(first);
     example.facts.msrpCad.value = 38880;
     example.facts.fuelCombinedL100km.value = 9.333333333;
     example.facts.cargoSeatsUpL.value = 1040.4;
     example.facts.rearLegroomMm.value = 1060;
-    expect(scoreCar(example, defaultWeights).score).toBe(61);
+    expect(scoreCar(example, { price: 3, efficiency: 3, cargo: 2, room: 2 }).score).toBe(62);
   });
   it('changes the winner when priorities change', () => {
     expect(rankCars(cars, onlyPrice)[0]!.car.id).toBe('subaru-forester-2026-convenience-awd');
@@ -158,6 +411,25 @@ describe('ranking', () => {
 });
 
 describe('filters and fuel estimates', () => {
+  it('matches reordered words, punctuation variants and powertrains without conflating numeric model names', () => {
+    const crv = {
+      ...structuredClone(first),
+      make: 'Honda',
+      model: 'CR-V',
+      fuel: 'Hybrid' as const,
+    };
+    expect(filterCars([crv], { ...defaultFilters, query: 'hybrid 2026 hónda crv' })).toEqual([crv]);
+    expect(filterCars([crv], { ...defaultFilters, query: 'Honda CR–V' })).toEqual([crv]);
+    expect(filterCars([crv], { ...defaultFilters, query: 'hybrid diesel' })).toEqual([]);
+    const cx5 = { ...crv, model: 'CX-5', make: 'Mazda' },
+      cx50 = { ...crv, model: 'CX-50', make: 'Mazda' };
+    expect(filterCars([cx5, cx50], { ...defaultFilters, query: 'mazda cx5' })).toEqual([cx5]);
+    const xl = { ...crv, make: 'Ford', model: 'F-150', trim: 'XL', variant: 'Cab: Regular Cab' };
+    const xlt = { ...xl, trim: 'XLT' };
+    expect(filterCars([xl, xlt], { ...defaultFilters, query: 'F150 XL Cab:' })).toEqual([xl]);
+    expect(filterCars([xl, xlt], { ...defaultFilters, query: '"f-150 xl" regular' })).toEqual([xl]);
+    expect(filterCars([xl], { ...defaultFilters, query: '"xl f150"' })).toEqual([]);
+  });
   it('combines search, fuel, drivetrain, budget and saved filters', () => {
     expect(
       filterCars(
@@ -214,6 +486,47 @@ describe('filters and fuel estimates', () => {
 });
 
 describe('full-market filtering and energy calculations', () => {
+  it('scores EVs with sourced energy consumption and keeps missing spatial priorities explicit', () => {
+    const ev = structuredClone(catalog.cars.find((car) => car.fuel === 'Electric')!);
+    ev.facts.msrpCad = { value: 45000, source: ev.sourceIds[0]! };
+    ev.facts.electricCombinedKwh100km = { value: 20, source: ev.sourceIds[0]! };
+    ev.facts.cargoSeatsUpL = {
+      value: null,
+      source: null,
+      note: 'This fixture has no cargo measurement.',
+    };
+    expect(energyCostPer100km(ev)).toBe(3);
+    expect(scoreCar(ev, defaultWeights).score).toBe(69);
+    expect(scoreCar(ev, { ...defaultWeights, cargo: 2 }).score).toBeNull();
+    expect(scoreCar(ev, defaultWeights, { ...defaultEnergy, fuelPrice: NaN }).score).toBe(69);
+    expect(
+      scoreCar(ev, defaultWeights, { ...defaultEnergy, electricityPrice: NaN }).score,
+    ).toBeNull();
+  });
+  it('changes energy scores with energy prices but not annual distance', () => {
+    expect(scoreCar(first, defaultWeights, { ...defaultEnergy, kilometres: 0 }).score).toBe(
+      scoreCar(first, defaultWeights).score,
+    );
+    expect(scoreCar(first, defaultWeights, { ...defaultEnergy, fuelPrice: 3 }).score).toBeLessThan(
+      scoreCar(first, defaultWeights).score!,
+    );
+  });
+  it('filters body styles and verified seating without requiring a rating join', () => {
+    const suv = { ...structuredClone(first), bodyStyle: 'SUV' as const };
+    delete suv.governmentRating;
+    expect(
+      filterCars([suv], { ...defaultFilters, bodyStyle: 'SUV', minSeats: 5, pricedOnly: true }),
+    ).toEqual([suv]);
+    suv.facts.seats.value = null;
+    expect(filterCars([suv], { ...defaultFilters, minSeats: 5 })).toEqual([]);
+    expect(vehicleBodyStyle({ ...suv, bodyStyle: 'Not verified' })).toBe('Not verified');
+    const rating = catalog.cars.find(
+      (car) =>
+        car.governmentRating?.vehicleClass === 'Sport utility vehicle: Small' &&
+        car.recordKind === 'government-rating',
+    )!;
+    expect(vehicleBodyStyle(rating)).toBe('SUV');
+  });
   it('keeps year-unverified manufacturer offers visible without assigning them a model year', () => {
     const offer = {
       ...structuredClone(first),
@@ -279,9 +592,40 @@ describe('full-market filtering and energy calculations', () => {
     example.facts.electricModeFuelL100km.value = null;
     expect(annualEnergyCost(example, 10000, 1.5, 0.2, 0.5)).toBeNull();
   });
+  it('requires only the energy modes actually used by a plug-in scenario', () => {
+    const car = structuredClone(catalog.cars.find((car) => car.fuel === 'Plug-in hybrid')!);
+    car.facts.fuelCombinedL100km.value = 8;
+    car.facts.electricCombinedKwh100km.value = null;
+    car.facts.electricModeFuelL100km.value = null;
+    expect(annualEnergyCost(car, 10000, 1.5, NaN, 0)).toBe(1200);
+    expect(annualEnergyCost(car, 10000, 1.5, 0.2, 0.01)).toBeNull();
+    car.facts.electricCombinedKwh100km.value = 20;
+    car.facts.electricModeFuelL100km.value = 0;
+    car.facts.fuelCombinedL100km.value = null;
+    expect(annualEnergyCost(car, 10000, NaN, 0.2, 1)).toBe(400);
+    expect(annualEnergyCost(car, 10000, 1.5, 0.2, 0.99)).toBeNull();
+    car.facts.electricModeFuelL100km.value = 2;
+    expect(annualEnergyCost(car, 10000, NaN, 0.2, 1)).toBeNull();
+    expect(annualEnergyCost(car, 10000, 1.5, 0.2, 1)).toBe(700);
+    expect(annualEnergyCost(car, 10000, 1.5, 0.2, NaN)).toBeNull();
+  });
 });
 
 describe('shared comparisons', () => {
+  it('restores energy assumptions and ignores invalid or excessive inputs', () => {
+    const state = {
+      compare: [first.id],
+      weights: defaultWeights,
+      energy: { kilometres: 24000, fuelPrice: 1.9, electricityPrice: 0.23, electricFraction: 0.8 },
+    };
+    expect(parseSharedState(serializeSharedState(state), cars)).toEqual(state);
+    expect(
+      parseSharedState(
+        '?fuelPrice=Infinity&electricityPrice=-1&kilometres=200001&electricFraction=2',
+        cars,
+      ).energy,
+    ).toBeUndefined();
+  });
   it('roundtrips selected IDs and weights', () => {
     const state = {
       compare: [first.id, hybrid.id],

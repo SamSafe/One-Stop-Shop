@@ -1,0 +1,1774 @@
+{
+  "schemaVersion": 1,
+  "retrievedAt": "2026-10-27T22:19:44.576Z",
+  "models": [
+    {
+      "model": "Forester",
+      "year": 2026,
+      "title": "Specifications - 2026 Forester - Subaru Canada",
+      "source": {
+        "url": "https://m.subaru.ca/WebPage.aspx?WebSiteID=282&WebPageID=26168&ModelYear=2026",
+        "responseUrl": "https://m.subaru.ca/WebPage.aspx?WebSiteID=282&WebPageID=26168&Range=Forester&ModelYear=2026",
+        "sha256": "d6e8d0ad81b283e4155f162ff841f9d13000f2d8d8c63ec00a73372aee4bb892"
+      },
+      "trims": [
+        { "manufacturerId": 1562, "name": "Convenience", "modelCode": "TJACP" },
+        { "manufacturerId": 1563, "name": "Touring", "modelCode": "TJATP" },
+        { "manufacturerId": 1564, "name": "Sport", "modelCode": "TJASP" },
+        { "manufacturerId": 1567, "name": "Limited", "modelCode": "TJALP" },
+        { "manufacturerId": 1568, "name": "Premier", "modelCode": "TJAPP" },
+        { "manufacturerId": 1569, "name": "Hybrid Premier", "modelCode": "TJAHPP" }
+      ],
+      "rows": [
+        {
+          "label": "Engine layout: Horizontally-opposed, 4-cylinder",
+          "cells": [
+            { "manufacturerId": 1562, "value": "", "status": "S" },
+            { "manufacturerId": 1563, "value": "", "status": "S" },
+            { "manufacturerId": 1564, "value": "", "status": "S" },
+            { "manufacturerId": 1567, "value": "", "status": "S" },
+            { "manufacturerId": 1568, "value": "", "status": "S" },
+            { "manufacturerId": 1569, "value": "", "status": "S" }
+          ]
+        },
+        {
+          "label": "Engine: 180-hp, 2.5-L Direct Injection, SUBARU BOXER",
+          "cells": [
+            { "manufacturerId": 1562, "value": "", "status": "S" },
+            { "manufacturerId": 1563, "value": "", "status": "S" },
+            { "manufacturerId": 1564, "value": "", "status": "S" },
+            { "manufacturerId": 1567, "value": "", "status": "S" },
+            { "manufacturerId": 1568, "value": "", "status": "S" },
+            { "manufacturerId": 1569, "value": "", "status": "N" }
+          ]
+        },
+        {
+          "label": "Engine: 194-hp, 2.5-L Direct Injection, SUBARU Hybrid",
+          "cells": [
+            { "manufacturerId": 1562, "value": "", "status": "N" },
+            { "manufacturerId": 1563, "value": "", "status": "N" },
+            { "manufacturerId": 1564, "value": "", "status": "N" },
+            { "manufacturerId": 1567, "value": "", "status": "N" },
+            { "manufacturerId": 1568, "value": "", "status": "N" },
+            { "manufacturerId": 1569, "value": "", "status": "S" }
+          ]
+        },
+        {
+          "label": "Engine: Atkinson cycle",
+          "cells": [
+            { "manufacturerId": 1562, "value": "", "status": "N" },
+            { "manufacturerId": 1563, "value": "", "status": "N" },
+            { "manufacturerId": 1564, "value": "", "status": "N" },
+            { "manufacturerId": 1567, "value": "", "status": "N" },
+            { "manufacturerId": 1568, "value": "", "status": "N" },
+            { "manufacturerId": 1569, "value": "", "status": "S" }
+          ]
+        },
+        {
+          "label": "Output (max): 180 hp @ 5,800 rpm",
+          "cells": [
+            { "manufacturerId": 1562, "value": "", "status": "S" },
+            { "manufacturerId": 1563, "value": "", "status": "S" },
+            { "manufacturerId": 1564, "value": "", "status": "S" },
+            { "manufacturerId": 1567, "value": "", "status": "S" },
+            { "manufacturerId": 1568, "value": "", "status": "S" },
+            { "manufacturerId": 1569, "value": "", "status": "N" }
+          ]
+        },
+        {
+          "label": "Drivetrain: Subaru Symmetrical Full-Time All-wheel Drive system (AWD)",
+          "cells": [
+            { "manufacturerId": 1562, "value": "", "status": "S" },
+            { "manufacturerId": 1563, "value": "", "status": "S" },
+            { "manufacturerId": 1564, "value": "", "status": "S" },
+            { "manufacturerId": 1567, "value": "", "status": "S" },
+            { "manufacturerId": 1568, "value": "", "status": "S" },
+            { "manufacturerId": 1569, "value": "", "status": "S" }
+          ]
+        },
+        {
+          "label": "Transmission: Hybrid Lineartronic CVT",
+          "cells": [
+            { "manufacturerId": 1562, "value": "", "status": "N" },
+            { "manufacturerId": 1563, "value": "", "status": "N" },
+            { "manufacturerId": 1564, "value": "", "status": "N" },
+            { "manufacturerId": 1567, "value": "", "status": "N" },
+            { "manufacturerId": 1568, "value": "", "status": "N" },
+            { "manufacturerId": 1569, "value": "", "status": "S" }
+          ]
+        },
+        {
+          "label": "Transmission: Lineartronic CVT",
+          "cells": [
+            { "manufacturerId": 1562, "value": "", "status": "S" },
+            { "manufacturerId": 1563, "value": "", "status": "S" },
+            { "manufacturerId": 1564, "value": "", "status": "S" },
+            { "manufacturerId": 1567, "value": "", "status": "S" },
+            { "manufacturerId": 1568, "value": "", "status": "S" },
+            { "manufacturerId": 1569, "value": "", "status": "N" }
+          ]
+        },
+        {
+          "label": "Cargo volume (L): Seats folded",
+          "cells": [
+            { "manufacturerId": 1562, "value": "2,107", "status": null },
+            { "manufacturerId": 1563, "value": "1,957", "status": null },
+            { "manufacturerId": 1564, "value": "1,957", "status": null },
+            { "manufacturerId": 1567, "value": "1,957", "status": null },
+            { "manufacturerId": 1568, "value": "1,957", "status": null },
+            { "manufacturerId": 1569, "value": "1,957", "status": null }
+          ]
+        },
+        {
+          "label": "Cargo volume (L): Seats up",
+          "cells": [
+            { "manufacturerId": 1562, "value": "838", "status": null },
+            { "manufacturerId": 1563, "value": "779", "status": null },
+            { "manufacturerId": 1564, "value": "779", "status": null },
+            { "manufacturerId": 1567, "value": "762", "status": null },
+            { "manufacturerId": 1568, "value": "779", "status": null },
+            { "manufacturerId": 1569, "value": "779", "status": null }
+          ]
+        },
+        {
+          "label": "Height (mm)",
+          "cells": [
+            { "manufacturerId": 1562, "value": "1,730", "status": null },
+            { "manufacturerId": 1563, "value": "1,730", "status": null },
+            { "manufacturerId": 1564, "value": "1,730", "status": null },
+            { "manufacturerId": 1567, "value": "1,730", "status": null },
+            { "manufacturerId": 1568, "value": "1,730", "status": null },
+            { "manufacturerId": 1569, "value": "1,730", "status": null }
+          ]
+        },
+        {
+          "label": "Length (mm)",
+          "cells": [
+            { "manufacturerId": 1562, "value": "4,655", "status": null },
+            { "manufacturerId": 1563, "value": "4,655", "status": null },
+            { "manufacturerId": 1564, "value": "4,655", "status": null },
+            { "manufacturerId": 1567, "value": "4,655", "status": null },
+            { "manufacturerId": 1568, "value": "4,655", "status": null },
+            { "manufacturerId": 1569, "value": "4,655", "status": null }
+          ]
+        },
+        {
+          "label": "Width (mm): Body",
+          "cells": [
+            { "manufacturerId": 1562, "value": "1,830", "status": null },
+            { "manufacturerId": 1563, "value": "1,830", "status": null },
+            { "manufacturerId": 1564, "value": "1,830", "status": null },
+            { "manufacturerId": 1567, "value": "1,830", "status": null },
+            { "manufacturerId": 1568, "value": "1,830", "status": null },
+            { "manufacturerId": 1569, "value": "1,830", "status": null }
+          ]
+        },
+        {
+          "label": "Automatic transmission (City) (Imperial MPG)",
+          "cells": [
+            { "manufacturerId": 1562, "value": "31", "status": null },
+            { "manufacturerId": 1563, "value": "31", "status": null },
+            { "manufacturerId": 1564, "value": "31", "status": null },
+            { "manufacturerId": 1567, "value": "31", "status": null },
+            { "manufacturerId": 1568, "value": "31", "status": null },
+            { "manufacturerId": 1569, "value": "42", "status": null }
+          ]
+        },
+        {
+          "label": "Automatic transmission (City) (L/100 km)",
+          "cells": [
+            { "manufacturerId": 1562, "value": "9.1", "status": null },
+            { "manufacturerId": 1563, "value": "9.1", "status": null },
+            { "manufacturerId": 1564, "value": "9.1", "status": null },
+            { "manufacturerId": 1567, "value": "9.1", "status": null },
+            { "manufacturerId": 1568, "value": "9.1", "status": null },
+            { "manufacturerId": 1569, "value": "6.8", "status": null }
+          ]
+        },
+        {
+          "label": "Automatic transmission (Hwy) (Imperial MPG)",
+          "cells": [
+            { "manufacturerId": 1562, "value": "39", "status": null },
+            { "manufacturerId": 1563, "value": "39", "status": null },
+            { "manufacturerId": 1564, "value": "39", "status": null },
+            { "manufacturerId": 1567, "value": "39", "status": null },
+            { "manufacturerId": 1568, "value": "39", "status": null },
+            { "manufacturerId": 1569, "value": "40", "status": null }
+          ]
+        },
+        {
+          "label": "Automatic transmission (Hwy) (L/100 km)",
+          "cells": [
+            { "manufacturerId": 1562, "value": "7.2", "status": null },
+            { "manufacturerId": 1563, "value": "7.2", "status": null },
+            { "manufacturerId": 1564, "value": "7.2", "status": null },
+            { "manufacturerId": 1567, "value": "7.2", "status": null },
+            { "manufacturerId": 1568, "value": "7.2", "status": null },
+            { "manufacturerId": 1569, "value": "7.0", "status": null }
+          ]
+        },
+        {
+          "label": "Headroom (mm): Front",
+          "cells": [
+            { "manufacturerId": 1562, "value": "1,047", "status": null },
+            { "manufacturerId": 1563, "value": "1,016", "status": null },
+            { "manufacturerId": 1564, "value": "1,016", "status": null },
+            { "manufacturerId": 1567, "value": "1,016", "status": null },
+            { "manufacturerId": 1568, "value": "1,016", "status": null },
+            { "manufacturerId": 1569, "value": "1,016", "status": null }
+          ]
+        },
+        {
+          "label": "Headroom (mm): Rear",
+          "cells": [
+            { "manufacturerId": 1562, "value": "1,006", "status": null },
+            { "manufacturerId": 1563, "value": "957", "status": null },
+            { "manufacturerId": 1564, "value": "957", "status": null },
+            { "manufacturerId": 1567, "value": "957", "status": null },
+            { "manufacturerId": 1568, "value": "957", "status": null },
+            { "manufacturerId": 1569, "value": "957", "status": null }
+          ]
+        },
+        {
+          "label": "Legroom (mm): Front",
+          "cells": [
+            { "manufacturerId": 1562, "value": "1,101", "status": null },
+            { "manufacturerId": 1563, "value": "1,101", "status": null },
+            { "manufacturerId": 1564, "value": "1,101", "status": null },
+            { "manufacturerId": 1567, "value": "1,101", "status": null },
+            { "manufacturerId": 1568, "value": "1,101", "status": null },
+            { "manufacturerId": 1569, "value": "1,101", "status": null }
+          ]
+        },
+        {
+          "label": "Legroom (mm): Rear",
+          "cells": [
+            { "manufacturerId": 1562, "value": "1,000", "status": null },
+            { "manufacturerId": 1563, "value": "1,000", "status": null },
+            { "manufacturerId": 1564, "value": "1,000", "status": null },
+            { "manufacturerId": 1567, "value": "1,000", "status": null },
+            { "manufacturerId": 1568, "value": "1,000", "status": null },
+            { "manufacturerId": 1569, "value": "1,000", "status": null }
+          ]
+        }
+      ]
+    },
+    {
+      "model": "Impreza",
+      "year": 2026,
+      "title": "Specifications - 2026 Impreza - Subaru Canada",
+      "source": {
+        "url": "https://m.subaru.ca/WebPage.aspx?WebSiteID=282&WebPageID=26281&ModelYear=2026",
+        "responseUrl": "https://m.subaru.ca/WebPage.aspx?WebSiteID=282&WebPageID=26281&Range=Impreza&ModelYear=2026",
+        "sha256": "8bbaed51dbaaadd74fcb249b0bbd4c6cc8120640d87e4ef49dd0da6698608674"
+      },
+      "trims": [
+        { "manufacturerId": 1579, "name": "Convenience 5-door", "modelCode": "TGACP" },
+        { "manufacturerId": 1580, "name": "Touring 5-door", "modelCode": "TGATP" },
+        { "manufacturerId": 1581, "name": "RS 5-door", "modelCode": "TGARS" }
+      ],
+      "rows": [
+        {
+          "label": "Engine layout: Horizontally-opposed, 4-cylinder",
+          "cells": [
+            { "manufacturerId": 1579, "value": "", "status": "S" },
+            { "manufacturerId": 1580, "value": "", "status": "S" },
+            { "manufacturerId": 1581, "value": "", "status": "S" }
+          ]
+        },
+        {
+          "label": "Engine: 152-hp, 2.0-L Direct Injection, SUBARU BOXER",
+          "cells": [
+            { "manufacturerId": 1579, "value": "", "status": "S" },
+            { "manufacturerId": 1580, "value": "", "status": "S" },
+            { "manufacturerId": 1581, "value": "", "status": "N" }
+          ]
+        },
+        {
+          "label": "Engine: 182-hp, 2.5-L Direct Injection, SUBARU BOXER",
+          "cells": [
+            { "manufacturerId": 1579, "value": "", "status": "N" },
+            { "manufacturerId": 1580, "value": "", "status": "N" },
+            { "manufacturerId": 1581, "value": "", "status": "S" }
+          ]
+        },
+        {
+          "label": "Output (max): 152 hp @ 6,000 rpm",
+          "cells": [
+            { "manufacturerId": 1579, "value": "", "status": "S" },
+            { "manufacturerId": 1580, "value": "", "status": "S" },
+            { "manufacturerId": 1581, "value": "", "status": "N" }
+          ]
+        },
+        {
+          "label": "Output (max): 182 hp @ 5,800 rpm",
+          "cells": [
+            { "manufacturerId": 1579, "value": "", "status": "N" },
+            { "manufacturerId": 1580, "value": "", "status": "N" },
+            { "manufacturerId": 1581, "value": "", "status": "S" }
+          ]
+        },
+        {
+          "label": "Drivetrain: Subaru Symmetrical Full-Time All-wheel Drive system (AWD)",
+          "cells": [
+            { "manufacturerId": 1579, "value": "", "status": "S" },
+            { "manufacturerId": 1580, "value": "", "status": "S" },
+            { "manufacturerId": 1581, "value": "", "status": "S" }
+          ]
+        },
+        {
+          "label": "Transmission: Lineartronic CVT",
+          "cells": [
+            { "manufacturerId": 1579, "value": "", "status": "S" },
+            { "manufacturerId": 1580, "value": "", "status": "S" },
+            { "manufacturerId": 1581, "value": "", "status": "S" }
+          ]
+        },
+        {
+          "label": "Cargo volume (L): Seats folded",
+          "cells": [
+            { "manufacturerId": 1579, "value": "1,586", "status": null },
+            { "manufacturerId": 1580, "value": "1,586", "status": null },
+            { "manufacturerId": 1581, "value": "1,586", "status": null }
+          ]
+        },
+        {
+          "label": "Cargo volume (L): Seats up",
+          "cells": [
+            { "manufacturerId": 1579, "value": "578", "status": null },
+            { "manufacturerId": 1580, "value": "578", "status": null },
+            { "manufacturerId": 1581, "value": "578", "status": null }
+          ]
+        },
+        {
+          "label": "Height (mm)",
+          "cells": [
+            { "manufacturerId": 1579, "value": "1,480", "status": null },
+            { "manufacturerId": 1580, "value": "1,480", "status": null },
+            { "manufacturerId": 1581, "value": "1,480", "status": null }
+          ]
+        },
+        {
+          "label": "Length (mm)",
+          "cells": [
+            { "manufacturerId": 1579, "value": "4,475", "status": null },
+            { "manufacturerId": 1580, "value": "4,475", "status": null },
+            { "manufacturerId": 1581, "value": "4,475", "status": null }
+          ]
+        },
+        {
+          "label": "Width (mm): Body",
+          "cells": [
+            { "manufacturerId": 1579, "value": "1,780", "status": null },
+            { "manufacturerId": 1580, "value": "1,780", "status": null },
+            { "manufacturerId": 1581, "value": "1,780", "status": null }
+          ]
+        },
+        {
+          "label": "Automatic transmission (City) (Imperial MPG)",
+          "cells": [
+            { "manufacturerId": 1579, "value": "32", "status": null },
+            { "manufacturerId": 1580, "value": "32", "status": null },
+            { "manufacturerId": 1581, "value": "31", "status": null }
+          ]
+        },
+        {
+          "label": "Automatic transmission (City) (L/100 km)",
+          "cells": [
+            { "manufacturerId": 1579, "value": "8.8", "status": null },
+            { "manufacturerId": 1580, "value": "8.8", "status": null },
+            { "manufacturerId": 1581, "value": "9.0", "status": null }
+          ]
+        },
+        {
+          "label": "Automatic transmission (Hwy) (Imperial MPG)",
+          "cells": [
+            { "manufacturerId": 1579, "value": "41", "status": null },
+            { "manufacturerId": 1580, "value": "41", "status": null },
+            { "manufacturerId": 1581, "value": "39", "status": null }
+          ]
+        },
+        {
+          "label": "Automatic transmission (Hwy) (L/100 km)",
+          "cells": [
+            { "manufacturerId": 1579, "value": "6.9", "status": null },
+            { "manufacturerId": 1580, "value": "6.9", "status": null },
+            { "manufacturerId": 1581, "value": "7.2", "status": null }
+          ]
+        },
+        {
+          "label": "Headroom (mm): Front",
+          "cells": [
+            { "manufacturerId": 1579, "value": "1,010", "status": null },
+            { "manufacturerId": 1580, "value": "1,010", "status": null },
+            { "manufacturerId": 1581, "value": "984", "status": null }
+          ]
+        },
+        {
+          "label": "Headroom (mm): Rear",
+          "cells": [
+            { "manufacturerId": 1579, "value": "965", "status": null },
+            { "manufacturerId": 1580, "value": "965", "status": null },
+            { "manufacturerId": 1581, "value": "965", "status": null }
+          ]
+        },
+        {
+          "label": "Legroom (mm): Front",
+          "cells": [
+            { "manufacturerId": 1579, "value": "1,089", "status": null },
+            { "manufacturerId": 1580, "value": "1,089", "status": null },
+            { "manufacturerId": 1581, "value": "1,089", "status": null }
+          ]
+        },
+        {
+          "label": "Legroom (mm): Rear",
+          "cells": [
+            { "manufacturerId": 1579, "value": "926", "status": null },
+            { "manufacturerId": 1580, "value": "926", "status": null },
+            { "manufacturerId": 1581, "value": "926", "status": null }
+          ]
+        }
+      ]
+    },
+    {
+      "model": "Outback",
+      "year": 2026,
+      "title": "Specifications - 2026 Outback - Subaru Canada",
+      "source": {
+        "url": "https://m.subaru.ca/WebPage.aspx?WebSiteID=282&WebPageID=25921&ModelYear=2026",
+        "responseUrl": "https://m.subaru.ca/WebPage.aspx?WebSiteID=282&WebPageID=25921&Range=Outback&ModelYear=2026",
+        "sha256": "84e7359ce2bc3f6548179a7c7a579f8835ad73cee7151d85883e3cc85b4cdf57"
+      },
+      "trims": [
+        { "manufacturerId": 1582, "name": "Touring", "modelCode": "TDATP" },
+        { "manufacturerId": 1583, "name": "Limited XT", "modelCode": "TDALX" },
+        { "manufacturerId": 1584, "name": "Wilderness", "modelCode": "TDAWX" },
+        { "manufacturerId": 1585, "name": "Premier XT", "modelCode": "TDAPX" }
+      ],
+      "rows": [
+        {
+          "label": "Engine layout: Horizontally-opposed, 4-cylinder",
+          "cells": [
+            { "manufacturerId": 1582, "value": "", "status": "N" },
+            { "manufacturerId": 1583, "value": "", "status": "S" },
+            { "manufacturerId": 1584, "value": "", "status": "S" },
+            { "manufacturerId": 1585, "value": "", "status": "S" }
+          ]
+        },
+        {
+          "label": "Engine: 180-hp, 2.5-L Direct Injection, SUBARU BOXER",
+          "cells": [
+            { "manufacturerId": 1582, "value": "", "status": "S" },
+            { "manufacturerId": 1583, "value": "", "status": "N" },
+            { "manufacturerId": 1584, "value": "", "status": "N" },
+            { "manufacturerId": 1585, "value": "", "status": "N" }
+          ]
+        },
+        {
+          "label": "Engine: 260-hp, 2.4-L Turbocharged Direct Injection, SUBARU BOXER",
+          "cells": [
+            { "manufacturerId": 1582, "value": "", "status": "N" },
+            { "manufacturerId": 1583, "value": "", "status": "S" },
+            { "manufacturerId": 1584, "value": "", "status": "S" },
+            { "manufacturerId": 1585, "value": "", "status": "S" }
+          ]
+        },
+        {
+          "label": "Horsepower (peak) (hp): 180",
+          "cells": [
+            { "manufacturerId": 1582, "value": "", "status": "S" },
+            { "manufacturerId": 1583, "value": "", "status": "N" },
+            { "manufacturerId": 1584, "value": "", "status": "N" },
+            { "manufacturerId": 1585, "value": "", "status": "N" }
+          ]
+        },
+        {
+          "label": "Horsepower (peak) (hp): 260",
+          "cells": [
+            { "manufacturerId": 1582, "value": "", "status": "N" },
+            { "manufacturerId": 1583, "value": "", "status": "S" },
+            { "manufacturerId": 1584, "value": "", "status": "S" },
+            { "manufacturerId": 1585, "value": "", "status": "S" }
+          ]
+        },
+        {
+          "label": "Output (max): 180 hp @ 5,800 rpm",
+          "cells": [
+            { "manufacturerId": 1582, "value": "", "status": "S" },
+            { "manufacturerId": 1583, "value": "", "status": "N" },
+            { "manufacturerId": 1584, "value": "", "status": "N" },
+            { "manufacturerId": 1585, "value": "", "status": "N" }
+          ]
+        },
+        {
+          "label": "Output (max): 260 hp @ 5,600 rpm",
+          "cells": [
+            { "manufacturerId": 1582, "value": "", "status": "N" },
+            { "manufacturerId": 1583, "value": "", "status": "S" },
+            { "manufacturerId": 1584, "value": "", "status": "S" },
+            { "manufacturerId": 1585, "value": "", "status": "S" }
+          ]
+        },
+        {
+          "label": "Drivetrain: Short ratio transfer and rear differential gearing",
+          "cells": [
+            { "manufacturerId": 1582, "value": "", "status": "N" },
+            { "manufacturerId": 1583, "value": "", "status": "N" },
+            { "manufacturerId": 1584, "value": "", "status": "S" },
+            { "manufacturerId": 1585, "value": "", "status": "N" }
+          ]
+        },
+        {
+          "label": "Drivetrain: Subaru Symmetrical Full-Time All-wheel Drive system (AWD)",
+          "cells": [
+            { "manufacturerId": 1582, "value": "", "status": "S" },
+            { "manufacturerId": 1583, "value": "", "status": "S" },
+            { "manufacturerId": 1584, "value": "", "status": "S" },
+            { "manufacturerId": 1585, "value": "", "status": "S" }
+          ]
+        },
+        {
+          "label": "Transmission: High-torque Lineartronic CVT",
+          "cells": [
+            { "manufacturerId": 1582, "value": "", "status": "N" },
+            { "manufacturerId": 1583, "value": "", "status": "S" },
+            { "manufacturerId": 1584, "value": "", "status": "S" },
+            { "manufacturerId": 1585, "value": "", "status": "S" }
+          ]
+        },
+        {
+          "label": "Transmission: Lineartronic CVT",
+          "cells": [
+            { "manufacturerId": 1582, "value": "", "status": "S" },
+            { "manufacturerId": 1583, "value": "", "status": "N" },
+            { "manufacturerId": 1584, "value": "", "status": "N" },
+            { "manufacturerId": 1585, "value": "", "status": "N" }
+          ]
+        },
+        {
+          "label": "Cargo volume (L): Seats folded",
+          "cells": [
+            { "manufacturerId": 1582, "value": "2,280", "status": null },
+            { "manufacturerId": 1583, "value": "2,280", "status": null },
+            { "manufacturerId": 1584, "value": "2,280", "status": null },
+            { "manufacturerId": 1585, "value": "2,280", "status": null }
+          ]
+        },
+        {
+          "label": "Cargo volume (L): Seats up",
+          "cells": [
+            { "manufacturerId": 1582, "value": "980", "status": null },
+            { "manufacturerId": 1583, "value": "980", "status": null },
+            { "manufacturerId": 1584, "value": "980", "status": null },
+            { "manufacturerId": 1585, "value": "980", "status": null }
+          ]
+        },
+        {
+          "label": "Length (mm)",
+          "cells": [
+            { "manufacturerId": 1582, "value": "4,870", "status": null },
+            { "manufacturerId": 1583, "value": "4,870", "status": null },
+            { "manufacturerId": 1584, "value": "4,870", "status": null },
+            { "manufacturerId": 1585, "value": "4,870", "status": null }
+          ]
+        },
+        {
+          "label": "Width (mm): Body",
+          "cells": [
+            { "manufacturerId": 1582, "value": "1,880", "status": null },
+            { "manufacturerId": 1583, "value": "1,880", "status": null },
+            { "manufacturerId": 1584, "value": "1,880", "status": null },
+            { "manufacturerId": 1585, "value": "1,880", "status": null }
+          ]
+        },
+        {
+          "label": "Automatic transmission (City) (Imperial MPG)",
+          "cells": [
+            { "manufacturerId": 1582, "value": "30", "status": null },
+            { "manufacturerId": 1583, "value": "26", "status": null },
+            { "manufacturerId": 1584, "value": "25", "status": null },
+            { "manufacturerId": 1585, "value": "26", "status": null }
+          ]
+        },
+        {
+          "label": "Automatic transmission (City) (L/100 km)",
+          "cells": [
+            { "manufacturerId": 1582, "value": "9.3", "status": null },
+            { "manufacturerId": 1583, "value": "11", "status": null },
+            { "manufacturerId": 1584, "value": "11.3", "status": null },
+            { "manufacturerId": 1585, "value": "11", "status": null }
+          ]
+        },
+        {
+          "label": "Automatic transmission (Hwy) (Imperial MPG)",
+          "cells": [
+            { "manufacturerId": 1582, "value": "38", "status": null },
+            { "manufacturerId": 1583, "value": "34", "status": null },
+            { "manufacturerId": 1584, "value": "32", "status": null },
+            { "manufacturerId": 1585, "value": "34", "status": null }
+          ]
+        },
+        {
+          "label": "Automatic transmission (Hwy) (L/100 km)",
+          "cells": [
+            { "manufacturerId": 1582, "value": "7.5", "status": null },
+            { "manufacturerId": 1583, "value": "8.3", "status": null },
+            { "manufacturerId": 1584, "value": "8.8", "status": null },
+            { "manufacturerId": 1585, "value": "8.3", "status": null }
+          ]
+        },
+        {
+          "label": "Headroom (mm): Front",
+          "cells": [
+            { "manufacturerId": 1582, "value": "1,020", "status": null },
+            { "manufacturerId": 1583, "value": "1,020", "status": null },
+            { "manufacturerId": 1584, "value": "1,020", "status": null },
+            { "manufacturerId": 1585, "value": "1,020", "status": null }
+          ]
+        },
+        {
+          "label": "Headroom (mm): Rear",
+          "cells": [
+            { "manufacturerId": 1582, "value": "1,029", "status": null },
+            { "manufacturerId": 1583, "value": "1,029", "status": null },
+            { "manufacturerId": 1584, "value": "1,029", "status": null },
+            { "manufacturerId": 1585, "value": "1,029", "status": null }
+          ]
+        },
+        {
+          "label": "Legroom (mm): Front",
+          "cells": [
+            { "manufacturerId": 1582, "value": "1,093", "status": null },
+            { "manufacturerId": 1583, "value": "1,093", "status": null },
+            { "manufacturerId": 1584, "value": "1,093", "status": null },
+            { "manufacturerId": 1585, "value": "1,093", "status": null }
+          ]
+        },
+        {
+          "label": "Legroom (mm): Rear",
+          "cells": [
+            { "manufacturerId": 1582, "value": "1,004", "status": null },
+            { "manufacturerId": 1583, "value": "1,004", "status": null },
+            { "manufacturerId": 1584, "value": "1,004", "status": null },
+            { "manufacturerId": 1585, "value": "1,004", "status": null }
+          ]
+        }
+      ]
+    },
+    {
+      "model": "WRX",
+      "year": 2026,
+      "title": "Specifications - 2026 WRX - Subaru Canada",
+      "source": {
+        "url": "https://m.subaru.ca/WebPage.aspx?WebSiteID=282&WebPageID=26432&ModelYear=2026",
+        "responseUrl": "https://m.subaru.ca/WebPage.aspx?WebSiteID=282&WebPageID=26432&Range=WRX&ModelYear=2026",
+        "sha256": "3e0671427eb90503b8c9da670a57fc87df413189d9f5aabf216a1886ca52ff2b"
+      },
+      "trims": [
+        { "manufacturerId": 1592, "name": "Sport", "modelCode": "TYMWS" },
+        { "manufacturerId": 1594, "name": "Sport-tech", "modelCode": "TYMWST" },
+        { "manufacturerId": 1595, "name": "GT", "modelCode": "TYAGT" },
+        { "manufacturerId": 1596, "name": "tS", "modelCode": "TYMTS" },
+        { "manufacturerId": 1597, "name": "雷 Kaminari Edition", "modelCode": "TYMSE" }
+      ],
+      "rows": [
+        {
+          "label": "Engine layout: Horizontally-opposed, 4-cylinder",
+          "cells": [
+            { "manufacturerId": 1592, "value": "", "status": "S" },
+            { "manufacturerId": 1594, "value": "", "status": "S" },
+            { "manufacturerId": 1595, "value": "", "status": "S" },
+            { "manufacturerId": 1596, "value": "", "status": "S" },
+            { "manufacturerId": 1597, "value": "", "status": "S" }
+          ]
+        },
+        {
+          "label": "Engine: 271-hp, 2.4-L Turbocharged Direct Injection, SUBARU BOXER",
+          "cells": [
+            { "manufacturerId": 1592, "value": "", "status": "S" },
+            { "manufacturerId": 1594, "value": "", "status": "S" },
+            { "manufacturerId": 1595, "value": "", "status": "S" },
+            { "manufacturerId": 1596, "value": "", "status": "S" },
+            { "manufacturerId": 1597, "value": "", "status": "S" }
+          ]
+        },
+        {
+          "label": "Horsepower (peak) (hp): 271",
+          "cells": [
+            { "manufacturerId": 1592, "value": "", "status": "S" },
+            { "manufacturerId": 1594, "value": "", "status": "S" },
+            { "manufacturerId": 1595, "value": "", "status": "S" },
+            { "manufacturerId": 1596, "value": "", "status": "S" },
+            { "manufacturerId": 1597, "value": "", "status": "S" }
+          ]
+        },
+        {
+          "label": "Output (max): 271 hp @ 5,600 rpm",
+          "cells": [
+            { "manufacturerId": 1592, "value": "", "status": "S" },
+            { "manufacturerId": 1594, "value": "", "status": "S" },
+            { "manufacturerId": 1595, "value": "", "status": "S" },
+            { "manufacturerId": 1596, "value": "", "status": "S" },
+            { "manufacturerId": 1597, "value": "", "status": "S" }
+          ]
+        },
+        {
+          "label": "Drivetrain: Subaru Symmetrical Full-Time All-wheel Drive system (AWD)",
+          "cells": [
+            { "manufacturerId": 1592, "value": "", "status": "S" },
+            { "manufacturerId": 1594, "value": "", "status": "S" },
+            { "manufacturerId": 1595, "value": "", "status": "S" },
+            { "manufacturerId": 1596, "value": "", "status": "S" },
+            { "manufacturerId": 1597, "value": "", "status": "S" }
+          ]
+        },
+        {
+          "label": "Transmission: 6-speed manual, close-ratio",
+          "cells": [
+            { "manufacturerId": 1592, "value": "", "status": "S" },
+            { "manufacturerId": 1594, "value": "", "status": "S" },
+            { "manufacturerId": 1595, "value": "", "status": "N" },
+            { "manufacturerId": 1596, "value": "", "status": "S" },
+            { "manufacturerId": 1597, "value": "", "status": "S" }
+          ]
+        },
+        {
+          "label": "Transmission: Subaru Performance Transmission",
+          "cells": [
+            { "manufacturerId": 1592, "value": "", "status": "N" },
+            { "manufacturerId": 1594, "value": "", "status": "N" },
+            { "manufacturerId": 1595, "value": "", "status": "S" },
+            { "manufacturerId": 1596, "value": "", "status": "N" },
+            { "manufacturerId": 1597, "value": "", "status": "N" }
+          ]
+        },
+        {
+          "label": "Height (mm)",
+          "cells": [
+            { "manufacturerId": 1592, "value": "1,465", "status": null },
+            { "manufacturerId": 1594, "value": "1,465", "status": null },
+            { "manufacturerId": 1595, "value": "1,465", "status": null },
+            { "manufacturerId": 1596, "value": "1,465", "status": null },
+            { "manufacturerId": 1597, "value": "1,465", "status": null }
+          ]
+        },
+        {
+          "label": "Length (mm)",
+          "cells": [
+            { "manufacturerId": 1592, "value": "4,670", "status": null },
+            { "manufacturerId": 1594, "value": "4,670", "status": null },
+            { "manufacturerId": 1595, "value": "4,670", "status": null },
+            { "manufacturerId": 1596, "value": "4,670", "status": null },
+            { "manufacturerId": 1597, "value": "4,670", "status": null }
+          ]
+        },
+        {
+          "label": "Width (mm): Body",
+          "cells": [
+            { "manufacturerId": 1592, "value": "1,825", "status": null },
+            { "manufacturerId": 1594, "value": "1,825", "status": null },
+            { "manufacturerId": 1595, "value": "1,825", "status": null },
+            { "manufacturerId": 1596, "value": "1,825", "status": null },
+            { "manufacturerId": 1597, "value": "1,825", "status": null }
+          ]
+        },
+        {
+          "label": "Automatic transmission (City) (Imperial MPG)",
+          "cells": [
+            { "manufacturerId": 1592, "value": "", "status": "N" },
+            { "manufacturerId": 1594, "value": "", "status": "N" },
+            { "manufacturerId": 1595, "value": "12.7", "status": null },
+            { "manufacturerId": 1596, "value": "", "status": "N" },
+            { "manufacturerId": 1597, "value": "", "status": "N" }
+          ]
+        },
+        {
+          "label": "Automatic transmission (City) (L/100 km)",
+          "cells": [
+            { "manufacturerId": 1592, "value": "", "status": "N" },
+            { "manufacturerId": 1594, "value": "", "status": "N" },
+            { "manufacturerId": 1595, "value": "9.4", "status": null },
+            { "manufacturerId": 1596, "value": "", "status": "N" },
+            { "manufacturerId": 1597, "value": "", "status": "N" }
+          ]
+        },
+        {
+          "label": "Automatic transmission (Hwy) (Imperial MPG)",
+          "cells": [
+            { "manufacturerId": 1592, "value": "", "status": "N" },
+            { "manufacturerId": 1594, "value": "", "status": "N" },
+            { "manufacturerId": 1595, "value": "22", "status": null },
+            { "manufacturerId": 1596, "value": "", "status": "N" },
+            { "manufacturerId": 1597, "value": "", "status": "N" }
+          ]
+        },
+        {
+          "label": "Automatic transmission (Hwy) (L/100 km)",
+          "cells": [
+            { "manufacturerId": 1592, "value": "", "status": "N" },
+            { "manufacturerId": 1594, "value": "", "status": "N" },
+            { "manufacturerId": 1595, "value": "30", "status": null },
+            { "manufacturerId": 1596, "value": "", "status": "N" },
+            { "manufacturerId": 1597, "value": "", "status": "N" }
+          ]
+        },
+        {
+          "label": "Manual transmission (City) (Imperial MPG)",
+          "cells": [
+            { "manufacturerId": 1592, "value": "23", "status": null },
+            { "manufacturerId": 1594, "value": "23", "status": null },
+            { "manufacturerId": 1595, "value": "", "status": "N" },
+            { "manufacturerId": 1596, "value": "23", "status": null },
+            { "manufacturerId": 1597, "value": "23", "status": null }
+          ]
+        },
+        {
+          "label": "Manual transmission (City) (L/100 km)",
+          "cells": [
+            { "manufacturerId": 1592, "value": "12.3", "status": null },
+            { "manufacturerId": 1594, "value": "12.3", "status": null },
+            { "manufacturerId": 1595, "value": "", "status": "N" },
+            { "manufacturerId": 1596, "value": "12.3", "status": null },
+            { "manufacturerId": 1597, "value": "12.3", "status": null }
+          ]
+        },
+        {
+          "label": "Manual transmission (Hwy) (Imperial MPG)",
+          "cells": [
+            { "manufacturerId": 1592, "value": "31", "status": null },
+            { "manufacturerId": 1594, "value": "31", "status": null },
+            { "manufacturerId": 1595, "value": "", "status": "N" },
+            { "manufacturerId": 1596, "value": "31", "status": null },
+            { "manufacturerId": 1597, "value": "31", "status": null }
+          ]
+        },
+        {
+          "label": "Manual transmission (Hwy) (L/100 km)",
+          "cells": [
+            { "manufacturerId": 1592, "value": "9.0", "status": null },
+            { "manufacturerId": 1594, "value": "9.0", "status": null },
+            { "manufacturerId": 1595, "value": "", "status": "N" },
+            { "manufacturerId": 1596, "value": "9.0", "status": null },
+            { "manufacturerId": 1597, "value": "9.0", "status": null }
+          ]
+        },
+        {
+          "label": "Headroom (mm): Front",
+          "cells": [
+            { "manufacturerId": 1592, "value": "1,010", "status": null },
+            { "manufacturerId": 1594, "value": "986", "status": null },
+            { "manufacturerId": 1595, "value": "986", "status": null },
+            { "manufacturerId": 1596, "value": "986", "status": null },
+            { "manufacturerId": 1597, "value": "986", "status": null }
+          ]
+        },
+        {
+          "label": "Headroom (mm): Rear",
+          "cells": [
+            { "manufacturerId": 1592, "value": "933", "status": null },
+            { "manufacturerId": 1594, "value": "933", "status": null },
+            { "manufacturerId": 1595, "value": "933", "status": null },
+            { "manufacturerId": 1596, "value": "933", "status": null },
+            { "manufacturerId": 1597, "value": "933", "status": null }
+          ]
+        },
+        {
+          "label": "Legroom (mm): Front",
+          "cells": [
+            { "manufacturerId": 1592, "value": "1,095", "status": null },
+            { "manufacturerId": 1594, "value": "1,095", "status": null },
+            { "manufacturerId": 1595, "value": "1,095", "status": null },
+            { "manufacturerId": 1596, "value": "1,095", "status": null },
+            { "manufacturerId": 1597, "value": "1,095", "status": null }
+          ]
+        },
+        {
+          "label": "Legroom (mm): Rear",
+          "cells": [
+            { "manufacturerId": 1592, "value": "926", "status": null },
+            { "manufacturerId": 1594, "value": "926", "status": null },
+            { "manufacturerId": 1595, "value": "926", "status": null },
+            { "manufacturerId": 1596, "value": "926", "status": null },
+            { "manufacturerId": 1597, "value": "926", "status": null }
+          ]
+        }
+      ]
+    },
+    {
+      "model": "BRZ",
+      "year": 2027,
+      "title": "Specifications - 2027 BRZ - Subaru Canada",
+      "source": {
+        "url": "https://m.subaru.ca/WebPage.aspx?WebSiteID=282&WebPageID=26729&ModelYear=2027",
+        "responseUrl": "https://m.subaru.ca/WebPage.aspx?WebSiteID=282&WebPageID=26729&Range=BRZ&ModelYear=2027",
+        "sha256": "6fffe8ea217a7881f2f465fd1b1bda7792df8f631aaa5d796dbc1828b9a84477"
+      },
+      "trims": [
+        { "manufacturerId": 1622, "name": "BRZ", "modelCode": "VVM00" },
+        { "manufacturerId": 1623, "name": "Sport-tech (AT)", "modelCode": "VVAST" },
+        { "manufacturerId": 1624, "name": "tS", "modelCode": "VVMTS" },
+        { "manufacturerId": 1625, "name": "輝 Kagayaki Edition", "modelCode": "VVMSE" }
+      ],
+      "rows": [
+        {
+          "label": "Engine layout: Horizontally-opposed, 4-cylinder",
+          "cells": [
+            { "manufacturerId": 1622, "value": "", "status": "S" },
+            { "manufacturerId": 1623, "value": "", "status": "S" },
+            { "manufacturerId": 1624, "value": "", "status": "S" },
+            { "manufacturerId": 1625, "value": "", "status": "S" }
+          ]
+        },
+        {
+          "label": "Engine: 228-hp, 2.4-L Direct Injection, SUBARU BOXER",
+          "cells": [
+            { "manufacturerId": 1622, "value": "", "status": "S" },
+            { "manufacturerId": 1623, "value": "", "status": "S" },
+            { "manufacturerId": 1624, "value": "", "status": "S" },
+            { "manufacturerId": 1625, "value": "", "status": "S" }
+          ]
+        },
+        {
+          "label": "Output (max): 228 hp @ 7000 rpm",
+          "cells": [
+            { "manufacturerId": 1622, "value": "", "status": "S" },
+            { "manufacturerId": 1623, "value": "", "status": "S" },
+            { "manufacturerId": 1624, "value": "", "status": "S" },
+            { "manufacturerId": 1625, "value": "", "status": "S" }
+          ]
+        },
+        {
+          "label": "Drivetrain: Rear-Wheel Drive (RWD)",
+          "cells": [
+            { "manufacturerId": 1622, "value": "", "status": "S" },
+            { "manufacturerId": 1623, "value": "", "status": "S" },
+            { "manufacturerId": 1624, "value": "", "status": "S" },
+            { "manufacturerId": 1625, "value": "", "status": "S" }
+          ]
+        },
+        {
+          "label": "Transmission: 6-speed automatic",
+          "cells": [
+            { "manufacturerId": 1622, "value": "", "status": "N" },
+            { "manufacturerId": 1623, "value": "", "status": "S" },
+            { "manufacturerId": 1624, "value": "", "status": "N" },
+            { "manufacturerId": 1625, "value": "", "status": "N" }
+          ]
+        },
+        {
+          "label": "Transmission: 6-speed manual, close-ratio",
+          "cells": [
+            { "manufacturerId": 1622, "value": "", "status": "S" },
+            { "manufacturerId": 1623, "value": "", "status": "N" },
+            { "manufacturerId": 1624, "value": "", "status": "S" },
+            { "manufacturerId": 1625, "value": "", "status": "S" }
+          ]
+        },
+        {
+          "label": "Height (mm)",
+          "cells": [
+            { "manufacturerId": 1622, "value": "1,310", "status": null },
+            { "manufacturerId": 1623, "value": "1,310", "status": null },
+            { "manufacturerId": 1624, "value": "1,310", "status": null },
+            { "manufacturerId": 1625, "value": "1,310", "status": null }
+          ]
+        },
+        {
+          "label": "Length (mm)",
+          "cells": [
+            { "manufacturerId": 1622, "value": "4,265", "status": null },
+            { "manufacturerId": 1623, "value": "4,265", "status": null },
+            { "manufacturerId": 1624, "value": "4,265", "status": null },
+            { "manufacturerId": 1625, "value": "4,265", "status": null }
+          ]
+        },
+        {
+          "label": "Width (mm): Body",
+          "cells": [
+            { "manufacturerId": 1622, "value": "1,775", "status": null },
+            { "manufacturerId": 1623, "value": "1,775", "status": null },
+            { "manufacturerId": 1624, "value": "1,775", "status": null },
+            { "manufacturerId": 1625, "value": "1,775", "status": null }
+          ]
+        },
+        {
+          "label": "Automatic transmission (City) (Imperial MPG)",
+          "cells": [
+            { "manufacturerId": 1622, "value": "", "status": "N" },
+            { "manufacturerId": 1623, "value": "25", "status": null },
+            { "manufacturerId": 1624, "value": "", "status": "N" },
+            { "manufacturerId": 1625, "value": "", "status": "N" }
+          ]
+        },
+        {
+          "label": "Automatic transmission (City) (L/100 km)",
+          "cells": [
+            { "manufacturerId": 1622, "value": "", "status": "N" },
+            { "manufacturerId": 1623, "value": "11.1", "status": null },
+            { "manufacturerId": 1624, "value": "", "status": "N" },
+            { "manufacturerId": 1625, "value": "", "status": "N" }
+          ]
+        },
+        {
+          "label": "Automatic transmission (Hwy) (Imperial MPG)",
+          "cells": [
+            { "manufacturerId": 1622, "value": "", "status": "N" },
+            { "manufacturerId": 1623, "value": "36", "status": null },
+            { "manufacturerId": 1624, "value": "", "status": "N" },
+            { "manufacturerId": 1625, "value": "", "status": "N" }
+          ]
+        },
+        {
+          "label": "Automatic transmission (Hwy) (L/100 km)",
+          "cells": [
+            { "manufacturerId": 1622, "value": "", "status": "N" },
+            { "manufacturerId": 1623, "value": "7.8", "status": null },
+            { "manufacturerId": 1624, "value": "", "status": "N" },
+            { "manufacturerId": 1625, "value": "", "status": "N" }
+          ]
+        },
+        {
+          "label": "Manual transmission (City) (Imperial MPG)",
+          "cells": [
+            { "manufacturerId": 1622, "value": "24", "status": null },
+            { "manufacturerId": 1623, "value": "", "status": "N" },
+            { "manufacturerId": 1624, "value": "24", "status": null },
+            { "manufacturerId": 1625, "value": "24", "status": null }
+          ]
+        },
+        {
+          "label": "Manual transmission (City) (L/100 km)",
+          "cells": [
+            { "manufacturerId": 1622, "value": "12.0", "status": null },
+            { "manufacturerId": 1623, "value": "", "status": "N" },
+            { "manufacturerId": 1624, "value": "12.0", "status": null },
+            { "manufacturerId": 1625, "value": "12.0", "status": null }
+          ]
+        },
+        {
+          "label": "Manual transmission (Hwy) (Imperial MPG)",
+          "cells": [
+            { "manufacturerId": 1622, "value": "32", "status": null },
+            { "manufacturerId": 1623, "value": "", "status": "N" },
+            { "manufacturerId": 1624, "value": "32", "status": null },
+            { "manufacturerId": 1625, "value": "32", "status": null }
+          ]
+        },
+        {
+          "label": "Manual transmission (Hwy) (L/100 km)",
+          "cells": [
+            { "manufacturerId": 1622, "value": "8.8", "status": null },
+            { "manufacturerId": 1623, "value": "", "status": "N" },
+            { "manufacturerId": 1624, "value": "8.8", "status": null },
+            { "manufacturerId": 1625, "value": "8.8", "status": null }
+          ]
+        },
+        {
+          "label": "Headroom (mm): Front",
+          "cells": [
+            { "manufacturerId": 1622, "value": "940", "status": null },
+            { "manufacturerId": 1623, "value": "940", "status": null },
+            { "manufacturerId": 1624, "value": "940", "status": null },
+            { "manufacturerId": 1625, "value": "940", "status": null }
+          ]
+        },
+        {
+          "label": "Headroom (mm): Rear",
+          "cells": [
+            { "manufacturerId": 1622, "value": "851", "status": null },
+            { "manufacturerId": 1623, "value": "851", "status": null },
+            { "manufacturerId": 1624, "value": "851", "status": null },
+            { "manufacturerId": 1625, "value": "851", "status": null }
+          ]
+        },
+        {
+          "label": "Legroom (mm): Front",
+          "cells": [
+            { "manufacturerId": 1622, "value": "1,054", "status": null },
+            { "manufacturerId": 1623, "value": "1,054", "status": null },
+            { "manufacturerId": 1624, "value": "1,054", "status": null },
+            { "manufacturerId": 1625, "value": "1,054", "status": null }
+          ]
+        },
+        {
+          "label": "Legroom (mm): Rear",
+          "cells": [
+            { "manufacturerId": 1622, "value": "759", "status": null },
+            { "manufacturerId": 1623, "value": "759", "status": null },
+            { "manufacturerId": 1624, "value": "759", "status": null },
+            { "manufacturerId": 1625, "value": "759", "status": null }
+          ]
+        }
+      ]
+    },
+    {
+      "model": "Crosstrek",
+      "year": 2027,
+      "title": "Specifications - 2027 Crosstrek - Subaru Canada",
+      "source": {
+        "url": "https://m.subaru.ca/WebPage.aspx?WebSiteID=282&WebPageID=26859&ModelYear=2027",
+        "responseUrl": "https://m.subaru.ca/WebPage.aspx?WebSiteID=282&WebPageID=26859&Range=Crosstrek&ModelYear=2027",
+        "sha256": "1892fe3c6d452afac2db25b121cb042c5f9381ee11dc797b6b9d9fb1f595262f"
+      },
+      "trims": [
+        { "manufacturerId": 1634, "name": "Convenience", "modelCode": "VXACP" },
+        { "manufacturerId": 1635, "name": "Touring", "modelCode": "VXATP" },
+        { "manufacturerId": 1636, "name": "Onyx", "modelCode": "VXAOP" },
+        { "manufacturerId": 1637, "name": "Hybrid Onyx", "modelCode": "VXAHOP" },
+        { "manufacturerId": 1638, "name": "Limited", "modelCode": "VXALP" },
+        { "manufacturerId": 1639, "name": "Hybrid Limited", "modelCode": "VXAHLP" }
+      ],
+      "rows": [
+        {
+          "label": "Engine layout: Horizontally-opposed, 4-cylinder",
+          "cells": [
+            { "manufacturerId": 1634, "value": "", "status": "S" },
+            { "manufacturerId": 1635, "value": "", "status": "S" },
+            { "manufacturerId": 1636, "value": "", "status": "S" },
+            { "manufacturerId": 1637, "value": "", "status": "S" },
+            { "manufacturerId": 1638, "value": "", "status": "S" },
+            { "manufacturerId": 1639, "value": "", "status": "S" }
+          ]
+        },
+        {
+          "label": "Engine: 180-hp, 2.5-L Direct Injection, SUBARU BOXER",
+          "cells": [
+            { "manufacturerId": 1634, "value": "", "status": "S" },
+            { "manufacturerId": 1635, "value": "", "status": "S" },
+            { "manufacturerId": 1636, "value": "", "status": "S" },
+            { "manufacturerId": 1637, "value": "", "status": "N" },
+            { "manufacturerId": 1638, "value": "", "status": "S" },
+            { "manufacturerId": 1639, "value": "", "status": "N" }
+          ]
+        },
+        {
+          "label": "Engine: 194-hp, 2.5-L Direct Injection, SUBARU BOXER Hybrid",
+          "cells": [
+            { "manufacturerId": 1634, "value": "", "status": "N" },
+            { "manufacturerId": 1635, "value": "", "status": "N" },
+            { "manufacturerId": 1636, "value": "", "status": "N" },
+            { "manufacturerId": 1637, "value": "", "status": "S" },
+            { "manufacturerId": 1638, "value": "", "status": "N" },
+            { "manufacturerId": 1639, "value": "", "status": "S" }
+          ]
+        },
+        {
+          "label": "Engine: Atkinson cycle",
+          "cells": [
+            { "manufacturerId": 1634, "value": "", "status": "N" },
+            { "manufacturerId": 1635, "value": "", "status": "N" },
+            { "manufacturerId": 1636, "value": "", "status": "N" },
+            { "manufacturerId": 1637, "value": "", "status": "S" },
+            { "manufacturerId": 1638, "value": "", "status": "N" },
+            { "manufacturerId": 1639, "value": "", "status": "S" }
+          ]
+        },
+        {
+          "label": "Output (max): 180 hp @ 5,800 rpm",
+          "cells": [
+            { "manufacturerId": 1634, "value": "", "status": "S" },
+            { "manufacturerId": 1635, "value": "", "status": "S" },
+            { "manufacturerId": 1636, "value": "", "status": "S" },
+            { "manufacturerId": 1637, "value": "", "status": "N" },
+            { "manufacturerId": 1638, "value": "", "status": "S" },
+            { "manufacturerId": 1639, "value": "", "status": "N" }
+          ]
+        },
+        {
+          "label": "Drivetrain: Subaru Symmetrical Full-Time All-wheel Drive system (AWD)",
+          "cells": [
+            { "manufacturerId": 1634, "value": "", "status": "S" },
+            { "manufacturerId": 1635, "value": "", "status": "S" },
+            { "manufacturerId": 1636, "value": "", "status": "S" },
+            { "manufacturerId": 1637, "value": "", "status": "S" },
+            { "manufacturerId": 1638, "value": "", "status": "S" },
+            { "manufacturerId": 1639, "value": "", "status": "S" }
+          ]
+        },
+        {
+          "label": "Transmission: Hybrid Lineartronic CVT",
+          "cells": [
+            { "manufacturerId": 1634, "value": "", "status": "N" },
+            { "manufacturerId": 1635, "value": "", "status": "N" },
+            { "manufacturerId": 1636, "value": "", "status": "N" },
+            { "manufacturerId": 1637, "value": "", "status": "S" },
+            { "manufacturerId": 1638, "value": "", "status": "N" },
+            { "manufacturerId": 1639, "value": "", "status": "S" }
+          ]
+        },
+        {
+          "label": "Transmission: Lineartronic CVT",
+          "cells": [
+            { "manufacturerId": 1634, "value": "", "status": "S" },
+            { "manufacturerId": 1635, "value": "", "status": "S" },
+            { "manufacturerId": 1636, "value": "", "status": "S" },
+            { "manufacturerId": 1637, "value": "", "status": "N" },
+            { "manufacturerId": 1638, "value": "", "status": "S" },
+            { "manufacturerId": 1639, "value": "", "status": "N" }
+          ]
+        },
+        {
+          "label": "Cargo volume (L): Seats folded",
+          "cells": [
+            { "manufacturerId": 1634, "value": "1,549", "status": null },
+            { "manufacturerId": 1635, "value": "1,549", "status": null },
+            { "manufacturerId": 1636, "value": "1,549", "status": null },
+            { "manufacturerId": 1637, "value": "1,433", "status": null },
+            { "manufacturerId": 1638, "value": "1,549", "status": null },
+            { "manufacturerId": 1639, "value": "1,433", "status": null }
+          ]
+        },
+        {
+          "label": "Cargo volume (L): Seats up",
+          "cells": [
+            { "manufacturerId": 1634, "value": "564", "status": null },
+            { "manufacturerId": 1635, "value": "564", "status": null },
+            { "manufacturerId": 1636, "value": "564", "status": null },
+            { "manufacturerId": 1637, "value": "527", "status": null },
+            { "manufacturerId": 1638, "value": "564", "status": null },
+            { "manufacturerId": 1639, "value": "527", "status": null }
+          ]
+        },
+        {
+          "label": "Height (mm)",
+          "cells": [
+            { "manufacturerId": 1634, "value": "1,600", "status": null },
+            { "manufacturerId": 1635, "value": "1,600", "status": null },
+            { "manufacturerId": 1636, "value": "1,600", "status": null },
+            { "manufacturerId": 1637, "value": "1,600", "status": null },
+            { "manufacturerId": 1638, "value": "1,600", "status": null },
+            { "manufacturerId": 1639, "value": "1,600", "status": null }
+          ]
+        },
+        {
+          "label": "Length (mm)",
+          "cells": [
+            { "manufacturerId": 1634, "value": "4,480", "status": null },
+            { "manufacturerId": 1635, "value": "4,480", "status": null },
+            { "manufacturerId": 1636, "value": "4,480", "status": null },
+            { "manufacturerId": 1637, "value": "4,480", "status": null },
+            { "manufacturerId": 1638, "value": "4,480", "status": null },
+            { "manufacturerId": 1639, "value": "4,480", "status": null }
+          ]
+        },
+        {
+          "label": "Width (mm): Body",
+          "cells": [
+            { "manufacturerId": 1634, "value": "1,800", "status": null },
+            { "manufacturerId": 1635, "value": "1,800", "status": null },
+            { "manufacturerId": 1636, "value": "1,800", "status": null },
+            { "manufacturerId": 1637, "value": "1,800", "status": null },
+            { "manufacturerId": 1638, "value": "1,800", "status": null },
+            { "manufacturerId": 1639, "value": "1,800", "status": null }
+          ]
+        },
+        {
+          "label": "Automatic transmission (City) (Imperial MPG)",
+          "cells": [
+            { "manufacturerId": 1634, "value": "31", "status": null },
+            { "manufacturerId": 1635, "value": "31", "status": null },
+            { "manufacturerId": 1636, "value": "31", "status": null },
+            { "manufacturerId": 1637, "value": "43", "status": null },
+            { "manufacturerId": 1638, "value": "31", "status": null },
+            { "manufacturerId": 1639, "value": "43", "status": null }
+          ]
+        },
+        {
+          "label": "Automatic transmission (City) (L/100 km)",
+          "cells": [
+            { "manufacturerId": 1634, "value": "9.0", "status": null },
+            { "manufacturerId": 1635, "value": "9.0", "status": null },
+            { "manufacturerId": 1636, "value": "9.0", "status": null },
+            { "manufacturerId": 1637, "value": "6.5", "status": null },
+            { "manufacturerId": 1638, "value": "9.0", "status": null },
+            { "manufacturerId": 1639, "value": "6.5", "status": null }
+          ]
+        },
+        {
+          "label": "Automatic transmission (Hwy) (Imperial MPG)",
+          "cells": [
+            { "manufacturerId": 1634, "value": "40", "status": null },
+            { "manufacturerId": 1635, "value": "40", "status": null },
+            { "manufacturerId": 1636, "value": "40", "status": null },
+            { "manufacturerId": 1637, "value": "43", "status": null },
+            { "manufacturerId": 1638, "value": "40", "status": null },
+            { "manufacturerId": 1639, "value": "43", "status": null }
+          ]
+        },
+        {
+          "label": "Automatic transmission (Hwy) (L/100 km)",
+          "cells": [
+            { "manufacturerId": 1634, "value": "7.1", "status": null },
+            { "manufacturerId": 1635, "value": "7.1", "status": null },
+            { "manufacturerId": 1636, "value": "7.1", "status": null },
+            { "manufacturerId": 1637, "value": "6.5", "status": null },
+            { "manufacturerId": 1638, "value": "7.1", "status": null },
+            { "manufacturerId": 1639, "value": "6.5", "status": null }
+          ]
+        },
+        {
+          "label": "Headroom (mm): Front",
+          "cells": [
+            { "manufacturerId": 1634, "value": "1,010", "status": null },
+            { "manufacturerId": 1635, "value": "1,010", "status": null },
+            { "manufacturerId": 1636, "value": "984", "status": null },
+            { "manufacturerId": 1637, "value": "984", "status": null },
+            { "manufacturerId": 1638, "value": "984", "status": null },
+            { "manufacturerId": 1639, "value": "984", "status": null }
+          ]
+        },
+        {
+          "label": "Headroom (mm): Rear",
+          "cells": [
+            { "manufacturerId": 1634, "value": "965", "status": null },
+            { "manufacturerId": 1635, "value": "965", "status": null },
+            { "manufacturerId": 1636, "value": "965", "status": null },
+            { "manufacturerId": 1637, "value": "965", "status": null },
+            { "manufacturerId": 1638, "value": "965", "status": null },
+            { "manufacturerId": 1639, "value": "965", "status": null }
+          ]
+        },
+        {
+          "label": "Legroom (mm): Front",
+          "cells": [
+            { "manufacturerId": 1634, "value": "1,089", "status": null },
+            { "manufacturerId": 1635, "value": "1,089", "status": null },
+            { "manufacturerId": 1636, "value": "1,089", "status": null },
+            { "manufacturerId": 1637, "value": "1,089", "status": null },
+            { "manufacturerId": 1638, "value": "1,089", "status": null },
+            { "manufacturerId": 1639, "value": "1,089", "status": null }
+          ]
+        },
+        {
+          "label": "Legroom (mm): Rear",
+          "cells": [
+            { "manufacturerId": 1634, "value": "926", "status": null },
+            { "manufacturerId": 1635, "value": "926", "status": null },
+            { "manufacturerId": 1636, "value": "926", "status": null },
+            { "manufacturerId": 1637, "value": "926", "status": null },
+            { "manufacturerId": 1638, "value": "926", "status": null },
+            { "manufacturerId": 1639, "value": "926", "status": null }
+          ]
+        }
+      ]
+    },
+    {
+      "model": "Solterra",
+      "year": 2027,
+      "title": "Specifications - 2027 Solterra - Subaru Canada",
+      "source": {
+        "url": "https://m.subaru.ca/WebPage.aspx?WebSiteID=282&WebPageID=26625&ModelYear=2027",
+        "responseUrl": "https://m.subaru.ca/WebPage.aspx?WebSiteID=282&WebPageID=26625&Range=Solterra&ModelYear=2027",
+        "sha256": "8d885cefcebdb6a2c61d22f014c39fe46e0da0f9a98b62875b2d5e03859eb0b4"
+      },
+      "trims": [
+        { "manufacturerId": 1612, "name": "Touring", "modelCode": "VUEAT" },
+        { "manufacturerId": 1613, "name": "Touring Black Cladding", "modelCode": "VUEATB" },
+        { "manufacturerId": 1614, "name": "Limited", "modelCode": "VUEAL" },
+        { "manufacturerId": 1615, "name": "Limited Black Cladding", "modelCode": "VUEALB" },
+        { "manufacturerId": 1616, "name": "Premier", "modelCode": "VUEAP" },
+        { "manufacturerId": 1617, "name": "Premier Black Cladding", "modelCode": "VUEAPB" }
+      ],
+      "rows": [
+        {
+          "label": "Horsepower (peak) (hp): 338",
+          "cells": [
+            { "manufacturerId": 1612, "value": "", "status": "S" },
+            { "manufacturerId": 1613, "value": "", "status": "S" },
+            { "manufacturerId": 1614, "value": "", "status": "S" },
+            { "manufacturerId": 1615, "value": "", "status": "S" },
+            { "manufacturerId": 1616, "value": "", "status": "S" },
+            { "manufacturerId": 1617, "value": "", "status": "S" }
+          ]
+        },
+        {
+          "label": "Drivetrain: Subaru Symmetrical All-wheel Drive system (AWD)",
+          "cells": [
+            { "manufacturerId": 1612, "value": "", "status": "S" },
+            { "manufacturerId": 1613, "value": "", "status": "S" },
+            { "manufacturerId": 1614, "value": "", "status": "S" },
+            { "manufacturerId": 1615, "value": "", "status": "S" },
+            { "manufacturerId": 1616, "value": "", "status": "S" },
+            { "manufacturerId": 1617, "value": "", "status": "S" }
+          ]
+        },
+        {
+          "label": "Cargo volume (L): Seats folded",
+          "cells": [
+            { "manufacturerId": 1612, "value": "1,798", "status": null },
+            { "manufacturerId": 1613, "value": "1,798", "status": null },
+            { "manufacturerId": 1614, "value": "1,798", "status": null },
+            { "manufacturerId": 1615, "value": "1,798", "status": null },
+            { "manufacturerId": 1616, "value": "1,798", "status": null },
+            { "manufacturerId": 1617, "value": "1,798", "status": null }
+          ]
+        },
+        {
+          "label": "Cargo volume (L): Seats up",
+          "cells": [
+            { "manufacturerId": 1612, "value": "674", "status": null },
+            { "manufacturerId": 1613, "value": "674", "status": null },
+            { "manufacturerId": 1614, "value": "674", "status": null },
+            { "manufacturerId": 1615, "value": "674", "status": null },
+            { "manufacturerId": 1616, "value": "674", "status": null },
+            { "manufacturerId": 1617, "value": "674", "status": null }
+          ]
+        },
+        {
+          "label": "All-electric range (AER): Up to (km) in ideal conditions**",
+          "cells": [
+            { "manufacturerId": 1612, "value": "439", "status": null },
+            { "manufacturerId": 1613, "value": "439", "status": null },
+            { "manufacturerId": 1614, "value": "439", "status": null },
+            { "manufacturerId": 1615, "value": "439", "status": null },
+            { "manufacturerId": 1616, "value": "439", "status": null },
+            { "manufacturerId": 1617, "value": "439", "status": null }
+          ]
+        },
+        {
+          "label": "Height (mm)",
+          "cells": [
+            { "manufacturerId": 1612, "value": "1,650", "status": null },
+            { "manufacturerId": 1613, "value": "1,650", "status": null },
+            { "manufacturerId": 1614, "value": "1,650", "status": null },
+            { "manufacturerId": 1615, "value": "1,650", "status": null },
+            { "manufacturerId": 1616, "value": "1,650", "status": null },
+            { "manufacturerId": 1617, "value": "1,650", "status": null }
+          ]
+        },
+        {
+          "label": "Length (mm)",
+          "cells": [
+            { "manufacturerId": 1612, "value": "4,690", "status": null },
+            { "manufacturerId": 1613, "value": "4,690", "status": null },
+            { "manufacturerId": 1614, "value": "4,690", "status": null },
+            { "manufacturerId": 1615, "value": "4,690", "status": null },
+            { "manufacturerId": 1616, "value": "4,690", "status": null },
+            { "manufacturerId": 1617, "value": "4,690", "status": null }
+          ]
+        },
+        {
+          "label": "Width (mm): Body",
+          "cells": [
+            { "manufacturerId": 1612, "value": "1,860", "status": null },
+            { "manufacturerId": 1613, "value": "1,860", "status": null },
+            { "manufacturerId": 1614, "value": "1,860", "status": null },
+            { "manufacturerId": 1615, "value": "1,860", "status": null },
+            { "manufacturerId": 1616, "value": "1,860", "status": null },
+            { "manufacturerId": 1617, "value": "1,860", "status": null }
+          ]
+        },
+        {
+          "label": "Headroom (mm): Front",
+          "cells": [
+            { "manufacturerId": 1612, "value": "986", "status": null },
+            { "manufacturerId": 1613, "value": "986", "status": null },
+            { "manufacturerId": 1614, "value": "980", "status": null },
+            { "manufacturerId": 1615, "value": "980", "status": null },
+            { "manufacturerId": 1616, "value": "980", "status": null },
+            { "manufacturerId": 1617, "value": "980", "status": null }
+          ]
+        },
+        {
+          "label": "Headroom (mm): Rear",
+          "cells": [
+            { "manufacturerId": 1612, "value": "965", "status": null },
+            { "manufacturerId": 1613, "value": "965", "status": null },
+            { "manufacturerId": 1614, "value": "941", "status": null },
+            { "manufacturerId": 1615, "value": "941", "status": null },
+            { "manufacturerId": 1616, "value": "941", "status": null },
+            { "manufacturerId": 1617, "value": "941", "status": null }
+          ]
+        },
+        {
+          "label": "Legroom (mm): Front",
+          "cells": [
+            { "manufacturerId": 1612, "value": "1,070", "status": null },
+            { "manufacturerId": 1613, "value": "1,070", "status": null },
+            { "manufacturerId": 1614, "value": "1,070", "status": null },
+            { "manufacturerId": 1615, "value": "1,070", "status": null },
+            { "manufacturerId": 1616, "value": "1,070", "status": null },
+            { "manufacturerId": 1617, "value": "1,070", "status": null }
+          ]
+        },
+        {
+          "label": "Legroom (mm): Rear",
+          "cells": [
+            { "manufacturerId": 1612, "value": "897", "status": null },
+            { "manufacturerId": 1613, "value": "897", "status": null },
+            { "manufacturerId": 1614, "value": "897", "status": null },
+            { "manufacturerId": 1615, "value": "897", "status": null },
+            { "manufacturerId": 1616, "value": "897", "status": null },
+            { "manufacturerId": 1617, "value": "897", "status": null }
+          ]
+        }
+      ]
+    },
+    {
+      "model": "Trailseeker",
+      "year": 2027,
+      "title": "Specifications - 2027 Trailseeker - Subaru Canada",
+      "source": {
+        "url": "https://m.subaru.ca/WebPage.aspx?WebSiteID=282&WebPageID=26677&ModelYear=2027",
+        "responseUrl": "https://m.subaru.ca/WebPage.aspx?WebSiteID=282&WebPageID=26677&Range=Trailseeker&ModelYear=2027",
+        "sha256": "e0d36d766a264a5d221eda036c6811cefd7fd8f537da5da95f42b2a770d8be99"
+      },
+      "trims": [
+        { "manufacturerId": 1618, "name": "Touring", "modelCode": "V2EATP" },
+        { "manufacturerId": 1619, "name": "Limited", "modelCode": "V2EALP" },
+        { "manufacturerId": 1620, "name": "Premier", "modelCode": "V2EAPP" }
+      ],
+      "rows": [
+        {
+          "label": "Horsepower (peak) (hp): 375",
+          "cells": [
+            { "manufacturerId": 1618, "value": "", "status": "S" },
+            { "manufacturerId": 1619, "value": "", "status": "S" },
+            { "manufacturerId": 1620, "value": "", "status": "S" }
+          ]
+        },
+        {
+          "label": "Drivetrain: Subaru Symmetrical All-wheel Drive system (AWD)",
+          "cells": [
+            { "manufacturerId": 1618, "value": "", "status": "S" },
+            { "manufacturerId": 1619, "value": "", "status": "S" },
+            { "manufacturerId": 1620, "value": "", "status": "S" }
+          ]
+        },
+        {
+          "label": "Cargo volume (L): Seats folded",
+          "cells": [
+            { "manufacturerId": 1618, "value": "2,095", "status": null },
+            { "manufacturerId": 1619, "value": "2,095", "status": null },
+            { "manufacturerId": 1620, "value": "2,033", "status": null }
+          ]
+        },
+        {
+          "label": "Cargo volume (L): Seats up",
+          "cells": [
+            { "manufacturerId": 1618, "value": "886", "status": null },
+            { "manufacturerId": 1619, "value": "886", "status": null },
+            { "manufacturerId": 1620, "value": "860", "status": null }
+          ]
+        },
+        {
+          "label": "All-electric range (AER): Up to (km) in ideal conditions**",
+          "cells": [
+            { "manufacturerId": 1618, "value": "446", "status": null },
+            { "manufacturerId": 1619, "value": "446", "status": null },
+            { "manufacturerId": 1620, "value": "446", "status": null }
+          ]
+        },
+        {
+          "label": "Height (mm)",
+          "cells": [
+            { "manufacturerId": 1618, "value": "1,675", "status": null },
+            { "manufacturerId": 1619, "value": "1,675", "status": null },
+            { "manufacturerId": 1620, "value": "1,675", "status": null }
+          ]
+        },
+        {
+          "label": "Length (mm)",
+          "cells": [
+            { "manufacturerId": 1618, "value": "4,845", "status": null },
+            { "manufacturerId": 1619, "value": "4,815", "status": null },
+            { "manufacturerId": 1620, "value": "4,815", "status": null }
+          ]
+        },
+        {
+          "label": "Width (mm): Body",
+          "cells": [
+            { "manufacturerId": 1618, "value": "1,860", "status": null },
+            { "manufacturerId": 1619, "value": "1,870", "status": null },
+            { "manufacturerId": 1620, "value": "1,870", "status": null }
+          ]
+        },
+        {
+          "label": "Headroom (mm): Front",
+          "cells": [
+            { "manufacturerId": 1618, "value": "986", "status": null },
+            { "manufacturerId": 1619, "value": "986", "status": null },
+            { "manufacturerId": 1620, "value": "980", "status": null }
+          ]
+        },
+        {
+          "label": "Headroom (mm): Rear",
+          "cells": [
+            { "manufacturerId": 1618, "value": "965", "status": null },
+            { "manufacturerId": 1619, "value": "965", "status": null },
+            { "manufacturerId": 1620, "value": "941", "status": null }
+          ]
+        },
+        {
+          "label": "Legroom (mm): Front",
+          "cells": [
+            { "manufacturerId": 1618, "value": "1,070", "status": null },
+            { "manufacturerId": 1619, "value": "1,070", "status": null },
+            { "manufacturerId": 1620, "value": "1,070", "status": null }
+          ]
+        },
+        {
+          "label": "Legroom (mm): Rear",
+          "cells": [
+            { "manufacturerId": 1618, "value": "897", "status": null },
+            { "manufacturerId": 1619, "value": "897", "status": null },
+            { "manufacturerId": 1620, "value": "897", "status": null }
+          ]
+        }
+      ]
+    },
+    {
+      "model": "Uncharted",
+      "year": 2027,
+      "title": "Specifications - 2027 Uncharted - Subaru Canada",
+      "source": {
+        "url": "https://m.subaru.ca/WebPage.aspx?WebSiteID=282&WebPageID=26573&ModelYear=2027",
+        "responseUrl": "https://m.subaru.ca/WebPage.aspx?WebSiteID=282&WebPageID=26573&Range=Uncharted&ModelYear=2027",
+        "sha256": "3573e25db4bcc461648eb2b115066083cb504ba1484753d46fd057ba97b83814"
+      },
+      "trims": [
+        { "manufacturerId": 1606, "name": "FWD", "modelCode": "V4EFWD" },
+        { "manufacturerId": 1607, "name": "FWD LR", "modelCode": "V4EFLR" },
+        { "manufacturerId": 1608, "name": "Sport", "modelCode": "V4EASP" },
+        { "manufacturerId": 1609, "name": "GT", "modelCode": "V4EAGT" }
+      ],
+      "rows": [
+        {
+          "label": "Horsepower (peak) (hp): 165",
+          "cells": [
+            { "manufacturerId": 1606, "value": "", "status": "S" },
+            { "manufacturerId": 1607, "value": "", "status": "N" },
+            { "manufacturerId": 1608, "value": "", "status": "N" },
+            { "manufacturerId": 1609, "value": "", "status": "N" }
+          ]
+        },
+        {
+          "label": "Horsepower (peak) (hp): 221",
+          "cells": [
+            { "manufacturerId": 1606, "value": "", "status": "N" },
+            { "manufacturerId": 1607, "value": "", "status": "S" },
+            { "manufacturerId": 1608, "value": "", "status": "N" },
+            { "manufacturerId": 1609, "value": "", "status": "N" }
+          ]
+        },
+        {
+          "label": "Horsepower (peak) (hp): 338",
+          "cells": [
+            { "manufacturerId": 1606, "value": "", "status": "N" },
+            { "manufacturerId": 1607, "value": "", "status": "N" },
+            { "manufacturerId": 1608, "value": "", "status": "S" },
+            { "manufacturerId": 1609, "value": "", "status": "S" }
+          ]
+        },
+        {
+          "label": "Drivetrain: Front-Wheel Drive (FWD)",
+          "cells": [
+            { "manufacturerId": 1606, "value": "", "status": "S" },
+            { "manufacturerId": 1607, "value": "", "status": "S" },
+            { "manufacturerId": 1608, "value": "", "status": "N" },
+            { "manufacturerId": 1609, "value": "", "status": "N" }
+          ]
+        },
+        {
+          "label": "Drivetrain: Subaru Symmetrical All-wheel Drive system (AWD)",
+          "cells": [
+            { "manufacturerId": 1606, "value": "", "status": "N" },
+            { "manufacturerId": 1607, "value": "", "status": "N" },
+            { "manufacturerId": 1608, "value": "", "status": "S" },
+            { "manufacturerId": 1609, "value": "", "status": "S" }
+          ]
+        },
+        {
+          "label": "Cargo volume (L): Seats folded",
+          "cells": [
+            { "manufacturerId": 1606, "value": "1,685", "status": null },
+            { "manufacturerId": 1607, "value": "1,685", "status": null },
+            { "manufacturerId": 1608, "value": "1,685", "status": null },
+            { "manufacturerId": 1609, "value": "1,685", "status": null }
+          ]
+        },
+        {
+          "label": "Cargo volume (L): Seats up",
+          "cells": [
+            { "manufacturerId": 1606, "value": "651", "status": null },
+            { "manufacturerId": 1607, "value": "651", "status": null },
+            { "manufacturerId": 1608, "value": "651", "status": null },
+            { "manufacturerId": 1609, "value": "651", "status": null }
+          ]
+        },
+        {
+          "label": "All-electric range (AER): Up to (km) in ideal conditions**",
+          "cells": [
+            { "manufacturerId": 1606, "value": "399", "status": null },
+            { "manufacturerId": 1607, "value": "496", "status": null },
+            { "manufacturerId": 1608, "value": "438", "status": null },
+            { "manufacturerId": 1609, "value": "438", "status": null }
+          ]
+        },
+        {
+          "label": "Height (mm)",
+          "cells": [
+            { "manufacturerId": 1606, "value": "1,620", "status": null },
+            { "manufacturerId": 1607, "value": "1,620", "status": null },
+            { "manufacturerId": 1608, "value": "1,620", "status": null },
+            { "manufacturerId": 1609, "value": "1,620", "status": null }
+          ]
+        },
+        {
+          "label": "Length (mm)",
+          "cells": [
+            { "manufacturerId": 1606, "value": "4,515", "status": null },
+            { "manufacturerId": 1607, "value": "4,515", "status": null },
+            { "manufacturerId": 1608, "value": "4,515", "status": null },
+            { "manufacturerId": 1609, "value": "4,515", "status": null }
+          ]
+        },
+        {
+          "label": "Width (mm): Body",
+          "cells": [
+            { "manufacturerId": 1606, "value": "1,870", "status": null },
+            { "manufacturerId": 1607, "value": "1,870", "status": null },
+            { "manufacturerId": 1608, "value": "1,870", "status": null },
+            { "manufacturerId": 1609, "value": "1,870", "status": null }
+          ]
+        },
+        {
+          "label": "Headroom (mm): Front",
+          "cells": [
+            { "manufacturerId": 1606, "value": "993", "status": null },
+            { "manufacturerId": 1607, "value": "993", "status": null },
+            { "manufacturerId": 1608, "value": "993", "status": null },
+            { "manufacturerId": 1609, "value": "981", "status": null }
+          ]
+        },
+        {
+          "label": "Headroom (mm): Rear",
+          "cells": [
+            { "manufacturerId": 1606, "value": "953", "status": null },
+            { "manufacturerId": 1607, "value": "953", "status": null },
+            { "manufacturerId": 1608, "value": "953", "status": null },
+            { "manufacturerId": 1609, "value": "924", "status": null }
+          ]
+        },
+        {
+          "label": "Legroom (mm): Front",
+          "cells": [
+            { "manufacturerId": 1606, "value": "1,070", "status": null },
+            { "manufacturerId": 1607, "value": "1,070", "status": null },
+            { "manufacturerId": 1608, "value": "1,070", "status": null },
+            { "manufacturerId": 1609, "value": "1,070", "status": null }
+          ]
+        },
+        {
+          "label": "Legroom (mm): Rear",
+          "cells": [
+            { "manufacturerId": 1606, "value": "817", "status": null },
+            { "manufacturerId": 1607, "value": "817", "status": null },
+            { "manufacturerId": 1608, "value": "817", "status": null },
+            { "manufacturerId": 1609, "value": "817", "status": null }
+          ]
+        }
+      ]
+    }
+  ]
+}

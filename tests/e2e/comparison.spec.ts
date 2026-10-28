@@ -6,6 +6,10 @@ import AxeBuilder from '@axe-core/playwright';
 const honda = '2026 Honda CR-V LX FWD';
 const hybrid = '2026 Honda CR-V Sport Hybrid AWD';
 
+async function findHondas(page: Page) {
+  await page.getByRole('searchbox', { name: 'Search cars', exact: true }).fill('2026 Honda CR-V');
+}
+
 async function openRetailCatalog(page: Page) {
   await page.goto('/');
   await revealCatalogFilters(page);
@@ -18,12 +22,14 @@ test('preserves a newer shortlist format until the user explicitly clears it', a
   await openRetailCatalog(page);
   await expect(page.getByRole('article')).toHaveCount(30);
   expect(await page.evaluate(() => localStorage.getItem('oss-shortlist-v1'))).toBe(payload);
+  await findHondas(page);
   await page.getByRole('button', { name: `Save ${honda}`, exact: true }).click();
   await expect(page.getByRole('button', { name: `Unsave ${honda}`, exact: true })).toBeVisible();
   expect(await page.evaluate(() => localStorage.getItem('oss-shortlist-v1'))).toBe(payload);
   await page.getByText('How your data works', { exact: true }).click();
   await page.getByRole('button', { name: 'Clear my shortlist' }).click();
   expect(await page.evaluate(() => localStorage.getItem('oss-shortlist-v1'))).toBeNull();
+  await findHondas(page);
   await page.getByRole('button', { name: `Save ${honda}`, exact: true }).click();
   const saved = await page.evaluate(() => JSON.parse(localStorage.getItem('oss-shortlist-v1')!));
   expect(saved).toEqual({ version: 1, ids: ['honda-cr-v-2026-lx-fwd'] });
@@ -40,8 +46,9 @@ test('keeps comparisons usable when the browser refuses address-bar updates', as
   });
   await openRetailCatalog(page);
   await expect(page.getByRole('article')).toHaveCount(30);
+  await findHondas(page);
   await page.getByRole('checkbox', { name: `Compare ${honda}`, exact: true }).check();
-  await expect(page.getByRole('article')).toHaveCount(30);
+  await expect(page.getByRole('article')).toHaveCount(7);
   await page.getByRole('checkbox', { name: `Compare ${hybrid}`, exact: true }).check();
   await page.getByRole('button', { name: 'Compare 2 cars' }).click();
   await page.getByRole('button', { name: 'Copy comparison link' }).click();
@@ -72,9 +79,11 @@ test('browse, filter, empty state and reset', async ({ page }) => {
 
 test('shortlist persists, filters, clears and syncs across tabs', async ({ page, context }) => {
   await openRetailCatalog(page);
+  await findHondas(page);
   await page.getByRole('button', { name: `Save ${honda}`, exact: true }).click();
   await page.reload();
   await revealCatalogFilters(page);
+  await findHondas(page);
   await expect(page.getByRole('button', { name: `Unsave ${honda}`, exact: true })).toHaveAttribute(
     'aria-pressed',
     'true',
@@ -83,6 +92,7 @@ test('shortlist persists, filters, clears and syncs across tabs', async ({ page,
   await expect(page.getByRole('article')).toHaveCount(1);
   const other = await context.newPage();
   await other.goto('/');
+  await findHondas(other);
   await other.getByRole('button', { name: `Unsave ${honda}`, exact: true }).click();
   await expect(page.getByText('Your shortlist starts with a favourite.')).toBeVisible();
   await other.close();
@@ -90,6 +100,7 @@ test('shortlist persists, filters, clears and syncs across tabs', async ({ page,
 
 test('comparison restores from its URL and calculates fuel costs', async ({ page }) => {
   await openRetailCatalog(page);
+  await findHondas(page);
   await page.getByRole('checkbox', { name: `Compare ${honda}`, exact: true }).check();
   await expect(page.getByRole('button', { name: 'Compare 1 car' })).toBeDisabled();
   await page.getByRole('checkbox', { name: `Compare ${hybrid}`, exact: true }).check();
@@ -109,6 +120,7 @@ test('comparison restores from its URL and calculates fuel costs', async ({ page
   await expect(page.getByRole('columnheader')).toHaveCount(3);
   await page.keyboard.press('Escape');
   await expect(page.getByRole('dialog')).not.toBeVisible();
+  await findHondas(page);
   await expect(page.getByRole('checkbox', { name: `Compare ${honda}`, exact: true })).toBeChecked();
 });
 
@@ -140,6 +152,7 @@ test('shows source links and handles clipboard denial', async ({ page }) => {
     'href',
     /^https:\/\//,
   );
+  await findHondas(page);
   await page.getByRole('checkbox', { name: `Compare ${honda}`, exact: true }).check();
   await page.getByRole('checkbox', { name: `Compare ${hybrid}`, exact: true }).check();
   await page.getByRole('button', { name: 'Compare 2 cars' }).click();
@@ -163,6 +176,7 @@ test('recovers from corrupt and blocked local storage', async ({ page }) => {
   );
   await page.reload();
   await revealCatalogFilters(page);
+  await findHondas(page);
   await page.getByRole('button', { name: `Save ${honda}`, exact: true }).click();
   await expect(page.getByRole('button', { name: `Unsave ${honda}`, exact: true })).toBeVisible();
   await expect(page.getByText(/cannot be saved on this device/)).toBeVisible();
@@ -174,7 +188,7 @@ test('priority sliders work from keyboard and zero weights stay unscored', async
   await price.focus();
   await page.keyboard.press('End');
   await expect(price).toHaveValue('5');
-  for (const name of [/Purchase price/, /Fuel economy/, /Cargo space/, /Rear legroom/]) {
+  for (const name of [/Purchase price/, /Energy cost/, /Cargo space/, /Rear legroom/]) {
     await page.getByRole('slider', { name }).focus();
     await page.keyboard.press('Home');
   }
@@ -193,6 +207,7 @@ test('catalog, expanded specs and comparison have no detected WCAG AA violations
     (await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa']).analyze())
       .violations,
   ).toEqual([]);
+  await findHondas(page);
   await page.getByRole('checkbox', { name: `Compare ${honda}`, exact: true }).check();
   await page.getByRole('checkbox', { name: `Compare ${hybrid}`, exact: true }).check();
   await page.getByRole('button', { name: 'Compare 2 cars' }).click();
@@ -207,6 +222,7 @@ test('layout has no horizontal document overflow and dialog traps focus', async 
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(
     true,
   );
+  await findHondas(page);
   await page.getByRole('checkbox', { name: `Compare ${honda}`, exact: true }).check();
   await page.getByRole('checkbox', { name: `Compare ${hybrid}`, exact: true }).check();
   await page.getByRole('button', { name: 'Compare 2 cars' }).click();

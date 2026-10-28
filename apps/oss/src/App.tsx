@@ -1,27 +1,34 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
-import { catalog, metricDefinitions, governmentRatingCount, ratingUrl } from '@oss/car-catalog';
-import type { Car, Fact, Metric } from '@oss/car-catalog';
+import { useEffect, useMemo, useState } from 'react';
+import type { Dispatch, SetStateAction } from 'react';
+import { catalog } from '@oss/car-catalog';
+import type { Car } from '@oss/car-catalog';
 import {
-  annualEnergyCost,
   defaultFilters,
+  defaultEnergy,
+  energyCostPer100km,
   defaultWeights,
   filterCars,
   fullName,
   configurationLabel,
-  hasMatchingSpecification,
   modelYearLabel,
   parseSharedState,
-  priorityDefinitions,
   priorityKeys,
   rankCars,
-  scoreCar,
-  serializeSharedState,
 } from './domain';
 import type { Filters, Weights } from './domain';
 import { useShortlist } from './useShortlist';
+import { useEnergySettings } from './useEnergySettings';
+import type { EnergyInputs as Inputs } from './useEnergySettings';
+import { parseBrowsingState, serializeViewState } from './browsing';
+import type { SortOrder } from './browsing';
+import { useBrowsingState } from './useBrowsingState';
+import { CatalogFilters } from './CatalogFilters';
 import { SourceLibrary } from './SourceLibrary';
 import { AppHeader } from './AppHeader';
-import { ComparisonSummary } from './ComparisonSummary';
+import { Comparison } from './Comparison';
+import { Card } from './VehicleCard';
+import { ShortlistDialog } from './ShortlistDialog';
+import { Icon, currency, formatDate, reviewedDate } from './catalogView';
 
 const cars = catalog.cars;
 const makes = [...new Set(cars.map((car) => car.make))].sort((a, b) => a.localeCompare(b));
@@ -29,697 +36,22 @@ const years = [
   ...new Set(cars.map((car) => car.year).filter((year): year is number => year !== null)),
 ].sort((a, b) => b - a);
 const unverifiedYearCount = cars.filter((car) => car.year === null).length;
-const vehicleClasses = [
-  ...new Set(
-    cars
-      .map((car) => car.governmentRating?.vehicleClass)
-      .filter((value): value is string => !!value),
-  ),
-].sort();
-const fuels = [...new Set(cars.map((car) => car.fuel))].sort();
 const pageSize = 30;
-const sources = new Map(catalog.sources.map((source) => [source.id, source]));
-const currency = new Intl.NumberFormat('en-CA', {
-  style: 'currency',
-  currency: 'CAD',
-  maximumFractionDigits: 0,
-});
-const formatDate = (date: string) =>
-  new Intl.DateTimeFormat('en-CA', {
-    month: 'short',
-    day: 'numeric',
-    year: 'numeric',
-    timeZone: 'UTC',
-  }).format(new Date(`${date}T00:00:00Z`));
-const reviewedDate = formatDate(catalog.reviewedAt);
-const metricKeys = Object.keys(metricDefinitions) as Metric[];
 const initialShared = parseSharedState(window.location.search, cars);
-
-function Icon({
-  name,
-  size = 20,
-}: {
-  name: 'arrow' | 'save' | 'search' | 'close' | 'check' | 'link' | 'sliders' | 'garage';
-  size?: number;
-}) {
-  const paths = {
-    arrow: (
-      <>
-        <path d="M4 12h16m-6-6 6 6-6 6" />
-      </>
-    ),
-    save: <path d="M6 4h12v17l-6-4-6 4V4Z" />,
-    search: (
-      <>
-        <circle cx="10.5" cy="10.5" r="6.5" />
-        <path d="m16 16 5 5" />
-      </>
-    ),
-    close: <path d="m6 6 12 12M6 18 18 6" />,
-    check: <path d="m5 12 4 4L19 6" />,
-    link: (
-      <>
-        <path d="m9 15 6-6m-7 2-2 2a4 4 0 0 0 6 6l2-2m-4-10 2-2a4 4 0 0 1 6 6l-2 2" />
-      </>
-    ),
-    sliders: (
-      <>
-        <path d="M4 7h16M4 17h16M9 4v6m6 4v6" />
-      </>
-    ),
-    garage: (
-      <>
-        <path d="M3 21V9l9-6 9 6v12H3Zm4 0V10h10v11M7 14h10M7 18h10" />
-      </>
-    ),
-  };
-  return (
-    <svg
-      width={size}
-      height={size}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.7"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-    >
-      {paths[name]}
-    </svg>
-  );
-}
-
-function displayFact(metric: Metric, fact: Fact): string {
-  if (fact.value === null) return 'Not verified';
-  if (metric === 'msrpCad') return currency.format(fact.value);
-  return `${fact.value.toLocaleString('en-CA', { maximumFractionDigits: 1 })} ${metricDefinitions[metric].unit}`;
-}
-
-function SourcedFact({
-  metric,
-  fact,
-  showNotes = true,
-}: {
-  metric: Metric;
-  fact: Fact;
-  showNotes?: boolean;
-}) {
-  const source = fact.source ? sources.get(fact.source) : null;
-  return (
-    <>
-      {source ? (
-        <a
-          className="fact-link"
-          href={fact.sourceUrl ?? source.url}
-          target="_blank"
-          rel="noreferrer"
-          aria-label={`${metricDefinitions[metric].label}: ${displayFact(metric, fact)}. Source: ${source.publisher} (opens in new tab)`}
-        >
-          {displayFact(metric, fact)} <span aria-hidden="true">↗</span>
-        </a>
-      ) : (
-        <span>{displayFact(metric, fact)}</span>
-      )}
-      {fact.note && (
-        <small className="fact-note" hidden={fact.value !== null && !showNotes}>
-          {fact.note}
-        </small>
-      )}
-    </>
-  );
-}
-
-const publishedCurrency = new Intl.NumberFormat('en-CA', {
-  style: 'currency',
-  currency: 'CAD',
-  minimumFractionDigits: 2,
-  maximumFractionDigits: 2,
-});
-function PublishedPrice({ car, showNotes = true }: { car: Car; showNotes?: boolean }) {
-  const price = car.publishedPrice;
-  if (!price) return <span>Not verified</span>;
-  const source = sources.get(price.source)!;
-  return (
-    <>
-      <a
-        className="fact-link"
-        href={source.url}
-        target="_blank"
-        rel="noreferrer"
-        aria-label={`Published all-inclusive price: ${publishedCurrency.format(price.value)} CAD, ${price.province}, before sales tax. Source: ${source.publisher} (opens in new tab)`}
-      >
-        {publishedCurrency.format(price.value)} <span aria-hidden="true">↗</span>
-      </a>
-      <small className="fact-note" hidden={!showNotes}>
-        {price.province} · before sales tax. {price.note}
-      </small>
-    </>
-  );
-}
-
-function Card({
-  car,
-  index,
-  weights,
-  selected,
-  saved,
-  atLimit,
-  onCompare,
-  onSave,
-}: {
-  car: Car;
-  index: number;
-  weights: Weights;
-  selected: boolean;
-  saved: boolean;
-  atLimit: boolean;
-  onCompare: () => void;
-  onSave: () => void;
-}) {
-  const ranking = scoreCar(car, weights);
-  const [expanded, setExpanded] = useState(false);
-  const largest = [...ranking.contributions].sort((a, b) => b.points - a.points)[0];
-  return (
-    <article
-      className={`car-card ${selected ? 'is-selected' : ''}`}
-      aria-labelledby={`title-${car.id}`}
-    >
-      <div className="card-top">
-        <span className="card-index">{String(index + 1).padStart(2, '0')}</span>
-        <span className={`fuel-tag ${car.fuel === 'Hybrid' ? 'hybrid' : ''}`}>
-          {car.fuel} {car.drivetrain !== 'Not verified' && `· ${car.drivetrain}`}
-        </span>
-        <button
-          type="button"
-          className={`icon-button save-button ${saved ? 'is-saved' : ''}`}
-          aria-label={`${saved ? 'Unsave' : 'Save'} ${fullName(car)}`}
-          aria-pressed={saved}
-          onClick={onSave}
-        >
-          <Icon name="save" />
-        </button>
-      </div>
-      <div className="card-content">
-        <div className="vehicle-description">
-          <p className="car-make">
-            {modelYearLabel(car)} {car.make}
-          </p>
-          <h3 id={`title-${car.id}`}>{car.model}</h3>
-          <p className="car-trim">
-            {car.recordKind === 'government-rating'
-              ? `${car.governmentRating?.engineLitres ? `${car.governmentRating.engineLitres} L · ` : ''}${car.governmentRating?.transmission}`
-              : `${car.trim} · ${car.drivetrain}`}
-            {car.variant && ` · ${car.variant}`}
-          </p>
-          <p className="record-status">
-            {car.recordKind === 'government-rating'
-              ? 'NRCan rating · retail trim not checked'
-              : car.recordKind === 'manufacturer-offer'
-                ? 'Manufacturer offer · model year unverified'
-                : 'Retail configuration'}
-            {car.availability.status === 'manufacturer-listed' && ' · manufacturer-listed'}
-            {car.availability.status === 'not-checked' && ' · current availability not checked'}
-            {car.availability.status === 'announced' &&
-              ' · coming-soon source flag · availability needs review'}
-            {car.availability.status === 'discontinued' && ' · manufacturer discontinued'}
-          </p>
-          {car.modelYearNote && <p className="record-status">{car.modelYearNote}</p>}
-        </div>
-        <div className="price-row">
-          <div>
-            <strong>
-              {car.facts.msrpCad.value === null
-                ? 'Not verified'
-                : currency.format(car.facts.msrpCad.value)}
-            </strong>
-            <span>base MSRP · CAD</span>
-          </div>
-          <div className="fit-score">
-            <strong>
-              {ranking.score === null ? '—' : ranking.score}
-              <span>/100</span>
-            </strong>
-            <span>fit score</span>
-          </div>
-        </div>
-        {car.publishedPrice && (
-          <p className="published-price">
-            <strong>{publishedCurrency.format(car.publishedPrice.value)}</strong> all-inclusive ·{' '}
-            {car.publishedPrice.province} · before sales tax
-          </p>
-        )}
-        <dl className="quick-specs">
-          <div>
-            <dt>
-              {car.fuel === 'Electric' || car.fuel === 'Plug-in hybrid'
-                ? 'Electric mode'
-                : 'Combined fuel'}
-            </dt>
-            <dd>
-              {car.fuel === 'Electric' || car.fuel === 'Plug-in hybrid' ? (
-                <>
-                  {car.facts.electricCombinedKwh100km.value ?? '—'} <small>kWh/100 km</small>
-                </>
-              ) : (
-                <>
-                  {car.facts.fuelCombinedL100km.value ?? '—'} <small>L/100 km</small>
-                </>
-              )}
-            </dd>
-          </div>
-          <div>
-            <dt>Cargo, seats up</dt>
-            <dd>
-              {car.facts.cargoSeatsUpL.value ?? '—'} <small>L</small>
-            </dd>
-          </div>
-          <div>
-            <dt>Rear legroom</dt>
-            <dd>
-              {car.facts.rearLegroomMm.value ?? '—'} <small>mm</small>
-            </dd>
-          </div>
-        </dl>
-
-        <div className="card-actions">
-          <label className={`compare-checkbox ${atLimit && !selected ? 'is-disabled' : ''}`}>
-            <input
-              type="checkbox"
-              checked={selected}
-              disabled={atLimit && !selected}
-              onChange={onCompare}
-              aria-label={`Compare ${fullName(car)}`}
-            />
-            <span>Compare</span>
-          </label>
-          <button
-            type="button"
-            className="text-button"
-            aria-expanded={expanded}
-            aria-controls={`specs-${car.id}`}
-            onClick={() => setExpanded(!expanded)}
-          >
-            Specs & sources <span aria-hidden="true">{expanded ? '−' : '+'}</span>
-          </button>
-        </div>
-        {expanded && (
-          <div id={`specs-${car.id}`} className="expanded-specs">
-            <h4>Published specifications</h4>
-            <p className="fit-reason">
-              {ranking.reason ?? (
-                <>
-                  Largest score contribution:{' '}
-                  <strong>
-                    {largest ? priorityDefinitions[largest.priority].label.toLowerCase() : ''}
-                  </strong>
-                  .
-                </>
-              )}
-            </p>
-            {car.manufacturerConfiguration && (
-              <p>
-                Manufacturer code: {car.manufacturerConfiguration.code}.{' '}
-                {car.manufacturerConfiguration.transmission}.{' '}
-                {car.manufacturerConfiguration.specificationsUrl && (
-                  <a
-                    href={car.manufacturerConfiguration.specificationsUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    Manufacturer specifications ↗
-                  </a>
-                )}
-              </p>
-            )}
-            {car.governmentRating && (
-              <p>
-                NRCan class: {car.governmentRating.vehicleClass}. Fuel:{' '}
-                {car.governmentRating.fuelType}.{' '}
-                <a href={ratingUrl(car.governmentRating.recordId)} target="_blank" rel="noreferrer">
-                  Exact NRCan vehicle report ↗
-                </a>
-              </p>
-            )}
-            <p>{car.availability.note}</p>
-            <dl>
-              {car.publishedPrice && (
-                <div>
-                  <dt>Published all-inclusive price</dt>
-                  <dd>
-                    <PublishedPrice car={car} />
-                  </dd>
-                </div>
-              )}
-              {metricKeys.map((metric) => (
-                <div key={metric}>
-                  <dt>{metricDefinitions[metric].label}</dt>
-                  <dd>
-                    <SourcedFact metric={metric} fact={car.facts[metric]} />
-                  </dd>
-                </div>
-              ))}
-            </dl>
-            <p>
-              Review dates appear on each linked source. Cargo measurement methods can differ.
-              Published width may use different mirror conventions. {catalog.pricingNote}
-            </p>
-          </div>
-        )}
-      </div>
-    </article>
-  );
-}
-
-function Comparison({
-  selected,
-  weights,
-  open,
-  onClose,
-  onRemove,
-  onShare,
-  shareUrl,
-  referenceId,
-  onReferenceChange,
-}: {
-  selected: Car[];
-  weights: Weights;
-  open: boolean;
-  onClose: () => void;
-  onRemove: (id: string) => void;
-  onShare: () => void;
-  shareUrl: string;
-  referenceId: string;
-  onReferenceChange: (id: string) => void;
-}) {
-  const dialog = useRef<HTMLDialogElement>(null);
-  const [kilometres, setKilometres] = useState('15000');
-  const [gas, setGas] = useState('1.60');
-  const [electricity, setElectricity] = useState('0.15');
-  const [electricShare, setElectricShare] = useState('50');
-  const [hideMatching, setHideMatching] = useState(false);
-  const [showNotes, setShowNotes] = useState(false);
-  const visibleMetrics = metricKeys.filter(
-    (metric) => !hideMatching || !hasMatchingSpecification(selected, metric),
-  );
-  const matchingPowertrain =
-    selected.length >= 2 &&
-    selected.every(
-      (car) =>
-        car.fuel === selected[0]!.fuel &&
-        car.drivetrain !== 'Not verified' &&
-        car.drivetrain === selected[0]!.drivetrain,
-    );
-  const hiddenCount =
-    metricKeys.length - visibleMetrics.length + Number(hideMatching && matchingPowertrain);
-  const fuelInputsValid =
-    kilometres.trim() !== '' &&
-    gas.trim() !== '' &&
-    Number.isFinite(Number(kilometres)) &&
-    Number(kilometres) >= 0 &&
-    Number(kilometres) <= 200000 &&
-    Number.isFinite(Number(gas)) &&
-    Number(gas) > 0 &&
-    Number(gas) <= 5;
-  const energyCostFor = (car: Car) =>
-    kilometres.trim() !== '' &&
-    ((car.fuel !== 'Electric' && car.fuel !== 'Plug-in hybrid') || electricity.trim() !== '') &&
-    (car.fuel !== 'Plug-in hybrid' || electricShare.trim() !== '') &&
-    (car.fuel === 'Electric' || gas.trim() !== '')
-      ? annualEnergyCost(
-          car,
-          Number(kilometres),
-          Number(gas),
-          Number(electricity),
-          Number(electricShare) / 100,
-        )
-      : null;
-  useEffect(() => {
-    if (open && !dialog.current?.open) dialog.current?.showModal();
-    if (!open && dialog.current?.open) dialog.current?.close();
-  }, [open]);
-  return (
-    <dialog
-      ref={dialog}
-      className="comparison-dialog"
-      aria-labelledby="comparison-title"
-      onClose={onClose}
-      onCancel={onClose}
-    >
-      <div className="dialog-header">
-        <div>
-          <h2 id="comparison-title">Compare specifications</h2>
-        </div>
-        <button
-          type="button"
-          className="icon-button"
-          onClick={onClose}
-          aria-label="Close comparison"
-          autoFocus
-        >
-          <Icon name="close" size={24} />
-        </button>
-      </div>
-      <p className="dialog-intro">
-        Select a specification to open its source. Base prices exclude freight/PDI, taxes and fees.
-      </p>
-      <div className="comparison-tools">
-        <label className="matching-filter">
-          <input
-            type="checkbox"
-            checked={hideMatching}
-            onChange={(event) => setHideMatching(event.target.checked)}
-          />
-          Hide matching specs
-        </label>
-        <label className="matching-filter">
-          <input
-            type="checkbox"
-            checked={showNotes}
-            onChange={(event) => setShowNotes(event.target.checked)}
-          />
-          Show source notes
-        </label>
-        <span className="matching-status" role="status">
-          {hideMatching
-            ? `${hiddenCount} matching ${hiddenCount === 1 ? 'row' : 'rows'} hidden · unverified values stay visible`
-            : 'All specifications shown'}
-        </span>
-        <button type="button" className="button secondary" onClick={onShare}>
-          <Icon name="link" size={17} />
-          Copy comparison link
-        </button>
-      </div>
-      {shareUrl && (
-        <label className="share-fallback">
-          Comparison link
-          <input readOnly value={shareUrl} onFocus={(event) => event.currentTarget.select()} />
-        </label>
-      )}
-      {selected.length < 2 ? (
-        <div className="empty-state">
-          <h3>Add another car to compare.</h3>
-          <p>Select at least two configurations from the catalog.</p>
-          <button type="button" className="button primary" onClick={onClose}>
-            Back to cars
-          </button>
-        </div>
-      ) : (
-        <>
-          <ComparisonSummary
-            selected={selected}
-            energyCost={energyCostFor}
-            referenceId={referenceId}
-            onReferenceChange={onReferenceChange}
-          />
-          <div
-            className="table-scroll"
-            role="region"
-            aria-label="Car specifications comparison; scroll horizontally for more cars"
-            tabIndex={0}
-          >
-            <table>
-              <caption className="sr-only">
-                Published Canadian vehicle specifications and rating variants
-              </caption>
-              <thead>
-                <tr>
-                  <th scope="col">The details</th>
-                  {selected.map((car) => (
-                    <th scope="col" key={car.id}>
-                      <span className="car-make">
-                        {car.make} · {modelYearLabel(car)}
-                      </span>
-                      <strong>{car.model}</strong>
-                      {car.id ===
-                        (selected.find((car) => car.id === referenceId) ?? selected[0])?.id && (
-                        <span className="reference-label">Reference vehicle</span>
-                      )}
-                      <span>{configurationLabel(car)}</span>
-                      <button
-                        type="button"
-                        className="text-button"
-                        aria-label={`Remove ${fullName(car)} from comparison`}
-                        onClick={() => onRemove(car.id)}
-                      >
-                        Remove ×
-                      </button>
-                    </th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th scope="row">Record and availability</th>
-                  {selected.map((car) => (
-                    <td key={car.id}>
-                      {car.recordKind === 'government-rating'
-                        ? 'Government rating; retail trim not specified.'
-                        : car.recordKind === 'manufacturer-offer'
-                          ? 'Manufacturer offer; model year not verified.'
-                          : 'Retail configuration.'}{' '}
-                      {car.modelYearNote && `${car.modelYearNote} `}
-                      <span>{car.availability.status.replaceAll('-', ' ')}.</span>
-                      <span className="availability-note" hidden={!showNotes}>
-                        {' '}
-                        {car.availability.note}
-                      </span>
-                    </td>
-                  ))}
-                </tr>
-                <tr className="score-table-row">
-                  <th scope="row">Your fit score</th>
-                  {selected.map((car) => (
-                    <td key={car.id}>
-                      <strong>{scoreCar(car, weights).score ?? 'Unscored'}</strong>
-                      {scoreCar(car, weights).score !== null && ' / 100'}
-                    </td>
-                  ))}
-                </tr>
-                {(!hideMatching || !matchingPowertrain) && (
-                  <tr>
-                    <th scope="row">Powertrain</th>
-                    {selected.map((car) => (
-                      <td key={car.id}>
-                        {car.fuel} · {car.drivetrain}
-                      </td>
-                    ))}
-                  </tr>
-                )}
-                {visibleMetrics.map((metric) => (
-                  <tr key={metric}>
-                    <th scope="row">{metricDefinitions[metric].label}</th>
-                    {selected.map((car) => (
-                      <td key={car.id}>
-                        <SourcedFact
-                          metric={metric}
-                          fact={car.facts[metric]}
-                          showNotes={showNotes}
-                        />
-                      </td>
-                    ))}
-                  </tr>
-                ))}
-                {selected.some((car) => car.publishedPrice) && (
-                  <tr>
-                    <th scope="row">Published all-inclusive price</th>
-                    {selected.map((car) => (
-                      <td key={car.id}>
-                        <PublishedPrice car={car} showNotes={showNotes} />
-                      </td>
-                    ))}
-                  </tr>
-                )}
-                <tr>
-                  <th scope="row">Estimated annual energy</th>
-                  {selected.map((car) => {
-                    const cost = energyCostFor(car);
-                    return (
-                      <td key={car.id}>
-                        {cost === null ? 'Not available' : currency.format(cost)}
-                      </td>
-                    );
-                  })}
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <fieldset className="fuel-calculator">
-            <legend>Make energy costs yours</legend>
-            <label>
-              Annual kilometres
-              <input
-                type="number"
-                min="0"
-                max="200000"
-                step="100"
-                inputMode="numeric"
-                value={kilometres}
-                onChange={(event) => setKilometres(event.target.value)}
-                aria-describedby="fuel-note"
-                aria-invalid={!fuelInputsValid}
-              />
-            </label>
-            <label>
-              Gas price / fuel price · CAD / litre
-              <input
-                type="number"
-                min="0.01"
-                max="5"
-                step="0.01"
-                inputMode="decimal"
-                value={gas}
-                onChange={(event) => setGas(event.target.value)}
-                aria-describedby="fuel-note"
-                aria-invalid={!fuelInputsValid}
-              />
-            </label>
-            <label>
-              Electricity · CAD / kWh
-              <input
-                type="number"
-                min="0"
-                max="2"
-                step="0.01"
-                inputMode="decimal"
-                value={electricity}
-                onChange={(event) => setElectricity(event.target.value)}
-                aria-describedby="fuel-note"
-              />
-            </label>
-            <label>
-              Plug-in electric-mode driving · %
-              <input
-                type="number"
-                min="0"
-                max="100"
-                step="1"
-                inputMode="numeric"
-                value={electricShare}
-                onChange={(event) => setElectricShare(event.target.value)}
-                aria-describedby="fuel-note"
-              />
-            </label>
-            <p id="fuel-note">
-              {fuelInputsValid
-                ? 'Estimate = distance × published consumption × your energy prices. EVs use kWh; plug-in hybrids use your electric-mode distance share and include any fuel burned in that mode. Use the appropriate regular, premium or diesel price and your actual charging electricity rate. Charging session fees are excluded. The default 50% plug-in share is an assumption, not a driving prediction. Inputs stay in this visit and are excluded from shared links. Maintenance, insurance and depreciation are excluded.'
-                : 'Enter 0–200,000 annual kilometres and a gas price above $0 and at most $5.'}
-            </p>
-          </fieldset>
-        </>
-      )}
-      <p className="comparison-footnote">
-        Reviewed {reviewedDate}. Cargo measurement methods and width conventions can differ between
-        manufacturers; confirm real-world fit before buying. Engine versus total-system power
-        depends on each source; check field notes. Fit scores reflect only your selected priorities.
-      </p>
-    </dialog>
-  );
-}
+const initialBrowsing = parseBrowsingState(window.location.search, cars);
 
 export function App() {
   const [filtersOpen, setFiltersOpen] = useState(false);
-  const [filters, setFilters] = useState<Filters>({ ...defaultFilters });
+  const {
+    state: browsing,
+    restore: restoreBrowsing,
+    setFilters,
+    setSort,
+    setScoredOnly,
+    setRequestedPage,
+    resetPage,
+  } = useBrowsingState(initialBrowsing);
+  const { filters, sort, scoredOnly, page: requestedPage } = browsing;
   const models = useMemo(
     () =>
       [
@@ -738,7 +70,21 @@ export function App() {
       ].sort((a, b) => a.localeCompare(b, 'en-CA')),
     [filters.make, filters.year],
   );
-  const [weights, setWeights] = useState<Weights>(initialShared.weights);
+  const {
+    energy,
+    inputs: energyInputs,
+    onInput: changeEnergyInput,
+    setEnergy,
+  } = useEnergySettings(initialShared.energy);
+  const [weights, restoreWeights] = useState<Weights>(initialShared.weights);
+  const setWeights: Dispatch<SetStateAction<Weights>> = (next) => {
+    restoreWeights(next);
+    resetPage();
+  };
+  const onEnergyInput = (key: keyof Inputs, value: string) => {
+    changeEnergyInput(key, value);
+    if (key !== 'kilometres') resetPage();
+  };
   const [compareIds, setCompareIds] = useState<string[]>(initialShared.compare);
   const [referenceId, setReferenceId] = useState(
     initialShared.reference ?? initialShared.compare[0] ?? '',
@@ -747,20 +93,65 @@ export function App() {
     if (!compareIds.includes(referenceId)) setReferenceId(compareIds[0] ?? '');
   }, [compareIds, referenceId]);
   const [comparisonOpen, setComparisonOpen] = useState(initialShared.compare.length >= 2);
-  const { savedIds, storageWarning, setSaved, clearShortlist } = useShortlist(cars);
+  const { savedIds, storageWarning, setSaved, addMany, clearShortlist } = useShortlist(cars);
+  const [shortlistOpen, setShortlistOpen] = useState(false);
   const [urlWarning, setUrlWarning] = useState<string | null>(null);
   const [announcement, setAnnouncement] = useState('');
   const [shareUrl, setShareUrl] = useState('');
-  const [sort, setSort] = useState('fit');
-  const [requestedPage, setRequestedPage] = useState(1);
-  useEffect(() => setRequestedPage(1), [filters, sort, weights, savedIds]);
+  const [searchShareUrl, setSearchShareUrl] = useState('');
   const selected = compareIds
     .map((id) => cars.find((car) => car.id === id))
     .filter((car): car is Car => !!car);
   const reviewAge = Math.floor((Date.now() - Date.parse(catalog.reviewedAt)) / 86400000);
 
   useEffect(() => {
-    const next = `${window.location.pathname}${serializeSharedState({ compare: compareIds, weights, reference: referenceId })}${window.location.hash}`;
+    const navigate = () => {
+      const next = parseSharedState(window.location.search, cars);
+      setCompareIds(next.compare);
+      restoreWeights(next.weights);
+      restoreBrowsing(parseBrowsingState(window.location.search, cars));
+      setEnergy(next.energy ?? defaultEnergy);
+      setReferenceId(next.reference ?? next.compare[0] ?? '');
+      setComparisonOpen(next.compare.length >= 2);
+      setShortlistOpen(false);
+    };
+    window.addEventListener('popstate', navigate);
+    return () => window.removeEventListener('popstate', navigate);
+  }, []);
+
+  const results = useMemo(() => {
+    const ranked = rankCars(filterCars(cars, filters, savedIds), weights, energy);
+    if (sort === 'price')
+      ranked.sort(
+        (a, b) =>
+          (a.car.facts.msrpCad.value ?? Infinity) - (b.car.facts.msrpCad.value ?? Infinity) ||
+          a.car.id.localeCompare(b.car.id),
+      );
+    if (sort === 'fuel')
+      ranked.sort(
+        (a, b) =>
+          (energyCostPer100km(a.car, energy) ?? Infinity) -
+            (energyCostPer100km(b.car, energy) ?? Infinity) || a.car.id.localeCompare(b.car.id),
+      );
+    return scoredOnly ? ranked.filter((result) => result.score !== null) : ranked;
+  }, [
+    filters,
+    weights,
+    savedIds,
+    sort,
+    scoredOnly,
+    energy.fuelPrice,
+    energy.electricityPrice,
+    energy.electricFraction,
+    energy.premiumPrice,
+    energy.dieselPrice,
+    energy.e85Price,
+  ]);
+  const scoredCount = results.filter((result) => result.score !== null).length;
+  const totalPages = Math.max(1, Math.ceil(results.length / pageSize));
+  const currentPage = Math.min(requestedPage, totalPages);
+  useEffect(() => {
+    const next = `${window.location.pathname}${serializeViewState({ compare: compareIds, weights, reference: referenceId, energy }, { ...browsing, page: currentPage })}${window.location.hash}`;
     try {
       if (next !== `${window.location.pathname}${window.location.search}${window.location.hash}`) {
         window.history.replaceState(null, '', next);
@@ -772,37 +163,22 @@ export function App() {
       );
     }
     setShareUrl('');
-  }, [compareIds, weights, referenceId]);
-  useEffect(() => {
-    const navigate = () => {
-      const next = parseSharedState(window.location.search, cars);
-      setCompareIds(next.compare);
-      setWeights(next.weights);
-      setReferenceId(next.reference ?? next.compare[0] ?? '');
-      setComparisonOpen(next.compare.length >= 2);
-    };
-    window.addEventListener('popstate', navigate);
-    return () => window.removeEventListener('popstate', navigate);
-  }, []);
+    setSearchShareUrl('');
+  }, [
+    browsing,
+    currentPage,
+    compareIds,
+    weights,
+    referenceId,
+    energy.kilometres,
+    energy.fuelPrice,
+    energy.electricityPrice,
+    energy.electricFraction,
+    energy.premiumPrice,
+    energy.dieselPrice,
+    energy.e85Price,
+  ]);
 
-  const results = useMemo(() => {
-    const ranked = rankCars(filterCars(cars, filters, savedIds), weights);
-    if (sort === 'price')
-      ranked.sort(
-        (a, b) =>
-          (a.car.facts.msrpCad.value ?? Infinity) - (b.car.facts.msrpCad.value ?? Infinity) ||
-          a.car.id.localeCompare(b.car.id),
-      );
-    if (sort === 'fuel')
-      ranked.sort(
-        (a, b) =>
-          (a.car.facts.fuelCombinedL100km.value ?? Infinity) -
-            (b.car.facts.fuelCombinedL100km.value ?? Infinity) || a.car.id.localeCompare(b.car.id),
-      );
-    return ranked;
-  }, [filters, weights, savedIds, sort]);
-  const totalPages = Math.max(1, Math.ceil(results.length / pageSize));
-  const currentPage = Math.min(requestedPage, totalPages);
   const startIndex = (currentPage - 1) * pageSize;
   const visibleResults = results.slice(startIndex, startIndex + pageSize);
   function changePage(page: number) {
@@ -831,7 +207,14 @@ export function App() {
   async function shareComparison() {
     const url = new URL(window.location.href);
     url.hash = '';
-    url.search = serializeSharedState({ compare: compareIds, weights, reference: referenceId });
+    url.search = serializeViewState(
+      { compare: compareIds, weights, reference: referenceId, energy },
+      {
+        ...browsing,
+        page: currentPage,
+        filters: { ...filters, savedOnly: false },
+      },
+    );
     try {
       await navigator.clipboard.writeText(url.toString());
       setAnnouncement('Comparison link copied.');
@@ -840,8 +223,34 @@ export function App() {
       setAnnouncement('Copy the comparison link from the text field.');
     }
   }
+  async function shareSearch() {
+    const url = new URL(window.location.href);
+    url.hash = '';
+    url.search = serializeViewState(
+      { compare: [], weights, energy },
+      {
+        ...browsing,
+        page: currentPage,
+        filters: { ...filters, savedOnly: false },
+      },
+    );
+    try {
+      await navigator.clipboard.writeText(url.toString());
+      setAnnouncement(
+        filters.savedOnly
+          ? 'Search link copied. The device-only shortlist filter is not included.'
+          : 'Search link copied.',
+      );
+    } catch {
+      setSearchShareUrl(url.toString());
+      setAnnouncement(
+        'Copy the search link from the text field. The device-only shortlist filter is not included.',
+      );
+    }
+  }
   function resetFilters() {
     setFilters({ ...defaultFilters });
+    setScoredOnly(false);
   }
 
   return (
@@ -916,7 +325,8 @@ export function App() {
                   <Icon name="search" size={19} />
                   <input
                     type="search"
-                    placeholder="Search make, model or trim"
+                    placeholder="Search make, model, trim or powertrain"
+                    aria-describedby="vehicle-search-tip"
                     value={filters.query}
                     onChange={(event) => setFilters({ ...filters, query: event.target.value })}
                     maxLength={100}
@@ -924,13 +334,79 @@ export function App() {
                 </label>
                 <label className="sort-control">
                   <span>Sort by</span>
-                  <select value={sort} onChange={(event) => setSort(event.target.value)}>
+                  <select
+                    value={sort}
+                    onChange={(event) => setSort(event.target.value as SortOrder)}
+                  >
                     <option value="fit">Your best fit</option>
                     <option value="price">Lowest MSRP</option>
-                    <option value="fuel">Fuel economy</option>
+                    <option value="fuel">Lowest energy cost</option>
                   </select>
                 </label>
               </div>
+              <p className="search-tip" id="vehicle-search-tip">
+                Search words in any order. Use quotes for an exact phrase.
+              </p>
+              <div className="discovery-shortcuts" role="group" aria-label="Quick views">
+                <span>Start with</span>
+                <button
+                  type="button"
+                  className="text-button"
+                  onClick={() => {
+                    setFilters({ ...defaultFilters, recordKind: 'retail-trim', pricedOnly: true });
+                    setScoredOnly(false);
+                  }}
+                >
+                  Priced retail vehicles
+                </button>
+                <button
+                  type="button"
+                  className="text-button"
+                  onClick={() => {
+                    setFilters({ ...defaultFilters, fuel: 'Electric' });
+                    setScoredOnly(false);
+                  }}
+                >
+                  Electric vehicles
+                </button>
+                <button
+                  type="button"
+                  className="text-button"
+                  onClick={() => {
+                    setFilters({
+                      ...defaultFilters,
+                      bodyStyle: 'SUV',
+                      minSeats: 5,
+                      recordKind: 'retail-trim',
+                      pricedOnly: true,
+                    });
+                    setScoredOnly(false);
+                  }}
+                >
+                  Family SUVs
+                </button>
+                <button
+                  type="button"
+                  className="text-button search-share"
+                  onClick={() => void shareSearch()}
+                >
+                  <Icon name="link" size={16} /> Copy search link
+                </button>
+              </div>
+              {searchShareUrl && (
+                <label className="share-fallback">
+                  Search link
+                  <input
+                    aria-label="Search link"
+                    value={searchShareUrl}
+                    readOnly
+                    onFocus={(event) => event.target.select()}
+                  />
+                  {filters.savedOnly && (
+                    <small>The device-only shortlist filter is not included.</small>
+                  )}
+                </label>
+              )}
               <div className="catalog-primary-filters">
                 <div className="catalog-field">
                   <label className="field-label" htmlFor="year">
@@ -1015,183 +491,18 @@ export function App() {
                   Reset
                 </button>
               </div>
-              <aside
-                id="vehicle-filters"
-                className={`filters ${filtersOpen ? 'is-open' : ''}`}
-                aria-label="Filters and priorities"
-              >
-                <div className="advanced-filters">
-                  <div className="catalog-field">
-                    <label className="field-label" htmlFor="budget">
-                      Max base MSRP
-                    </label>
-                    <select
-                      id="budget"
-                      value={filters.budget ?? 'all'}
-                      onChange={(event) =>
-                        setFilters({
-                          ...filters,
-                          budget: event.target.value === 'all' ? null : Number(event.target.value),
-                        })
-                      }
-                    >
-                      <option value="all">Any price, including unverified</option>
-                      {[25000, 35000, 50000, 75000, 100000, 150000, 250000, 500000, 1000000].map(
-                        (value) => (
-                          <option key={value} value={value}>
-                            {currency.format(value)}
-                          </option>
-                        ),
-                      )}
-                    </select>
-                    <p className="field-hint">
-                      A price limit includes only verified CAD base MSRP. Unknown prices are not
-                      treated as free.
-                    </p>
-                  </div>
-                  <div className="catalog-field">
-                    <label className="field-label" htmlFor="fuel">
-                      Powertrain
-                    </label>
-                    <select
-                      id="fuel"
-                      value={filters.fuel}
-                      onChange={(event) => setFilters({ ...filters, fuel: event.target.value })}
-                    >
-                      <option value="all">Any powertrain</option>
-                      {fuels.map((fuel) => (
-                        <option key={fuel} value={fuel}>
-                          {fuel}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-                  <div className="catalog-field">
-                    <label className="field-label" htmlFor="drive">
-                      Drivetrain
-                    </label>
-                    <select
-                      id="drive"
-                      value={filters.drivetrain}
-                      onChange={(event) =>
-                        setFilters({ ...filters, drivetrain: event.target.value })
-                      }
-                    >
-                      <option value="all">Any drivetrain</option>
-                      <option value="AWD">All-wheel drive</option>
-                      <option value="FWD">Front-wheel drive</option>
-                      <option value="RWD">Rear-wheel drive</option>
-                      <option value="4WD">Four-wheel drive</option>
-                      <option value="Not verified">Not verified</option>
-                    </select>
-                  </div>
-                  <div className="catalog-field">
-                    <label className="field-label" htmlFor="record-kind">
-                      Record type
-                    </label>
-                    <select
-                      id="record-kind"
-                      value={filters.recordKind}
-                      onChange={(event) =>
-                        setFilters({ ...filters, recordKind: event.target.value })
-                      }
-                    >
-                      <option value="all">All catalog records</option>
-                      <option value="retail-trim">Retail configurations</option>
-                      <option value="government-rating">Government rating variants</option>
-                      <option value="manufacturer-offer">
-                        Manufacturer offers · year unverified
-                      </option>
-                    </select>
-                  </div>
-                  <div className="catalog-field">
-                    <label className="field-label" htmlFor="vehicle-class">
-                      NRCan vehicle class
-                    </label>
-                    <select
-                      id="vehicle-class"
-                      value={filters.vehicleClass}
-                      onChange={(event) =>
-                        setFilters({ ...filters, vehicleClass: event.target.value })
-                      }
-                    >
-                      <option value="all">All vehicle classes</option>
-                      {vehicleClasses.map((value) => (
-                        <option key={value} value={value}>
-                          {value}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-                  <div className="catalog-field">
-                    <label className="field-label" htmlFor="availability">
-                      Availability evidence
-                    </label>
-                    <select
-                      id="availability"
-                      value={filters.availability}
-                      onChange={(event) =>
-                        setFilters({ ...filters, availability: event.target.value })
-                      }
-                    >
-                      <option value="all">All evidence statuses</option>
-                      <option value="manufacturer-listed">Currently manufacturer-listed</option>
-                      <option value="not-checked">Not yet checked</option>
-                      <option value="announced">Announced</option>
-                      <option value="discontinued">Discontinued</option>
-                    </select>
-                  </div>
-                  <label className="saved-filter">
-                    <input
-                      type="checkbox"
-                      checked={filters.savedOnly}
-                      onChange={(event) =>
-                        setFilters({ ...filters, savedOnly: event.target.checked })
-                      }
-                    />
-                    Only my shortlist <span>{savedIds.length}</span>
-                  </label>
-                </div>
-                <fieldset className="priorities">
-                  <legend>What matters most?</legend>
-                  <p>
-                    Give each priority a weight.
-                    <br />0 = ignore · 5 = matters most
-                  </p>
-                  {priorityKeys.map((key) => (
-                    <div className="priority" key={key}>
-                      <label htmlFor={`weight-${key}`}>
-                        {priorityDefinitions[key].label}
-                        <output htmlFor={`weight-${key}`}>{weights[key]}</output>
-                      </label>
-                      <input
-                        id={`weight-${key}`}
-                        type="range"
-                        min="0"
-                        max="5"
-                        step="1"
-                        value={weights[key]}
-                        onChange={(event) =>
-                          setWeights({ ...weights, [key]: Number(event.target.value) })
-                        }
-                        aria-valuetext={`${weights[key]} out of 5`}
-                      />
-                    </div>
-                  ))}
-                  <a href="#methodology" className="methodology-link">
-                    How your fit score works ↗
-                  </a>
-                </fieldset>
-                <div className="scope-note">
-                  <strong>Coverage is expanding.</strong>
-                  <p>
-                    {governmentRatingCount.toLocaleString('en-CA')} government ratings are imported.
-                    Retail trim, price and current availability reviews are still in progress. NRCan
-                    groups some conventional and hybrid variants together. A rating is not a live
-                    inventory listing.
-                  </p>
-                </div>
-              </aside>
+              <CatalogFilters
+                filtersOpen={filtersOpen}
+                filters={filters}
+                setFilters={setFilters}
+                weights={weights}
+                setWeights={setWeights}
+                scoredOnly={scoredOnly}
+                setScoredOnly={setScoredOnly}
+                savedIds={savedIds}
+                energyInputs={energyInputs}
+                onEnergyInput={onEnergyInput}
+              />
               <div className="results-caption">
                 <p role="status">
                   {results.length}{' '}
@@ -1209,8 +520,84 @@ export function App() {
                     ? 'Sorted by your priorities'
                     : sort === 'price'
                       ? 'Lowest base MSRP first'
-                      : 'Lowest combined L/100 km first'}
+                      : 'Lowest estimated energy cost per 100 km first'}
                 </span>
+              </div>
+              <div className="shortlist-catalog-tools">
+                <button
+                  type="button"
+                  className="text-button"
+                  onClick={() => setShortlistOpen(true)}
+                >
+                  Manage shortlist ({savedIds.length})
+                </button>
+                {filters.savedOnly && results.length < savedIds.length && (
+                  <p>
+                    {savedIds.length - results.length} saved configurations are hidden by your
+                    filters.
+                  </p>
+                )}
+              </div>
+              <p className="ranking-coverage">
+                {scoredCount.toLocaleString('en-CA')} of {results.length.toLocaleString('en-CA')}{' '}
+                matching records have all the data needed for your priorities. Unknown values stay
+                unscored.
+              </p>
+              <div className="active-filters" role="group" aria-label="Active filters">
+                {Object.entries(filters)
+                  .filter(
+                    ([key, value]) =>
+                      value !== defaultFilters[key as keyof Filters] &&
+                      value !== undefined &&
+                      value !== null &&
+                      value !== false &&
+                      value !== '',
+                  )
+                  .map(([key, value]) => {
+                    const labels: Record<string, string> = {
+                      query: 'Search',
+                      budget: 'Max MSRP',
+                      make: 'Make',
+                      model: 'Model',
+                      year: 'Year',
+                      vehicleClass: 'NRCan class',
+                      recordKind: 'Record type',
+                      availability: 'Availability',
+                      fuel: 'Powertrain',
+                      drivetrain: 'Drivetrain',
+                      bodyStyle: 'Body style',
+                      minSeats: 'Minimum seats',
+                      pricedOnly: 'Verified base price',
+                      savedOnly: 'Shortlist',
+                    };
+                    const label = `${labels[key]}${value === true ? '' : `: ${key === 'budget' ? currency.format(Number(value)) : String(value).replaceAll('-', ' ')}`}`;
+                    return (
+                      <button
+                        type="button"
+                        key={key}
+                        className="filter-chip"
+                        aria-label={`Remove ${label} filter`}
+                        onClick={() =>
+                          setFilters((current) => ({
+                            ...current,
+                            [key]: defaultFilters[key as keyof Filters],
+                            ...(key === 'make' || key === 'year' ? { model: 'all' } : {}),
+                          }))
+                        }
+                      >
+                        {label} ×
+                      </button>
+                    );
+                  })}
+                {scoredOnly && (
+                  <button
+                    type="button"
+                    className="filter-chip"
+                    onClick={() => setScoredOnly(false)}
+                  >
+                    Has a fit score ×
+                  </button>
+                )}
               </div>
               {priorityKeys.every((key) => weights[key] === 0) && (
                 <p className="notice">
@@ -1226,6 +613,7 @@ export function App() {
                       car={car}
                       index={startIndex + index}
                       weights={weights}
+                      energy={energy}
                       selected={compareIds.includes(car.id)}
                       saved={savedIds.includes(car.id)}
                       atLimit={compareIds.length >= 4}
@@ -1311,11 +699,13 @@ export function App() {
                 <div>
                   <h3>Every metric has a fixed scale.</h3>
                   <p>
-                    Price: CAD $30k–$60k and combined consumption: 4–12 L/100 km (lower is better).
+                    Price: CAD $30k–$60k and energy cost: CAD $0–$24 per 100 km (lower is better).
                     Cargo, seats up: 500–1,200 L and rear legroom: 850–1,150 mm (higher is better).
-                    Values outside a scale are capped at its ends. Fuel economy uses liquid-fuel
-                    L/100 km; plug-in hybrids use fuel-only operation. EVs stay unscored while that
-                    priority is active. Electric consumption is shown separately in kWh/100 km.
+                    Values outside a scale are capped at its ends. Energy cost uses your fuel and
+                    electricity prices with published consumption for gas, hybrid, EV and plug-in
+                    hybrid vehicles. The plug-in electric-mode share is an editable assumption.
+                    Annual distance does not change the score. Spatial priorities start at zero
+                    because their source coverage is limited; enable them when they matter to you.
                   </p>
                 </div>
               </li>
@@ -1378,13 +768,16 @@ export function App() {
           <summary>How your data works</summary>
           <p>
             Shortlist IDs are saved in local storage on this device. Clear your shortlist below or
-            clear site data in your browser to remove them. Comparison IDs and priority weights
-            appear in shareable URLs, so anyone with a link can see those choices. We do not collect
-            search, priority or fuel-cost inputs. The hosting provider receives standard connection
-            and access information when serving the site. External manufacturer links follow their
-            own privacy policies. Garage vehicles, odometer readings, reminders and service history
-            are also saved locally. Export a garage backup before clearing site data; clearing site
-            data removes these records. Manage individual vehicles and backups on the Garage page.
+            clear site data in your browser to remove them. Searches, filters, result pages,
+            comparison IDs, priority weights and energy assumptions appear in the address bar and
+            shareable URLs. Link recipients can see those choices, and URLs may appear in hosting
+            access logs. The saved-only filter uses this browser’s shortlist and is omitted from
+            copied links. The app has no analytics or account service. The hosting provider receives
+            standard connection and access information when serving the site. External manufacturer
+            links follow their own privacy policies. Garage vehicles, odometer readings, reminders
+            and service history are also saved locally. Export a garage backup before clearing site
+            data; clearing site data removes these records. Manage individual vehicles and backups
+            on the Garage page.
           </p>
           <button
             type="button"
@@ -1405,6 +798,32 @@ export function App() {
       <div className="sr-only" role="status" aria-live="polite">
         {announcement}
       </div>
+      {shortlistOpen && (
+        <ShortlistDialog
+          cars={cars}
+          ids={savedIds}
+          compareIds={compareIds}
+          warning={storageWarning}
+          onClose={() => setShortlistOpen(false)}
+          onSave={setSaved}
+          onImport={addMany}
+          onCompare={toggleCompare}
+          onCompareNow={() => {
+            setShortlistOpen(false);
+            setComparisonOpen(true);
+          }}
+          onBrowse={() => {
+            setFilters({ ...defaultFilters, savedOnly: true });
+            setScoredOnly(false);
+            setShortlistOpen(false);
+            requestAnimationFrame(() =>
+              document
+                .getElementById('catalog-results')
+                ?.scrollIntoView({ block: 'start', behavior: 'instant' }),
+            );
+          }}
+        />
+      )}
       {compareIds.length > 0 && (
         <div className="compare-tray" role="region" aria-label="Selected cars">
           <div className="tray-selection">
@@ -1453,6 +872,9 @@ export function App() {
       <Comparison
         selected={selected}
         weights={weights}
+        energy={energy}
+        inputs={energyInputs}
+        onInput={onEnergyInput}
         open={comparisonOpen}
         onClose={() => setComparisonOpen(false)}
         onRemove={toggleCompare}

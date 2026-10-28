@@ -2,6 +2,7 @@ import { mkdir, writeFile } from 'node:fs/promises';
 import {
   catalog,
   nrcanSnapshot,
+  subaruSpecificationsSnapshot,
   tciSnapshot,
   hondaSnapshot,
   fordSnapshot,
@@ -48,6 +49,7 @@ import { porscheReviewGaps } from '../packages/car-catalog/src/porsche.ts';
 import { astonReviewGaps } from '../packages/car-catalog/src/aston-martin.ts';
 import { mclarenReviewGaps } from '../packages/car-catalog/src/mclaren.ts';
 import sourceAccessReviews from '../docs/catalog-source-access.json';
+import { subaruSpecificationsReviewGaps } from '../packages/car-catalog/src/subaru-specifications.ts';
 import manufacturerUniverse from '../docs/canadian-market-universe.json';
 
 const report = {
@@ -97,6 +99,10 @@ const report = {
     }),
   ],
   manufacturerSourceGaps: [
+    ...subaruSpecificationsReviewGaps(subaruSpecificationsSnapshot).map((gap) => ({
+      brand: 'Subaru',
+      ...gap,
+    })),
     ...tciSnapshot.gaps,
     ...nissanReviewGaps(nissanSnapshot),
     ...vwReviewGaps(volkswagenSnapshot),

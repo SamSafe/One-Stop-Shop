@@ -4,7 +4,9 @@ import { addLandroverRetail } from './landrover';
 import data from '../data/catalog.json';
 import snapshot from '../data/nrcan.json';
 import links from '../data/retail-rating-links.json';
+import reviewedLinks from '../data/reviewed-rating-links.json';
 import subaruData from '../data/manufacturers/subaru.json';
+import subaruSpecificationsData from '../data/manufacturers/subaru-specifications.json';
 import tciData from '../data/manufacturers/tci.json';
 import hondaData from '../data/manufacturers/honda.json';
 import fordData from '../data/manufacturers/ford.json';
@@ -29,12 +31,14 @@ import astonData from '../data/manufacturers/aston-martin.json';
 import mclarenData from '../data/manufacturers/mclaren.json';
 import { validateCatalog } from './schema';
 import { validateNrcanSnapshot } from './nrcan-schema';
-import { expandCatalog } from './expand';
+import { expandCatalog, reviewedRatingLinksSchema } from './expand';
 import { addSubaruRetail } from './subaru';
 import { validateSubaruSnapshot } from './subaru-import';
+import { validateSubaruSpecifications } from './subaru-specifications-import';
+import { addSubaruSpecifications, assertSubaruRatingEvidence } from './subaru-specifications';
 import { validateTciSnapshot } from './tci-import';
 import { addTciRetail } from './tci';
-import { addHondaRetail } from './honda';
+import { addHondaRetail, hondaRecordId, hondaSpecifications } from './honda';
 import { validateHondaSnapshot } from './honda-import';
 import { validateFordSnapshot } from './ford-import';
 import { addFordRetail } from './ford';
@@ -83,6 +87,10 @@ export const nrcanSnapshot = validateNrcanSnapshot(snapshot);
 export const governmentRatingCount = nrcanSnapshot.records.length;
 export const curatedCatalog = validateCatalog(data);
 export const subaruSnapshot = validateSubaruSnapshot(subaruData);
+export const subaruSpecificationsSnapshot = validateSubaruSpecifications(
+  subaruSpecificationsData,
+  subaruSnapshot,
+);
 export const tciSnapshot = validateTciSnapshot(tciData);
 export const hondaSnapshot = validateHondaSnapshot(hondaData);
 export const fordSnapshot = validateFordSnapshot(fordData);
@@ -111,7 +119,13 @@ export const mclarenSnapshot = validateMclarenSnapshot(mclarenData);
 const previouslyImportedRetail = addMazdaRetail(
   addFordRetail(
     addHondaRetail(
-      addTciRetail(addSubaruRetail(curatedCatalog, subaruSnapshot), tciSnapshot),
+      addTciRetail(
+        addSubaruSpecifications(
+          addSubaruRetail(curatedCatalog, subaruSnapshot),
+          subaruSpecificationsSnapshot,
+        ),
+        tciSnapshot,
+      ),
       hondaSnapshot,
     ),
     fordSnapshot,
@@ -157,4 +171,19 @@ export const retailCatalog = validateCatalog({
   ...manufacturerCatalog,
   cars: manufacturerCatalog.cars.filter((car) => car.recordKind === 'retail-trim'),
 });
-export const catalog = expandCatalog(manufacturerCatalog, nrcanSnapshot, links);
+// An audited engine quotation must still match its checked manufacturer capture.
+// A future source change requires another review, even if consumption is unchanged.
+for (const link of reviewedRatingLinksSchema.parse(reviewedLinks).links) {
+  if (link.evidenceProvider === 'subaru-specifications') {
+    assertSubaruRatingEvidence(retailCatalog.cars, subaruSpecificationsSnapshot, link);
+    continue;
+  }
+  const record = hondaSnapshot.records.find((record) => hondaRecordId(record) === link.retailId);
+  if (
+    !record ||
+    hondaSpecifications(record).find((spec) => spec.label === 'Engine type')?.value !==
+      link.engineEvidence
+  )
+    throw new Error(`Review the manufacturer engine evidence for ${link.retailId}.`);
+}
+export const catalog = expandCatalog(manufacturerCatalog, nrcanSnapshot, links, reviewedLinks);

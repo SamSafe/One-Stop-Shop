@@ -92,7 +92,7 @@ test('comparison selections identify exact trims and can be removed while browsi
   await expect(page.getByRole('searchbox', { name: 'Search cars' })).toHaveValue('Honda');
 });
 
-test('matching specs can be hidden and restored while unknown values and sources remain available', async ({
+test('matching and inapplicable specs can be hidden and restored while sources remain available', async ({
   page,
 }) => {
   await page.goto('/?compare=honda-cr-v-2026-lx-fwd,honda-cr-v-2026-sport-hybrid-awd');
@@ -102,14 +102,15 @@ test('matching specs can be hidden and restored while unknown values and sources
   const priceNotes = dialog.getByRole('row', { name: /^Base MSRP / }).locator('.fact-note');
   await expect(seats).toBeVisible();
   await expect(priceNotes.first()).not.toBeVisible();
-  await expect(range.locator('.fact-note').first()).toBeVisible();
+  await expect(range).toContainText('Not applicable');
+  await expect(range.locator('.fact-note').first()).not.toBeVisible();
   await dialog.getByRole('checkbox', { name: 'Show source notes', exact: true }).check();
   await expect(priceNotes.first()).toBeVisible();
   await dialog.getByRole('checkbox', { name: 'Show source notes', exact: true }).uncheck();
   await expect(seats.getByRole('link').first()).toHaveAttribute('href', /^https:\/\//);
   await dialog.getByRole('checkbox', { name: 'Hide matching specs', exact: true }).check();
   await expect(seats).toHaveCount(0);
-  await expect(range).toContainText('Not verified');
+  await expect(range).toHaveCount(0);
   await expect(dialog.getByRole('status')).toContainText('unverified values stay visible');
   await expect(dialog.getByRole('row', { name: /^Base MSRP / })).toBeVisible();
   await dialog.getByRole('checkbox', { name: 'Hide matching specs', exact: true }).uncheck();

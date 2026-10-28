@@ -1,6 +1,59 @@
 import { metricDefinitions, validateCatalog } from './schema';
 import type { Car, Catalog, Fact, Metric } from './schema';
 import type { NrcanRecord, NrcanSnapshot } from './nrcan-schema';
+import { z } from 'zod';
+
+export const reviewedRatingLinksSchema = z.strictObject({
+  schemaVersion: z.literal(1),
+  reviewedAt: z.iso.date(),
+  links: z
+    .array(
+      z
+        .strictObject({
+          retailId: z.string().min(1),
+          evidenceProvider: z.enum(['honda', 'subaru-specifications']).default('honda'),
+          recordId: z.number().int().positive(),
+          retail: z.strictObject({
+            make: z.string(),
+            model: z.string(),
+            year: z.number().int(),
+            fuel: z.string(),
+            drivetrain: z.string(),
+            transmission: z.string(),
+          }),
+          rating: z.strictObject({
+            model: z.string(),
+            engineLitres: z.number(),
+            cylinders: z.number().int(),
+            transmission: z.string(),
+            vehicleType: z.literal('ICE').optional(),
+            fuelType: z.enum(['X', 'Z']).optional(),
+          }),
+          manufacturerSource: z.string().min(1),
+          engineEvidence: z.string().min(1),
+          engineLayoutEvidence: z.string().min(1).optional(),
+          transmissionEvidence: z.string().min(1).optional(),
+          drivetrainEvidence: z.string().min(1).optional(),
+          note: z.string().min(1),
+        })
+        .superRefine((link, ctx) => {
+          if (
+            link.evidenceProvider === 'subaru-specifications' &&
+            (!link.engineLayoutEvidence ||
+              !link.transmissionEvidence ||
+              !link.drivetrainEvidence ||
+              !link.rating.vehicleType ||
+              !link.rating.fuelType)
+          )
+            ctx.addIssue({
+              code: 'custom',
+              message:
+                'Subaru rating links require captured engine, cylinder, transmission, drivetrain and rating fuel evidence.',
+            });
+        }),
+    )
+    .max(10000),
+});
 
 const unknown = (): Fact => ({
   value: null,
@@ -87,6 +140,7 @@ export function expandCatalog(
   base: Catalog,
   snapshot: NrcanSnapshot,
   links: Record<string, number>,
+  reviewedLinks?: unknown,
 ): Catalog {
   for (const id of Object.keys(links))
     if (!base.cars.some((car) => car.id === id))
@@ -94,25 +148,107 @@ export function expandCatalog(
   const reviewedAt = snapshot.retrievedAt.slice(0, 10);
   const source = `nrcan-search-${reviewedAt}`;
   const records = new Map(snapshot.records.map((record) => [record.RecordId, record]));
+  const reviewed = new Map<string, number>();
+  if (reviewedLinks !== undefined) {
+    const audit = reviewedRatingLinksSchema.parse(reviewedLinks);
+    for (const link of audit.links) {
+      const car = base.cars.find((car) => car.id === link.retailId);
+      const rating = records.get(link.recordId);
+      const subaru = link.evidenceProvider === 'subaru-specifications';
+      const engineLitres = Number(
+        subaru
+          ? link.engineEvidence.match(/,\s*(\d+(?:\.\d+)?)-L\b/)?.[1]
+          : link.engineEvidence.match(/^(\d+(?:\.\d+)?)-litre\b/)?.[1],
+      );
+      const cylinders = Number(
+        subaru
+          ? link.engineLayoutEvidence?.match(/\b(\d+)-cylinder\b/)?.[1]
+          : link.engineEvidence
+              .match(/(\d+)-cylinder|V(\d+)\b/i)
+              ?.slice(1)
+              .find(Boolean),
+      );
+      const speed = link.transmissionEvidence?.match(/\b(\d+)-speed (manual|automatic)\b/i);
+      const compatibleTransmission =
+        !subaru ||
+        (!!rating &&
+          (/\bCVT\b/.test(link.transmissionEvidence ?? '')
+            ? /^AV\d+$/.test(rating.TransmissionId)
+            : !!speed &&
+              (speed[2]!.toLowerCase() === 'manual'
+                ? rating.TransmissionId === `M${speed[1]}`
+                : new RegExp(`^AS?${speed[1]}$`).test(rating.TransmissionId))));
+      if (
+        !car ||
+        !rating ||
+        car.recordKind !== 'retail-trim' ||
+        reviewed.has(link.retailId) ||
+        links[link.retailId] ||
+        car.make !== link.retail.make ||
+        car.model !== link.retail.model ||
+        car.year !== link.retail.year ||
+        car.fuel !== link.retail.fuel ||
+        car.drivetrain !== link.retail.drivetrain ||
+        car.manufacturerConfiguration?.transmission !== link.retail.transmission ||
+        !car.sourceIds.includes(link.manufacturerSource) ||
+        (subaru
+          ? car.make !== 'Subaru' ||
+            car.facts.fuelCityL100km.source !== link.manufacturerSource ||
+            car.facts.fuelHighwayL100km.source !== link.manufacturerSource
+          : car.facts.fuelCombinedL100km.source !== link.manufacturerSource) ||
+        rating.Make !== car.make ||
+        rating.Year !== car.year ||
+        rating.Model !== link.rating.model ||
+        rating.EngineSize !== link.rating.engineLitres ||
+        rating.NumOfCylinders !== link.rating.cylinders ||
+        engineLitres !== rating.EngineSize ||
+        cylinders !== rating.NumOfCylinders ||
+        !compatibleTransmission ||
+        rating.VehicleTypeId !== 'ICE' ||
+        !['X', 'Z'].includes(rating.FuelTypeId) ||
+        (subaru &&
+          (rating.VehicleTypeId !== link.rating.vehicleType ||
+            rating.FuelTypeId !== link.rating.fuelType ||
+            (car.fuel === 'Hybrid') !== /\bHybrid\b/i.test(link.engineEvidence) ||
+            (car.fuel === 'Hybrid') !== /\bHybrid\b/i.test(rating.Model))) ||
+        rating.TransmissionEn !== link.rating.transmission ||
+        rating.CityGasConsumption !== car.facts.fuelCityL100km.value ||
+        rating.HwyGasConsumption !== car.facts.fuelHighwayL100km.value ||
+        ((!subaru || car.facts.fuelCombinedL100km.value !== null) &&
+          rating.CombGasConsumption !== car.facts.fuelCombinedL100km.value)
+      )
+        throw new Error(`Review the audited retail-to-rating mapping for ${link.retailId}.`);
+      reviewed.set(link.retailId, link.recordId);
+    }
+  }
   const covered = new Set<number>();
   const retail = base.cars.map((car) => {
-    const recordId = links[car.id];
+    const recordId = links[car.id] ?? reviewed.get(car.id);
     if (!recordId) return car;
     const record = records.get(recordId);
     if (
       !record ||
       record.Year !== car.year ||
       record.Make !== car.make ||
-      record.CombGasConsumption !== car.facts.fuelCombinedL100km.value
+      (car.facts.fuelCombinedL100km.value !== null &&
+        record.CombGasConsumption !== car.facts.fuelCombinedL100km.value) ||
+      (!reviewed.has(car.id) && car.facts.fuelCombinedL100km.value === null)
     )
       throw new Error(`Review the retail-to-rating mapping for ${car.id}.`);
-    covered.add(recordId);
+    // Keep existing public rating IDs after adding joins. Only the original
+    // merged ratings (which never had separate public IDs) remain omitted.
+    if (links[car.id]) covered.add(recordId);
     const extra = ratingFacts(record, source);
     return {
       ...car,
       governmentRating: metadata(record),
-      sourceIds: [...car.sourceIds, source],
-      facts: { ...extra, ...car.facts, co2Gkm: extra.co2Gkm },
+      sourceIds: [...new Set([...car.sourceIds, source])],
+      facts: Object.fromEntries(
+        Object.entries(car.facts).map(([key, fact]) => [
+          key,
+          fact.value === null && extra[key as Metric].value !== null ? extra[key as Metric] : fact,
+        ]),
+      ) as Car['facts'],
     };
   });
   const ratings = snapshot.records

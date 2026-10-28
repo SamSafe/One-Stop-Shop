@@ -299,6 +299,93 @@ input[type='range'] {
   min-width: 21px;
   text-align: center;
 }
+.shortlist-catalog-tools,
+.shortlist-tools {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+.shortlist-catalog-tools {
+  justify-content: space-between;
+  margin: 12px 0;
+}
+.shortlist-catalog-tools p,
+.shortlist-fine {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+.shortlist-dialog {
+  max-width: 880px;
+}
+.shortlist-dialog .pagination {
+  flex-wrap: wrap;
+}
+.shortlist-dialog .matching-filter {
+  min-height: 44px;
+}
+.shortlist-dialog h3,
+.shortlist-dialog h4 {
+  overflow-wrap: anywhere;
+}
+.shortlist-dialog h3 {
+  font-size: 16px;
+}
+.shortlist-fine {
+  margin: 16px 0;
+}
+.shortlist-result-title {
+  margin: 20px 0 12px;
+  scroll-margin-top: 16px;
+}
+.shortlist-warning,
+.shortlist-import-preview {
+  border: 1px solid var(--warning-border);
+  background: var(--warning-bg);
+  color: var(--warning);
+  padding: 16px;
+  margin: 18px 0;
+  border-radius: 5px;
+  overflow-wrap: anywhere;
+  line-height: 1.6;
+}
+.shortlist-import-preview p {
+  margin: 12px 0;
+  font-size: 14px;
+}
+.shortlist-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.shortlist-list li {
+  border-top: 1px solid var(--line);
+  padding: 16px 0;
+}
+.shortlist-list h4 {
+  margin: 0 0 12px;
+  font-size: 15px;
+  line-height: 1.5;
+}
+.shortlist-import {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+.shortlist-import input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+.shortlist-import:focus-within {
+  outline: 3px solid var(--accent);
+  outline-offset: 4px;
+}
 .theme-picker {
   display: flex;
   gap: 4px;
@@ -1209,14 +1296,17 @@ main > .notice {
 }
 
 .comparison-dialog {
-  padding: 26px;
+  --comparison-dialog-padding: 26px;
+  padding: var(--comparison-dialog-padding);
   border: 1px solid var(--line-strong);
   border-radius: 5px;
   background: var(--surface);
   color: var(--ink);
   width: min(1240px, calc(100% - 40px));
+  max-width: none;
   max-height: 90dvh;
   overflow: auto;
+  scroll-padding-block-start: calc(var(--comparison-toolbar-height, 100px) + 8px);
 }
 .comparison-dialog::backdrop {
   background: #0008;
@@ -1231,6 +1321,17 @@ main > .notice {
 .dialog-header h2 {
   font-size: 24px;
   margin-top: 7px;
+}
+.comparison-dialog > .dialog-header {
+  position: sticky;
+  top: calc(-1 * var(--comparison-dialog-padding));
+  z-index: 5;
+  background: var(--surface);
+  margin-top: calc(-1 * var(--comparison-dialog-padding));
+  margin-inline: calc(-1 * var(--comparison-dialog-padding));
+  padding: var(--comparison-dialog-padding);
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
 }
 .dialog-intro {
   font-size: 12px;
@@ -1345,11 +1446,60 @@ main > .notice {
   font-size: 12px;
 }
 .table-scroll {
-  overflow-x: auto;
+  --comparison-label-width: 160px;
+  --comparison-car-min-width: 220px;
+  overflow: auto;
+  max-height: max(280px, min(68dvh, 720px));
   border: 1px solid var(--line);
   border-radius: 5px;
   margin: 18px 0;
   max-width: 100%;
+  scroll-margin-block-start: calc(var(--comparison-toolbar-height, 100px) + 8px);
+  scroll-padding-block-start: calc(
+    var(--comparison-heading-offset, 0px) + var(--comparison-header-height, 180px) + 8px
+  );
+  scroll-padding-inline-start: calc(var(--comparison-label-width) + 8px);
+}
+.comparison-table-hint {
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.6;
+  margin-top: 18px;
+}
+.table-scroll table {
+  table-layout: fixed;
+  border-collapse: separate;
+  border-spacing: 0;
+  min-width: calc(
+    var(--comparison-label-width) + var(--comparison-columns) * var(--comparison-car-min-width)
+  );
+}
+.comparison-label-column {
+  width: var(--comparison-label-width);
+}
+.table-scroll th,
+.table-scroll td {
+  min-width: 0;
+  max-width: none;
+}
+.table-scroll thead th {
+  position: sticky;
+  top: var(--comparison-heading-offset, 0px);
+  z-index: 3;
+}
+.table-scroll th:first-child {
+  position: sticky;
+  inset-inline-start: 0;
+  z-index: 1;
+  background: var(--surface);
+  box-shadow: 1px 0 var(--line);
+}
+.table-scroll thead th:first-child {
+  z-index: 4;
+  background: var(--surface-alt);
+}
+.table-scroll :is(a, button) {
+  scroll-margin: 8px;
 }
 table {
   border-collapse: collapse;
@@ -1373,9 +1523,6 @@ th {
 thead th {
   background: var(--surface-alt);
 }
-thead th:first-child {
-  min-width: 160px;
-}
 thead th > strong {
   display: block;
   font-size: 16px;
@@ -1394,10 +1541,6 @@ thead th > .text-button {
 tbody th {
   font-size: 11px;
   color: var(--muted);
-  min-width: 160px;
-}
-tbody td {
-  min-width: 210px;
 }
 .score-table-row td {
   color: var(--accent);
@@ -1413,12 +1556,39 @@ tbody td {
   margin: 24px 0 18px;
   min-width: 0;
 }
+.card-energy-cost {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 5px 12px;
+  padding: 12px 0;
+  border-top: 1px solid var(--line);
+  font-size: 12px;
+}
+.card-energy-cost > span,
+.card-energy-cost > small,
+.energy-cost-breakdown small,
+.energy-cost-breakdown ul {
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.6;
+}
+.card-energy-cost > small {
+  grid-column: 1 / -1;
+}
+.energy-cost-breakdown {
+  display: grid;
+  gap: 6px;
+}
+.energy-cost-breakdown ul {
+  margin: 0;
+  padding-inline-start: 16px;
+}
 .fuel-calculator legend {
   font-size: 13px;
   font-weight: 600;
   padding: 0 6px;
 }
-.fuel-calculator label {
+.fuel-calculator .energy-field {
   display: grid;
   gap: 7px;
   font-size: 10px;
@@ -1436,6 +1606,28 @@ tbody td {
   font-size: 10px;
   color: var(--muted);
   line-height: 1.7;
+}
+.fuel-price-options {
+  grid-column: 1 / -1;
+  border-top: 1px solid var(--line);
+  padding-top: 12px;
+}
+.fuel-price-options > summary {
+  font-size: 12px;
+  color: var(--accent);
+  cursor: pointer;
+  padding: 8px 0;
+}
+.fuel-price-options > p {
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.6;
+  margin: 8px 0 14px;
+}
+.fuel-price-fields {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 160px), 1fr));
+  gap: 16px;
 }
 .comparison-footnote {
   font-size: 10px;
@@ -1558,9 +1750,9 @@ tbody td {
     padding-left: 20px;
     padding-right: 20px;
   }
-  .table-scroll th,
-  .table-scroll td {
-    min-width: 180px;
+  .table-scroll {
+    --comparison-label-width: 140px;
+    --comparison-car-min-width: 210px;
   }
   .fuel-calculator {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1677,7 +1869,14 @@ tbody td {
   .comparison-dialog {
     width: calc(100% - 16px);
     max-height: 94dvh;
-    padding: 16px;
+    --comparison-dialog-padding: 16px;
+  }
+  .table-scroll {
+    --comparison-label-width: 116px;
+    --comparison-car-min-width: max(
+      120px,
+      calc(var(--comparison-viewport-width, 300px) - var(--comparison-label-width))
+    );
   }
   .dialog-header h2 {
     font-size: 21px;
@@ -1849,4 +2048,87 @@ tbody td {
   .car-card h3 {
     font-size: 27px;
   }
+}
+
+.discovery-shortcuts,
+.priority-presets,
+.active-filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 14px;
+}
+.discovery-shortcuts {
+  margin: 14px 0;
+  font-size: 13px;
+}
+.discovery-shortcuts > span {
+  color: var(--muted);
+}
+.priority-presets {
+  margin: 12px 0 16px;
+}
+.priority-presets button[aria-pressed='true'] {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.active-filters {
+  margin: 10px 0 18px;
+}
+.active-filters:empty {
+  display: none;
+}
+.filter-chip {
+  border: 1px solid var(--line-strong);
+  background: var(--surface-alt);
+  color: var(--ink);
+  border-radius: 18px;
+  padding: 6px 12px;
+  font-size: 12px;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  text-align: left;
+  cursor: pointer;
+}
+.ranking-coverage {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.6;
+  margin: 0 0 14px;
+}
+.filters .fuel-calculator {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 18px 0;
+}
+.filters .fuel-calculator .energy-field {
+  min-width: 0;
+}
+.fuel-calculator input[aria-invalid='true'] {
+  border-color: var(--danger);
+}
+.fuel-calculator .energy-field small {
+  color: var(--danger);
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.discovery-shortcuts .search-share {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.fuel-calculator .energy-field:has(input:disabled) small {
+  color: var(--muted);
+}
+.fuel-calculator input:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.search-tip {
+  color: var(--muted);
+  font-size: 11px;
+  margin: 8px 0 0;
 }
