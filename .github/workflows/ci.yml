@@ -34,7 +34,7 @@ jobs:
       - run: npm run test:e2e
       - name: Package the verified build from the clean source commit
         run: node scripts/package-release.mjs
-      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         if: always()
         with:
           name: browser-report
@@ -42,7 +42,7 @@ jobs:
             playwright-report/
             test-results/
           retention-days: 7
-      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: oss-release-${{ github.sha }}
           path: |
