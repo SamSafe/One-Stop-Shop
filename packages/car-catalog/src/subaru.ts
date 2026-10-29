@@ -56,7 +56,7 @@ export function addSubaruRetail(base: Catalog, snapshot: SubaruSnapshot): Catalo
       value: trim.msrpCad,
       source: pricingSource,
       sourceUrl: `${trim.pricingUrl}&CarID=${trim.manufacturerId}`,
-      note: 'Current manufacturer-listed base MSRP in CAD, before freight/PDI, taxes, fees, colours, accessories and optional packages. Not a dealer quote.',
+      note: 'Current manufacturer-listed base MSRP in CAD, before freight/PDI, taxes, fees, colours, accessories and optional packages. Confirm current pricing with the retailer.',
     };
     facts.seats = {
       value: trim.seats,

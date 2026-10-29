@@ -11,9 +11,11 @@ test('regular, premium, diesel and E85 comparisons use their selected prices and
   const dialog = page.getByRole('dialog');
   const options = dialog.locator('.fuel-price-options');
   await options.locator('summary').click();
-  await dialog.getByLabel('Premium gasoline · CAD / litre', { exact: true }).fill('2');
-  await dialog.getByLabel('Diesel · CAD / litre', { exact: true }).fill('1.8');
-  await dialog.getByLabel('E85 · CAD / litre', { exact: true }).fill('1.3');
+  await dialog
+    .getByRole('spinbutton', { name: 'Premium gasoline · CAD / litre', exact: true })
+    .fill('2');
+  await dialog.getByRole('spinbutton', { name: 'Diesel · CAD / litre', exact: true }).fill('1.8');
+  await dialog.getByRole('spinbutton', { name: 'E85 · CAD / litre', exact: true }).fill('1.3');
   const costs = dialog.getByRole('row', { name: /^Estimated energy \/100 km/ }).getByRole('cell');
   for (const [index, price, basis] of [
     [0, '$13.28', 'Regular gasoline · $1.60/L · shared price'],
@@ -27,10 +29,16 @@ test('regular, premium, diesel and E85 comparisons use their selected prices and
   await expect(page).toHaveURL(/premiumPrice=2/);
   await page.reload();
   await expect(options).toHaveAttribute('open', '');
-  await expect(dialog.getByLabel('Diesel · CAD / litre', { exact: true })).toHaveValue('1.8');
-  await expect(dialog.getByLabel('E85 · CAD / litre', { exact: true })).toHaveValue('1.3');
+  await expect(
+    dialog.getByRole('spinbutton', { name: 'Diesel · CAD / litre', exact: true }),
+  ).toHaveValue('1.8');
+  await expect(
+    dialog.getByRole('spinbutton', { name: 'E85 · CAD / litre', exact: true }),
+  ).toHaveValue('1.3');
   await expect(costs.nth(1).locator('strong')).toHaveText('$21.00');
-  await dialog.getByLabel('Premium gasoline · CAD / litre', { exact: true }).fill('');
+  await dialog
+    .getByRole('spinbutton', { name: 'Premium gasoline · CAD / litre', exact: true })
+    .fill('');
   await expect(costs.nth(1)).toContainText('Premium gasoline · $1.60/L · shared price');
   await expect(costs.nth(1).locator('strong')).toHaveText('$16.80');
   expect(new URL(page.url()).searchParams.has('premiumPrice')).toBe(false);
@@ -46,17 +54,24 @@ test('unverified fuel grades retain the shared price and invalid overrides affec
   await expect(costs.nth(0)).toContainText('Fuel grade not verified · $1.60/L · shared price');
   await expect(costs.nth(0).locator('strong')).toHaveText('$8.00');
   await expect(costs.nth(1).locator('strong')).toHaveText('$21.00');
-  await dialog.getByLabel('Gas price / fuel price · CAD / litre', { exact: true }).fill('');
+  await dialog.getByRole('spinbutton', { name: 'Fuel price · CAD / litre', exact: true }).fill('');
   await expect(costs.nth(0)).toContainText('Enter a fuel price from $0.01 to $5 per litre.');
   await expect(costs.nth(1).locator('strong')).toHaveText('$21.00');
-  const premium = dialog.getByLabel('Premium gasoline · CAD / litre', { exact: true });
+  const premium = dialog.getByRole('spinbutton', {
+    name: 'Premium gasoline · CAD / litre',
+    exact: true,
+  });
   await premium.fill('0.001');
   await expect(premium).toHaveAttribute('aria-invalid', 'true');
   await expect(costs.nth(1)).toContainText(
     'Enter a premium gasoline price from $0.01 to $5 per litre.',
   );
-  await expect(dialog.getByLabel('Diesel · CAD / litre', { exact: true })).toBeDisabled();
-  await expect(dialog.getByLabel('E85 · CAD / litre', { exact: true })).toBeDisabled();
+  await expect(
+    dialog.getByRole('spinbutton', { name: 'Diesel · CAD / litre', exact: true }),
+  ).toBeDisabled();
+  await expect(
+    dialog.getByRole('spinbutton', { name: 'E85 · CAD / litre', exact: true }),
+  ).toBeDisabled();
 });
 
 test('fuel-specific ranking costs and scores survive copied search links without device state', async ({
@@ -74,7 +89,7 @@ test('fuel-specific ranking costs and scores survive copied search links without
   const score = await card.locator('.fit-score > strong').innerText();
   await page.locator('.filters .fuel-price-options > summary').click();
   await page
-    .getByLabel('Premium gasoline price for ranking · CAD / litre', { exact: true })
+    .getByRole('spinbutton', { name: 'Premium gasoline · CAD / litre', exact: true })
     .fill('2.4');
   await expect(card.locator('.card-energy-cost')).toContainText('$25.20');
   await expect(card.locator('.card-energy-cost')).toContainText(
@@ -110,7 +125,8 @@ test('fuel-specific prices reorder energy-cost results without changing unrelate
   const first = page.getByRole('article').first();
   await expect(first.getByRole('heading', { name: 'BRZ', exact: true })).toHaveCount(0);
   await page.locator('.filters .fuel-price-options > summary').click();
-  const premium = page.getByLabel('Premium gasoline price for ranking · CAD / litre', {
+  const premium = page.getByRole('spinbutton', {
+    name: 'Premium gasoline · CAD / litre',
     exact: true,
   });
   await premium.fill('0.01');
@@ -126,17 +142,21 @@ test('premium plug-in fuel prices include electric-mode fuel while EV estimates 
 }) => {
   await page.goto('/?compare=nrcan-29063,nrcan-29292');
   const dialog = page.getByRole('dialog');
-  await dialog.getByLabel('Gas price / fuel price · CAD / litre', { exact: true }).fill('');
+  await dialog.getByRole('spinbutton', { name: 'Fuel price · CAD / litre', exact: true }).fill('');
   await dialog.locator('.fuel-price-options > summary').click();
-  await dialog.getByLabel('Premium gasoline · CAD / litre', { exact: true }).fill('2');
-  await dialog.getByLabel('Plug-in electric-mode driving · %', { exact: true }).fill('100');
+  await dialog
+    .getByRole('spinbutton', { name: 'Premium gasoline · CAD / litre', exact: true })
+    .fill('2');
+  await dialog
+    .getByRole('spinbutton', { name: 'Plug-in electric-mode driving · %', exact: true })
+    .fill('100');
   const costs = dialog.getByRole('row', { name: /^Estimated energy \/100 km/ }).getByRole('cell');
   await expect(costs.nth(0).locator('strong')).toHaveText('$2.16');
   await expect(costs.nth(0).locator('.fuel-price-basis')).toHaveCount(0);
   await expect(costs.nth(1)).toContainText('Fuel: 6.1 L · $12.20');
   await expect(costs.nth(1).locator('strong')).toHaveText('$19.66');
   await expect(
-    dialog.getByLabel('Gas price / fuel price · CAD / litre', { exact: true }),
+    dialog.getByRole('spinbutton', { name: 'Fuel price · CAD / litre', exact: true }),
   ).toBeDisabled();
   expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([]);
   await dialog.getByRole('button', { name: 'Close comparison', exact: true }).click();

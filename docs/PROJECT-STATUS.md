@@ -1,8 +1,79 @@
-# Project status — 27 October 2026
+# Project status — 29 October 2026
 
 This is the current implementation summary. Earlier release and review reports describe their dated checkpoints.
 
-## Handoff point
+## Interface review — 29 October
+
+The comparison app and Garage now share control sizing, field typography, corners,
+page alignment and semantic colours in light and dark appearances. Navigation
+keeps the same order and alignment as the header wraps. Long buying, journal and shortlist
+dialogs retain their actions while scrolling and reveal focused fields above
+their footers. Garage forms reveal active fields, return focus on cancellation
+and reveal newly saved vehicles. Backup previews reject superseded file reads.
+
+Scoring and source explanations expand on request. Labels are consistent across
+energy settings, and empty results provide actions appropriate to an active buying
+brief. App and generated-catalog explanations use direct wording while preserving
+price, measurement, missing-data and maintenance qualifications. The review covers
+all application components and the generated catalog's explanatory prose.
+
+All 6,083 records retain their numeric facts, identities, source references and
+review dates; all 1,337 source records retain their protected provenance fields.
+The final build verifies all 21 artifacts against source fingerprint
+`9506684919848e6d3f154c8791e71aac7fdd05b65bccf6923a8a8cc43e593207`.
+The layout review covers 120 primary screen/width/theme combinations and 40
+additional recovery and confirmation views without horizontal overflow; the
+targeted accessibility scans pass. The full unit run passes 398 cases across 41
+files. All 524 browser cases pass on the final build: 393 across desktop/mobile
+Chromium and desktop Firefox, followed by all 131 mobile WebKit cases. No automatic
+retries or increased timeouts were needed. The [interface review](INTERFACE-REVIEW.md)
+records the retained evidence, run details and final confirmation checks. See the
+[design conventions](DESIGN-SYSTEM.md) for the shared UI rules.
+
+## Buying brief and test drives — 28 October
+
+The optional buying brief now separates requirements from preferences. It supports
+budget, seats, preferred/required body styles and drivetrain, horsepower and rear
+legroom targets, cargo goals and seven adjustable preference weights. It can be
+edited, paused and resumed. Requirements filter eligibility before personal fit
+is calculated; unverified requirements are counted and can be included explicitly
+for checking, while remaining unscored. Presets do not infer a buyer's age or
+family structure. Published horsepower is not a driving-enjoyment rating.
+
+The new test-drive journal stores multiple dated visits per configuration, with
+personal enjoyment, comfort, rear-space and visibility ratings, verdicts and notes.
+Reviews can be searched, edited, removed and compared with catalog facts. The
+latest verdict can optionally hide ruled-out vehicles. Buying backups export and
+merge the entire brief and history while preserving existing versions. Device
+storage failures retain an exportable session; stale edits and removals reject
+newer changes. Buying data is separate from the shortlist and Garage and is
+excluded from shared URLs. See [the behavior and privacy contract](BUYING-BRIEF.md).
+
+Feature validation:
+
+- The full `npm run check` passed 397 unit tests, package boundaries, catalog
+  validation, TypeScript and production build. A subsequent backup-size regression
+  brought the total to 398 distinct unit cases; all 11 buying/journal cases passed
+  after that correction, followed by another successful production build and type
+  check. Near-limit exported backups round-trip within the same byte limit used
+  for imports.
+- All 492 distinct browser cases passed: 369 host cases across desktop Chromium,
+  mobile Chromium and desktop Firefox (8.6 minutes), and 123 mobile WebKit cases in
+  the isolated Ubuntu container (5.8 minutes). After the final backup correction
+  and expanded personal comparison details, all 27 affected host buying cases
+  passed again. The WebKit run used that final build. No retries or timeout
+  increases were needed. An initial WebKit attempt used an empty browser cache;
+  the completed run used the installed `/tmp/oss-browsers` cache.
+- Formatting and Git whitespace checks pass. All 21 built artifacts verify against
+  source fingerprint `a386d3c811afdc9c07edb465640541a58f79ffd2e231f3cb8db21d1b7ad5bc06`.
+  Catalog and owner-directory assets remain unchanged.
+- Automated light/dark accessibility checks pass for the new flows. Desktop and
+  mobile brief/questionnaire and journal screens were inspected; the final views
+  have no page errors or document/dialog horizontal overflow. The disposable test
+  container was returned to its stopped state. The local app and Garage return
+  HTTP 200 at port 8080.
+
+## Autonomous-pass handoff — 27 October
 
 The autonomous quality pass is complete at the comparison-context cleanup, with
 final verification recorded below. Subsequent changes will follow individual
@@ -59,7 +130,7 @@ Manufacturer imports remain absent for 18 makes in the rating baseline. Full Can
 
 Reviewed fixed maintenance coverage remains six selected tasks for the Canadian 2016 Elantra sedan and a general Toyota 2025 visit cadence. Selected Honda guidance is dashboard-driven. No complete universal maintenance plan or background notification service is claimed. Coverage is shown for each owned vehicle.
 
-## Verification
+## Verification of the 27 October checkpoint
 
 Current increment:
 

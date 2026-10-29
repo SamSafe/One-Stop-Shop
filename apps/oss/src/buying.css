@@ -1,0 +1,240 @@
+.buying-hub {
+  max-width: 1280px;
+  margin: 4px auto 22px;
+  padding: 16px 20px;
+  background: var(--surface-alt);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 12px 24px;
+}
+.buying-hub h2 {
+  font-size: 18px;
+  margin-bottom: 6px;
+}
+.buying-hub .buying-storage {
+  color: var(--muted);
+  white-space: nowrap;
+}
+.buying-hub p,
+.buying-dialog p {
+  line-height: 1.6;
+}
+.buying-hub p {
+  font-size: 14px;
+}
+.buying-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+.buying-private {
+  color: var(--muted);
+  font-size: 13px;
+  grid-column: 1 / -1;
+}
+.buying-hub > .notice {
+  grid-column: 1 / -1;
+  margin: 0;
+}
+.buying-brief-summary {
+  margin-top: 8px;
+  font-weight: 600;
+}
+.buying-dialog {
+  width: min(850px, calc(100% - 32px));
+}
+.buying-dialog .dialog-header h2 {
+  margin-top: 0;
+}
+.buying-form {
+  display: grid;
+  gap: 24px;
+}
+.buying-form fieldset {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: 18px;
+  min-width: 0;
+}
+.buying-form legend {
+  font-weight: 650;
+  padding-inline: 6px;
+}
+.buying-form fieldset > p {
+  margin-bottom: 14px;
+}
+.buying-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin-block: 14px;
+}
+.buying-fields > label,
+.buying-form > label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 14px;
+  min-width: 0;
+}
+.buying-fields input,
+.buying-fields select,
+.buying-form textarea {
+  width: 100%;
+  min-width: 0;
+  padding: 8px 10px;
+}
+.buying-form textarea {
+  resize: vertical;
+}
+.buying-fields > .matching-filter,
+.buying-form > .matching-filter {
+  flex-direction: row;
+  align-items: center;
+}
+.buying-fields .matching-filter input {
+  width: auto;
+}
+.buying-checks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px 22px;
+  margin-bottom: 18px;
+}
+.buying-checks label {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  font-size: 14px;
+}
+.buying-form .body-options {
+  margin-block: 20px;
+}
+.buying-questionnaire,
+.buying-backups {
+  border-block: 1px solid var(--line);
+  padding-block: 18px;
+}
+.buying-questionnaire summary,
+.buying-backups summary {
+  font-weight: 650;
+  line-height: 1.6;
+}
+.buying-questionnaire-content {
+  display: grid;
+  gap: 18px;
+  padding-top: 18px;
+}
+.buying-weight {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+  font-size: 14px;
+}
+.buying-weight input {
+  grid-column: 1 / -1;
+  width: 100%;
+}
+.brief-card-match,
+.card-test-drive {
+  font-size: 13px;
+  line-height: 1.5;
+  margin-top: 14px;
+}
+.brief-card-match {
+  border-left: 3px solid var(--action);
+  padding-left: 10px;
+}
+.brief-card-match p {
+  margin-top: 4px;
+  color: var(--muted);
+}
+.card-test-drive .text-button {
+  margin-top: 6px;
+}
+.brief-methodology {
+  line-height: 1.7;
+  margin-bottom: 24px;
+  padding: 16px;
+  background: var(--surface-alt);
+}
+.journal-results {
+  margin-block: 24px 12px;
+  scroll-margin-block-start: 16px;
+}
+.journal-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.journal-list > li {
+  border-bottom: 1px solid var(--line);
+  padding-block: 20px;
+  overflow-wrap: anywhere;
+}
+.journal-list h4 {
+  font-size: 17px;
+  margin-bottom: 8px;
+}
+.journal-list .notice {
+  margin-top: 14px;
+}
+.review-ratings {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  font-size: 13px;
+}
+.review-ratings dt {
+  color: var(--muted);
+}
+.review-ratings dd {
+  margin: 4px 0 0;
+}
+.review-notes {
+  white-space: pre-wrap;
+}
+.buying-backups {
+  margin-top: 28px;
+}
+.buying-backups p {
+  margin-block: 14px;
+}
+.review-editor {
+  padding: 18px;
+  background: var(--surface-alt);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+}
+@media (max-width: 1328px) {
+  .buying-hub {
+    margin-inline: 24px;
+  }
+}
+@media (max-width: 1000px) {
+  .buying-hub {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+@media (max-width: 800px) {
+  .buying-hub {
+    grid-template-columns: minmax(0, 1fr);
+    margin-inline: 16px;
+    padding: 18px;
+  }
+  .buying-fields {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .buying-dialog {
+    --comparison-dialog-padding: 18px;
+  }
+  .buying-form fieldset {
+    padding: 14px;
+  }
+  .buying-actions .button {
+    flex: 1 1 auto;
+  }
+}

@@ -8,7 +8,7 @@ test('the full source library supports keyboard discovery, pagination, search an
   await page.goto('/');
   await revealCatalogFilters(page);
   const library = page.locator('.source-library'),
-    summary = library.locator('summary');
+    summary = library.locator(':scope > summary');
   await expect(summary).toContainText('official sources');
   expect(await library.getByRole('link', { includeHidden: true }).count()).toBeLessThanOrEqual(12);
   await summary.focus();

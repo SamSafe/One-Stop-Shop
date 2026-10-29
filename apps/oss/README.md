@@ -1,6 +1,10 @@
-# OSS — Find your fit
+# OSS
 
 The active Canadian vehicle comparison app and independent ownership garage. See the root [project status](../../docs/PROJECT-STATUS.md) for current coverage and verification.
+
+Shared interface tokens, controls, dialog behavior and wording follow the
+[design system](../../docs/DESIGN-SYSTEM.md). Buying, shortlist and journal actions
+stay visible in long dialogs. Source locators and scoring details expand on request.
 
 Comparison supports search, year/make/model, body style, verified seating, price, powertrain and availability filters. Quick views open priced retail vehicles, electric vehicles or family SUVs. Active filters can be removed individually. Results are paged; saved and compared vehicles remain selected across pages. Search terms can be reordered and common model punctuation is normalized. Completed words match complete terms, the last word supports typing ahead, and quoted phrases provide precise matching. The address retains filters, ordering and page through reloads or a garage round trip. Copy search link shares that view while omitting the device-only shortlist filter.
 
@@ -35,3 +39,12 @@ The specification table scrolls in both directions within a bounded region. Vehi
 When the outer dialog scrolls past the table's top, vehicle headings follow the visible table beneath the close control. They remain clipped to the table and release as its bottom leaves view, keeping energy inputs unobstructed. Header positioning and focus scroll padding share the same measured offset. Scroll work is batched per animation frame; listeners and observers are removed when the comparison closes.
 
 Fuel-specific prices are optional under the energy inputs. Blank premium, diesel and E85 fields use the shared fuel price. Exact rating fuel labels select their matching price; an explicitly verified Diesel powertrain can also use the diesel price. Other records retain the shared assumption without guessing a grade from make/model names. Cards and comparisons show the applied fuel type, unit price and shared/specific basis. Invalid used overrides leave estimates unknown; irrelevant prices do not block EVs or unused plug-in modes. Valid optional prices survive search/comparison links and reloads; older links keep their shared-price behavior.
+
+## Buying brief and test drives
+
+`buying.ts` owns validated buying preferences, requirement checks, personalized
+scoring, reviews and portable backups. `useBuyingWorkspace.ts` handles independent
+device storage and stale edits. The brief replaces legacy scoring only while
+active; catalog filters still apply. The questionnaire is optional. Test-drive
+ratings remain separate from facts and numerical fit; the latest verdict can
+optionally hide ruled-out configurations. See [the behavior and privacy contract](../../docs/BUYING-BRIEF.md).

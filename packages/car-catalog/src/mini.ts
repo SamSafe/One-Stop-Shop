@@ -254,7 +254,7 @@ export function addMiniRetail(base: Catalog, snapshot: MiniSnapshot): Catalog {
       reviewedAt: stockDate,
       publishedAt: null,
       locator:
-        'All reported national new-stock pages, MINI/status N, no demos, with offers optional. Province/retailer, mileage, photo, year/price and geographic filters cleared. Reported counts, page rows and distinct vehicle identities reconcile. This is dated listing evidence, not a live inventory or exact equipped-stock guarantee.',
+        'All reported national new-stock pages, MINI/status N, no demos, with offers optional. Province/retailer, mileage, photo, year/price and geographic filters cleared. Reported counts, page rows and distinct vehicle identities reconcile. Listing evidence is dated. Confirm current stock and exact equipment with the retailer.',
     },
   ];
   const models = new Map(snapshot.models.map((m) => [m.key, m])),

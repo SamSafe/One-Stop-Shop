@@ -55,7 +55,7 @@ export function addMclarenRetail(base: Catalog, snapshot: MclarenSnapshot): Cata
         status: 'manufacturer-listed',
         checkedAt: on,
         source,
-        note: 'Current public Canadian configurator accepts this profile and explicitly identifies its model year. This is a configured-default profile, not a quotation or confirmed stock vehicle. Alternate interiors, packages, exact standard equipment, allocations, order acceptance, delivery and older new stock remain unverified.',
+        note: 'Current public Canadian configurator accepts this profile and explicitly identifies its model year. This profile uses the factory defaults; confirm a quote and stock availability with the retailer. Alternate interiors, packages, exact standard equipment, allocations, order acceptance, delivery and older new stock remain unverified.',
       },
       sourceIds: [source],
       facts,
@@ -74,7 +74,7 @@ export function mclarenReviewGaps(snapshot: MclarenSnapshot) {
       brand: 'McLaren',
       field: 'scope',
       reason:
-        'Five Canadian year-qualified factory profiles are represented. The global navigation is not a complete Canadian market denominator. Independent national lineups, every retail trim/equipment combination, current allocations and current/older new stock remain open.',
+        'Five Canadian year-qualified factory profiles are represented. The global navigation requires a separate Canadian lineup-coverage check. Independent national lineups, every retail trim/equipment combination, current allocations and current/older new stock remain open.',
     },
     {
       brand: 'McLaren',

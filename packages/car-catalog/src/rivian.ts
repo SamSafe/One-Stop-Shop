@@ -123,7 +123,7 @@ export function rivianFacts(p: Profile, snapshot: RivianSnapshot): Car['facts'] 
   facts.msrpCad = {
     value: p.price,
     source: p.priceSource,
-    note: `${p.stockOnly ? 'Observed stock’s exact model-year factory rules' : 'Minimum compatible factory wheel/interior selection for this equipment profile'}: base vehicle plus selected factory equipment, before paint, accessories, destination, taxes, fees and incentives. This is factory MSRP, not a stock selling price. Wheels: ${equipmentName('WHL')}. Interior: ${equipmentName('INT')}.`,
+    note: `${p.stockOnly ? 'Observed stock’s exact model-year factory rules' : 'Minimum compatible factory wheel/interior selection for this equipment profile'}: base vehicle plus selected factory equipment, before paint, accessories, destination, taxes, fees and incentives. Confirm the current stock selling price with the retailer. Wheels: ${equipmentName('WHL')}. Interior: ${equipmentName('INT')}.`,
   };
   const isCurrentYear = snapshot.current.some(
     (c) =>
@@ -173,7 +173,7 @@ export function addRivianRetail(base: Catalog, snapshot: RivianSnapshot): Catalo
       url: q.source.url,
       reviewedAt: date,
       publishedAt: null,
-      locator: `Read-only search at public sample delivery point ${q.postalCode}, model ${q.model}, NEW_VEHICLE_CONFIG, no equipment/price/year filters, ALL_MATCHES transfers, discounts unrestricted. ${q.reportedRows} distinct configuration references. This is observed source coverage, not a physical vehicle count or proof of exhaustive national stock.`,
+      locator: `Read-only search at public sample delivery point ${q.postalCode}, model ${q.model}, NEW_VEHICLE_CONFIG, no equipment/price/year filters, ALL_MATCHES transfers, discounts unrestricted. ${q.reportedRows} distinct configuration references. These references identify configurations; physical vehicle counts and nationwide stock completeness require separate review.`,
     });
   sources.push(
     {

@@ -47,6 +47,10 @@ export function VehicleCard({
     [specError, setSpecError] = useState(''),
     [specLoading, setSpecLoading] = useState(false);
   const article = useRef<HTMLElement>(null);
+  const closePanel = () => {
+    setPanel(null);
+    requestAnimationFrame(() => focusAndReveal(article.current));
+  };
   const shownSpecs = specs?.id === vehicle.catalogId ? specs : null;
   const guidance = maintenanceGuidance(vehicle),
     resources = ownerResources(vehicle.make);
@@ -64,7 +68,7 @@ export function VehicleCard({
       requestAnimationFrame(() =>
         focusTarget
           ? focusAndReveal(document.getElementById(focusTarget))
-          : article.current?.focus(),
+          : focusAndReveal(article.current),
       );
       return true;
     }
@@ -86,6 +90,7 @@ export function VehicleCard({
   }
   return (
     <article
+      id={`garage-vehicle-${vehicle.id}`}
       ref={article}
       tabIndex={-1}
       className="garage-panel garage-vehicle"
@@ -155,7 +160,7 @@ export function VehicleCard({
           onCancel={() => {
             setPanel(null);
             setEditingVehicle(null);
-            article.current?.focus();
+            focusAndReveal(article.current);
           }}
         />
       )}
@@ -173,6 +178,7 @@ export function VehicleCard({
               <input
                 id={id}
                 name="km"
+                autoFocus
                 type="number"
                 min={vehicle.odometerKm}
                 max="5000000"
@@ -185,7 +191,7 @@ export function VehicleCard({
             <button className="button primary" type="submit">
               Save odometer
             </button>
-            <button className="button secondary" type="button" onClick={() => setPanel(null)}>
+            <button className="button secondary" type="button" onClick={closePanel}>
               Cancel
             </button>
           </div>
@@ -224,8 +230,8 @@ export function VehicleCard({
         )}
         {maintenanceTasks(vehicle).length > 0 && (
           <p className="garage-fine">
-            Reviewed manufacturer tasks are added automatically. Enter actual service history to
-            establish due dates; this is a selected task list, not a complete maintenance schedule.
+            Add service history to calculate due dates for these reviewed tasks. Check your
+            vehicle's full maintenance schedule for additional work.
           </p>
         )}
         {!!vehicle.suppressedMaintenance?.length && (
@@ -318,7 +324,7 @@ export function VehicleCard({
             setPanel(null);
             setCompletion(null);
             setEditingRecord(undefined);
-            article.current?.focus();
+            focusAndReveal(article.current);
           }}
         />
       )}
@@ -418,21 +424,27 @@ export function VehicleCard({
               {deletion?.id === r.id && (
                 <div className="garage-confirm">
                   <p>Remove this reminder? Service history will be kept.</p>
-                  <button
-                    type="button"
-                    className="text-button"
-                    onClick={() => {
-                      if (onUpdate((v) => deleteReminder(v, deletion))) {
-                        setDeletion(null);
-                        requestAnimationFrame(() => article.current?.focus());
-                      }
-                    }}
-                  >
-                    Remove reminder
-                  </button>
-                  <button type="button" className="text-button" onClick={() => setDeletion(null)}>
-                    Cancel
-                  </button>
+                  <div className="garage-actions">
+                    <button
+                      type="button"
+                      className="button danger"
+                      onClick={() => {
+                        if (onUpdate((v) => deleteReminder(v, deletion))) {
+                          setDeletion(null);
+                          requestAnimationFrame(() => article.current?.focus());
+                        }
+                      }}
+                    >
+                      Remove reminder
+                    </button>
+                    <button
+                      type="button"
+                      className="button secondary"
+                      onClick={() => setDeletion(null)}
+                    >
+                      Cancel
+                    </button>
+                  </div>
                 </div>
               )}
             </div>
@@ -499,15 +511,16 @@ export function VehicleCard({
       {panel === 'remove' && (
         <div className="garage-confirm">
           <p>
-            Remove {vehicleName(vehicle)}, its {vehicle.reminders.length} reminders and{' '}
-            {vehicle.records.length} service records from this device? Export a backup first if you
-            want to keep them.
+            Remove {vehicleName(vehicle)}, its {vehicle.reminders.length}{' '}
+            {vehicle.reminders.length === 1 ? 'reminder' : 'reminders'} and {vehicle.records.length}{' '}
+            service {vehicle.records.length === 1 ? 'record' : 'records'} from this device? Export a
+            backup first if you want to keep them.
           </p>
           <div className="garage-actions">
             <button type="button" className="button danger" onClick={onRemove}>
               Remove vehicle and records
             </button>
-            <button type="button" className="button secondary" onClick={() => setPanel(null)}>
+            <button type="button" className="button secondary" onClick={closePanel}>
               Cancel
             </button>
           </div>

@@ -52,7 +52,7 @@ export function gmFacts(record: GmRecord, model: GmSnapshot['models'][number]): 
     source: sourceId(model),
     sourceUrl,
     note: configuration
-      ? `Factory ${gmOptionKey(record.option)}: ${configuration.priceNote} Factory subtotal/component reconciliation precedes display; fee-inclusive trim-matrix prices are not base MSRP. Not a dealer quote.`
+      ? `Factory ${gmOptionKey(record.option)}: ${configuration.priceNote} Factory subtotal/component reconciliation precedes display; fee-inclusive trim-matrix prices are not base MSRP. Confirm current pricing with the retailer.`
       : `${record.configurationGap} The factory identity remains searchable, with MSRP unverified.`,
   };
   function set(

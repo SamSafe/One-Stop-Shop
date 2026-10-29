@@ -25,9 +25,9 @@ class ErrorBoundary extends Component<{ children: ReactNode }, { failed: boolean
       return (
         <main className="error-page">
           <p className="eyebrow">ONE STOP SHOP</p>
-          <h1>Something took a wrong turn.</h1>
-          <p>Reload to try again. Your saved shortlist and garage stay on this device.</p>
-          <a className="button primary" href={garageRoute ? '/garage' : '/'}>
+          <h1>We couldn’t load this page.</h1>
+          <p>Reload to try again. Your saved data stays in this browser.</p>
+          <a className="button primary" href={window.location.href}>
             Reload OSS
           </a>
         </main>

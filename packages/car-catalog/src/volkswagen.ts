@@ -162,7 +162,7 @@ export function vwFacts(record: VwRecord): Car['facts'] {
       const match = /^\s*(\d+(?:\.\d+)?)\s*hp(?:\s*@\s*[\d, .\-]+\s*rpm)?\s*$/i.exec(value);
       return match ? Number(match[1]) : null;
     },
-    'Explicit hp display, not an unlabeled PS filter or a kW value. Engine and motor outputs are not added.',
+    'Published hp output. PS and kW values require separate unit conversion. Engine and motor values remain separate.',
   );
   const third = (facts.seats.value ?? 0) >= 6;
   set(

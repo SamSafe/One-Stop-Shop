@@ -105,8 +105,14 @@ test('zero electric driving uses the known fuel rating even when the unused elec
 }) => {
   await page.goto('/?compare=honda-cr-v-2026-lx-fwd,nrcan-29292');
   const dialog = page.getByRole('dialog');
-  const electricity = dialog.getByLabel('Electricity · CAD / kWh', { exact: true });
-  const fraction = dialog.getByLabel('Plug-in electric-mode driving · %', { exact: true });
+  const electricity = dialog.getByRole('spinbutton', {
+    name: 'Electricity · CAD / kWh',
+    exact: true,
+  });
+  const fraction = dialog.getByRole('spinbutton', {
+    name: 'Plug-in electric-mode driving · %',
+    exact: true,
+  });
   const row = dialog.getByRole('row', { name: /^Estimated annual energy/ });
   await electricity.fill('');
   await expect(row).toContainText('Not available');

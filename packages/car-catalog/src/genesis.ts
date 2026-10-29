@@ -42,7 +42,7 @@ export function genesisFacts(r: GenesisRecord): Car['facts'] {
     value: null,
     source: priceId(r),
     note: r.trim.isPreOrder
-      ? 'Preorder pricing is not published. Zero is not a vehicle price.'
+      ? 'Preorder pricing is not published. The source uses zero as a placeholder.'
       : 'The manufacturer labels its vehicle price all-inclusive. A price before bundled delivery/fees is not independently established. The regional published component total is shown separately and is not used as comparable base MSRP.',
   };
   if (r.trim.trimTaxes.some((t) => t.amount === null))

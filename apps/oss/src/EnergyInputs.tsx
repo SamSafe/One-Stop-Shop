@@ -22,7 +22,7 @@ const fields: {
   },
   {
     key: 'gas',
-    label: 'Gas price / fuel price · CAD / litre',
+    label: 'Fuel price · CAD / litre',
     min: 0.01,
     max: 5,
     step: '0.01',
@@ -54,12 +54,10 @@ const fuelFields: { key: FuelPriceKey; label: string }[] = [
 export function EnergyInputs({
   inputs,
   onInput,
-  ranking = false,
   vehicles,
 }: {
   inputs: Inputs;
   onInput: (key: keyof Inputs, value: string) => void;
-  ranking?: boolean;
   vehicles?: Car[];
 }) {
   const id = useId();
@@ -71,7 +69,7 @@ export function EnergyInputs({
   const fraction = inputs.electricShare.trim() ? Number(inputs.electricShare) / 100 : NaN;
   return (
     <fieldset className="fuel-calculator">
-      <legend>Make energy costs yours</legend>
+      <legend>Energy cost settings</legend>
       {fields.map((field) => {
         const value = inputs[field.key];
         const used =
@@ -93,16 +91,7 @@ export function EnergyInputs({
             Number(value) > field.max);
         return (
           <div className="energy-field" key={field.key}>
-            <label htmlFor={`${id}-${field.key}-input`}>
-              {ranking
-                ? {
-                    kilometres: 'Annual distance for ranking · km',
-                    gas: 'Fuel unit price for ranking · CAD / litre',
-                    electricity: 'Electric unit price for ranking · CAD / kWh',
-                    electricShare: 'Electric driving share for ranking · %',
-                  }[field.key]
-                : field.label}
-            </label>
+            <label htmlFor={`${id}-${field.key}-input`}>{field.label}</label>
             <input
               id={`${id}-${field.key}-input`}
               type="number"
@@ -143,10 +132,7 @@ export function EnergyInputs({
               (!Number.isFinite(Number(value)) || Number(value) < 0.01 || Number(value) > 5);
             return (
               <div className="energy-field" key={field.key}>
-                <label htmlFor={`${id}-${field.key}-input`}>
-                  {field.label}
-                  {ranking ? ' price for ranking' : ''} · CAD / litre
-                </label>
+                <label htmlFor={`${id}-${field.key}-input`}>{field.label} · CAD / litre</label>
                 <input
                   id={`${id}-${field.key}-input`}
                   type="number"
@@ -174,12 +160,11 @@ export function EnergyInputs({
         </div>
       </details>
       <p id={`${id}-note`}>
-        Estimates use published consumption and your energy prices. Plug-in hybrids use your
-        electric-mode distance share, including any fuel burned in that mode. The default 50% share
-        is an assumption. Fuel-specific prices are optional; blank fields share the main fuel price.
-        Use your actual energy prices and charging rate. Charging session fees, maintenance,
-        insurance and depreciation are excluded. Energy assumptions are included in comparison
-        links. Annual distance changes the estimate; efficiency scores use cost per 100 km.
+        Use your fuel and electricity prices. Plug-in hybrids start with an assumed 50%
+        electric-mode distance share; adjust it for your driving. Estimates cover energy use,
+        including fuel used in plug-in electric mode. Other ownership costs and charging-session
+        fees are additional. These settings are included in shared links. Scores use cost per 100
+        km; annual distance determines the yearly estimate.
       </p>
     </fieldset>
   );

@@ -15,6 +15,23 @@ them with Playwright's --with-deps option. Build failures are release blockers.
 Automated accessibility checks supplement keyboard/visual review; they do not
 certify accessibility.
 
+For the existing local `oss-market-browser` Ubuntu test container, the installed
+WebKit cache is `/tmp/oss-browsers`. Set `PLAYWRIGHT_BROWSERS_PATH` to that path;
+the `/ms-playwright` mount was empty during the 28 October 2026 check. Verify the
+actual executable before launching a suite. The repository is mounted read-only
+at `/app`, so direct Playwright output and HTML reports to container `/tmp` paths.
+Stop this disposable container after verification. This local setup does not
+change the production container or CI browser installation.
+
+The 29 October completion audit ran WebKit directly on Ubuntu 24.04 when Docker's
+WSL integration was unavailable. Missing libraries were downloaded and unpacked
+under `/tmp`; a temporary launcher supplied their paths to the installed WebKit
+2370 executable. The full 131-case mobile suite passed with its existing device
+profile, assertions, timeouts and retry settings. Its temporary Playwright config,
+package plan and reports are retained locally under the ignored
+`artifacts/interface-completion` directory. Standard installations can use
+Playwright's `install-deps` command instead of this temporary setup.
+
 On a constrained local machine, run host browser projects and a separate WebKit
 container sequentially, and finish catalog validation or ingestion probes before
 starting browser tests. Worker limits apply per invocation; concurrent commands

@@ -55,7 +55,7 @@ export function nissanMsrp(record: NissanRecord): { value: number | null; note: 
     return { value: null, note: 'The exact factory equipment surcharge is not verified.' };
   return {
     value: record.retailPrice.value + surcharge,
-    note: `Exact Canadian model/version ${nissanKey(record)}, priceList.retail.value${record.optionPackage ? ` plus ${record.optionPackage.name} (${surcharge} CAD)` : ''}. The source explicitly identifies MSRP and states freight/PDI, levies, dealer charges and optional products/accessories are additional. No regional all-in price, paint, accessory, incentive or tax is included. Not a dealer quote.`,
+    note: `Exact Canadian model/version ${nissanKey(record)}, priceList.retail.value${record.optionPackage ? ` plus ${record.optionPackage.name} (${surcharge} CAD)` : ''}. The source explicitly identifies MSRP and states freight/PDI, levies, dealer charges and optional products/accessories are additional. No regional all-in price, paint, accessory, incentive or tax is included. Confirm current pricing with the retailer.`,
   };
 }
 const drive = (value: string): Car['drivetrain'] | null => {

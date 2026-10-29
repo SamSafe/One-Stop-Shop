@@ -1,7 +1,10 @@
 import { useState } from 'react';
 import { catalog, metricDefinitions, ratingUrl } from '@oss/car-catalog';
 import type { Car } from '@oss/car-catalog';
-import { scoreCar, fullName, modelYearLabel, priorityDefinitions } from './domain';
+import { scoreCar, fullName, modelYearLabel } from './domain';
+import { assessRequirements, briefPriorityLabels } from './buying';
+import type { BuyingBrief, TestDriveReview } from './buying';
+import { TestDriveSummary } from './TestDriveJournal';
 import type { Weights, EnergySettings } from './domain';
 import { estimateEnergy } from './energy';
 import { EnergyCost } from './EnergyCost';
@@ -23,6 +26,9 @@ export function Card({
   atLimit,
   onCompare,
   onSave,
+  brief,
+  review,
+  onTestDrive,
 }: {
   car: Car;
   index: number;
@@ -33,8 +39,12 @@ export function Card({
   atLimit: boolean;
   onCompare: () => void;
   onSave: () => void;
+  brief: BuyingBrief | null;
+  review: TestDriveReview | undefined;
+  onTestDrive: () => void;
 }) {
-  const ranking = scoreCar(car, weights, energy);
+  const ranking = scoreCar(car, weights, energy, brief);
+  const needs = brief ? assessRequirements(car, brief) : null;
   const [expanded, setExpanded] = useState(false);
   const largest = [...ranking.contributions].sort((a, b) => b.points - a.points)[0];
   return (
@@ -97,7 +107,7 @@ export function Card({
               {ranking.score === null ? '—' : ranking.score}
               <span>/100</span>
             </strong>
-            <span>fit score</span>
+            <span>{brief ? 'brief fit score' : 'fit score'}</span>
           </div>
         </div>
         {car.publishedPrice && (
@@ -144,6 +154,34 @@ export function Card({
         </dl>
 
         <EnergyCost estimate={estimateEnergy(car, energy)} compact />
+        {needs && (
+          <div className="brief-card-match">
+            <strong>
+              {needs.unknown.length ? 'Requirements need checking' : 'Meets your requirements'}
+            </strong>
+            <p>
+              {needs.unknown.length
+                ? needs.unknown.join(' · ')
+                : needs.matched.join(' · ') || 'No must-haves set'}
+            </p>
+            {ranking.reason && <p>{ranking.reason}</p>}
+          </div>
+        )}
+        <div className="card-test-drive">
+          {review && (
+            <p>
+              <TestDriveSummary review={review} />
+            </p>
+          )}
+          <button
+            type="button"
+            className="text-button"
+            onClick={onTestDrive}
+            aria-label={`Test-drive notes for ${fullName(car)}`}
+          >
+            Test-drive notes{review ? ' · saved' : ''}
+          </button>
+        </div>
 
         <div className="card-actions">
           <label className={`compare-checkbox ${atLimit && !selected ? 'is-disabled' : ''}`}>
@@ -174,7 +212,12 @@ export function Card({
                 <>
                   Largest score contribution:{' '}
                   <strong>
-                    {largest ? priorityDefinitions[largest.priority].label.toLowerCase() : ''}
+                    {largest
+                      ? (largest.priority === 'efficiency'
+                          ? 'energy cost'
+                          : briefPriorityLabels[largest.priority]
+                        ).toLowerCase()
+                      : ''}
                   </strong>
                   .
                 </>

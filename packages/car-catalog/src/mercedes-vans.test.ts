@@ -74,7 +74,9 @@ describe('Canadian Mercedes passenger/crew van new-stock evidence', () => {
       const c = car(code);
       expect(c.year).toBe(2025);
       expect(c.facts.msrpCad.value).toBe(amount);
-      expect(c.facts.msrpCad.note).toContain('not an individual stock vehicle');
+      expect(c.facts.msrpCad.note).toContain(
+        'Confirm the selected equipment and dealer price for an individual stock vehicle',
+      );
       expect(c.availability.status).toBe('manufacturer-listed');
       expect(c.variant).toContain('Observed new stock');
       const source = catalog.sources.find((s) => s.id === c.facts.msrpCad.source)!;

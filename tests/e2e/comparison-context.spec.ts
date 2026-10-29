@@ -71,7 +71,7 @@ test('vehicle headings follow a partially visible table during dialog scrolling 
           }),
       )
       .toBe(true);
-    const annual = dialog.getByLabel('Annual kilometres', { exact: true });
+    const annual = dialog.getByRole('spinbutton', { name: 'Annual kilometres', exact: true });
     await annual.scrollIntoViewIfNeeded();
     expect(
       await annual.evaluate((element) => {
@@ -92,7 +92,7 @@ test('keyboard navigation from energy inputs keeps source links and vehicle cont
   await page.setViewportSize({ width: 320, height: 700 });
   await page.goto(comparison);
   const dialog = page.getByRole('dialog');
-  const annual = dialog.getByLabel('Annual kilometres', { exact: true });
+  const annual = dialog.getByRole('spinbutton', { name: 'Annual kilometres', exact: true });
   await annual.focus();
   await page.keyboard.press('Shift+Tab');
   const prices = dialog.getByRole('row', { name: /^Base MSRP/ }).getByRole('link');

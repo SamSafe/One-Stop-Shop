@@ -106,9 +106,8 @@ export function ComparisonSummary({
           })}
       </div>
       <p className="comparison-summary-note">
-        Equipment, reliability and real-world comfort are not established by these figures.
-        Measurement context and unverified values remain explicit; full specifications and sources
-        follow.
+        Check source notes when measurements differ. Use a test drive to compare comfort. Full
+        specifications and sources follow.
       </p>
     </section>
   );

@@ -202,7 +202,7 @@ export function tciFacts(record: TciRecord, series: Series, asOf: string): Car['
       facts[metric].note =
         fuel === 'Electric'
           ? 'Not applicable to battery-electric propulsion. A manufacturer gasoline-equivalent field is not gasoline consumed.'
-          : 'Hydrogen fuel-cell energy is not a gasoline L/100 km rating.';
+          : 'Hydrogen fuel-cell energy requires published hydrogen consumption and units.';
   }
   if (fuel === 'Electric' || fuel === 'Plug-in hybrid') {
     set(
@@ -229,7 +229,7 @@ export function tciFacts(record: TciRecord, series: Series, asOf: string): Car['
     set(
       'rechargeHours',
       full ?? tciHours(dim.acL2ChargeTime10to100Pct),
-      `Manufacturer AC Level 2 charging estimate, ${full !== null ? '0–100%' : '10–100%'}. Equipment and conditions vary; this is not a DC fast-charge time.`,
+      `Manufacturer AC Level 2 charging estimate, ${full !== null ? '0–100%' : '10–100%'}. This estimate uses AC charging; confirm the equipment and charging conditions.`,
       full !== null ? 'displayAcL2ChargeTime0to100Pct' : 'displayAcL2ChargeTime10to100Pct',
     );
   }

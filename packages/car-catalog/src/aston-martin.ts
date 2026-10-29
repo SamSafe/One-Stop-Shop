@@ -17,7 +17,7 @@ export function addAstonOffers(base: Catalog, snapshot: AstonSnapshot): Catalog 
       reviewedAt: snapshot.sources.menu.capturedAt.slice(0, 10),
       publishedAt: null,
       locator:
-        'Canada (CA) in the public country selector; /models/products/CA. Product IDs and modelCode join the English derivative labels. Five client-declared stock-only products and Valen, with announced Q2 2027 first deliveries, are withheld pending current offering evidence. Menu presence is not a dealer quotation, accepted order or stock confirmation.',
+        'Canada (CA) in the public country selector; /models/products/CA. Product IDs and modelCode join the English derivative labels. Five client-declared stock-only products and Valen, with announced Q2 2027 first deliveries, are withheld pending current offering evidence. Confirm quotes, order acceptance and current stock with the retailer.',
     },
     {
       id: specsId,
@@ -37,7 +37,7 @@ export function addAstonOffers(base: Catalog, snapshot: AstonSnapshot): Catalog 
       reviewedAt: snapshot.sources.valhalla.capturedAt.slice(0, 10),
       publishedAt: null,
       locator:
-        'The manufacturer describes the plug-in hybrid architecture. This establishes the powertrain category, not a Canadian model year, rated electric range or Canadian energy consumption.',
+        'The manufacturer describes the plug-in hybrid architecture. Canadian model year, rated electric range and Canadian energy consumption require separate evidence.',
     },
   ];
   const cars: Car[] = snapshot.products
@@ -129,7 +129,7 @@ export function astonReviewGaps(snapshot: AstonSnapshot) {
         reason:
           p.role === 'stock-only'
             ? 'The public production client routes this product to stock search. It is retained in the source reconciliation but not promoted to a current offering without qualifying new-stock evidence. Absence from the app is not evidence of unavailable Canadian stock.'
-            : 'Valen is in the Canadian menu, but its manufacturer announcement schedules first deliveries for Q2 2027. That is not a model year or evidence of a currently available allocation; withheld pending current Canadian offering verification.',
+            : 'Valen is in the Canadian menu, but its manufacturer announcement schedules first deliveries for Q2 2027. Canadian model year and current allocation require separate verification; the profile remains withheld.',
       })),
     {
       brand: 'Aston Martin',

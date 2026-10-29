@@ -127,7 +127,7 @@ function facts(
     }
   }
   out.rechargeHours.note =
-    'AC charger power, full-charge intervals and selected standard equipment still require a separate compatible join. Partial DC-charge intervals are not a full recharge time.';
+    'AC charger power, full-charge intervals and selected standard equipment require a separate compatible join. Partial DC-charge intervals describe only the stated charge window.';
   out.cargoSeatsUpL.note =
     'Front luggage, rear luggage and open storage behind front seats use different scopes. A value without an explicit matching seat position is not labeled seats-up cargo.';
   out.cargoSeatsDownL.note =
@@ -280,7 +280,7 @@ export function porscheReviewGaps(snapshot: PorscheSnapshot) {
       brand: 'Porsche',
       field: 'new-inventory-access',
       reason:
-        'An ordinary public Canadian finder GET returned HTTP 429 on October 26, 2026 at 01:32:11.623Z. No access boundary was bypassed. This is not evidence of absent stock; current/older new inventory and independent national reconciliation remain open.',
+        'An ordinary public Canadian finder GET returned HTTP 429 on October 26, 2026 at 01:32:11.623Z. Current and older new inventory require a fresh availability check and independent national reconciliation.',
     },
   ];
 }

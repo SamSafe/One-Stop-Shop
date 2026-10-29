@@ -11,6 +11,7 @@ import { garageReminders } from './reminders';
 import { RemindersOverview } from './RemindersOverview';
 import './garage.css';
 import { AppHeader } from '../AppHeader';
+import { focusAndReveal } from './focus';
 const AddVehicle = lazy(() => import('./AddVehicle').then((m) => ({ default: m.AddVehicle })));
 
 export function Garage() {
@@ -27,6 +28,8 @@ export function Garage() {
     };
   }, []);
   const manual = useRef(false);
+  const addButton = useRef<HTMLButtonElement>(null);
+  const importRequest = useRef(0);
   const { garage, warning, error, change } = useGarage(),
     [adding, setAdding] = useState(false),
     [candidate, setCandidate] = useState<Car | null>(null),
@@ -75,14 +78,17 @@ export function Garage() {
     });
   }
   async function readFile(file: File | undefined) {
+    const request = ++importRequest.current;
     setImportError('');
     setPending(null);
     if (!file) return;
     try {
       if (file.size > 2000000) throw new Error('Choose a garage JSON backup smaller than 2 MB.');
-      setPending(readGarage(await file.text()));
+      const next = readGarage(await file.text());
+      if (request === importRequest.current) setPending(next);
     } catch (e) {
-      setImportError(e instanceof Error ? e.message : 'That backup could not be read.');
+      if (request === importRequest.current)
+        setImportError(e instanceof Error ? e.message : 'That backup could not be read.');
     }
   }
   return (
@@ -95,11 +101,15 @@ export function Garage() {
         <div className={`garage-intro ${garage.vehicles.length ? 'has-vehicles' : ''}`}>
           <div>
             <h1>Your garage</h1>
-            <p>Mileage, service history and maintenance reminders.</p>
+            <p>Odometer readings, service history and maintenance reminders.</p>
           </div>
           <button
+            ref={addButton}
             type="button"
             className="button primary"
+            disabled={adding}
+            aria-expanded={adding}
+            aria-controls="garage-add-vehicle"
             onClick={() => {
               manual.current = true;
               setCandidate(null);
@@ -139,11 +149,10 @@ export function Garage() {
         )}
         {garage.vehicles.length > 0 && (
           <section className="garage-panel garage-calendar" aria-labelledby="calendar-title">
-            <h2 id="calendar-title">Take due dates with you</h2>
+            <h2 id="calendar-title">Calendar export</h2>
             <p>
-              Export the next known service dates to your calendar. Mileage-only reminders and tasks
-              needing a date baseline are omitted. This is a snapshot; export again after logging
-              service. Calendar notifications depend on your calendar app.
+              Export reminders with a known due date. Mileage-only reminders stay in Garage. Export
+              again after logging service, and set notifications in your calendar app.
             </p>
             <button
               type="button"
@@ -197,35 +206,43 @@ export function Garage() {
         <div className="garage-message" role="status">
           {notice}
         </div>
-        {adding && (
-          <Suspense
-            fallback={
-              <div className="garage-panel" role="status">
-                Opening vehicle finder…
-              </div>
-            }
-          >
-            <AddVehicle
-              key={candidate?.id ?? 'manual'}
-              candidate={candidate}
-              onCancel={() => setAdding(false)}
-              onAdd={(v) => {
-                if (change((g) => ({ ...g, vehicles: [...g.vehicles, v] }))) {
+        <div id="garage-add-vehicle">
+          {adding && (
+            <Suspense
+              fallback={
+                <div className="garage-panel" role="status">
+                  Opening vehicle finder…
+                </div>
+              }
+            >
+              <AddVehicle
+                key={candidate?.id ?? 'manual'}
+                candidate={candidate}
+                onCancel={() => {
                   setAdding(false);
-                  setCandidate(null);
-                  setNotice(`${vehicleName(v)} added to your garage.`);
-                  try {
-                    history.replaceState(null, '', '/garage');
-                  } catch {
-                    /* Saved vehicle remains usable when address updates are unavailable. */
+                  requestAnimationFrame(() => focusAndReveal(addButton.current));
+                }}
+                onAdd={(v) => {
+                  if (change((g) => ({ ...g, vehicles: [...g.vehicles, v] }))) {
+                    setAdding(false);
+                    setCandidate(null);
+                    setNotice(`${vehicleName(v)} added to your garage.`);
+                    requestAnimationFrame(() =>
+                      focusAndReveal(document.getElementById(`garage-vehicle-${v.id}`)),
+                    );
+                    try {
+                      history.replaceState(null, '', '/garage');
+                    } catch {
+                      /* Saved vehicle remains usable when address updates are unavailable. */
+                    }
+                    return true;
                   }
-                  return true;
-                }
-                return false;
-              }}
-            />
-          </Suspense>
-        )}
+                  return false;
+                }}
+              />
+            </Suspense>
+          )}
+        </div>
         {!garage.vehicles.length && !adding && (
           <section className="garage-panel garage-empty">
             <h2>No vehicles added</h2>
@@ -260,7 +277,7 @@ export function Garage() {
             <button
               type="button"
               className="button secondary"
-              onClick={() => download(JSON.stringify(garage, null, 2))}
+              onClick={() => download(JSON.stringify(garage))}
             >
               Export garage
             </button>
@@ -280,15 +297,19 @@ export function Garage() {
           {pending && (
             <div className="garage-confirm">
               <p>
-                This backup contains {pending.vehicles.length} vehicles and{' '}
-                {pending.vehicles.reduce((n, v) => n + v.records.length, 0)} service records.
-                Restoring it will replace the {garage.vehicles.length} vehicles currently shown.
-                Export your current garage first if needed.
+                This backup contains {pending.vehicles.length}{' '}
+                {pending.vehicles.length === 1 ? 'vehicle' : 'vehicles'} and{' '}
+                {pending.vehicles.reduce((n, v) => n + v.records.length, 0)}{' '}
+                {pending.vehicles.reduce((n, v) => n + v.records.length, 0) === 1
+                  ? 'service record'
+                  : 'service records'}
+                . Restoring this file replaces your current garage. Export a backup first to keep a
+                copy.
               </p>
               <div className="garage-actions">
                 <button
                   type="button"
-                  className="button primary"
+                  className="button danger"
                   onClick={() => {
                     if (change(() => pending, true)) {
                       setPending(null);
@@ -298,7 +319,14 @@ export function Garage() {
                 >
                   Replace garage with backup
                 </button>
-                <button type="button" className="button secondary" onClick={() => setPending(null)}>
+                <button
+                  type="button"
+                  className="button secondary"
+                  onClick={() => {
+                    importRequest.current++;
+                    setPending(null);
+                  }}
+                >
                   Cancel restore
                 </button>
               </div>

@@ -28,7 +28,7 @@ export function readShortlistBackup(raw: string, cars: Pick<Car, 'id'>[]) {
     input.ids.length > maximumEntries ||
     input.ids.some((id) => typeof id !== 'string' || !id.trim() || id.length > 256)
   )
-    throw new Error('This file is not a supported version 1 shortlist backup.');
+    throw new Error('Choose a supported version 1 shortlist backup.');
   const ids = [...new Set(input.ids as string[])];
   const known = new Set(cars.map((car) => car.id));
   return {

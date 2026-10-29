@@ -1,6 +1,10 @@
 import type { Car, Metric } from '@oss/car-catalog';
 import { estimateEnergy, annualEnergyEstimate } from './energy';
 import { nonApplicableReason } from './specifications';
+import { scoreBuyingBrief } from './buying';
+import type { BuyingBrief } from './buying';
+import { vehicleBodyStyle } from './vehicleBodyStyle';
+export { vehicleBodyStyle } from './vehicleBodyStyle';
 
 export const priorityDefinitions = {
   price: {
@@ -100,20 +104,6 @@ export const defaultFilters: Filters = {
   minSeats: null,
   pricedOnly: false,
 };
-
-// This is a broad browsing category, distinct from NRCan's precise size classes.
-// Unknown body styles stay unknown; no trim or exact rating is inferred.
-export function vehicleBodyStyle(car: Car): string {
-  if (car.bodyStyle !== 'Not verified')
-    return car.bodyStyle === 'Compact SUV' ? 'SUV' : car.bodyStyle;
-  const ratingClass = car.governmentRating?.vehicleClass ?? '';
-  if (/^Sport utility vehicle:/i.test(ratingClass)) return 'SUV';
-  if (/^Pickup truck:/i.test(ratingClass)) return 'Pickup';
-  if (/^Minivan/i.test(ratingClass)) return 'Minivan';
-  if (/^Station wagon:/i.test(ratingClass)) return 'Wagon';
-  if (/^Van:/i.test(ratingClass)) return 'Van';
-  return 'Not verified';
-}
 
 export function hasMatchingSpecification(cars: Car[], metric: Metric): boolean {
   if (cars.length < 2) return false;
@@ -250,7 +240,13 @@ export function energyCostPer100km(
   return estimate.available ? Math.round(estimate.total * 100) / 100 : null;
 }
 
-export function scoreCar(car: Car, weights: Weights, energy: EnergySettings = defaultEnergy) {
+export function scoreCar(
+  car: Car,
+  weights: Weights,
+  energy: EnergySettings = defaultEnergy,
+  brief?: BuyingBrief | null,
+) {
+  if (brief?.enabled) return scoreBuyingBrief(car, brief, energy);
   const contributions: { priority: Priority; value: number; weight: number; points: number }[] = [];
   let totalWeight = 0;
   for (const key of priorityKeys) {
@@ -291,9 +287,14 @@ export function scoreCar(car: Car, weights: Weights, energy: EnergySettings = de
   };
 }
 
-export function rankCars(cars: Car[], weights: Weights, energy: EnergySettings = defaultEnergy) {
+export function rankCars(
+  cars: Car[],
+  weights: Weights,
+  energy: EnergySettings = defaultEnergy,
+  brief?: BuyingBrief | null,
+) {
   return cars
-    .map((car) => ({ car, ...scoreCar(car, weights, energy) }))
+    .map((car) => ({ car, ...scoreCar(car, weights, energy, brief) }))
     .sort(
       (a, b) =>
         (b.score ?? -1) - (a.score ?? -1) ||

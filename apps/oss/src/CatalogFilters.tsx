@@ -15,6 +15,7 @@ const vehicleClasses = [
   ),
 ].sort();
 export function CatalogFilters({
+  briefActive,
   filtersOpen,
   filters,
   setFilters,
@@ -26,6 +27,7 @@ export function CatalogFilters({
   energyInputs,
   onEnergyInput,
 }: {
+  briefActive: boolean;
   filtersOpen: boolean;
   filters: Filters;
   setFilters: Dispatch<SetStateAction<Filters>>;
@@ -232,7 +234,13 @@ export function CatalogFilters({
           Has a fit score for my priorities
         </label>
       </div>
-      <fieldset className="priorities">
+      {briefActive && (
+        <p className="panel-note">
+          Your buying brief sets the fit priorities. Edit the brief above or pause it to use these
+          sliders. Energy prices apply to both.
+        </p>
+      )}
+      <fieldset className="priorities" disabled={briefActive}>
         <legend>What matters most?</legend>
         <div className="priority-presets" role="group" aria-label="Priority presets">
           {priorityPresets.map((preset) => (
@@ -273,13 +281,14 @@ export function CatalogFilters({
           How your fit score works ↗
         </a>
       </fieldset>
-      <EnergyInputs inputs={energyInputs} onInput={onEnergyInput} ranking />
+      <EnergyInputs inputs={energyInputs} onInput={onEnergyInput} />
       <div className="scope-note">
         <strong>Coverage is expanding.</strong>
         <p>
           {governmentRatingCount.toLocaleString('en-CA')} government ratings are imported. Retail
           trim, price and current availability reviews are still in progress. NRCan groups some
-          conventional and hybrid variants together. A rating is not a live inventory listing.
+          conventional and hybrid variants together. Check the manufacturer's listings for current
+          availability.
         </p>
       </div>
     </aside>

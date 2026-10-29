@@ -54,7 +54,7 @@ test('manager pages all saved vehicles, exports the complete list, and supports 
   await dialog.getByRole('button', { name: 'Next saved vehicles', exact: true }).click();
   await expect(dialog.locator('li')).toHaveCount(3);
   await expect(
-    dialog.getByRole('heading', { name: 'Saved configurations · Page 2 of 2', exact: true }),
+    dialog.getByRole('heading', { name: 'Saved vehicles · Page 2 of 2', exact: true }),
   ).toBeFocused();
   await dialog
     .getByRole('button', { name: /^Remove .* from shortlist$/ })
@@ -98,16 +98,16 @@ test('backup import previews duplicates and unavailable configurations, supports
     original = await saved(page),
     file = backup([hondaId, hondaId, mazdaId, 'missing-config']);
   await dialog.getByLabel('Choose shortlist backup', { exact: true }).setInputFiles(file);
-  await expect(dialog).toContainText('2 configurations are available');
+  await expect(dialog).toContainText('2 vehicles are available');
   await expect(dialog).toContainText('1 is already saved');
-  await expect(dialog).toContainText('1 configuration is unavailable');
+  await expect(dialog).toContainText('1 vehicle is unavailable');
   expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([]);
   expect(await saved(page)).toEqual(original);
   await dialog.getByRole('button', { name: 'Cancel import', exact: true }).click();
   await expect(dialog.getByLabel('Choose shortlist backup', { exact: true })).toBeFocused();
   expect(await saved(page)).toEqual(original);
   await dialog.getByLabel('Choose shortlist backup', { exact: true }).setInputFiles(file);
-  await dialog.getByRole('button', { name: 'Add imported configurations', exact: true }).click();
+  await dialog.getByRole('button', { name: 'Add vehicles', exact: true }).click();
   expect((await saved(page)).ids).toEqual([hondaId, mazdaId]);
   for (const buffer of [
     Buffer.from('{bad'),
@@ -123,9 +123,7 @@ test('backup import previews duplicates and unavailable configurations, supports
   await dialog
     .getByLabel('Choose shortlist backup', { exact: true })
     .setInputFiles(backup(['unavailable-only']));
-  await expect(
-    dialog.getByRole('button', { name: 'Add imported configurations', exact: true }),
-  ).toBeDisabled();
+  await expect(dialog.getByRole('button', { name: 'Add vehicles', exact: true })).toBeDisabled();
   expect(new URL(page.url()).searchParams.has('compare')).toBe(false);
 });
 
@@ -145,7 +143,7 @@ test('import merges the latest cross-tab shortlist and keeps the active comparis
   await other.goto('/');
   await other.getByRole('searchbox', { name: 'Search cars', exact: true }).fill('2026 Honda CR-V');
   await other.getByRole('button', { name: `Save ${hybrid}`, exact: true }).click();
-  await dialog.getByRole('button', { name: 'Add imported configurations', exact: true }).click();
+  await dialog.getByRole('button', { name: 'Add vehicles', exact: true }).click();
   expect((await saved(page)).ids).toEqual([hondaId, hybridId, mazdaId]);
   expect(new URL(page.url()).searchParams.get('compare')?.split(',')).toEqual([hondaId, hybridId]);
   await expect(dialog.locator('li')).toHaveCount(3);
@@ -162,7 +160,7 @@ test('import preserves an unreadable saved original and offers a portable copy o
   await dialog
     .getByLabel('Choose shortlist backup', { exact: true })
     .setInputFiles(backup([hondaId]));
-  await dialog.getByRole('button', { name: 'Add imported configurations', exact: true }).click();
+  await dialog.getByRole('button', { name: 'Add vehicles', exact: true }).click();
   await expect(dialog.getByRole('alert')).toContainText('only last for this visit');
   expect(await page.evaluate((key) => localStorage.getItem(key), key)).toBe(raw);
   const event = page.waitForEvent('download');
@@ -190,7 +188,7 @@ test('imports remain usable and exportable when storage writes fail', async ({ p
   await dialog
     .getByLabel('Choose shortlist backup', { exact: true })
     .setInputFiles(backup([mazdaId]));
-  await dialog.getByRole('button', { name: 'Add imported configurations', exact: true }).click();
+  await dialog.getByRole('button', { name: 'Add vehicles', exact: true }).click();
   await expect(dialog.locator('li')).toHaveCount(2);
   await expect(dialog.getByRole('alert')).toContainText('cannot be saved');
   expect((await saved(page)).ids).toEqual([hondaId]);
@@ -224,10 +222,10 @@ test('choosing a new backup supersedes an earlier file that is still being read'
   await dialog
     .getByLabel('Choose shortlist backup', { exact: true })
     .setInputFiles(backup([mazdaId, hybridId], 'new.json'));
-  await expect(dialog).toContainText('2 configurations are available');
+  await expect(dialog).toContainText('2 vehicles are available');
   await page.evaluate(() =>
     (window as unknown as { releaseSlowShortlist: () => void }).releaseSlowShortlist(),
   );
-  await dialog.getByRole('button', { name: 'Add imported configurations', exact: true }).click();
+  await dialog.getByRole('button', { name: 'Add vehicles', exact: true }).click();
   expect((await saved(page)).ids).toEqual([mazdaId, hybridId]);
 });

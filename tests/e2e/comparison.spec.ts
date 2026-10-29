@@ -66,7 +66,7 @@ test('browse, filter, empty state and reset', async ({ page }) => {
   await expect(page.getByRole('article').first()).toContainText('Hybrid');
   await page.getByLabel('Drivetrain', { exact: true }).selectOption('FWD');
   await page.getByRole('searchbox', { name: 'Search cars' }).fill('no-such-vehicle-oss');
-  await expect(page.getByText('No fits with these filters.')).toBeVisible();
+  await expect(page.getByText('No vehicles match these filters.')).toBeVisible();
   await page.getByRole('button', { name: 'Show all cars' }).click();
   await page.getByLabel('Record type', { exact: true }).selectOption('retail-trim');
   await page.getByRole('searchbox', { name: 'Search cars' }).fill('2026 Mazda CX-5 GX');
@@ -94,7 +94,7 @@ test('shortlist persists, filters, clears and syncs across tabs', async ({ page,
   await other.goto('/');
   await findHondas(other);
   await other.getByRole('button', { name: `Unsave ${honda}`, exact: true }).click();
-  await expect(page.getByText('Your shortlist starts with a favourite.')).toBeVisible();
+  await expect(page.getByText('Your shortlist is empty.')).toBeVisible();
   await other.close();
 });
 
@@ -108,9 +108,15 @@ test('comparison restores from its URL and calculates fuel costs', async ({ page
   await expect(page.getByRole('dialog')).toBeVisible();
   await expect(page.getByRole('row', { name: /Estimated annual energy/ })).toContainText('$1,872');
   await expect(page.getByRole('row', { name: /Estimated annual energy/ })).toContainText('$1,536');
-  await page.getByLabel('Annual kilometres', { exact: true }).fill('30000');
+  await page
+    .getByRole('dialog', { name: 'Compare specifications', exact: true })
+    .getByRole('spinbutton', { name: 'Annual kilometres', exact: true })
+    .fill('30000');
   await expect(page.getByRole('row', { name: /Estimated annual energy/ })).toContainText('$3,744');
-  await page.getByLabel('Gas price').fill('');
+  await page
+    .getByRole('dialog')
+    .getByRole('spinbutton', { name: 'Fuel price · CAD / litre', exact: true })
+    .fill('');
   await expect(page.getByRole('row', { name: /Estimated annual energy/ })).toContainText(
     'Not available',
   );

@@ -82,7 +82,7 @@ export function ratingFacts(record: NrcanRecord, source: string): Car['facts'] {
       facts[key] = { value, source, sourceUrl: ratingUrl(record.RecordId), note };
   }
   if (record.VehicleTypeId !== 'BEV' && record.FuelTypeId !== 'H') {
-    const note = `${record.FuelEn}. ${record.VehicleTypeId.startsWith('PHEV') ? 'Fuel-only / charge-sustaining operation, not a blended electric-and-fuel journey.' : 'Canadian certification rating; actual consumption varies.'}`;
+    const note = `${record.FuelEn}. ${record.VehicleTypeId.startsWith('PHEV') ? 'Fuel-only / charge-sustaining operation. Electric-mode driving is rated separately.' : 'Canadian certification rating; actual consumption varies.'}`;
     set('fuelCityL100km', record.CityGasConsumption, note);
     set('fuelHighwayL100km', record.HwyGasConsumption, note);
     set('fuelCombinedL100km', record.CombGasConsumption, note);
@@ -98,7 +98,7 @@ export function ratingFacts(record: NrcanRecord, source: string): Car['facts'] {
     set(
       'electricCombinedKwh100km',
       record.CombElectricKwhConsumption,
-      'Electric-mode consumption. For plug-in hybrids, this is not a whole-journey energy estimate.',
+      'Electric-mode consumption. For plug-in hybrid trip estimates, combine the modes used during the trip.',
     );
     set(
       'electricModeLe100km',
@@ -113,7 +113,7 @@ export function ratingFacts(record: NrcanRecord, source: string): Car['facts'] {
     set(
       'rechargeHours',
       record.RechargeTime,
-      'NRCan published recharge time; charging equipment and test conditions vary. This is not a universal fast-charge time.',
+      'NRCan published recharge time for the stated charging conditions. Check equipment and the charge window before comparing vehicles.',
     );
   }
   set(

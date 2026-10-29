@@ -50,6 +50,7 @@ export function VehicleDetailsForm({
             <input
               id={id}
               value={draft.make}
+              autoFocus
               onChange={(e) => input('make', e.target.value)}
               required
               maxLength={100}

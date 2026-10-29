@@ -43,7 +43,7 @@ export function addMercedesVanStock(base: Catalog, snapshot: MercedesVanStockSna
       sourceIds: [...new Set([...car.sourceIds, ...ids])],
       availability: {
         ...car.availability,
-        note: `${car.availability.note} The same model-year/code also appears in ${eligible.filter((r) => r.key === key).length} captured new listings with varying optional equipment. This standard-equipment profile is not a priced individual stock vehicle.`,
+        note: `${car.availability.note} The same model-year/code also appears in ${eligible.filter((r) => r.key === key).length} captured new listings with varying optional equipment. This profile describes standard factory equipment. Listed stock vehicles may have extra options.`,
       },
     };
   });
@@ -77,7 +77,7 @@ export function addMercedesVanStock(base: Catalog, snapshot: MercedesVanStockSna
     facts.msrpCad = {
       value: c.msrp,
       source: priceSourceId(archive.key),
-      note: `Manufacturer-published bare-model MSRP for exact ${archive.key}, before optional equipment, paint, freight/PDI, fees, levies, sales taxes and incentives. This model-year/code appears in Canadian new stock, whose configured price can be higher. This is not an individual stock vehicle's selling price; confirm the selected equipment and dealer price.`,
+      note: `Manufacturer-published bare-model MSRP for exact ${archive.key}, before optional equipment, paint, freight/PDI, fees, levies, sales taxes and incentives. This model-year/code appears in Canadian new stock, whose configured price can be higher. Confirm the selected equipment and dealer price for an individual stock vehicle.`,
     };
     if (!['4CYLDIESELSO', '4CYLDIESELHO', '4CYLDIESELAWD'].includes(c.cylinder))
       throw new Error('Older Mercedes van fuel classification needs renewed review.');
@@ -136,7 +136,7 @@ export function mercedesVanStockGaps(snapshot: MercedesVanStockSnapshot) {
       configuration: 'Metris passenger van',
       field: 'van-stock-filter-only',
       reason:
-        'The new-inventory filters and factory archive include a 2023 Metris passenger reference, but the captured dealer queries returned no matching vehicle. Filter metadata is not current-stock proof, and the zero observed count is not an independent nationwide absence determination.',
+        'The new-inventory filters and factory archive include a 2023 Metris passenger reference, but the captured dealer queries returned no matching vehicle. Confirm availability with Canadian retailers; the captured queries leave nationwide availability unresolved.',
     },
   ];
 }

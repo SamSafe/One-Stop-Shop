@@ -721,9 +721,11 @@ test('EV and plug-in comparisons show electricity and electric-mode fuel costs w
   const row = page.getByRole('row', { name: /Estimated annual energy/ });
   await expect(row).toContainText('$324');
   await expect(row).toContainText('$3,679');
-  await page.getByLabel('Plug-in electric-mode driving · %', { exact: true }).fill('100');
+  await page
+    .getByRole('spinbutton', { name: 'Plug-in electric-mode driving · %', exact: true })
+    .fill('100');
   await expect(row).toContainText('$2,582');
-  await page.getByLabel('Electricity · CAD / kWh', { exact: true }).fill('0.30');
+  await page.getByRole('spinbutton', { name: 'Electricity · CAD / kWh', exact: true }).fill('0.30');
   await expect(row).toContainText('$648');
   await expect(
     page.getByRole('link', { name: /Fuel used in plug-in electric mode: 6.1/ }),

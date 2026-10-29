@@ -29,6 +29,12 @@ import { Comparison } from './Comparison';
 import { Card } from './VehicleCard';
 import { ShortlistDialog } from './ShortlistDialog';
 import { Icon, currency, formatDate, reviewedDate } from './catalogView';
+import { useBuyingWorkspace } from './useBuyingWorkspace';
+import { BuyingBriefDialog } from './BuyingBriefDialog';
+import { TestDriveJournal } from './TestDriveJournal';
+import { matchesBrief, latestReview, assessRequirements } from './buying';
+import './buying.css';
+import { ScoringMethodology } from './ScoringMethodology';
 
 const cars = catalog.cars;
 const makes = [...new Set(cars.map((car) => car.make))].sort((a, b) => a.localeCompare(b));
@@ -41,6 +47,10 @@ const initialShared = parseSharedState(window.location.search, cars);
 const initialBrowsing = parseBrowsingState(window.location.search, cars);
 
 export function App() {
+  const buying = useBuyingWorkspace();
+  const activeBrief = buying.workspace.brief?.enabled ? buying.workspace.brief : null;
+  const [briefOpen, setBriefOpen] = useState(false);
+  const [journal, setJournal] = useState<{ carId: string | null } | null>(null);
   const [filtersOpen, setFiltersOpen] = useState(false);
   const {
     state: browsing,
@@ -114,13 +124,18 @@ export function App() {
       setReferenceId(next.reference ?? next.compare[0] ?? '');
       setComparisonOpen(next.compare.length >= 2);
       setShortlistOpen(false);
+      setBriefOpen(false);
+      setJournal(null);
     };
     window.addEventListener('popstate', navigate);
     return () => window.removeEventListener('popstate', navigate);
   }, []);
 
   const results = useMemo(() => {
-    const ranked = rankCars(filterCars(cars, filters, savedIds), weights, energy);
+    const eligible = filterCars(cars, filters, savedIds).filter(
+      (car) => !activeBrief || matchesBrief(car, activeBrief, buying.workspace.reviews),
+    );
+    const ranked = rankCars(eligible, weights, energy, activeBrief);
     if (sort === 'price')
       ranked.sort(
         (a, b) =>
@@ -140,6 +155,8 @@ export function App() {
     savedIds,
     sort,
     scoredOnly,
+    activeBrief,
+    buying.workspace.reviews,
     energy.fuelPrice,
     energy.electricityPrice,
     energy.electricFraction,
@@ -148,6 +165,16 @@ export function App() {
     energy.e85Price,
   ]);
   const scoredCount = results.filter((result) => result.score !== null).length;
+  const requirementGaps = useMemo(
+    () =>
+      activeBrief
+        ? filterCars(cars, filters, savedIds).filter((car) => {
+            const needs = assessRequirements(car, activeBrief);
+            return !needs.failed.length && needs.unknown.length > 0;
+          }).length
+        : 0,
+    [activeBrief, filters, savedIds],
+  );
   const totalPages = Math.max(1, Math.ceil(results.length / pageSize));
   const currentPage = Math.min(requestedPage, totalPages);
   useEffect(() => {
@@ -279,6 +306,81 @@ export function App() {
             </h1>
             <p>Canadian prices and specifications. Select up to four vehicles to compare.</p>
           </div>
+        </section>
+        <section className="buying-hub" aria-labelledby="buying-title">
+          <div>
+            <h2 id="buying-title">Your buying brief</h2>
+            <p>
+              {activeBrief
+                ? 'Showing vehicles for your saved brief. Search and filters narrow this list.'
+                : 'Set your budget, seating needs and other priorities.'}{' '}
+              <span className="buying-storage">Saved on this device.</span>
+            </p>
+            {activeBrief && (
+              <p className="buying-brief-summary">
+                {activeBrief.budget
+                  ? `Up to ${currency.format(activeBrief.budget)} base MSRP · `
+                  : ''}
+                {activeBrief.minSeats ? `${activeBrief.minSeats}+ seats · ` : ''}
+                {activeBrief.bodies.length
+                  ? `${activeBrief.bodies.join(', ')} ${activeBrief.bodyRequired ? 'only' : 'preferred'} · `
+                  : ''}
+                {activeBrief.drive !== 'Any'
+                  ? `${activeBrief.drive} ${activeBrief.driveRequired ? 'required' : 'preferred'} · `
+                  : ''}
+                {activeBrief.powerRequired || activeBrief.weights.power > 0
+                  ? `${activeBrief.horsepower} hp ${activeBrief.powerRequired ? 'minimum' : 'target'} · `
+                  : ''}
+                {activeBrief.includeUnverified
+                  ? 'Unverified requirements shown for checking'
+                  : 'Verified requirements only'}
+              </p>
+            )}
+          </div>
+          <div className="buying-actions">
+            <button
+              type="button"
+              className="button primary"
+              onClick={() => {
+                buying.clearError();
+                setBriefOpen(true);
+              }}
+            >
+              {buying.workspace.brief ? 'Edit buying brief' : 'Create buying brief'}
+            </button>
+            {buying.workspace.brief && (
+              <button
+                type="button"
+                className="text-button"
+                onClick={() => {
+                  const brief = buying.workspace.brief!;
+                  if (buying.saveBrief(brief, { ...brief, enabled: !brief.enabled })) resetPage();
+                }}
+              >
+                {activeBrief ? 'Pause buying brief' : 'Use buying brief'}
+              </button>
+            )}
+            <button
+              type="button"
+              className="button secondary"
+              onClick={() => {
+                buying.clearError();
+                setJournal({ carId: null });
+              }}
+            >
+              Test-drive journal ({buying.workspace.reviews.length})
+            </button>
+          </div>
+          {buying.warning && (
+            <p className="notice" role="status">
+              {buying.warning}
+            </p>
+          )}
+          {buying.error && !briefOpen && !journal && (
+            <p className="notice" role="alert">
+              {buying.error}
+            </p>
+          )}
         </section>
         <details className="catalog-coverage">
           <summary>
@@ -488,10 +590,11 @@ export function App() {
                     setWeights({ ...defaultWeights });
                   }}
                 >
-                  Reset
+                  {activeBrief ? 'Reset catalog' : 'Reset'}
                 </button>
               </div>
               <CatalogFilters
+                briefActive={!!activeBrief}
                 filtersOpen={filtersOpen}
                 filters={filters}
                 setFilters={setFilters}
@@ -517,13 +620,13 @@ export function App() {
                 </p>
                 <span>
                   {sort === 'fit'
-                    ? 'Sorted by your priorities'
+                    ? activeBrief
+                      ? 'Sorted by your buying brief'
+                      : 'Sorted by your priorities'
                     : sort === 'price'
                       ? 'Lowest base MSRP first'
                       : 'Lowest estimated energy cost per 100 km first'}
                 </span>
-              </div>
-              <div className="shortlist-catalog-tools">
                 <button
                   type="button"
                   className="text-button"
@@ -531,18 +634,47 @@ export function App() {
                 >
                   Manage shortlist ({savedIds.length})
                 </button>
-                {filters.savedOnly && results.length < savedIds.length && (
-                  <p>
-                    {savedIds.length - results.length} saved configurations are hidden by your
-                    filters.
-                  </p>
-                )}
               </div>
+              {filters.savedOnly && results.length < savedIds.length && (
+                <p className="ranking-coverage">
+                  {savedIds.length - results.length} saved configurations are hidden by your
+                  filters.
+                </p>
+              )}
               <p className="ranking-coverage">
                 {scoredCount.toLocaleString('en-CA')} of {results.length.toLocaleString('en-CA')}{' '}
                 matching records have all the data needed for your priorities. Unknown values stay
                 unscored.
               </p>
+              {activeBrief && requirementGaps > 0 && (
+                <p className="panel-note brief-gap-notice">
+                  {requirementGaps.toLocaleString('en-CA')} matching records have unverified
+                  requirements.
+                  {activeBrief.includeUnverified ? (
+                    ' They are included for checking and remain unscored.'
+                  ) : (
+                    <>
+                      {' '}
+                      Include them below to review the missing facts.{' '}
+                      <button
+                        type="button"
+                        className="text-button"
+                        onClick={() => {
+                          if (
+                            buying.saveBrief(activeBrief, {
+                              ...activeBrief,
+                              includeUnverified: true,
+                            })
+                          )
+                            resetPage();
+                        }}
+                      >
+                        Include candidates needing checks
+                      </button>
+                    </>
+                  )}
+                </p>
+              )}
               <div className="active-filters" role="group" aria-label="Active filters">
                 {Object.entries(filters)
                   .filter(
@@ -599,7 +731,7 @@ export function App() {
                   </button>
                 )}
               </div>
-              {priorityKeys.every((key) => weights[key] === 0) && (
+              {!activeBrief && priorityKeys.every((key) => weights[key] === 0) && (
                 <p className="notice">
                   Choose at least one priority to calculate fit scores. Cars are currently ordered
                   by MSRP when sorting by fit.
@@ -614,6 +746,12 @@ export function App() {
                       index={startIndex + index}
                       weights={weights}
                       energy={energy}
+                      brief={activeBrief}
+                      review={latestReview(buying.workspace.reviews, car.id)}
+                      onTestDrive={() => {
+                        buying.clearError();
+                        setJournal({ carId: car.id });
+                      }}
                       selected={compareIds.includes(car.id)}
                       saved={savedIds.includes(car.id)}
                       atLimit={compareIds.length >= 4}
@@ -629,17 +767,36 @@ export function App() {
                   </span>
                   <h3>
                     {filters.savedOnly && savedIds.length === 0
-                      ? 'Your shortlist starts with a favourite.'
-                      : 'No fits with these filters.'}
+                      ? 'Your shortlist is empty.'
+                      : activeBrief
+                        ? 'No vehicles match your criteria.'
+                        : 'No vehicles match these filters.'}
                   </h3>
                   <p>
                     {filters.savedOnly && savedIds.length === 0
                       ? 'Save a car with the bookmark button to find it here later.'
-                      : 'Try a higher budget, another powertrain, or a broader search.'}
+                      : activeBrief
+                        ? 'Review your buying brief or broaden the catalog filters.'
+                        : 'Try a higher budget, another powertrain, or a broader search.'}
                   </p>
-                  <button type="button" className="button secondary" onClick={resetFilters}>
-                    Show all cars <Icon name="arrow" size={18} />
-                  </button>
+                  <div className="empty-actions">
+                    {activeBrief && (
+                      <button
+                        type="button"
+                        className="button primary"
+                        onClick={() => {
+                          buying.clearError();
+                          setBriefOpen(true);
+                        }}
+                      >
+                        Edit requirements
+                      </button>
+                    )}
+                    <button type="button" className="button secondary" onClick={resetFilters}>
+                      {activeBrief ? 'Reset catalog filters' : 'Show all cars'}{' '}
+                      <Icon name="arrow" size={18} />
+                    </button>
+                  </div>
                 </div>
               )}
               {results.length > 0 && (
@@ -667,67 +824,14 @@ export function App() {
                 </nav>
               )}
               <p className="catalog-disclaimer">
-                {catalog.pricingNote} This is a specification snapshot, not live inventory. Fit
-                scores compare only the priorities shown; reliability, safety ratings and total
-                ownership cost are not scored.
+                Prices are CAD base MSRP before freight/PDI, taxes and fees. Use the linked
+                manufacturer publications to confirm current prices and equipment. Fit scores
+                summarize your selected priorities.
               </p>
             </div>
           </div>
         </section>
-        <section
-          id="methodology"
-          className="methodology-section"
-          aria-labelledby="methodology-title"
-        >
-          <div>
-            <h2 id="methodology-title">How scoring works</h2>
-            <p>
-              The best car depends on what you need. Your fit score makes those tradeoffs explicit.
-            </p>
-          </div>
-          <div className="methodology-content">
-            <ol>
-              <li>
-                <span>01</span>
-                <div>
-                  <h3>You set the weights.</h3>
-                  <p>Pick what matters from 0 to 5. A zero removes that metric from the score.</p>
-                </div>
-              </li>
-              <li>
-                <span>02</span>
-                <div>
-                  <h3>Every metric has a fixed scale.</h3>
-                  <p>
-                    Price: CAD $30k–$60k and energy cost: CAD $0–$24 per 100 km (lower is better).
-                    Cargo, seats up: 500–1,200 L and rear legroom: 850–1,150 mm (higher is better).
-                    Values outside a scale are capped at its ends. Energy cost uses your fuel and
-                    electricity prices with published consumption for gas, hybrid, EV and plug-in
-                    hybrid vehicles. The plug-in electric-mode share is an editable assumption.
-                    Annual distance does not change the score. Spatial priorities start at zero
-                    because their source coverage is limited; enable them when they matter to you.
-                  </p>
-                </div>
-              </li>
-              <li>
-                <span>03</span>
-                <div>
-                  <h3>The score is a weighted average.</h3>
-                  <p>
-                    Each normalized metric × its share of your total weight, summed and rounded to
-                    100. Filtering never changes the scales. Equal scores sort by lower MSRP, then
-                    configuration ID. Missing an active metric? The car stays unscored.
-                  </p>
-                </div>
-              </li>
-            </ol>
-            <p className="methodology-caveat">
-              This is a decision aid, not a quality or safety rating. Cargo methods differ, and
-              measurements cannot tell you how a seat feels. Use the shortlist to decide what to see
-              in person.
-            </p>
-          </div>
-        </section>
+        <ScoringMethodology />
         <section id="sources" className="sources-section" aria-labelledby="sources-title">
           <div className="section-heading">
             <div>
@@ -759,25 +863,28 @@ export function App() {
           oss<span>.</span>
         </div>
         <p>
-          Independent comparison tool. No manufacturer affiliation.
+          Independent Canadian vehicle comparison.
           <br />
-          Shortlists and garage records stay in this browser. No app accounts or analytics.
+          Your saved vehicles, notes and service history stay in this browser.
         </p>
         <a href="#privacy">Privacy & data</a>
         <details id="privacy">
           <summary>How your data works</summary>
           <p>
-            Shortlist IDs are saved in local storage on this device. Clear your shortlist below or
-            clear site data in your browser to remove them. Searches, filters, result pages,
-            comparison IDs, priority weights and energy assumptions appear in the address bar and
-            shareable URLs. Link recipients can see those choices, and URLs may appear in hosting
-            access logs. The saved-only filter uses this browser’s shortlist and is omitted from
-            copied links. The app has no analytics or account service. The hosting provider receives
-            standard connection and access information when serving the site. External manufacturer
-            links follow their own privacy policies. Garage vehicles, odometer readings, reminders
-            and service history are also saved locally. Export a garage backup before clearing site
-            data; clearing site data removes these records. Manage individual vehicles and backups
-            on the Garage page.
+            Your shortlist, buying brief, test-drive reviews and Garage records are saved in this
+            browser on this device. Export backups before moving devices or clearing site data.
+            Manage buying backups in the journal and vehicle backups in Garage.
+          </p>
+          <p>
+            Searches, filters, result pages, comparison IDs, ranking weights and energy settings
+            appear in the address bar and copied links. Recipients can see those choices, and URLs
+            may appear in hosting access logs. Buying briefs, reviews and the saved-only filter stay
+            local; copied links use the catalog controls.
+          </p>
+          <p>
+            OSS uses local storage for personal records and runs without app accounts or analytics.
+            The host receives connection and access information when serving the app. Manufacturer
+            links open external sites with their own privacy policies.
           </p>
           <button
             type="button"
@@ -798,6 +905,24 @@ export function App() {
       <div className="sr-only" role="status" aria-live="polite">
         {announcement}
       </div>
+      {briefOpen && (
+        <BuyingBriefDialog
+          store={buying}
+          onClose={() => setBriefOpen(false)}
+          onApply={() => {
+            setSort('fit');
+            resetPage();
+          }}
+        />
+      )}
+      {journal && (
+        <TestDriveJournal
+          store={buying}
+          cars={cars}
+          initialCarId={journal.carId}
+          onClose={() => setJournal(null)}
+        />
+      )}
       {shortlistOpen && (
         <ShortlistDialog
           cars={cars}
@@ -808,6 +933,11 @@ export function App() {
           onSave={setSaved}
           onImport={addMany}
           onCompare={toggleCompare}
+          onTestDrive={(id) => {
+            setShortlistOpen(false);
+            buying.clearError();
+            setJournal({ carId: id });
+          }}
           onCompareNow={() => {
             setShortlistOpen(false);
             setComparisonOpen(true);
@@ -870,6 +1000,8 @@ export function App() {
         </div>
       )}
       <Comparison
+        brief={activeBrief}
+        reviews={buying.workspace.reviews}
         selected={selected}
         weights={weights}
         energy={energy}

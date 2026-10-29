@@ -90,7 +90,7 @@ export function kiaFacts(record: KiaRecord): Car['facts'] {
     value: record.msrpCad,
     source: sourceId(record),
     sourceUrl: kiaBuildPage,
-    note: `Canadian factory ${kiaKey(record)} priceDetails.AB.msrp is this complete trim/package MSRP, not an option surcharge. Excludes separately stated delivery/destination, dealer fees, taxes, levies, paint, accessories and incentives. FSC source aliases: ${record.fscCodes.join(', ')}. Not a dealer quote.`,
+    note: `Canadian factory ${kiaKey(record)} priceDetails.AB.msrp includes the complete trim/package price. Excludes separately stated delivery/destination, dealer fees, taxes, levies, paint, accessories and incentives. FSC source aliases: ${record.fscCodes.join(', ')}. Confirm current pricing with the retailer.`,
   };
   const dims = record.dimensions;
   for (const [metric, field] of [
@@ -195,7 +195,7 @@ export function kiaFacts(record: KiaRecord): Car['facts'] {
       kiaNumber(energy, 'Le/100km'),
       'performance.energyConsumptionCombined',
       energy,
-      'Gasoline-equivalent energy; not liquid fuel consumed and not a kWh consumption measurement.',
+      'Gasoline-equivalent energy in Le/100 km. Fuel and electricity use the separately published L/100 km and kWh/100 km figures.',
     );
     const range = record.performance.electricDrivingRange?.replace(
       /^AER - All Electric Range \(kms\):\s*/i,
@@ -221,7 +221,7 @@ export function kiaFacts(record: KiaRecord): Car['facts'] {
       Number(time[1] ?? 0) + Number(time[2] ?? 0) / 60,
       'performance.chargingLevelTwo',
       charge,
-      'Manufacturer Level 2 (240 V) time. Charging window, equipment and test conditions require confirmation; this is not a fast-charge or home-installation guarantee.',
+      'Manufacturer Level 2 (240 V) time. Confirm the charging window, equipment, test conditions and home power supply.',
     );
   return facts;
 }

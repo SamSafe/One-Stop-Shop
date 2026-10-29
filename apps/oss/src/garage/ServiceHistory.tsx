@@ -215,21 +215,27 @@ export function ServiceHistory({
                     Delete this record? Its reminder will be recalculated from the remaining
                     history.
                   </p>
-                  <button
-                    type="button"
-                    className="text-button"
-                    onClick={() => {
-                      if (onDelete(removing)) {
-                        setRemoving(null);
-                        requestAnimationFrame(() => summary.current?.focus());
-                      }
-                    }}
-                  >
-                    Delete record
-                  </button>
-                  <button type="button" className="text-button" onClick={() => setRemoving(null)}>
-                    Cancel
-                  </button>
+                  <div className="garage-actions">
+                    <button
+                      type="button"
+                      className="button danger"
+                      onClick={() => {
+                        if (onDelete(removing)) {
+                          setRemoving(null);
+                          requestAnimationFrame(() => summary.current?.focus());
+                        }
+                      }}
+                    >
+                      Delete record
+                    </button>
+                    <button
+                      type="button"
+                      className="button secondary"
+                      onClick={() => setRemoving(null)}
+                    >
+                      Cancel
+                    </button>
+                  </div>
                 </div>
               )}
             </div>

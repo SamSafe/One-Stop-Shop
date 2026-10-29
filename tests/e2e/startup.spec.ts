@@ -32,12 +32,13 @@ test('catalog delivery failure offers recovery without erasing saved data or sho
   await page.route(catalogAsset, (route) =>
     route.fulfill({ status: 503, contentType: 'text/plain', body: 'Temporarily unavailable' }),
   );
-  await page.goto('/');
-  await expect(page.getByRole('heading', { name: 'Something took a wrong turn.' })).toBeVisible();
+  await page.goto('/?q=Honda');
+  await expect(page.getByRole('heading', { name: 'We couldn’t load this page.' })).toBeVisible();
   await expect(page.getByRole('article')).toHaveCount(0);
   expect(await page.evaluate(() => localStorage.getItem('oss-shortlist-v1'))).toBe(saved);
   await page.unroute(catalogAsset);
   await page.getByRole('link', { name: 'Reload OSS' }).click();
+  await expect(page.getByRole('searchbox', { name: 'Search cars' })).toHaveValue('Honda');
   await expect(page.getByRole('searchbox', { name: 'Search cars' })).toBeVisible();
   await expect(page.getByRole('article')).toHaveCount(30);
   expect(await page.evaluate(() => localStorage.getItem('oss-shortlist-v1'))).toBe(saved);

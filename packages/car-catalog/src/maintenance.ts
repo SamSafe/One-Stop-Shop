@@ -67,7 +67,7 @@ export function maintenanceGuidance(vehicle: {
   if (make === 'toyota' && vehicle.year === 2025)
     return {
       title: 'Toyota Canada · 2025 service visits',
-      note: 'Toyota specifies a maintenance visit every 6 months or 8,000 km, whichever comes first. This is a general visit cadence, not an oil-change interval or a complete schedule. Use the model-specific schedule for individual tasks and driving conditions.',
+      note: 'Toyota specifies a maintenance visit every 6 months or 8,000 km, whichever comes first. Use the model-specific schedule and driving conditions for oil changes and other tasks.',
       sourceTitle: '2025 Toyota Canada Owner’s Manual Supplement',
       sourceUrl:
         'https://certified.toyota.ca/content/dam/toyota/pdf/2025_owners_supplement_en.pdf#page=25',
@@ -179,7 +179,7 @@ export function maintenanceTasks(vehicle: {
       months: 1,
       label: 'Hyundai Canada · monthly owner check',
       setupNote:
-        'Check all tires, including the spare, as described in the manual. This is an inspection, not a tire replacement interval.',
+        'Check all tires, including the spare, as described in the manual. This task records a tire inspection.',
       sourceUrl: source + '#page=7',
       locator: 'Chapter 7, page 7 · At least monthly',
       reviewedAt: '2026-10-27',

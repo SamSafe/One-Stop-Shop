@@ -184,7 +184,7 @@ export function bmwReviewGaps(snapshot: BmwSnapshot) {
         brand: 'BMW',
         configuration: card.label,
         field: 'overview-reference',
-        reason: `Overview ${card.code ?? card.id}, ${card.flag || 'unflagged'}: an exact Canadian stock year/retail identity is not established. Concept/future/AG-code placeholders and unmatched older offerings require review rather than another identity's substitution.`,
+        reason: `Overview ${card.code ?? card.id}, ${card.flag || 'unflagged'}: an exact Canadian stock year/retail identity is not established. Concept/future/AG-code placeholders and unmatched older offerings require their own identity review.`,
       })),
     ...snapshot.records.flatMap((record) => {
       const reference = references.get(record.referenceKey)!;
@@ -246,7 +246,7 @@ export function addBmwRetail(base: Catalog, snapshot: BmwSnapshot): Catalog {
         url: row.technicalSource!.url,
         reviewedAt,
         publishedAt: null,
-        locator: `Official Canadian configurator-selected AG ${reference.agCode}, exact VG ${reference.code} and resolved factory options. Technical countryGroup us is a client service setting, not a Canadian fuel-cycle assertion. Metric dimensions, explicit combined BHP and seating are kept; unresolved cargo arrangements and energy modes remain unknown.`,
+        locator: `Official Canadian configurator-selected AG ${reference.agCode}, exact VG ${reference.code} and resolved factory options. The client service uses countryGroup us; Canadian fuel-cycle ratings require their own verified source. Metric dimensions, explicit combined BHP and seating are kept; unresolved cargo arrangements and energy modes remain unknown.`,
       });
     const transmission = row.configuration?.classifiedConfiguration.transmission;
     const gears = row.technical?.values.GETR_ANZG?.targetValue;

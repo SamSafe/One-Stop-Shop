@@ -192,7 +192,7 @@ export function polestarStockFacts(record: PolestarStockRecord): Car['facts'] {
   set(
     'msrpCad',
     polestarStockMsrp(record),
-    `Undiscounted Canadian new-stock listPrice.carTotalBasicPrice for exact equipped PNO ${vehicle.pno34}, model year ${vehicle.modelYear}, structure week ${vehicle.startStructureWeek}. Includes this stock car's colour, upholstery, wheels and factory equipment; excludes separate delivery/taxes and incentives. This is configuration MSRP rather than an inferred bare-trim price.`,
+    `Undiscounted Canadian new-stock listPrice.carTotalBasicPrice for exact equipped PNO ${vehicle.pno34}, model year ${vehicle.modelYear}, structure week ${vehicle.startStructureWeek}. Includes this stock car's colour, upholstery, wheels and factory equipment; excludes separate delivery/taxes and incentives. This MSRP includes the selected factory equipment.`,
   );
   set(
     'horsepower',
@@ -286,7 +286,7 @@ export function addPolestarRetail(base: Catalog, snapshot: PolestarSnapshot): Ca
         locator:
           kind === 'factory'
             ? 'CA/CAD/en-CA public initconfig and read-only configuration transitions; exact model year, structure week, PNO and selected motor/packs/single options. Price excludes delivery, taxes and incentives. Explicitly labelled EPA fields are distinct from generic range; some published data is preliminary.'
-            : 'Public Canadian Preconfigured stock GraphQL: every current listed retailer/model combination and reported ten-record page captured. Repeated page identities leave distinct exhaustive stock coverage unproven. Exact PNO, year, structure week, factory list price and stock technical fields. Stock and delivery can change; this is not a delivery guarantee.',
+            : 'Public Canadian Preconfigured stock GraphQL: every current listed retailer/model combination and reported ten-record page captured. Repeated page identities leave distinct exhaustive stock coverage unproven. Exact PNO, year, structure week, factory list price and stock technical fields. Confirm current stock and delivery with the retailer.',
       });
       addedSources.add(id);
     }
@@ -397,7 +397,7 @@ export function addPolestarRetail(base: Catalog, snapshot: PolestarSnapshot): Ca
         status: 'manufacturer-listed',
         checkedAt: reviewedAt,
         source: id,
-        note: `Exact PNO/model-year/structure-week configuration in the public Canadian new-stock feed. Delivery label: ${vehicle.earliestDeliveryDateLabel || 'not established'}. Listings and estimates can change; this is not a stock quantity or delivery guarantee.`,
+        note: `Exact PNO/model-year/structure-week configuration in the public Canadian new-stock feed. Delivery label: ${vehicle.earliestDeliveryDateLabel || 'not established'}. Confirm current stock quantities and delivery with the retailer.`,
       },
       sourceIds: [id],
       facts: polestarStockFacts(row),

@@ -74,7 +74,7 @@ describe('McLaren Canadian explicit factory identities', () => {
       expect(c.facts.msrpCad.note).toContain('explicitly disables price display');
       expect(c.publishedPrice).toBeUndefined();
       expect(c.manufacturerConfiguration?.transmission).toBe('Not verified');
-      expect(c.availability.note).toContain('configured-default profile');
+      expect(c.availability.note).toContain('uses the factory defaults');
     }
     expect(cars.some((c) => c.year === 2026 || /W1|788HS/.test(c.model))).toBe(false);
     expect(

@@ -105,7 +105,7 @@ export function mazdaFacts(
     value: record.msrpCad,
     source: sourceId(record),
     sourceUrl: record.priceSource.url,
-    note: `Published financial.msrp for factory ${record.modelCode}/${record.optionCode}, including ${record.packageName}. A factory package's MSRP is the complete configuration price, not an amount added again. Excludes freight/PDE, taxes, levies, dealer fees, colours, accessories, protection products and incentives. AB/English source request; not a dealer quote.`,
+    note: `Published financial.msrp for factory ${record.modelCode}/${record.optionCode}, including ${record.packageName}. The published factory-package MSRP already includes the package price. Excludes freight/PDE, taxes, levies, dealer fees, colours, accessories, protection products and incentives. AB/English source request; confirm current pricing with the retailer.`,
   };
   function single(pattern: RegExp, count = 1) {
     const candidates = rows(pattern).filter((row) => mazdaNumbers(row.value, count));

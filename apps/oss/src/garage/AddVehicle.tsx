@@ -1,5 +1,6 @@
 import { loadOwnerDirectory } from './ownerLookup';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { focusAndReveal } from './focus';
 import type { Car } from '@oss/car-catalog';
 import { ownerYears, ownerMakes, ownerModels } from '@oss/car-catalog/owner-directory';
 import type { OwnerDirectory } from '@oss/car-catalog/owner-directory';
@@ -63,6 +64,7 @@ function ManualVehicle({
             <input
               id={id}
               name="make"
+              autoFocus
               required
               maxLength={100}
               defaultValue={candidate?.make}
@@ -130,6 +132,8 @@ export function AddVehicle({
     [error, setError] = useState(''),
     [retry, setRetry] = useState(0),
     [manual, setManual] = useState(false);
+  const heading = useRef<HTMLHeadingElement>(null);
+  useEffect(() => focusAndReveal(heading.current), [manual]);
   const [year, setYear] = useState(candidate?.year ? String(candidate.year) : ''),
     [make, setMake] = useState(candidate?.make ?? ''),
     [model, setModel] = useState(candidate?.model ?? ''),
@@ -210,7 +214,9 @@ export function AddVehicle({
     >
       <div className="garage-section-title">
         <div>
-          <h2>Which vehicle do you own?</h2>
+          <h2 ref={heading} tabIndex={-1}>
+            Which vehicle do you own?
+          </h2>
         </div>
         <button type="button" className="text-button" onClick={onCancel}>
           Cancel

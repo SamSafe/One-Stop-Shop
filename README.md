@@ -2,6 +2,15 @@
 
 Current implementation, coverage limits and verification: [project status](docs/PROJECT-STATUS.md).
 
+Layout, theme, control and copy conventions: [design system](docs/DESIGN-SYSTEM.md).
+The [interface review](docs/INTERFACE-REVIEW.md) covers the comparison and Garage screens.
+
+An optional [buying brief and test-drive journal](docs/BUYING-BRIEF.md) separates
+must-haves from weighted preferences, including body styles, seats, drivetrain,
+horsepower and rear legroom. Save personal test-drive ratings, verdicts and notes
+against exact configurations, with local persistence and portable backups. The
+brief and reviews stay on this device and are excluded from copied catalog links.
+
 A Canadian vehicle comparison tool. Search and year/make/model selection lead
 into specification rows and side-by-side comparisons. Additional filters and
 ranking controls open on demand; priced retail, electric and family-SUV quick views help narrow the catalog; matching specifications and source notes can

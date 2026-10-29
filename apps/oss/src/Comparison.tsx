@@ -23,6 +23,9 @@ import { EnergyInputs } from './EnergyInputs';
 import { estimateEnergy, annualEnergyEstimate } from './energy';
 import { EnergyCost } from './EnergyCost';
 import type { EnergyInputs as Inputs } from './useEnergySettings';
+import type { BuyingBrief, TestDriveReview } from './buying';
+import { latestReview } from './buying';
+import { TestDriveDetails } from './TestDriveJournal';
 
 function revealKeyboardContext(event: FocusEvent<HTMLDivElement>) {
   if (!event.target.matches(':focus-visible')) return;
@@ -61,12 +64,16 @@ export function Comparison({
   energy,
   inputs,
   onInput,
+  brief,
+  reviews,
 }: {
   selected: Car[];
   weights: Weights;
   energy: EnergySettings;
   inputs: Inputs;
   onInput: (key: keyof Inputs, value: string) => void;
+  brief: BuyingBrief | null;
+  reviews: TestDriveReview[];
   open: boolean;
   onClose: () => void;
   onRemove: (id: string) => void;
@@ -312,11 +319,27 @@ export function Comparison({
                   <th scope="row">Your fit score</th>
                   {selected.map((car) => (
                     <td key={car.id}>
-                      <strong>{scoreCar(car, weights, energy).score ?? 'Unscored'}</strong>
-                      {scoreCar(car, weights, energy).score !== null && ' / 100'}
+                      <strong>{scoreCar(car, weights, energy, brief).score ?? 'Unscored'}</strong>
+                      {scoreCar(car, weights, energy, brief).score !== null && ' / 100'}
+                      {brief && (
+                        <p>
+                          {scoreCar(car, weights, energy, brief).reason ??
+                            'Based on your buying brief.'}
+                        </p>
+                      )}
                     </td>
                   ))}
                 </tr>
+                {selected.some((car) => latestReview(reviews, car.id)) && (
+                  <tr>
+                    <th scope="row">Your latest test drive</th>
+                    {selected.map((car) => (
+                      <td key={car.id}>
+                        <TestDriveDetails review={latestReview(reviews, car.id)} />
+                      </td>
+                    ))}
+                  </tr>
+                )}
                 {(!hideMatching || !matchingPowertrain) && (
                   <tr>
                     <th scope="row">Powertrain</th>

@@ -40,8 +40,8 @@ export function RemindersOverview({
     <section className="garage-panel garage-overview" aria-labelledby="reminders-overview-title">
       <h2 id="reminders-overview-title">Maintenance overview</h2>
       <p className="garage-fine">
-        Due and overdue work appears first. Thresholds use actual service history and recorded
-        odometers. Missing history needs a baseline before the next service can be calculated.
+        Due and overdue work appears first. Dates and distances use your service history and
+        odometer readings. Add missing completions to calculate the next service.
       </p>
       <div className="garage-overview-filters">
         <Field label="Show reminders">

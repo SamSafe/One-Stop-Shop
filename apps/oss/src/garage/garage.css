@@ -1,15 +1,7 @@
 .garage-main {
-  max-width: 1168px;
+  max-width: 1328px;
   margin: auto;
   padding: 30px 24px 32px;
-}
-.garage-header {
-  max-width: 1440px;
-  margin: auto;
-}
-.garage-header .brand {
-  font-size: 40px;
-  letter-spacing: -3px;
 }
 .garage-intro {
   display: flex;
@@ -19,7 +11,8 @@
   margin-bottom: 24px;
 }
 .garage-intro h1 {
-  font-size: 28px;
+  font-size: var(--heading-size);
+  letter-spacing: -0.04em;
   line-height: 1.2;
   margin: 0 0 10px;
 }
@@ -65,7 +58,7 @@
 }
 .garage-panel {
   border: 1px solid var(--line);
-  border-radius: 14px;
+  border-radius: var(--radius-lg);
   padding: 28px;
   background: var(--surface);
   min-width: 0;
@@ -82,7 +75,7 @@
 }
 .garage-empty {
   text-align: left;
-  padding: 24px 0;
+  padding: 28px;
   margin-bottom: 32px;
 }
 .garage-empty h2 {
@@ -103,7 +96,7 @@
   margin-bottom: 12px;
 }
 .garage-section-title .eyebrow {
-  font-size: 11px;
+  font-size: 12px;
   margin-bottom: 8px;
 }
 .garage-fields {
@@ -118,7 +111,7 @@
   min-width: 0;
 }
 .garage-field label {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
 }
 .garage-field input,
@@ -127,14 +120,13 @@
   min-width: 0;
   max-width: 100%;
   border: 1px solid var(--input-border);
-  border-radius: 2px;
-  background: var(--paper);
-  padding: 12px;
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  padding: 8px 12px;
   color: var(--ink);
-  font: inherit;
 }
 .garage-field input {
-  min-height: 46px;
+  min-height: var(--control-height);
 }
 .garage-field textarea {
   resize: vertical;
@@ -149,7 +141,7 @@
   background: var(--surface-alt);
   border-left: 2px solid var(--line-strong);
   padding: 24px;
-  border-radius: 2px;
+  border-radius: var(--radius-sm);
   margin: 24px 0;
   display: grid;
   gap: 18px;
@@ -182,14 +174,19 @@
   background: var(--warning-bg);
   color: var(--warning);
   border: 1px solid var(--warning-border);
-  border-radius: 2px;
+  border-radius: var(--radius-sm);
   margin: 18px 0;
   line-height: 1.6;
   overflow-wrap: anywhere;
 }
 .garage-message:not(:empty) {
   padding: 12px 0;
-  color: var(--success);
+  color: var(--ink);
+  background: var(--surface-alt);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 12px 16px;
+  margin-block: 16px;
 }
 .garage-vehicles {
   display: grid;
@@ -220,7 +217,7 @@
   padding: 22px 24px;
   background: var(--surface-alt);
   border-left: 2px solid var(--line-strong);
-  border-radius: 2px;
+  border-radius: var(--radius-sm);
   display: grid;
   gap: 12px;
   margin: 24px 0;
@@ -241,7 +238,7 @@
   font-size: 12px;
   font-weight: 500;
   background: var(--surface-muted);
-  border-radius: 2px;
+  border-radius: var(--radius-sm);
   padding: 3px 8px;
   vertical-align: middle;
 }
@@ -268,16 +265,16 @@
   font-size: 13px;
 }
 .garage-reminder small {
-  font-size: 11px;
+  font-size: 12px;
   color: var(--muted);
 }
 .garage-status {
-  font-size: 10px;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: normal;
+  text-transform: none;
   background: var(--success-bg);
   color: var(--success);
-  border-radius: 2px;
+  border-radius: var(--radius-sm);
   padding: 4px 6px;
 }
 .garage-status.urgent {
@@ -295,7 +292,7 @@
 .garage-history summary {
   font-size: 15px;
   font-weight: 600;
-  min-height: 30px;
+  min-height: var(--control-height);
 }
 .garage-history[open] summary {
   margin-bottom: 16px;
@@ -336,7 +333,7 @@
   flex-basis: 100%;
   padding: 20px;
   background: var(--warning-bg);
-  border-radius: 2px;
+  border-radius: var(--radius-sm);
   margin: 12px 0;
   display: grid;
   gap: 16px;
@@ -397,16 +394,12 @@
 .garage-footer p {
   max-width: 620px;
 }
-.button.danger {
-  background: #b42318;
-  color: white;
-}
 :root .site-header nav > a.garage-nav {
   display: inline-flex;
 }
 @media (max-width: 650px) {
   .garage-main {
-    padding: 36px 20px 20px;
+    padding: 24px 16px;
   }
   .garage-intro {
     align-items: start;
@@ -451,21 +444,6 @@
   .garage-specs {
     grid-template-columns: 1fr;
   }
-  :root .garage-header {
-    padding: 20px;
-    gap: 16px;
-  }
-  :root .garage-header .brand {
-    font-size: 36px;
-  }
-  :root .garage-header nav {
-    display: flex;
-    gap: 14px;
-  }
-  :root .garage-header nav > a {
-    display: inline;
-    font-size: 12px;
-  }
 }
 .garage-manual-specs > div {
   padding: 18px 0;
@@ -484,26 +462,20 @@
   margin: 10px 0;
 }
 @media (max-width: 650px) {
-  :root .garage-header nav > a:first-child {
-    display: inline;
-  }
-  :root .garage-header nav > a[aria-current] {
-    display: none;
-  }
 }
 .garage-field select {
   width: 100%;
   min-width: 0;
   border: 1px solid var(--input-border);
-  border-radius: 2px;
-  background: var(--paper);
-  padding: 12px;
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  padding: 8px 12px;
   color: var(--ink);
-  min-height: 46px;
+  min-height: var(--control-height);
 }
 .garage-plan-review {
   border: 1px solid var(--warning-border);
-  border-radius: 2px;
+  border-radius: var(--radius-sm);
   padding: 18px;
   display: grid;
   gap: 14px;
@@ -538,7 +510,7 @@
 
 @media (max-width: 580px) {
   .garage-intro h1 {
-    font-size: 26px;
+    font-size: var(--heading-size);
   }
   .garage-intro p:last-child {
     font-size: 13px;
@@ -575,7 +547,7 @@
   padding-top: 16px;
 }
 .finder-footer > p {
-  font-size: 11px;
+  font-size: 12px;
   color: var(--muted);
   margin-top: 10px;
 }
@@ -617,7 +589,7 @@
 
 .garage-field small {
   color: var(--muted);
-  font-size: 11px;
+  font-size: 12px;
   line-height: 1.6;
 }
 .garage-history-controls {

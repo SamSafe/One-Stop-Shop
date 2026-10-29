@@ -88,7 +88,7 @@ export function mitsubishiFacts(
     sourceUrl: priceUrl,
     note:
       price !== null
-        ? `Canadian ${mitsubishiKey(record)}, getModelsSelector MSRP price.baseValue, CA/CAD context, empty package/colour/accessory selections. Price and separately returned fee components reconcile. Excludes delivery/PDI, levies, dealer fees, taxes, optional equipment and incentives. This is a published factory model-year price, not a current dealer quote; exact trim stock remains unconfirmed.`
+        ? `Canadian ${mitsubishiKey(record)}, getModelsSelector MSRP price.baseValue, CA/CAD context, empty package/colour/accessory selections. Price and separately returned fee components reconcile. Excludes delivery/PDI, levies, dealer fees, taxes, optional equipment and incentives. Published factory model-year price. Confirm current dealer pricing and exact trim stock.`
         : 'No reconcilable positive factory base price was verified. All-in prices, discounts and another trim/year are not substituted.',
   };
   facts.seats = {

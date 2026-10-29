@@ -63,7 +63,7 @@ export function catalogCoverage(catalog: Catalog, snapshot: NrcanSnapshot) {
     }),
     remaining: [
       'Reconcile all Canadian manufacturer lineups, including manufacturers absent from NRCan and unrated pickups/vans.',
-      'Verify which model years and configurations are offered now, rather than merely rated or announced.',
+      'Verify current Canadian offerings for each model year and configuration; check ratings and announcements separately.',
       'Expand each fuel-rating variant into its verified Canadian retail trims and variant combinations.',
       'Source missing prices, dimensions, cabin/cargo specifications and body styles from manufacturers.',
     ],

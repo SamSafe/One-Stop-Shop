@@ -18,7 +18,7 @@ Future: more Canadian manual providers, complete model-specific task lists, one-
 
 Known next service dates can be exported as an `.ics` calendar snapshot, with stable event IDs and mileage context. Unknown dates and mileage-only reminders are omitted. Re-export after logging service; notification behavior belongs to the calendar app. Per-vehicle coverage explicitly separates selected reviewed tasks from a complete maintenance schedule.
 
-Service history now includes optional amount paid (CAD, including tax) and provider fields. Costs use integer cents, and blank amounts remain unknown rather than zero. Matching-record totals show known/unknown coverage and do not claim total ownership costs. Avoid assigning the same full invoice amount to several records.
+Service history now includes optional amount paid (CAD, including tax) and provider fields. Costs use integer cents, and blank amounts remain unknown. Matching-record totals show known/unknown coverage and do not claim total ownership costs. Avoid assigning the same full invoice amount to several records.
 
 Search history by work, provider, notes, date or odometer; filter inclusive dates and order by newest, oldest or highest recorded cost. Ten rows render per page. CSV export includes every matching row across pages, with blank unknown amounts and UTF-8 text. Use JSON backups for restoration; CSV is a review export. New optional fields round-trip through current version 1 backups. Older clients may reject these extensions and should preserve the original data.
 

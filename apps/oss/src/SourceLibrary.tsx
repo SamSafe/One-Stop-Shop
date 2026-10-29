@@ -55,15 +55,20 @@ export function SourceLibrary({
           </p>
           <div className="source-grid">
             {filtered.slice(start, start + pageSize).map((source) => (
-              <a href={source.url} target="_blank" rel="noreferrer" key={source.id}>
-                <span>
-                  {source.publisher}
-                  <span aria-hidden="true">↗</span>
-                </span>
-                <strong>{source.title}</strong>
-                <small>{source.locator}</small>
-                <small>Reviewed {formatDate(source.reviewedAt)} · opens in new tab</small>
-              </a>
+              <div className="source-entry" key={source.id}>
+                <a href={source.url} target="_blank" rel="noreferrer">
+                  <span>
+                    {source.publisher}
+                    <span aria-hidden="true">↗</span>
+                  </span>
+                  <strong>{source.title}</strong>
+                  <small>Reviewed {formatDate(source.reviewedAt)} · opens in new tab</small>
+                </a>
+                <details>
+                  <summary>Publication details</summary>
+                  <p>{source.locator}</p>
+                </details>
+              </div>
             ))}
           </div>
           <nav className="pagination" aria-label="Source pages">

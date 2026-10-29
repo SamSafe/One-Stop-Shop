@@ -13,19 +13,21 @@ test('energy estimates separate fuel and electricity and keep per-distance costs
   await expect(ev).toContainText('$2.16');
   await expect(ev).toContainText('Electricity: 14.4 kWh · $2.16');
   await expect(ev).not.toContainText('Fuel:');
-  await dialog.getByLabel('Plug-in electric-mode driving · %', { exact: true }).fill('100');
+  await dialog
+    .getByRole('spinbutton', { name: 'Plug-in electric-mode driving · %', exact: true })
+    .fill('100');
   await expect(plugIn).toContainText('Fuel: 6.1 L · $9.76');
   await expect(plugIn).toContainText('Electricity: 49.7 kWh · $7.46');
   await expect(plugIn.locator('strong')).toHaveText('$17.22');
   const annual = dialog.getByRole('row', { name: /^Estimated annual energy/ });
-  await dialog.getByLabel('Annual kilometres', { exact: true }).fill('0');
+  await dialog.getByRole('spinbutton', { name: 'Annual kilometres', exact: true }).fill('0');
   await expect(annual.getByRole('cell').nth(0)).toHaveText('$0');
   await expect(annual.getByRole('cell').nth(1)).toHaveText('$0');
   await expect(ev.locator('strong')).toHaveText('$2.16');
-  await dialog.getByLabel('Annual kilometres', { exact: true }).fill('');
+  await dialog.getByRole('spinbutton', { name: 'Annual kilometres', exact: true }).fill('');
   await expect(annual).toContainText('Not available');
   await expect(plugIn.locator('strong')).toHaveText('$17.22');
-  await dialog.getByLabel('Gas price / fuel price · CAD / litre', { exact: true }).fill('');
+  await dialog.getByRole('spinbutton', { name: 'Fuel price · CAD / litre', exact: true }).fill('');
   await expect(plugIn).toContainText('Enter a fuel price from $0.01 to $5 per litre.');
   await expect(plugIn.locator('strong')).toHaveText('Not available');
   await expect(plugIn).not.toContainText('Fuel:');
@@ -72,9 +74,9 @@ test('catalog cards expose energy cost and missing consumption before opening sp
   const cost = page.getByRole('article').locator('.card-energy-cost');
   await expect(cost).toContainText('Estimated energy · CAD /100 km');
   await expect(cost).toContainText('$12.48');
-  await page.getByLabel('Fuel unit price for ranking · CAD / litre', { exact: true }).fill('3.2');
+  await page.getByRole('spinbutton', { name: 'Fuel price · CAD / litre', exact: true }).fill('3.2');
   await expect(cost).toContainText('$24.96');
-  await page.getByLabel('Annual distance for ranking · km', { exact: true }).fill('');
+  await page.getByRole('spinbutton', { name: 'Annual kilometres', exact: true }).fill('');
   await expect(cost).toContainText('$24.96');
   await search.fill('2027 Subaru Uncharted FWD');
   const first = page.getByRole('article').filter({ has: page.locator('#title-subaru-ca-1606') });

@@ -40,7 +40,9 @@ test('older Canadian Sprinter stock retains its own bare-model price and unknown
     'href',
     'https://nafta-service.mbvans.com/api/byo/publish/en_ca/build/content/byo?brand=mb&year=2025&class=SPRINTER&model=2CV144H',
   );
-  await expect(high).toContainText('not an individual stock vehicle');
+  await expect(high).toContainText(
+    'Confirm the selected equipment and dealer price for an individual stock vehicle',
+  );
   await page.getByLabel('Max base MSRP', { exact: true }).selectOption('75000');
   await expect(page.getByRole('article')).toHaveCount(2);
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(

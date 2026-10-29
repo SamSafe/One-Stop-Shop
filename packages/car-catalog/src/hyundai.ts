@@ -53,7 +53,7 @@ export function hyundaiFacts(record: HyundaiRecord): Car['facts'] {
     value: record.msrpCad,
     source: sourceId(record.modelSlug),
     sourceUrl: record.priceSource.url,
-    note: `Exact Canadian trim calculator msrp for ${record.trimId}, with includeDestination=false. Includes this trim's factory package once. Excludes delivery/destination, taxes, levies, dealer fees, paint, accessories, incentives and financing charges. AB/English request; not a dealer quote.${record.optionEstimateCad !== record.msrpCad ? ` The parent option arithmetic gives $${record.optionEstimateCad}; this source conflict needs review. The exact-trim MSRP field is used.` : ''}`,
+    note: `Exact Canadian trim calculator msrp for ${record.trimId}, with includeDestination=false. Includes this trim's factory package once. Excludes delivery/destination, taxes, levies, dealer fees, paint, accessories, incentives and financing charges. AB/English request; confirm current pricing with the retailer.${record.optionEstimateCad !== record.msrpCad ? ` The parent option arithmetic gives $${record.optionEstimateCad}; this source conflict needs review. The exact-trim MSRP field is used.` : ''}`,
   };
   const seating = record.features.flatMap((feature) => {
     const value = /^(\d{1,2})[ -]*passenger (?:capacity|seating)\b/i.exec(clean(feature.name))?.[1];

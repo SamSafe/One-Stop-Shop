@@ -11,7 +11,7 @@ test('priced EV discovery gives real fit scores and shares the same energy assum
   await expect(page.getByRole('article').first().locator('.fit-score > strong')).not.toContainText(
     '—',
   );
-  await page.getByLabel('Electric unit price for ranking · CAD / kWh', { exact: true }).fill('0.3');
+  await page.getByRole('spinbutton', { name: 'Electricity · CAD / kWh', exact: true }).fill('0.3');
   await page
     .getByRole('article')
     .nth(0)
@@ -27,12 +27,18 @@ test('priced EV discovery gives real fit scores and shares the same energy assum
     .getByRole('button', { name: 'Compare 2 cars', exact: true })
     .click();
   const dialog = page.getByRole('dialog');
-  await expect(dialog.getByLabel('Electricity · CAD / kWh', { exact: true })).toHaveValue('0.3');
-  await dialog.getByLabel('Annual kilometres', { exact: true }).fill('24000');
+  await expect(
+    dialog.getByRole('spinbutton', { name: 'Electricity · CAD / kWh', exact: true }),
+  ).toHaveValue('0.3');
+  await dialog.getByRole('spinbutton', { name: 'Annual kilometres', exact: true }).fill('24000');
   await expect(page).toHaveURL(/electricityPrice=0.3/);
   await page.reload();
-  await expect(dialog.getByLabel('Annual kilometres', { exact: true })).toHaveValue('24000');
-  await expect(dialog.getByLabel('Electricity · CAD / kWh', { exact: true })).toHaveValue('0.3');
+  await expect(
+    dialog.getByRole('spinbutton', { name: 'Annual kilometres', exact: true }),
+  ).toHaveValue('24000');
+  await expect(
+    dialog.getByRole('spinbutton', { name: 'Electricity · CAD / kWh', exact: true }),
+  ).toHaveValue('0.3');
   await expect(dialog.getByRole('row', { name: /^Your fit score/ })).not.toContainText('Unscored');
 });
 

@@ -5,6 +5,7 @@ import { Icon } from './catalogView';
 import { downloadFile } from './download';
 import { readShortlistBackup, shortlistBackup, shortlistFileLimit } from './shortlist';
 import type { ShortlistImport } from './shortlist';
+import { useDialogLayout } from './useDialogLayout';
 
 const pageSize = 10;
 
@@ -19,6 +20,7 @@ export function ShortlistDialog({
   onCompare,
   onCompareNow,
   onBrowse,
+  onTestDrive,
 }: {
   cars: Car[];
   ids: string[];
@@ -30,8 +32,10 @@ export function ShortlistDialog({
   onCompare: (id: string) => void;
   onCompareNow: () => void;
   onBrowse: () => void;
+  onTestDrive: (id: string) => void;
 }) {
   const dialog = useRef<HTMLDialogElement>(null);
+  useDialogLayout(dialog);
   const resultHeading = useRef<HTMLHeadingElement>(null);
   const importHeading = useRef<HTMLHeadingElement>(null);
   const fileInput = useRef<HTMLInputElement>(null);
@@ -86,7 +90,7 @@ export function ShortlistDialog({
   }
   return (
     <dialog
-      className="comparison-dialog shortlist-dialog"
+      className="comparison-dialog shortlist-dialog managed-dialog"
       ref={dialog}
       aria-labelledby="shortlist-title"
       onCancel={(event) => {
@@ -108,8 +112,9 @@ export function ShortlistDialog({
         </button>
       </div>
       <p className="dialog-intro">
-        All {saved.length} saved configurations, independent of catalog filters. Backups contain
-        your choices; prices and specifications come from this catalog when reopened.
+        {saved.length} saved {saved.length === 1 ? 'vehicle' : 'vehicles'}. This list includes
+        choices hidden by catalog filters. Backups save your selections; prices and specifications
+        use the current catalog.
       </p>
       {warning && (
         <p className="shortlist-warning" role="alert">
@@ -150,8 +155,8 @@ export function ShortlistDialog({
         </button>
       </div>
       <p className="shortlist-fine">
-        Backups stay on your device until you choose to share the file. Imports add to your
-        shortlist and keep existing choices. They do not change your active comparison.
+        Import adds vehicles to your shortlist and keeps your saved choices and comparison. Save the
+        backup file somewhere you can find it again.
       </p>
       {error && (
         <p className="shortlist-warning" role="alert">
@@ -165,8 +170,8 @@ export function ShortlistDialog({
           </h3>
           <p>
             {pending.recognized.length}{' '}
-            {pending.recognized.length === 1 ? 'configuration is' : 'configurations are'} available
-            in this catalog. {alreadySaved} {alreadySaved === 1 ? 'is' : 'are'} already saved.
+            {pending.recognized.length === 1 ? 'vehicle is' : 'vehicles are'} available in this
+            catalog. {alreadySaved} {alreadySaved === 1 ? 'is' : 'are'} already saved.
           </p>
           {pending.recognized.length > 0 && (
             <ul>
@@ -174,16 +179,15 @@ export function ShortlistDialog({
                 <li key={id}>{fullName(byId.get(id)!)}</li>
               ))}
               {pending.recognized.length > 5 && (
-                <li>And {pending.recognized.length - 5} more configurations.</li>
+                <li>And {pending.recognized.length - 5} more vehicles.</li>
               )}
             </ul>
           )}
           {pending.unavailable.length > 0 && (
             <p>
               {pending.unavailable.length}{' '}
-              {pending.unavailable.length === 1 ? 'configuration is' : 'configurations are'}{' '}
-              unavailable in this catalog and will not be added. Keep the original file to retain
-              those choices.
+              {pending.unavailable.length === 1 ? 'vehicle is' : 'vehicles are'} unavailable in this
+              catalog and will not be added. Keep the original file to retain those choices.
             </p>
           )}
           <div className="shortlist-tools">
@@ -196,12 +200,12 @@ export function ShortlistDialog({
                 setPending(null);
                 setRequestedPage(1);
                 setNotice(
-                  `${count} ${count === 1 ? 'configuration added' : 'configurations added'}. Existing choices were kept.`,
+                  `${count} ${count === 1 ? 'vehicle added' : 'vehicles added'}. Existing choices were kept.`,
                 );
                 focusResults();
               }}
             >
-              Add imported configurations
+              Add vehicles
             </button>
             <button
               type="button"
@@ -220,12 +224,12 @@ export function ShortlistDialog({
         {notice}
       </p>
       <h3 className="shortlist-result-title" ref={resultHeading} tabIndex={-1}>
-        Saved configurations{saved.length > pageSize && ` · Page ${page} of ${pages}`}
+        Saved vehicles{saved.length > pageSize && ` · Page ${page} of ${pages}`}
       </h3>
       {!saved.length ? (
         <p>
-          No saved configurations yet. Save vehicles with their bookmark buttons or import a
-          shortlist backup.
+          No saved vehicles yet. Save vehicles with their bookmark buttons or import a shortlist
+          backup.
         </p>
       ) : (
         <ul className="shortlist-list">
@@ -233,6 +237,16 @@ export function ShortlistDialog({
             <li key={car.id}>
               <h4>{fullName(car)}</h4>
               <div className="shortlist-tools">
+                <button
+                  type="button"
+                  className="text-button"
+                  onClick={() => {
+                    dialog.current?.close();
+                    onTestDrive(car.id);
+                  }}
+                >
+                  Test-drive notes
+                </button>
                 <label className="matching-filter">
                   <input
                     type="checkbox"
@@ -284,8 +298,8 @@ export function ShortlistDialog({
           </button>
         </nav>
       )}
-      <p className="shortlist-fine">Choose two to four configurations to compare.</p>
-      <div className="shortlist-tools">
+      <div className="dialog-actions">
+        <p>{compareIds.length} of 4 selected · Choose at least 2 to compare.</p>
         <button
           type="button"
           className="button primary"
@@ -295,7 +309,7 @@ export function ShortlistDialog({
             onCompareNow();
           }}
         >
-          Compare {compareIds.length} cars
+          Compare {compareIds.length} {compareIds.length === 1 ? 'car' : 'cars'}
         </button>
         <button type="button" className="button secondary" onClick={close}>
           Done
