@@ -2,12 +2,13 @@ import { useState } from 'react';
 import { catalog, metricDefinitions, ratingUrl } from '@oss/car-catalog';
 import type { Car } from '@oss/car-catalog';
 import { scoreCar, fullName, modelYearLabel } from './domain';
-import { assessRequirements, briefPriorityLabels } from './buying';
+import { assessRequirements } from './buying';
 import type { BuyingBrief, TestDriveReview } from './buying';
 import { TestDriveSummary } from './TestDriveJournal';
 import type { Weights, EnergySettings } from './domain';
 import { estimateEnergy } from './energy';
 import { EnergyCost } from './EnergyCost';
+import { FitBreakdown } from './FitBreakdown';
 import {
   Icon,
   SourcedFact,
@@ -46,7 +47,6 @@ export function Card({
   const ranking = scoreCar(car, weights, energy, brief);
   const needs = brief ? assessRequirements(car, brief) : null;
   const [expanded, setExpanded] = useState(false);
-  const largest = [...ranking.contributions].sort((a, b) => b.points - a.points)[0];
   return (
     <article
       className={`car-card ${selected ? 'is-selected' : ''}`}
@@ -183,6 +183,7 @@ export function Card({
           </button>
         </div>
 
+        <FitBreakdown car={car} weights={weights} energy={energy} brief={brief} />
         <div className="card-actions">
           <label className={`compare-checkbox ${atLimit && !selected ? 'is-disabled' : ''}`}>
             <input
@@ -207,22 +208,6 @@ export function Card({
         {expanded && (
           <div id={`specs-${car.id}`} className="expanded-specs">
             <h4>Published specifications</h4>
-            <p className="fit-reason">
-              {ranking.reason ?? (
-                <>
-                  Largest score contribution:{' '}
-                  <strong>
-                    {largest
-                      ? (largest.priority === 'efficiency'
-                          ? 'energy cost'
-                          : briefPriorityLabels[largest.priority]
-                        ).toLowerCase()
-                      : ''}
-                  </strong>
-                  .
-                </>
-              )}
-            </p>
             {car.manufacturerConfiguration && (
               <p>
                 Manufacturer code: {car.manufacturerConfiguration.code}.{' '}

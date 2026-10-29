@@ -41,10 +41,15 @@ qualifiers visible. Do not select arbitrary fuel-grade power maxima, mix fuel-on
 and blended PHEV modes, choose an unspecified roof alternative, or copy a
 nameplate cargo maximum into an exact trim.
 
-Five captured CX-50 gasoline SKUs publish 1,595 L behind rear seats and 889 L behind
-front seats. Both values remain unverified in the app; the source values and
-conflict are explained and reported. An independent authoritative check is required
-before correcting them. Source values are not automatically swapped.
+Five captured CX-50 gasoline SKUs publish reversed cargo labels in the API:
+1,595 L behind rear seats and 889 L behind front seats. The original capture and
+its discrepancy remain intact. On 29 October 2026, an independent review of the
+official Canadian 2025 gasoline specification PDF, page 4, established 889 L behind
+the rear seat back and 1,595 L behind the front seat back. A checksummed reviewed
+supplement supplies those two facts for the five exact gasoline SKUs. Hybrid
+profiles are excluded. This resolves the withheld values through a separate
+publication; the importer does not automatically swap suspicious labels. See the
+[review and evidence contract](FIT-AND-SPECIFICATION-REVIEW.md).
 
 ## Availability and reproduction
 

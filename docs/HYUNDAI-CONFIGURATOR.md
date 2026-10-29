@@ -62,6 +62,19 @@ maximum alone is insufficient evidence. Missing dimensions, cargo, power and
 energy facts remain unknown. EV-equivalent consumption never becomes gasoline
 consumption; unverified plug-in operating modes never produce a guessed cost.
 
+On 29 October 2026, all 18 tables and the model/year lineup returned successful
+fresh responses. A separate reviewed supplement now adds 603 numeric facts and
+six previously unknown drivetrains across 74 exact factory configurations. It
+retains model-year identity evidence and every factory-ID/column mapping. Literal
+column matches and explicitly reviewed engine/drive presentation differences are
+accepted. Shared 7/8-seat columns supply only common, unqualified facts. Explicitly
+labelled HEV/PHEV branches can be used for the matching powertrain; an unlabelled
+mixed branch remains unknown. Conditional roof alternatives and unlisted Tech,
+TCR and Night packages are excluded. Standard 276 hp ELANTRA N and 601 hp IONIQ 5 N
+output is distinguished from conditional boost figures. Consumption, range,
+prices, source captures and availability dates are unchanged. The
+[review report](FIT-AND-SPECIFICATION-REVIEW.md) records the remaining limits.
+
 All 55 current parents are unflagged as sold out, so their 80 configurations have
 dated manufacturer-listing evidence. This establishes a national tool listing,
 not dealer stock or a delivery promise. Older model-year inventory and models

@@ -82,10 +82,12 @@ export function SourcedFact({
   metric,
   car,
   showNotes = true,
+  showUnknownNotes = true,
 }: {
   metric: Metric;
   car: Car;
   showNotes?: boolean;
+  showUnknownNotes?: boolean;
 }) {
   const fact = car.facts[metric];
   const notApplicable = nonApplicableReason(car, metric);
@@ -115,7 +117,7 @@ export function SourcedFact({
         <span>{displayFact(metric, fact)}</span>
       )}
       {fact.note && (
-        <small className="fact-note" hidden={fact.value !== null && !showNotes}>
+        <small className="fact-note" hidden={fact.value === null ? !showUnknownNotes : !showNotes}>
           {fact.note}
         </small>
       )}

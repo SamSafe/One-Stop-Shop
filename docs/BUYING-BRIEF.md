@@ -38,8 +38,21 @@ An active brief replaces the legacy fit calculation in both cards and comparison
 The weighted average is rounded to 0–100. Filtering never renormalizes scores.
 Equal scores use base price and then configuration ID. Missing active data is not
 estimated. Horsepower is not handling or driving enjoyment; engine versus system
-power and spatial measurement notes still matter. The catalog is unchanged by
-this feature, including existing gaps in body-style and specification coverage.
+power and spatial measurement notes still matter. Saving a brief does not change
+the published catalog.
+
+**Why this fits** expands on every card and in each comparison score cell. It
+shows each must-have with the actual value and outcome, every active priority's
+importance, published value, scoring target, earned points and maximum share.
+Zero-weight and unselected body/drive preferences are listed separately. Missing
+requirements or active facts keep the total unscored and withhold all earned
+points; known facts and every missing input remain inspectable. Point values are
+rounded for display; the total retains the existing calculation. The explanation
+updates with energy prices and brief changes, including pause and resume.
+
+The [source review](FIT-AND-SPECIFICATION-REVIEW.md) records independently reviewed
+catalog additions and qualifications. Test-drive ratings remain separate from
+the fit calculation.
 
 ## Personal test-drive reviews
 

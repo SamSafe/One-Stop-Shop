@@ -87,6 +87,8 @@ const manufacturerHosts = new Set([
   'fcr-ccc.nrcan-rncan.gc.ca',
   'www.toyota.ca',
   'toyota.ca',
+  'media.toyota.ca',
+  'toyotacanada.scene7.com',
   'www.lexus.ca',
   'lexus.ca',
   'www.ford.ca',

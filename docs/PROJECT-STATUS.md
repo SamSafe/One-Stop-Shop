@@ -2,6 +2,32 @@
 
 This is the current implementation summary. Earlier release and review reports describe their dated checkpoints.
 
+## Fit explanations and reviewed specifications — 29 October
+
+Cards and comparison score cells now expose **Why this fits**: requirement outcomes,
+actual values, active importance weights, targets, earned points and maximum
+shares, plus excluded priorities and all missing inputs. Explanations use the
+existing ranking result and respond to energy settings and brief changes.
+Incomplete fit totals withhold earned points. Test-drive ratings remain separate.
+
+A targeted official-source review fills 682 missing numeric facts and six unknown
+drivetrains across 100 exact configurations. Six conflicting Sienna front-headroom
+values are withheld with both sources retained. The catalog still has 6,083
+records and 3,544 retail configurations, with 1,360 official sources. Existing
+prices, identities, source records, availability dates and untargeted facts are
+preserved. The [review report](FIT-AND-SPECIFICATION-REVIEW.md) documents source
+scope, capture receipts, validation and the unresolved ambiguities where this
+pass stops. The interface review below describes the earlier checkpoint.
+
+The final check passes 415 unit cases across 43 files. All 556 distinct browser
+cases pass across desktop/mobile Chromium, desktop Firefox and mobile WebKit;
+the 32 affected fit checks were rerun after the final fit-panel presentation cleanup.
+Expanded light/dark accessibility and responsive geometry checks pass. All 21
+release artifacts verify against source fingerprint
+`6a0aae48a270737d25abef0dfbd21f642d70778f9118404b534112733cbf7861`.
+The local app and Garage serve the current build on port 8080. The
+[review report](FIT-AND-SPECIFICATION-REVIEW.md) retains the exact validation scope.
+
 ## Interface review — 29 October
 
 The comparison app and Garage now share control sizing, field typography, corners,

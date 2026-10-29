@@ -257,50 +257,87 @@ export function latestReview(reviews: TestDriveReview[], carId: string) {
         b.id.localeCompare(a.id),
     )[0];
 }
-export function assessRequirements(car: Car, brief: BuyingBrief) {
-  const matched: string[] = [],
-    unknown: string[] = [],
-    failed: string[] = [];
-  function check(label: string, known: boolean, meets: boolean) {
-    (known ? (meets ? matched : failed) : unknown).push(label);
+export interface RequirementCheck {
+  key: 'budget' | 'seats' | 'body' | 'drive' | 'power' | 'room';
+  label: string;
+  actual: number | string | null;
+  target: number | string | string[];
+  status: 'met' | 'unknown' | 'failed';
+}
+export function requirementChecks(car: Car, brief: BuyingBrief): RequirementCheck[] {
+  const checks: RequirementCheck[] = [];
+  function check(
+    key: RequirementCheck['key'],
+    label: string,
+    actual: RequirementCheck['actual'],
+    target: RequirementCheck['target'],
+    meets: boolean,
+  ) {
+    checks.push({
+      key,
+      label,
+      actual,
+      target,
+      status: actual === null ? 'unknown' : meets ? 'met' : 'failed',
+    });
   }
   if (brief.budget !== null)
     check(
+      'budget',
       'Within budget',
-      car.facts.msrpCad.value !== null,
+      car.facts.msrpCad.value,
+      brief.budget,
       (car.facts.msrpCad.value ?? Infinity) <= brief.budget,
     );
   if (brief.minSeats !== null)
     check(
+      'seats',
       `${brief.minSeats}+ seats`,
-      car.facts.seats.value !== null,
+      car.facts.seats.value,
+      brief.minSeats,
       (car.facts.seats.value ?? 0) >= brief.minSeats,
     );
   if (brief.bodyRequired)
     check(
+      'body',
       'Required body style',
-      vehicleBodyStyle(car) !== 'Not verified',
+      vehicleBodyStyle(car) === 'Not verified' ? null : vehicleBodyStyle(car),
+      brief.bodies,
       brief.bodies.includes(vehicleBodyStyle(car)),
     );
   if (brief.driveRequired)
     check(
+      'drive',
       `${brief.drive} required`,
-      car.drivetrain !== 'Not verified',
+      car.drivetrain === 'Not verified' ? null : car.drivetrain,
+      brief.drive,
       car.drivetrain === brief.drive,
     );
   if (brief.powerRequired)
     check(
+      'power',
       `${brief.horsepower}+ hp`,
-      car.facts.horsepower.value !== null,
+      car.facts.horsepower.value,
+      brief.horsepower,
       (car.facts.horsepower.value ?? 0) >= brief.horsepower,
     );
   if (brief.roomRequired)
     check(
+      'room',
       `${brief.rearLegroom}+ mm rear legroom`,
-      car.facts.rearLegroomMm.value !== null,
+      car.facts.rearLegroomMm.value,
+      brief.rearLegroom,
       (car.facts.rearLegroomMm.value ?? 0) >= brief.rearLegroom,
     );
-  return { matched, unknown, failed };
+  return checks;
+}
+export function assessRequirements(car: Car, brief: BuyingBrief) {
+  const checks = requirementChecks(car, brief);
+  return {
+    matched: checks.filter((check) => check.status === 'met').map((check) => check.label),
+    unknown: checks.filter((check) => check.status === 'unknown').map((check) => check.label),
+    failed: checks.filter((check) => check.status === 'failed').map((check) => check.label),
+  };
 }
 export function matchesBrief(car: Car, brief: BuyingBrief, reviews: TestDriveReview[]) {
   const needs = assessRequirements(car, brief);

@@ -862,7 +862,15 @@ test('Mazda factory packages retain complete MSRP and source availability confli
   await expect(page.getByRole('article')).toHaveCount(5);
   const first = page.getByRole('article').first();
   await first.getByRole('button', { name: 'Specs & sources' }).click();
-  await expect(first).toContainText('not automatically swapped');
+  for (const name of [
+    /^Cargo · seats up: 889 L\. Source: Mazda Canada/,
+    /^Cargo · seats down: 1,595 L\. Source: Mazda Canada/,
+  ]) {
+    await expect(first.getByRole('link', { name })).toHaveAttribute(
+      'href',
+      'https://www.mazda.ca/globalassets/mazda-canada/en/pdf/brochures/vehicles/CX-50/2025-mazda-cx-50-specs-en.pdf',
+    );
+  }
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(
     true,
   );

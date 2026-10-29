@@ -11,6 +11,11 @@ horsepower and rear legroom. Save personal test-drive ratings, verdicts and note
 against exact configurations, with local persistence and portable backups. The
 brief and reviews stay on this device and are excluded from copied catalog links.
 
+Open **Why this fits** on a card or comparison to inspect requirements, active
+weights, targets, earned points and missing data. The [fit and specification
+review](docs/FIT-AND-SPECIFICATION-REVIEW.md) explains the calculation and the
+latest manufacturer-source additions and conflicts.
+
 A Canadian vehicle comparison tool. Search and year/make/model selection lead
 into specification rows and side-by-side comparisons. Additional filters and
 ranking controls open on demand; priced retail, electric and family-SUV quick views help narrow the catalog; matching specifications and source notes can

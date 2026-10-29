@@ -5,6 +5,8 @@ import data from '../data/catalog.json';
 import snapshot from '../data/nrcan.json';
 import links from '../data/retail-rating-links.json';
 import reviewedLinks from '../data/reviewed-rating-links.json';
+import reviewedSpecifications from '../data/reviewed-specifications.json';
+import { addReviewedSpecifications } from './reviewed-specifications';
 import subaruData from '../data/manufacturers/subaru.json';
 import subaruSpecificationsData from '../data/manufacturers/subaru-specifications.json';
 import tciData from '../data/manufacturers/tci.json';
@@ -166,7 +168,10 @@ const beforeLandrover = addMclarenRetail(
   mclarenSnapshot,
 );
 export const landroverSnapshot = validateLandroverSnapshot(landroverData);
-export const manufacturerCatalog = addLandroverRetail(beforeLandrover, landroverSnapshot);
+export const manufacturerCatalog = addReviewedSpecifications(
+  addLandroverRetail(beforeLandrover, landroverSnapshot),
+  reviewedSpecifications,
+);
 export const retailCatalog = validateCatalog({
   ...manufacturerCatalog,
   cars: manufacturerCatalog.cars.filter((car) => car.recordKind === 'retail-trim'),

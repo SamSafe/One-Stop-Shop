@@ -26,6 +26,7 @@ import type { EnergyInputs as Inputs } from './useEnergySettings';
 import type { BuyingBrief, TestDriveReview } from './buying';
 import { latestReview } from './buying';
 import { TestDriveDetails } from './TestDriveJournal';
+import { FitBreakdown } from './FitBreakdown';
 
 function revealKeyboardContext(event: FocusEvent<HTMLDivElement>) {
   if (!event.target.matches(':focus-visible')) return;
@@ -327,6 +328,7 @@ export function Comparison({
                             'Based on your buying brief.'}
                         </p>
                       )}
+                      <FitBreakdown car={car} weights={weights} energy={energy} brief={brief} />
                     </td>
                   ))}
                 </tr>
