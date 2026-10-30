@@ -22,10 +22,10 @@ async function capture(url) {
   return { source: await save(url, response.status, bytes), text: bytes.toString('utf8') };
 }
 const bootstrap = await capture(`${origin}/mclaren-ui/?model/gts`);
-if (!bootstrap.text.includes('src="./assets/index-8XucOWk-.js"'))
+if (!bootstrap.text.includes('src="./assets/index-BNg9rp8r.js"'))
   throw new Error('McLaren public application changed; review its current client.');
-const client = await capture(`${origin}/mclaren-ui/assets/index-8XucOWk-.js`);
-if (client.source.sha256 !== '27cec051d887efdaae7e5f57fc1545bc7ecf79cdd32f601ae7a1f73af679f540')
+const client = await capture(`${origin}/mclaren-ui/assets/index-BNg9rp8r.js`);
+if (client.source.sha256 !== 'c75be33d5426536b2150de6d8512d239ad652816ccfe7272561dc9827ceb038f')
   throw new Error('McLaren public client checksum changed.');
 const browser = await chromium.launch({ headless: true });
 try {

@@ -11,6 +11,7 @@ import {
   mclarenLanding,
   mclarenFactory,
   validateMclarenSnapshot,
+  mclarenSnapshotSchema,
   mclarenNoRegression,
 } from '../packages/car-catalog/src/mclaren-import.ts';
 import type { MclarenSnapshot } from '../packages/car-catalog/src/mclaren-import.ts';
@@ -64,7 +65,7 @@ async function body(r: z.infer<typeof receipt>) {
 }
 const bootstrap = await body(manifest.sources.bootstrap);
 if (
-  !bootstrap.includes('src="./assets/index-8XucOWk-.js"') ||
+  !bootstrap.includes('src="./assets/index-BNg9rp8r.js"') ||
   manifest.sources.client.sha256 !== mclarenClientHash
 )
   throw new Error('McLaren current production bootstrap/client changed; review before importing.');
@@ -94,8 +95,10 @@ const snapshot = validateMclarenSnapshot({
   profiles,
 });
 try {
+  // The baseline was reviewed against the client pinned at its own date, so only
+  // its shape is checked before comparing offerings.
   mclarenNoRegression(
-    validateMclarenSnapshot(JSON.parse(await readFile(target, 'utf8'))),
+    mclarenSnapshotSchema.parse(JSON.parse(await readFile(target, 'utf8'))),
     snapshot,
   );
 } catch (e) {

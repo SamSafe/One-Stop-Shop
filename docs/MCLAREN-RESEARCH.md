@@ -41,8 +41,11 @@ needed. No lead, saved build, account, reservation or order is submitted.
 Original responses and ephemeral session data remain in the ignored raw cache;
 the tracked snapshot retains receipt metadata and factual identities.
 
-The bootstrap currently references `/mclaren-ui/assets/index-8XucOWk-.js`,
-SHA-256 `27cec051d887efdaae7e5f57fc1545bc7ecf79cdd32f601ae7a1f73af679f540`.
+The bootstrap currently references `/mclaren-ui/assets/index-BNg9rp8r.js`,
+SHA-256 `c75be33d5426536b2150de6d8512d239ad652816ccfe7272561dc9827ceb038f`. It
+replaced `index-8XucOWk-.js` on 30 October; the configuration endpoints and
+price-display flags are unchanged, and the refreshed capture reproduced every
+profile's facts.
 Changed bootstrap/client, country restrictions, private access, profile aliases,
 price-display flags, missing/ambiguous model-year fields, stale captures and
 lost model/year coverage require review. A year advance requires older-new-stock

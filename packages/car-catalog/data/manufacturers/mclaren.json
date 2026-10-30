@@ -1,25 +1,25 @@
 {
   "schemaVersion": 1,
   "market": "CA",
-  "retrievedAt": "2026-10-26T05:50:34.953Z",
+  "retrievedAt": "2026-10-30T20:35:45.537Z",
   "sources": {
     "bootstrap": {
       "url": "https://configurator.mclaren.com/mclaren-ui/?model/gts",
       "status": 200,
-      "sha256": "703cd6cc063b29ab7ace41198ae89b1c8a3fbef4d7fed452dda6ba8306794ebf",
-      "capturedAt": "2026-10-26T05:50:11.758Z"
+      "sha256": "6dd77b5a4f33dd6a224475ebbf5ca44d07d1f4daed15f852ed28eba17be1b90c",
+      "capturedAt": "2026-10-30T20:35:22.820Z"
     },
     "client": {
-      "url": "https://configurator.mclaren.com/mclaren-ui/assets/index-8XucOWk-.js",
+      "url": "https://configurator.mclaren.com/mclaren-ui/assets/index-BNg9rp8r.js",
       "status": 200,
-      "sha256": "27cec051d887efdaae7e5f57fc1545bc7ecf79cdd32f601ae7a1f73af679f540",
-      "capturedAt": "2026-10-26T05:50:13.102Z"
+      "sha256": "c75be33d5426536b2150de6d8512d239ad652816ccfe7272561dc9827ceb038f",
+      "capturedAt": "2026-10-30T20:35:23.875Z"
     },
     "menu": {
       "url": "https://mclaren-cms.production.aws.mclaren.com/api/mainnav?site=1",
       "status": 200,
       "sha256": "c1ca9bf3b9913bb01b32d3f9dcb9e69c046a14ff1fde413a412844b78662f713",
-      "capturedAt": "2026-10-26T05:50:17.199Z"
+      "capturedAt": "2026-10-30T20:35:27.990Z"
     }
   },
   "navigation": [
@@ -87,19 +87,19 @@
           "url": "https://configurator.mclaren.com/configuration/ajaxLandingPageData.do?profileName=artura&country=CA&language=en",
           "status": 200,
           "sha256": "77d7552d9fbaa34561633615d49d792b6c9f9e042a1ecdcb80ae36a551a04bf5",
-          "capturedAt": "2026-10-26T05:50:19.574Z"
+          "capturedAt": "2026-10-30T20:35:29.024Z"
         },
         "initial": {
-          "url": "https://configurator.mclaren.com/configuration/ajaxGetInitialData.do?cacheControl=1792993820197&",
+          "url": "https://configurator.mclaren.com/configuration/ajaxGetInitialData.do?cacheControl=1793392529718&",
           "status": 200,
-          "sha256": "f6be9270ed86030dd683cdfef7a90a5f19d20ce0b623e5aebcc361970b717b02",
-          "capturedAt": "2026-10-26T05:50:20.369Z"
+          "sha256": "79ca7fdc6ba13059578a5e8188884ac5253fa5d095702588a907df7e3dd9cbe3",
+          "capturedAt": "2026-10-30T20:35:29.889Z"
         },
         "general": {
-          "url": "https://configurator.mclaren.com/configuration/ajaxGetCharacteristics.do?instanceId=1&csticViewId=CSTIC_VIEW_0&cacheControl=1792993820797&",
+          "url": "https://configurator.mclaren.com/configuration/ajaxGetCharacteristics.do?instanceId=1&csticViewId=CSTIC_VIEW_0&cacheControl=1793392530246&",
           "status": 200,
-          "sha256": "bcac40dca0819b80283142efc99fe8e97b85452c7b43d44a515f0ef1e38fafc8",
-          "capturedAt": "2026-10-26T05:50:21.034Z"
+          "sha256": "c5bb64774b53e43110b4f3b876f60ea7adc4028a1cc2fc25043971a60457f4b6",
+          "capturedAt": "2026-10-30T20:35:30.484Z"
         }
       }
     },
@@ -118,19 +118,19 @@
           "url": "https://configurator.mclaren.com/configuration/ajaxLandingPageData.do?profileName=artura-spider&country=CA&language=en",
           "status": 200,
           "sha256": "518e0c52b457d7b99caeedb24a4df1cfc83a2bd6c901a4116f3f9bcab03f5e9d",
-          "capturedAt": "2026-10-26T05:50:23.404Z"
+          "capturedAt": "2026-10-30T20:35:32.671Z"
         },
         "initial": {
-          "url": "https://configurator.mclaren.com/configuration/ajaxGetInitialData.do?cacheControl=1792993824028&",
+          "url": "https://configurator.mclaren.com/configuration/ajaxGetInitialData.do?cacheControl=1793392533291&",
           "status": 200,
-          "sha256": "b9d66f8f9eceb20527d03f9d44aa5a3de47da3132a8d76293743b9412da82a8f",
-          "capturedAt": "2026-10-26T05:50:24.198Z"
+          "sha256": "18373b9479bfddb636cb200d59c313794afce9230dd524a9e5652fb12968643f",
+          "capturedAt": "2026-10-30T20:35:33.466Z"
         },
         "general": {
-          "url": "https://configurator.mclaren.com/configuration/ajaxGetCharacteristics.do?instanceId=1&csticViewId=CSTIC_VIEW_0&cacheControl=1792993824595&",
+          "url": "https://configurator.mclaren.com/configuration/ajaxGetCharacteristics.do?instanceId=1&csticViewId=CSTIC_VIEW_0&cacheControl=1793392533838&",
           "status": 200,
-          "sha256": "dada3bc520e3360c19d00cf42817cadcdbbf0c59709af976f57955c6435bed0a",
-          "capturedAt": "2026-10-26T05:50:24.813Z"
+          "sha256": "8cd5f0ea73478f3b1319ae96db28c5cbbcb6617addd0bb99aa609d7547f92e7c",
+          "capturedAt": "2026-10-30T20:35:34.044Z"
         }
       }
     },
@@ -149,19 +149,19 @@
           "url": "https://configurator.mclaren.com/configuration/ajaxLandingPageData.do?profileName=750s&country=CA&language=en",
           "status": 200,
           "sha256": "0e36a4b67f46733d4d98adcac804e3b96d3c42999b2b8f528a1973d7ca944d48",
-          "capturedAt": "2026-10-26T05:50:27.165Z"
+          "capturedAt": "2026-10-30T20:35:36.264Z"
         },
         "initial": {
-          "url": "https://configurator.mclaren.com/configuration/ajaxGetInitialData.do?cacheControl=1792993827859&",
+          "url": "https://configurator.mclaren.com/configuration/ajaxGetInitialData.do?cacheControl=1793392536940&",
           "status": 200,
-          "sha256": "55ba6a750e6987b11b9fc093153d81f656261034a3a15261262d00cb7b671720",
-          "capturedAt": "2026-10-26T05:50:28.034Z"
+          "sha256": "cb626f46e83e2f6a323fddeac1926af3de9fa94ecee58f20014545d4ee59820a",
+          "capturedAt": "2026-10-30T20:35:37.119Z"
         },
         "general": {
-          "url": "https://configurator.mclaren.com/configuration/ajaxGetCharacteristics.do?instanceId=1&csticViewId=CSTIC_VIEW_0&cacheControl=1792993828430&",
+          "url": "https://configurator.mclaren.com/configuration/ajaxGetCharacteristics.do?instanceId=1&csticViewId=CSTIC_VIEW_0&cacheControl=1793392537489&",
           "status": 200,
-          "sha256": "c4cc427f2b4fcabc04b3e87062b23fed8f46ccec029e4a94a04ff07b31501de6",
-          "capturedAt": "2026-10-26T05:50:28.628Z"
+          "sha256": "9148b363ceded0773e009891f738ca14ab291f4fe5513d568c59c793e739ca36",
+          "capturedAt": "2026-10-30T20:35:37.692Z"
         }
       }
     },
@@ -180,19 +180,19 @@
           "url": "https://configurator.mclaren.com/configuration/ajaxLandingPageData.do?profileName=750s-spider&country=CA&language=en",
           "status": 200,
           "sha256": "3de11e96d39a8b3b9e256998c2362aff70b5179cae9fdb966700d3078e8c9c81",
-          "capturedAt": "2026-10-26T05:50:30.842Z"
+          "capturedAt": "2026-10-30T20:35:40.097Z"
         },
         "initial": {
-          "url": "https://configurator.mclaren.com/configuration/ajaxGetInitialData.do?cacheControl=1792993830506&",
+          "url": "https://configurator.mclaren.com/configuration/ajaxGetInitialData.do?cacheControl=1793392541094&",
           "status": 200,
-          "sha256": "4ac0a87fda6426c8dba3242edc871be8eca4d45672a9148813a27683f5a13c6f",
-          "capturedAt": "2026-10-26T05:50:30.683Z"
+          "sha256": "c4ca799c2d357ebbd19d030b0f28ede4bd9e6a5aa5b58cf0b33856a4dec78583",
+          "capturedAt": "2026-10-30T20:35:41.266Z"
         },
         "general": {
-          "url": "https://configurator.mclaren.com/configuration/ajaxGetCharacteristics.do?instanceId=1&csticViewId=CSTIC_VIEW_0&cacheControl=1792993831085&",
+          "url": "https://configurator.mclaren.com/configuration/ajaxGetCharacteristics.do?instanceId=1&csticViewId=CSTIC_VIEW_0&cacheControl=1793392541625&",
           "status": 200,
-          "sha256": "785f161df5dbd67d90831f1719f090b3a44433e004fd147f25e34d43f8d0151a",
-          "capturedAt": "2026-10-26T05:50:31.334Z"
+          "sha256": "b6d4e0b0a2c1f437a2ebea9abbf28d2265432a2d7852ff2368f0b0e9e829e953",
+          "capturedAt": "2026-10-30T20:35:41.834Z"
         }
       }
     },
@@ -211,19 +211,19 @@
           "url": "https://configurator.mclaren.com/configuration/ajaxLandingPageData.do?profileName=gts&country=CA&language=en",
           "status": 200,
           "sha256": "4470c6fc73204d7d542265e8e8e8027a258b2b8ca5cf408b7e7deebd4446af26",
-          "capturedAt": "2026-10-26T05:50:33.653Z"
+          "capturedAt": "2026-10-30T20:35:44.160Z"
         },
         "initial": {
-          "url": "https://configurator.mclaren.com/configuration/ajaxGetInitialData.do?cacheControl=1792993834253&",
+          "url": "https://configurator.mclaren.com/configuration/ajaxGetInitialData.do?cacheControl=1793392544768&",
           "status": 200,
-          "sha256": "b1a43eabceb12d88e599142fd8a1245bffce8ebd6fdac4735163890d7854a3b9",
-          "capturedAt": "2026-10-26T05:50:34.445Z"
+          "sha256": "3f725f9ca23bd7615638b76165f72804f00ae84462e0f1f5d6bd3163a5e3395e",
+          "capturedAt": "2026-10-30T20:35:44.945Z"
         },
         "general": {
-          "url": "https://configurator.mclaren.com/configuration/ajaxGetCharacteristics.do?instanceId=1&csticViewId=CSTIC_VIEW_0&cacheControl=1792993834780&",
+          "url": "https://configurator.mclaren.com/configuration/ajaxGetCharacteristics.do?instanceId=1&csticViewId=CSTIC_VIEW_0&cacheControl=1793392545317&",
           "status": 200,
-          "sha256": "d77d965f96f81b5559b3c7bd93084d64751f2f2f16f70870a5dee0341caee1c7",
-          "capturedAt": "2026-10-26T05:50:34.953Z"
+          "sha256": "06dee776bc08b9e01e6a94a47082d67d37aa6b64a060395cddf6fd681e14a18d",
+          "capturedAt": "2026-10-30T20:35:45.537Z"
         }
       }
     }

@@ -5,8 +5,8 @@ export const mclarenCmsOrigin = 'https://mclaren-cms.production.aws.mclaren.com'
 export const mclarenProfiles = ['artura', 'artura-spider', '750s', '750s-spider', 'gts'] as const;
 const profileId = z.enum(mclarenProfiles);
 export const mclarenPageUrl = (id: string) => `${mclarenOrigin}/mclaren-ui/?model/${id}`;
-export const mclarenClientUrl = `${mclarenOrigin}/mclaren-ui/assets/index-8XucOWk-.js`;
-export const mclarenClientHash = '27cec051d887efdaae7e5f57fc1545bc7ecf79cdd32f601ae7a1f73af679f540';
+export const mclarenClientUrl = `${mclarenOrigin}/mclaren-ui/assets/index-BNg9rp8r.js`;
+export const mclarenClientHash = 'c75be33d5426536b2150de6d8512d239ad652816ccfe7272561dc9827ceb038f';
 export const mclarenMenuUrl = `${mclarenCmsOrigin}/api/mainnav?site=1`;
 export const mclarenLandingUrl = (id: string) =>
   `${mclarenOrigin}/configuration/ajaxLandingPageData.do?profileName=${id}&country=CA&language=en`;
@@ -53,7 +53,7 @@ const factorySchema = z.strictObject({
     general: mclarenReceiptSchema,
   }),
 });
-const snapshotSchema = z.strictObject({
+export const mclarenSnapshotSchema = z.strictObject({
   schemaVersion: z.literal(1),
   market: z.literal('CA'),
   retrievedAt: z.iso.datetime(),
@@ -65,7 +65,7 @@ const snapshotSchema = z.strictObject({
   navigation: z.array(navSchema).min(1).max(100),
   profiles: z.array(factorySchema).length(5),
 });
-export type MclarenSnapshot = z.infer<typeof snapshotSchema>;
+export type MclarenSnapshot = z.infer<typeof mclarenSnapshotSchema>;
 export function mclarenNavigation(input: unknown): MclarenSnapshot['navigation'] {
   const root = z
     .object({ content: z.array(z.object({ data: z.record(z.string(), z.unknown()) })) })
@@ -202,7 +202,7 @@ export function mclarenFactory(
   });
 }
 export function validateMclarenSnapshot(input: unknown): MclarenSnapshot {
-  const s = snapshotSchema.parse(input),
+  const s = mclarenSnapshotSchema.parse(input),
     receipts = [
       ...Object.values(s.sources),
       ...s.profiles.flatMap((p) => Object.values(p.sources)),
