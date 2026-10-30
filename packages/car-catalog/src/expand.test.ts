@@ -6,9 +6,12 @@ import { expandCatalog } from './expand';
 
 describe('rating baseline and retail overlays', () => {
   it('adds audited Honda and Subaru joins while preserving existing rating URLs and manufacturer facts', () => {
-    expect(
-      catalog.cars.filter((car) => car.recordKind === 'retail-trim' && car.governmentRating),
-    ).toHaveLength(47);
+    const linked = catalog.cars.filter(
+      (car) => car.recordKind === 'retail-trim' && car.governmentRating,
+    );
+    // GM configurations add exact engine/transmission/consumption joins.
+    expect(linked.filter((car) => !car.id.startsWith('gm-ca-'))).toHaveLength(47);
+    expect(linked.filter((car) => car.id.startsWith('gm-ca-'))).toHaveLength(149);
     for (const link of reviewedLinks.links) {
       const car = catalog.cars.find((car) => car.id === link.retailId)!;
       const original = retailCatalog.cars.find((car) => car.id === link.retailId)!;

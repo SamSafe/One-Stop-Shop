@@ -51,7 +51,7 @@ import { addHyundaiRetail } from './hyundai';
 import { validateKiaSnapshot } from './kia-import';
 import { addKiaRetail } from './kia';
 import { validateGmSnapshot } from './gm-import';
-import { addGmRetail } from './gm';
+import { addGmRetail, gmRatingLinks } from './gm';
 import { validateNissanSnapshot } from './nissan-import';
 import { addNissanRetail } from './nissan';
 import { validateVwSnapshot } from './volkswagen-import';
@@ -191,4 +191,10 @@ for (const link of reviewedRatingLinksSchema.parse(reviewedLinks).links) {
   )
     throw new Error(`Review the manufacturer engine evidence for ${link.retailId}.`);
 }
-export const catalog = expandCatalog(manufacturerCatalog, nrcanSnapshot, links, reviewedLinks);
+export const catalog = expandCatalog(
+  manufacturerCatalog,
+  nrcanSnapshot,
+  links,
+  reviewedLinks,
+  gmRatingLinks(manufacturerCatalog, gmSnapshot, nrcanSnapshot),
+);

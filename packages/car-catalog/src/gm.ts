@@ -2,6 +2,7 @@ import { metricDefinitions, validateCatalog } from './schema';
 import type { Car, Catalog, Fact, Metric, Source } from './schema';
 import { gmBrands, gmClientUrl, gmOptionKey } from './gm-import';
 import type { GmRecord, GmSnapshot } from './gm-import';
+import type { NrcanSnapshot } from './nrcan-schema';
 
 const slug = (value: string) =>
   value
@@ -176,4 +177,73 @@ export function addGmRetail(base: Catalog, snapshot: GmSnapshot): Catalog {
     sources: [...base.sources, ...sources],
     cars: [...base.cars, ...cars],
   });
+}
+
+// Joins a GM configuration to the one NRCan rating that agrees with its own
+// captured evidence: make, year, every word of the rated model name, drivetrain, fuel, engine size,
+// stated cylinder count, transmission type and speeds, and exact city and
+// highway consumption. NRCan groups conventional hybrids with ICE vehicles.
+// The rating then supplies combined consumption and other
+// rating facts. Ambiguous or partial matches stay unlinked.
+export function gmRatingLinks(catalog: Catalog, snapshot: GmSnapshot, nrcan: NrcanSnapshot) {
+  const records = new Map(snapshot.records.map((record) => [gmRecordId(record), record]));
+  // Model words, ignoring drivetrain and parenthetical charger/wheel notes.
+  const words = (value: string) =>
+    value
+      .replace(/\([^)]*\)/g, ' ')
+      .toLowerCase()
+      .split(/\s+/)
+      .map((word) => word.replace(/[^a-z0-9]/g, ''))
+      .filter((word) => word && !['awd', '4wd', 'fwd', 'rwd'].includes(word));
+  const links: Record<string, number> = {};
+  for (const car of catalog.cars) {
+    const record = records.get(car.id);
+    const city = car.facts.fuelCityL100km.value,
+      highway = car.facts.fuelHighwayL100km.value;
+    if (!record || car.facts.fuelCombinedL100km.value !== null || city === null || highway === null)
+      continue;
+    const engine = clean(record.engineDescription ?? '');
+    const litres = Number(engine.match(/\b(\d+\.\d)L\b/)?.[1]);
+    const cylinders = Number(
+      engine
+        .match(/\b(\d+)-cylinder\b|\bV(\d+)\b/i)
+        ?.slice(1)
+        .find(Boolean) ?? NaN,
+    );
+    const transmission = clean(record.transmissionDescription ?? '');
+    const speeds = transmission.match(/\b(\d+)-speed\b/)?.[1];
+    const pattern = /\bCVT\b|continuous(ly)? variable/i.test(transmission)
+      ? /^AV\d*$/
+      : !speeds
+        ? null
+        : /dual clutch/i.test(transmission)
+          ? // NRCan records GM dual-clutch units as automatic with select shift.
+            new RegExp(`^A[MS]?${speeds}$`)
+          : /manual/i.test(transmission)
+            ? new RegExp(`^M${speeds}$`)
+            : /automatic/i.test(transmission)
+              ? new RegExp(`^AS?${speeds}$`)
+              : null;
+    if (!litres || !pattern || car.fuel === 'Electric') continue;
+    const candidates = nrcan.records.filter((rating) => {
+      const drive = rating.Model.match(/\b(AWD|4WD|FWD|RWD)\b/)?.[1];
+      return (
+        rating.Make === car.make &&
+        rating.Year === car.year &&
+        rating.VehicleTypeId === 'ICE' &&
+        (car.fuel === 'Diesel'
+          ? rating.FuelTypeId === 'D'
+          : ['X', 'Z'].includes(rating.FuelTypeId)) &&
+        words(rating.Model).every((word) => words(car.model).includes(word)) &&
+        (!drive || drive === car.drivetrain) &&
+        rating.EngineSize === litres &&
+        (Number.isNaN(cylinders) || rating.NumOfCylinders === cylinders) &&
+        pattern.test(rating.TransmissionId) &&
+        rating.CityGasConsumption === city &&
+        rating.HwyGasConsumption === highway
+      );
+    });
+    if (candidates.length === 1) links[car.id] = candidates[0]!.RecordId;
+  }
+  return links;
 }

@@ -141,6 +141,9 @@ export function expandCatalog(
   snapshot: NrcanSnapshot,
   links: Record<string, number>,
   reviewedLinks?: unknown,
+  // Joins established from exact manufacturer engine, transmission and
+  // city/highway evidence, such as gmRatingLinks.
+  exactLinks: Record<string, number> = {},
 ): Catalog {
   for (const id of Object.keys(links))
     if (!base.cars.some((car) => car.id === id))
@@ -223,7 +226,8 @@ export function expandCatalog(
   }
   const covered = new Set<number>();
   const retail = base.cars.map((car) => {
-    const recordId = links[car.id] ?? reviewed.get(car.id);
+    const exact = !links[car.id] && !reviewed.has(car.id) ? exactLinks[car.id] : undefined;
+    const recordId = links[car.id] ?? reviewed.get(car.id) ?? exact;
     if (!recordId) return car;
     const record = records.get(recordId);
     if (
@@ -232,7 +236,11 @@ export function expandCatalog(
       record.Make !== car.make ||
       (car.facts.fuelCombinedL100km.value !== null &&
         record.CombGasConsumption !== car.facts.fuelCombinedL100km.value) ||
-      (!reviewed.has(car.id) && car.facts.fuelCombinedL100km.value === null)
+      (!reviewed.has(car.id) && !exact && car.facts.fuelCombinedL100km.value === null) ||
+      (exact &&
+        (car.recordKind !== 'retail-trim' ||
+          record.CityGasConsumption !== car.facts.fuelCityL100km.value ||
+          record.HwyGasConsumption !== car.facts.fuelHighwayL100km.value))
     )
       throw new Error(`Review the retail-to-rating mapping for ${car.id}.`);
     // Keep existing public rating IDs after adding joins. Only the original

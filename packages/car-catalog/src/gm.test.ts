@@ -300,4 +300,32 @@ describe('GM Canadian factory matrices and calculations', () => {
     expect(gmFacts(ev, byModel(ev)).fuelCombinedL100km.value).toBeNull();
     expect(gmFacts(v8, byModel(v8)).cargoSeatsUpL.value).toBeNull();
   });
+  it('joins NRCan combined consumption only on exact engine, transmission and city/highway evidence', () => {
+    const cars = catalog.cars.filter((car) => car.id.startsWith('gm-ca-'));
+    const linked = cars.filter((car) => car.governmentRating);
+    expect(linked.length).toBeGreaterThan(100);
+    for (const car of linked) {
+      expect(car.facts.fuelCombinedL100km.value).not.toBeNull();
+      expect(car.facts.fuelCombinedL100km.sourceUrl).toBe(
+        `https://fcr-ccc.nrcan-rncan.gc.ca/en/VehicleReport/${car.governmentRating!.recordId}`,
+      );
+    }
+    const blazer = cars.find(
+      (car) => car.id === 'gm-ca-chevrolet-2025-457880-lgx-m3v-fxc-none-none',
+    )!;
+    expect(blazer.governmentRating).toMatchObject({ recordId: 28959, engineLitres: 3.6 });
+    expect(blazer.facts.fuelCombinedL100km.value).toBe(11.2);
+    // A V-Series sedan never takes the base CT4 rating, even at equal size.
+    for (const car of linked.filter((car) => car.model === 'CT4-V Sedan'))
+      expect(car.governmentRating!.engineLitres).toBe(2.7);
+    // TurboMax descriptions state no displacement, so no rating is inferred.
+    expect(
+      cars.filter(
+        (car) =>
+          car.model === 'Colorado' &&
+          car.facts.fuelCityL100km.value !== null &&
+          car.facts.fuelCombinedL100km.value !== null,
+      ),
+    ).toHaveLength(0);
+  });
 });

@@ -96,6 +96,16 @@ and [ZR1X](https://www.chevrolet.ca/en/performance/corvette-zr1x) product descri
 EN0 electric configurations and explicitly described diesel engines remain distinct.
 Generic 2WD does not establish front versus rear drive.
 
+A configuration joins one NRCan rating when its captured engine size, stated
+cylinder count, transmission type and speeds, drivetrain, fuel, year and every
+word of the rated model name agree, and the rating's city and highway values
+equal the calculator's exactly. Only a single candidate is accepted. The
+rating then supplies combined consumption and the other rating facts, each
+linked to its NRCan vehicle report. NRCan records GM dual-clutch transmissions
+as automatic with select shift. Descriptions without a displacement, such as
+TurboMax, and rating names with additional words (AT4/Denali, Mud Terrain
+Tire) stay unlinked. 149 configurations are joined this way.
+
 Captured features-specs/comparison tables still need exact style/powertrain and
 option joins before measurements or operating-mode facts are applied. Default
 seating, cabin/cargo measurements or energy values are not copied to a different
