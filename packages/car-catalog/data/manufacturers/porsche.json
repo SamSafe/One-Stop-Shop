@@ -2,37 +2,37 @@
   "schemaVersion": 1,
   "market": "CA",
   "currency": "CAD",
-  "retrievedAt": "2026-10-26T01:15:36.709Z",
+  "retrievedAt": "2026-10-30T20:28:36.631Z",
   "overviewSource": {
     "url": "https://www.porsche.com/canada/en/models/",
     "status": 200,
-    "sha256": "7c9c5e8155095562a528d91ba1a8b68cf7c3ed75fc91ee49caa65829cdd1d212",
-    "capturedAt": "2026-10-26T00:39:43.301Z"
+    "sha256": "3e81de7694f1f16092d84c2d537da61495da614ad0b2d63c124dee3d7c3951c8",
+    "capturedAt": "2026-10-30T20:27:22.548Z"
   },
   "clients": [
     {
-      "url": "https://configurator.porsche.com/public/customer-configurator.route-CYVjsHr4.js",
+      "url": "https://configurator.porsche.com/public/customer-configurator.route-D3iQhWhF.js",
       "status": 200,
-      "sha256": "72a0348e70deab9004987fa22a515d9dc79a191a700df983fdac6e4e0edda945",
-      "capturedAt": "2026-10-26T00:56:33.833Z"
+      "sha256": "cf69d464ad24326d0d410e33137f62823db9796f4ba70964e7a56c311a44031f",
+      "capturedAt": "2026-10-30T20:27:22.672Z"
     },
     {
-      "url": "https://configurator.porsche.com/public/app-search-params-DnJVjvQS.js",
+      "url": "https://configurator.porsche.com/public/app-search-params-BI-yMevm.js",
       "status": 200,
-      "sha256": "93f696ad111fd7ce7dfc568f30ea9b7856cc58c2a89a269ad574bc8c5b7978dc",
-      "capturedAt": "2026-10-26T00:56:57.648Z"
+      "sha256": "8e96b4b543de76a086aa58cfd9b355eee2b61b980cce896a85972d8afc37d891",
+      "capturedAt": "2026-10-30T20:27:22.685Z"
     },
     {
-      "url": "https://configurator.porsche.com/public/params-C2wJ5HMj.js",
+      "url": "https://configurator.porsche.com/public/params-NiOXCcbD.js",
       "status": 200,
-      "sha256": "484d662ab0a0a5b2e4bcd7658fbc90a714fd9bc0eca044ab431d2e0e743baebd",
-      "capturedAt": "2026-10-26T00:56:57.660Z"
+      "sha256": "4228d0016aa0cb6d3d5132575ea3ee8f1bed0cf38538f4988877cc04ae2e1718",
+      "capturedAt": "2026-10-30T20:27:22.695Z"
     },
     {
-      "url": "https://configurator.porsche.com/public/financial-services-Bc31xzmB.js",
+      "url": "https://configurator.porsche.com/public/financial-services-B6NOqd3R.js",
       "status": 200,
-      "sha256": "ced1dc0b12346fc7bc82d4d45fdc3ce2ad5b841428089a8e2197675fbee27027",
-      "capturedAt": "2026-10-26T00:56:57.682Z"
+      "sha256": "78ae0cdbec42a1b5e83f8cdfd12c1c01092ec890b174ac44a7e0e24e80697da6",
+      "capturedAt": "2026-10-30T20:27:22.712Z"
     }
   ],
   "models": [
@@ -57,8 +57,8 @@
         "source": {
           "url": "https://www.porsche.com/canada/en/models/911/carrera-models/911-carrera/",
           "status": 200,
-          "sha256": "e1936bc65ee4d1773b081a05a4c3d472e0dcd10f998308a70b6f118510f58610",
-          "capturedAt": "2026-10-26T01:06:15.473Z"
+          "sha256": "8998085e5f774338737f002188b17e641134a2752180bf0e61e52f102b3cd546",
+          "capturedAt": "2026-10-30T20:27:22.840Z"
         },
         "data": {
           "modelId": "9921B2-2027",
@@ -585,8 +585,8 @@
         "source": {
           "url": "https://configurator.porsche.com/en-CA/mode/model/9921B2",
           "status": 200,
-          "sha256": "cacbf092dfd4e7919e6cde7c222e4581c9415d069b76e6cc468e1fdec17b3d06",
-          "capturedAt": "2026-10-26T00:41:33.728Z"
+          "sha256": "f78c80a7e296d7204321c8e25de7d6052e370f6c5c1468d08aee9fcacf38f902",
+          "capturedAt": "2026-10-30T20:27:22.950Z"
         },
         "data": {
           "modelId": "9921B2-2027",
@@ -712,8 +712,8 @@
           "source": {
             "url": "https://configurator.porsche.com/en-CA/mode/model/9921B2",
             "status": 200,
-            "sha256": "cacbf092dfd4e7919e6cde7c222e4581c9415d069b76e6cc468e1fdec17b3d06",
-            "capturedAt": "2026-10-26T00:41:33.728Z"
+            "sha256": "f78c80a7e296d7204321c8e25de7d6052e370f6c5c1468d08aee9fcacf38f902",
+            "capturedAt": "2026-10-30T20:27:22.950Z"
           },
           "data": {
             "modelId": "9921B2-2027",
@@ -839,8 +839,8 @@
           "source": {
             "url": "https://configurator.porsche.com/en-CA/mode/model/9921B2?options=1PE.7HK.6FG.9P8.Q5A.6NQ.3J4.QH1.QR9.VL0.1X2.6EE.8T1.3S4.4L6.GT5.3HA.2C5.K8C.7V0.6XV.0I3.9WT.1NA.QJ6.6F0.7X2.2V1.UX6.1G8.6BA.7M9.1P0.4UB.6RC.5KS.9JA.7K3.KA2.6JD.58X.7AL.95A.9VK.6I3.3FA.IV4.G1F.KQ1.2ZC.VR0.QU8.0TC.5XX.0N1.6K9.IW3.FM0.VC2.E0A.7UG.1BH.VF0.D8R.0NB.2W0.9AD.4A3.9ZE.0P0.8IT.EM2.4F6.4GP.5MA.FZ0.3UA.QE0.1LS.8VG.8N7.QQ2.UI2.1N1.GV1.PH.0Q.3UG&optionAdded=3UG",
             "status": 200,
-            "sha256": "acf1b2a056a38a726a7957a0e87576a05fbc74312e2b082e89085345fb5e9da3",
-            "capturedAt": "2026-10-26T01:15:23.340Z"
+            "sha256": "aa5b6e380edbdd0248f02b7950d6b127fc2719d0c296334ec3caf57ae7987e9c",
+            "capturedAt": "2026-10-30T20:27:23.598Z"
           },
           "data": {
             "modelId": "9921B2-2027",
@@ -985,8 +985,8 @@
         "source": {
           "url": "https://www.porsche.com/canada/en/models/911/carrera-models/911-carrera-t/",
           "status": 200,
-          "sha256": "2fec99fead7cf3b34a70a263df950ce4af8511f8d6be22680151c81c44f4fb7a",
-          "capturedAt": "2026-10-26T01:06:16.010Z"
+          "sha256": "2408113deaa45dd3257f903a25df2fe8ebcf182b902f1fed2b9ece6f04e98a1c",
+          "capturedAt": "2026-10-30T20:27:23.947Z"
         },
         "data": {
           "modelId": "992182-2027",
@@ -1507,8 +1507,8 @@
         "source": {
           "url": "https://configurator.porsche.com/en-CA/mode/model/992182",
           "status": 200,
-          "sha256": "6a8a4e5d5e0bd7541771b476b56dd66f4698ca8aa578334ea3397b7aa31a0f54",
-          "capturedAt": "2026-10-26T00:41:34.855Z"
+          "sha256": "57da0c7fb30fe471a86406945cb0bab42ea4764c9ceb39efb04227d1f2fb4560",
+          "capturedAt": "2026-10-30T20:27:24.415Z"
         },
         "data": {
           "modelId": "992182-2027",
@@ -1639,8 +1639,8 @@
           "source": {
             "url": "https://configurator.porsche.com/en-CA/mode/model/992182",
             "status": 200,
-            "sha256": "6a8a4e5d5e0bd7541771b476b56dd66f4698ca8aa578334ea3397b7aa31a0f54",
-            "capturedAt": "2026-10-26T00:41:34.855Z"
+            "sha256": "57da0c7fb30fe471a86406945cb0bab42ea4764c9ceb39efb04227d1f2fb4560",
+            "capturedAt": "2026-10-30T20:27:24.415Z"
           },
           "data": {
             "modelId": "992182-2027",
@@ -1771,8 +1771,8 @@
           "source": {
             "url": "https://configurator.porsche.com/en-CA/mode/model/992182?options=1PE.9P8.VT6.6NQ.QH1.QR9.VL0.GT0.4GF.3J9.1X2.6EE.8T1.3HA.3S4.4L6.2C5.K8C.7V0.VW4.6XV.0I3.9WT.G0W.2PJ.QJ6.0P9.8LH.KQ2.7X2.2V1.1G8.6BA.1P0.4UB.6RC.5KS.9JA.7K3.KA2.7HA.6JD.1NP.7AL.95A.9VK.C8T.6I3.3FA.GH2.IV4.UX7.VF3.VR0.QU8.0TC.5XX.6K9.IW3.FM0.VC2.E0E.7UG.D8R.0NB.2W0.5TR.0N5.UP1.6F4.9AD.6FX.4A3.9ZE.Q4Q.8IT.EM2.4F6.1BV.FZ0.3UA.QE0.1LS.8VG.8N7.QQ2.UI2.1N1.GV1.WA.DAS.0Q.3UG&optionAdded=3UG",
             "status": 200,
-            "sha256": "383777568e089e73154af31c296ed333cdedd4c290f50ba65c3bddb72b568f5d",
-            "capturedAt": "2026-10-26T01:15:24.144Z"
+            "sha256": "c02625b5dbd1d7093f15fe19a9f86642012c324e5d768326a3b08ac0192d7055",
+            "capturedAt": "2026-10-30T20:27:24.836Z"
           },
           "data": {
             "modelId": "992182-2027",
@@ -1922,8 +1922,8 @@
         "source": {
           "url": "https://www.porsche.com/canada/en/models/911/carrera-models/911-carrera-s/",
           "status": 200,
-          "sha256": "57359feffab3d4c36bc293e83ebb97ecdaf0cfd23b939ba98a8290782fb9e826",
-          "capturedAt": "2026-10-26T01:06:16.535Z"
+          "sha256": "60e1e11f4e919082935d021a1fd17b0ba115b59991d11cb7f2f6253928e162da",
+          "capturedAt": "2026-10-30T20:27:24.984Z"
         },
         "data": {
           "modelId": "9921S2-2027",
@@ -2489,8 +2489,8 @@
         "source": {
           "url": "https://configurator.porsche.com/en-CA/mode/model/9921S2",
           "status": 200,
-          "sha256": "118f84804a85ef4c9ac678d3cad46dae6194494b663ef46de1263535034feffc",
-          "capturedAt": "2026-10-26T00:41:35.226Z"
+          "sha256": "c42719cc6578a2258b316ca6206906a7ad3f0dcec40740b34784fc52bcdc208a",
+          "capturedAt": "2026-10-30T20:27:25.560Z"
         },
         "data": {
           "modelId": "9921S2-2027",
@@ -2617,8 +2617,8 @@
           "source": {
             "url": "https://configurator.porsche.com/en-CA/mode/model/9921S2",
             "status": 200,
-            "sha256": "118f84804a85ef4c9ac678d3cad46dae6194494b663ef46de1263535034feffc",
-            "capturedAt": "2026-10-26T00:41:35.226Z"
+            "sha256": "c42719cc6578a2258b316ca6206906a7ad3f0dcec40740b34784fc52bcdc208a",
+            "capturedAt": "2026-10-30T20:27:25.560Z"
           },
           "data": {
             "modelId": "9921S2-2027",
@@ -2745,8 +2745,8 @@
           "source": {
             "url": "https://configurator.porsche.com/en-CA/mode/model/9921S2?options=1PE.7HK.6FG.9P8.Q5A.6NQ.3J4.QH1.QR9.VL0.1X2.6EE.8T1.3S4.4L6.GT5.3HA.2C5.K8C.7V0.6XV.0I3.9WT.1NA.QJ6.6F0.0P8.7X2.UX6.2V1.1G8.6BA.7M9.1P0.4UB.6RC.5KS.9JA.7K3.KA2.M7C.6JD.7AL.95A.9VK.C8T.6I3.FN0.3FA.IV4.G1F.KQ1.2ZC.VR0.QU8.0TC.5XX.0N1.6K9.IW3.VC2.E0A.7UG.1BH.VF0.0NB.2W0.9AD.4A3.9ZE.8IT.EM2.GH3.4F6.4GP.5MA.FZ0.3UA.QE0.1LS.8VG.8N7.QQ2.UI2.1N1.GV1.PH.0Q.3UG&optionAdded=3UG",
             "status": 200,
-            "sha256": "b16756b5106459fb7cd2169a5d5c95ebcf0130e4bca874db8a68ff9788b581c7",
-            "capturedAt": "2026-10-26T01:15:24.751Z"
+            "sha256": "537fad347b135a96d05fc52e66e57b5745e5c47bbb93aede9262bd0fd0bec2bd",
+            "capturedAt": "2026-10-30T20:27:26.721Z"
           },
           "data": {
             "modelId": "9921S2-2027",
@@ -2892,8 +2892,8 @@
         "source": {
           "url": "https://www.porsche.com/canada/en/models/911/carrera-models/911-carrera-4s/",
           "status": 200,
-          "sha256": "d09cd9067fdae62879ea815e785a0e5a33633e80a0d1781231bd56fc1ce9fc81",
-          "capturedAt": "2026-10-26T01:06:17.698Z"
+          "sha256": "a59b69f49c9880d84cae9b033d7a777dd0ff3a4d73bca9fc25befd847e42778f",
+          "capturedAt": "2026-10-30T20:27:26.884Z"
         },
         "data": {
           "modelId": "9924S2-2027",
@@ -3455,8 +3455,8 @@
         "source": {
           "url": "https://configurator.porsche.com/en-CA/mode/model/9924S2",
           "status": 200,
-          "sha256": "6c6080b3448b39958b2a38af5c010f27d79b271398e537d7aa9653da252c3ce2",
-          "capturedAt": "2026-10-26T00:41:35.543Z"
+          "sha256": "e2a98965db53a38499ec754f4e1813182b3227e6b9851120de247eb6b8d0ecc8",
+          "capturedAt": "2026-10-30T20:27:27.299Z"
         },
         "data": {
           "modelId": "9924S2-2027",
@@ -3583,8 +3583,8 @@
           "source": {
             "url": "https://configurator.porsche.com/en-CA/mode/model/9924S2",
             "status": 200,
-            "sha256": "6c6080b3448b39958b2a38af5c010f27d79b271398e537d7aa9653da252c3ce2",
-            "capturedAt": "2026-10-26T00:41:35.543Z"
+            "sha256": "e2a98965db53a38499ec754f4e1813182b3227e6b9851120de247eb6b8d0ecc8",
+            "capturedAt": "2026-10-30T20:27:27.299Z"
           },
           "data": {
             "modelId": "9924S2-2027",
@@ -3711,8 +3711,8 @@
           "source": {
             "url": "https://configurator.porsche.com/en-CA/mode/model/9924S2?options=1PE.7HK.6FG.9P8.Q5A.6NQ.3J4.QH1.QR9.VL0.6EE.8T1.3S4.4L6.GT5.3HA.2C5.K8C.7V0.6XV.0I3.9WT.1NA.QJ6.6F0.0P8.7X2.G1G.UX6.2V1.1G8.6BA.1P0.7M9.4UB.6RC.5KS.9JA.7K3.1X1.KA2.M7C.6JD.7AL.95A.9VK.C8T.6I3.FN0.3FA.IV4.KQ1.2ZC.VR0.QU8.0TC.5XX.0N1.6K9.IW3.VC2.E0A.7UG.1BH.VF0.0NB.2W0.9AD.4A3.9ZE.8IT.EM2.GH3.4F6.4GP.5MA.FZ0.3UA.QE0.1LS.8VG.8N7.QQ2.UI2.1N1.GV1.PH.0Q.3UG&optionAdded=3UG",
             "status": 200,
-            "sha256": "a175cfe6322cb94a6e5a1d1349e5f35640e52a43265304958b6931f978bb300d",
-            "capturedAt": "2026-10-26T01:15:26.185Z"
+            "sha256": "1eaa03fa2ace70fe7121283e333567dc7c2f33bc590cc59e13f15e4162276988",
+            "capturedAt": "2026-10-30T20:27:27.800Z"
           },
           "data": {
             "modelId": "9924S2-2027",
@@ -3858,8 +3858,8 @@
         "source": {
           "url": "https://www.porsche.com/canada/en/models/911/carrera-models/911-carrera-s-mt-package/",
           "status": 200,
-          "sha256": "0128d3ccb0f5cf947dc68973ceee7569857626ce16ba4ecb95edafdfb0c1a574",
-          "capturedAt": "2026-10-26T01:06:18.300Z"
+          "sha256": "6fc6c9205380564ea97686539d0e2eb1317438ae789c49a77375b7ee3d1ea649",
+          "capturedAt": "2026-10-30T20:27:27.974Z"
         },
         "data": {
           "modelId": "9921A2-2027",
@@ -4361,8 +4361,8 @@
         "source": {
           "url": "https://configurator.porsche.com/en-CA/mode/model/9921A2",
           "status": 200,
-          "sha256": "5f80cab62a3972db49453cc68a31c1f18ac21f4c9fa61f8a2f8d7b2cf3dcceaa",
-          "capturedAt": "2026-10-26T00:41:36.100Z"
+          "sha256": "86f7af1bf95a8f1a510ea207fc428b18a5ed066a8b73e1095175717dd86b0cf6",
+          "capturedAt": "2026-10-30T20:27:28.039Z"
         },
         "data": {
           "modelId": "9921A2-2027",
@@ -4491,8 +4491,8 @@
           "source": {
             "url": "https://configurator.porsche.com/en-CA/mode/model/9921A2",
             "status": 200,
-            "sha256": "5f80cab62a3972db49453cc68a31c1f18ac21f4c9fa61f8a2f8d7b2cf3dcceaa",
-            "capturedAt": "2026-10-26T00:41:36.100Z"
+            "sha256": "86f7af1bf95a8f1a510ea207fc428b18a5ed066a8b73e1095175717dd86b0cf6",
+            "capturedAt": "2026-10-30T20:27:28.039Z"
           },
           "data": {
             "modelId": "9921A2-2027",
@@ -4621,8 +4621,8 @@
           "source": {
             "url": "https://configurator.porsche.com/en-CA/mode/model/9921A2?options=7UG.7HK.6FG.9P8.6NQ.3J4.QH1.QR9.VL0.4GF.1X2.6EE.8T1.3S4.2D4.4L6.GT5.3HA.2C5.K8C.7V0.VW4.6XV.0I3.9WT.G0W.2PJ.QJ6.6F0.8LH.7X2.UX6.2V1.1G8.6BA.7M9.1P0.4UB.6RC.5KS.9JA.7K3.KA2.M7C.6JD.7AL.9VK.6I3.FN0.3FA.GH2.IV4.KQ1.58Y.VF3.VR0.QU8.0TC.5XX.6K9.IW3.VC2.0NB.2W0.0N5.UP1.9AD.4A3.9ZE.Q4Q.8IT.EM2.95B.4F6.1BV.1NE.5MA.FZ0.3UA.QE0.1LS.8VG.8N7.QQ2.UI2.0P5.1N1.GV1.PH.0Q.3UG&optionAdded=3UG",
             "status": 200,
-            "sha256": "4ade4024a042ca9858420f9ba33a4ee8fa5adf08278aedb4a01b87cd6cdcd571",
-            "capturedAt": "2026-10-26T01:15:26.734Z"
+            "sha256": "bc2158e06a1ac926699e537f4e838a8a0c9512ee75d3f61855899d1b759da108",
+            "capturedAt": "2026-10-30T20:27:28.611Z"
           },
           "data": {
             "modelId": "9921A2-2027",
@@ -4770,8 +4770,8 @@
         "source": {
           "url": "https://www.porsche.com/canada/en/models/911/carrera-models/911-carrera-gts/",
           "status": 200,
-          "sha256": "b41905e25bbd002d16c52010912c646462f33bcb87a29940afb6a787a4ea0843",
-          "capturedAt": "2026-10-26T01:06:18.831Z"
+          "sha256": "525daacbc7a4a287cbc307a74847c7a64aca5fbe1c6960c9127caaa35d2a46f7",
+          "capturedAt": "2026-10-30T20:27:28.947Z"
         },
         "data": {
           "modelId": "992142-2027",
@@ -5347,8 +5347,8 @@
         "source": {
           "url": "https://configurator.porsche.com/en-CA/mode/model/992142",
           "status": 200,
-          "sha256": "f2e377f88eec3561857bacb6507fdb106e2365a18d223792a4e90bc2be98c0a5",
-          "capturedAt": "2026-10-26T00:41:36.405Z"
+          "sha256": "63a26b4ddb636200ddb49f6a38d0296eb85d250a92ce7c2d97423fbc8c19cdf9",
+          "capturedAt": "2026-10-30T20:27:29.079Z"
         },
         "data": {
           "modelId": "992142-2027",
@@ -5478,8 +5478,8 @@
           "source": {
             "url": "https://configurator.porsche.com/en-CA/mode/model/992142",
             "status": 200,
-            "sha256": "f2e377f88eec3561857bacb6507fdb106e2365a18d223792a4e90bc2be98c0a5",
-            "capturedAt": "2026-10-26T00:41:36.405Z"
+            "sha256": "63a26b4ddb636200ddb49f6a38d0296eb85d250a92ce7c2d97423fbc8c19cdf9",
+            "capturedAt": "2026-10-30T20:27:29.079Z"
           },
           "data": {
             "modelId": "992142-2027",
@@ -5609,8 +5609,8 @@
           "source": {
             "url": "https://configurator.porsche.com/en-CA/mode/model/992142?options=7UG.9P8.VT6.QH1.QR9.FN7.VL0.GT0.3J9.1X2.6F1.6EE.6NA.8T1.3HA.3S4.4L6.2D1.2C5.K8C.7V0.D7B.6XV.0I3.9WT.1NA.QJ6.0P9.8LH.7X2.2V1.1G8.6BA.1P0.4UB.6RC.5KS.9JA.7K3.6FW.KA2.6JD.7AL.9VK.7HC.6I3.3FA.IV4.G1F.58Y.UX7.5TH.VR0.QU8.0TC.5XX.6K9.IW3.VC2.E0A.0NB.2W0.0N5.UP1.9AD.4A3.9ZE.Q4Q.KQ3.8IT.EM2.95B.1BV.GH3.4F6.VF2.2ZF.4GP.FZ0.3UA.QE0.1LS.8VG.8N7.QQ2.8Z6.UI2.1N1.GV1.SX.0Q.3UG&optionAdded=3UG",
             "status": 200,
-            "sha256": "63a834247f01447b089a7bcf51f22b7ca448a5d9ccdb1ff4ff3bcd3b7dbd5711",
-            "capturedAt": "2026-10-26T01:15:27.551Z"
+            "sha256": "621d48ead75fe024d55c8846332af5c5a03ae8dbddf84cb6c0d395410559750d",
+            "capturedAt": "2026-10-30T20:27:30.126Z"
           },
           "data": {
             "modelId": "992142-2027",
@@ -5629,7 +5629,6 @@
             },
             "transmission": { "id": "G1F", "title": "8-speed Porsche Doppelkupplung (PDK)" },
             "selectedOptions": [
-              "9JA",
               "7UG",
               "VT6",
               "QH1",
@@ -5665,6 +5664,7 @@
               "1P0",
               "4UB",
               "6RC",
+              "9JA",
               "7K3",
               "6FW",
               "KA2",
@@ -5759,8 +5759,8 @@
         "source": {
           "url": "https://www.porsche.com/canada/en/models/911/carrera-models/911-carrera-4-gts/",
           "status": 200,
-          "sha256": "1a71e29b44a907916c4737e6749c11d49d7fb2a0c27172ff095ae19b42cbdc93",
-          "capturedAt": "2026-10-26T01:06:20.343Z"
+          "sha256": "e8728ba3091d5fc2a63698f7bfdd0d50776280fab7dd465adc6a8379eb1e9531",
+          "capturedAt": "2026-10-30T20:27:30.369Z"
         },
         "data": {
           "modelId": "992442-2027",
@@ -6339,8 +6339,8 @@
         "source": {
           "url": "https://configurator.porsche.com/en-CA/mode/model/992442",
           "status": 200,
-          "sha256": "0e80820d9de1700c5eabf3df33e1b0883626888fc232f7bbfaef5a2a71d5956c",
-          "capturedAt": "2026-10-26T00:41:36.984Z"
+          "sha256": "098619754c9f6f3a83d6365b2fa0721e19b3a919e92a1eeff097e66040be1d15",
+          "capturedAt": "2026-10-30T20:27:30.981Z"
         },
         "data": {
           "modelId": "992442-2027",
@@ -6470,8 +6470,8 @@
           "source": {
             "url": "https://configurator.porsche.com/en-CA/mode/model/992442",
             "status": 200,
-            "sha256": "0e80820d9de1700c5eabf3df33e1b0883626888fc232f7bbfaef5a2a71d5956c",
-            "capturedAt": "2026-10-26T00:41:36.984Z"
+            "sha256": "098619754c9f6f3a83d6365b2fa0721e19b3a919e92a1eeff097e66040be1d15",
+            "capturedAt": "2026-10-30T20:27:30.981Z"
           },
           "data": {
             "modelId": "992442-2027",
@@ -6601,8 +6601,8 @@
           "source": {
             "url": "https://configurator.porsche.com/en-CA/mode/model/992442?options=7UG.9P8.VT6.QH1.QR9.FN7.VL0.GT0.3J9.6F1.6EE.6NA.8T1.3HA.3S4.4L6.2D1.2C5.K8C.7V0.D7B.6XV.0I3.9WT.1NA.QJ6.0P9.8LH.7X2.2V1.G1G.1G8.6BA.1P0.4UB.6RC.5KS.9JA.7K3.1X1.6FW.KA2.6JD.7AL.9VK.7HC.6I3.3FA.IV4.58Y.UX7.5TH.VR0.QU8.0TC.5XX.6K9.IW3.VC2.E0A.0NB.2W0.0N5.UP1.9AD.4A3.9ZE.Q4Q.KQ3.8IT.EM2.95B.1BV.GH3.4F6.VF2.2ZF.4GP.FZ0.3UA.QE0.1LS.8VG.8N7.QQ2.8Z6.UI2.1N1.GV1.SX.0Q.3UG&optionAdded=3UG",
             "status": 200,
-            "sha256": "ce0453d3d94174f22f3dcfd220ee8ca95f2ba87515e89729a6c08d5645eb239c",
-            "capturedAt": "2026-10-26T01:15:28.418Z"
+            "sha256": "f0cddaeb086e88e2a32cf316754a8e18e025bee00d9d220672f87aec6c3959ba",
+            "capturedAt": "2026-10-30T20:27:31.550Z"
           },
           "data": {
             "modelId": "992442-2027",
@@ -6621,7 +6621,6 @@
             },
             "transmission": { "id": "G1G", "title": "8-speed Porsche Doppelkupplung (PDK)" },
             "selectedOptions": [
-              "9JA",
               "7UG",
               "VT6",
               "QH1",
@@ -6657,6 +6656,7 @@
               "1P0",
               "4UB",
               "6RC",
+              "9JA",
               "7K3",
               "1X1",
               "6FW",
@@ -6751,8 +6751,8 @@
         "source": {
           "url": "https://www.porsche.com/canada/en/models/911/carrera-cabriolet-models/911-carrera-cabriolet/",
           "status": 200,
-          "sha256": "83fd14086ff1f1977ed3613b81d3467e567f77a86964eacb99bb818455de2e53",
-          "capturedAt": "2026-10-26T01:06:20.705Z"
+          "sha256": "5464e7ccac5848a02ae255dffcd0ff51f4c9d988fdbd17850b15908b97366777",
+          "capturedAt": "2026-10-30T20:27:32.092Z"
         },
         "data": {
           "modelId": "9923B2-2027",
@@ -7230,8 +7230,8 @@
         "source": {
           "url": "https://configurator.porsche.com/en-CA/mode/model/9923B2",
           "status": 200,
-          "sha256": "8a87b336e273ae44cb1b3b9b1005cf35afe8470b648207cf043707e43db7cf7d",
-          "capturedAt": "2026-10-26T00:41:37.291Z"
+          "sha256": "e81c5a3b1015f87587aff308adb7db29889ce7e7ea4167c6e958c380b91fa382",
+          "capturedAt": "2026-10-30T20:27:32.811Z"
         },
         "data": {
           "modelId": "9923B2-2027",
@@ -7349,8 +7349,8 @@
           "source": {
             "url": "https://configurator.porsche.com/en-CA/mode/model/9923B2",
             "status": 200,
-            "sha256": "8a87b336e273ae44cb1b3b9b1005cf35afe8470b648207cf043707e43db7cf7d",
-            "capturedAt": "2026-10-26T00:41:37.291Z"
+            "sha256": "e81c5a3b1015f87587aff308adb7db29889ce7e7ea4167c6e958c380b91fa382",
+            "capturedAt": "2026-10-30T20:27:32.811Z"
           },
           "data": {
             "modelId": "9923B2-2027",
@@ -7486,8 +7486,8 @@
         "source": {
           "url": "https://www.porsche.com/canada/en/models/911/carrera-cabriolet-models/911-carrera-t-cabriolet/",
           "status": 200,
-          "sha256": "667940f18a57fa6797be29a9419c6db41f613d2a2e18f31bcb777029ea36454a",
-          "capturedAt": "2026-10-26T01:06:22.328Z"
+          "sha256": "a7c2aee572e2a51f872bf05b1c343aab6655983496dd1296340160c70257f198",
+          "capturedAt": "2026-10-30T20:27:32.875Z"
         },
         "data": {
           "modelId": "992382-2027",
@@ -7956,8 +7956,8 @@
         "source": {
           "url": "https://configurator.porsche.com/en-CA/mode/model/992382",
           "status": 200,
-          "sha256": "a63aa3fa40b2c6e4610da226fbbc4aa9dab019767ac35802ab14fbfde0b10a03",
-          "capturedAt": "2026-10-26T00:41:38.266Z"
+          "sha256": "f5d347810ed92992748b62be4ddf930f6d3c6d8e01a32691efa07b47c9e51a8d",
+          "capturedAt": "2026-10-30T20:27:33.323Z"
         },
         "data": {
           "modelId": "992382-2027",
@@ -8080,8 +8080,8 @@
           "source": {
             "url": "https://configurator.porsche.com/en-CA/mode/model/992382",
             "status": 200,
-            "sha256": "a63aa3fa40b2c6e4610da226fbbc4aa9dab019767ac35802ab14fbfde0b10a03",
-            "capturedAt": "2026-10-26T00:41:38.266Z"
+            "sha256": "f5d347810ed92992748b62be4ddf930f6d3c6d8e01a32691efa07b47c9e51a8d",
+            "capturedAt": "2026-10-30T20:27:33.323Z"
           },
           "data": {
             "modelId": "992382-2027",
@@ -8222,8 +8222,8 @@
         "source": {
           "url": "https://www.porsche.com/canada/en/models/911/carrera-cabriolet-models/911-carrera-s-cabriolet/",
           "status": 200,
-          "sha256": "64def9a95a3a42685e3407ebe1b047a38268abf6cd21bea36994bfab5be4cdff",
-          "capturedAt": "2026-10-26T01:06:23.084Z"
+          "sha256": "ce287bf3d868fa6f819cc0c6f5bfe1dd06de06c267843aea4174ea50e8884fd3",
+          "capturedAt": "2026-10-30T20:27:34.057Z"
         },
         "data": {
           "modelId": "9923S2-2027",
@@ -8740,8 +8740,8 @@
         "source": {
           "url": "https://configurator.porsche.com/en-CA/mode/model/9923S2",
           "status": 200,
-          "sha256": "b675bfb9b6593cea939d0cb88304d0d8b943cb158696a6122f632ae8a5860bc9",
-          "capturedAt": "2026-10-26T00:41:38.938Z"
+          "sha256": "7ffd8b07f807ac134ff4b53035ff16e1ac09029f4c09e33c889494292f551d4e",
+          "capturedAt": "2026-10-30T20:27:34.654Z"
         },
         "data": {
           "modelId": "9923S2-2027",
@@ -8860,8 +8860,8 @@
           "source": {
             "url": "https://configurator.porsche.com/en-CA/mode/model/9923S2",
             "status": 200,
-            "sha256": "b675bfb9b6593cea939d0cb88304d0d8b943cb158696a6122f632ae8a5860bc9",
-            "capturedAt": "2026-10-26T00:41:38.938Z"
+            "sha256": "7ffd8b07f807ac134ff4b53035ff16e1ac09029f4c09e33c889494292f551d4e",
+            "capturedAt": "2026-10-30T20:27:34.654Z"
           },
           "data": {
             "modelId": "9923S2-2027",
@@ -8998,8 +8998,8 @@
         "source": {
           "url": "https://www.porsche.com/canada/en/models/911/carrera-cabriolet-models/911-carrera-4s-cabriolet/",
           "status": 200,
-          "sha256": "6a20074a95c5d556108fb090305bb950c8fca91e55cfa40734b653429c8796c8",
-          "capturedAt": "2026-10-26T01:06:24.004Z"
+          "sha256": "7f016472d49a4235455c82268dfe6cc016d89e45cd5461dc3a38c92e14cfb9a5",
+          "capturedAt": "2026-10-30T20:27:35.559Z"
         },
         "data": {
           "modelId": "9926S2-2027",
@@ -9519,8 +9519,8 @@
         "source": {
           "url": "https://configurator.porsche.com/en-CA/mode/model/9926S2",
           "status": 200,
-          "sha256": "142d45dc4f5c236f09d845460870c2da171a81538ca3af495e1db16747f283c1",
-          "capturedAt": "2026-10-26T00:41:39.511Z"
+          "sha256": "6c2d450ba51cf5672a09c35ecabd8d43d31a8465dcf015f57bbc75792a590dc0",
+          "capturedAt": "2026-10-30T20:27:36.062Z"
         },
         "data": {
           "modelId": "9926S2-2027",
@@ -9639,8 +9639,8 @@
           "source": {
             "url": "https://configurator.porsche.com/en-CA/mode/model/9926S2",
             "status": 200,
-            "sha256": "142d45dc4f5c236f09d845460870c2da171a81538ca3af495e1db16747f283c1",
-            "capturedAt": "2026-10-26T00:41:39.511Z"
+            "sha256": "6c2d450ba51cf5672a09c35ecabd8d43d31a8465dcf015f57bbc75792a590dc0",
+            "capturedAt": "2026-10-30T20:27:36.062Z"
           },
           "data": {
             "modelId": "9926S2-2027",
@@ -9777,8 +9777,8 @@
         "source": {
           "url": "https://www.porsche.com/canada/en/models/911/carrera-cabriolet-models/911-carrera-s-cabriolet-mt-package/",
           "status": 200,
-          "sha256": "02be4a39a32e470926084fa5c6ccb6d63bef5d733e44fc1d90ee5a4e11d351c5",
-          "capturedAt": "2026-10-26T01:06:24.907Z"
+          "sha256": "60944a3de2d10e6e7a621e285fddd47c2feea81f55c59ab0452ac130d083d7b9",
+          "capturedAt": "2026-10-30T20:27:36.699Z"
         },
         "data": {
           "modelId": "9923A2-2027",
@@ -10227,8 +10227,8 @@
         "source": {
           "url": "https://configurator.porsche.com/en-CA/mode/model/9923A2",
           "status": 200,
-          "sha256": "b167f8c63cd82e1e4426d5cb9bd90a26e4a74f26cac56d256a435e121dd7fd52",
-          "capturedAt": "2026-10-26T00:41:40.470Z"
+          "sha256": "1df4b85e0523980e3cf65c8ae497b205313cc7cbfdd67dbd47d26b58839db937",
+          "capturedAt": "2026-10-30T20:27:37.420Z"
         },
         "data": {
           "modelId": "9923A2-2027",
@@ -10348,8 +10348,8 @@
           "source": {
             "url": "https://configurator.porsche.com/en-CA/mode/model/9923A2",
             "status": 200,
-            "sha256": "b167f8c63cd82e1e4426d5cb9bd90a26e4a74f26cac56d256a435e121dd7fd52",
-            "capturedAt": "2026-10-26T00:41:40.470Z"
+            "sha256": "1df4b85e0523980e3cf65c8ae497b205313cc7cbfdd67dbd47d26b58839db937",
+            "capturedAt": "2026-10-30T20:27:37.420Z"
           },
           "data": {
             "modelId": "9923A2-2027",
@@ -10487,8 +10487,8 @@
         "source": {
           "url": "https://www.porsche.com/canada/en/models/911/carrera-cabriolet-models/911-carrera-gts-cabriolet/",
           "status": 200,
-          "sha256": "975a1620a485157766edd2062f6ce6f978abf9f212c303100a002aaa1c6e871f",
-          "capturedAt": "2026-10-26T01:06:25.828Z"
+          "sha256": "c102f4fec654df8fcb73abbc6cc95fa5494dbbc9fac4a6e5d5f2364eae1da8a9",
+          "capturedAt": "2026-10-30T20:27:38.092Z"
         },
         "data": {
           "modelId": "992342-2027",
@@ -11015,8 +11015,8 @@
         "source": {
           "url": "https://configurator.porsche.com/en-CA/mode/model/992342",
           "status": 200,
-          "sha256": "8f225695a1599835d5c900856495b6c76086ba41d7ff9f3bec9c954f528ef81a",
-          "capturedAt": "2026-10-26T00:41:41.007Z"
+          "sha256": "54cea1eed261cb591a2ecc705919fa1edda8953f975797e23be9f265bdf0c6d0",
+          "capturedAt": "2026-10-30T20:27:38.591Z"
         },
         "data": {
           "modelId": "992342-2027",
@@ -11035,7 +11035,6 @@
           },
           "transmission": { "id": "G1F", "title": "8-speed Porsche Doppelkupplung (PDK)" },
           "selectedOptions": [
-            "9JA",
             "VT6",
             "QH1",
             "QR9",
@@ -11067,6 +11066,7 @@
             "1P0",
             "4UB",
             "6RC",
+            "9JA",
             "7K3",
             "0TD",
             "6FW",
@@ -11138,8 +11138,8 @@
           "source": {
             "url": "https://configurator.porsche.com/en-CA/mode/model/992342",
             "status": 200,
-            "sha256": "8f225695a1599835d5c900856495b6c76086ba41d7ff9f3bec9c954f528ef81a",
-            "capturedAt": "2026-10-26T00:41:41.007Z"
+            "sha256": "54cea1eed261cb591a2ecc705919fa1edda8953f975797e23be9f265bdf0c6d0",
+            "capturedAt": "2026-10-30T20:27:38.591Z"
           },
           "data": {
             "modelId": "992342-2027",
@@ -11158,7 +11158,6 @@
             },
             "transmission": { "id": "G1F", "title": "8-speed Porsche Doppelkupplung (PDK)" },
             "selectedOptions": [
-              "9JA",
               "VT6",
               "QH1",
               "QR9",
@@ -11190,6 +11189,7 @@
               "1P0",
               "4UB",
               "6RC",
+              "9JA",
               "7K3",
               "0TD",
               "6FW",
@@ -11279,8 +11279,8 @@
         "source": {
           "url": "https://www.porsche.com/canada/en/models/911/carrera-cabriolet-models/911-carrera-4-gts-cabriolet/",
           "status": 200,
-          "sha256": "748cd69bcd103728708bf225b4565af1bbf47ae932cdfb8337b75369e778f0a0",
-          "capturedAt": "2026-10-26T01:06:26.781Z"
+          "sha256": "fbef26e6233c5a4187d7778175feb197874b5a647bb2ea0c3113ea2dd6b1d668",
+          "capturedAt": "2026-10-30T20:27:39.590Z"
         },
         "data": {
           "modelId": "992642-2027",
@@ -11810,8 +11810,8 @@
         "source": {
           "url": "https://configurator.porsche.com/en-CA/mode/model/992642",
           "status": 200,
-          "sha256": "c8710e1a3fd7090e883047abb5390bab8f728e0c63bdead099381df80d39698d",
-          "capturedAt": "2026-10-26T00:41:41.926Z"
+          "sha256": "b22463cc6fba0b7b197aa3a1c3d9530963db707cb96fe130905b72a9d96836aa",
+          "capturedAt": "2026-10-30T20:27:40.305Z"
         },
         "data": {
           "modelId": "992642-2027",
@@ -11830,7 +11830,6 @@
           },
           "transmission": { "id": "G1G", "title": "8-speed Porsche Doppelkupplung (PDK)" },
           "selectedOptions": [
-            "9JA",
             "VT6",
             "QH1",
             "QR9",
@@ -11862,6 +11861,7 @@
             "1P0",
             "4UB",
             "6RC",
+            "9JA",
             "7K3",
             "0TD",
             "1X1",
@@ -11933,8 +11933,8 @@
           "source": {
             "url": "https://configurator.porsche.com/en-CA/mode/model/992642",
             "status": 200,
-            "sha256": "c8710e1a3fd7090e883047abb5390bab8f728e0c63bdead099381df80d39698d",
-            "capturedAt": "2026-10-26T00:41:41.926Z"
+            "sha256": "b22463cc6fba0b7b197aa3a1c3d9530963db707cb96fe130905b72a9d96836aa",
+            "capturedAt": "2026-10-30T20:27:40.305Z"
           },
           "data": {
             "modelId": "992642-2027",
@@ -11953,7 +11953,6 @@
             },
             "transmission": { "id": "G1G", "title": "8-speed Porsche Doppelkupplung (PDK)" },
             "selectedOptions": [
-              "9JA",
               "VT6",
               "QH1",
               "QR9",
@@ -11985,6 +11984,7 @@
               "1P0",
               "4UB",
               "6RC",
+              "9JA",
               "7K3",
               "0TD",
               "1X1",
@@ -12074,8 +12074,8 @@
         "source": {
           "url": "https://www.porsche.com/canada/en/models/911/targa-models/911-targa-4s/",
           "status": 200,
-          "sha256": "8b3db37e4f1d8865a82efc65415954000ceb73e238269d9a17b4f0ad92432588",
-          "capturedAt": "2026-10-26T01:06:27.170Z"
+          "sha256": "92e1de04a5da05b8dbff8fbe0cb0d567bea1d394eaf8a14f6c97ad59609b8941",
+          "capturedAt": "2026-10-30T20:27:40.478Z"
         },
         "data": {
           "modelId": "9925S2-2027",
@@ -12554,8 +12554,8 @@
         "source": {
           "url": "https://configurator.porsche.com/en-CA/mode/model/9925S2",
           "status": 200,
-          "sha256": "429fd51881f9f1a216ce6a57503c4973c74f647e2f1148e5c66550a633f43f65",
-          "capturedAt": "2026-10-26T00:41:42.205Z"
+          "sha256": "b20fc7c4141d0515e5ff0b1d8d84cf2d68e0d3f15c56053210ade491625b1136",
+          "capturedAt": "2026-10-30T20:27:40.825Z"
         },
         "data": {
           "modelId": "9925S2-2027",
@@ -12675,8 +12675,8 @@
           "source": {
             "url": "https://configurator.porsche.com/en-CA/mode/model/9925S2",
             "status": 200,
-            "sha256": "429fd51881f9f1a216ce6a57503c4973c74f647e2f1148e5c66550a633f43f65",
-            "capturedAt": "2026-10-26T00:41:42.205Z"
+            "sha256": "b20fc7c4141d0515e5ff0b1d8d84cf2d68e0d3f15c56053210ade491625b1136",
+            "capturedAt": "2026-10-30T20:27:40.825Z"
           },
           "data": {
             "modelId": "9925S2-2027",
@@ -12814,8 +12814,8 @@
         "source": {
           "url": "https://www.porsche.com/canada/en/models/911/targa-models/911-targa-4-gts/",
           "status": 200,
-          "sha256": "1e953e47c7deb63be1b4ccfef9e2be0b951ae7f2025444c2db2e3e53d1762ab1",
-          "capturedAt": "2026-10-26T01:06:28.346Z"
+          "sha256": "3de20b686f9829a22e15224824a107a65b1a87a759f59f19707db25a097eb829",
+          "capturedAt": "2026-10-30T20:27:41.425Z"
         },
         "data": {
           "modelId": "992542-2027",
@@ -13313,8 +13313,8 @@
         "source": {
           "url": "https://configurator.porsche.com/en-CA/mode/model/992542",
           "status": 200,
-          "sha256": "357279e36ce7a3de018b17f0cd973c7bb9d2c1d8e2394b3c0283e2216463f20a",
-          "capturedAt": "2026-10-26T00:41:42.879Z"
+          "sha256": "fc72b884ee2e3b9e62c8e1003d47d80e254ec6b13d85ae21978c1d827f11c827",
+          "capturedAt": "2026-10-30T20:27:41.974Z"
         },
         "data": {
           "modelId": "992542-2027",
@@ -13333,7 +13333,6 @@
           },
           "transmission": { "id": "G1G", "title": "8-speed Porsche Doppelkupplung (PDK)" },
           "selectedOptions": [
-            "9JA",
             "VT6",
             "QH1",
             "QR9",
@@ -13366,6 +13365,7 @@
             "1P0",
             "4UB",
             "6RC",
+            "9JA",
             "7K3",
             "0TD",
             "1X1",
@@ -13437,8 +13437,8 @@
           "source": {
             "url": "https://configurator.porsche.com/en-CA/mode/model/992542",
             "status": 200,
-            "sha256": "357279e36ce7a3de018b17f0cd973c7bb9d2c1d8e2394b3c0283e2216463f20a",
-            "capturedAt": "2026-10-26T00:41:42.879Z"
+            "sha256": "fc72b884ee2e3b9e62c8e1003d47d80e254ec6b13d85ae21978c1d827f11c827",
+            "capturedAt": "2026-10-30T20:27:41.974Z"
           },
           "data": {
             "modelId": "992542-2027",
@@ -13457,7 +13457,6 @@
             },
             "transmission": { "id": "G1G", "title": "8-speed Porsche Doppelkupplung (PDK)" },
             "selectedOptions": [
-              "9JA",
               "VT6",
               "QH1",
               "QR9",
@@ -13490,6 +13489,7 @@
               "1P0",
               "4UB",
               "6RC",
+              "9JA",
               "7K3",
               "0TD",
               "1X1",
@@ -13579,8 +13579,8 @@
         "source": {
           "url": "https://www.porsche.com/canada/en/models/911/911-gt3-models/911-gt3/",
           "status": 200,
-          "sha256": "1b264896df9ab3c1efa8f805221f2178bafc72a7fcd48c42c03b5296895a8819",
-          "capturedAt": "2026-10-26T01:06:28.791Z"
+          "sha256": "0895720100919fc8cf5f4b7ab7e53aa4a7f3eb9c7d794dd9460bf73c6810a456",
+          "capturedAt": "2026-10-30T20:27:42.860Z"
         },
         "data": {
           "modelId": "992812-2027",
@@ -14101,8 +14101,8 @@
         "source": {
           "url": "https://configurator.porsche.com/en-CA/mode/model/992812",
           "status": 200,
-          "sha256": "6843d8909fcb6aaaddf2ffdff8fc0a6a2c5841062ae2b12bd1d16c2f204321a4",
-          "capturedAt": "2026-10-26T00:41:43.179Z"
+          "sha256": "bbb0d668b19ffd4c25abcc38cfb60d4f49ec4f59c71643d385dc4c375d0a3777",
+          "capturedAt": "2026-10-30T20:27:42.899Z"
         },
         "data": {
           "modelId": "992812-2027",
@@ -14223,8 +14223,8 @@
           "source": {
             "url": "https://configurator.porsche.com/en-CA/mode/model/992812",
             "status": 200,
-            "sha256": "6843d8909fcb6aaaddf2ffdff8fc0a6a2c5841062ae2b12bd1d16c2f204321a4",
-            "capturedAt": "2026-10-26T00:41:43.179Z"
+            "sha256": "bbb0d668b19ffd4c25abcc38cfb60d4f49ec4f59c71643d385dc4c375d0a3777",
+            "capturedAt": "2026-10-30T20:27:42.899Z"
           },
           "data": {
             "modelId": "992812-2027",
@@ -14345,8 +14345,8 @@
           "source": {
             "url": "https://configurator.porsche.com/en-CA/mode/model/992812?options=7UG.9P8.QH1.QR9.51A.VL0.GT0.3J9.1N3.1X2.7HL.6EE.6NA.8T1.3HA.4L6.M1P.2C5.K8C.VW4.0I3.1XQ.9WT.QJ6.6F0.0P9.2V1.UX6.7TF.6BA.1G8.1P0.4UB.6RC.5KS.9JA.95D.7K3.6FW.KA2.QQ0.4I8.7AL.9VK.3FA.IV4.VR0.QU8.0TC.5XX.IW3.2JB.VC2.E0A.5J1.0NB.2W0.0N5.9AD.4A3.9ZE.Q4Q.KQ3.8IT.EM2.GH3.FM7.1BV.1NE.VF2.C2Q.4GP.6Q5.FZ0.3UA.QE0.VT5.6XA.1LS.8VG.8N7.UI2.GV1.13.0Q.G0W&optionAdded=G0W&optionRemoved=G1C",
             "status": 200,
-            "sha256": "9093bd3a95772a8eb47e21726177ac8da67164b4a26835a0f37676b573597083",
-            "capturedAt": "2026-10-26T01:15:29.778Z"
+            "sha256": "67e85bcddcaef106e75ce59ce0fdad1826c9520ce831b549d21fe74fe853201d",
+            "capturedAt": "2026-10-30T20:27:43.921Z"
           },
           "data": {
             "modelId": "992812-2027",
@@ -14484,8 +14484,8 @@
         "source": {
           "url": "https://www.porsche.com/canada/en/models/911/911-gt3-models/911-gt3-touring/",
           "status": 200,
-          "sha256": "4ed7905c5b1b77549c9a9ea7cc012f56da7e5042e8b3c3b7a87d8f4ebff53082",
-          "capturedAt": "2026-10-26T01:06:29.328Z"
+          "sha256": "9236b3d29c5ecb156af1c4a623575e899d5efbfc35f5f9982aead5c17c12d504",
+          "capturedAt": "2026-10-30T20:27:44.586Z"
         },
         "data": {
           "modelId": "992822-2027",
@@ -15038,8 +15038,8 @@
         "source": {
           "url": "https://configurator.porsche.com/en-CA/mode/model/992822",
           "status": 200,
-          "sha256": "a88f7d066c132c396f6e3103268085d77d863a4bf9e42a17e5076a913fcb135a",
-          "capturedAt": "2026-10-26T00:41:43.725Z"
+          "sha256": "c79461773c57bcc6436e789647d0465f34e75e2015b1ee1c0b7c03febb2d0ff3",
+          "capturedAt": "2026-10-30T20:27:44.667Z"
         },
         "data": {
           "modelId": "992822-2027",
@@ -15166,8 +15166,8 @@
           "source": {
             "url": "https://configurator.porsche.com/en-CA/mode/model/992822",
             "status": 200,
-            "sha256": "a88f7d066c132c396f6e3103268085d77d863a4bf9e42a17e5076a913fcb135a",
-            "capturedAt": "2026-10-26T00:41:43.725Z"
+            "sha256": "c79461773c57bcc6436e789647d0465f34e75e2015b1ee1c0b7c03febb2d0ff3",
+            "capturedAt": "2026-10-30T20:27:44.667Z"
           },
           "data": {
             "modelId": "992822-2027",
@@ -15294,8 +15294,8 @@
           "source": {
             "url": "https://configurator.porsche.com/en-CA/mode/model/992822?options=7UG.QJ2.9P8.VT6.6NQ.QH1.0NA.QR9.51A.VL0.GT0.1N3.1X2.6EE.8T1.3HA.4L6.M1P.2C5.K8C.VW4.0I3.9WT.6F0.0P8.2V1.UX6.6BA.1G8.1P0.4UB.6RC.5KS.9JA.6Q2.7K3.6FW.KA2.QQ0.4I8.7HA.7AL.95A.9VK.3J7.3FA.GH2.IV4.KQ1.E5L.5TH.VR0.QU8.0TC.5XX.IW3.2JB.VC2.5J1.2W0.0N5.9AD.4A3.9ZE.Q4Q.8IT.EM2.FM7.1BV.1NE.VF2.C2Q.4GP.FZ0.3UA.QE0.1MI.6XA.1LS.8VG.8N7.UI2.GV1.31.0Q.G1C&optionAdded=G1C&optionRemoved=G0W",
             "status": 200,
-            "sha256": "a330b733f1a98bbc902b89d66b5cef9a035f2634a039560ddd66ea5bfa2c3c5e",
-            "capturedAt": "2026-10-26T01:15:30.294Z"
+            "sha256": "b3487489cfe475155f9d1347343176e4ae85cff314c3b28a2570175cac485fec",
+            "capturedAt": "2026-10-30T20:27:45.076Z"
           },
           "data": {
             "modelId": "992822-2027",
@@ -15421,8 +15421,8 @@
           "source": {
             "url": "https://configurator.porsche.com/en-CA/mode/model/992822?options=7UG.QJ2.9P8.VT6.6NQ.QH1.0NA.QR9.51A.VL0.GT0.1N3.1X2.6EE.8T1.3HA.4L6.M1P.2C5.K8C.VW4.0I3.9WT.G0W.6F0.0P8.2V1.UX6.6BA.1G8.1P0.4UB.6RC.5KS.9JA.6Q2.7K3.6FW.KA2.QQ0.4I8.7HA.7AL.95A.9VK.3J7.3FA.GH2.IV4.KQ1.E5L.5TH.VR0.QU8.0TC.5XX.IW3.2JB.VC2.5J1.2W0.0N5.9AD.4A3.9ZE.Q4Q.8IT.EM2.FM7.1BV.1NE.VF2.C2Q.4GP.FZ0.3UA.QE0.1MI.6XA.1LS.8VG.8N7.UI2.GV1.31.0Q.3UG&optionAdded=3UG",
             "status": 200,
-            "sha256": "5d0d035fbd925695d707ee383598cdd6f5bafad928dc09090ca1632e5c2ab0bc",
-            "capturedAt": "2026-10-26T01:15:30.646Z"
+            "sha256": "10b1b632c9ed64eacd48c790ea2cdb39247f3677b54c91a236f24ce919bcfde8",
+            "capturedAt": "2026-10-30T20:27:44.161Z"
           },
           "data": {
             "modelId": "992822-2027",
@@ -15550,8 +15550,8 @@
           "source": {
             "url": "https://configurator.porsche.com/en-CA/mode/model/992822?options=7UG.QJ2.9P8.VT6.6NQ.QH1.0NA.QR9.51A.VL0.GT0.1N3.1X2.6EE.8T1.3HA.4L6.M1P.2C5.K8C.VW4.0I3.9WT.6F0.0P8.2V1.UX6.6BA.1G8.1P0.4UB.6RC.5KS.9JA.6Q2.7K3.6FW.KA2.QQ0.4I8.7HA.7AL.95A.9VK.3J7.3FA.IV4.KQ1.E5L.5TH.VR0.QU8.0TC.5XX.IW3.2JB.VC2.5J1.2W0.0N5.9AD.4A3.9ZE.Q4Q.8IT.EM2.FM7.1BV.1NE.VF2.C2Q.4GP.FZ0.3UA.QE0.1MI.6XA.1LS.8VG.8N7.UI2.GV1.31.G1C.0Q.3UG&optionAdded=3UG",
             "status": 200,
-            "sha256": "671bbeba3a3b969111fd7997754a4c8d044c836e4e63ac47fa08c14010c3c7fd",
-            "capturedAt": "2026-10-26T01:15:31.110Z"
+            "sha256": "83b2894e8101b87b7cda62e40e51531f3c7afef0981412ff8edb8a8d074321fd",
+            "capturedAt": "2026-10-30T20:27:44.956Z"
           },
           "data": {
             "modelId": "992822-2027",
@@ -15696,8 +15696,8 @@
         "source": {
           "url": "https://www.porsche.com/canada/en/models/911/911-spirit-70/911-spirit-70/",
           "status": 200,
-          "sha256": "9a649bc4652f874373e67efc0df3004fc5a05272dfbba88af8fe4643db388e90",
-          "capturedAt": "2026-10-26T01:06:30.008Z"
+          "sha256": "4a7f968bb7ad95dd11f776ff0e78911bf0384f159171c353a995bcf5797c5edc",
+          "capturedAt": "2026-10-30T20:27:45.908Z"
         },
         "data": {
           "modelId": "992352-2026",
@@ -16212,8 +16212,8 @@
         "source": {
           "url": "https://configurator.porsche.com/en-CA/mode/model/992352",
           "status": 200,
-          "sha256": "d6c324a3496bbfd7d581e3c7d9470c81527ed4ae36e8979ab3d52e8266f5048b",
-          "capturedAt": "2026-10-26T00:41:44.875Z"
+          "sha256": "4b5f4dcc111dea7036236d6887e6f8b60dab2c4014b8f45ec0684d076ced3012",
+          "capturedAt": "2026-10-30T20:27:45.980Z"
         },
         "data": {
           "modelId": "992352-2026",
@@ -16349,8 +16349,8 @@
           "source": {
             "url": "https://configurator.porsche.com/en-CA/mode/model/992352",
             "status": 200,
-            "sha256": "d6c324a3496bbfd7d581e3c7d9470c81527ed4ae36e8979ab3d52e8266f5048b",
-            "capturedAt": "2026-10-26T00:41:44.875Z"
+            "sha256": "4b5f4dcc111dea7036236d6887e6f8b60dab2c4014b8f45ec0684d076ced3012",
+            "capturedAt": "2026-10-30T20:27:45.980Z"
           },
           "data": {
             "modelId": "992352-2026",
@@ -16504,8 +16504,8 @@
         "source": {
           "url": "https://www.porsche.com/canada/en/models/911/911-turbo-models/911-turbo-s/",
           "status": 200,
-          "sha256": "665b4c8d0909d46cf65fc9ee524849fd1fd1f92670b882d5b6b917d7f38e30c4",
-          "capturedAt": "2026-10-26T01:06:30.410Z"
+          "sha256": "179e4dbf68789fc648b75ca11fca29c8e61cd16bab4a8e70a9dbcf321fd03aeb",
+          "capturedAt": "2026-10-30T20:27:46.128Z"
         },
         "data": {
           "modelId": "992452-2027",
@@ -17076,8 +17076,8 @@
         "source": {
           "url": "https://configurator.porsche.com/en-CA/mode/model/992452",
           "status": 200,
-          "sha256": "fd93626cbae4a9309aa2ccf3e99b69de27ad28dc4e0b88c2c9ff4216aeb0eed9",
-          "capturedAt": "2026-10-26T00:41:45.168Z"
+          "sha256": "efb833c4a735c97919ee86883e884bc61f1b2e0c8fb5f99ba1d33878fcd6356c",
+          "capturedAt": "2026-10-30T20:27:46.540Z"
         },
         "data": {
           "modelId": "992452-2027",
@@ -17206,8 +17206,8 @@
           "source": {
             "url": "https://configurator.porsche.com/en-CA/mode/model/992452",
             "status": 200,
-            "sha256": "fd93626cbae4a9309aa2ccf3e99b69de27ad28dc4e0b88c2c9ff4216aeb0eed9",
-            "capturedAt": "2026-10-26T00:41:45.168Z"
+            "sha256": "efb833c4a735c97919ee86883e884bc61f1b2e0c8fb5f99ba1d33878fcd6356c",
+            "capturedAt": "2026-10-30T20:27:46.540Z"
           },
           "data": {
             "modelId": "992452-2027",
@@ -17336,8 +17336,8 @@
           "source": {
             "url": "https://configurator.porsche.com/en-CA/mode/model/992452?options=1XA.9P8.VT6.1LQ.QH1.QR9.VR7.VL0.8JU.1N3.6F1.6EE.6FJ.8T1.7HB.3S4.4L6.K8C.6XV.0I3.9WT.1NA.Q1J.FN8.FX9.8LH.7X2.2V1.G1G.5ZP.1G8.6BA.1P7.6NB.4UB.6RC.5KS.9JA.9VL.58Z.7K3.1X1.KA2.6JD.7AL.AU1.2C7.7TS.8PK.2W7.6I3.3FA.IV4.QD4.UX7.QU8.0TC.5XX.6K9.IW3.VC2.E0A.GT2.7UG.1BH.0NB.3L4.0N5.9AD.4A3.9ZE.QJ1.0P0.EM2.95B.GH3.4F6.VF2.VK2.4GP.3UA.QE0.8VG.D7K.8N7.QQ2.UI2.GV1.0Q.VZ.3UG&optionAdded=3UG",
             "status": 200,
-            "sha256": "ee5aba6ea4c48d833c19a0a8b29693e5b7b54a756488a259e26507408b96e07a",
-            "capturedAt": "2026-10-26T01:15:32.101Z"
+            "sha256": "93786457dba4d99682da356f5141f98fa57ec93e10cd6873ebb12d27945f6099",
+            "capturedAt": "2026-10-30T20:27:47.307Z"
           },
           "data": {
             "modelId": "992452-2027",
@@ -17485,8 +17485,8 @@
         "source": {
           "url": "https://www.porsche.com/canada/en/models/911/911-turbo-models/911-turbo-s-cabriolet/",
           "status": 200,
-          "sha256": "a2e455ddb8187880a9ef488dbf5288e4becc8fda6d0d53e86d94746572ffec5f",
-          "capturedAt": "2026-10-26T01:06:30.750Z"
+          "sha256": "72f029451bc434bdb1843030a130b0e4d14200f3ba4654f551999b422b5aee44",
+          "capturedAt": "2026-10-30T20:27:47.535Z"
         },
         "data": {
           "modelId": "992652-2027",
@@ -18001,8 +18001,8 @@
         "source": {
           "url": "https://configurator.porsche.com/en-CA/mode/model/992652",
           "status": 200,
-          "sha256": "d48afbadd5dee58d1c733b09794e40aec6ffcb588b08737ba298100259a5fa86",
-          "capturedAt": "2026-10-26T00:41:45.803Z"
+          "sha256": "06437321f053ea450917acb65f92add0a59f0a2dd0d875ded1b2b5a34d8d4235",
+          "capturedAt": "2026-10-30T20:27:48.014Z"
         },
         "data": {
           "modelId": "992652-2027",
@@ -18123,8 +18123,8 @@
           "source": {
             "url": "https://configurator.porsche.com/en-CA/mode/model/992652",
             "status": 200,
-            "sha256": "d48afbadd5dee58d1c733b09794e40aec6ffcb588b08737ba298100259a5fa86",
-            "capturedAt": "2026-10-26T00:41:45.803Z"
+            "sha256": "06437321f053ea450917acb65f92add0a59f0a2dd0d875ded1b2b5a34d8d4235",
+            "capturedAt": "2026-10-30T20:27:48.014Z"
           },
           "data": {
             "modelId": "992652-2027",
@@ -18263,8 +18263,8 @@
         "source": {
           "url": "https://www.porsche.com/canada/en/models/911/911-gt3-s-c/911-gt3-s-c/",
           "status": 200,
-          "sha256": "e6df84b046bd6c7b4d133c700ff8e6cb96adfb996f3df4ca28bb83e568ecf4e6",
-          "capturedAt": "2026-10-26T01:06:31.161Z"
+          "sha256": "3187868d73b8fdc965760e75b242b4f6b2ebe07ef4cc62b3048d86154523aca9",
+          "capturedAt": "2026-10-30T20:27:48.178Z"
         },
         "data": {
           "modelId": "992892-2027",
@@ -18684,8 +18684,8 @@
         "source": {
           "url": "https://configurator.porsche.com/en-CA/mode/model/992892",
           "status": 200,
-          "sha256": "4a590917578e1003823e99e2ed3b28a9c5f952d63a38ed4b06fbec6212bf0d75",
-          "capturedAt": "2026-10-26T00:41:46.329Z"
+          "sha256": "75f0de1dfbaae7e86b43c146ffdaeabdab708c23d6be7fdabfe2f89aaafeec2f",
+          "capturedAt": "2026-10-30T20:27:48.557Z"
         },
         "data": {
           "modelId": "992892-2027",
@@ -18805,8 +18805,8 @@
           "source": {
             "url": "https://configurator.porsche.com/en-CA/mode/model/992892",
             "status": 200,
-            "sha256": "4a590917578e1003823e99e2ed3b28a9c5f952d63a38ed4b06fbec6212bf0d75",
-            "capturedAt": "2026-10-26T00:41:46.329Z"
+            "sha256": "75f0de1dfbaae7e86b43c146ffdaeabdab708c23d6be7fdabfe2f89aaafeec2f",
+            "capturedAt": "2026-10-30T20:27:48.557Z"
           },
           "data": {
             "modelId": "992892-2027",
@@ -18944,8 +18944,8 @@
         "source": {
           "url": "https://www.porsche.com/canada/en/models/911/911-gt3-fa90/911-gt3-fa90/",
           "status": 200,
-          "sha256": "596a2dd91c7b7c757e97a1b41a6051eb265d6d01806dfa04891bc3c28384fe5f",
-          "capturedAt": "2026-10-26T00:46:38.997Z"
+          "sha256": "19c57d07ffa3f093542b416af9950c2b4fc245333ba29f2b50e5d9d8eaaa2dae",
+          "capturedAt": "2026-10-30T20:27:48.664Z"
         },
         "data": {
           "modelId": "992902-2027",
@@ -18978,8 +18978,8 @@
         "source": {
           "url": "https://www.porsche.com/canada/en/models/718/718-models/718-cayman/",
           "status": 200,
-          "sha256": "9a9487b9880ba893d0a290cb48e22f119680eff4e98b634955384afcb2953a92",
-          "capturedAt": "2026-10-26T01:06:31.544Z"
+          "sha256": "44bb207bb3bd5694cf6e34647874e96c31ca6f65c8d81c9f9e84a5ccd9d21e8e",
+          "capturedAt": "2026-10-30T20:27:49.191Z"
         },
         "data": {
           "modelId": "982120-2025",
@@ -19328,8 +19328,8 @@
         "source": {
           "url": "https://configurator.porsche.com/en-CA/mode/model/982120",
           "status": 200,
-          "sha256": "c2f1365a59b2dba745cfb82f600e78e6ca9efc88da2e1f8b1f8d108d3b857333",
-          "capturedAt": "2026-10-26T00:39:43.875Z"
+          "sha256": "590518e6c124c4c01c114d5ab409586cdd87b9109668b904893b1749135b2b5b",
+          "capturedAt": "2026-10-30T20:27:49.277Z"
         },
         "data": {
           "modelId": "982120-2025",
@@ -19395,8 +19395,8 @@
           "source": {
             "url": "https://configurator.porsche.com/en-CA/mode/model/982120",
             "status": 200,
-            "sha256": "c2f1365a59b2dba745cfb82f600e78e6ca9efc88da2e1f8b1f8d108d3b857333",
-            "capturedAt": "2026-10-26T00:39:43.875Z"
+            "sha256": "590518e6c124c4c01c114d5ab409586cdd87b9109668b904893b1749135b2b5b",
+            "capturedAt": "2026-10-30T20:27:49.277Z"
           },
           "data": {
             "modelId": "982120-2025",
@@ -19462,8 +19462,8 @@
           "source": {
             "url": "https://configurator.porsche.com/en-CA/mode/model/982120?options=810.603.396.9WT.UX6.1G8.340.342.592.534.9VK.454.657.573.1T0.196.567.084.482.607.DZ7.I8L.638.UI2.AG.0Q.P08.480&optionAdded=480&optionRemoved=250",
             "status": 200,
-            "sha256": "821c045ac49fa81dd657c3945f3481eef3a7bd58caf40cd02158f1a5b7b3735a",
-            "capturedAt": "2026-10-26T01:00:22.021Z"
+            "sha256": "a6484af898ca011e19a513182b8c0464d2785f1c6f45a4063b11ebc5d4a3a68e",
+            "capturedAt": "2026-10-30T20:27:49.614Z"
           },
           "data": {
             "modelId": "982120-2025",
@@ -19550,8 +19550,8 @@
         "source": {
           "url": "https://www.porsche.com/canada/en/models/718/718-models/718-cayman-style-edition/",
           "status": 200,
-          "sha256": "3df384b0c826d6f314d9e192099fe3536f84fb2dc3620fc2d17a7ea9aa3df12c",
-          "capturedAt": "2026-10-26T01:06:32.709Z"
+          "sha256": "39020fb9a8ae1fa44ab2f4c8b429bd3e46cd37861d0375f3d2388b78b4c19018",
+          "capturedAt": "2026-10-30T20:27:50.400Z"
         },
         "data": {
           "modelId": "982110-2025",
@@ -19891,8 +19891,8 @@
         "source": {
           "url": "https://configurator.porsche.com/en-CA/mode/model/982110",
           "status": 200,
-          "sha256": "0095dac8c589b21b1e244ebd60d1b990662c8746c2086994e7ce5ed2cb020a42",
-          "capturedAt": "2026-10-26T00:41:46.633Z"
+          "sha256": "3abef6fec3ccb57763a48faee91831c6858c61e1955608ce3312060828244848",
+          "capturedAt": "2026-10-30T20:27:50.827Z"
         },
         "data": {
           "modelId": "982110-2025",
@@ -19954,8 +19954,8 @@
           "source": {
             "url": "https://configurator.porsche.com/en-CA/mode/model/982110?options=ATR.P08.1G8.KY2.196.573.276.9WT.534.810.634.638.I8L.UI2.DZ7.XSC.482.980.342.UX7.567.446.602.607.250&optionAdded=250",
             "status": 200,
-            "sha256": "a234f2471ec860dec2c232eed8a57dc4630da3b243cb62f55546af3153d9d7f5",
-            "capturedAt": "2026-10-26T01:15:32.830Z"
+            "sha256": "8d94f2f80b161349e273ff8f7fdef79a28cb38b9334d0dd11296f5d230249779",
+            "capturedAt": "2026-10-30T20:27:51.255Z"
           },
           "data": {
             "modelId": "982110-2025",
@@ -20031,8 +20031,8 @@
           "source": {
             "url": "https://configurator.porsche.com/en-CA/mode/model/982110?options=ATR.P08.1G8.KY2.196.573.276.9WT.534.810.634.638.I8L.UI2.DZ7.XSC.482.980.342.UX7.567.446.602.607.480&optionAdded=480",
             "status": 200,
-            "sha256": "7544dff5089a69edb2760708d2ec6b1d16a64a00e1f8631782b38aa89ccc9c98",
-            "capturedAt": "2026-10-26T01:15:33.161Z"
+            "sha256": "8520b97923a0d89d849b63a3c1c181943c18b18a90de8feab2a06cb564f38ec5",
+            "capturedAt": "2026-10-30T20:27:51.575Z"
           },
           "data": {
             "modelId": "982110-2025",
@@ -20129,8 +20129,8 @@
         "source": {
           "url": "https://www.porsche.com/canada/en/models/718/718-models/718-cayman-s/",
           "status": 200,
-          "sha256": "bb5bbe6598e739b3802ddc6419ba2c5412270502ff63479d45d9b2fcc09e82e3",
-          "capturedAt": "2026-10-26T01:06:34.098Z"
+          "sha256": "6a7a02b2800f047a46e7912d2980501e85b3a676ce1ded089bb14ddce9a307bd",
+          "capturedAt": "2026-10-30T20:27:52.471Z"
         },
         "data": {
           "modelId": "982130-2025",
@@ -20481,8 +20481,8 @@
         "source": {
           "url": "https://configurator.porsche.com/en-CA/mode/model/982130",
           "status": 200,
-          "sha256": "b9d56dc0fb30302cdd0751999abf77c3551ab2f447a3948a610c9f5f329861a0",
-          "capturedAt": "2026-10-26T00:41:47.284Z"
+          "sha256": "d5773e20477a106dbedf3e27c93f8d27c83c61f1db7ab329081c7fac92c8289b",
+          "capturedAt": "2026-10-30T20:27:52.852Z"
         },
         "data": {
           "modelId": "982130-2025",
@@ -20549,8 +20549,8 @@
           "source": {
             "url": "https://configurator.porsche.com/en-CA/mode/model/982130",
             "status": 200,
-            "sha256": "b9d56dc0fb30302cdd0751999abf77c3551ab2f447a3948a610c9f5f329861a0",
-            "capturedAt": "2026-10-26T00:41:47.284Z"
+            "sha256": "d5773e20477a106dbedf3e27c93f8d27c83c61f1db7ab329081c7fac92c8289b",
+            "capturedAt": "2026-10-30T20:27:52.852Z"
           },
           "data": {
             "modelId": "982130-2025",
@@ -20617,8 +20617,8 @@
           "source": {
             "url": "https://configurator.porsche.com/en-CA/mode/model/982130?options=810.603.9WT.UX6.1G8.340.342.592.534.MQ2.121.9VK.454.657.573.1T0.196.567.482.085.607.I8L.638.397.UI2.AG.0Q.P08.480&optionAdded=480&optionRemoved=250",
             "status": 200,
-            "sha256": "208455403b9a9cf7452f4a46a29df28b50ca93dc65679a3aa00b15b4efd757ac",
-            "capturedAt": "2026-10-26T01:15:33.629Z"
+            "sha256": "e377cab2cc14a6cf5c8aff8b916871af80f789476c737dd51469969038527767",
+            "capturedAt": "2026-10-30T20:27:53.571Z"
           },
           "data": {
             "modelId": "982130-2025",
@@ -20706,8 +20706,8 @@
         "source": {
           "url": "https://www.porsche.com/canada/en/models/718/718-models/718-cayman-gts-4/",
           "status": 200,
-          "sha256": "4a0fa7e7a2138004e6b99c4d781c348f4d2fd08990a3638bc7e7e6c0b9415044",
-          "capturedAt": "2026-10-26T01:06:35.113Z"
+          "sha256": "a5aefc22de8507030864a6738ed678ab5622f16fc3cfa44ee0f9e94a211a1ccf",
+          "capturedAt": "2026-10-30T20:27:54.315Z"
         },
         "data": {
           "modelId": "982160-2025",
@@ -21096,8 +21096,8 @@
         "source": {
           "url": "https://configurator.porsche.com/en-CA/mode/model/982160",
           "status": 200,
-          "sha256": "83db7f81a9eb0f1af09a835f453e336582c82531d0a45042f2a3e52dec4bc3fc",
-          "capturedAt": "2026-10-26T00:41:48.251Z"
+          "sha256": "6495cd381e665ef18cffe866ca4e448e9b96980759331d3b9b16cf3743c6786c",
+          "capturedAt": "2026-10-30T20:27:54.370Z"
         },
         "data": {
           "modelId": "982160-2025",
@@ -21174,8 +21174,8 @@
           "source": {
             "url": "https://configurator.porsche.com/en-CA/mode/model/982160",
             "status": 200,
-            "sha256": "83db7f81a9eb0f1af09a835f453e336582c82531d0a45042f2a3e52dec4bc3fc",
-            "capturedAt": "2026-10-26T00:41:48.251Z"
+            "sha256": "6495cd381e665ef18cffe866ca4e448e9b96980759331d3b9b16cf3743c6786c",
+            "capturedAt": "2026-10-30T20:27:54.370Z"
           },
           "data": {
             "modelId": "982160-2025",
@@ -21252,8 +21252,8 @@
           "source": {
             "url": "https://configurator.porsche.com/en-CA/mode/model/982160?options=810.QR5.XLL.9WT.1G8.340.342.XXP.534.030.121.9VK.454.657.153.573.1T0.196.567.XAT.UX7.M1R.482.446.085.594.XLW.XLN.607.393.I8L.638.220.UI2.XEW.GF.0Q.P04.480&optionAdded=480&optionRemoved=250",
             "status": 200,
-            "sha256": "818266f42e20542eafc0767b6f2d4c9b8cc61bc62de23ecaa33f4dbda79570eb",
-            "capturedAt": "2026-10-26T01:15:34.359Z"
+            "sha256": "009dd8345acfd8254cf85f36fc413cc724a7e96df7ff7d4956abfd6688cdcb8a",
+            "capturedAt": "2026-10-30T20:27:54.784Z"
           },
           "data": {
             "modelId": "982160-2025",
@@ -21350,8 +21350,8 @@
         "source": {
           "url": "https://www.porsche.com/canada/en/models/718/718-models/718-boxster/",
           "status": 200,
-          "sha256": "79baa70548a5c5388ad07e1fa586985f2a39e9993167f9b83762450574ac9567",
-          "capturedAt": "2026-10-26T01:06:35.493Z"
+          "sha256": "b81bdd946c38e8e716d385e4e1b94ae9cc3fcb3263db9faead578ef7016fa0ef",
+          "capturedAt": "2026-10-30T20:27:55.089Z"
         },
         "data": {
           "modelId": "982320-2025",
@@ -21713,8 +21713,8 @@
         "source": {
           "url": "https://configurator.porsche.com/en-CA/mode/model/982320",
           "status": 200,
-          "sha256": "b7a8017fcab12f8d03729ea055ac4e64165dfb9d731f4f2214abf1123784b20f",
-          "capturedAt": "2026-10-26T00:41:49.192Z"
+          "sha256": "48f3fe912321102c2f80b08fd3e8c03a1973239b08cc252c5f3ae3d7f617c66b",
+          "capturedAt": "2026-10-30T20:27:55.327Z"
         },
         "data": {
           "modelId": "982320-2025",
@@ -21780,8 +21780,8 @@
           "source": {
             "url": "https://configurator.porsche.com/en-CA/mode/model/982320",
             "status": 200,
-            "sha256": "b7a8017fcab12f8d03729ea055ac4e64165dfb9d731f4f2214abf1123784b20f",
-            "capturedAt": "2026-10-26T00:41:49.192Z"
+            "sha256": "48f3fe912321102c2f80b08fd3e8c03a1973239b08cc252c5f3ae3d7f617c66b",
+            "capturedAt": "2026-10-30T20:27:55.327Z"
           },
           "data": {
             "modelId": "982320-2025",
@@ -21847,8 +21847,8 @@
           "source": {
             "url": "https://configurator.porsche.com/en-CA/mode/model/982320?options=810.UI2.603.9WT.UX6.395.1G8.340.342.534.9VK.454.657.573.1T0.196.567.084.482.607.DZ7.I8L.638.4V.AG.0Q.P08.480&optionAdded=480&optionRemoved=250",
             "status": 200,
-            "sha256": "d18a39d36dedd426376cfc6cda46d45b20e62be77e015e78b8dbaa3b61a6d3ef",
-            "capturedAt": "2026-10-26T01:15:34.759Z"
+            "sha256": "fcca7c0b2c0ff46ff7f65d2b4f5b07bd089614738bfa75d4c52c9d2eac9aaa82",
+            "capturedAt": "2026-10-30T20:27:55.916Z"
           },
           "data": {
             "modelId": "982320-2025",
@@ -21935,8 +21935,8 @@
         "source": {
           "url": "https://www.porsche.com/canada/en/models/718/718-models/718-boxster-style-edition/",
           "status": 200,
-          "sha256": "a86870de9a7c2723f3f52c1fef09e327b5c495b86bbc0d180abbca71f3a24fa5",
-          "capturedAt": "2026-10-26T01:06:36.261Z"
+          "sha256": "7009859cd9db663466084a89ff3d529c527a981bed51a598719591005e23588d",
+          "capturedAt": "2026-10-30T20:27:56.529Z"
         },
         "data": {
           "modelId": "982310-2025",
@@ -22268,8 +22268,8 @@
         "source": {
           "url": "https://configurator.porsche.com/en-CA/mode/model/982310",
           "status": 200,
-          "sha256": "d46bca6683b2f4179a6efe20aa09d27b8a6c9f540148b5af2b821d41c31b369f",
-          "capturedAt": "2026-10-26T00:41:50.186Z"
+          "sha256": "948994443984df6c3176960c79bf652318774f7e8a70f15a928dcdea1de52a0d",
+          "capturedAt": "2026-10-30T20:27:57.014Z"
         },
         "data": {
           "modelId": "982310-2025",
@@ -22331,8 +22331,8 @@
           "source": {
             "url": "https://configurator.porsche.com/en-CA/mode/model/982310?options=ATR.P08.1G8.KY2.196.573.276.9WT.534.810.634.638.I8L.UI2.DZ7.XSC.482.980.342.UX7.567.446.602.607.250&optionAdded=250",
             "status": 200,
-            "sha256": "32da7257aa459039b66661f3c922477398409c2deeb289b232527ec302869028",
-            "capturedAt": "2026-10-26T01:15:35.263Z"
+            "sha256": "4599f2a3f73c95495dd18c981358cac0aa7d62e6e0eb241a2304033699b8aff2",
+            "capturedAt": "2026-10-30T20:27:57.504Z"
           },
           "data": {
             "modelId": "982310-2025",
@@ -22408,8 +22408,8 @@
           "source": {
             "url": "https://configurator.porsche.com/en-CA/mode/model/982310?options=ATR.P08.1G8.KY2.196.573.276.9WT.534.810.634.638.I8L.UI2.DZ7.XSC.482.980.342.UX7.567.446.602.607.480&optionAdded=480",
             "status": 200,
-            "sha256": "bfb0d675f89ac12051bb50a7631d66723bccbb030d4cbe91d9f496d3edb8b607",
-            "capturedAt": "2026-10-26T01:15:35.651Z"
+            "sha256": "bdbaf039a3f4f315ba0bdd4a577836e009e8a814ffcdacaac4f6e50a76941b46",
+            "capturedAt": "2026-10-30T20:27:57.916Z"
           },
           "data": {
             "modelId": "982310-2025",
@@ -22506,8 +22506,8 @@
         "source": {
           "url": "https://www.porsche.com/canada/en/models/718/718-models/718-boxster-s/",
           "status": 200,
-          "sha256": "ce8ba9750593ecae4830f25f750653f3280992032f4c2945583ded43ba87d636",
-          "capturedAt": "2026-10-26T01:06:37.357Z"
+          "sha256": "b747d649a1abd8f06f4c7ac17d663cd70201e63007320e4c003efde2ccd50725",
+          "capturedAt": "2026-10-30T20:27:58.695Z"
         },
         "data": {
           "modelId": "982330-2025",
@@ -22850,8 +22850,8 @@
         "source": {
           "url": "https://configurator.porsche.com/en-CA/mode/model/982330",
           "status": 200,
-          "sha256": "7e09e4768e6594a4e491fa88c29012307a008d8ee7566f2082f8a17e0d8ad03c",
-          "capturedAt": "2026-10-26T00:41:50.840Z"
+          "sha256": "46a5d3622e3cb23f826dc8aca7c74a3101dfbffdd1d8764a7c13546a20aacabe",
+          "capturedAt": "2026-10-30T20:27:58.746Z"
         },
         "data": {
           "modelId": "982330-2025",
@@ -22918,8 +22918,8 @@
           "source": {
             "url": "https://configurator.porsche.com/en-CA/mode/model/982330",
             "status": 200,
-            "sha256": "7e09e4768e6594a4e491fa88c29012307a008d8ee7566f2082f8a17e0d8ad03c",
-            "capturedAt": "2026-10-26T00:41:50.840Z"
+            "sha256": "46a5d3622e3cb23f826dc8aca7c74a3101dfbffdd1d8764a7c13546a20aacabe",
+            "capturedAt": "2026-10-30T20:27:58.746Z"
           },
           "data": {
             "modelId": "982330-2025",
@@ -22986,8 +22986,8 @@
           "source": {
             "url": "https://configurator.porsche.com/en-CA/mode/model/982330?options=810.UI2.603.9WT.UX6.1G8.340.342.534.MQ2.121.9VK.454.657.573.1T0.196.567.482.085.607.I8L.638.397.4V.AG.0Q.P08.480&optionAdded=480&optionRemoved=250",
             "status": 200,
-            "sha256": "b1cb24e37f0efbc7b963979a0cf1d70f03be14a7aead79bb9012e0da30cba871",
-            "capturedAt": "2026-10-26T01:15:36.333Z"
+            "sha256": "ab0ce2267979482939308bc3995834f5cc2668f60e6696c6e163d0fea084b34a",
+            "capturedAt": "2026-10-30T20:27:59.855Z"
           },
           "data": {
             "modelId": "982330-2025",
@@ -23075,8 +23075,8 @@
         "source": {
           "url": "https://www.porsche.com/canada/en/models/718/718-models/718-boxster-gts-4/",
           "status": 200,
-          "sha256": "4aa676eb15de084156c267f9eb6ca706c25190691704fa048ebb1ee33899ba0f",
-          "capturedAt": "2026-10-26T01:06:39.317Z"
+          "sha256": "22ebcd043f801df7cd35de8523d7c35260c579cb81323ff9c52395e90531d688",
+          "capturedAt": "2026-10-30T20:28:00.386Z"
         },
         "data": {
           "modelId": "982360-2025",
@@ -23485,8 +23485,8 @@
         "source": {
           "url": "https://configurator.porsche.com/en-CA/mode/model/982360",
           "status": 200,
-          "sha256": "036fcd90a8a10daf4eb31ca447ee718c35b679c6eb1d4b45a1f912e48f92adfd",
-          "capturedAt": "2026-10-26T00:41:51.407Z"
+          "sha256": "5ca02bc5c5d5b4e86d2171ff9491937b2498b15ccac3048d4c208e9714cab6ff",
+          "capturedAt": "2026-10-30T20:28:00.725Z"
         },
         "data": {
           "modelId": "982360-2025",
@@ -23563,8 +23563,8 @@
           "source": {
             "url": "https://configurator.porsche.com/en-CA/mode/model/982360",
             "status": 200,
-            "sha256": "036fcd90a8a10daf4eb31ca447ee718c35b679c6eb1d4b45a1f912e48f92adfd",
-            "capturedAt": "2026-10-26T00:41:51.407Z"
+            "sha256": "5ca02bc5c5d5b4e86d2171ff9491937b2498b15ccac3048d4c208e9714cab6ff",
+            "capturedAt": "2026-10-30T20:28:00.725Z"
           },
           "data": {
             "modelId": "982360-2025",
@@ -23641,8 +23641,8 @@
           "source": {
             "url": "https://configurator.porsche.com/en-CA/mode/model/982360?options=810.QR5.XLL.9WT.1G8.340.342.XXP.534.030.121.9VK.454.657.153.573.1T0.196.567.XAT.UX7.M1R.482.446.085.XLW.XLN.393.607.I8L.638.220.UI2.XEW.GF.4V.0Q.P04.480&optionAdded=480&optionRemoved=250",
             "status": 200,
-            "sha256": "f0df48a9bcda9a530873d0f7ea5f86d7ccb3b940293d1e0d44a6dd33fcb1bad8",
-            "capturedAt": "2026-10-26T01:15:36.709Z"
+            "sha256": "f700de41cfff60a78431f1fe8e9ac79aca39607d070a57a4cf57e2ff94f90c70",
+            "capturedAt": "2026-10-30T20:28:01.144Z"
           },
           "data": {
             "modelId": "982360-2025",
@@ -23739,8 +23739,8 @@
         "source": {
           "url": "https://www.porsche.com/canada/en/models/718/718-spyder-rs/718-spyder-rs/",
           "status": 200,
-          "sha256": "e27d4b97a9f6b3b525cd9cf563276df6927e36e06dee66b6595398370129d084",
-          "capturedAt": "2026-10-26T01:06:39.929Z"
+          "sha256": "7e19c1b0d838a33a6a79c201533e4afb62ad85b451902d4ecb7f78474028524c",
+          "capturedAt": "2026-10-30T20:28:01.446Z"
         },
         "data": {
           "modelId": "982890-2025",
@@ -24065,8 +24065,8 @@
         "source": {
           "url": "https://configurator.porsche.com/en-CA/mode/model/982890",
           "status": 200,
-          "sha256": "ec423315dcc823346c0df5f0791f78698e7b8361a37bdce6419ce7b685cfa721",
-          "capturedAt": "2026-10-26T00:41:52.033Z"
+          "sha256": "0219179f6d57d0244b816863a3c0108d958bfea2171974d4527997203ad2d36d",
+          "capturedAt": "2026-10-30T20:28:01.937Z"
         },
         "data": {
           "modelId": "982890-2025",
@@ -24139,8 +24139,8 @@
           "source": {
             "url": "https://configurator.porsche.com/en-CA/mode/model/982890",
             "status": 200,
-            "sha256": "ec423315dcc823346c0df5f0791f78698e7b8361a37bdce6419ce7b685cfa721",
-            "capturedAt": "2026-10-26T00:41:52.033Z"
+            "sha256": "0219179f6d57d0244b816863a3c0108d958bfea2171974d4527997203ad2d36d",
+            "capturedAt": "2026-10-30T20:28:01.937Z"
           },
           "data": {
             "modelId": "982890-2025",
@@ -24231,8 +24231,8 @@
         "source": {
           "url": "https://www.porsche.com/canada/en/models/718/718-cayman-gt4-rs/718-cayman-gt4-rs/",
           "status": 200,
-          "sha256": "4fa28904dc56a1ce842b484c2e0bf7411e91910dcbbed447a2afe76ee5e851fe",
-          "capturedAt": "2026-10-26T01:06:40.524Z"
+          "sha256": "b94941eed730996cd9e32f3461c5b22938fec56a72f4cb6df195c2f06fc0ca84",
+          "capturedAt": "2026-10-30T20:28:02.258Z"
         },
         "data": {
           "modelId": "982850-2025",
@@ -24539,8 +24539,8 @@
         "source": {
           "url": "https://configurator.porsche.com/en-CA/mode/model/982850",
           "status": 200,
-          "sha256": "27ddba852557c8dc1c214c39f41eaf93c0295f1466e4347c5bf10c3062534e3c",
-          "capturedAt": "2026-10-26T00:41:53.117Z"
+          "sha256": "83a3b0a8f8cb102582ee71f44f9ee13fd8993194643ea9a810c7bbf8c482dde2",
+          "capturedAt": "2026-10-30T20:28:02.315Z"
         },
         "data": {
           "modelId": "982850-2025",
@@ -24610,8 +24610,8 @@
           "source": {
             "url": "https://configurator.porsche.com/en-CA/mode/model/982850",
             "status": 200,
-            "sha256": "27ddba852557c8dc1c214c39f41eaf93c0295f1466e4347c5bf10c3062534e3c",
-            "capturedAt": "2026-10-26T00:41:53.117Z"
+            "sha256": "83a3b0a8f8cb102582ee71f44f9ee13fd8993194643ea9a810c7bbf8c482dde2",
+            "capturedAt": "2026-10-30T20:28:02.315Z"
           },
           "data": {
             "modelId": "982850-2025",
@@ -24699,8 +24699,8 @@
         "source": {
           "url": "https://www.porsche.com/canada/en/models/taycan/taycan-models/taycan-4s/",
           "status": 200,
-          "sha256": "ec15db0f69a2b2b55ef898208250a30998e57bc7da3edc13b57462b00e7103d2",
-          "capturedAt": "2026-10-26T01:06:41.131Z"
+          "sha256": "077a63b725a9a2f5e51bd2e008d96a935598a400745c947e3abf6a5ffda6b530",
+          "capturedAt": "2026-10-30T20:28:03.114Z"
         },
         "data": {
           "modelId": "Y1ADJ1-2027",
@@ -25283,8 +25283,8 @@
         "source": {
           "url": "https://configurator.porsche.com/en-CA/mode/model/Y1ADJ1",
           "status": 200,
-          "sha256": "6f81051d9fa0b81883d8558657752b6931721166e272aa1a5287bce31f182109",
-          "capturedAt": "2026-10-26T00:41:53.420Z"
+          "sha256": "f77123708e5f81da7d60f20c412debacce2aef3e3c9dcfef6e4037c2b93a7b0b",
+          "capturedAt": "2026-10-30T20:28:03.173Z"
         },
         "data": {
           "modelId": "Y1ADJ1-2027",
@@ -25413,8 +25413,8 @@
           "source": {
             "url": "https://configurator.porsche.com/en-CA/mode/model/Y1ADJ1",
             "status": 200,
-            "sha256": "6f81051d9fa0b81883d8558657752b6931721166e272aa1a5287bce31f182109",
-            "capturedAt": "2026-10-26T00:41:53.420Z"
+            "sha256": "f77123708e5f81da7d60f20c412debacce2aef3e3c9dcfef6e4037c2b93a7b0b",
+            "capturedAt": "2026-10-30T20:28:03.173Z"
           },
           "data": {
             "modelId": "Y1ADJ1-2027",
@@ -25561,8 +25561,8 @@
         "source": {
           "url": "https://www.porsche.com/canada/en/models/taycan/taycan-models/taycan-gts/",
           "status": 200,
-          "sha256": "99def53aacf5690eea4b4d759b6b33b1f1b6d08e8a975013bfe0e102d20b8682",
-          "capturedAt": "2026-10-26T01:06:41.656Z"
+          "sha256": "b26107c38649c758132a6ca1c9adc8bf5e3db3b3c776944950c192962a7a45ce",
+          "capturedAt": "2026-10-30T20:28:03.504Z"
         },
         "data": {
           "modelId": "Y1ADK1-2027",
@@ -26174,8 +26174,8 @@
         "source": {
           "url": "https://configurator.porsche.com/en-CA/mode/model/Y1ADK1",
           "status": 200,
-          "sha256": "d0886e825d61adc6fef522360c295cd053019f8cf032e59c263088cd2338ace3",
-          "capturedAt": "2026-10-26T00:41:54.669Z"
+          "sha256": "be7f2a2bcd035a8aa84da4ada75617c4d66e1b8706e2ec30f9b5ecbd747d0444",
+          "capturedAt": "2026-10-30T20:28:04.080Z"
         },
         "data": {
           "modelId": "Y1ADK1-2027",
@@ -26310,8 +26310,8 @@
           "source": {
             "url": "https://configurator.porsche.com/en-CA/mode/model/Y1ADK1",
             "status": 200,
-            "sha256": "d0886e825d61adc6fef522360c295cd053019f8cf032e59c263088cd2338ace3",
-            "capturedAt": "2026-10-26T00:41:54.669Z"
+            "sha256": "be7f2a2bcd035a8aa84da4ada75617c4d66e1b8706e2ec30f9b5ecbd747d0444",
+            "capturedAt": "2026-10-30T20:28:04.080Z"
           },
           "data": {
             "modelId": "Y1ADK1-2027",
@@ -26464,8 +26464,8 @@
         "source": {
           "url": "https://www.porsche.com/canada/en/models/taycan/taycan-models/taycan-turbo/",
           "status": 200,
-          "sha256": "504444ff464c24afad303aeae64a438d0b8676e96240a0526d98e13c9d8a87b9",
-          "capturedAt": "2026-10-26T01:06:42.179Z"
+          "sha256": "699e6f6227fc4236aa23febf2ec454c4683cabd7670f2a5357a7dd539c01cbbb",
+          "capturedAt": "2026-10-30T20:28:04.437Z"
         },
         "data": {
           "modelId": "Y1AFL1-2027",
@@ -27056,8 +27056,8 @@
         "source": {
           "url": "https://configurator.porsche.com/en-CA/mode/model/Y1AFL1",
           "status": 200,
-          "sha256": "87f2915b51099a2c43573d6dc52870dcb485327b274f097e46fb67cca29cef6e",
-          "capturedAt": "2026-10-26T00:41:55.237Z"
+          "sha256": "a2043a071ab5bcca4b9cd70c1d38124f8492be1dfb3a9d6b45b1d302d99aa8f1",
+          "capturedAt": "2026-10-30T20:28:05.213Z"
         },
         "data": {
           "modelId": "Y1AFL1-2027",
@@ -27187,8 +27187,8 @@
           "source": {
             "url": "https://configurator.porsche.com/en-CA/mode/model/Y1AFL1",
             "status": 200,
-            "sha256": "87f2915b51099a2c43573d6dc52870dcb485327b274f097e46fb67cca29cef6e",
-            "capturedAt": "2026-10-26T00:41:55.237Z"
+            "sha256": "a2043a071ab5bcca4b9cd70c1d38124f8492be1dfb3a9d6b45b1d302d99aa8f1",
+            "capturedAt": "2026-10-30T20:28:05.213Z"
           },
           "data": {
             "modelId": "Y1AFL1-2027",
@@ -27336,8 +27336,8 @@
         "source": {
           "url": "https://www.porsche.com/canada/en/models/taycan/taycan-models/taycan-turbo-s/",
           "status": 200,
-          "sha256": "6624937100763daf631522bb11b3144819880952e2de11afafc74352818d7cbf",
-          "capturedAt": "2026-10-26T01:06:43.176Z"
+          "sha256": "2b6cf82e16af12e3d023cecf8656435cbcd844ececc829f658d70585a4688dc0",
+          "capturedAt": "2026-10-30T20:28:05.558Z"
         },
         "data": {
           "modelId": "Y1AFM1-2027",
@@ -27933,8 +27933,8 @@
         "source": {
           "url": "https://configurator.porsche.com/en-CA/mode/model/Y1AFM1",
           "status": 200,
-          "sha256": "47fdb930ccee26629e8b2df1fb338ecc0b0e73fa2e789fbf0c5811c0c6734fc6",
-          "capturedAt": "2026-10-26T00:41:56.226Z"
+          "sha256": "5cb4ac518fa806c2110b31e2b7eb41fcfe5e5d2932796af18e828cf65111e9d3",
+          "capturedAt": "2026-10-30T20:28:05.614Z"
         },
         "data": {
           "modelId": "Y1AFM1-2027",
@@ -28065,8 +28065,8 @@
           "source": {
             "url": "https://configurator.porsche.com/en-CA/mode/model/Y1AFM1",
             "status": 200,
-            "sha256": "47fdb930ccee26629e8b2df1fb338ecc0b0e73fa2e789fbf0c5811c0c6734fc6",
-            "capturedAt": "2026-10-26T00:41:56.226Z"
+            "sha256": "5cb4ac518fa806c2110b31e2b7eb41fcfe5e5d2932796af18e828cf65111e9d3",
+            "capturedAt": "2026-10-30T20:28:05.614Z"
           },
           "data": {
             "modelId": "Y1AFM1-2027",
@@ -28215,8 +28215,8 @@
         "source": {
           "url": "https://www.porsche.com/canada/en/models/taycan/taycan-models/taycan-turbo-gt/",
           "status": 200,
-          "sha256": "b1a7f30a14a57bc4c5df4ea62ac92df75612a6d10a9de0c8ccd8da2defba2b61",
-          "capturedAt": "2026-10-26T01:06:44.235Z"
+          "sha256": "16568a166a93b6c5bbfc5c336b126b0c7d310e2b6b081e6eadf29973dfaf04c5",
+          "capturedAt": "2026-10-30T20:28:06.382Z"
         },
         "data": {
           "modelId": "Y1AFT1-2027",
@@ -28823,8 +28823,8 @@
         "source": {
           "url": "https://configurator.porsche.com/en-CA/mode/model/Y1AFT1",
           "status": 200,
-          "sha256": "12bf639dca44644765535da7449805086c2dfe68ad69a3442b429d17f3e561e5",
-          "capturedAt": "2026-10-26T00:41:57.072Z"
+          "sha256": "36deec69c8de78ce004ff3588fec0fe28dd1550673a8c743b6dca3d99cdfaf4e",
+          "capturedAt": "2026-10-30T20:28:07.113Z"
         },
         "data": {
           "modelId": "Y1AFT1-2027",
@@ -28957,8 +28957,8 @@
           "source": {
             "url": "https://configurator.porsche.com/en-CA/mode/model/Y1AFT1",
             "status": 200,
-            "sha256": "12bf639dca44644765535da7449805086c2dfe68ad69a3442b429d17f3e561e5",
-            "capturedAt": "2026-10-26T00:41:57.072Z"
+            "sha256": "36deec69c8de78ce004ff3588fec0fe28dd1550673a8c743b6dca3d99cdfaf4e",
+            "capturedAt": "2026-10-30T20:28:07.113Z"
           },
           "data": {
             "modelId": "Y1AFT1-2027",
@@ -29109,8 +29109,8 @@
         "source": {
           "url": "https://www.porsche.com/canada/en/models/taycan/taycan-models/taycan-turbo-gt-wp/",
           "status": 200,
-          "sha256": "1d0ac569c4431d3634ca52120c125544c7e887f9d98982527ef5d0b67c1666d2",
-          "capturedAt": "2026-10-26T01:06:45.117Z"
+          "sha256": "16d9fc340e114fa5f972514e6d332255f44f288be5b61cfa8d9e30a3def0d81a",
+          "capturedAt": "2026-10-30T20:28:07.845Z"
         },
         "data": {
           "modelId": "Y1AFP1-2027",
@@ -29884,8 +29884,8 @@
         "source": {
           "url": "https://configurator.porsche.com/en-CA/mode/model/Y1AFP1",
           "status": 200,
-          "sha256": "3cf833a25e6c60668430a07a2cbb1226df0609f711722a022018347b08e1633a",
-          "capturedAt": "2026-10-26T00:41:57.664Z"
+          "sha256": "ef212d538928bd86f5d7a54d58352338c374442b80eb4a32e3026ca4e12d38aa",
+          "capturedAt": "2026-10-30T20:28:08.190Z"
         },
         "data": {
           "modelId": "Y1AFP1-2027",
@@ -30012,8 +30012,8 @@
           "source": {
             "url": "https://configurator.porsche.com/en-CA/mode/model/Y1AFP1",
             "status": 200,
-            "sha256": "3cf833a25e6c60668430a07a2cbb1226df0609f711722a022018347b08e1633a",
-            "capturedAt": "2026-10-26T00:41:57.664Z"
+            "sha256": "ef212d538928bd86f5d7a54d58352338c374442b80eb4a32e3026ca4e12d38aa",
+            "capturedAt": "2026-10-30T20:28:08.190Z"
           },
           "data": {
             "modelId": "Y1AFP1-2027",
@@ -30158,8 +30158,8 @@
         "source": {
           "url": "https://www.porsche.com/canada/en/models/taycan/taycan-cross-turismo-models/taycan-4s-cross-turismo/",
           "status": 200,
-          "sha256": "c1ecf84d8f65e45ff2a7b1bf1fb9d3a3eefc2c2ad490ab385f20e9bb22d984b5",
-          "capturedAt": "2026-10-26T01:06:45.618Z"
+          "sha256": "063856ac9042157be7ddc6ece4ff7a1301a2357c0bf49b33f1859caf96472fc5",
+          "capturedAt": "2026-10-30T20:28:08.502Z"
         },
         "data": {
           "modelId": "Y1BDJ1-2027",
@@ -30825,8 +30825,8 @@
         "source": {
           "url": "https://configurator.porsche.com/en-CA/mode/model/Y1BDJ1",
           "status": 200,
-          "sha256": "a8e3b1fa2d3504eae91fd5bffb2008d6761e1a71c65a79fe818a02b3bf04c5c7",
-          "capturedAt": "2026-10-26T00:41:58.776Z"
+          "sha256": "44e1d2c4f2b90a6397e44ed11bf1ee03ee3ab8c7f5c12d48b2556e05bcb2f146",
+          "capturedAt": "2026-10-30T20:28:08.992Z"
         },
         "data": {
           "modelId": "Y1BDJ1-2027",
@@ -30957,8 +30957,8 @@
           "source": {
             "url": "https://configurator.porsche.com/en-CA/mode/model/Y1BDJ1",
             "status": 200,
-            "sha256": "a8e3b1fa2d3504eae91fd5bffb2008d6761e1a71c65a79fe818a02b3bf04c5c7",
-            "capturedAt": "2026-10-26T00:41:58.776Z"
+            "sha256": "44e1d2c4f2b90a6397e44ed11bf1ee03ee3ab8c7f5c12d48b2556e05bcb2f146",
+            "capturedAt": "2026-10-30T20:28:08.992Z"
           },
           "data": {
             "modelId": "Y1BDJ1-2027",
@@ -31107,8 +31107,8 @@
         "source": {
           "url": "https://www.porsche.com/canada/en/models/panamera/panamera-models/panamera/",
           "status": 200,
-          "sha256": "42ae02e269e43c518efd9d35f810a5ba3b1b43f128476aecefc1713e3f5ca30e",
-          "capturedAt": "2026-10-26T01:06:46.152Z"
+          "sha256": "54a1d98c3c08e9c6f6d753d9dba4010f10a1e9ca2d66163675fcf188c27b8b90",
+          "capturedAt": "2026-10-30T20:28:09.692Z"
         },
         "data": {
           "modelId": "YAAAA1-2027",
@@ -31649,8 +31649,8 @@
         "source": {
           "url": "https://configurator.porsche.com/en-CA/mode/model/YAAAA1",
           "status": 200,
-          "sha256": "143b0359df31de37fe0802ed9338d96eec68a3c54960ca4f23977e6c624a246b",
-          "capturedAt": "2026-10-26T00:41:59.318Z"
+          "sha256": "bcdf98b1fed767f71ff595c5e93a84a72f17d0bad3a0bc67fd12737ffc253bbe",
+          "capturedAt": "2026-10-30T20:28:10.103Z"
         },
         "data": {
           "modelId": "YAAAA1-2027",
@@ -31764,8 +31764,8 @@
           "source": {
             "url": "https://configurator.porsche.com/en-CA/mode/model/YAAAA1",
             "status": 200,
-            "sha256": "143b0359df31de37fe0802ed9338d96eec68a3c54960ca4f23977e6c624a246b",
-            "capturedAt": "2026-10-26T00:41:59.318Z"
+            "sha256": "bcdf98b1fed767f71ff595c5e93a84a72f17d0bad3a0bc67fd12737ffc253bbe",
+            "capturedAt": "2026-10-30T20:28:10.103Z"
           },
           "data": {
             "modelId": "YAAAA1-2027",
@@ -31897,8 +31897,8 @@
         "source": {
           "url": "https://www.porsche.com/canada/en/models/panamera/panamera-models/panamera-4/",
           "status": 200,
-          "sha256": "c6ba8ba571f5a8707d9f19503cdb061ee116318d6049f864a387b1ae642e6b40",
-          "capturedAt": "2026-10-26T01:06:46.472Z"
+          "sha256": "afa0d7716854f34774c98ab3cd301e3386acf3960f34cb0b1880fa78fcebdc04",
+          "capturedAt": "2026-10-30T20:28:10.253Z"
         },
         "data": {
           "modelId": "YAABA1-2027",
@@ -32442,8 +32442,8 @@
         "source": {
           "url": "https://configurator.porsche.com/en-CA/mode/model/YAABA1",
           "status": 200,
-          "sha256": "6c02a856dac51b08c9e8136649c85b677916b001ef10f9c9f0895ddb1ded2c7f",
-          "capturedAt": "2026-10-26T00:41:59.914Z"
+          "sha256": "7cfa2a34b88cfb875b5d366c3a67736e8cff01205d9fd93642c8cb98af184b0c",
+          "capturedAt": "2026-10-30T20:28:10.714Z"
         },
         "data": {
           "modelId": "YAABA1-2027",
@@ -32557,8 +32557,8 @@
           "source": {
             "url": "https://configurator.porsche.com/en-CA/mode/model/YAABA1",
             "status": 200,
-            "sha256": "6c02a856dac51b08c9e8136649c85b677916b001ef10f9c9f0895ddb1ded2c7f",
-            "capturedAt": "2026-10-26T00:41:59.914Z"
+            "sha256": "7cfa2a34b88cfb875b5d366c3a67736e8cff01205d9fd93642c8cb98af184b0c",
+            "capturedAt": "2026-10-30T20:28:10.714Z"
           },
           "data": {
             "modelId": "YAABA1-2027",
@@ -32690,8 +32690,8 @@
         "source": {
           "url": "https://www.porsche.com/canada/en/models/panamera/panamera-models/panamera-4-e-hybrid/",
           "status": 200,
-          "sha256": "394e0d9fd960f525a63812cbfef448bab022879ce6037a77eeab31990fe2dc7e",
-          "capturedAt": "2026-10-26T01:03:17.953Z"
+          "sha256": "3dae35f1d6a8e6f6b567c169ac7df48282eb31f14c1edb36f060e0ab999ce457",
+          "capturedAt": "2026-10-30T20:28:11.331Z"
         },
         "data": {
           "modelId": "YAABE1-2027",
@@ -33289,8 +33289,8 @@
         "source": {
           "url": "https://configurator.porsche.com/en-CA/mode/model/YAABE1",
           "status": 200,
-          "sha256": "1ae56999cdbd206e299d5b08f45f7a70f2f54098ac09a3c3e0065f0eab2111e6",
-          "capturedAt": "2026-10-26T00:42:00.217Z"
+          "sha256": "1a4202a9182ac06723501acb9278214e36b1ee2a706066fd2e2dd2dc405a515a",
+          "capturedAt": "2026-10-30T20:28:11.844Z"
         },
         "data": {
           "modelId": "YAABE1-2027",
@@ -33408,8 +33408,8 @@
           "source": {
             "url": "https://configurator.porsche.com/en-CA/mode/model/YAABE1",
             "status": 200,
-            "sha256": "1ae56999cdbd206e299d5b08f45f7a70f2f54098ac09a3c3e0065f0eab2111e6",
-            "capturedAt": "2026-10-26T00:42:00.217Z"
+            "sha256": "1a4202a9182ac06723501acb9278214e36b1ee2a706066fd2e2dd2dc405a515a",
+            "capturedAt": "2026-10-30T20:28:11.844Z"
           },
           "data": {
             "modelId": "YAABE1-2027",
@@ -33545,8 +33545,8 @@
         "source": {
           "url": "https://www.porsche.com/canada/en/models/panamera/panamera-models/panamera-4s-e-hybrid/",
           "status": 200,
-          "sha256": "cddeb035bb96bb1f9e4bbfadc2ade8add49fcdb4ac62d0c90568d649b42db66a",
-          "capturedAt": "2026-10-26T01:03:19.046Z"
+          "sha256": "0caaa1931d38ea211f221e4f2310624e62099997e431d33860486e9ee8f7da80",
+          "capturedAt": "2026-10-30T20:28:11.937Z"
         },
         "data": {
           "modelId": "YAADZ1-2027",
@@ -34141,8 +34141,8 @@
         "source": {
           "url": "https://configurator.porsche.com/en-CA/mode/model/YAADZ1",
           "status": 200,
-          "sha256": "cb8c7685fbc5cc276411ff00c3da87235972c326865a2ffcbf70f97b3fca0e9c",
-          "capturedAt": "2026-10-26T00:42:00.784Z"
+          "sha256": "7682de561a8f99e90f1284a71543c439830761e870519794eacd00a276367be1",
+          "capturedAt": "2026-10-30T20:28:12.021Z"
         },
         "data": {
           "modelId": "YAADZ1-2027",
@@ -34261,8 +34261,8 @@
           "source": {
             "url": "https://configurator.porsche.com/en-CA/mode/model/YAADZ1",
             "status": 200,
-            "sha256": "cb8c7685fbc5cc276411ff00c3da87235972c326865a2ffcbf70f97b3fca0e9c",
-            "capturedAt": "2026-10-26T00:42:00.784Z"
+            "sha256": "7682de561a8f99e90f1284a71543c439830761e870519794eacd00a276367be1",
+            "capturedAt": "2026-10-30T20:28:12.021Z"
           },
           "data": {
             "modelId": "YAADZ1-2027",
@@ -34399,8 +34399,8 @@
         "source": {
           "url": "https://www.porsche.com/canada/en/models/panamera/panamera-models/panamera-gts/",
           "status": 200,
-          "sha256": "3df2a73c174fb787ea4eaf534f4243619c6b093558cfd27e7367fb6ddeb42140",
-          "capturedAt": "2026-10-26T01:06:46.915Z"
+          "sha256": "5c69096d5edbb4a9cbc45b8116bce69f5e19b83f7782ddedb17b1e99463f986a",
+          "capturedAt": "2026-10-30T20:28:12.230Z"
         },
         "data": {
           "modelId": "YAADG1-2027",
@@ -34928,8 +34928,8 @@
         "source": {
           "url": "https://configurator.porsche.com/en-CA/mode/model/YAADG1",
           "status": 200,
-          "sha256": "5dc92668d8735e410faf6cc08e312d15acb49f8f1ca52f32ae32e0a56489e40c",
-          "capturedAt": "2026-10-26T00:42:01.084Z"
+          "sha256": "b1bff292323324b30672bb7dea1cafc99297c1dfab7d08fa8d9c7015e3742ff6",
+          "capturedAt": "2026-10-30T20:28:12.710Z"
         },
         "data": {
           "modelId": "YAADG1-2027",
@@ -35047,8 +35047,8 @@
           "source": {
             "url": "https://configurator.porsche.com/en-CA/mode/model/YAADG1",
             "status": 200,
-            "sha256": "5dc92668d8735e410faf6cc08e312d15acb49f8f1ca52f32ae32e0a56489e40c",
-            "capturedAt": "2026-10-26T00:42:01.084Z"
+            "sha256": "b1bff292323324b30672bb7dea1cafc99297c1dfab7d08fa8d9c7015e3742ff6",
+            "capturedAt": "2026-10-30T20:28:12.710Z"
           },
           "data": {
             "modelId": "YAADG1-2027",
@@ -35184,8 +35184,8 @@
         "source": {
           "url": "https://www.porsche.com/canada/en/models/panamera/panamera-models/panamera-turbo-e-hybrid/",
           "status": 200,
-          "sha256": "645ffa24851d69fbbf76a79a747af6ed4ccf75ec0396f868145c12bb41a51079",
-          "capturedAt": "2026-10-26T01:03:19.924Z"
+          "sha256": "2b4eb85e1f4cfc2e5e42e4ffbd51e44910e03ace7f07b51cfbb9281b3880756f",
+          "capturedAt": "2026-10-30T20:28:13.474Z"
         },
         "data": {
           "modelId": "YAAFF1-2027",
@@ -35820,8 +35820,8 @@
         "source": {
           "url": "https://configurator.porsche.com/en-CA/mode/model/YAAFF1",
           "status": 200,
-          "sha256": "1b147e22e90ea7e5170b171d04576740afea512bd6095ad90674d9ead6cf896d",
-          "capturedAt": "2026-10-26T00:42:02.302Z"
+          "sha256": "328a58f4efa5bd95511f7ccaee34a7a325418de311b47b4ba610c3c8a26871fb",
+          "capturedAt": "2026-10-30T20:28:14.007Z"
         },
         "data": {
           "modelId": "YAAFF1-2027",
@@ -35943,8 +35943,8 @@
           "source": {
             "url": "https://configurator.porsche.com/en-CA/mode/model/YAAFF1",
             "status": 200,
-            "sha256": "1b147e22e90ea7e5170b171d04576740afea512bd6095ad90674d9ead6cf896d",
-            "capturedAt": "2026-10-26T00:42:02.302Z"
+            "sha256": "328a58f4efa5bd95511f7ccaee34a7a325418de311b47b4ba610c3c8a26871fb",
+            "capturedAt": "2026-10-30T20:28:14.007Z"
           },
           "data": {
             "modelId": "YAAFF1-2027",
@@ -36084,8 +36084,8 @@
         "source": {
           "url": "https://www.porsche.com/canada/en/models/panamera/panamera-models/panamera-turbo-s-e-hybrid/",
           "status": 200,
-          "sha256": "929899610a20e825ed434927a47c0c8e0b69997cbcf3ed54e64d0d60fb2e6db9",
-          "capturedAt": "2026-10-26T01:03:20.609Z"
+          "sha256": "1f1ac3d63089f246569395305a724443bdd470500b028719f8fb0964c3df7570",
+          "capturedAt": "2026-10-30T20:28:14.154Z"
         },
         "data": {
           "modelId": "YAAFH1-2027",
@@ -36717,8 +36717,8 @@
         "source": {
           "url": "https://configurator.porsche.com/en-CA/mode/model/YAAFH1",
           "status": 200,
-          "sha256": "fc806988c9ca35efaab69beff10b9aa3a9d680cd36065deaa9607853674747fb",
-          "capturedAt": "2026-10-26T00:42:02.815Z"
+          "sha256": "0e6ed7622d4e461febe10a2eea5bbe7eff03dceaafaeeee3a64ce4f68881228f",
+          "capturedAt": "2026-10-30T20:28:14.487Z"
         },
         "data": {
           "modelId": "YAAFH1-2027",
@@ -36840,8 +36840,8 @@
           "source": {
             "url": "https://configurator.porsche.com/en-CA/mode/model/YAAFH1",
             "status": 200,
-            "sha256": "fc806988c9ca35efaab69beff10b9aa3a9d680cd36065deaa9607853674747fb",
-            "capturedAt": "2026-10-26T00:42:02.815Z"
+            "sha256": "0e6ed7622d4e461febe10a2eea5bbe7eff03dceaafaeeee3a64ce4f68881228f",
+            "capturedAt": "2026-10-30T20:28:14.487Z"
           },
           "data": {
             "modelId": "YAAFH1-2027",
@@ -36981,8 +36981,8 @@
         "source": {
           "url": "https://www.porsche.com/canada/en/models/macan/macan-models/macan/",
           "status": 200,
-          "sha256": "8f7844c9ff26c4851dcb4f9be3c55e57ddc0fce0468b8448f84140143ec18154",
-          "capturedAt": "2026-10-26T01:06:47.352Z"
+          "sha256": "bf7fee24665b8309182be461eb421e22a5a8b06df6dfc25af5a12665a5ee0820",
+          "capturedAt": "2026-10-30T20:28:14.627Z"
         },
         "data": {
           "modelId": "95BAU1-2026",
@@ -37580,8 +37580,8 @@
         "source": {
           "url": "https://configurator.porsche.com/en-CA/mode/model/95BAU1",
           "status": 200,
-          "sha256": "1d2cbf5681ffa5f9ff4afdbe1e933c59be261288d4c72e3ce70c4f7181fc757d",
-          "capturedAt": "2026-10-26T00:42:03.431Z"
+          "sha256": "990a94eb3c4b498e7fce5cca756481936cdf786efb3c2ad37c90f8102a74cb83",
+          "capturedAt": "2026-10-30T20:28:14.684Z"
         },
         "data": {
           "modelId": "95BAU1-2026",
@@ -37698,8 +37698,8 @@
           "source": {
             "url": "https://configurator.porsche.com/en-CA/mode/model/95BAU1",
             "status": 200,
-            "sha256": "1d2cbf5681ffa5f9ff4afdbe1e933c59be261288d4c72e3ce70c4f7181fc757d",
-            "capturedAt": "2026-10-26T00:42:03.431Z"
+            "sha256": "990a94eb3c4b498e7fce5cca756481936cdf786efb3c2ad37c90f8102a74cb83",
+            "capturedAt": "2026-10-30T20:28:14.684Z"
           },
           "data": {
             "modelId": "95BAU1-2026",
@@ -37834,8 +37834,8 @@
         "source": {
           "url": "https://www.porsche.com/canada/en/models/macan/macan-models/macan-t/",
           "status": 200,
-          "sha256": "79ce39d9f26d0b285621d696ba101cce267362ce3bd693cd467e91c691003120",
-          "capturedAt": "2026-10-26T01:06:48.558Z"
+          "sha256": "7d3596b77289378940e1f2cd2989c2b5906c878316df4705493ae7660519d952",
+          "capturedAt": "2026-10-30T20:28:14.996Z"
         },
         "data": {
           "modelId": "95BAN1-2026",
@@ -38393,8 +38393,8 @@
         "source": {
           "url": "https://configurator.porsche.com/en-CA/mode/model/95BAN1",
           "status": 200,
-          "sha256": "21d2f9c5db523146b01437c033f29901c57fe632a6dc8d78f4dbcb6a74efb34d",
-          "capturedAt": "2026-10-26T00:42:04.002Z"
+          "sha256": "dfbcef99a385d7e39892686f81523ff26bb7f8d36886c1847380a91b4bdd9cde",
+          "capturedAt": "2026-10-30T20:28:16.039Z"
         },
         "data": {
           "modelId": "95BAN1-2026",
@@ -38510,8 +38510,8 @@
           "source": {
             "url": "https://configurator.porsche.com/en-CA/mode/model/95BAN1",
             "status": 200,
-            "sha256": "21d2f9c5db523146b01437c033f29901c57fe632a6dc8d78f4dbcb6a74efb34d",
-            "capturedAt": "2026-10-26T00:42:04.002Z"
+            "sha256": "dfbcef99a385d7e39892686f81523ff26bb7f8d36886c1847380a91b4bdd9cde",
+            "capturedAt": "2026-10-30T20:28:16.039Z"
           },
           "data": {
             "modelId": "95BAN1-2026",
@@ -38645,8 +38645,8 @@
         "source": {
           "url": "https://www.porsche.com/canada/en/models/macan/macan-models/macan-s/",
           "status": 200,
-          "sha256": "459ce809977c333a94347e092ecf2d6cd3dcb767cf3b453a4f2076c533912c3d",
-          "capturedAt": "2026-10-26T01:06:49.051Z"
+          "sha256": "f51c7611f1e7772aa276a9d0cc0adea2bffc34d61b384c6ac8ff9e28325d3799",
+          "capturedAt": "2026-10-30T20:28:15.002Z"
         },
         "data": {
           "modelId": "95BBV1-2026",
@@ -39220,8 +39220,8 @@
         "source": {
           "url": "https://configurator.porsche.com/en-CA/mode/model/95BBV1",
           "status": 200,
-          "sha256": "07de3342c1acc58f2274d6622cf62c2fb50961025b2926d7d1387564b9ee3fdf",
-          "capturedAt": "2026-10-26T00:42:04.922Z"
+          "sha256": "4b0e1432f0912eb05d7bc50c30112fe0d25a4e97586780eee619374f946889a9",
+          "capturedAt": "2026-10-30T20:28:15.756Z"
         },
         "data": {
           "modelId": "95BBV1-2026",
@@ -39339,8 +39339,8 @@
           "source": {
             "url": "https://configurator.porsche.com/en-CA/mode/model/95BBV1",
             "status": 200,
-            "sha256": "07de3342c1acc58f2274d6622cf62c2fb50961025b2926d7d1387564b9ee3fdf",
-            "capturedAt": "2026-10-26T00:42:04.922Z"
+            "sha256": "4b0e1432f0912eb05d7bc50c30112fe0d25a4e97586780eee619374f946889a9",
+            "capturedAt": "2026-10-30T20:28:15.756Z"
           },
           "data": {
             "modelId": "95BBV1-2026",
@@ -39476,8 +39476,8 @@
         "source": {
           "url": "https://www.porsche.com/canada/en/models/macan/macan-models/macan-gts/",
           "status": 200,
-          "sha256": "d90f79d0d235eded52290f64ecf511be382c391a5f7262b2e615c3131194b9a5",
-          "capturedAt": "2026-10-26T01:06:49.621Z"
+          "sha256": "d1c6bfd0031c0816fa83183eb6b5a814404f1df6f48a9e721f23ff947c726b16",
+          "capturedAt": "2026-10-30T20:28:16.135Z"
         },
         "data": {
           "modelId": "95BBW1-2026",
@@ -39986,8 +39986,8 @@
         "source": {
           "url": "https://configurator.porsche.com/en-CA/mode/model/95BBW1",
           "status": 200,
-          "sha256": "740f68e2b823086c0861e359a274abf69752d8bc1417c383140c7bf355db7d7d",
-          "capturedAt": "2026-10-26T00:42:05.627Z"
+          "sha256": "54c481de5222d04a91b116adc541138d65a4f99f3092499fa5ad300f0f544b98",
+          "capturedAt": "2026-10-30T20:28:16.594Z"
         },
         "data": {
           "modelId": "95BBW1-2026",
@@ -40107,8 +40107,8 @@
           "source": {
             "url": "https://configurator.porsche.com/en-CA/mode/model/95BBW1",
             "status": 200,
-            "sha256": "740f68e2b823086c0861e359a274abf69752d8bc1417c383140c7bf355db7d7d",
-            "capturedAt": "2026-10-26T00:42:05.627Z"
+            "sha256": "54c481de5222d04a91b116adc541138d65a4f99f3092499fa5ad300f0f544b98",
+            "capturedAt": "2026-10-30T20:28:16.594Z"
           },
           "data": {
             "modelId": "95BBW1-2026",
@@ -40246,8 +40246,8 @@
         "source": {
           "url": "https://www.porsche.com/canada/en/models/macan/macan-electric-models/macan-4-electric/",
           "status": 200,
-          "sha256": "eacbe528ebace3e6aaa796d34a378d8a2e8ef43a78dfa79fa33dc8c9e11540f2",
-          "capturedAt": "2026-10-26T01:06:49.946Z"
+          "sha256": "7f036c891798ea5e7a0e0869dd00a37c0e10def0015df359f9f00f35fe9475ef",
+          "capturedAt": "2026-10-30T20:28:16.781Z"
         },
         "data": {
           "modelId": "XABBB1-2027",
@@ -41052,8 +41052,8 @@
         "source": {
           "url": "https://configurator.porsche.com/en-CA/mode/model/XABBB1",
           "status": 200,
-          "sha256": "501b93b12ee8e74881453d862f8d45f12e53b94efefb82ea156f04d9e90549f1",
-          "capturedAt": "2026-10-26T00:39:45.190Z"
+          "sha256": "2694db7fee7bc7d4b70716394f6af4f8acf7233cc0dba34990cf063215b04df2",
+          "capturedAt": "2026-10-30T20:28:16.839Z"
         },
         "data": {
           "modelId": "XABBB1-2027",
@@ -41182,8 +41182,8 @@
           "source": {
             "url": "https://configurator.porsche.com/en-CA/mode/model/XABBB1",
             "status": 200,
-            "sha256": "501b93b12ee8e74881453d862f8d45f12e53b94efefb82ea156f04d9e90549f1",
-            "capturedAt": "2026-10-26T00:39:45.190Z"
+            "sha256": "2694db7fee7bc7d4b70716394f6af4f8acf7233cc0dba34990cf063215b04df2",
+            "capturedAt": "2026-10-30T20:28:16.839Z"
           },
           "data": {
             "modelId": "XABBB1-2027",
@@ -41330,8 +41330,8 @@
         "source": {
           "url": "https://www.porsche.com/canada/en/models/macan/macan-electric-models/macan-4s-electric/",
           "status": 200,
-          "sha256": "89096fe1495b40ee0cf700e20f89b968987055644065fc0b715b9da2a8311aa8",
-          "capturedAt": "2026-10-26T01:06:50.618Z"
+          "sha256": "e3b2ea64b03588f3aba2f9d160daa1401f24a961bfc42c4d5f82a691fc8087a8",
+          "capturedAt": "2026-10-30T20:28:19.440Z"
         },
         "data": {
           "modelId": "XABDC1-2027",
@@ -42066,8 +42066,8 @@
         "source": {
           "url": "https://configurator.porsche.com/en-CA/mode/model/XABDC1",
           "status": 200,
-          "sha256": "712beec9e75533ae05f3125d7dac717ef82acb7668acc127e69fde25b7be30d5",
-          "capturedAt": "2026-10-26T00:42:06.881Z"
+          "sha256": "b3de8fb58c5553f6caba7368cad80c0bc148cf40e15d27f3ddbe7806b1f7c526",
+          "capturedAt": "2026-10-30T20:28:20.143Z"
         },
         "data": {
           "modelId": "XABDC1-2027",
@@ -42196,8 +42196,8 @@
           "source": {
             "url": "https://configurator.porsche.com/en-CA/mode/model/XABDC1",
             "status": 200,
-            "sha256": "712beec9e75533ae05f3125d7dac717ef82acb7668acc127e69fde25b7be30d5",
-            "capturedAt": "2026-10-26T00:42:06.881Z"
+            "sha256": "b3de8fb58c5553f6caba7368cad80c0bc148cf40e15d27f3ddbe7806b1f7c526",
+            "capturedAt": "2026-10-30T20:28:20.143Z"
           },
           "data": {
             "modelId": "XABDC1-2027",
@@ -42344,8 +42344,8 @@
         "source": {
           "url": "https://www.porsche.com/canada/en/models/macan/macan-electric-models/macan-gts-electric/",
           "status": 200,
-          "sha256": "369080cf4227e7ac6159ebf22e69866231b03eeaf7064a4d7ee54a9fd422779b",
-          "capturedAt": "2026-10-26T01:06:52.344Z"
+          "sha256": "df33e1c11ca40fd7a28168a8c1d0a91244e4125ad981a4250a007f0d8ccf5c0e",
+          "capturedAt": "2026-10-30T20:28:20.469Z"
         },
         "data": {
           "modelId": "XABDE1-2027",
@@ -43087,8 +43087,8 @@
         "source": {
           "url": "https://configurator.porsche.com/en-CA/mode/model/XABDE1",
           "status": 200,
-          "sha256": "10104b146ebc4a8db19776ac693e4b67356b2923f8ad28e7652ebff269598832",
-          "capturedAt": "2026-10-26T00:42:07.431Z"
+          "sha256": "a20212d596a6bdcd08107e53aa9b9cb75983da88058ff95f76fbf70c85839ca9",
+          "capturedAt": "2026-10-30T20:28:21.423Z"
         },
         "data": {
           "modelId": "XABDE1-2027",
@@ -43219,8 +43219,8 @@
           "source": {
             "url": "https://configurator.porsche.com/en-CA/mode/model/XABDE1",
             "status": 200,
-            "sha256": "10104b146ebc4a8db19776ac693e4b67356b2923f8ad28e7652ebff269598832",
-            "capturedAt": "2026-10-26T00:42:07.431Z"
+            "sha256": "a20212d596a6bdcd08107e53aa9b9cb75983da88058ff95f76fbf70c85839ca9",
+            "capturedAt": "2026-10-30T20:28:21.423Z"
           },
           "data": {
             "modelId": "XABDE1-2027",
@@ -43369,8 +43369,8 @@
         "source": {
           "url": "https://www.porsche.com/canada/en/models/macan/macan-electric-models/macan-turbo-electric/",
           "status": 200,
-          "sha256": "3d94add063931342839723f59b6ed17566581c19de0cb3ef8b492b564cb615c5",
-          "capturedAt": "2026-10-26T01:06:53.618Z"
+          "sha256": "46b9e2658854a82233b9bf045dbccecee7d547a8e1cf3e8abd1666116ec4e8fa",
+          "capturedAt": "2026-10-30T20:28:21.751Z"
         },
         "data": {
           "modelId": "XABFD1-2027",
@@ -44067,8 +44067,8 @@
         "source": {
           "url": "https://configurator.porsche.com/en-CA/mode/model/XABFD1",
           "status": 200,
-          "sha256": "221f75e865b78a95b9bd48a2ccbe7375e3923970c6c489a38c3e798cbc9bb60f",
-          "capturedAt": "2026-10-26T00:42:07.969Z"
+          "sha256": "3c2cfd1d498a52075a3d167b225979a64c81610e3ce1629b459dcc543428827c",
+          "capturedAt": "2026-10-30T20:28:21.838Z"
         },
         "data": {
           "modelId": "XABFD1-2027",
@@ -44197,8 +44197,8 @@
           "source": {
             "url": "https://configurator.porsche.com/en-CA/mode/model/XABFD1",
             "status": 200,
-            "sha256": "221f75e865b78a95b9bd48a2ccbe7375e3923970c6c489a38c3e798cbc9bb60f",
-            "capturedAt": "2026-10-26T00:42:07.969Z"
+            "sha256": "3c2cfd1d498a52075a3d167b225979a64c81610e3ce1629b459dcc543428827c",
+            "capturedAt": "2026-10-30T20:28:21.838Z"
           },
           "data": {
             "modelId": "XABFD1-2027",
@@ -44345,8 +44345,8 @@
         "source": {
           "url": "https://www.porsche.com/canada/en/models/cayenne/cayenne-electric-models/cayenne-electric/",
           "status": 200,
-          "sha256": "0eb8a126c5ca839cf11fc58679fd6daf09d51aed5491e5ad52fb84c424cce3d8",
-          "capturedAt": "2026-10-26T01:06:53.972Z"
+          "sha256": "2aac46f4ce402bd47594396a252f3cb6d76f1ada755b2133a8f244dda73b8bf1",
+          "capturedAt": "2026-10-30T20:28:21.994Z"
         },
         "data": {
           "modelId": "X1AAA1-2027",
@@ -45045,8 +45045,8 @@
         "source": {
           "url": "https://configurator.porsche.com/en-CA/mode/model/X1AAA1",
           "status": 200,
-          "sha256": "0c3b12a7ab32f6c685b69935d6089ee02fa6dfa6b2ac326e62e7e4c6d5310037",
-          "capturedAt": "2026-10-26T00:42:08.263Z"
+          "sha256": "d66bafcfa3edabe8ab5c41d13598eda493d8084583d1fdd1c373c1b94a53e6ef",
+          "capturedAt": "2026-10-30T20:28:22.056Z"
         },
         "data": {
           "modelId": "X1AAA1-2027",
@@ -45173,8 +45173,8 @@
           "source": {
             "url": "https://configurator.porsche.com/en-CA/mode/model/X1AAA1",
             "status": 200,
-            "sha256": "0c3b12a7ab32f6c685b69935d6089ee02fa6dfa6b2ac326e62e7e4c6d5310037",
-            "capturedAt": "2026-10-26T00:42:08.263Z"
+            "sha256": "d66bafcfa3edabe8ab5c41d13598eda493d8084583d1fdd1c373c1b94a53e6ef",
+            "capturedAt": "2026-10-30T20:28:22.056Z"
           },
           "data": {
             "modelId": "X1AAA1-2027",
@@ -45319,8 +45319,8 @@
         "source": {
           "url": "https://www.porsche.com/canada/en/models/cayenne/cayenne-electric-models/cayenne-s-electric/",
           "status": 200,
-          "sha256": "ec4764132011b9ba73466395dd33bcf8d6747e15aa296afd43d3e37801ad853f",
-          "capturedAt": "2026-10-26T01:06:54.755Z"
+          "sha256": "8579e61ff4c7b006cbd10b44f0a29e79d398f394a3695cffdb9b7d9f543d8c36",
+          "capturedAt": "2026-10-30T20:28:24.146Z"
         },
         "data": {
           "modelId": "X1ABB1-2027",
@@ -46013,8 +46013,8 @@
         "source": {
           "url": "https://configurator.porsche.com/en-CA/mode/model/X1ABB1",
           "status": 200,
-          "sha256": "81e32d6092ab0dee8c8e86cf19d58112237c0b39cdc4cfddb0b2b75101744feb",
-          "capturedAt": "2026-10-26T00:42:08.569Z"
+          "sha256": "603475e1c7a4fb0e9b10da866ccf1349da5a0db4bd4e15666e20deb0d10f4e58",
+          "capturedAt": "2026-10-30T20:28:24.213Z"
         },
         "data": {
           "modelId": "X1ABB1-2027",
@@ -46141,8 +46141,8 @@
           "source": {
             "url": "https://configurator.porsche.com/en-CA/mode/model/X1ABB1",
             "status": 200,
-            "sha256": "81e32d6092ab0dee8c8e86cf19d58112237c0b39cdc4cfddb0b2b75101744feb",
-            "capturedAt": "2026-10-26T00:42:08.569Z"
+            "sha256": "603475e1c7a4fb0e9b10da866ccf1349da5a0db4bd4e15666e20deb0d10f4e58",
+            "capturedAt": "2026-10-30T20:28:24.213Z"
           },
           "data": {
             "modelId": "X1ABB1-2027",
@@ -46287,8 +46287,8 @@
         "source": {
           "url": "https://www.porsche.com/canada/en/models/cayenne/cayenne-electric-models/cayenne-turbo-electric/",
           "status": 200,
-          "sha256": "a41f15bdb3badbc3b00cf448d97082b35f89d8618df3fb4d89e50b69d9184ec4",
-          "capturedAt": "2026-10-26T01:06:55.347Z"
+          "sha256": "2c29c1807d5bd4e37c097b0d56ad8bd111512fa7b6e0aae946e22868a3aed681",
+          "capturedAt": "2026-10-30T20:28:24.953Z"
         },
         "data": {
           "modelId": "X1ACD1-2027",
@@ -47014,8 +47014,8 @@
         "source": {
           "url": "https://configurator.porsche.com/en-CA/mode/model/X1ACD1",
           "status": 200,
-          "sha256": "9f92ffa05ff8a07a4b07bc3538643de045dc11a51b590cd33ddbbe2f1ee5da34",
-          "capturedAt": "2026-10-26T00:42:08.873Z"
+          "sha256": "4a52eaa62cda5257c4fce95dd7c56af3061edf46abf3e81a2998b28c30910677",
+          "capturedAt": "2026-10-30T20:28:25.018Z"
         },
         "data": {
           "modelId": "X1ACD1-2027",
@@ -47144,8 +47144,8 @@
           "source": {
             "url": "https://configurator.porsche.com/en-CA/mode/model/X1ACD1",
             "status": 200,
-            "sha256": "9f92ffa05ff8a07a4b07bc3538643de045dc11a51b590cd33ddbbe2f1ee5da34",
-            "capturedAt": "2026-10-26T00:42:08.873Z"
+            "sha256": "4a52eaa62cda5257c4fce95dd7c56af3061edf46abf3e81a2998b28c30910677",
+            "capturedAt": "2026-10-30T20:28:25.018Z"
           },
           "data": {
             "modelId": "X1ACD1-2027",
@@ -47292,8 +47292,8 @@
         "source": {
           "url": "https://www.porsche.com/canada/en/models/cayenne/cayenne-coupe-electric-models/cayenne-coupe-electric/",
           "status": 200,
-          "sha256": "b6a62b7def718aff805d81d745dfdc0f29ef015973cc3a02083bb4477d76d76d",
-          "capturedAt": "2026-10-26T01:06:55.958Z"
+          "sha256": "d04b4c22b153bc0348d40bd92166fc13eec585ec17cd6461c10c0ac2b6405481",
+          "capturedAt": "2026-10-30T20:28:25.181Z"
         },
         "data": {
           "modelId": "X1BAA1-2027",
@@ -47964,8 +47964,8 @@
         "source": {
           "url": "https://configurator.porsche.com/en-CA/mode/model/X1BAA1",
           "status": 200,
-          "sha256": "7a504c4b3eb52aec7055f69bc14936b8d8e2839850246340e97dda5906b02c38",
-          "capturedAt": "2026-10-26T00:42:09.179Z"
+          "sha256": "c495f6c2dc158d9ce323773194b7f4f1012e202ae1feb86fb6a28277e88d657a",
+          "capturedAt": "2026-10-30T20:28:25.630Z"
         },
         "data": {
           "modelId": "X1BAA1-2027",
@@ -48093,8 +48093,8 @@
           "source": {
             "url": "https://configurator.porsche.com/en-CA/mode/model/X1BAA1",
             "status": 200,
-            "sha256": "7a504c4b3eb52aec7055f69bc14936b8d8e2839850246340e97dda5906b02c38",
-            "capturedAt": "2026-10-26T00:42:09.179Z"
+            "sha256": "c495f6c2dc158d9ce323773194b7f4f1012e202ae1feb86fb6a28277e88d657a",
+            "capturedAt": "2026-10-30T20:28:25.630Z"
           },
           "data": {
             "modelId": "X1BAA1-2027",
@@ -48240,8 +48240,8 @@
         "source": {
           "url": "https://www.porsche.com/canada/en/models/cayenne/cayenne-coupe-electric-models/cayenne-s-coupe-electric/",
           "status": 200,
-          "sha256": "6f03b16b9bbf39267f63daff211fc10f8585c3c19b5830712e59e67721042e47",
-          "capturedAt": "2026-10-26T01:06:56.347Z"
+          "sha256": "745c24d936d143b9674cd9277f6abc94a3da3c2b61c8c333cd96c877c0b04213",
+          "capturedAt": "2026-10-30T20:28:25.799Z"
         },
         "data": {
           "modelId": "X1BBB1-2027",
@@ -48915,8 +48915,8 @@
         "source": {
           "url": "https://configurator.porsche.com/en-CA/mode/model/X1BBB1",
           "status": 200,
-          "sha256": "cdbc7a310e56d5b01b86c95cf19edf4040c690cae13596ecc2a97aad929800de",
-          "capturedAt": "2026-10-26T00:42:09.499Z"
+          "sha256": "0f94ff40e805c547cc01d52eb6cc2c381fe423a6d721c1da207d5e615d9f68b5",
+          "capturedAt": "2026-10-30T20:28:26.744Z"
         },
         "data": {
           "modelId": "X1BBB1-2027",
@@ -49045,8 +49045,8 @@
           "source": {
             "url": "https://configurator.porsche.com/en-CA/mode/model/X1BBB1",
             "status": 200,
-            "sha256": "cdbc7a310e56d5b01b86c95cf19edf4040c690cae13596ecc2a97aad929800de",
-            "capturedAt": "2026-10-26T00:42:09.499Z"
+            "sha256": "0f94ff40e805c547cc01d52eb6cc2c381fe423a6d721c1da207d5e615d9f68b5",
+            "capturedAt": "2026-10-30T20:28:26.744Z"
           },
           "data": {
             "modelId": "X1BBB1-2027",
@@ -49193,8 +49193,8 @@
         "source": {
           "url": "https://www.porsche.com/canada/en/models/cayenne/cayenne-coupe-electric-models/cayenne-turbo-coupe-electric/",
           "status": 200,
-          "sha256": "2a50a104d00b62a31c56b8eebb63ae1366e607d8fd8270ad1663b1d504a5c768",
-          "capturedAt": "2026-10-26T01:06:56.750Z"
+          "sha256": "919d7d65a713862dcb9f032188e8253e6a0dadd953d94b8b4d4163a7af31c131",
+          "capturedAt": "2026-10-30T20:28:26.868Z"
         },
         "data": {
           "modelId": "X1BCD1-2027",
@@ -49887,8 +49887,8 @@
         "source": {
           "url": "https://configurator.porsche.com/en-CA/mode/model/X1BCD1",
           "status": 200,
-          "sha256": "eba848df6e70faa9529723d5f3e75614404225f416bcd769803028a84af46c95",
-          "capturedAt": "2026-10-26T00:42:10.157Z"
+          "sha256": "8aa6211c63e095e232167d464a222b5275b4497f5da7ee45226a14ff346f2466",
+          "capturedAt": "2026-10-30T20:28:26.962Z"
         },
         "data": {
           "modelId": "X1BCD1-2027",
@@ -50017,8 +50017,8 @@
           "source": {
             "url": "https://configurator.porsche.com/en-CA/mode/model/X1BCD1",
             "status": 200,
-            "sha256": "eba848df6e70faa9529723d5f3e75614404225f416bcd769803028a84af46c95",
-            "capturedAt": "2026-10-26T00:42:10.157Z"
+            "sha256": "8aa6211c63e095e232167d464a222b5275b4497f5da7ee45226a14ff346f2466",
+            "capturedAt": "2026-10-30T20:28:26.962Z"
           },
           "data": {
             "modelId": "X1BCD1-2027",
@@ -50165,8 +50165,8 @@
         "source": {
           "url": "https://www.porsche.com/canada/en/models/cayenne/cayenne-models/cayenne/",
           "status": 200,
-          "sha256": "164b5850600352f96f7c9cf3e8b76825032537e288ffcb2d6dd5aa8c52e9349e",
-          "capturedAt": "2026-10-26T01:06:57.097Z"
+          "sha256": "dbbb2dff1295b85dcb8ca1ca2eaf816e1a93327e762a5a1e70e5e85047713087",
+          "capturedAt": "2026-10-30T20:28:27.054Z"
         },
         "data": {
           "modelId": "9YAAI1-2027",
@@ -50923,8 +50923,8 @@
         "source": {
           "url": "https://configurator.porsche.com/en-CA/mode/model/9YAAI1",
           "status": 200,
-          "sha256": "998c11fd1d561f67a1af4ed5bf6851a5627c8300ee2201eaabd02e70f3398986",
-          "capturedAt": "2026-10-26T00:42:10.472Z"
+          "sha256": "54c19d94ef7ae6728d9b7f2043be930858cecd3bd21e6e9a1f17f39a8e4f129f",
+          "capturedAt": "2026-10-30T20:28:27.185Z"
         },
         "data": {
           "modelId": "9YAAI1-2027",
@@ -51046,8 +51046,8 @@
           "source": {
             "url": "https://configurator.porsche.com/en-CA/mode/model/9YAAI1",
             "status": 200,
-            "sha256": "998c11fd1d561f67a1af4ed5bf6851a5627c8300ee2201eaabd02e70f3398986",
-            "capturedAt": "2026-10-26T00:42:10.472Z"
+            "sha256": "54c19d94ef7ae6728d9b7f2043be930858cecd3bd21e6e9a1f17f39a8e4f129f",
+            "capturedAt": "2026-10-30T20:28:27.185Z"
           },
           "data": {
             "modelId": "9YAAI1-2027",
@@ -51187,8 +51187,8 @@
         "source": {
           "url": "https://www.porsche.com/canada/en/models/cayenne/cayenne-models/cayenne-e-hybrid/",
           "status": 200,
-          "sha256": "65cf2d55bacf8662e3060a3d6dd290a3a32f51039c5b7ad9844e83f46958d373",
-          "capturedAt": "2026-10-26T01:03:21.089Z"
+          "sha256": "12094975b4a9f3a43e65d191618416419830bf6dc4de00e0a14b137c7d6ba08a",
+          "capturedAt": "2026-10-30T20:28:27.275Z"
         },
         "data": {
           "modelId": "9YAAV1-2027",
@@ -51990,8 +51990,8 @@
         "source": {
           "url": "https://configurator.porsche.com/en-CA/mode/model/9YAAV1",
           "status": 200,
-          "sha256": "de8defa7252d59205e487c4bf844b4f5fce1d5334557790ab8a5784c1f5fe9ea",
-          "capturedAt": "2026-10-26T00:39:44.880Z"
+          "sha256": "bfc45098147fe2e858a9ef74bf72bd7379c04db38d6dc000d8bfbc5683b14567",
+          "capturedAt": "2026-10-30T20:28:27.955Z"
         },
         "data": {
           "modelId": "9YAAV1-2027",
@@ -52120,8 +52120,8 @@
           "source": {
             "url": "https://configurator.porsche.com/en-CA/mode/model/9YAAV1",
             "status": 200,
-            "sha256": "de8defa7252d59205e487c4bf844b4f5fce1d5334557790ab8a5784c1f5fe9ea",
-            "capturedAt": "2026-10-26T00:39:44.880Z"
+            "sha256": "bfc45098147fe2e858a9ef74bf72bd7379c04db38d6dc000d8bfbc5683b14567",
+            "capturedAt": "2026-10-30T20:28:27.955Z"
           },
           "data": {
             "modelId": "9YAAV1-2027",
@@ -52268,8 +52268,8 @@
         "source": {
           "url": "https://www.porsche.com/canada/en/models/cayenne/cayenne-models/cayenne-s/",
           "status": 200,
-          "sha256": "590fcde86f0f802745e12b258950e71e72f69b9bf8b7317aac28d1408bcbd0d2",
-          "capturedAt": "2026-10-26T01:06:57.502Z"
+          "sha256": "608b312033f8dd9481d8f5663a4a056a31b15caa4ad366a244c4d5b3d365af98",
+          "capturedAt": "2026-10-30T20:28:28.278Z"
         },
         "data": {
           "modelId": "9YABJ1-2027",
@@ -53019,8 +53019,8 @@
         "source": {
           "url": "https://configurator.porsche.com/en-CA/mode/model/9YABJ1",
           "status": 200,
-          "sha256": "0ba80594d14a667a50c125db4e4d33e9654b03cb62eee1d2d00d0f28a3f488e9",
-          "capturedAt": "2026-10-26T00:42:10.770Z"
+          "sha256": "328c2c7628f190f866da9e8b7499ad1f47fbb17a66d78f4e00805a828a10fd94",
+          "capturedAt": "2026-10-30T20:28:28.883Z"
         },
         "data": {
           "modelId": "9YABJ1-2027",
@@ -53142,8 +53142,8 @@
           "source": {
             "url": "https://configurator.porsche.com/en-CA/mode/model/9YABJ1",
             "status": 200,
-            "sha256": "0ba80594d14a667a50c125db4e4d33e9654b03cb62eee1d2d00d0f28a3f488e9",
-            "capturedAt": "2026-10-26T00:42:10.770Z"
+            "sha256": "328c2c7628f190f866da9e8b7499ad1f47fbb17a66d78f4e00805a828a10fd94",
+            "capturedAt": "2026-10-30T20:28:28.883Z"
           },
           "data": {
             "modelId": "9YABJ1-2027",
@@ -53283,8 +53283,8 @@
         "source": {
           "url": "https://www.porsche.com/canada/en/models/cayenne/cayenne-models/cayenne-s-e-hybrid/",
           "status": 200,
-          "sha256": "09342d8390b8a666435fe082829329617a6815d3e9c92639be00d27300525c44",
-          "capturedAt": "2026-10-26T01:03:22.037Z"
+          "sha256": "0d9caa86a23766d2e01ec4e71685fededc805ee6f0c4eeffa0b8938b4ca13271",
+          "capturedAt": "2026-10-30T20:28:29.061Z"
         },
         "data": {
           "modelId": "9YABN1-2027",
@@ -54050,8 +54050,8 @@
         "source": {
           "url": "https://configurator.porsche.com/en-CA/mode/model/9YABN1",
           "status": 200,
-          "sha256": "bb21f1a55d5b94a90f4740b3b642871d62f0ff8507dc36b0ad318f5373efc594",
-          "capturedAt": "2026-10-26T00:42:11.312Z"
+          "sha256": "487e01321ee52d6a5844e1b480d335ffedb4f0897c4f569bd95e0d9700ea5af4",
+          "capturedAt": "2026-10-30T20:28:29.120Z"
         },
         "data": {
           "modelId": "9YABN1-2027",
@@ -54180,8 +54180,8 @@
           "source": {
             "url": "https://configurator.porsche.com/en-CA/mode/model/9YABN1",
             "status": 200,
-            "sha256": "bb21f1a55d5b94a90f4740b3b642871d62f0ff8507dc36b0ad318f5373efc594",
-            "capturedAt": "2026-10-26T00:42:11.312Z"
+            "sha256": "487e01321ee52d6a5844e1b480d335ffedb4f0897c4f569bd95e0d9700ea5af4",
+            "capturedAt": "2026-10-30T20:28:29.120Z"
           },
           "data": {
             "modelId": "9YABN1-2027",
@@ -54328,8 +54328,8 @@
         "source": {
           "url": "https://www.porsche.com/canada/en/models/cayenne/cayenne-models/cayenne-gts/",
           "status": 200,
-          "sha256": "276090002a3f4b3fc4e5276633dbcdf342d97059f426c5c089966b7c47552465",
-          "capturedAt": "2026-10-26T01:06:58.600Z"
+          "sha256": "92095f0426e1380fa87396e5e3a09f3dadd1bca9895b0fb274a724b7ec2ae861",
+          "capturedAt": "2026-10-30T20:28:29.442Z"
         },
         "data": {
           "modelId": "9YABS1-2027",
@@ -55072,8 +55072,8 @@
         "source": {
           "url": "https://configurator.porsche.com/en-CA/mode/model/9YABS1",
           "status": 200,
-          "sha256": "70950708807dcacf3a482bb41c22fbb11f8d018f91207c9203cd9d0a44c698b2",
-          "capturedAt": "2026-10-26T00:42:12.213Z"
+          "sha256": "b6ea28ab97c11a590d8b856fb02ebafdf3230774113bccd8e674d701f719673a",
+          "capturedAt": "2026-10-30T20:28:29.530Z"
         },
         "data": {
           "modelId": "9YABS1-2027",
@@ -55197,8 +55197,8 @@
           "source": {
             "url": "https://configurator.porsche.com/en-CA/mode/model/9YABS1",
             "status": 200,
-            "sha256": "70950708807dcacf3a482bb41c22fbb11f8d018f91207c9203cd9d0a44c698b2",
-            "capturedAt": "2026-10-26T00:42:12.213Z"
+            "sha256": "b6ea28ab97c11a590d8b856fb02ebafdf3230774113bccd8e674d701f719673a",
+            "capturedAt": "2026-10-30T20:28:29.530Z"
           },
           "data": {
             "modelId": "9YABS1-2027",
@@ -55340,8 +55340,8 @@
         "source": {
           "url": "https://www.porsche.com/canada/en/models/cayenne/cayenne-models/cayenne-turbo-e-hybrid/",
           "status": 200,
-          "sha256": "c0b3f083122d85ff7de4151e30c478919de00af834ad8fe16baa67b57a449be0",
-          "capturedAt": "2026-10-26T01:03:22.934Z"
+          "sha256": "ae8d246f06cee096064831e6e94dd662f853bcc3887ee5cf589c2a589596494a",
+          "capturedAt": "2026-10-30T20:28:30.205Z"
         },
         "data": {
           "modelId": "9YACT1-2027",
@@ -56140,8 +56140,8 @@
         "source": {
           "url": "https://configurator.porsche.com/en-CA/mode/model/9YACT1",
           "status": 200,
-          "sha256": "1f65ef0ae0df042d6e80edea86a4006cb345ee83e88c71e4318ab487aa072b6d",
-          "capturedAt": "2026-10-26T00:42:12.519Z"
+          "sha256": "9ff951b2c780b0929de70f1764415618c9c2b07b688c1c3263d84f0d69bed28e",
+          "capturedAt": "2026-10-30T20:28:30.524Z"
         },
         "data": {
           "modelId": "9YACT1-2027",
@@ -56272,8 +56272,8 @@
           "source": {
             "url": "https://configurator.porsche.com/en-CA/mode/model/9YACT1",
             "status": 200,
-            "sha256": "1f65ef0ae0df042d6e80edea86a4006cb345ee83e88c71e4318ab487aa072b6d",
-            "capturedAt": "2026-10-26T00:42:12.519Z"
+            "sha256": "9ff951b2c780b0929de70f1764415618c9c2b07b688c1c3263d84f0d69bed28e",
+            "capturedAt": "2026-10-30T20:28:30.524Z"
           },
           "data": {
             "modelId": "9YACT1-2027",
@@ -56422,8 +56422,8 @@
         "source": {
           "url": "https://www.porsche.com/canada/en/models/cayenne/cayenne-coupe-models/cayenne-coupe/",
           "status": 200,
-          "sha256": "fa31ab3c6b2d5014fa2a3f4de7776bdb32dfb3b13d11c354b4a83afc79f8e870",
-          "capturedAt": "2026-10-26T01:06:58.935Z"
+          "sha256": "bc552e4675af4b0fa235e1085249f2810b4704ede92fa678a30547f8043351f4",
+          "capturedAt": "2026-10-30T20:28:30.648Z"
         },
         "data": {
           "modelId": "9YBAI1-2027",
@@ -57129,8 +57129,8 @@
         "source": {
           "url": "https://configurator.porsche.com/en-CA/mode/model/9YBAI1",
           "status": 200,
-          "sha256": "890f6747d017760262ea173a7a8f67c30e5c2b62325ac7781e3785f9a5840e37",
-          "capturedAt": "2026-10-26T00:42:12.823Z"
+          "sha256": "4e1fffc1eba06e2f0455ec5ee70fafa418917740fe630a2475788ca1a21e5fce",
+          "capturedAt": "2026-10-30T20:28:31.001Z"
         },
         "data": {
           "modelId": "9YBAI1-2027",
@@ -57254,8 +57254,8 @@
           "source": {
             "url": "https://configurator.porsche.com/en-CA/mode/model/9YBAI1",
             "status": 200,
-            "sha256": "890f6747d017760262ea173a7a8f67c30e5c2b62325ac7781e3785f9a5840e37",
-            "capturedAt": "2026-10-26T00:42:12.823Z"
+            "sha256": "4e1fffc1eba06e2f0455ec5ee70fafa418917740fe630a2475788ca1a21e5fce",
+            "capturedAt": "2026-10-30T20:28:31.001Z"
           },
           "data": {
             "modelId": "9YBAI1-2027",
@@ -57397,8 +57397,8 @@
         "source": {
           "url": "https://www.porsche.com/canada/en/models/cayenne/cayenne-coupe-models/cayenne-coupe-e-hybrid/",
           "status": 200,
-          "sha256": "1dc28ea32cc8c0fb1484f893bd4aac6ef363e36b469f72f01f737b42db11135c",
-          "capturedAt": "2026-10-26T01:03:23.510Z"
+          "sha256": "ba735bb35ddbaff9e44983f416740c73c901efc9574f9b6b69b3e0eee7f67206",
+          "capturedAt": "2026-10-30T20:28:31.111Z"
         },
         "data": {
           "modelId": "9YBAV1-2027",
@@ -58165,8 +58165,8 @@
         "source": {
           "url": "https://configurator.porsche.com/en-CA/mode/model/9YBAV1",
           "status": 200,
-          "sha256": "2cb26abfb1315bac357a5c4f50abc806eef57c824e6088db31cb48a41f46f783",
-          "capturedAt": "2026-10-26T00:42:13.540Z"
+          "sha256": "f5fbd9c007e470f85ad6ef466672b120d04f2e5f23bb53e29e28d865fbfaa50d",
+          "capturedAt": "2026-10-30T20:28:31.690Z"
         },
         "data": {
           "modelId": "9YBAV1-2027",
@@ -58295,8 +58295,8 @@
           "source": {
             "url": "https://configurator.porsche.com/en-CA/mode/model/9YBAV1",
             "status": 200,
-            "sha256": "2cb26abfb1315bac357a5c4f50abc806eef57c824e6088db31cb48a41f46f783",
-            "capturedAt": "2026-10-26T00:42:13.540Z"
+            "sha256": "f5fbd9c007e470f85ad6ef466672b120d04f2e5f23bb53e29e28d865fbfaa50d",
+            "capturedAt": "2026-10-30T20:28:31.690Z"
           },
           "data": {
             "modelId": "9YBAV1-2027",
@@ -58443,8 +58443,8 @@
         "source": {
           "url": "https://www.porsche.com/canada/en/models/cayenne/cayenne-coupe-models/cayenne-coupe-s/",
           "status": 200,
-          "sha256": "f04db27f505f85e6712330d4dd50fcedc506b9c17ccd158526fa19b99a3137f9",
-          "capturedAt": "2026-10-26T01:06:59.325Z"
+          "sha256": "a815fdeaa2d00ecfa5137f740f28581e762cd2b6c0ccd599f244272125455358",
+          "capturedAt": "2026-10-30T20:28:32.019Z"
         },
         "data": {
           "modelId": "9YBBJ1-2027",
@@ -59146,8 +59146,8 @@
         "source": {
           "url": "https://configurator.porsche.com/en-CA/mode/model/9YBBJ1",
           "status": 200,
-          "sha256": "3d64b0f9b538d0e6a4fae1fa6661c9ddc77648132ac850dce8d92380e3d1a41d",
-          "capturedAt": "2026-10-26T00:42:14.318Z"
+          "sha256": "0c0ef372561c0b38e2ae846d9fbe4121639f861f500adda0e83712afbd016d4c",
+          "capturedAt": "2026-10-30T20:28:32.459Z"
         },
         "data": {
           "modelId": "9YBBJ1-2027",
@@ -59271,8 +59271,8 @@
           "source": {
             "url": "https://configurator.porsche.com/en-CA/mode/model/9YBBJ1",
             "status": 200,
-            "sha256": "3d64b0f9b538d0e6a4fae1fa6661c9ddc77648132ac850dce8d92380e3d1a41d",
-            "capturedAt": "2026-10-26T00:42:14.318Z"
+            "sha256": "0c0ef372561c0b38e2ae846d9fbe4121639f861f500adda0e83712afbd016d4c",
+            "capturedAt": "2026-10-30T20:28:32.459Z"
           },
           "data": {
             "modelId": "9YBBJ1-2027",
@@ -59414,8 +59414,8 @@
         "source": {
           "url": "https://www.porsche.com/canada/en/models/cayenne/cayenne-coupe-models/cayenne-coupe-s-e-hybrid/",
           "status": 200,
-          "sha256": "37697bcbd6469bd4a0d7d3b1ed23930719e84a50806067d8f5029158b00abd97",
-          "capturedAt": "2026-10-26T01:03:24.188Z"
+          "sha256": "5b3c704454b38794733703aea8df049044a8e0b60f812c47befa86829bfca974",
+          "capturedAt": "2026-10-30T20:28:33.448Z"
         },
         "data": {
           "modelId": "9YBBN1-2027",
@@ -60156,8 +60156,8 @@
         "source": {
           "url": "https://configurator.porsche.com/en-CA/mode/model/9YBBN1",
           "status": 200,
-          "sha256": "9b23ae757ca420dc881a488f958e0f77966750b491182a42acabd5b0ed10901d",
-          "capturedAt": "2026-10-26T00:42:14.939Z"
+          "sha256": "2b29bd30844b77a2fdfe42f3820a9ae0aea874ab37c56220054b0f55349fa737",
+          "capturedAt": "2026-10-30T20:28:34.495Z"
         },
         "data": {
           "modelId": "9YBBN1-2027",
@@ -60286,8 +60286,8 @@
           "source": {
             "url": "https://configurator.porsche.com/en-CA/mode/model/9YBBN1",
             "status": 200,
-            "sha256": "9b23ae757ca420dc881a488f958e0f77966750b491182a42acabd5b0ed10901d",
-            "capturedAt": "2026-10-26T00:42:14.939Z"
+            "sha256": "2b29bd30844b77a2fdfe42f3820a9ae0aea874ab37c56220054b0f55349fa737",
+            "capturedAt": "2026-10-30T20:28:34.495Z"
           },
           "data": {
             "modelId": "9YBBN1-2027",
@@ -60434,8 +60434,8 @@
         "source": {
           "url": "https://www.porsche.com/canada/en/models/cayenne/cayenne-coupe-models/cayenne-coupe-gts/",
           "status": 200,
-          "sha256": "36e5d4961abe6c07a2d72d0a26c113026282ecec8ca11aad3bfe5a6673c133f8",
-          "capturedAt": "2026-10-26T01:06:59.686Z"
+          "sha256": "0b471172c510754985f29218158bd7ec4ff012ccbbc09768d775b9402b7095c5",
+          "capturedAt": "2026-10-30T20:28:34.647Z"
         },
         "data": {
           "modelId": "9YBBS1-2027",
@@ -61124,8 +61124,8 @@
         "source": {
           "url": "https://configurator.porsche.com/en-CA/mode/model/9YBBS1",
           "status": 200,
-          "sha256": "ab7cc5ff5fc1b70d2587dd0fba15351ec87162307dbd87006066c24c4f438e49",
-          "capturedAt": "2026-10-26T00:42:15.760Z"
+          "sha256": "8cb71fc29c85a6c3f94b9a080ee8b9bf37cb2d5570e1bd6f4c4b020c3f5ae14f",
+          "capturedAt": "2026-10-30T20:28:35.433Z"
         },
         "data": {
           "modelId": "9YBBS1-2027",
@@ -61251,8 +61251,8 @@
           "source": {
             "url": "https://configurator.porsche.com/en-CA/mode/model/9YBBS1",
             "status": 200,
-            "sha256": "ab7cc5ff5fc1b70d2587dd0fba15351ec87162307dbd87006066c24c4f438e49",
-            "capturedAt": "2026-10-26T00:42:15.760Z"
+            "sha256": "8cb71fc29c85a6c3f94b9a080ee8b9bf37cb2d5570e1bd6f4c4b020c3f5ae14f",
+            "capturedAt": "2026-10-30T20:28:35.433Z"
           },
           "data": {
             "modelId": "9YBBS1-2027",
@@ -61396,8 +61396,8 @@
         "source": {
           "url": "https://www.porsche.com/canada/en/models/cayenne/cayenne-coupe-models/cayenne-coupe-turbo-e-hybrid/",
           "status": 200,
-          "sha256": "22c2973346519c7fc0156d318e1441a64cfb9b3644db1bc3033da316cf6e4dee",
-          "capturedAt": "2026-10-26T01:03:24.824Z"
+          "sha256": "11cdd85ec149c629df699f6b493e7b6df7eeac5d1b9e2a2bfd33751b513b731a",
+          "capturedAt": "2026-10-30T20:28:35.768Z"
         },
         "data": {
           "modelId": "9YBCT1-2027",
@@ -62165,8 +62165,8 @@
         "source": {
           "url": "https://configurator.porsche.com/en-CA/mode/model/9YBCT1",
           "status": 200,
-          "sha256": "abf9af80ebc167f2feb97a588ffcde727b923986c900713e10542df2796663ed",
-          "capturedAt": "2026-10-26T00:42:16.467Z"
+          "sha256": "c5f648c002930e34d2de72fb6c0139ac98ac354739a11ce93b64d6da3795ad9e",
+          "capturedAt": "2026-10-30T20:28:36.244Z"
         },
         "data": {
           "modelId": "9YBCT1-2027",
@@ -62297,8 +62297,8 @@
           "source": {
             "url": "https://configurator.porsche.com/en-CA/mode/model/9YBCT1",
             "status": 200,
-            "sha256": "abf9af80ebc167f2feb97a588ffcde727b923986c900713e10542df2796663ed",
-            "capturedAt": "2026-10-26T00:42:16.467Z"
+            "sha256": "c5f648c002930e34d2de72fb6c0139ac98ac354739a11ce93b64d6da3795ad9e",
+            "capturedAt": "2026-10-30T20:28:36.244Z"
           },
           "data": {
             "modelId": "9YBCT1-2027",
@@ -62447,8 +62447,8 @@
         "source": {
           "url": "https://www.porsche.com/canada/en/models/cayenne/cayenne-coupe-models/cayenne-coupe-turbo-gt/",
           "status": 200,
-          "sha256": "58c055007a8cb373e7ae18a289067aacf798a9e1271912e6d78e211b63935e18",
-          "capturedAt": "2026-10-26T01:07:00.074Z"
+          "sha256": "e94582ab8a31124a0685d317e32312f16a1a13304a3789034eebee4e29c251ae",
+          "capturedAt": "2026-10-30T20:28:36.571Z"
         },
         "data": {
           "modelId": "9YBCP1-2027",
@@ -63080,8 +63080,8 @@
         "source": {
           "url": "https://configurator.porsche.com/en-CA/mode/model/9YBCP1",
           "status": 200,
-          "sha256": "e81016d02ba6ca9c2264e76a338b6fe2d20ba995d531908289af2ae1330d6493",
-          "capturedAt": "2026-10-26T00:42:16.763Z"
+          "sha256": "f5b5464e67ab55e58a79bd349061c02d94775bbf094ace60ab4daa9690d3ec53",
+          "capturedAt": "2026-10-30T20:28:36.631Z"
         },
         "data": {
           "modelId": "9YBCP1-2027",
@@ -63207,8 +63207,8 @@
           "source": {
             "url": "https://configurator.porsche.com/en-CA/mode/model/9YBCP1",
             "status": 200,
-            "sha256": "e81016d02ba6ca9c2264e76a338b6fe2d20ba995d531908289af2ae1330d6493",
-            "capturedAt": "2026-10-26T00:42:16.763Z"
+            "sha256": "f5b5464e67ab55e58a79bd349061c02d94775bbf094ace60ab4daa9690d3ec53",
+            "capturedAt": "2026-10-30T20:28:36.631Z"
           },
           "data": {
             "modelId": "9YBCP1-2027",

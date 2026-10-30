@@ -12,6 +12,7 @@ import {
   porscheProfileKey,
   porscheSelectionUrl,
   validatePorscheSnapshot,
+  porscheSnapshotSchema,
   porscheNoRegression,
 } from '../packages/car-catalog/src/porsche-import.ts';
 import type {
@@ -149,7 +150,9 @@ const snapshot = validatePorscheSnapshot({
   models: rows,
 });
 try {
-  const previous = validatePorscheSnapshot(JSON.parse(await readFile(target, 'utf8')));
+  // The baseline was reviewed against the clients pinned at its own date, so only
+  // its shape is checked before comparing offerings.
+  const previous = porscheSnapshotSchema.parse(JSON.parse(await readFile(target, 'utf8')));
   porscheNoRegression(previous, snapshot);
 } catch (e) {
   if ((e as NodeJS.ErrnoException).code !== 'ENOENT') throw e;

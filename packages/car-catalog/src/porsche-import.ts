@@ -553,20 +553,20 @@ export function porscheDetail(html: string, model: PorscheModel): PorscheDetail 
 
 export const porscheClients = [
   {
-    file: 'customer-configurator.route-CYVjsHr4.js',
-    sha256: '72a0348e70deab9004987fa22a515d9dc79a191a700df983fdac6e4e0edda945',
+    file: 'customer-configurator.route-D3iQhWhF.js',
+    sha256: 'cf69d464ad24326d0d410e33137f62823db9796f4ba70964e7a56c311a44031f',
   },
   {
-    file: 'app-search-params-DnJVjvQS.js',
-    sha256: '93f696ad111fd7ce7dfc568f30ea9b7856cc58c2a89a269ad574bc8c5b7978dc',
+    file: 'app-search-params-BI-yMevm.js',
+    sha256: '8e96b4b543de76a086aa58cfd9b355eee2b61b980cce896a85972d8afc37d891',
   },
   {
-    file: 'params-C2wJ5HMj.js',
-    sha256: '484d662ab0a0a5b2e4bcd7658fbc90a714fd9bc0eca044ab431d2e0e743baebd',
+    file: 'params-NiOXCcbD.js',
+    sha256: '4228d0016aa0cb6d3d5132575ea3ee8f1bed0cf38538f4988877cc04ae2e1718',
   },
   {
-    file: 'financial-services-Bc31xzmB.js',
-    sha256: 'ced1dc0b12346fc7bc82d4d45fdc3ce2ad5b841428089a8e2197675fbee27027',
+    file: 'financial-services-B6NOqd3R.js',
+    sha256: '78ae0cdbec42a1b5e83f8cdfd12c1c01092ec890b174ac44a7e0e24e80697da6',
   },
 ].map((c) => ({ ...c, url: `${porscheBuilderOrigin}/public/${c.file}` }));
 const profileSchema = z.strictObject({
@@ -577,7 +577,7 @@ const profileSchema = z.strictObject({
     .strictObject({ parentKey: text, optionId: text, replacedId: text.nullable() })
     .nullable(),
 });
-const snapshotSchema = z.strictObject({
+export const porscheSnapshotSchema = z.strictObject({
   schemaVersion: z.literal(1),
   market: z.literal('CA'),
   currency: z.literal('CAD'),
@@ -597,9 +597,9 @@ const snapshotSchema = z.strictObject({
     )
     .min(1),
 });
-export type PorscheSnapshot = z.infer<typeof snapshotSchema>;
+export type PorscheSnapshot = z.infer<typeof porscheSnapshotSchema>;
 export function validatePorscheSnapshot(input: unknown): PorscheSnapshot {
-  const s = snapshotSchema.parse(input),
+  const s = porscheSnapshotSchema.parse(input),
     receipts = [s.overviewSource, ...s.clients];
   function source(r: z.infer<typeof porscheReceiptSchema>, url: string) {
     if (r.status !== 200 || r.url !== url)

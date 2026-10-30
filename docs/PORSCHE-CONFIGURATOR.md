@@ -31,7 +31,13 @@ importer decodes only the Canadian loader, with bounded references/depth, review
 null/undefined and Set encodings, and rejection of cycles or unsafe keys. It
 never executes downloaded JavaScript. Four linked selection/query modules are
 pinned by URL and checksum. A changed client or an initializer no longer linking
-the reviewed route module requires renewed review.
+the reviewed route module requires renewed review. On 30 October a site deploy
+replaced all four. The query contract the import relies on is unchanged: the
+same `options`, `optionAdded` and `optionRemoved` names and `.` separators, with
+new feasibility-dialog and financing parameters added. The refreshed import
+reproduced every configuration and price, and the new modules are pinned. A live
+import compares against the previous snapshot's shape only, since that snapshot
+was reviewed against the clients of its own date.
 
 Run `npm run catalog:sync:porsche` for live public reads, or append `-- --offline`
 for exact reconstruction from checksummed ignored raw responses in
