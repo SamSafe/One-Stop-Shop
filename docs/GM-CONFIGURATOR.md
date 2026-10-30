@@ -71,9 +71,18 @@ once, independently of the default engine's price.
 
 During capture the public calculator began rejecting many requests with 403;
 some new combinations also returned 422. Valid earlier responses and exactly
-matching GET calculations are retained. Of the 1,230 records, 376 have reconciled
-MSRP and 854 remain unverified. A published fee-inclusive amount is never used to
-hide a rejected calculation. The application has no runtime dependency on GM's
+matching GET calculations are retained. The original capture reconciled MSRP for
+376 of the 1,230 records.
+
+On 29–30 October the 854 rate-limited calculations were retried, one request
+every 2.5 seconds, against the same 22 October trim matrices with
+`scripts/retry-gm-calculations.ts`. 850 succeeded. 1,194 records now have
+reconciled factory MSRP. The rest remain unknown with explicit reasons: 32
+calculations whose components or subtotal do not reconcile, five combinations
+the calculator rejects with HTTP 422 because no colour is selectable, and three
+responses with a different factory identity. The snapshot keeps the 22 October
+date because the lineup and matrices were not rechecked. A published
+fee-inclusive amount is never used to hide a rejected calculation. The application has no runtime dependency on GM's
 services, so a source outage does not prevent local browsing.
 
 ## Specifications and remaining work
@@ -101,6 +110,14 @@ capture manifest identifies source URLs, response hashes, POST request hashes,
 the original date and failed calculation receipts. Import a reviewed manifest
 with `npm run catalog:sync:gm -- --from-captures <manifest.json>`. This is a capture
 import, not a fresh live refresh. No command advances the capture date implicitly.
+
+`node --import tsx scripts/retry-gm-calculations.ts` retries calculations that
+the manifest records as rate-limited (HTTP 403). It validates each response as
+the importer does and writes `data/raw/gm/review-capture-manifest.json` after
+every response, so an interrupted run resumes. `GM_RETRY_DELAY_MS` sets the
+request spacing; the tool stops after four consecutive rejections. Import the
+review manifest with `--from-captures`, then copy it to `capture-manifest.json`
+so offline replay covers it.
 
 `npm run catalog:sync:gm -- --offline` reconstructs the tracked snapshot from the
 original manifest and verifies every consumed response hash and expected set.

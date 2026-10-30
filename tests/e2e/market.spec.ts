@@ -523,7 +523,8 @@ test('GM factory prices exclude fees, unavailable prices remain visible, and pas
   await page.getByRole('searchbox', { name: 'Search cars' }).fill('Envista');
   await expect(page.getByRole('article')).toHaveCount(3);
   await expect(page.getByRole('article').filter({ hasText: 'Preferred' })).toContainText('$29,749');
-  await page.getByRole('searchbox', { name: 'Search cars' }).fill('Envista Avenir');
+  await page.getByLabel('Model year', { exact: true }).selectOption('2025');
+  await page.getByRole('searchbox', { name: 'Search cars' }).fill('Encore Avenir');
   await expect(page.getByRole('article')).toHaveCount(1);
   await expect(page.getByRole('article')).toContainText('Not verified');
   await page.getByLabel('Max base MSRP', { exact: true }).selectOption('50000');

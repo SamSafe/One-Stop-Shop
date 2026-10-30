@@ -421,7 +421,9 @@ The public calculator began returning 403 for many requests; several new
 combinations returned 422. Captured responses and exactly matching default GET
 calculations establish 376 MSRP values. The other 854 remain explicitly unverified,
 including unmatched defaults and unresolved pricing components. None use a
-fee-inclusive matrix amount as a substitute. Exact calculator horsepower and
+fee-inclusive matrix amount as a substitute. (A 29–30 October retry of the
+rejected calculations raised this to 1,194; see the GM source contract.) Exact
+calculator horsepower and
 explicit Canadian city/highway L/100km can be shown; dimensional, cabin, cargo
 and other energy tables still need exact variant/option joins. Additional
 equipment/package combinations beyond the published matrix remain in the report.

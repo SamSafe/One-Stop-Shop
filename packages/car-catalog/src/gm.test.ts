@@ -266,9 +266,10 @@ describe('GM Canadian factory matrices and calculations', () => {
     );
     const unpriced = gmSnapshot.records.find(
       (record) =>
-        record.modelKey === 'buick/envista/2026/envista' && record.option.trimName === 'Avenir',
+        record.modelKey === 'buick/encore-gx/2025/encore-gx' && record.option.trimName === 'Avenir',
     )!;
     expect(unpriced.configuration).toBeNull();
+    expect(unpriced.configurationGap).toContain('HTTP422');
     expect(gmFacts(unpriced, byModel(unpriced)).msrpCad.value).toBeNull();
     expect(gmFacts(unpriced, byModel(unpriced)).msrpCad.note).toContain('unverified');
   });
