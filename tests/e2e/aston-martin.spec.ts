@@ -10,7 +10,7 @@ test('Aston Martin listings preserve unknown years and prices and withhold stock
   await page
     .getByLabel('Availability evidence', { exact: true })
     .selectOption('manufacturer-listed');
-  await expect(page.getByRole('article')).toHaveCount(9);
+  await expect(page.getByRole('article')).toHaveCount(10);
   await expect(page.getByRole('article').filter({ hasText: 'Valen' })).toHaveCount(0);
   await expect(page.getByRole('article').filter({ hasText: 'DBX707' })).toHaveCount(0);
   const vantage = page.locator('article[aria-labelledby="title-aston-martin-ca-am662"]');
@@ -26,7 +26,7 @@ test('Aston Martin listings preserve unknown years and prices and withhold stock
     'https://configurator.astonmartin.com/static/assets/translations/en.json',
   );
   await page.getByLabel('Model year', { exact: true }).selectOption('unverified');
-  await expect(page.getByRole('article')).toHaveCount(9);
+  await expect(page.getByRole('article')).toHaveCount(10);
   await page.getByLabel('Record type', { exact: true }).selectOption('retail-trim');
   await expect(page.getByRole('article')).toHaveCount(0);
   await page.getByLabel('Record type', { exact: true }).selectOption('manufacturer-offer');

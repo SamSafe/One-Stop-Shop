@@ -14,6 +14,30 @@ URL. The test-drive journal is unchanged and opens from the results bar. Saved
 data and backups from earlier versions still load; a stored brief is dropped.
 See [limits, priorities and the test-drive journal](TEST-DRIVE-JOURNAL.md).
 
+## Every importer refreshes again — 30 October
+
+The nine importers the first live health run flagged now refresh:
+
+- **Hyundai.** The lineup endpoint takes `lang=en` instead of `language=en`.
+  Every model specification table responds again.
+- **Mercedes-Benz.** A menu card for the AMG GLC 53 lost its identity and is kept
+  as a placeholder for review. Three GLC entries still say 2026 while their model
+  pages state 2027; the page year is used and each card notes the difference.
+- **BMW.** The earlier schema failure did not recur; prices are unchanged.
+- **MINI.** Stock search sorts have ties, so paging repeated some vehicles and
+  skipped others. Stock is now read in further sort orders until every vehicle
+  is seen. Sixteen priced 2027 John Cooper Works and Countryman Untamed
+  configurations were added.
+- **Aston Martin, Lucid, McLaren, Porsche, Rivian.** Site deploys renamed or
+  rebuilt the pinned configurator scripts. Each was compared with its reviewed
+  version, and the request contract the importer relies on was unchanged. Aston
+  Martin added the Valhalla Spider, recorded as a hybrid from its own page.
+  Rivian's guard now retires stock that left searches that succeeded again,
+  instead of blocking every refresh after a sale.
+
+[Catalog sources](CATALOG-SOURCES.md#when-a-pinned-client-changes) describes how
+to review a changed client. The Garage owner directory was rebuilt.
+
 ## Source health, GM prices and maintenance — 30 October
 
 `npm run catalog:health` reports the age of every source snapshot. Its `--replay`
@@ -25,8 +49,8 @@ The first live run, one week after the latest refreshes, found that 9 of 25
 manufacturer importers can no longer refresh. Aston Martin, Lucid, McLaren,
 Porsche and Rivian changed the public clients their importers verify. BMW and
 Mercedes-Benz responses fail schema validation, Hyundai's API returns HTTP 400
-and MINI's stock counts no longer reconcile. Tracked snapshots are unaffected;
-these importers need review before their next refresh. Replay also found that
+and MINI's stock counts no longer reconcile. Tracked snapshots were unaffected,
+and all nine were fixed the same day (above). Replay also found that
 the Garage owner directory was missing the 2027 BRZ 輝 Kagayaki Edition added by
 the 27 October Subaru refresh. It has been rebuilt.
 

@@ -236,14 +236,14 @@
           "catalogId": "bmw-ca-2027-2749-33hk-automatic"
         },
         {
-          "label": "M4 Competition Coupe M Legacy Edition",
-          "engine": "M4 Competition Coupe M Legacy Edition",
-          "catalogId": "bmw-ca-2027-274b-33hk-automatic"
-        },
-        {
           "label": "M4 Competition Cabriolet",
           "engine": "M4 Competition Cabriolet",
           "catalogId": "bmw-ca-2027-27m0-43ba-automatic"
+        },
+        {
+          "label": "M4 Competition Coupe M Legacy Edition",
+          "engine": "M4 Competition Coupe M Legacy Edition",
+          "catalogId": "bmw-ca-2027-274b-33hk-automatic"
         },
         {
           "label": "M4 Coupe M Legacy Edition",
@@ -3948,11 +3948,6 @@
           "label": "GLC 350e 4MATIC SUV",
           "engine": "GLC 350e 4MATIC SUV",
           "catalogId": "mercedes-ca-2027-glc350e4"
-        },
-        {
-          "label": "AMG GLC 53 4MATIC+ SUV",
-          "engine": "AMG GLC 53 4MATIC+ SUV",
-          "catalogId": "mercedes-ca-2027-glc53w4"
         }
       ],
       "sourceIds": []
@@ -4132,9 +4127,24 @@
           "catalogId": "mini-ca-2027-27hb-312-61-zz0"
         },
         {
-          "label": "John Cooper Works",
-          "engine": "John Cooper Works",
-          "catalogId": "mini-ca-2027-27hc-stock-base-standard"
+          "label": "John Cooper Works · PREMIER",
+          "engine": "John Cooper Works · PREMIER",
+          "catalogId": "mini-ca-2027-27hc-313-base-standard"
+        },
+        {
+          "label": "John Cooper Works · PREMIER",
+          "engine": "John Cooper Works · PREMIER",
+          "catalogId": "mini-ca-2027-27hc-313-base-zz0"
+        },
+        {
+          "label": "John Cooper Works · PREMIER+",
+          "engine": "John Cooper Works · PREMIER+",
+          "catalogId": "mini-ca-2027-27hc-314-base-standard"
+        },
+        {
+          "label": "John Cooper Works · PREMIER+",
+          "engine": "John Cooper Works · PREMIER+",
+          "catalogId": "mini-ca-2027-27hc-314-base-zz0"
         },
         {
           "label": "Cooper C 3 Door Icon Edition",
@@ -4443,9 +4453,24 @@
           "catalogId": "mini-ca-2027-27vb-322-65-zz0"
         },
         {
-          "label": "John Cooper Works Convertible",
-          "engine": "John Cooper Works Convertible",
-          "catalogId": "mini-ca-2027-27vc-stock-base-standard"
+          "label": "John Cooper Works Convertible · PREMIER",
+          "engine": "John Cooper Works Convertible · PREMIER",
+          "catalogId": "mini-ca-2027-27vc-323-base-standard"
+        },
+        {
+          "label": "John Cooper Works Convertible · PREMIER",
+          "engine": "John Cooper Works Convertible · PREMIER",
+          "catalogId": "mini-ca-2027-27vc-323-base-zz0"
+        },
+        {
+          "label": "John Cooper Works Convertible · PREMIER+",
+          "engine": "John Cooper Works Convertible · PREMIER+",
+          "catalogId": "mini-ca-2027-27vc-324-base-standard"
+        },
+        {
+          "label": "John Cooper Works Convertible · PREMIER+",
+          "engine": "John Cooper Works Convertible · PREMIER+",
+          "catalogId": "mini-ca-2027-27vc-324-base-zz0"
         },
         {
           "label": "Cooper S Convertible Paul Smith Edition · PREMIER",
@@ -4684,6 +4709,46 @@
           "label": "Countryman S ALL4 JCW Edition",
           "engine": "Countryman S ALL4 JCW Edition",
           "catalogId": "mini-ca-2027-27yq-stock-base-standard"
+        },
+        {
+          "label": "Countryman S ALL4 Untamed · PREMIER",
+          "engine": "Countryman S ALL4 Untamed · PREMIER",
+          "catalogId": "mini-ca-2027-27yu-331-base-standard"
+        },
+        {
+          "label": "Countryman S ALL4 Untamed · PREMIER",
+          "engine": "Countryman S ALL4 Untamed · PREMIER",
+          "catalogId": "mini-ca-2027-27yu-331-base-zyu"
+        },
+        {
+          "label": "Countryman S ALL4 Untamed · PREMIER+",
+          "engine": "Countryman S ALL4 Untamed · PREMIER+",
+          "catalogId": "mini-ca-2027-27yu-332-base-standard"
+        },
+        {
+          "label": "Countryman S ALL4 Untamed · PREMIER+",
+          "engine": "Countryman S ALL4 Untamed · PREMIER+",
+          "catalogId": "mini-ca-2027-27yu-332-base-zyu"
+        },
+        {
+          "label": "Countryman SE ALL4 Untamed · PREMIER",
+          "engine": "Countryman SE ALL4 Untamed · PREMIER",
+          "catalogId": "mini-ca-2027-27yv-333-base-standard"
+        },
+        {
+          "label": "Countryman SE ALL4 Untamed · PREMIER",
+          "engine": "Countryman SE ALL4 Untamed · PREMIER",
+          "catalogId": "mini-ca-2027-27yv-333-base-zyu"
+        },
+        {
+          "label": "Countryman SE ALL4 Untamed · PREMIER+",
+          "engine": "Countryman SE ALL4 Untamed · PREMIER+",
+          "catalogId": "mini-ca-2027-27yv-334-base-standard"
+        },
+        {
+          "label": "Countryman SE ALL4 Untamed · PREMIER+",
+          "engine": "Countryman SE ALL4 Untamed · PREMIER+",
+          "catalogId": "mini-ca-2027-27yv-334-base-zyu"
         }
       ],
       "sourceIds": []
@@ -17897,16 +17962,21 @@
       "choices": [
         { "label": "Touring", "engine": "Touring", "catalogId": "lucid-ca-b845f17fa9381dca" },
         { "label": "Pure", "engine": "Pure", "catalogId": "lucid-ca-a76114d8ecf09140" },
-        { "label": "Pure", "engine": "Pure", "catalogId": "lucid-ca-a97854416867b02c" },
+        { "label": "Touring", "engine": "Touring", "catalogId": "lucid-ca-0702f752a0eb2e16" },
         { "label": "Touring", "engine": "Touring", "catalogId": "lucid-ca-6e787edfe2a175b0" },
         { "label": "Touring", "engine": "Touring", "catalogId": "lucid-ca-debf59949c6805a7" },
-        { "label": "Touring", "engine": "Touring", "catalogId": "lucid-ca-e76bded79870bfd3" },
         { "label": "Touring", "engine": "Touring", "catalogId": "lucid-ca-070a0052a0f15c0f" },
         { "label": "Pure", "engine": "Pure", "catalogId": "lucid-ca-625ff4285a29fa13" },
         { "label": "Touring", "engine": "Touring", "catalogId": "lucid-ca-f59849c7a0f48e83" },
+        { "label": "Touring", "engine": "Touring", "catalogId": "lucid-ca-e76bded79870bfd3" },
+        {
+          "label": "Grand Touring",
+          "engine": "Grand Touring",
+          "catalogId": "lucid-ca-202a9e1d03a0f9e3"
+        },
         { "label": "Touring", "engine": "Touring", "catalogId": "lucid-ca-f59161c7a0ee989d" },
-        { "label": "Touring", "engine": "Touring", "catalogId": "lucid-ca-0702f752a0eb2e16" },
         { "label": "Touring", "engine": "Touring", "catalogId": "lucid-ca-2cdef571bcc6c289" },
+        { "label": "Touring", "engine": "Touring", "catalogId": "lucid-ca-d3b161d7c393694d" },
         { "label": "Touring", "engine": "Touring", "catalogId": "lucid-ca-682de65b807e29fa" },
         { "label": "Touring", "engine": "Touring", "catalogId": "lucid-ca-47857c44d502e6c1" },
         { "label": "Pure", "engine": "Pure", "catalogId": "lucid-ca-2f317714778b7317" },
@@ -17915,7 +17985,7 @@
           "engine": "Grand Touring",
           "catalogId": "lucid-ca-5b9a6caa76beffd4"
         },
-        { "label": "Touring", "engine": "Touring", "catalogId": "lucid-ca-d3b161d7c393694d" },
+        { "label": "Pure", "engine": "Pure", "catalogId": "lucid-ca-a97854416867b02c" },
         { "label": "Touring", "engine": "Touring", "catalogId": "lucid-ca-e76be3d79870c852" },
         { "label": "Touring", "engine": "Touring", "catalogId": "lucid-ca-84f6ad7e56d07a81" },
         { "label": "Touring", "engine": "Touring", "catalogId": "lucid-ca-620368f3b7a90492" },
@@ -17959,6 +18029,7 @@
           "engine": "Grand Touring",
           "catalogId": "lucid-ca-f34a2a83ea852908"
         },
+        { "label": "Touring", "engine": "Touring", "catalogId": "lucid-ca-ab3f2bca0800db86" },
         { "label": "Touring", "engine": "Touring", "catalogId": "lucid-ca-c4c498515bc874cd" },
         {
           "label": "Grand Touring",
@@ -17984,6 +18055,11 @@
         {
           "label": "Grand Touring",
           "engine": "Grand Touring",
+          "catalogId": "lucid-ca-f2842a295a06dfb4"
+        },
+        {
+          "label": "Grand Touring",
+          "engine": "Grand Touring",
           "catalogId": "lucid-ca-463473c8ae366529"
         },
         {
@@ -17992,12 +18068,12 @@
           "catalogId": "lucid-ca-96aec6cb7cef1aee"
         },
         { "label": "Touring", "engine": "Touring", "catalogId": "lucid-ca-7b70f96eaa994ad5" },
+        { "label": "Touring", "engine": "Touring", "catalogId": "lucid-ca-9a696e3d2a180168" },
         {
           "label": "Grand Touring",
           "engine": "Grand Touring",
           "catalogId": "lucid-ca-f34a2c83ea852c6e"
         },
-        { "label": "Touring", "engine": "Touring", "catalogId": "lucid-ca-9a696e3d2a180168" },
         {
           "label": "Grand Touring",
           "engine": "Grand Touring",
@@ -21405,12 +21481,8 @@
         { "label": "Dual", "engine": "Dual", "catalogId": "rivian-ca-79b8ce7aaa1a946c" },
         { "label": "Tri", "engine": "Tri", "catalogId": "rivian-ca-a5ec393ba4b5042a" },
         { "label": "Dual", "engine": "Dual", "catalogId": "rivian-ca-559171b910ec9e8c" },
-        { "label": "Dual", "engine": "Dual", "catalogId": "rivian-ca-13e053d257c72f6c" },
         { "label": "Dual", "engine": "Dual", "catalogId": "rivian-ca-dde22594f30e4f86" },
-        { "label": "Quad", "engine": "Quad", "catalogId": "rivian-ca-bd283778a14c570a" },
         { "label": "Tri", "engine": "Tri", "catalogId": "rivian-ca-8cf8c017310c4aed" },
-        { "label": "Dual", "engine": "Dual", "catalogId": "rivian-ca-231dbe83ce5b2a47" },
-        { "label": "Dual", "engine": "Dual", "catalogId": "rivian-ca-d0e638627b53bddf" },
         { "label": "Dual", "engine": "Dual", "catalogId": "rivian-ca-1ff37043e3b34f41" },
         { "label": "Dual", "engine": "Dual", "catalogId": "rivian-ca-60d2e2f0cec03c81" },
         {
@@ -21424,7 +21496,7 @@
         { "label": "Tri", "engine": "Tri", "catalogId": "rivian-ca-56224915660e507c" },
         { "label": "Dual", "engine": "Dual", "catalogId": "rivian-ca-0b2ed55643283f27" },
         { "label": "Dual", "engine": "Dual", "catalogId": "rivian-ca-71ddd2450307daf3" },
-        { "label": "Dual", "engine": "Dual", "catalogId": "rivian-ca-3565e0d0ae0f9de6" },
+        { "label": "Quad", "engine": "Quad", "catalogId": "rivian-ca-bd283778a14c570a" },
         { "label": "Dual", "engine": "Dual", "catalogId": "rivian-ca-9c643f5dbcc053ee" },
         { "label": "Dual", "engine": "Dual", "catalogId": "rivian-ca-1fb61f43e37f1780" },
         { "label": "Tri", "engine": "Tri", "catalogId": "rivian-ca-cce4b229af095374" },
@@ -21665,6 +21737,7 @@
       "make": "Rivian",
       "model": "R1T",
       "choices": [
+        { "label": "Dual", "engine": "Dual", "catalogId": "rivian-ca-1ce5b83c24a6cba8" },
         { "label": "Quad", "engine": "Quad", "catalogId": "rivian-ca-6663d2d31634b74c" },
         { "label": "Tri", "engine": "Tri", "catalogId": "rivian-ca-f687d08984abbc40" },
         { "label": "Tri", "engine": "Tri", "catalogId": "rivian-ca-48d4ada1ad701ccd" },
@@ -21672,6 +21745,7 @@
         { "label": "Dual", "engine": "Dual", "catalogId": "rivian-ca-cb58a40fd76225db" },
         { "label": "Quad", "engine": "Quad", "catalogId": "rivian-ca-667548d31643f301" },
         { "label": "Quad", "engine": "Quad", "catalogId": "rivian-ca-333618a95db1bc34" },
+        { "label": "Dual", "engine": "Dual", "catalogId": "rivian-ca-a823b679fc7a5dd5" },
         { "label": "Dual", "engine": "Dual", "catalogId": "rivian-ca-5a6aba9398594929" },
         { "label": "Quad", "engine": "Quad", "catalogId": "rivian-ca-1e337bd13a53cabb" },
         { "label": "Dual", "engine": "Dual", "catalogId": "rivian-ca-534750006694b4fc" },

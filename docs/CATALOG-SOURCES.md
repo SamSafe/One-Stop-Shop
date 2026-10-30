@@ -31,6 +31,27 @@ New importers must be registered in
 [scripts/lib/catalog-sources.ts](../scripts/lib/catalog-sources.ts); a unit test
 fails if a `sync-*` or `capture-*` script is missing from the registry.
 
+### When a pinned client changes
+
+Aston Martin, Lucid, McLaren, Porsche and Rivian pin the manufacturer's
+configurator scripts by URL and SHA-256, because their importers depend on how
+those scripts build requests or select options. A site deploy usually renames
+and rebuilds them, which stops the live import until someone reviews the change:
+
+1. Find the replacement. The builder page links the new file; the old one is in
+   `data/raw/<source>` under its pinned hash. Matching string literals usually
+   identifies it.
+2. Compare the two. Most deploys differ only in hashed import names, chunk or
+   module IDs, or renamed minified identifiers. Check the specific contract each
+   importer's documentation names (request templates, query parameter names,
+   stock-only lists). Treat any change there as a real review.
+3. Update the pinned URL and hash, run the importer live and compare the result
+   with the tracked snapshot. Confirm an `--offline` replay is byte-identical.
+4. Record the review in the importer's documentation.
+
+A live import compares new offerings against the previous snapshot by shape
+only, since that snapshot was reviewed against the client of its own date.
+
 The Garage owner directory joins catalog configurations. Rebuild it with
 `npm run garage:sync:directory` after any manufacturer refresh; a replay check
 fails while it is out of date.
