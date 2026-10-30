@@ -21,6 +21,7 @@
     "apps/oss/vite.config.ts",
     "packages",
     "scripts/*.ts",
+    "scripts/lib/*.ts",
     "tests",
     "playwright.config.ts",
     "vitest.config.ts"

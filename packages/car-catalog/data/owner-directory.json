@@ -5964,7 +5964,12 @@
       "choices": [
         { "label": "BRZ", "engine": "BRZ", "catalogId": "subaru-ca-1622" },
         { "label": "Sport-tech (AT)", "engine": "Sport-tech (AT)", "catalogId": "subaru-ca-1623" },
-        { "label": "tS", "engine": "tS", "catalogId": "subaru-ca-1624" }
+        { "label": "tS", "engine": "tS", "catalogId": "subaru-ca-1624" },
+        {
+          "label": "輝 Kagayaki Edition",
+          "engine": "輝 Kagayaki Edition",
+          "catalogId": "subaru-ca-1625"
+        }
       ],
       "sourceIds": []
     },

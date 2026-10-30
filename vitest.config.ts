@@ -10,6 +10,7 @@ export default defineConfig({
       'apps/**/*.test.ts',
       'tests/unit/**/*.test.ts',
       'scripts/**/*.test.mjs',
+      'scripts/**/*.test.ts',
     ],
   },
 });
