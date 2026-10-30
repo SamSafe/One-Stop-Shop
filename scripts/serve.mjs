@@ -10,6 +10,25 @@ import { manifestName, verifyBuiltRelease, releaseIsReady } from './release-inte
 const releaseRoot = fileURLToPath(new URL('..', import.meta.url));
 const release = await verifyBuiltRelease(releaseRoot);
 const knownFiles = new Set([...Object.keys(release.files), manifestName]);
+// The build writes Brotli and gzip siblings for compressible files. They are
+// sent in place of the original when accepted and are never served directly.
+const encodings = [
+  { name: 'br', suffix: '.br' },
+  { name: 'gzip', suffix: '.gz' },
+];
+const precompressed = new Set(
+  [...knownFiles].filter((name) =>
+    encodings.some(
+      ({ suffix }) => name.endsWith(suffix) && knownFiles.has(name.slice(0, -suffix.length)),
+    ),
+  ),
+);
+// True when Accept-Encoding lists the coding without a zero quality value.
+const accepts = (header, coding) =>
+  new RegExp(
+    `(?:^|,)\\s*${coding}\\s*(?:;\\s*q=(?!0(?:\\.0*)?(?:\\s*,|\\s*$))[0-9.]+)?\\s*(?:,|$)`,
+    'i',
+  ).test(header ?? '');
 const root = await realpath(fileURLToPath(new URL('../dist', import.meta.url)));
 // Refuse to advertise readiness for an absent or incomplete build.
 if (!(await stat(path.join(root, 'index.html'))).isFile()) {
@@ -88,7 +107,7 @@ const server = createServer(
     const appPage = ['/', '/garage', '/garage/'].includes(pathname);
     const candidate = path.resolve(root, `.${appPage ? '/index.html' : pathname}`);
     const relative = appPage ? 'index.html' : pathname.slice(1);
-    if (!knownFiles.has(relative)) {
+    if (!knownFiles.has(relative) || precompressed.has(relative)) {
       reply(404, 'Not found');
       return;
     }
@@ -117,24 +136,29 @@ const server = createServer(
       response.setHeader('Content-Type', types[extension] ?? 'application/octet-stream');
       response.setHeader('Cache-Control', cache);
       response.setHeader('Vary', 'Accept-Encoding');
-      // Generated assets are small and immutable; gzip is streamed, never buffered.
-      const acceptsGzip =
-        /(?:^|,)\s*gzip\s*(?:;\s*q=(?!0(?:\.0*)?(?:\s*,|\s*$))[0-9.]+)?\s*(?:,|$)/i.test(
-          request.headers['accept-encoding'] ?? '',
-        );
-      const compress =
-        acceptsGzip &&
-        info.size > 1024 &&
-        ['.js', '.css', '.html', '.svg', '.json'].includes(extension);
-      if (compress) response.setHeader('Content-Encoding', 'gzip');
+      const compressible =
+        info.size > 1024 && ['.js', '.css', '.html', '.svg', '.json'].includes(extension);
+      const accepted = request.headers['accept-encoding'];
+      const prepared = compressible
+        ? encodings.find(
+            ({ name, suffix }) => accepts(accepted, name) && knownFiles.has(relative + suffix),
+          )
+        : undefined;
+      // Files without a prepared sibling are gzip-streamed, never buffered.
+      const streamGzip = compressible && !prepared && accepts(accepted, 'gzip');
+      const body = prepared ? `${filename}${prepared.suffix}` : filename;
+      if (prepared) {
+        response.setHeader('Content-Encoding', prepared.name);
+        response.setHeader('Content-Length', (await stat(body)).size);
+      } else if (streamGzip) response.setHeader('Content-Encoding', 'gzip');
       else response.setHeader('Content-Length', info.size);
       if (request.method === 'HEAD') {
         response.writeHead(200);
         response.end();
         return;
       }
-      const file = createReadStream(filename);
-      if (compress) await pipeline(file, createGzip(), response);
+      const file = createReadStream(body);
+      if (streamGzip) await pipeline(file, createGzip(), response);
       else await pipeline(file, response);
     } catch (error) {
       if (!response.headersSent && !response.destroyed) {

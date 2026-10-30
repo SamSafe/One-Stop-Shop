@@ -94,14 +94,15 @@ or error collector; host monitoring and alert destinations must be configured
 in the actual deployment account.
 
 The server restricts methods and file paths, blocks dotfiles/path escapes,
-streams gzip, uses no-cache for HTML and long immutable caching for hashed
+serves the build's precompressed Brotli or gzip siblings (falling back to
+streamed gzip), uses no-cache for HTML and long immutable caching for hashed
 assets. It supplies CSP, nosniff, framing, referrer and permissions policies.
 Request URLs are not logged by the app; a reverse proxy/host may log them.
 
 The catalog is a hashed JSON asset in the release manifest, fetched from the same
 origin after the small UI loader starts. Deploy the complete `dist` directory,
-including JSON assets; use immutable caching and gzip for these assets as for
-hashed scripts. Failed catalog delivery shows a reload action while preserving
+including JSON assets and their `.br`/`.gz` siblings; on another host, use
+immutable caching and Brotli or gzip for these assets as for hashed scripts. Failed catalog delivery shows a reload action while preserving
 saved device data. No manufacturer API is contacted by the browser. See
 [catalog delivery](CATALOG-DELIVERY.md) for preparation, development refresh and
 startup measurements.
@@ -175,6 +176,13 @@ need an explicit migration and rollback plan before release.
 Known numeric facts need official provenance. Unknown values require null plus
 a reason. Do not guess combined fuel consumption from city/highway ratings.
 Do not advance review dates without checking the sources.
+
+Manufacturer and NRCan snapshots are refreshed with their importers; see
+[catalog sources and refresh](CATALOG-SOURCES.md). `npm run catalog:health`
+reports snapshot ages, and its `--replay` and `--live` modes verify that
+importers still reproduce their snapshots and still read their live sources.
+The weekly source health workflow fails when an importer breaks or a snapshot is
+older than 45 days.
 
 For Subaru, run `npm run catalog:sync:subaru` for lineup/pricing followed by
 `npm run catalog:sync:subaru-specifications` for exact specification columns.

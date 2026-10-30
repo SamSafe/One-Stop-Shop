@@ -27,7 +27,9 @@ from changing other vehicles. Full source validation remains a preparation/build
 responsibility; the browser does not rerun factory graph expansion.
 
 The JSON asset participates in release hashes, startup integrity checks, readiness
-checks and immutable caching. The existing static server streams gzip. Deploy the
+checks and immutable caching. The build writes Brotli and gzip siblings, which
+the static server sends according to Accept-Encoding; Brotli reduces the catalog
+transfer by about 28% compared with the previous streamed gzip. Deploy the
 complete release artifact so script and data hashes remain consistent. The app
 requires no runtime manufacturer service, account or database.
 

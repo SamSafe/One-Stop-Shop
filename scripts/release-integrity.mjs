@@ -11,6 +11,7 @@ export const sourceInputs = [
   'apps/oss',
   'packages/car-catalog',
   'scripts/build.mjs',
+  'scripts/precompress.mjs',
   'scripts/prepare-runtime-catalog.ts',
   'scripts/serve.mjs',
   'scripts/release-integrity.mjs',
