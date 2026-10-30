@@ -1,5 +1,5 @@
 import type { Car } from '@oss/car-catalog';
-import type { EnergySettings } from './domain';
+import type { EnergySettings, Filters } from './domain';
 import { estimateEnergy } from './energy';
 import { vehicleBodyStyle } from './vehicleBodyStyle';
 
@@ -76,6 +76,20 @@ export function emptyBrief(): BuyingBrief {
     includeUnverified: false,
     hideRuledOut: false,
     weights: { ...briefPresets[0]!.weights },
+  };
+}
+// A new brief starts from the catalog search the buyer has already narrowed:
+// budget, seats, body style and drivetrain become its starting needs.
+export function briefFromFilters(filters: Filters): BuyingBrief {
+  const brief = emptyBrief();
+  const body = bodyChoices.find((choice) => choice === filters.bodyStyle);
+  const drive = driveChoices.find((choice) => choice !== 'Any' && choice === filters.drivetrain);
+  return {
+    ...brief,
+    budget: filters.budget,
+    minSeats: filters.minSeats ?? null,
+    bodies: body ? [body] : [],
+    drive: drive ?? 'Any',
   };
 }
 export const reviewDimensions = {

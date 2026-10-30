@@ -132,7 +132,12 @@ export function specificationDifference(reference: Car, other: Car, metric: Summ
       ...values,
       kind: 'unknown' as const,
       delta: null,
-      reason: 'Not verified for both vehicles',
+      reason:
+        a.value === null && b.value === null
+          ? 'Not verified for either vehicle'
+          : a.value === null
+            ? 'Not verified for the reference vehicle'
+            : 'Not verified for this vehicle',
     };
   if (
     metric === 'cargoSeatsUpL' &&

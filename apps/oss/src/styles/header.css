@@ -202,5 +202,5 @@
   background: var(--surface);
   border-color: var(--input-border);
   padding-right: 24px;
-  width: 100px;
+  width: auto;
 }

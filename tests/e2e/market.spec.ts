@@ -675,9 +675,10 @@ test('full catalog is paged, retains a shortlist across pages, and supports make
   await expect(page.getByRole('article')).toHaveCount(30);
   await page.getByLabel('Only my shortlist').check();
   await expect(page.getByRole('article')).toHaveCount(1);
-  await expect(
-    page.getByRole('button', { name: name!.replace(/^Save /, 'Unsave '), exact: true }),
-  ).toBeVisible();
+  await expect(page.getByRole('button', { name: name!, exact: true })).toHaveAttribute(
+    'aria-pressed',
+    'true',
+  );
   await page.getByRole('button', { name: 'Reset', exact: true }).click();
   await page.getByLabel('Make', { exact: true }).selectOption('Tesla');
   await page.getByLabel('Model year', { exact: true }).selectOption('2027');
@@ -701,15 +702,21 @@ test('price limits exclude unverified prices without hiding them by default', as
   await page.getByLabel('Max base MSRP', { exact: true }).selectOption('50000');
   await expect(page.locator('.price-row').filter({ hasText: 'Not verified' })).toHaveCount(0);
   const pricedCount = Number(
-    (await page.locator('.results-caption').innerText()).match(/^\d+/)?.[0],
+    (await page.locator('.results-caption').innerText()).match(/^[\d,]+/)?.[0].replaceAll(',', ''),
   );
   await page.getByLabel('Max base MSRP', { exact: true }).selectOption('all');
   await expect
     .poll(async () =>
-      Number((await page.locator('.results-caption').innerText()).match(/^\d+/)?.[0]),
+      Number(
+        (await page.locator('.results-caption').innerText())
+          .match(/^[\d,]+/)?.[0]
+          .replaceAll(',', ''),
+      ),
     )
     .toBeGreaterThanOrEqual(snapshot.records.length);
-  const fullCount = Number((await page.locator('.results-caption').innerText()).match(/^\d+/)?.[0]);
+  const fullCount = Number(
+    (await page.locator('.results-caption').innerText()).match(/^[\d,]+/)?.[0].replaceAll(',', ''),
+  );
   expect(fullCount).toBeGreaterThan(pricedCount);
 });
 

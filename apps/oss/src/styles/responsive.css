@@ -133,7 +133,7 @@
     display: none;
   }
   .theme-picker select {
-    width: 76px;
+    width: auto;
     min-height: var(--control-height);
     padding-left: 7px;
     padding-right: 20px;
@@ -224,12 +224,27 @@
     max-height: 94dvh;
     --comparison-dialog-padding: 16px;
   }
+  /* Two vehicles side by side beside the labels; a third or fourth scrolls in. */
   .table-scroll {
-    --comparison-label-width: 116px;
+    --comparison-label-width: 104px;
     --comparison-car-min-width: max(
       120px,
-      calc(var(--comparison-viewport-width, 300px) - var(--comparison-label-width))
+      calc(
+        (var(--comparison-viewport-width, 300px) - var(--comparison-label-width)) /
+          min(var(--comparison-columns, 2), 2)
+      )
     );
+  }
+  .table-scroll th,
+  .table-scroll td {
+    padding: 11px 10px;
+  }
+  .table-scroll tbody th {
+    overflow-wrap: break-word;
+    hyphens: auto;
+  }
+  thead th > strong {
+    font-size: 14px;
   }
   .dialog-header h2 {
     font-size: 21px;
@@ -258,7 +273,7 @@
 }
 
 .theme-picker select {
-  width: 100px;
+  width: auto;
 }
 
 @media (max-width: 820px) {
@@ -268,7 +283,7 @@
 }
 @media (max-width: 580px) {
   .theme-picker select {
-    width: 88px;
+    width: auto;
   }
 }
 @media (max-width: 580px) {

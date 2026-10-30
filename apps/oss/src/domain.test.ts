@@ -288,7 +288,14 @@ describe('meaningful specification differences', () => {
     expect(specificationDifference(first, other, 'msrpCad')).toMatchObject({
       kind: 'unknown',
       delta: null,
+      reason: 'Not verified for this vehicle',
     });
+    expect(specificationDifference(other, first, 'msrpCad').reason).toBe(
+      'Not verified for the reference vehicle',
+    );
+    expect(specificationDifference(other, other, 'msrpCad').reason).toBe(
+      'Not verified for either vehicle',
+    );
   });
   it('flags differing measurement notes even when the published numbers are equal', () => {
     const other = structuredClone(first);

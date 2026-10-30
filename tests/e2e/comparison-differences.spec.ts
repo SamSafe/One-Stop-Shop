@@ -23,7 +23,7 @@ test('key differences quantify trade-offs and update when the reference or drivi
   );
   await expect(summary).toContainText('$672/year more');
   await dialog.getByRole('spinbutton', { name: 'Annual kilometres', exact: true }).fill('');
-  await expect(summary).toContainText('Not available for both vehicles at these inputs');
+  await expect(summary).toContainText('Not available for either vehicle at these inputs');
   await expect(summary).not.toContainText('$0/year');
 });
 
@@ -34,7 +34,7 @@ test('rating comparisons identify exact variants and keep missing prices unknown
   const dialog = page.getByRole('dialog');
   const summary = dialog.getByRole('region', { name: 'Key differences', exact: true });
   await expect(summary).toBeVisible();
-  await expect(summary).toContainText('Not verified for both vehicles');
+  await expect(summary).toContainText('Not verified for either vehicle');
   await expect(dialog.getByRole('columnheader').nth(1)).toContainText('NRCan 29063');
   await expect(dialog.getByRole('columnheader').nth(2)).toContainText('NRCan 29292');
   await expect(dialog.getByRole('row', { name: /^Base MSRP / })).toContainText('Not verified');

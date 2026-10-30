@@ -145,8 +145,12 @@
   margin-top: 14px;
 }
 .brief-card-match {
-  border-left: 3px solid var(--action);
-  padding-left: 10px;
+  padding: 10px 12px;
+  background: var(--surface-alt);
+  border-radius: var(--radius-sm);
+}
+.brief-card-match strong {
+  color: var(--action);
 }
 .brief-card-match p {
   margin-top: 4px;
@@ -236,5 +240,30 @@
   }
   .buying-actions .button {
     flex: 1 1 auto;
+  }
+}
+
+/* Phones: a compact brief panel keeps the first vehicle closer to the top. */
+@media (max-width: 580px) {
+  .buying-hub {
+    padding: 14px 16px;
+    gap: 10px;
+  }
+  .buying-hub h2 {
+    font-size: 17px;
+    margin-bottom: 2px;
+  }
+  .buying-actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+  .buying-actions .button {
+    padding-inline: 10px;
+    font-size: 13px;
+  }
+  .buying-actions .text-button {
+    grid-column: 1 / -1;
+    justify-self: start;
   }
 }

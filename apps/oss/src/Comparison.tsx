@@ -52,6 +52,13 @@ function revealKeyboardContext(event: FocusEvent<HTMLDivElement>) {
     scroll.scrollLeft += column.left - left;
 }
 
+const availabilityLabels: Record<Car['availability']['status'], string> = {
+  'manufacturer-listed': 'Listed by the manufacturer.',
+  'not-checked': 'Availability not checked.',
+  announced: 'Announced, not yet on sale.',
+  discontinued: 'Discontinued.',
+};
+
 export function Comparison({
   selected,
   weights,
@@ -308,7 +315,7 @@ export function Comparison({
                           ? 'Manufacturer offer; model year not verified.'
                           : 'Retail configuration.'}{' '}
                       {car.modelYearNote && `${car.modelYearNote} `}
-                      <span>{car.availability.status.replaceAll('-', ' ')}.</span>
+                      <span>{availabilityLabels[car.availability.status]}</span>
                       <span className="availability-note" hidden={!showNotes}>
                         {' '}
                         {car.availability.note}

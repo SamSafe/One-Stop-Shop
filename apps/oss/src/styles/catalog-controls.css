@@ -81,3 +81,26 @@
   font-size: 12px;
   margin: 8px 0 0;
 }
+
+/* Phones: bring the first vehicle closer to the top of the page. */
+@media (max-width: 580px) {
+  .search-tip {
+    display: none;
+  }
+  /* Quick views scroll sideways in one row instead of wrapping. */
+  .discovery-shortcuts {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    white-space: nowrap;
+    scrollbar-width: none;
+    margin-inline: -16px;
+    padding: 2px 16px;
+    margin-block: 10px 8px;
+  }
+  .discovery-shortcuts::-webkit-scrollbar {
+    display: none;
+  }
+  .results-caption {
+    padding-bottom: 6px;
+  }
+}

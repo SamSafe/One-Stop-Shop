@@ -37,7 +37,7 @@ test('manager pages all saved vehicles, exports the complete list, and supports 
   await open(page, []);
   for (let index = 0; index < 13; index++)
     await page
-      .getByRole('button', { name: /^Save / })
+      .getByRole('button', { name: /^Save /, pressed: false })
       .first()
       .click();
   const original = await saved(page);
@@ -142,7 +142,7 @@ test('import merges the latest cross-tab shortlist and keeps the active comparis
   const other = await context.newPage();
   await other.goto('/');
   await other.getByRole('searchbox', { name: 'Search cars', exact: true }).fill('2026 Honda CR-V');
-  await other.getByRole('button', { name: `Save ${hybrid}`, exact: true }).click();
+  await other.getByRole('button', { name: `Save ${hybrid} to shortlist`, exact: true }).click();
   await dialog.getByRole('button', { name: 'Add vehicles', exact: true }).click();
   expect((await saved(page)).ids).toEqual([hondaId, hybridId, mazdaId]);
   expect(new URL(page.url()).searchParams.get('compare')?.split(',')).toEqual([hondaId, hybridId]);

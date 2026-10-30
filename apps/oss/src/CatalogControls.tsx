@@ -176,6 +176,21 @@ const filterLabels: Record<string, string> = {
   savedOnly: 'Shortlist',
 };
 
+// Chips repeat the wording of the option that was chosen.
+const valueLabels: Record<string, Record<string, string>> = {
+  recordKind: {
+    'retail-trim': 'Retail configurations',
+    'government-rating': 'Government rating variants',
+    'manufacturer-offer': 'Manufacturer offers',
+  },
+  availability: {
+    'manufacturer-listed': 'Currently manufacturer-listed',
+    'not-checked': 'Not yet checked',
+    announced: 'Announced',
+    discontinued: 'Discontinued',
+  },
+};
+
 export function ActiveFilters({
   filters,
   setFilters,
@@ -199,7 +214,11 @@ export function ActiveFilters({
             value !== '',
         )
         .map(([key, value]) => {
-          const label = `${filterLabels[key]}${value === true ? '' : `: ${key === 'budget' ? currency.format(Number(value)) : String(value).replaceAll('-', ' ')}`}`;
+          const shown =
+            key === 'budget'
+              ? currency.format(Number(value))
+              : (valueLabels[key]?.[String(value)] ?? String(value).replaceAll('-', ' '));
+          const label = `${filterLabels[key]}${value === true ? '' : `: ${shown}`}`;
           return (
             <button
               type="button"

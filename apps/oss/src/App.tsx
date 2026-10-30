@@ -386,7 +386,7 @@ export function App() {
               />
               <div className="results-caption">
                 <p role="status">
-                  {results.length}{' '}
+                  {results.length.toLocaleString('en-CA')}{' '}
                   {filters.recordKind === 'retail-trim'
                     ? results.length === 1
                       ? 'configuration'
@@ -534,6 +534,7 @@ export function App() {
       {briefOpen && (
         <BuyingBriefDialog
           store={buying}
+          filters={filters}
           onClose={() => setBriefOpen(false)}
           onApply={() => {
             setSort('fit');

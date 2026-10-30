@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { catalog } from '@oss/car-catalog';
 import type { Car } from '@oss/car-catalog';
-import { defaultEnergy, defaultWeights, scoreCar } from './domain';
+import { defaultEnergy, defaultFilters, defaultWeights, scoreCar } from './domain';
 import {
   assessRequirements,
   emptyBrief,
@@ -16,6 +16,7 @@ import {
   buyingBackup,
   buyingFileLimit,
   scoreBuyingBrief,
+  briefFromFilters,
 } from './buying';
 import type { BriefPriority, BuyingBrief, TestDriveReview } from './buying';
 import { deleteReview, updateBrief, updateReview } from './useBuyingWorkspace';
@@ -235,5 +236,26 @@ describe('buying storage and portable reviews', () => {
       review('review-b'),
     );
     expect(deleteReview(w, changed).reviews).toEqual([review('review-b')]);
+  });
+});
+
+describe('briefFromFilters', () => {
+  it('starts a new brief from the narrowed catalog search', () => {
+    const brief = briefFromFilters({
+      ...defaultFilters,
+      budget: 45000,
+      minSeats: 5,
+      bodyStyle: 'SUV',
+      drivetrain: 'AWD',
+    });
+    expect(brief).toMatchObject({ budget: 45000, minSeats: 5, bodies: ['SUV'], drive: 'AWD' });
+    expect(brief.bodyRequired).toBe(false);
+  });
+  it('ignores catalog values that are not brief choices', () => {
+    expect(briefFromFilters({ ...defaultFilters, bodyStyle: 'Not verified' })).toMatchObject({
+      bodies: [],
+      drive: 'Any',
+      budget: null,
+    });
   });
 });

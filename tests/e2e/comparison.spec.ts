@@ -23,14 +23,16 @@ test('preserves a newer shortlist format until the user explicitly clears it', a
   await expect(page.getByRole('article')).toHaveCount(30);
   expect(await page.evaluate(() => localStorage.getItem('oss-shortlist-v1'))).toBe(payload);
   await findHondas(page);
-  await page.getByRole('button', { name: `Save ${honda}`, exact: true }).click();
-  await expect(page.getByRole('button', { name: `Unsave ${honda}`, exact: true })).toBeVisible();
+  await page.getByRole('button', { name: `Save ${honda} to shortlist`, exact: true }).click();
+  await expect(
+    page.getByRole('button', { name: `Save ${honda} to shortlist`, exact: true }),
+  ).toHaveAttribute('aria-pressed', 'true');
   expect(await page.evaluate(() => localStorage.getItem('oss-shortlist-v1'))).toBe(payload);
   await page.getByText('How your data works', { exact: true }).click();
   await page.getByRole('button', { name: 'Clear my shortlist' }).click();
   expect(await page.evaluate(() => localStorage.getItem('oss-shortlist-v1'))).toBeNull();
   await findHondas(page);
-  await page.getByRole('button', { name: `Save ${honda}`, exact: true }).click();
+  await page.getByRole('button', { name: `Save ${honda} to shortlist`, exact: true }).click();
   const saved = await page.evaluate(() => JSON.parse(localStorage.getItem('oss-shortlist-v1')!));
   expect(saved).toEqual({ version: 1, ids: ['honda-cr-v-2026-lx-fwd'] });
 });
@@ -80,20 +82,19 @@ test('browse, filter, empty state and reset', async ({ page }) => {
 test('shortlist persists, filters, clears and syncs across tabs', async ({ page, context }) => {
   await openRetailCatalog(page);
   await findHondas(page);
-  await page.getByRole('button', { name: `Save ${honda}`, exact: true }).click();
+  await page.getByRole('button', { name: `Save ${honda} to shortlist`, exact: true }).click();
   await page.reload();
   await revealCatalogFilters(page);
   await findHondas(page);
-  await expect(page.getByRole('button', { name: `Unsave ${honda}`, exact: true })).toHaveAttribute(
-    'aria-pressed',
-    'true',
-  );
+  await expect(
+    page.getByRole('button', { name: `Save ${honda} to shortlist`, exact: true }),
+  ).toHaveAttribute('aria-pressed', 'true');
   await page.getByLabel('Only my shortlist').check();
   await expect(page.getByRole('article')).toHaveCount(1);
   const other = await context.newPage();
   await other.goto('/');
   await findHondas(other);
-  await other.getByRole('button', { name: `Unsave ${honda}`, exact: true }).click();
+  await other.getByRole('button', { name: `Save ${honda} to shortlist`, exact: true }).click();
   await expect(page.getByText('Your shortlist is empty.')).toBeVisible();
   await other.close();
 });
@@ -183,8 +184,10 @@ test('recovers from corrupt and blocked local storage', async ({ page }) => {
   await page.reload();
   await revealCatalogFilters(page);
   await findHondas(page);
-  await page.getByRole('button', { name: `Save ${honda}`, exact: true }).click();
-  await expect(page.getByRole('button', { name: `Unsave ${honda}`, exact: true })).toBeVisible();
+  await page.getByRole('button', { name: `Save ${honda} to shortlist`, exact: true }).click();
+  await expect(
+    page.getByRole('button', { name: `Save ${honda} to shortlist`, exact: true }),
+  ).toHaveAttribute('aria-pressed', 'true');
   await expect(page.getByText(/cannot be saved on this device/)).toBeVisible();
 });
 

@@ -78,7 +78,7 @@ test('year-unverified offers retain their labels, unknown facts and stable links
   await page.getByLabel('Only my shortlist').check();
   await expect(page.getByRole('article')).toHaveCount(1);
   await expect(plus.locator('.car-make')).toHaveText('Year not verified VinFast');
-  await expect(plus.getByRole('button', { name: /^Unsave / })).toHaveAttribute(
+  await expect(plus.getByRole('button', { name: /^Save .* to shortlist$/ })).toHaveAttribute(
     'aria-pressed',
     'true',
   );

@@ -41,3 +41,7 @@ playwright-report/
 .sites-runtime/
 *.tgz
 artifacts/
+
+# local design-review and browser-tool state
+.impeccable/
+.playwright-mcp/

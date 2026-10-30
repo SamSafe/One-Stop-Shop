@@ -147,6 +147,9 @@ test('comparison breakdowns track their totals, live prices and horizontal keybo
   await page.setViewportSize({ width: 320, height: 760 });
   const link = breakdown(cells.last()).getByRole('link').first();
   await link.focus();
+  // Arrive by keyboard: only keyboard focus scrolls a partly hidden column into view.
+  await page.keyboard.press('Shift+Tab');
+  await page.keyboard.press('Tab');
   await expect(link).toBeFocused();
   const region = dialog.getByRole('region', { name: 'Car specifications comparison', exact: true });
   await expect.poll(() => region.evaluate((el) => el.scrollLeft)).toBeGreaterThan(0);

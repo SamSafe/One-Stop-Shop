@@ -18,7 +18,11 @@ function describe(reference: Car, other: Car, metric: SummaryMetric, unit: strin
   const change = specificationDifference(reference, other, metric);
   const format = (n: number) =>
     metric === 'msrpCad' ? money.format(n) : `${number.format(n)} ${unit}`;
-  if (change.kind === 'unknown') return change.reason;
+  // Keep the figure that is published; only the missing side is unknown.
+  if (change.kind === 'unknown')
+    return change.value !== null
+      ? `${format(change.value)}; ${change.reason.toLowerCase()}`
+      : change.reason;
   if (change.kind === 'context')
     return change.referenceValue === change.value
       ? `Both publish ${format(change.value!)}; ${change.reason.toLowerCase()}`
@@ -94,7 +98,9 @@ export function ComparisonSummary({
                     <dt>Energy estimate</dt>
                     <dd>
                       {energyDelta === null
-                        ? 'Not available for both vehicles at these inputs'
+                        ? referenceEnergy === null && cost === null
+                          ? 'Not available for either vehicle at these inputs'
+                          : `Not available for ${cost === null ? 'this vehicle' : 'the reference vehicle'} at these inputs`
                         : energyDelta === 0
                           ? 'Same estimated annual energy cost'
                           : `${money.format(Math.abs(energyDelta))}/year ${energyDelta > 0 ? 'more' : 'less'} at the current assumptions`}

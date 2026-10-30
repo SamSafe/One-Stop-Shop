@@ -141,7 +141,7 @@ test('shortlist comparison actions remain available while paging through saved v
   await page.goto('/');
   for (let index = 0; index < 13; index++)
     await page
-      .getByRole('button', { name: /^Save / })
+      .getByRole('button', { name: /^Save /, pressed: false })
       .first()
       .click();
   await page.getByRole('button', { name: 'Manage shortlist (13)', exact: true }).click();

@@ -1,5 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
-import { bodyChoices, driveChoices, briefPriorityLabels, briefPresets, emptyBrief } from './buying';
+import {
+  bodyChoices,
+  driveChoices,
+  briefPriorityLabels,
+  briefPresets,
+  briefFromFilters,
+} from './buying';
+import type { Filters } from './domain';
 import type { BriefPriority, BuyingBrief } from './buying';
 import type { BuyingStore } from './useBuyingWorkspace';
 import { Icon } from './catalogView';
@@ -7,17 +14,22 @@ import { useDialogLayout } from './useDialogLayout';
 
 export function BuyingBriefDialog({
   store,
+  filters,
   onClose,
   onApply,
 }: {
   store: BuyingStore;
+  // The current catalog search, which seeds a new brief.
+  filters: Filters;
   onClose: () => void;
   onApply: () => void;
 }) {
   const dialog = useRef<HTMLDialogElement>(null);
   useDialogLayout(dialog);
   const [original] = useState(store.workspace.brief);
-  const [draft, setDraft] = useState<BuyingBrief>(() => structuredClone(original ?? emptyBrief()));
+  const [draft, setDraft] = useState<BuyingBrief>(() =>
+    structuredClone(original ?? briefFromFilters(filters)),
+  );
   useEffect(() => {
     dialog.current?.showModal();
   }, []);

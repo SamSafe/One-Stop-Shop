@@ -60,7 +60,7 @@ export function Card({
         <button
           type="button"
           className={`icon-button save-button ${saved ? 'is-saved' : ''}`}
-          aria-label={`${saved ? 'Unsave' : 'Save'} ${fullName(car)}`}
+          aria-label={`Save ${fullName(car)} to shortlist`}
           aria-pressed={saved}
           onClick={onSave}
         >
@@ -130,11 +130,11 @@ export function Card({
                 'Not supported'
               ) : car.fuel === 'Electric' || car.fuel === 'Plug-in hybrid' ? (
                 <>
-                  {car.facts.electricCombinedKwh100km.value ?? '—'} <small>kWh/100 km</small>
+                  <QuickValue value={car.facts.electricCombinedKwh100km.value} unit="kWh/100 km" />
                 </>
               ) : (
                 <>
-                  {car.facts.fuelCombinedL100km.value ?? '—'} <small>L/100 km</small>
+                  <QuickValue value={car.facts.fuelCombinedL100km.value} unit="L/100 km" />
                 </>
               )}
             </dd>
@@ -142,13 +142,13 @@ export function Card({
           <div>
             <dt>Cargo, seats up</dt>
             <dd>
-              {car.facts.cargoSeatsUpL.value ?? '—'} <small>L</small>
+              <QuickValue value={car.facts.cargoSeatsUpL.value} unit="L" />
             </dd>
           </div>
           <div>
             <dt>Rear legroom</dt>
             <dd>
-              {car.facts.rearLegroomMm.value ?? '—'} <small>mm</small>
+              <QuickValue value={car.facts.rearLegroomMm.value} unit="mm" />
             </dd>
           </div>
         </dl>
@@ -259,5 +259,17 @@ export function Card({
         )}
       </div>
     </article>
+  );
+}
+
+const quickNumber = new Intl.NumberFormat('en-CA', { maximumFractionDigits: 1 });
+// Unknown figures say so, as they do everywhere else, rather than showing a bare dash.
+function QuickValue({ value, unit }: { value: number | null; unit: string }) {
+  return value === null ? (
+    <span className="quick-unknown">Not verified</span>
+  ) : (
+    <>
+      {quickNumber.format(value)} <small>{unit}</small>
+    </>
   );
 }
