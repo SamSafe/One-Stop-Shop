@@ -4,6 +4,7 @@ import { format, resolveConfig } from 'prettier';
 import { z } from 'zod';
 import {
   miniOrigin,
+  miniStockSortModes,
   miniBuilderUrl,
   miniCarouselUrl,
   miniLineUrl,
@@ -81,10 +82,8 @@ async function capture(url: string, reviewedCode?: string) {
       JSON.stringify(manifest, null, 2) + '\n',
     );
   }
-  if (
-    source.status !== 200 &&
-    !(captured && reviewedCode && miniReviewedLineFailure(source, reviewedCode))
-  )
+  // A failure is accepted only when its body matches the reviewed response byte for byte.
+  if (source.status !== 200 && !(reviewedCode && miniReviewedLineFailure(source, reviewedCode)))
     throw new Error(`MINI refresh aborted on HTTP ${source.status}: ${url}`);
   const text = bytes.toString('utf8'),
     result = { source, text, json: () => JSON.parse(text) as unknown };
@@ -135,7 +134,6 @@ for (const [index, source] of stockManifest.sources.entries()) {
     request.OnlyDemoVehicles !== false ||
     request.IncludeVehiclesWithoutOffer !== true ||
     request.WithPhotosOnly !== false ||
-    request.page !== index + 1 ||
     request.ResultsPerPage !== '36'
   )
     throw new Error('MINI inventory is not the national unfiltered new-stock search.');
@@ -173,15 +171,21 @@ for (const [index, source] of stockManifest.sources.entries()) {
   const page = stockPage.parse(
     JSON.parse((await verifiedBytes(source, stockDirectory)).toString('utf8')),
   );
-  if (page.Page !== index + 1 || (total !== null && page.TotalCount !== total))
+  // Each complete pass pages through every vehicle in one sort order.
+  const pages = Math.ceil(page.TotalCount / 36),
+    pass = Math.floor(index / pages);
+  if (
+    page.Page !== (index % pages) + 1 ||
+    request.page !== page.Page ||
+    request.SortMode !== miniStockSortModes[pass] ||
+    (total !== null && page.TotalCount !== total)
+  )
     throw new Error('MINI stock pagination changed.');
   total = page.TotalCount;
   returnedRows += page.VehiclesForThisPageList.length;
   for (const raw of page.VehiclesForThisPageList) {
-    if (unique.has(raw.VIN))
-      throw new Error(
-        'Repeated MINI stock identities leave exhaustive coverage unproven; keep the previous snapshot.',
-      );
+    // Sort ties can repeat a vehicle across pages; each one is counted once.
+    if (unique.has(raw.VIN)) continue;
     unique.add(raw.VIN);
     const key = miniModelKey({ year: raw.ModelYear, code: raw.VGCode });
     const row: MiniStockReference = refs.get(key) ?? {
@@ -213,9 +217,9 @@ for (const [index, source] of stockManifest.sources.entries()) {
 }
 if (
   total === null ||
-  returnedRows !== total ||
   unique.size !== total ||
-  stockManifest.sources.length !== Math.ceil(total / 36)
+  stockManifest.sources.length % Math.ceil(total / 36) !== 0 ||
+  returnedRows !== total * (stockManifest.sources.length / Math.ceil(total / 36))
 )
   throw new Error('MINI stock totals do not reconcile.');
 const home = await capture(`${miniOrigin}/en`),

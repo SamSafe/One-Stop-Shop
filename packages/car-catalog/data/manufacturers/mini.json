@@ -1,30 +1,30 @@
 {
   "schemaVersion": 1,
-  "retrievedAt": "2026-10-22T23:08:01.721712Z",
+  "retrievedAt": "2026-10-30T20:14:29.735Z",
   "context": { "country": "CA", "currency": "CAD", "language": "en" },
   "homeSource": {
     "url": "https://www.mini.ca/en",
-    "sha256": "014c45f94bbcf503c013a42cd42a6b914e46f45a5c933cdefbb8ff53981e9794",
+    "sha256": "a54251182c5201a01035b210e29508715bddc5779280d53ffe072e78f3967075",
     "status": 200
   },
   "builderSource": {
     "url": "https://www.mini.ca/en/shopping/buildandprice",
-    "sha256": "b14fbeebde4cd44dac7e351e96d98837cc68adee42112e078d1b45bb4bc208e7",
+    "sha256": "ab7f57de64d43514ef614e25dbf4d07ef9b8078d9b4d084f167a7888298b22c9",
     "status": 200
   },
   "clientSource": {
-    "url": "https://www.mini.ca/bundles/js/auto/config?v=XvIG10vUgBiTO7-DikpBPlK_eo56wjmaZiK6naiHFpw1",
-    "sha256": "2ebbb2cd1baf8c9795ad58d4804468e1ce6e8867bdcbfd6a312d8c67c760edb2",
+    "url": "https://www.mini.ca/bundles/js/auto/config?v=xLAVcsQutZbYBCNklX6cgeYXoGWtQi_jYfiV-qVO_hU1",
+    "sha256": "de1eb5e9c35a69f912186d6ef735e6371e5bdb2ec76f7eb40534043b4e961662",
     "status": 200
   },
   "carouselSource": {
     "url": "https://api.minicdn.ca/v1/config/carousel?lang=en&province=AB",
-    "sha256": "b1abeda49b26e272d55668111c19512331993bd47badaee9c0f896cdcd36eab7",
+    "sha256": "e4df0ecc8095c17f90e9f861a0d605794caf2037c4df0c01d88b5d2771370e43",
     "status": 200
   },
   "rulesSource": {
     "url": "https://www.mini.ca/Public/js/configurator/rules.json",
-    "sha256": "b4e0229d8ca0fb4450bdb3c28ad093ab1ecbbecbf090fefcd880e5236b293c0f",
+    "sha256": "0b746db0dd8b6eae49766dfddfabe70432221c4d2b33f79a349daad89935ea9d",
     "status": 200
   },
   "rules": {
@@ -160,6 +160,8 @@
     "27HB": [
       { "code": "382", "excludes": ["C6A"] },
       { "code": "C6A", "excludes": ["382"] },
+      { "code": "3BH", "excludes": ["C6A"] },
+      { "code": "C6A", "excludes": ["3BH"] },
       { "code": "C4R", "requiresOneOf": ["382", "3B4", "381"] },
       { "code": "459", "requires": ["451"] },
       { "code": "451", "requires": ["459"] }
@@ -183,6 +185,8 @@
     "27HE": [
       { "code": "382", "excludes": ["C6A"] },
       { "code": "C6A", "excludes": ["382"] },
+      { "code": "3BH", "excludes": ["C6A"] },
+      { "code": "C6A", "excludes": ["3BH"] },
       { "code": "459", "requires": ["451"] },
       { "code": "451", "requires": ["459"] },
       { "code": "C4R", "requiresOneOf": ["382", "3B4", "381"] }
@@ -193,18 +197,46 @@
     ],
     "27VB": [
       { "code": "3BG", "excludes": ["C6A"] },
-      { "code": "C6A", "excludes": ["3BG"] }
+      { "code": "C6A", "excludes": ["3BG"] },
+      { "code": "3BH", "excludes": ["C6A"] },
+      { "code": "C6A", "excludes": ["3BH"] }
     ],
     "27VC": [
       { "code": "381", "requires": ["C4R"] },
       { "code": "3BF", "excludes": ["C74"] },
       { "code": "C74", "excludes": ["3BF"] }
+    ],
+    "27YU": [
+      { "code": "382", "excludes": ["C6A"] },
+      { "code": "C6A", "excludes": ["382"] },
+      { "code": "381", "excludes": ["C85", "C86"] },
+      { "code": "C85", "excludes": ["381"] },
+      { "code": "C86", "excludes": ["381"] },
+      { "code": "3B5", "excludes": ["C4R"] },
+      { "code": "C4R", "excludes": ["3B5"] },
+      { "code": "ZYU", "excludes": ["5AT"] },
+      { "code": "5AT", "excludes": ["ZYU"] },
+      { "code": "381", "requiresOneOf": ["C4R", "C6A"] }
+    ],
+    "27YV": [
+      { "code": "382", "excludes": ["C6A"] },
+      { "code": "C6A", "excludes": ["382"] },
+      { "code": "381", "excludes": ["C85", "C86"] },
+      { "code": "C85", "excludes": ["381"] },
+      { "code": "C86", "excludes": ["381"] },
+      { "code": "3B5", "excludes": ["C4R"] },
+      { "code": "C4R", "excludes": ["3B5"] },
+      { "code": "5AT", "excludes": ["ZYU"] },
+      { "code": "ZYU", "excludes": ["5AT"] },
+      { "code": "5AT", "excludes": ["ZYU"] },
+      { "code": "381", "requiresOneOf": ["C4R", "C6A"] }
     ]
   },
   "years": [2026, 2027],
   "currentModelKeys": [
     "2026/26YD",
     "2027/27YD",
+    "2027/27YU",
     "2026/26YF",
     "2027/27YF",
     "2026/26YE",
@@ -215,6 +247,8 @@
     "2026/26HB",
     "2027/27HB",
     "2026/26HC",
+    "2027/27HC",
+    "2027/27YV",
     "2026/26HD",
     "2027/27HD",
     "2027/27HP",
@@ -225,280 +259,521 @@
     "2027/27VP",
     "2026/26VB",
     "2027/27VB",
-    "2026/26VC"
+    "2026/26VC",
+    "2027/27VC"
   ],
-  "selectorReferenceCount": 25,
+  "selectorReferenceCount": 29,
   "overviewFamilies": ["U25-E", "U25", "F66", "F65", "F67"],
   "overviewCodes": ["25YE", "26YD", "26HA", "26HD", "26VA", "26HC"],
   "inventory": {
-    "retrievedAt": "2026-10-22T23:13:48.268Z",
-    "total": 1553,
-    "returnedRows": 1553,
-    "distinctVehicles": 1553,
+    "retrievedAt": "2026-10-30T20:11:32.152Z",
+    "total": 1481,
+    "returnedRows": 2962,
+    "distinctVehicles": 1481,
     "sources": [
       {
         "url": "https://www.mini.ca/en/shopping/inventory/InventorySearch_API",
-        "sha256": "00d91f5c8976bfb97febaf8259f9ef1bcd8ad02428a435d93110e5fb040f69dd",
+        "sha256": "17a812a706be1183ff8e4e25b41341d66a23e655e3bdafdcaa8145f5c22038b6",
         "status": 200,
         "requestSha256": "8774cd4d4f66fa70925c2902aa3e30c0fa96074cee9e9f177864526f4346ba09"
       },
       {
         "url": "https://www.mini.ca/en/shopping/inventory/InventorySearch_API",
-        "sha256": "14a3095cf137d0fd9a32f92532f6929a9fee5793b7262b9953eb0a47968b9421",
+        "sha256": "0c17433cfa3aa28d5ed54788f04d175c79abd41e931fad3721031e85465094bc",
         "status": 200,
         "requestSha256": "61211bea90d89aee55f7e8cf8115655f9f5c12165ac883373a1303bea0295b7f"
       },
       {
         "url": "https://www.mini.ca/en/shopping/inventory/InventorySearch_API",
-        "sha256": "1b3009f0d921d3e579b7080fe42a16663ade7240402c218d2ea362733cdf1d6d",
+        "sha256": "173148886dbe51c43d75940cfc3548a6b016565fccdfc48a2354fa719af4cdd6",
         "status": 200,
         "requestSha256": "2298e794fdda4be805a96610efda83dde43bb482fcda791434575b3004330d50"
       },
       {
         "url": "https://www.mini.ca/en/shopping/inventory/InventorySearch_API",
-        "sha256": "b313fdec0f5f0f5fb3a40d0c3fcf16a7bafea450802f96842e35060e8e4c9b27",
+        "sha256": "613516e47327a3b747e444198a9c1e8db83085ae73fd71a8f3ae819f4f787e37",
         "status": 200,
         "requestSha256": "6a1f7b7abe9a5f110395c236c0391623a00a4c03b9da231e9a7bfee3e5cc5143"
       },
       {
         "url": "https://www.mini.ca/en/shopping/inventory/InventorySearch_API",
-        "sha256": "777d051dccbe4612787f48580ed5997571d65acbf1b637480e6edbf52b6db92a",
+        "sha256": "193dc66de42adf39fd4fa8a68467164d3ac5e3e063898130dddbc36f77d1cfb3",
         "status": 200,
         "requestSha256": "fa33cd97b3f7ba8a5ffa6646342b25da35868254916a958b3faa931f04ff0ebd"
       },
       {
         "url": "https://www.mini.ca/en/shopping/inventory/InventorySearch_API",
-        "sha256": "13e63ef62ecb1f07aac1a92f9f8731b3eb24aa45faff739dd88dde5edd3a9e64",
+        "sha256": "e0609e56cfd91dca5126413bfb28c5696aa5921a2955a2709a3d2d42fb1813d1",
         "status": 200,
         "requestSha256": "57c010d9f041e5f2207849047e474743e5516e5d82c6e0bb0a567498fe11344a"
       },
       {
         "url": "https://www.mini.ca/en/shopping/inventory/InventorySearch_API",
-        "sha256": "402191d3357023a8549e6d73d03b54c2b25e56c357d5c8e397d400a555b1e8c8",
+        "sha256": "f82eb15a4a77f1b06a2b36bb0298fe77ecd0e22c83b0cbe652d0a5acfc1299c4",
         "status": 200,
         "requestSha256": "bb09c77ef7449609d4bdc7e342b6951d22d829507ef7c388084ed4c0685809f3"
       },
       {
         "url": "https://www.mini.ca/en/shopping/inventory/InventorySearch_API",
-        "sha256": "981282ee372e720b6f8551af60bd3e12e1f310882b741e37a40d6e0ab4431f8c",
+        "sha256": "1972d0e3928009855a156ad3b64b0f6283f634f34797ce684ab6b56c5a900ea9",
         "status": 200,
         "requestSha256": "4698c55bee5f0452c1617ebac7a8d004a9322c123b00404d292c6ddf2f320dd7"
       },
       {
         "url": "https://www.mini.ca/en/shopping/inventory/InventorySearch_API",
-        "sha256": "c7146508e96014656905ab1f53ac07406c5c84587b0dc8bbcc1c435fd30a210f",
+        "sha256": "7a660df566d62f80ff7aa62cf4b72a2847080450568ba66652888cd1188e4575",
         "status": 200,
         "requestSha256": "6c3a875d6c34db14d88eb990b91d82ffadbc63dcb6524b5bae4e122f32e57dc3"
       },
       {
         "url": "https://www.mini.ca/en/shopping/inventory/InventorySearch_API",
-        "sha256": "a3649989261a17224d98a55fcf580b86eaa7d223074294b0726a4b37fc8e960a",
+        "sha256": "9d9ff317dfb6fc062a5b53eb4a376770897a42bcf673c1fa5edbfd4d8bce3554",
         "status": 200,
         "requestSha256": "b2dad6f5b63188dfc55ee34160983b1237a2f454ad5560222cd18a82c6a24e3d"
       },
       {
         "url": "https://www.mini.ca/en/shopping/inventory/InventorySearch_API",
-        "sha256": "e85499bf1f0a710979891d15601a8ca9b405b502cd8563591918a4414d2c4e8a",
+        "sha256": "36d265b781a65bfbff4440230e79bd9b886646445374b810c925ddc4b3784e29",
         "status": 200,
         "requestSha256": "10acf736fa5ab78a22a3f31d5e98d6b6022210cbdab84c32ddd295d536b430a9"
       },
       {
         "url": "https://www.mini.ca/en/shopping/inventory/InventorySearch_API",
-        "sha256": "09b4bf0c8d66bdbb4e7e77b730004d945e4cc0af1696f6e1b5c201d26c6f9332",
+        "sha256": "bfcea3ec3db6dc911bf4d34328ef93ea23909c1f7a1a14ca071aa30657c5a8ca",
         "status": 200,
         "requestSha256": "1c7638ca30b945cf0f98fd6afb272a7b81f2d721a06d0483019df42b65b6512e"
       },
       {
         "url": "https://www.mini.ca/en/shopping/inventory/InventorySearch_API",
-        "sha256": "f5b01ab120ea8720b07491d4a47ca717b0fd7667e04c943b2fe90cb1883d360c",
+        "sha256": "7caffd2e9442c7eab8fc58073e01672a6d6f45a3339706752527e8d53993a43c",
         "status": 200,
         "requestSha256": "4aeb6086635e98c4451ad53d33370e5017b3f884b86df83ff289eef9d071bb29"
       },
       {
         "url": "https://www.mini.ca/en/shopping/inventory/InventorySearch_API",
-        "sha256": "c81483d7a20e2508b63ee24eff80369b0ec2df114da2c2aa395b995227e535f3",
+        "sha256": "bd795bbd5fbb1c2f77830962af08d02a6a132f965cf270d1893d88ed4c58332e",
         "status": 200,
         "requestSha256": "f4953c19c2269d6c1715c80c007b6c9bd132b9fce9fe41026843a5fcc8936a81"
       },
       {
         "url": "https://www.mini.ca/en/shopping/inventory/InventorySearch_API",
-        "sha256": "af1db39283e9950fba94c3f7841d6a54df430b737a8b8e454f9e8244c838554b",
+        "sha256": "d39e98f327f4873407cdece2aa8a77e3a060e5cbb4204db776a256f2225615ee",
         "status": 200,
         "requestSha256": "fa649a14a546b7aa415209015946c66ed7964c313f8d3dd2b94cc5b74ad25cd7"
       },
       {
         "url": "https://www.mini.ca/en/shopping/inventory/InventorySearch_API",
-        "sha256": "7000c1f2dd196f6bcdf97bd9cd2c0f15a67d1121d815823dbe5ae1e8e693e7da",
+        "sha256": "5915258eef5ce3aade697f64228ff7540243b335c05f899ac64233d7d0962a6a",
         "status": 200,
         "requestSha256": "28ccf048468af02ff58144b270035c25a4bea4e7e84793d32825f5160edac987"
       },
       {
         "url": "https://www.mini.ca/en/shopping/inventory/InventorySearch_API",
-        "sha256": "6386ccd2ef2f4c80b307671d2dafd90ad59992600cf51d23682267814b103260",
+        "sha256": "2a43295b7109b8dd0ec6aa82a53b2fc28ad490ab1545acf02d33c034d65bb833",
         "status": 200,
         "requestSha256": "82f29a3e1102de9d0023b1845ceb857ac37c4862f67b3d6d2d08c2d6456ef4b4"
       },
       {
         "url": "https://www.mini.ca/en/shopping/inventory/InventorySearch_API",
-        "sha256": "ec52373670364f2a893a4138f0b4a6da1459d2c878f301e54beaf202b8df40a6",
+        "sha256": "34c01bd83022e84c80e2cfb57d3d0ea2c7566b40e37f8c279d28d28c5c752c19",
         "status": 200,
         "requestSha256": "e01be1a499e8b52d05a79430ab0d2b31a71e2caba64047d66afa775ad978d25b"
       },
       {
         "url": "https://www.mini.ca/en/shopping/inventory/InventorySearch_API",
-        "sha256": "d74073b2b32b8b1a6973c74347ee4016a7b3914953bfc7378c674e22f8c7d86a",
+        "sha256": "14f2abe4e820876b747c4475dbb73968e2e3deeba1337ad9b4beab3d73668e4a",
         "status": 200,
         "requestSha256": "f072408ce327bae1af0e10699843221dc9de325fbae3b2f4c44511cd2b96be04"
       },
       {
         "url": "https://www.mini.ca/en/shopping/inventory/InventorySearch_API",
-        "sha256": "3c571d0d953fc3b5a00e3e391fd73dd7e3620570f3fcf43507a95d9ffb087cdd",
+        "sha256": "c2841f569fbd891c2287d024b996c805afbb7f06e4f20da92b245b7596aad845",
         "status": 200,
         "requestSha256": "8ccefb56cee297f4d0e1dcdba80046a6131f26f00ef0498cc34746957285adc1"
       },
       {
         "url": "https://www.mini.ca/en/shopping/inventory/InventorySearch_API",
-        "sha256": "69b4dc2a3fbf1609d2380329b741ed50375ca158fc1845778b03a523fdd2ebf5",
+        "sha256": "d9958323acee16f14e866c04a0ebde87a1baa76f792eb6e907a93236427c054b",
         "status": 200,
         "requestSha256": "a53a32e134883d9331c941eceac296308217ce51620cfe0f93f488e46784bea6"
       },
       {
         "url": "https://www.mini.ca/en/shopping/inventory/InventorySearch_API",
-        "sha256": "7cded6da90c0b80599e34818f4babf0919b4c2682509622daa2fbe53ac3316ee",
+        "sha256": "70f8d720341814194009a3213894406eff8aaedb8fd9b9ed6726c6f1fb1c41a4",
         "status": 200,
         "requestSha256": "7df247f9dcdb0624abd9f5aa42fe6ca92ecaeeae93c451150abd1e65b6442210"
       },
       {
         "url": "https://www.mini.ca/en/shopping/inventory/InventorySearch_API",
-        "sha256": "7a5a0fdb7f3e152103bf100bc0643cfbe9869f707165138d8a59da67c65e5ed5",
+        "sha256": "a5dda20c803d54a3eae6e7f510b2f5650b44f3459b1ffbd593b3cb425b230201",
         "status": 200,
         "requestSha256": "e6298e917ac61ae4479bb69463dde4b83f51c2814b7914882cd46efe0b69a5ee"
       },
       {
         "url": "https://www.mini.ca/en/shopping/inventory/InventorySearch_API",
-        "sha256": "6e041ec62e24e2c16cf6141b083b45c83f822fb174ee56442eb0b66ff7b92ff5",
+        "sha256": "545668abf16d58b41af7e8e2640ad462946766b19ac8e91f11976cabc3291e05",
         "status": 200,
         "requestSha256": "07ef16299b4562946018b66dd87050e82f1d4b9d9131387ebacb9352dfd8158d"
       },
       {
         "url": "https://www.mini.ca/en/shopping/inventory/InventorySearch_API",
-        "sha256": "724a0c6b4958b3b496732e1e19569dd18d314d82d164fffd1271c09195cc2c3c",
+        "sha256": "4c730b85be367d3663fd05217a69d55721b3c9b2afc892f078e54fe970beb824",
         "status": 200,
         "requestSha256": "3c2b7b56df0a29005f9900ae3a5a2d9b31750d26058a0f0c3cb16f7cbfce3539"
       },
       {
         "url": "https://www.mini.ca/en/shopping/inventory/InventorySearch_API",
-        "sha256": "6dc2b5536a07d35ed5001fcc99fb68545dbe2e091da021cf12b2cce763156e98",
+        "sha256": "12c9f7f731cb8b73650b66162411a10091578de64cb09f41a036f4ad5e62b3e0",
         "status": 200,
         "requestSha256": "59f08755919b88c6810bc9a990bf68ed1fe72bc18aefb1d34ed36627ea47dee4"
       },
       {
         "url": "https://www.mini.ca/en/shopping/inventory/InventorySearch_API",
-        "sha256": "8f70f11d79f17191cf81e16190d82c273a1f72b4ff258eb49d368e0e8118af38",
+        "sha256": "78309bfd773c936a2b56b534e84a7d6260f1f2849f09887a492c4eef79c619bd",
         "status": 200,
         "requestSha256": "267768af150dac711c0e7434ad84fe9b96978067e40915a073f5da30fb565294"
       },
       {
         "url": "https://www.mini.ca/en/shopping/inventory/InventorySearch_API",
-        "sha256": "3fdb91071a575f7f96982ee1e2584483f50428adb1aeb0b75ffa1202d4d06e31",
+        "sha256": "03a7787a2d0e61bb792a2c34bc79d9fd2c760afa0c97dc3bfb1f1c6282f280b8",
         "status": 200,
         "requestSha256": "29939805f6f324b07e393cd01b62651a2c893d503fa52c0517b90c965d4132ce"
       },
       {
         "url": "https://www.mini.ca/en/shopping/inventory/InventorySearch_API",
-        "sha256": "f9a44b9cc166e03d7997b351741b23d0aece82c4c7063243877c52f3747d1798",
+        "sha256": "14bbc9411a4e491f28e9f0870110274f562d87a1c4312c91bab3d0f89c77d0ac",
         "status": 200,
         "requestSha256": "5e25a88485e5f211a9c7790f4d2edca5f72fb24603f350aed1a4203b48ccd3ee"
       },
       {
         "url": "https://www.mini.ca/en/shopping/inventory/InventorySearch_API",
-        "sha256": "80b12063c9d96889db6e5b40f7d5d19c8babc8d05e5b863715c12598f55ea984",
+        "sha256": "336b30fd04a1d114fa5a7c826fd4834d5cafe29981628a1304e9a29f28dba7cb",
         "status": 200,
         "requestSha256": "d40476c73a60671b155ce41be8c9d2b9de6dced68677dcc17f650ecf42d65407"
       },
       {
         "url": "https://www.mini.ca/en/shopping/inventory/InventorySearch_API",
-        "sha256": "b5a104107d55bbde96ce66e37345622e3d099155cd2f372c5da9cac424b116af",
+        "sha256": "6cb501ac7762dcb8f13312d5a180ced3d75aa037843a2f693686f0f93fa1a0be",
         "status": 200,
         "requestSha256": "32cea240bea281f3b2105ea317a7ec147ddb0ba9d766aeccff779b7f1630237c"
       },
       {
         "url": "https://www.mini.ca/en/shopping/inventory/InventorySearch_API",
-        "sha256": "997132315166c8915756b93b330fde52867c40c6624ced2da8b5b091cb061a52",
+        "sha256": "985c7d2edf3c7a3140b0649ab0c543c4150ce575f67becebeea96f4b5d33f9e6",
         "status": 200,
         "requestSha256": "bf2af0fe140cb240bb44a04a314f473508f12526aac07e83f3dd4607f38617c6"
       },
       {
         "url": "https://www.mini.ca/en/shopping/inventory/InventorySearch_API",
-        "sha256": "813fe9f4fb582e84e3b4cca4c02c56a075f5851f0bfac533b4f2a65638b2a3e2",
+        "sha256": "2e2bd5130d7085881968695080ffab2dd6be2eedcc39beeeade5a8103856eded",
         "status": 200,
         "requestSha256": "afafc8175020952e2d70d7a9a54723819204be4c394856cd91cf8d391d5ce421"
       },
       {
         "url": "https://www.mini.ca/en/shopping/inventory/InventorySearch_API",
-        "sha256": "9435a7f16f74f72a6aa9358fb1552905f20b46f71c12b87f7a26b7e033d3a151",
+        "sha256": "d610fd65e460a5a99ea807531b39af09181a0a0f52c6fb420419b5e719396d13",
         "status": 200,
         "requestSha256": "d2b9bf19fd71e9cb215375d0a1ebf8b169c782083ff70a5c8275c7db06a5d392"
       },
       {
         "url": "https://www.mini.ca/en/shopping/inventory/InventorySearch_API",
-        "sha256": "45c00c5d0637bcddb22b423ae0d4d088b77c3765b2f9aeacd7b1492ac864efb9",
+        "sha256": "704280c73aa9d6bec5b77f4270eb5d84efd382efc8a51c5f2b23ab93999b8e19",
         "status": 200,
         "requestSha256": "526255cf66e1df66d7f4546073eface4bb77165016bd995822a4b50b55866e15"
       },
       {
         "url": "https://www.mini.ca/en/shopping/inventory/InventorySearch_API",
-        "sha256": "f145a11f51a5de7b9e8948318db2bfce2f582509e81db3240da48fce1e2208e1",
+        "sha256": "a128821e6374efc11f37c86b095f6698e87399d6ea5a6d2cad51a67850c5f2b1",
         "status": 200,
         "requestSha256": "a8e9af0e01f9f3ba9ff407ae592c3143fca2fdbc562e90f8a4fce69dd84b1d3a"
       },
       {
         "url": "https://www.mini.ca/en/shopping/inventory/InventorySearch_API",
-        "sha256": "b80a43dc726355a1bd0e487a9794159ee712bf54abe3bb4ff5693b0388dd7ab6",
+        "sha256": "ac76ad4be7bfa97be970febfdf5b8181c0e7ec09c81eacc2bd533e480cc7813c",
         "status": 200,
         "requestSha256": "6fed02a771a0296829d53343638e09d3f25613552af7790f8d70e617a1c8f001"
       },
       {
         "url": "https://www.mini.ca/en/shopping/inventory/InventorySearch_API",
-        "sha256": "b67e724cacaed003a02a8aa41efe609121d073b908cd20c4c3f0deb31645120f",
+        "sha256": "61dd61c6b9ab36a635d10e61540f1589341a8323f61f4f47409e87c58140ab99",
         "status": 200,
         "requestSha256": "1da6eb9f485b3c462f5b073aef084709a1cca20f5c683abe9389111acc856a0e"
       },
       {
         "url": "https://www.mini.ca/en/shopping/inventory/InventorySearch_API",
-        "sha256": "40205f0f623844c84062abf2042440709dbf7f377caf9554acd6b07eba9f1090",
+        "sha256": "226ffd2c23ca0de0d94ee8abe3130a6ae3465ca4a9544376b991acb06b50c15d",
         "status": 200,
         "requestSha256": "8232e8832f74fb5cb7afe414659aa3ed4f4910ed4c573a331067b8dffe37c3f5"
       },
       {
         "url": "https://www.mini.ca/en/shopping/inventory/InventorySearch_API",
-        "sha256": "cfb71c8b7f3f136e3c4b04e3e687465c400f767a925ff22ed9c1bfac8d8a8e72",
+        "sha256": "995e1225cda091584fb7c9cde3048c1d493e1b25cf7396401a8fbd55b375b7b3",
         "status": 200,
         "requestSha256": "4ef12cea8ee971f481660a4268b348aa6db495565c0c19478322da63cdd9a7b9"
       },
       {
         "url": "https://www.mini.ca/en/shopping/inventory/InventorySearch_API",
-        "sha256": "6c534ce48d268379d68e5a3454d942af95a5ff48df3f191dceab2a439a678e0f",
+        "sha256": "ba466302a2f4046db8e33026567a21c82c37bb09deb323da5a8e33547b8b4414",
         "status": 200,
         "requestSha256": "0b239b1c1286c9492a727e308aeecc61d61979f0481a1f7ba67dda53b9edcbfa"
       },
       {
         "url": "https://www.mini.ca/en/shopping/inventory/InventorySearch_API",
-        "sha256": "8b06f8c6522809f4b66d8eb766e0dee6a917fc3758d2ac419787dc80cd372bfa",
+        "sha256": "268b2c6f777f600ba6c1a0036f6a748a4ceab12c69f727d4838edfd55d127d82",
         "status": 200,
         "requestSha256": "ecdfd43574a03cdc7603718312d5d74cb3dc5f5f80e7544f3fb0981ef268173f"
       },
       {
         "url": "https://www.mini.ca/en/shopping/inventory/InventorySearch_API",
-        "sha256": "7cbba751025b04b363da7cfba84c27ee23b4d2143c32820d0140b31b0cbffa56",
+        "sha256": "89ca3f212675fc4edc677a2749c9821e1b770d1471e6b673391f1321a46681fc",
         "status": 200,
-        "requestSha256": "d70178c0b279db7f5d2024bad2d766343ae2856fcbde943e91e2ee12d5961e67"
+        "requestSha256": "ffdf01b4cae783aa7fea6b102f05751693d243f815c31e1615c3bbaff73cf71c"
       },
       {
         "url": "https://www.mini.ca/en/shopping/inventory/InventorySearch_API",
-        "sha256": "7a6ca31937c22d609e38ca2b9105ff6c0ab089b13b7a689c9aebb11a592f4240",
+        "sha256": "39ab91540b095bf6fc518a37bb7d72f444761afd6765ef886182c690721cbf63",
         "status": 200,
-        "requestSha256": "bfd4abf3b9cdf5da6c191507ad310989fb131e291aac15b8d2f63fb9478b3c05"
+        "requestSha256": "316608a7a5038f18896012678d8f841d46d70b21495e75e1814ab9ff1edecc49"
+      },
+      {
+        "url": "https://www.mini.ca/en/shopping/inventory/InventorySearch_API",
+        "sha256": "24284cc17dfdbebd2282afdd7ca68521888075e176912164ffbd867efbb71969",
+        "status": 200,
+        "requestSha256": "56b6cff1c2e5b2ffd73f636a644b9f4af49bcdc659e8e40ba82ec0233d7a1d2e"
+      },
+      {
+        "url": "https://www.mini.ca/en/shopping/inventory/InventorySearch_API",
+        "sha256": "109d94387f7efcd3863ab98abce5c5b04169cb699869c61637c34d316042bf78",
+        "status": 200,
+        "requestSha256": "3e1e9ef0263c2dd2f90e31fc7abe5f9ae24be2eaceefc3c42484c4796b141cdd"
+      },
+      {
+        "url": "https://www.mini.ca/en/shopping/inventory/InventorySearch_API",
+        "sha256": "ffc5c54056e5a636b3d0faa0610581f09b27daed516e1b35e61b692f54e0cd51",
+        "status": 200,
+        "requestSha256": "d0271d6efa9616b457c5770585153a3eb3e30fc3d4b85fb6e74e9e92506e22e6"
+      },
+      {
+        "url": "https://www.mini.ca/en/shopping/inventory/InventorySearch_API",
+        "sha256": "586e3456bddf93556acdef82d599f8cf816f385d6c7f4f3a09021c033fe1e855",
+        "status": 200,
+        "requestSha256": "93b8293cca7365521bae266186e87f10f5207c7b75257f3285e8ef068c2c0a68"
+      },
+      {
+        "url": "https://www.mini.ca/en/shopping/inventory/InventorySearch_API",
+        "sha256": "4530944321b0fea6071eaa8a0842f539e3afd7dcd9397835395840b0a671ffbc",
+        "status": 200,
+        "requestSha256": "d0a83f13d797ec3cfcccf6c855ca70db64f5a2ce905cce4f45208ae866944645"
+      },
+      {
+        "url": "https://www.mini.ca/en/shopping/inventory/InventorySearch_API",
+        "sha256": "b157c6a5c47827389d13b116f16ff799c3a8564b706bd751587bca6a37dc3c70",
+        "status": 200,
+        "requestSha256": "4c680e01fc3e56691d6753a9183020c502675e21f8aed8f4b6b0a161bbabb156"
+      },
+      {
+        "url": "https://www.mini.ca/en/shopping/inventory/InventorySearch_API",
+        "sha256": "a5060916ec6e66e6935874bc3e2192fb9ee40d0f293802cb10db08bd7e3b9387",
+        "status": 200,
+        "requestSha256": "84787aff52761b06e059356124d05052d4168766f23a6d86ef8a2691d9972716"
+      },
+      {
+        "url": "https://www.mini.ca/en/shopping/inventory/InventorySearch_API",
+        "sha256": "0e1155c1293f4f06d542f3b64046ac0aefacc385bf89fb6ea0c542c4b88ebeb2",
+        "status": 200,
+        "requestSha256": "2dce2c08a4ceed6d2c5b62e38b18da229b3d0a9db389dc82a4fa74e62e9d1fc7"
+      },
+      {
+        "url": "https://www.mini.ca/en/shopping/inventory/InventorySearch_API",
+        "sha256": "346406776a5513330126b335dd9ce7f65123c5c4e06651dcb7a86b194aabc878",
+        "status": 200,
+        "requestSha256": "312fd77c2ce1c69e92d600aef8963e8723e3d2b1b727ad337aa9449c4b986a8b"
+      },
+      {
+        "url": "https://www.mini.ca/en/shopping/inventory/InventorySearch_API",
+        "sha256": "8ec83573139ac07f45fa0c709127705dc687ac1530c8e76096fe0a02af325b48",
+        "status": 200,
+        "requestSha256": "e48e0938b3622bfdfce64b36b391af8979bd44c4adfe5bbd88860efaf1786e4d"
+      },
+      {
+        "url": "https://www.mini.ca/en/shopping/inventory/InventorySearch_API",
+        "sha256": "dc9c8a65686e8675251164dce4c86b29fb1d83cd3c5bdb35dcffbf0f8a8a2c50",
+        "status": 200,
+        "requestSha256": "e4e8ea334dc38101300810c9e142b278ccdf5a8af029e524b858cac703b927fa"
+      },
+      {
+        "url": "https://www.mini.ca/en/shopping/inventory/InventorySearch_API",
+        "sha256": "a219519de66df626cb9eea3a173a9a4eefd9b9ff1ee4d2aa62afc6d74081fce4",
+        "status": 200,
+        "requestSha256": "313d7c98076ae0fd1d0414677eb428a7960264b57b460495802d2a41e21eab17"
+      },
+      {
+        "url": "https://www.mini.ca/en/shopping/inventory/InventorySearch_API",
+        "sha256": "f08c1178c6f49ab0253998bd04f1c462ffeb6006167afc5a2f752343a0002b7f",
+        "status": 200,
+        "requestSha256": "1af71dcfe4048bb99f88cd81fa6515e262a7aad7d0e73f7684819f2ea6a8ff1d"
+      },
+      {
+        "url": "https://www.mini.ca/en/shopping/inventory/InventorySearch_API",
+        "sha256": "28ca284bc00d8faff6a5a663b1c5bb0426220d44f2c578cee571a5be67cf78a4",
+        "status": 200,
+        "requestSha256": "c3a4c2bbb2ebd1d2d676436de25a30cd9101e43bf7da8d993110b7374863cbc2"
+      },
+      {
+        "url": "https://www.mini.ca/en/shopping/inventory/InventorySearch_API",
+        "sha256": "b71206f170d1377ef5d1b7e713c1b4d8399579fbc74809cbbe1237faf6629004",
+        "status": 200,
+        "requestSha256": "8ef25f98cf2c1de8d114af747eb82df096b383c799a57ad50b968660c773260e"
+      },
+      {
+        "url": "https://www.mini.ca/en/shopping/inventory/InventorySearch_API",
+        "sha256": "df0048b635b55a0e0adb8bdbcb1bc497611af06bf991a2aacd8c81090d147e2a",
+        "status": 200,
+        "requestSha256": "f6d6f1faecda560a79a0acee41b3f8663c68a741236d04b741b4bad572d2f097"
+      },
+      {
+        "url": "https://www.mini.ca/en/shopping/inventory/InventorySearch_API",
+        "sha256": "4c3073e12f0586be455e4d66a4a8015f03d05b96223b18dd3acbed9bad1c43e0",
+        "status": 200,
+        "requestSha256": "eeb434838b739d862d371185581e509b34f589d1825860114964c8c88593269d"
+      },
+      {
+        "url": "https://www.mini.ca/en/shopping/inventory/InventorySearch_API",
+        "sha256": "4f787f7bc3cc70cf2418f50ce781ac4fb97a5102be5bb3039fc7ab037706065d",
+        "status": 200,
+        "requestSha256": "508bb591c60e7a71fb266cc6a6a3ea58f3ecc2dcaf7291dd9103c165d1e61a23"
+      },
+      {
+        "url": "https://www.mini.ca/en/shopping/inventory/InventorySearch_API",
+        "sha256": "1ba9e821c816e7c18f53b8ba35f00af2ec3e6ace244ab0b47a2ea7598839fb8b",
+        "status": 200,
+        "requestSha256": "1c240d6636ef0d49583503a130f9fc9672fdcbeee62ff7030749c36bf5c15f07"
+      },
+      {
+        "url": "https://www.mini.ca/en/shopping/inventory/InventorySearch_API",
+        "sha256": "2c12d24110c7a1f4aef3cc07322d5842c5fe791d1374c386949b6aba9f9c7b56",
+        "status": 200,
+        "requestSha256": "56c85d325647014b8eed72be11aa9f1454fc83b6ffff9de64cdfe196d1233d98"
+      },
+      {
+        "url": "https://www.mini.ca/en/shopping/inventory/InventorySearch_API",
+        "sha256": "404dfdbc6fd691876180e4aafd1c1eff2ba2f419b3e8d8d743f8bd3a884e8dc1",
+        "status": 200,
+        "requestSha256": "7b7111b057e81baad1777bb058a0ee97bd02e8cdafd3b9d4d862489a6a9e8b1b"
+      },
+      {
+        "url": "https://www.mini.ca/en/shopping/inventory/InventorySearch_API",
+        "sha256": "98d6559a393fc717c100dcd84993a84d9e46e0166238db7aec77ae879e87f5d6",
+        "status": 200,
+        "requestSha256": "3ea544e7261595cae92c031bd957486dd523f64bc384e9bdf0bd89bf6218130d"
+      },
+      {
+        "url": "https://www.mini.ca/en/shopping/inventory/InventorySearch_API",
+        "sha256": "a73c6b48140870244f033cbd3f2f6e497f494b9a4350244499ffb140aeac1ab9",
+        "status": 200,
+        "requestSha256": "1e45b97b32e7a20cc262d99a8ca38d71b7e8422bc8f8e120f57552b983b26be2"
+      },
+      {
+        "url": "https://www.mini.ca/en/shopping/inventory/InventorySearch_API",
+        "sha256": "0c925d777d2246994292a5acf8ea426a31a253f4bb857800f474cd171177cdba",
+        "status": 200,
+        "requestSha256": "10144a8169dea998569029fe2f9317b68e63974d84911755fd8d6cea49360056"
+      },
+      {
+        "url": "https://www.mini.ca/en/shopping/inventory/InventorySearch_API",
+        "sha256": "195d1faf47e65fb4f071405bc9876e4d3f0f2657a6be931a3125a54d711f1145",
+        "status": 200,
+        "requestSha256": "fa6c90fe002279680fe8e44059e152a62c4c05610009272e9bc75fbd37d5e0a3"
+      },
+      {
+        "url": "https://www.mini.ca/en/shopping/inventory/InventorySearch_API",
+        "sha256": "72ca68f2baa6c8a7c5041f10f5b238f08c29fef7e5530dedd08ba95cd7e5a9fb",
+        "status": 200,
+        "requestSha256": "31e34a431bcdaf4e09717cd06b33f9ea53e823c3becf2e6e485c75765338eba1"
+      },
+      {
+        "url": "https://www.mini.ca/en/shopping/inventory/InventorySearch_API",
+        "sha256": "87fbfa949cd53fd7773dad155068a39745d1e2e3b4e7136d15cd6cef31fe2b85",
+        "status": 200,
+        "requestSha256": "e79be953f82a1c783490bf67c611560dad2cee6411b09ba7407edfeb44346e7e"
+      },
+      {
+        "url": "https://www.mini.ca/en/shopping/inventory/InventorySearch_API",
+        "sha256": "2bc66707a1269088b7bb58bde8fa5ee30223a8d2da38a337b09e88db813da28a",
+        "status": 200,
+        "requestSha256": "53b63043fc52c32abc6afd6f081a94ac38d900d5c08cb66fec194a4f70f21026"
+      },
+      {
+        "url": "https://www.mini.ca/en/shopping/inventory/InventorySearch_API",
+        "sha256": "842a1ec50beddf81f0bcfa68a41b089dd3b395f0e771cc21a30effa341e4c61d",
+        "status": 200,
+        "requestSha256": "36bf4319390183199ef878d83324bef2754ec5ed8f2b643569e5203f24a1008d"
+      },
+      {
+        "url": "https://www.mini.ca/en/shopping/inventory/InventorySearch_API",
+        "sha256": "7fc409754970956cc1a83bf9952309e187dcbc74ad4f6bb28e4bf6470499c92d",
+        "status": 200,
+        "requestSha256": "dde6f32822104878de593446ec2b984d2c4d53330a4a0dac066a9736605360af"
+      },
+      {
+        "url": "https://www.mini.ca/en/shopping/inventory/InventorySearch_API",
+        "sha256": "37811f7f97e6a26dc3264fafcb22daabe04d7d84e17d31ac8a1915b26bd815d7",
+        "status": 200,
+        "requestSha256": "a4a48444c5313a4a362cb096d7fdb965a821dcb8c0afbbaa6ef952b048caad9b"
+      },
+      {
+        "url": "https://www.mini.ca/en/shopping/inventory/InventorySearch_API",
+        "sha256": "b903eb7bf75c31c504731aa7bd62b1810aae2fc69d8ee57144bb35cdc1813fc9",
+        "status": 200,
+        "requestSha256": "b3faa1a6ab7e436845da2f6fde2166b33f8692efc09e5a0c9434eaca0a335498"
+      },
+      {
+        "url": "https://www.mini.ca/en/shopping/inventory/InventorySearch_API",
+        "sha256": "baa7ecad81d3b219c62e3805b0ecb39f6678f694c727e7708d119f7869403cae",
+        "status": 200,
+        "requestSha256": "433ca7efb2dbbfdec5487bde2e6d932af06bdfbba93d222807d7e8c8dc3a31d9"
+      },
+      {
+        "url": "https://www.mini.ca/en/shopping/inventory/InventorySearch_API",
+        "sha256": "c838c759ebd05700b78972437b1a573db3d0fe604f142aef2990443d7ab3dede",
+        "status": 200,
+        "requestSha256": "93294c79962154b4318719a3c3d696f92d5a702304e4208f3952b58c18c08885"
+      },
+      {
+        "url": "https://www.mini.ca/en/shopping/inventory/InventorySearch_API",
+        "sha256": "53e6dd1a5a3d9a306e66c561ac16711c3ff110e9814a88a992ab71bc1984daa4",
+        "status": 200,
+        "requestSha256": "05266000439ae2555618bc257a4dc7b77ffe90b6c984329f5730144f4e22444a"
+      },
+      {
+        "url": "https://www.mini.ca/en/shopping/inventory/InventorySearch_API",
+        "sha256": "68c3a699af0a61552a13b0ecce9691901febdeba1330e838f18392596803a96c",
+        "status": 200,
+        "requestSha256": "a5b7ac81849be79ec7ce8e0b2d7853d74221bbc396a315da411e06a9f41b15e5"
+      },
+      {
+        "url": "https://www.mini.ca/en/shopping/inventory/InventorySearch_API",
+        "sha256": "ea90d505ca13bd409f6ec615557244d8a76da285bbecc9b743d8d4cd509f733c",
+        "status": 200,
+        "requestSha256": "b4bd29f9aacaee96053f87c823e20b4708e091f19eeb27dce9f0d83d91ff24ee"
+      },
+      {
+        "url": "https://www.mini.ca/en/shopping/inventory/InventorySearch_API",
+        "sha256": "d32c13c7d1ee8d063b386783957797bc3efc322cdf1d267c5059dac25281290a",
+        "status": 200,
+        "requestSha256": "40b3a822d658a63dd90f0093db831cd98adaf3cf1d7c89c12ee1d2b2128d7bf7"
+      },
+      {
+        "url": "https://www.mini.ca/en/shopping/inventory/InventorySearch_API",
+        "sha256": "5fc526a090f5346c6e5040bb1cb8309fb839080d3ee6889325ab7ec61a85176c",
+        "status": 200,
+        "requestSha256": "0f5e48703d172f0916c8a7c1671177c91ee871900031fd4d9d0ab9731be9f29e"
+      },
+      {
+        "url": "https://www.mini.ca/en/shopping/inventory/InventorySearch_API",
+        "sha256": "967b6a9af8d183643d6e921896ee147dd15458edafbec15712050619161a811a",
+        "status": 200,
+        "requestSha256": "afbf98853d4018ca06e7003d326db6da5a1087957be2a61c970a9fc8d85f972f"
       }
     ],
     "references": [
@@ -524,7 +799,7 @@
         "drives": ["FWD"],
         "lines": [null],
         "supplierBasePrices": [32350],
-        "observedVehicles": 12
+        "observedVehicles": 13
       },
       {
         "year": 2026,
@@ -560,7 +835,7 @@
         "drives": ["FWD"],
         "lines": ["PREMIER Line", "PREMIER+ Line"],
         "supplierBasePrices": [35990, 32350],
-        "observedVehicles": 38
+        "observedVehicles": 37
       },
       {
         "year": 2026,
@@ -572,7 +847,7 @@
         "drives": ["FWD"],
         "lines": [null, "PREMIER+ Line"],
         "supplierBasePrices": [36990, 35990],
-        "observedVehicles": 34
+        "observedVehicles": 30
       },
       {
         "year": 2027,
@@ -584,7 +859,7 @@
         "drives": ["FWD"],
         "lines": ["PREMIER Line", "PREMIER+ Line"],
         "supplierBasePrices": [36990],
-        "observedVehicles": 35
+        "observedVehicles": 34
       },
       {
         "year": 2026,
@@ -596,7 +871,7 @@
         "drives": ["FWD"],
         "lines": [null, "PREMIER+ Line"],
         "supplierBasePrices": [39990],
-        "observedVehicles": 46
+        "observedVehicles": 42
       },
       {
         "year": 2027,
@@ -606,9 +881,9 @@
         "transmissions": ["Automatic"],
         "fuels": ["G"],
         "drives": ["FWD"],
-        "lines": ["PREMIER+ Line", "PREMIER Line"],
+        "lines": ["PREMIER Line", "PREMIER+ Line"],
         "supplierBasePrices": [39990, 44990],
-        "observedVehicles": 17
+        "observedVehicles": 14
       },
       {
         "year": 2026,
@@ -620,7 +895,7 @@
         "drives": ["FWD"],
         "lines": [null, "PREMIER+ Line"],
         "supplierBasePrices": [40990],
-        "observedVehicles": 18
+        "observedVehicles": 15
       },
       {
         "year": 2026,
@@ -631,8 +906,8 @@
         "fuels": ["G"],
         "drives": ["FWD"],
         "lines": [null, "PREMIER+ Line"],
-        "supplierBasePrices": [43990, 42990],
-        "observedVehicles": 30
+        "supplierBasePrices": [43990],
+        "observedVehicles": 25
       },
       {
         "year": 2025,
@@ -647,18 +922,6 @@
         "observedVehicles": 2
       },
       {
-        "year": 2026,
-        "code": "26HZ",
-        "agCodes": ["23GD"],
-        "names": ["MINI Cooper S 3 Door JCW Edition"],
-        "transmissions": ["Automatic"],
-        "fuels": ["G"],
-        "drives": ["FWD"],
-        "lines": [null],
-        "supplierBasePrices": [39990],
-        "observedVehicles": 9
-      },
-      {
         "year": 2027,
         "code": "27HE",
         "agCodes": ["53GD"],
@@ -668,7 +931,7 @@
         "drives": ["FWD"],
         "lines": ["PREMIER Line", "PREMIER+ Line"],
         "supplierBasePrices": [40990],
-        "observedVehicles": 26
+        "observedVehicles": 23
       },
       {
         "year": 2027,
@@ -680,42 +943,6 @@
         "drives": ["FWD"],
         "lines": ["PREMIER Line", "PREMIER+ Line"],
         "supplierBasePrices": [43990],
-        "observedVehicles": 17
-      },
-      {
-        "year": 2026,
-        "code": "26HQ",
-        "agCodes": ["53GD"],
-        "names": ["MINI Cooper S 5 Door JCW Edition"],
-        "transmissions": ["Automatic"],
-        "fuels": ["G"],
-        "drives": ["FWD"],
-        "lines": [null],
-        "supplierBasePrices": [40990],
-        "observedVehicles": 5
-      },
-      {
-        "year": 2027,
-        "code": "27YD",
-        "agCodes": ["23GA"],
-        "names": ["Countryman S ALL4"],
-        "transmissions": ["Automatic"],
-        "fuels": ["G"],
-        "drives": ["AWD"],
-        "lines": ["PREMIER Line", "PREMIER+ Line"],
-        "supplierBasePrices": [46290],
-        "observedVehicles": 479
-      },
-      {
-        "year": 2027,
-        "code": "27HQ",
-        "agCodes": ["23GD"],
-        "names": ["Cooper S 3 Door Paul Smith Edition"],
-        "transmissions": ["Automatic"],
-        "fuels": ["G"],
-        "drives": ["FWD"],
-        "lines": ["PREMIER Line", "PREMIER+ Line"],
-        "supplierBasePrices": [44990],
         "observedVehicles": 16
       },
       {
@@ -731,6 +958,30 @@
         "observedVehicles": 1
       },
       {
+        "year": 2026,
+        "code": "26HQ",
+        "agCodes": ["53GD"],
+        "names": ["MINI Cooper S 5 Door JCW Edition"],
+        "transmissions": ["Automatic"],
+        "fuels": ["G"],
+        "drives": ["FWD"],
+        "lines": [null],
+        "supplierBasePrices": [40990],
+        "observedVehicles": 3
+      },
+      {
+        "year": 2027,
+        "code": "27HQ",
+        "agCodes": ["23GD"],
+        "names": ["Cooper S 3 Door Paul Smith Edition"],
+        "transmissions": ["Automatic"],
+        "fuels": ["G"],
+        "drives": ["FWD"],
+        "lines": ["PREMIER Line", "PREMIER+ Line"],
+        "supplierBasePrices": [44990],
+        "observedVehicles": 14
+      },
+      {
         "year": 2027,
         "code": "27VB",
         "agCodes": ["23GX"],
@@ -744,6 +995,18 @@
       },
       {
         "year": 2026,
+        "code": "26HZ",
+        "agCodes": ["23GD"],
+        "names": ["MINI Cooper S 3 Door JCW Edition"],
+        "transmissions": ["Automatic"],
+        "fuels": ["G"],
+        "drives": ["FWD"],
+        "lines": [null],
+        "supplierBasePrices": [39990],
+        "observedVehicles": 4
+      },
+      {
+        "year": 2026,
         "code": "26YD",
         "agCodes": ["23GA"],
         "names": ["Countryman S ALL4"],
@@ -752,7 +1015,7 @@
         "drives": ["AWD"],
         "lines": [null, "PREMIER+ Line"],
         "supplierBasePrices": [45990],
-        "observedVehicles": 20
+        "observedVehicles": 16
       },
       {
         "year": 2027,
@@ -764,55 +1027,19 @@
         "drives": ["FWD"],
         "lines": ["PREMIER Line", "PREMIER+ Line"],
         "supplierBasePrices": [45990, 40990],
-        "observedVehicles": 20
+        "observedVehicles": 17
       },
       {
         "year": 2027,
-        "code": "27VP",
-        "agCodes": ["23GX"],
-        "names": ["Cooper S Convertible Paul Smith Edition"],
-        "transmissions": ["Automatic"],
-        "fuels": ["G"],
-        "drives": ["FWD"],
-        "lines": ["PREMIER+ Line", "PREMIER Line"],
-        "supplierBasePrices": [52990, 47990],
-        "observedVehicles": 18
-      },
-      {
-        "year": 2027,
-        "code": "27HC",
-        "agCodes": ["33GD"],
-        "names": ["JCW 3 Door"],
-        "transmissions": ["Automatic"],
-        "fuels": ["G"],
-        "drives": ["FWD"],
-        "lines": ["PREMIER Line", "PREMIER+ Line"],
-        "supplierBasePrices": [47990],
-        "observedVehicles": 22
-      },
-      {
-        "year": 2026,
-        "code": "26VB",
-        "agCodes": ["23GX"],
-        "names": ["Cooper S Convertible"],
-        "transmissions": ["Automatic"],
-        "fuels": ["G"],
-        "drives": ["FWD"],
-        "lines": [null, "PREMIER+ Line"],
-        "supplierBasePrices": [47990],
-        "observedVehicles": 58
-      },
-      {
-        "year": 2027,
-        "code": "27YQ",
+        "code": "27YD",
         "agCodes": ["23GA"],
-        "names": ["Countryman S ALL4 JCW Edition"],
+        "names": ["Countryman S ALL4"],
         "transmissions": ["Automatic"],
         "fuels": ["G"],
         "drives": ["AWD"],
-        "lines": ["PREMIER Line"],
+        "lines": ["PREMIER Line", "PREMIER+ Line"],
         "supplierBasePrices": [46290],
-        "observedVehicles": 243
+        "observedVehicles": 471
       },
       {
         "year": 2026,
@@ -824,7 +1051,43 @@
         "drives": ["FWD"],
         "lines": ["PREMIER+ Line"],
         "supplierBasePrices": [51990],
-        "observedVehicles": 28
+        "observedVehicles": 23
+      },
+      {
+        "year": 2027,
+        "code": "27VP",
+        "agCodes": ["23GX"],
+        "names": ["Cooper S Convertible Paul Smith Edition"],
+        "transmissions": ["Automatic"],
+        "fuels": ["G"],
+        "drives": ["FWD"],
+        "lines": ["PREMIER+ Line", "PREMIER Line"],
+        "supplierBasePrices": [52990, 47990],
+        "observedVehicles": 16
+      },
+      {
+        "year": 2027,
+        "code": "27HC",
+        "agCodes": ["33GD"],
+        "names": ["JCW 3 Door"],
+        "transmissions": ["Automatic"],
+        "fuels": ["G"],
+        "drives": ["FWD"],
+        "lines": ["PREMIER Line", "PREMIER+ Line"],
+        "supplierBasePrices": [47990],
+        "observedVehicles": 19
+      },
+      {
+        "year": 2026,
+        "code": "26VB",
+        "agCodes": ["23GX"],
+        "names": ["Cooper S Convertible"],
+        "transmissions": ["Automatic"],
+        "fuels": ["G"],
+        "drives": ["FWD"],
+        "lines": [null, "PREMIER+ Line"],
+        "supplierBasePrices": [47990],
+        "observedVehicles": 55
       },
       {
         "year": 2027,
@@ -836,19 +1099,19 @@
         "drives": ["AWD"],
         "lines": [null, "PREMIER Line"],
         "supplierBasePrices": [49990],
-        "observedVehicles": 74
+        "observedVehicles": 72
       },
       {
         "year": 2027,
-        "code": "27YF",
-        "agCodes": ["33GA"],
-        "names": ["JCW Countryman ALL4"],
+        "code": "27YQ",
+        "agCodes": ["23GA"],
+        "names": ["Countryman S ALL4 JCW Edition"],
         "transmissions": ["Automatic"],
         "fuels": ["G"],
         "drives": ["AWD"],
-        "lines": ["PREMIER+ Line"],
-        "supplierBasePrices": [56290],
-        "observedVehicles": 180
+        "lines": ["PREMIER Line"],
+        "supplierBasePrices": [46290],
+        "observedVehicles": 236
       },
       {
         "year": 2026,
@@ -860,7 +1123,19 @@
         "drives": ["FWD"],
         "lines": [null],
         "supplierBasePrices": [55200],
-        "observedVehicles": 2
+        "observedVehicles": 3
+      },
+      {
+        "year": 2027,
+        "code": "27YF",
+        "agCodes": ["33GA"],
+        "names": ["JCW Countryman ALL4"],
+        "transmissions": ["Automatic"],
+        "fuels": ["G"],
+        "drives": ["AWD"],
+        "lines": ["PREMIER+ Line"],
+        "supplierBasePrices": [56290],
+        "observedVehicles": 178
       },
       {
         "year": 2026,
@@ -884,19 +1159,7 @@
         "drives": ["FWD"],
         "lines": ["PREMIER+ Line", "PREMIER Line"],
         "supplierBasePrices": [56190],
-        "observedVehicles": 11
-      },
-      {
-        "year": 2026,
-        "code": "26VC",
-        "agCodes": ["33GX"],
-        "names": ["JCW Convertible"],
-        "transmissions": ["Automatic"],
-        "fuels": ["G"],
-        "drives": ["FWD"],
-        "lines": ["PREMIER+ Line"],
-        "supplierBasePrices": [58990, 59990],
-        "observedVehicles": 9
+        "observedVehicles": 12
       },
       {
         "year": 2027,
@@ -909,6 +1172,18 @@
         "lines": ["PREMIER Line", "PREMIER+ Line"],
         "supplierBasePrices": [59990, 49990],
         "observedVehicles": 33
+      },
+      {
+        "year": 2026,
+        "code": "26VC",
+        "agCodes": ["33GX"],
+        "names": ["JCW Convertible"],
+        "transmissions": ["Automatic"],
+        "fuels": ["G"],
+        "drives": ["FWD"],
+        "lines": ["PREMIER+ Line"],
+        "supplierBasePrices": [59990],
+        "observedVehicles": 7
       },
       {
         "year": 2025,
@@ -945,7 +1220,7 @@
       "stockKey": "2025/25HC",
       "lineSource": {
         "url": "https://api.minicdn.ca/v1/config/selectline?lang=en&cacode=25HC",
-        "sha256": "9caf64eb201637e40535795c9688fbac123b75640f648fd7698d6f9c42dd39ee",
+        "sha256": "ac931d024cb963cc6f689b22d0b818ab5452b75b60c69d6b14bc775e25c13298",
         "status": 200
       },
       "lines": {
@@ -1045,7 +1320,7 @@
       "stockKey": "2025/25HE",
       "lineSource": {
         "url": "https://api.minicdn.ca/v1/config/selectline?lang=en&cacode=25HE",
-        "sha256": "60d4ef8c3c10bb344762d76733afaf50488ebf58535f9d7d5984016a77fa6b1a",
+        "sha256": "cd2643101f50bcf6107e04ef5478d66b71d4d6c26d7e76e34da4327bde0da2ed",
         "status": 200
       },
       "lines": {
@@ -1150,7 +1425,7 @@
       "stockKey": "2025/25VA",
       "lineSource": {
         "url": "https://api.minicdn.ca/v1/config/selectline?lang=en&cacode=25VA",
-        "sha256": "267f7a24526ff444c4612e8fe3074c7464e77608f13c371fe7cdf403fb3cba4e",
+        "sha256": "6e05f26cd029c064e4ead0d7a3d34f541b47c6fbe309115ac3d84704798ce273",
         "status": 200
       },
       "lines": {
@@ -3068,11 +3343,23 @@
       "key": "2027/27HC",
       "year": 2027,
       "code": "27HC",
-      "current": null,
+      "current": {
+        "year": 2027,
+        "code": "27HC",
+        "agCode": "33GD",
+        "name": "2027 MINI John Cooper Works",
+        "families": ["F66"],
+        "active": true,
+        "electric": false,
+        "awd": false,
+        "basePrice": 47990,
+        "allInclusivePrice": 52510,
+        "fees": 4520
+      },
       "stockKey": "2027/27HC",
       "lineSource": {
         "url": "https://api.minicdn.ca/v1/config/selectline?lang=en&cacode=27HC",
-        "sha256": "b1c125e1a16d55e9be8867691f9a359b333c5964e74706d0908021c24358aa7f",
+        "sha256": "568112587c949b7bf6eb32c73772ae818c8b98b5556c4b4a1bcb0ac2747268c1",
         "status": 200
       },
       "lines": {
@@ -4064,11 +4351,23 @@
       "key": "2027/27VC",
       "year": 2027,
       "code": "27VC",
-      "current": null,
+      "current": {
+        "year": 2027,
+        "code": "27VC",
+        "agCode": "33GX",
+        "name": "2027 MINI John Cooper Works Convertible",
+        "families": ["F67"],
+        "active": true,
+        "electric": false,
+        "awd": false,
+        "basePrice": 56190,
+        "allInclusivePrice": 60710,
+        "fees": 4520
+      },
       "stockKey": "2027/27VC",
       "lineSource": {
         "url": "https://api.minicdn.ca/v1/config/selectline?lang=en&cacode=27VC",
-        "sha256": "c73cb2a8e5b344156df3cf45edb4df6b41e41bfb9eaac77f69a98eab27714c1e",
+        "sha256": "88474eb1c2e85104f0094f8e24b4b6a3003517ad587262df6cd2304b03a5bfca",
         "status": 200
       },
       "lines": {
@@ -4090,7 +4389,17 @@
               { "Code": "431", "Name": "Auto Dimming Interior Mirror", "SelectionGroup": "" },
               { "Code": "6NX", "Name": "Wireless Device Charging", "SelectionGroup": "" },
               { "Code": "C6A", "Name": "Nanuq White", "SelectionGroup": "Colour" },
-              { "Code": "3BF", "Name": "Mirror Caps Red", "SelectionGroup": "Roof & Mirror Cap" }
+              { "Code": "3BF", "Name": "Mirror Caps Red", "SelectionGroup": "Roof & Mirror Cap" },
+              {
+                "Code": "TDJ3",
+                "Name": "Vescin/cord combination JCW Black",
+                "SelectionGroup": "Upholstery"
+              },
+              {
+                "Code": "1KL",
+                "Name": "17\" John Cooper Works Sprint Spoke, Black, Perf. Non-RFT ",
+                "SelectionGroup": "Alloy Wheel"
+              }
             ]
           },
           {
@@ -4131,7 +4440,12 @@
               },
               { "Code": "3BE", "Name": "Mirror Caps Black", "SelectionGroup": "Roof & Mirror Cap" },
               { "Code": "C6A", "Name": "Nanuq White", "SelectionGroup": "Colour" },
-              { "Code": "3BF", "Name": "Mirror Caps Red", "SelectionGroup": "Roof & Mirror Cap" }
+              { "Code": "3BF", "Name": "Mirror Caps Red", "SelectionGroup": "Roof & Mirror Cap" },
+              {
+                "Code": "1KL",
+                "Name": "17\" John Cooper Works Sprint Spoke, Black, Perf. Non-RFT ",
+                "SelectionGroup": "Alloy Wheel"
+              }
             ]
           }
         ]
@@ -4756,6 +5070,340 @@
         "status": 200
       },
       "technical": { "SpecData": [] }
+    },
+    {
+      "key": "2027/27YU",
+      "year": 2027,
+      "code": "27YU",
+      "current": {
+        "year": 2027,
+        "code": "27YU",
+        "agCode": "23GA",
+        "name": "2027 MINI Countryman S ALL4 Untamed",
+        "families": ["U25"],
+        "active": true,
+        "electric": false,
+        "awd": true,
+        "basePrice": 49990,
+        "allInclusivePrice": 54510,
+        "fees": 4520
+      },
+      "stockKey": null,
+      "lineSource": {
+        "url": "https://api.minicdn.ca/v1/config/selectline?lang=en&cacode=27YU",
+        "sha256": "f09d2cfc411055bcf8b1a411fbd983dc2425f7676c745a5d0380f43d6db9bd64",
+        "status": 200
+      },
+      "lines": {
+        "Vehicle": "2027 MINI Countryman S ALL4 Untamed",
+        "Price": 49990,
+        "LineList": [
+          {
+            "lineid": 331,
+            "Name": "PREMIER",
+            "Price": 0,
+            "HasStyle": false,
+            "IncludedFeatureList": [
+              { "Code": "322", "Name": "Comfort Access", "SelectionGroup": "" },
+              {
+                "Code": "430",
+                "Name": "Auto Dimming and Folding Mirror Package",
+                "SelectionGroup": ""
+              },
+              { "Code": "431", "Name": "Auto Dimming Interior Mirror", "SelectionGroup": "" },
+              { "Code": "6NX", "Name": "Wireless Device Charging", "SelectionGroup": "" },
+              { "Code": "4AA", "Name": "Anthracite Roofliner", "SelectionGroup": "Roof Liner" },
+              { "Code": "4AA", "Name": "Anthracite Roofliner", "SelectionGroup": "Roof Liner" },
+              { "Code": "248", "Name": "Heated Steering Wheel", "SelectionGroup": "" },
+              { "Code": "2XH", "Name": "Sport Leather Steering Wheel ", "SelectionGroup": "" },
+              {
+                "Code": "3B5",
+                "Name": "Black Roof & Mirror Cap",
+                "SelectionGroup": "Roof & Mirror Cap"
+              },
+              {
+                "Code": "3PC",
+                "Name": "19\" Untamed Spoke, Black, A/T Non-RFT",
+                "SelectionGroup": "Alloy Wheel"
+              },
+              { "Code": "4FN", "Name": "JCW Sport Seats", "SelectionGroup": "" },
+              {
+                "Code": "9TE",
+                "Name": "Untamed Specific Additional ContentsEdition",
+                "SelectionGroup": "Interior Trim"
+              },
+              { "Code": "C85", "Name": "Hideaway Grey Metallic", "SelectionGroup": "Colour" },
+              {
+                "Code": "TDJ2",
+                "Name": "Vescin/Cord combination Nightshade Blue",
+                "SelectionGroup": "Upholstery"
+              }
+            ]
+          },
+          {
+            "lineid": 332,
+            "Name": "PREMIER+",
+            "Price": 2750,
+            "HasStyle": false,
+            "IncludedFeatureList": [
+              {
+                "Code": "5DN",
+                "Name": "Parking Assistant Plus incl. Surround View",
+                "SelectionGroup": ""
+              },
+              {
+                "Code": "688",
+                "Name": "Harman/Kardon Surround Sound System",
+                "SelectionGroup": ""
+              },
+              { "Code": "6AD", "Name": "Head-Up Display", "SelectionGroup": "" },
+              {
+                "Code": "6UQ",
+                "Name": "MINI Video Augmented Reality Navigation",
+                "SelectionGroup": ""
+              },
+              { "Code": "ZMR", "Name": "Drive Recorder", "SelectionGroup": "Interior Trim" },
+              { "Code": "ZPL", "Name": "PREMIER Line Contents", "SelectionGroup": "Interior Trim" },
+              { "Code": "4AA", "Name": "Anthracite Roofliner", "SelectionGroup": "Roof Liner" },
+              { "Code": "4AA", "Name": "Anthracite Roofliner", "SelectionGroup": "Roof Liner" },
+              { "Code": "248", "Name": "Heated Steering Wheel", "SelectionGroup": "" },
+              { "Code": "2XH", "Name": "Sport Leather Steering Wheel ", "SelectionGroup": "" },
+              {
+                "Code": "3B5",
+                "Name": "Black Roof & Mirror Cap",
+                "SelectionGroup": "Roof & Mirror Cap"
+              },
+              {
+                "Code": "3PC",
+                "Name": "19\" Untamed Spoke, Black, A/T Non-RFT",
+                "SelectionGroup": "Alloy Wheel"
+              },
+              { "Code": "4FN", "Name": "JCW Sport Seats", "SelectionGroup": "" },
+              {
+                "Code": "9TE",
+                "Name": "Untamed Specific Additional ContentsEdition",
+                "SelectionGroup": "Interior Trim"
+              },
+              { "Code": "C85", "Name": "Hideaway Grey Metallic", "SelectionGroup": "Colour" },
+              {
+                "Code": "TDJ2",
+                "Name": "Vescin/Cord combination Nightshade Blue",
+                "SelectionGroup": "Upholstery"
+              }
+            ]
+          }
+        ]
+      },
+      "technicalSource": {
+        "url": "https://api.minicdn.ca/v1/config/techspec?CACode=27YU&lang=en",
+        "sha256": "f2bc0a5e7d483ffad1aa979bf466bae96af69c3a28108eb265f043559472360c",
+        "status": 200
+      },
+      "technical": {
+        "SpecData": [
+          {
+            "category": "PERFORMANCE & POWERTRAIN",
+            "properties": [
+              { "Name": "Drivetrain", "Value": "All-wheel drive" },
+              { "Name": "Powertrain", "Value": "Gasoline" },
+              { "Name": "Transmission", "Value": "7-Speed, DCT Automatic" },
+              { "Name": "Cylinders", "Value": "4" },
+              { "Name": "Displacement", "Value": "2.0 L" },
+              { "Name": "0-100 km/h", "Value": "6.5s" },
+              { "Name": "Top Speed", "Value": "210 km/h" },
+              { "Name": "Power", "Value": "241 hp" },
+              { "Name": "Torque", "Value": "295 lb-ft." },
+              { "Name": "Curb Weight", "Value": "1,740 kg\r\n" }
+            ]
+          },
+          {
+            "category": "SIZE & DIMENSIONS",
+            "properties": [
+              { "Name": "Height", "Value": "1,671 mm" },
+              { "Name": "Width Including Mirrors", "Value": "2,069 mm" },
+              { "Name": "Wheelbase", "Value": "2,692 mm" },
+              { "Name": "Length", "Value": "4,444 mm" },
+              { "Name": "Luggage Capacity Behind 1st Row", "Value": "1,530 L" },
+              { "Name": "Luggage Capacity Behind 2nd Row", "Value": "505 L" }
+            ]
+          },
+          {
+            "category": "CONSUMPTION/EMISSIONS",
+            "properties": [
+              { "Name": "Fuel Requirement, Min./Recommended", "Value": "AKI 87/91" },
+              { "Name": "Fuel Tank Capacity", "Value": "54 L" }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "key": "2027/27YV",
+      "year": 2027,
+      "code": "27YV",
+      "current": {
+        "year": 2027,
+        "code": "27YV",
+        "agCode": "13HP",
+        "name": "2027 MINI Countryman SE ALL4 Untamed",
+        "families": ["U25-E"],
+        "active": true,
+        "electric": true,
+        "awd": true,
+        "basePrice": 64690,
+        "allInclusivePrice": 69210,
+        "fees": 4520
+      },
+      "stockKey": null,
+      "lineSource": {
+        "url": "https://api.minicdn.ca/v1/config/selectline?lang=en&cacode=27YV",
+        "sha256": "d829a4f75f33ba05cfef383de198990fa964c650700569900b60fb24a8f13238",
+        "status": 200
+      },
+      "lines": {
+        "Vehicle": "2027 MINI Countryman SE ALL4 Untamed",
+        "Price": 64690,
+        "LineList": [
+          {
+            "lineid": 333,
+            "Name": "PREMIER",
+            "Price": 0,
+            "HasStyle": false,
+            "IncludedFeatureList": [
+              { "Code": "322", "Name": "Comfort Access", "SelectionGroup": "" },
+              {
+                "Code": "430",
+                "Name": "Auto Dimming and Folding Mirror Package",
+                "SelectionGroup": ""
+              },
+              { "Code": "431", "Name": "Auto Dimming Interior Mirror", "SelectionGroup": "" },
+              { "Code": "6NX", "Name": "Wireless Device Charging", "SelectionGroup": "" },
+              { "Code": "4AA", "Name": "Anthracite Roofliner", "SelectionGroup": "Roof Liner" },
+              { "Code": "4AA", "Name": "Anthracite Roofliner", "SelectionGroup": "Roof Liner" },
+              { "Code": "248", "Name": "Heated Steering Wheel", "SelectionGroup": "" },
+              { "Code": "2XH", "Name": "Sport Leather Steering Wheel ", "SelectionGroup": "" },
+              {
+                "Code": "3B5",
+                "Name": "Black Roof & Mirror Cap",
+                "SelectionGroup": "Roof & Mirror Cap"
+              },
+              {
+                "Code": "3PC",
+                "Name": "19\" Untamed Spoke, Black, A/T Non-RFT",
+                "SelectionGroup": "Alloy Wheel"
+              },
+              { "Code": "4FN", "Name": "JCW Sport Seats", "SelectionGroup": "" },
+              {
+                "Code": "9TE",
+                "Name": "Untamed Specific Additional ContentsEdition",
+                "SelectionGroup": "Interior Trim"
+              },
+              { "Code": "C86", "Name": "Nomad Blue Metallic", "SelectionGroup": "Colour" },
+              {
+                "Code": "TDJ2",
+                "Name": "Vescin/Cord combination Nightshade Blue",
+                "SelectionGroup": "Upholstery"
+              }
+            ]
+          },
+          {
+            "lineid": 334,
+            "Name": "PREMIER+",
+            "Price": 2750,
+            "HasStyle": false,
+            "IncludedFeatureList": [
+              {
+                "Code": "5DN",
+                "Name": "Parking Assistant Plus incl. Surround View",
+                "SelectionGroup": ""
+              },
+              {
+                "Code": "688",
+                "Name": "Harman/Kardon Surround Sound System",
+                "SelectionGroup": ""
+              },
+              { "Code": "6AD", "Name": "Head-Up Display", "SelectionGroup": "" },
+              {
+                "Code": "6UQ",
+                "Name": "MINI Video Augmented Reality Navigation",
+                "SelectionGroup": ""
+              },
+              { "Code": "ZMR", "Name": "Drive Recorder", "SelectionGroup": "Interior Trim" },
+              { "Code": "ZPL", "Name": "PREMIER Line Contents", "SelectionGroup": "Interior Trim" },
+              { "Code": "4AA", "Name": "Anthracite Roofliner", "SelectionGroup": "Roof Liner" },
+              { "Code": "4AA", "Name": "Anthracite Roofliner", "SelectionGroup": "Roof Liner" },
+              { "Code": "248", "Name": "Heated Steering Wheel", "SelectionGroup": "" },
+              { "Code": "2XH", "Name": "Sport Leather Steering Wheel ", "SelectionGroup": "" },
+              {
+                "Code": "3B5",
+                "Name": "Black Roof & Mirror Cap",
+                "SelectionGroup": "Roof & Mirror Cap"
+              },
+              {
+                "Code": "3PC",
+                "Name": "19\" Untamed Spoke, Black, A/T Non-RFT",
+                "SelectionGroup": "Alloy Wheel"
+              },
+              { "Code": "4FN", "Name": "JCW Sport Seats", "SelectionGroup": "" },
+              {
+                "Code": "9TE",
+                "Name": "Untamed Specific Additional ContentsEdition",
+                "SelectionGroup": "Interior Trim"
+              },
+              { "Code": "C86", "Name": "Nomad Blue Metallic", "SelectionGroup": "Colour" },
+              {
+                "Code": "TDJ2",
+                "Name": "Vescin/Cord combination Nightshade Blue",
+                "SelectionGroup": "Upholstery"
+              }
+            ]
+          }
+        ]
+      },
+      "technicalSource": {
+        "url": "https://api.minicdn.ca/v1/config/techspec?CACode=27YV&lang=en",
+        "sha256": "3e51a2cacadda6cfd640b7cafe31acc39b57ee569b67d2779cc07ab851dd6b13",
+        "status": 200
+      },
+      "technical": {
+        "SpecData": [
+          {
+            "category": "PERFORMANCE & POWERTRAIN",
+            "properties": [
+              { "Name": "Drivetrain", "Value": "All-wheel drive" },
+              { "Name": "Powertrain", "Value": "Electric" },
+              { "Name": "Transmission", "Value": "1-Speed Automatic" },
+              { "Name": "0-100 km/h", "Value": "5.6s" },
+              { "Name": "Top Speed", "Value": "180 km/h" },
+              { "Name": "Power", "Value": "308 hp" },
+              { "Name": "Torque", "Value": "364 lb-ft." },
+              { "Name": "Curb Weight", "Value": "2,081 kg" }
+            ]
+          },
+          {
+            "category": "SIZE & DIMENSIONS",
+            "properties": [
+              { "Name": "Height", "Value": "1,640 mm" },
+              { "Name": "Width Including Mirrors", "Value": "2,069 mm" },
+              { "Name": "Wheelbase", "Value": "2,692 mm" },
+              { "Name": "Length", "Value": "4,444 mm" },
+              { "Name": "Luggage Capacity Behind 1st Row", "Value": "1,450 L" },
+              { "Name": "Luggage Capacity Behind 2nd Row", "Value": "460 L" }
+            ]
+          },
+          {
+            "category": "CONSUMPTION/EMISSIONS",
+            "properties": [
+              { "Name": "Battery Capacity, gross", "Value": "66.5kWh" },
+              { "Name": "Battery Capacity, net", "Value": "65.3kWh" },
+              { "Name": "Max AC Charging Rate", "Value": "9.6kW" },
+              { "Name": "Max DC Charging Rate", "Value": "130kW" },
+              { "Name": "AC Charging Time 0-100% @ 9.6kW", "Value": "7.5 h" },
+              { "Name": "DC Charging Time 10-80% @ 130kW", "Value": "29 m" }
+            ]
+          }
+        ]
+      }
     }
   ],
   "records": [
@@ -5153,7 +5801,7 @@
       "expectedStyleIds": [],
       "navSource": {
         "url": "https://api.minicdn.ca/v1/config/navdata?lang=en&cacode=26HC&lineid=292",
-        "sha256": "1e4e01d62800653f376e664a4d6c052a922d6f6f571c2f885e1c9e911f089624",
+        "sha256": "80d6170491f8e1f22f58b85b17945aff22bebf834b7d24cb85666a5a386f137b",
         "status": 200
       },
       "nav": {
@@ -5571,7 +6219,7 @@
       "expectedStyleIds": [32, 33],
       "navSource": {
         "url": "https://api.minicdn.ca/v1/config/navdata?lang=en&cacode=26VA&lineid=297&styleid=32",
-        "sha256": "0375d08da10a6b950f847ab736175f07a51fe82392414ef6ef79f3f79170853c",
+        "sha256": "6c296264c692cd6311c6550199e9f7d367b7b068aec8b19bb1af990d013837df",
         "status": 200
       },
       "nav": {
@@ -5614,7 +6262,7 @@
       "expectedStyleIds": [32, 33],
       "navSource": {
         "url": "https://api.minicdn.ca/v1/config/navdata?lang=en&cacode=26VA&lineid=297&styleid=33",
-        "sha256": "e50ad707e38a589be0b4c9b3c40f0c3a4242e2b5c5b75339015c9e50964d29da",
+        "sha256": "efda0a0e0482520ae6d6a263ac484b1ea22232009cfa8bc9065a12e0594e05e8",
         "status": 200
       },
       "nav": {
@@ -5660,7 +6308,7 @@
       "expectedStyleIds": [32, 33],
       "navSource": {
         "url": "https://api.minicdn.ca/v1/config/navdata?lang=en&cacode=26VA&lineid=298&styleid=32",
-        "sha256": "f2eaa23160567caa1fc07b36f1a0888ea9d489da6d5f04c909c225716c0f1d31",
+        "sha256": "7a01484c9179d997bc8c6994ccad86a118c7e53fe211546b5ec57866ecf7ca12",
         "status": 200
       },
       "nav": {
@@ -5703,7 +6351,7 @@
       "expectedStyleIds": [32, 33],
       "navSource": {
         "url": "https://api.minicdn.ca/v1/config/navdata?lang=en&cacode=26VA&lineid=298&styleid=33",
-        "sha256": "616abac6a8799a7a13c2429cc94f34624ae80df5d533606bfe5daffaff62dfa3",
+        "sha256": "96219fbb721cb0a52f8a078fe07b01a02ef55d9854a9bf1faed207f16d57fb4b",
         "status": 200
       },
       "nav": {
@@ -5750,7 +6398,7 @@
       "expectedStyleIds": [34, 35],
       "navSource": {
         "url": "https://api.minicdn.ca/v1/config/navdata?lang=en&cacode=26VB&lineid=299&styleid=34",
-        "sha256": "ef27374b476430e35e76cf4158018f2533981cf2b1a3959f2815d7d8d5b23244",
+        "sha256": "9505112516ad4cc19bc09bcd0bd84abbcb8ed9594a4cacc73153790c9b116126",
         "status": 200
       },
       "nav": {
@@ -5793,7 +6441,7 @@
       "expectedStyleIds": [34, 35],
       "navSource": {
         "url": "https://api.minicdn.ca/v1/config/navdata?lang=en&cacode=26VB&lineid=299&styleid=35",
-        "sha256": "dd585da99673d3d2e72d09f30c01b856e4873988ecb5f10b77d775346b14da70",
+        "sha256": "842334b998bcfa6ffdd05e0c40d5085819442c482026f5fa441a465056de4850",
         "status": 200
       },
       "nav": {
@@ -5840,7 +6488,7 @@
       "expectedStyleIds": [34, 35],
       "navSource": {
         "url": "https://api.minicdn.ca/v1/config/navdata?lang=en&cacode=26VB&lineid=300&styleid=34",
-        "sha256": "7c739c93c9a59a5601cd9aa4cd9d393b0a76872358898fa422fb1f36022c19ea",
+        "sha256": "b7b64ed4f68c15c296469a08d6288f2e970522bb80a998584223baaed00ee8ae",
         "status": 200
       },
       "nav": {
@@ -5883,7 +6531,7 @@
       "expectedStyleIds": [34, 35],
       "navSource": {
         "url": "https://api.minicdn.ca/v1/config/navdata?lang=en&cacode=26VB&lineid=300&styleid=35",
-        "sha256": "186a35d4a93575537550428260df6a97b28d88c1dc33765bb0b38b3d0c50dfac",
+        "sha256": "8254ac866503b33758064f080ea09b07ba166fcf56bb5e7672350fbddb89f737",
         "status": 200
       },
       "nav": {
@@ -5905,7 +6553,7 @@
       "expectedStyleIds": [],
       "navSource": {
         "url": "https://api.minicdn.ca/v1/config/navdata?lang=en&cacode=26VC&lineid=301",
-        "sha256": "0e9dc30cf86cae548fdee0687c59570b264c0636bcc6be9558852f25ec8a3dcf",
+        "sha256": "d01b1abdd7c4b64227784570d3cee2adad8399917e1dd2de6c10e69014236d14",
         "status": 200
       },
       "nav": {
@@ -6309,7 +6957,7 @@
       "expectedStyleIds": [],
       "navSource": {
         "url": "https://api.minicdn.ca/v1/config/navdata?lang=en&cacode=26YF&lineid=287",
-        "sha256": "e02245b428c0b5cc00db6da561a9a09c1fedd81e5217b6c13e416b1975777aff",
+        "sha256": "5f9c44bb44076b07ee2e1287a00a68c037c44648fbd257eb7425572c6bd5dc8d",
         "status": 200
       },
       "nav": {
@@ -6359,7 +7007,7 @@
       "expectedStyleIds": [42, 43, 60],
       "navSource": {
         "url": "https://api.minicdn.ca/v1/config/navdata?lang=en&cacode=27HA&lineid=309&styleid=42",
-        "sha256": "df2ad9d940d80ae526d9925efc0e4653b7ea8c5b3e7c81e1f5c00b7e360c24d9",
+        "sha256": "513cc03ae87d5da1b5b5c7efd07bf6e7aba6c2e1e2141fac95e5cbe84f613c9c",
         "status": 200
       },
       "nav": {
@@ -6398,7 +7046,7 @@
       "expectedStyleIds": [42, 43, 60],
       "navSource": {
         "url": "https://api.minicdn.ca/v1/config/navdata?lang=en&cacode=27HA&lineid=309&styleid=43",
-        "sha256": "246237f74fa3200d66a9f35f24ad7bbaacdf69dbed5970fd104749e1f01b72ff",
+        "sha256": "aa331523ebae654abb35a586a51ebefcd39af185a120d9a50ff0687d8b7bbed2",
         "status": 200
       },
       "nav": {
@@ -6438,7 +7086,7 @@
       "expectedStyleIds": [42, 43, 60],
       "navSource": {
         "url": "https://api.minicdn.ca/v1/config/navdata?lang=en&cacode=27HA&lineid=309&styleid=60",
-        "sha256": "be6fe8edf9a4f0db0d1a38315706b675bfccdfff1709c9903b4f91f2e8fa477c",
+        "sha256": "6f60ca11133a534c91ae90edb0d460cbd1a70812814748764533be006e85d050",
         "status": 200
       },
       "nav": {
@@ -6612,7 +7260,7 @@
       "expectedStyleIds": [44, 45, 61],
       "navSource": {
         "url": "https://api.minicdn.ca/v1/config/navdata?lang=en&cacode=27HB&lineid=311&styleid=44",
-        "sha256": "dd05d017ed552d7a578b8d8ab32173cb48df4de8acfc084686d10596eb4940e3",
+        "sha256": "8b1da5f5d06b95f84fdfb80231d74aef01fada9e5d5611374d23b4e8cdf1942e",
         "status": 200
       },
       "nav": {
@@ -6651,7 +7299,7 @@
       "expectedStyleIds": [44, 45, 61],
       "navSource": {
         "url": "https://api.minicdn.ca/v1/config/navdata?lang=en&cacode=27HB&lineid=311&styleid=45",
-        "sha256": "ff4e5e2cb65fb09aaa15790ba0be17b2eac3c9f915ba0f9d0a6e973469382949",
+        "sha256": "c2cb1ebb9c33a70902cee9a2b74ac7329dad685ff4a3fe6cf9763d81f53ccd66",
         "status": 200
       },
       "nav": {
@@ -6691,7 +7339,7 @@
       "expectedStyleIds": [44, 45, 61],
       "navSource": {
         "url": "https://api.minicdn.ca/v1/config/navdata?lang=en&cacode=27HB&lineid=311&styleid=61",
-        "sha256": "f287a0e936d003e26b2f2b8d17b4112d65ee5732e38f38096db6ee56892a49cc",
+        "sha256": "8007fe248423af8707cd64392f75fc3073c27182129866087974639397ccc735",
         "status": 200
       },
       "nav": {
@@ -6739,7 +7387,7 @@
       "expectedStyleIds": [44, 45, 61],
       "navSource": {
         "url": "https://api.minicdn.ca/v1/config/navdata?lang=en&cacode=27HB&lineid=312&styleid=44",
-        "sha256": "97a8cea540bd974b7706d6f9345d9337d5d83b215367375c6a5ca76935b626ae",
+        "sha256": "def4dd4f39f499ecd157ce1c4197d3624773803be08f73b7bd359ed830d1d2be",
         "status": 200
       },
       "nav": {
@@ -6778,7 +7426,7 @@
       "expectedStyleIds": [44, 45, 61],
       "navSource": {
         "url": "https://api.minicdn.ca/v1/config/navdata?lang=en&cacode=27HB&lineid=312&styleid=45",
-        "sha256": "4c8f1bdb061568c091c20c0afd43bccc3625f9f437dcbcda5e6a9f14d107e123",
+        "sha256": "a3bc58f213fef651bbf4e32f2a9237393c8352fc4c394a3407a5fdce15d0bffa",
         "status": 200
       },
       "nav": {
@@ -6818,7 +7466,7 @@
       "expectedStyleIds": [44, 45, 61],
       "navSource": {
         "url": "https://api.minicdn.ca/v1/config/navdata?lang=en&cacode=27HB&lineid=312&styleid=61",
-        "sha256": "bbe058bef4324ff85f5934f632c6d7dad4e75c6d076119accbe48ccb00118d1a",
+        "sha256": "379f0a388be77c2390d5081fa6edf2a4e09c261d79358ef91f0ce34f989ce113",
         "status": 200
       },
       "nav": {
@@ -6830,13 +7478,47 @@
     },
     {
       "modelKey": "2027/27HC",
-      "lineId": null,
+      "lineId": 313,
       "style": null,
-      "styleSource": null,
+      "styleSource": {
+        "url": "https://api.minicdn.ca/v1/config/selectstyle?lang=en&cacode=27HC&lineid=313",
+        "sha256": "e0dc05e0d7af8745c21d060e21e45bc8b2bd6f0c98979b95a6d8f95a4c858f0c",
+        "status": 200
+      },
       "expectedStyleIds": [],
-      "navSource": null,
-      "nav": null,
-      "stockBaseOnly": true
+      "navSource": {
+        "url": "https://api.minicdn.ca/v1/config/navdata?lang=en&cacode=27HC&lineid=313",
+        "sha256": "f3e97805e027dc3799e6bfe4fb3dab1ff363e3995dedbdfc94bf598954eececa",
+        "status": 200
+      },
+      "nav": {
+        "packages": [{ "code": "ZZ0", "name": "Interior Protection Package", "price": 350 }],
+        "minimumSelectionPrices": { "Colour": 0, "Alloy Wheel": 0, "Upholstery": 0 },
+        "transmissions": []
+      },
+      "stockBaseOnly": false
+    },
+    {
+      "modelKey": "2027/27HC",
+      "lineId": 314,
+      "style": null,
+      "styleSource": {
+        "url": "https://api.minicdn.ca/v1/config/selectstyle?lang=en&cacode=27HC&lineid=314",
+        "sha256": "e0dc05e0d7af8745c21d060e21e45bc8b2bd6f0c98979b95a6d8f95a4c858f0c",
+        "status": 200
+      },
+      "expectedStyleIds": [],
+      "navSource": {
+        "url": "https://api.minicdn.ca/v1/config/navdata?lang=en&cacode=27HC&lineid=314",
+        "sha256": "dc90d1cfb4f01b69d4c3abba7c249cbf12f1e47d732ccefa38be60cf80b0253e",
+        "status": 200
+      },
+      "nav": {
+        "packages": [{ "code": "ZZ0", "name": "Interior Protection Package", "price": 350 }],
+        "minimumSelectionPrices": { "Colour": 0, "Alloy Wheel": 0, "Upholstery": 0 },
+        "transmissions": []
+      },
+      "stockBaseOnly": false
     },
     {
       "modelKey": "2027/27HD",
@@ -6875,7 +7557,7 @@
       "expectedStyleIds": [48, 49, 62],
       "navSource": {
         "url": "https://api.minicdn.ca/v1/config/navdata?lang=en&cacode=27HD&lineid=315&styleid=48",
-        "sha256": "8e0c92be455a7baa5a1c8d316bd093ed55d733779b3b3433ee7df4d1b15ab656",
+        "sha256": "ed958e56752fddcf898749456db0881adf3b14138631516a37738917cdc584b9",
         "status": 200
       },
       "nav": {
@@ -6914,7 +7596,7 @@
       "expectedStyleIds": [48, 49, 62],
       "navSource": {
         "url": "https://api.minicdn.ca/v1/config/navdata?lang=en&cacode=27HD&lineid=315&styleid=49",
-        "sha256": "606a12109a171f807f33979600c26bbae976078335e794a42020423f52b5c9ce",
+        "sha256": "9de19dfee7f3198666aba267d318e5b81cb673c66cfaf2dac74e367f2996d8f3",
         "status": 200
       },
       "nav": {
@@ -6954,7 +7636,7 @@
       "expectedStyleIds": [48, 49, 62],
       "navSource": {
         "url": "https://api.minicdn.ca/v1/config/navdata?lang=en&cacode=27HD&lineid=315&styleid=62",
-        "sha256": "b63557b1ff235804158f2414e4bda8dd59845f6fbd80457d301c78fa050a13bb",
+        "sha256": "156892cce68d59065da7d5bf5c1c6cbd99a13fa5485c68240fb12e7e45767228",
         "status": 200
       },
       "nav": {
@@ -7001,7 +7683,7 @@
       "expectedStyleIds": [48, 49, 62],
       "navSource": {
         "url": "https://api.minicdn.ca/v1/config/navdata?lang=en&cacode=27HD&lineid=316&styleid=48",
-        "sha256": "7b0f2848b477a56053c5ca90658a79792397534ce4bcacb52b1462d127bb119a",
+        "sha256": "a0c8d70889a9d976f69fdcfcfbbea04a4b66695295287b61e240cb38a985a2b5",
         "status": 200
       },
       "nav": {
@@ -7040,7 +7722,7 @@
       "expectedStyleIds": [48, 49, 62],
       "navSource": {
         "url": "https://api.minicdn.ca/v1/config/navdata?lang=en&cacode=27HD&lineid=316&styleid=49",
-        "sha256": "fa98fdc3408670669e546923ebe5a948ea5351dd8a0f6dfa2e3d73cd680de7ad",
+        "sha256": "53426409ff7fc1d8b13e3035d7ff5805c15548d8493c7dd5aed016030fcaef55",
         "status": 200
       },
       "nav": {
@@ -7080,7 +7762,7 @@
       "expectedStyleIds": [48, 49, 62],
       "navSource": {
         "url": "https://api.minicdn.ca/v1/config/navdata?lang=en&cacode=27HD&lineid=316&styleid=62",
-        "sha256": "2037d6be8dab0084aa2cdfc6b72fa0f43bf307f190c246f614a883ad224697ce",
+        "sha256": "beea550b60e01fb0c7a4520991a37af3d459d8b9b0984685b9a465e888754497",
         "status": 200
       },
       "nav": {
@@ -7128,7 +7810,7 @@
       "expectedStyleIds": [50, 51, 63],
       "navSource": {
         "url": "https://api.minicdn.ca/v1/config/navdata?lang=en&cacode=27HE&lineid=317&styleid=50",
-        "sha256": "9eda9a0354849829895f50096b9ae71c7bdd7fa220385ba94f3f6b45a876bbb0",
+        "sha256": "ef6d946af82dd9cf9ac5c739f70f40b1198f96c0969292fd7bbb05af8cb3c424",
         "status": 200
       },
       "nav": {
@@ -7167,7 +7849,7 @@
       "expectedStyleIds": [50, 51, 63],
       "navSource": {
         "url": "https://api.minicdn.ca/v1/config/navdata?lang=en&cacode=27HE&lineid=317&styleid=51",
-        "sha256": "b34429e73cc9a6bc776f850e3bcb506836def8dec4d1e89301619082c6daa8e9",
+        "sha256": "e1e66b93d5b41f0c9c6db912a854a1a0371cddde17fc4b32d2e59bbfacc6fc23",
         "status": 200
       },
       "nav": {
@@ -7207,7 +7889,7 @@
       "expectedStyleIds": [50, 51, 63],
       "navSource": {
         "url": "https://api.minicdn.ca/v1/config/navdata?lang=en&cacode=27HE&lineid=317&styleid=63",
-        "sha256": "5ddaaa676f5d9cec4a3346d14d3b00f3792c2e181af877f0ded818a483f97ba1",
+        "sha256": "2021d2684e9502efcd8c2fcaae06658dbd655c5491226fae8c09f94cf5f8a5b5",
         "status": 200
       },
       "nav": {
@@ -7255,7 +7937,7 @@
       "expectedStyleIds": [50, 51, 63],
       "navSource": {
         "url": "https://api.minicdn.ca/v1/config/navdata?lang=en&cacode=27HE&lineid=318&styleid=50",
-        "sha256": "7f5836b5d438c8ca1d794e8df5b9d342fc1807e97bd0718b75dc2f8c58d211d0",
+        "sha256": "c0db8dd39dc42fbb7eb4d3c7d30111a15c358c8e885ff359c8084e147ab0062f",
         "status": 200
       },
       "nav": {
@@ -7294,7 +7976,7 @@
       "expectedStyleIds": [50, 51, 63],
       "navSource": {
         "url": "https://api.minicdn.ca/v1/config/navdata?lang=en&cacode=27HE&lineid=318&styleid=51",
-        "sha256": "12e3794650fcc53a50557cd2d36c2fdc47ce2da509d304b3608ac731b86c5f24",
+        "sha256": "f1867ba482f6928d216b4c3de72c37c6f186a168eecf01ded2a36d81b18244ad",
         "status": 200
       },
       "nav": {
@@ -7334,7 +8016,7 @@
       "expectedStyleIds": [50, 51, 63],
       "navSource": {
         "url": "https://api.minicdn.ca/v1/config/navdata?lang=en&cacode=27HE&lineid=318&styleid=63",
-        "sha256": "b6dc44784f64866ebcb58e8339d535a694ac132f710613fae7c2552202aea081",
+        "sha256": "dfe0c95f411888a1ce004ad717ae080b065d09f54c2498919339e77a84134f98",
         "status": 200
       },
       "nav": {
@@ -7366,7 +8048,7 @@
       "expectedStyleIds": [],
       "navSource": {
         "url": "https://api.minicdn.ca/v1/config/navdata?lang=en&cacode=27HP&lineid=327",
-        "sha256": "129847758c211f53cbaa15aab2f30552f5c949700e0aa8431dc8e5f0498f96c4",
+        "sha256": "64b38f130a7fbc8f4fdd53dbdc91c5b6f87c89272bbac1e705b1791a513f1bc4",
         "status": 200
       },
       "nav": {
@@ -7388,7 +8070,7 @@
       "expectedStyleIds": [],
       "navSource": {
         "url": "https://api.minicdn.ca/v1/config/navdata?lang=en&cacode=27HP&lineid=328",
-        "sha256": "d4293191db847b735cc78ab5c5aaebdbb09e2473cbf8d2f1877dbdf4b47e6bcf",
+        "sha256": "8e3c980c2e5d9d9f4b1f35fc0a89fed092c387c7b375ad7f287572d74eec3875",
         "status": 200
       },
       "nav": {
@@ -7410,7 +8092,7 @@
       "expectedStyleIds": [],
       "navSource": {
         "url": "https://api.minicdn.ca/v1/config/navdata?lang=en&cacode=27HQ&lineid=325",
-        "sha256": "6eadb6ebe38a3f51c967fb6c646e1147cc43dc36d50b9dd7cd48b71dcc1d4de8",
+        "sha256": "25dbb82a88922657063e56c70a72d115dd5c3e0249cc6f3192c7f7c961d6b168",
         "status": 200
       },
       "nav": {
@@ -7432,7 +8114,7 @@
       "expectedStyleIds": [],
       "navSource": {
         "url": "https://api.minicdn.ca/v1/config/navdata?lang=en&cacode=27HQ&lineid=326",
-        "sha256": "f154a281eaf435da054df82689267c25c87eeee6097d2c79cf541e7ea9d24b07",
+        "sha256": "62fa7c6776a3f27a541f2a6c2e849fcaa2982422499ff559e717f6bc2f7f0bc4",
         "status": 200
       },
       "nav": {
@@ -7489,7 +8171,7 @@
       "expectedStyleIds": [52, 53, 64],
       "navSource": {
         "url": "https://api.minicdn.ca/v1/config/navdata?lang=en&cacode=27VA&lineid=319&styleid=52",
-        "sha256": "04e85194aaa5b6fa9a2aafb651521759129b29ded9112469353350646a57f8d6",
+        "sha256": "42546b40d568710cd977cf0192d2314abfbbfb2b93292537ce604b27b91ca2f9",
         "status": 200
       },
       "nav": {
@@ -7532,7 +8214,7 @@
       "expectedStyleIds": [52, 53, 64],
       "navSource": {
         "url": "https://api.minicdn.ca/v1/config/navdata?lang=en&cacode=27VA&lineid=319&styleid=53",
-        "sha256": "8aa2e8a327ced08bc30c2a4364686611ec89bf3f3e7ef5a411546eaffcf3cca0",
+        "sha256": "2f0d6c9fade968de4a1201712136fee7ba40afdc4e9d07e3b65a0d481ea5951a",
         "status": 200
       },
       "nav": {
@@ -7576,7 +8258,7 @@
       "expectedStyleIds": [52, 53, 64],
       "navSource": {
         "url": "https://api.minicdn.ca/v1/config/navdata?lang=en&cacode=27VA&lineid=319&styleid=64",
-        "sha256": "3f65b5256eb88ab20c3fd03db7f7650ddc49fcbb7fa7130cb46585d38f1188c0",
+        "sha256": "48c44c31efcb491ae262c5ebc9e18cabd8e635528cf686341447542bf73a9345",
         "status": 200
       },
       "nav": {
@@ -7623,7 +8305,7 @@
       "expectedStyleIds": [52, 53, 64],
       "navSource": {
         "url": "https://api.minicdn.ca/v1/config/navdata?lang=en&cacode=27VA&lineid=320&styleid=52",
-        "sha256": "e58e68ca5f95dfe193c5beeace1d54aeca3dc2c2a0c8ce0f05a967646f27ead4",
+        "sha256": "b53ff85cfb9fc7df54cef182d6dd49d4f2f21ae0af91c0ec056aecdd2ba247db",
         "status": 200
       },
       "nav": {
@@ -7666,7 +8348,7 @@
       "expectedStyleIds": [52, 53, 64],
       "navSource": {
         "url": "https://api.minicdn.ca/v1/config/navdata?lang=en&cacode=27VA&lineid=320&styleid=53",
-        "sha256": "52f05eeeb7fffff8ee4eaf437e8efde550b4a0f6cf99f2b1f673d4482fdbcd78",
+        "sha256": "38b0aff6c07a06cb29f288dbbfe3c17868dd0b1e3e1b50bd5cadc7dd98d4cfd0",
         "status": 200
       },
       "nav": {
@@ -7710,7 +8392,7 @@
       "expectedStyleIds": [52, 53, 64],
       "navSource": {
         "url": "https://api.minicdn.ca/v1/config/navdata?lang=en&cacode=27VA&lineid=320&styleid=64",
-        "sha256": "841b25d87f78bde08b467acd74501d90678120f6f8ebb42b26249e415e15b8a1",
+        "sha256": "d3d0b632d114f84f4600028a1fa1a8c01adc2e36ef976c30f19441a85524dd44",
         "status": 200
       },
       "nav": {
@@ -7758,7 +8440,7 @@
       "expectedStyleIds": [54, 55, 65],
       "navSource": {
         "url": "https://api.minicdn.ca/v1/config/navdata?lang=en&cacode=27VB&lineid=321&styleid=54",
-        "sha256": "ef68005714ad74bd94427a8ec696f0338550028d6538e2e7a8186ca896eade88",
+        "sha256": "c9cdf3002720b5fe4e7871be3904246ae76e914163a4a35e18f9b0d2b7a81073",
         "status": 200
       },
       "nav": {
@@ -7801,7 +8483,7 @@
       "expectedStyleIds": [54, 55, 65],
       "navSource": {
         "url": "https://api.minicdn.ca/v1/config/navdata?lang=en&cacode=27VB&lineid=321&styleid=55",
-        "sha256": "70e77b2c1b06e6e0623d6e8745eef3b77a4ba37f71b98d8e9179a00037eefb3b",
+        "sha256": "b0def1362d8cfcf37df14cc1155ce1ae41c4c62028289daacca3c635a76af17e",
         "status": 200
       },
       "nav": {
@@ -7845,7 +8527,7 @@
       "expectedStyleIds": [54, 55, 65],
       "navSource": {
         "url": "https://api.minicdn.ca/v1/config/navdata?lang=en&cacode=27VB&lineid=321&styleid=65",
-        "sha256": "771c57874e3c03c86dd35b9ce7b8c4e80fc87450f04c1c6d13c406d50886c5de",
+        "sha256": "501b1a695f0da270f0ca4e4774cb48bfee8387fb46b76b44053f44b5e9f1f282",
         "status": 200
       },
       "nav": {
@@ -7893,7 +8575,7 @@
       "expectedStyleIds": [54, 55, 65],
       "navSource": {
         "url": "https://api.minicdn.ca/v1/config/navdata?lang=en&cacode=27VB&lineid=322&styleid=54",
-        "sha256": "417017f36b6f69b2ead5ca8da2e3a3a290778fc2323cbc9c2170d025e30d7387",
+        "sha256": "427e21a6608462b5dd671befc97ee818d78775461b9408f3d3e2aeee2efcf141",
         "status": 200
       },
       "nav": {
@@ -7936,7 +8618,7 @@
       "expectedStyleIds": [54, 55, 65],
       "navSource": {
         "url": "https://api.minicdn.ca/v1/config/navdata?lang=en&cacode=27VB&lineid=322&styleid=55",
-        "sha256": "377cbe12b8bf98a91c5d6e3447b57c63b4d4fefba70ba092d8920af34a88262a",
+        "sha256": "7906fa570c8e53576cad903c9530bd05bcee6908780b8e7888b8d4816fd1c278",
         "status": 200
       },
       "nav": {
@@ -7980,7 +8662,7 @@
       "expectedStyleIds": [54, 55, 65],
       "navSource": {
         "url": "https://api.minicdn.ca/v1/config/navdata?lang=en&cacode=27VB&lineid=322&styleid=65",
-        "sha256": "08499bed6f3a739bb56960ba4237eb6bb4a35a581eadab3bfac00a182df8d37e",
+        "sha256": "ae3a0545dc047c71d8d8d668afc1987a74859591adc8a65ed84ef3fad76c048c",
         "status": 200
       },
       "nav": {
@@ -7992,13 +8674,47 @@
     },
     {
       "modelKey": "2027/27VC",
-      "lineId": null,
+      "lineId": 323,
       "style": null,
-      "styleSource": null,
+      "styleSource": {
+        "url": "https://api.minicdn.ca/v1/config/selectstyle?lang=en&cacode=27VC&lineid=323",
+        "sha256": "a21dd4487c21c65e6592937358a2d9dd11a9aa55da90c386a480c08807d449db",
+        "status": 200
+      },
       "expectedStyleIds": [],
-      "navSource": null,
-      "nav": null,
-      "stockBaseOnly": true
+      "navSource": {
+        "url": "https://api.minicdn.ca/v1/config/navdata?lang=en&cacode=27VC&lineid=323",
+        "sha256": "b9c7d276472de0061c469561699b0f33490224b915ca00fcc504d98b95ded094",
+        "status": 200
+      },
+      "nav": {
+        "packages": [{ "code": "ZZ0", "name": "Interior Protection Package", "price": 350 }],
+        "minimumSelectionPrices": { "Colour": 0, "Alloy Wheel": 0, "Upholstery": 0 },
+        "transmissions": []
+      },
+      "stockBaseOnly": false
+    },
+    {
+      "modelKey": "2027/27VC",
+      "lineId": 324,
+      "style": null,
+      "styleSource": {
+        "url": "https://api.minicdn.ca/v1/config/selectstyle?lang=en&cacode=27VC&lineid=324",
+        "sha256": "a21dd4487c21c65e6592937358a2d9dd11a9aa55da90c386a480c08807d449db",
+        "status": 200
+      },
+      "expectedStyleIds": [],
+      "navSource": {
+        "url": "https://api.minicdn.ca/v1/config/navdata?lang=en&cacode=27VC&lineid=324",
+        "sha256": "6fbf08bd44800051c32cb93ce8c2ac851882215e0b9b83a7c5bf823464dc9266",
+        "status": 200
+      },
+      "nav": {
+        "packages": [{ "code": "ZZ0", "name": "Interior Protection Package", "price": 350 }],
+        "minimumSelectionPrices": { "Colour": 0, "Alloy Wheel": 0, "Upholstery": 0 },
+        "transmissions": []
+      },
+      "stockBaseOnly": false
     },
     {
       "modelKey": "2027/27VP",
@@ -8012,7 +8728,7 @@
       "expectedStyleIds": [],
       "navSource": {
         "url": "https://api.minicdn.ca/v1/config/navdata?lang=en&cacode=27VP&lineid=329",
-        "sha256": "38f0f4bfc9b3547b86e17a246ff1fcafe2c677372e94d7d888d6cc591d76f74c",
+        "sha256": "68155c19014f265a2bb3a17cfd80ed81f7be53556dacf65e116f281f34d89a57",
         "status": 200
       },
       "nav": {
@@ -8034,7 +8750,7 @@
       "expectedStyleIds": [],
       "navSource": {
         "url": "https://api.minicdn.ca/v1/config/navdata?lang=en&cacode=27VP&lineid=330",
-        "sha256": "5d1862c48d9f8cd98a56491e75d99fe165f214dda32c4a8edb25bb298deed82d",
+        "sha256": "05c02f67955c5150678d5a9cec8ebbc155cea35cd7656ada3fe7f132809289b7",
         "status": 200
       },
       "nav": {
@@ -8081,7 +8797,7 @@
       "expectedStyleIds": [38, 39, 58],
       "navSource": {
         "url": "https://api.minicdn.ca/v1/config/navdata?lang=en&cacode=27YD&lineid=304&styleid=38",
-        "sha256": "50145850691b4277790b52bcc27260aa7c062bb3a1a3ba57ed704c68912857ad",
+        "sha256": "284f918512dacb7636c9681733b7ac505bb42ca9f89e4515d2385b82244d657a",
         "status": 200
       },
       "nav": {
@@ -8123,7 +8839,7 @@
       "expectedStyleIds": [38, 39, 58],
       "navSource": {
         "url": "https://api.minicdn.ca/v1/config/navdata?lang=en&cacode=27YD&lineid=304&styleid=39",
-        "sha256": "2d93bfa38280f21667e98926bc08339da9a036632842fa87d12edadfa3afb562",
+        "sha256": "66665943cc4b15b912cff84b165a1ee99fe61988e16e3238bc32aa63b29190b0",
         "status": 200
       },
       "nav": {
@@ -8166,7 +8882,7 @@
       "expectedStyleIds": [38, 39, 58],
       "navSource": {
         "url": "https://api.minicdn.ca/v1/config/navdata?lang=en&cacode=27YD&lineid=304&styleid=58",
-        "sha256": "2d93bfa38280f21667e98926bc08339da9a036632842fa87d12edadfa3afb562",
+        "sha256": "66665943cc4b15b912cff84b165a1ee99fe61988e16e3238bc32aa63b29190b0",
         "status": 200
       },
       "nav": {
@@ -8215,7 +8931,7 @@
       "expectedStyleIds": [38, 39, 58],
       "navSource": {
         "url": "https://api.minicdn.ca/v1/config/navdata?lang=en&cacode=27YD&lineid=305&styleid=38",
-        "sha256": "d8da37dfa746a8a3a80a215a8f464859219931c878a4b8ab691c1fa62cc1785c",
+        "sha256": "365244a7c9ad9a1eac6c5dc07017bd92108f0cb0928154d66c1267e7ebd6cfa8",
         "status": 200
       },
       "nav": {
@@ -8260,7 +8976,7 @@
       "expectedStyleIds": [38, 39, 58],
       "navSource": {
         "url": "https://api.minicdn.ca/v1/config/navdata?lang=en&cacode=27YD&lineid=305&styleid=39",
-        "sha256": "918b3129a142a84bb7736846f1537bbbe977b5bf5afd62228dba5ae1069cde2a",
+        "sha256": "de6a2cea128deeb746ecedbb5bdbac6c840b3efd4d8267e502271f6f75ac1708",
         "status": 200
       },
       "nav": {
@@ -8306,7 +9022,7 @@
       "expectedStyleIds": [38, 39, 58],
       "navSource": {
         "url": "https://api.minicdn.ca/v1/config/navdata?lang=en&cacode=27YD&lineid=305&styleid=58",
-        "sha256": "40ceb0b8d0cf0467e86d1cda58a3d3b7464592090edf509f8d0ebed289830eb7",
+        "sha256": "0e79593a272835cdbfd6383d50f2ddd1170a76cc0459c516448361436bfa021d",
         "status": 200
       },
       "nav": {
@@ -8358,7 +9074,7 @@
       "expectedStyleIds": [40, 41, 59],
       "navSource": {
         "url": "https://api.minicdn.ca/v1/config/navdata?lang=en&cacode=27YE&lineid=307&styleid=40",
-        "sha256": "8793d718f302463858c44fa1168f33b2ac235982e991de711d8d323d437ec465",
+        "sha256": "75212a3b5abce806b48bc5354f909acecb0067cecd4edeafe0b566213be27f1c",
         "status": 200
       },
       "nav": {
@@ -8398,7 +9114,7 @@
       "expectedStyleIds": [40, 41, 59],
       "navSource": {
         "url": "https://api.minicdn.ca/v1/config/navdata?lang=en&cacode=27YE&lineid=307&styleid=41",
-        "sha256": "525057917fc58f8edeac06c51668b88b7f2097956b152e08caf1f12ec41ea288",
+        "sha256": "d9145a6eaa5b4b445dbb4846d31787ff80cec0bb686c7817ed8e28ee2bff1f24",
         "status": 200
       },
       "nav": {
@@ -8439,7 +9155,7 @@
       "expectedStyleIds": [40, 41, 59],
       "navSource": {
         "url": "https://api.minicdn.ca/v1/config/navdata?lang=en&cacode=27YE&lineid=307&styleid=59",
-        "sha256": "0aff6a52393303d8d8eebc8a6a0c787ac52c4ad87f00ae992f9e9e109d4e57d5",
+        "sha256": "5c048d9a596e18a7537a5a99434d0aa164c9b3fa43cd957e1dc8a804da7e9d1e",
         "status": 200
       },
       "nav": {
@@ -8486,7 +9202,7 @@
       "expectedStyleIds": [40, 41, 59],
       "navSource": {
         "url": "https://api.minicdn.ca/v1/config/navdata?lang=en&cacode=27YE&lineid=308&styleid=40",
-        "sha256": "439400fd5f3128d2ba28acb5d0cb14265821596c9b92b4cea7e4fbb7f46bb263",
+        "sha256": "601b3a939ca47465b28ad6ab38efc1afff6fcf0e5e53cf50ae1156bad0d04178",
         "status": 200
       },
       "nav": {
@@ -8529,7 +9245,7 @@
       "expectedStyleIds": [40, 41, 59],
       "navSource": {
         "url": "https://api.minicdn.ca/v1/config/navdata?lang=en&cacode=27YE&lineid=308&styleid=41",
-        "sha256": "8980d6c275dad44259f66469f23dd5676dd00431cddf1843163ea3dbdd07cb66",
+        "sha256": "f6f7fc8b8175e94bcee22a7000cca0feb0ed6f261c2afc04539e9cb1b2f018a8",
         "status": 200
       },
       "nav": {
@@ -8573,7 +9289,7 @@
       "expectedStyleIds": [40, 41, 59],
       "navSource": {
         "url": "https://api.minicdn.ca/v1/config/navdata?lang=en&cacode=27YE&lineid=308&styleid=59",
-        "sha256": "504ca23ce14ffb96e21e1011de1ea1383ba278b0d94e0a1e05f43da3b95e2a01",
+        "sha256": "d08392909709bf48ae8763ee846f938f5e3eb5523d9af3e7404c754c6401df87",
         "status": 200
       },
       "nav": {
@@ -8598,7 +9314,7 @@
       "expectedStyleIds": [],
       "navSource": {
         "url": "https://api.minicdn.ca/v1/config/navdata?lang=en&cacode=27YF&lineid=306",
-        "sha256": "5d7fa0acfbae511006ca65e4bc9263fbbe7fa55b108d24e5dccc18d5b3c53c79",
+        "sha256": "224e863a640426f6bd6ad7fb33faa0073461eed1a36f83a5e15eca3b75d13e24",
         "status": 200
       },
       "nav": {
@@ -8630,6 +9346,102 @@
       "navSource": null,
       "nav": null,
       "stockBaseOnly": true
+    },
+    {
+      "modelKey": "2027/27YU",
+      "lineId": 331,
+      "style": null,
+      "styleSource": {
+        "url": "https://api.minicdn.ca/v1/config/selectstyle?lang=en&cacode=27YU&lineid=331",
+        "sha256": "1f4f77d19d973582069cd5ea14bb59dee1b94ae25ceecf61edbd4fd474a25beb",
+        "status": 200
+      },
+      "expectedStyleIds": [],
+      "navSource": {
+        "url": "https://api.minicdn.ca/v1/config/navdata?lang=en&cacode=27YU&lineid=331",
+        "sha256": "1607aa2a8771e61a0b5230490274655f649e867dd7dbe8b6b7cbce6b29ae5cdc",
+        "status": 200
+      },
+      "nav": {
+        "packages": [
+          { "code": "ZYU", "name": "Advanced Driver Assistance Package", "price": 2000 }
+        ],
+        "minimumSelectionPrices": { "Colour": 0, "Alloy Wheel": 0, "Upholstery": 0 },
+        "transmissions": []
+      },
+      "stockBaseOnly": false
+    },
+    {
+      "modelKey": "2027/27YU",
+      "lineId": 332,
+      "style": null,
+      "styleSource": {
+        "url": "https://api.minicdn.ca/v1/config/selectstyle?lang=en&cacode=27YU&lineid=332",
+        "sha256": "1f4f77d19d973582069cd5ea14bb59dee1b94ae25ceecf61edbd4fd474a25beb",
+        "status": 200
+      },
+      "expectedStyleIds": [],
+      "navSource": {
+        "url": "https://api.minicdn.ca/v1/config/navdata?lang=en&cacode=27YU&lineid=332",
+        "sha256": "9b9df9faaec0a4ede2e67145dac612b161f42c24d27a45b5f8aff82d6fcd8c73",
+        "status": 200
+      },
+      "nav": {
+        "packages": [
+          { "code": "ZYU", "name": "Advanced Driver Assistance Package", "price": 2000 }
+        ],
+        "minimumSelectionPrices": { "Colour": 0, "Alloy Wheel": 0, "Upholstery": 0 },
+        "transmissions": []
+      },
+      "stockBaseOnly": false
+    },
+    {
+      "modelKey": "2027/27YV",
+      "lineId": 333,
+      "style": null,
+      "styleSource": {
+        "url": "https://api.minicdn.ca/v1/config/selectstyle?lang=en&cacode=27YV&lineid=333",
+        "sha256": "c67d0543ea46a344c1adb95c7f1e7c84e418cfbacadf08a5bf911c5b6e34d6e5",
+        "status": 200
+      },
+      "expectedStyleIds": [],
+      "navSource": {
+        "url": "https://api.minicdn.ca/v1/config/navdata?lang=en&cacode=27YV&lineid=333",
+        "sha256": "140ef9c49e0e76bff689820629b72c65d09deafa6259d735f831703437c2f587",
+        "status": 200
+      },
+      "nav": {
+        "packages": [
+          { "code": "ZYU", "name": "Advanced Driver Assistance Package", "price": 2000 }
+        ],
+        "minimumSelectionPrices": { "Colour": 0, "Alloy Wheel": 0, "Upholstery": 0 },
+        "transmissions": []
+      },
+      "stockBaseOnly": false
+    },
+    {
+      "modelKey": "2027/27YV",
+      "lineId": 334,
+      "style": null,
+      "styleSource": {
+        "url": "https://api.minicdn.ca/v1/config/selectstyle?lang=en&cacode=27YV&lineid=334",
+        "sha256": "c67d0543ea46a344c1adb95c7f1e7c84e418cfbacadf08a5bf911c5b6e34d6e5",
+        "status": 200
+      },
+      "expectedStyleIds": [],
+      "navSource": {
+        "url": "https://api.minicdn.ca/v1/config/navdata?lang=en&cacode=27YV&lineid=334",
+        "sha256": "8f6d567fce026e4e380a70d7f5e1d11f9e5f6244a9f58357d701f704c49e2dfd",
+        "status": 200
+      },
+      "nav": {
+        "packages": [
+          { "code": "ZYU", "name": "Advanced Driver Assistance Package", "price": 2000 }
+        ],
+        "minimumSelectionPrices": { "Colour": 0, "Alloy Wheel": 0, "Upholstery": 0 },
+        "transmissions": []
+      },
+      "stockBaseOnly": false
     }
   ]
 }

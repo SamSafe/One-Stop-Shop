@@ -266,6 +266,24 @@ const snapshotSchema = z.strictObject({
   records: z.array(record).min(1),
 });
 export type MiniSnapshot = z.infer<typeof snapshotSchema>;
+// Stock is read in complete passes, one sort order each, until every vehicle
+// has been seen; sort ties can otherwise repeat one vehicle and skip another.
+export const miniStockSortModes = [
+  'PriceAscending',
+  'PriceDescending',
+  'YearAscending',
+  'YearDescending',
+] as const;
+function miniStockPasses(inventory: MiniSnapshot['inventory']) {
+  const pages = Math.ceil(inventory.total / 36),
+    passes = inventory.sources.length / pages;
+  return (
+    Number.isInteger(passes) &&
+    passes >= 1 &&
+    passes <= miniStockSortModes.length &&
+    inventory.returnedRows === inventory.total * passes
+  );
+}
 export type MiniModel = MiniSnapshot['models'][number];
 export const miniRecordKey = (r: MiniRecord) =>
   `${r.modelKey}/${r.lineId ?? 'stock'}/${r.style?.StyleID ?? 'base'}`;
@@ -332,9 +350,8 @@ export function validateMiniSnapshot(input: unknown): MiniSnapshot {
     throw new Error('MINI Canadian source context mismatch.');
   if (
     data.inventory.retrievedAt.slice(0, 10) !== date ||
-    data.inventory.total !== data.inventory.returnedRows ||
     data.inventory.total !== data.inventory.distinctVehicles ||
-    data.inventory.sources.length !== Math.ceil(data.inventory.total / 36) ||
+    !miniStockPasses(data.inventory) ||
     data.inventory.references.reduce((n, r) => n + r.observedVehicles, 0) !==
       data.inventory.total ||
     models.size !== data.models.length ||

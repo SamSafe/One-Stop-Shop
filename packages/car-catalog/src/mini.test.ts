@@ -21,21 +21,29 @@ const row = (code: string, line?: number, style?: number) =>
 const stock = (code: string) => snapshot.inventory.references.find((r) => r.code === code);
 describe('Canadian MINI factory selections and new-stock reconciliation', () => {
   it('retains every current selector reference and older stock code without exposing vehicle identifiers', () => {
-    expect(validateMiniSnapshot(snapshot).models).toHaveLength(37);
-    expect(snapshot.currentModelKeys).toHaveLength(23);
-    expect(snapshot.selectorReferenceCount).toBe(25);
-    expect(snapshot.records.filter((r) => !r.stockBaseOnly)).toHaveLength(90);
-    expect(snapshot.records.filter((r) => r.stockBaseOnly)).toHaveLength(14);
+    expect(validateMiniSnapshot(snapshot).models).toHaveLength(39);
+    expect(snapshot.currentModelKeys).toHaveLength(27);
+    expect(snapshot.selectorReferenceCount).toBe(29);
+    expect(snapshot.records.filter((r) => !r.stockBaseOnly)).toHaveLength(98);
+    expect(snapshot.records.filter((r) => r.stockBaseOnly)).toHaveLength(12);
     expect(snapshot.inventory.references).toHaveLength(36);
-    expect(snapshot.inventory.sources).toHaveLength(44);
-    expect(snapshot.inventory.total).toBe(1553);
-    expect(snapshot.inventory.distinctVehicles).toBe(1553);
+    // Two complete stock passes (price ascending, then descending) cover every vehicle.
+    expect(snapshot.inventory.sources).toHaveLength(84);
+    expect(snapshot.inventory.total).toBe(1481);
+    expect(snapshot.inventory.returnedRows).toBe(2962);
+    expect(snapshot.inventory.distinctVehicles).toBe(1481);
+    const partial = structuredClone(snapshot);
+    partial.inventory.sources.pop();
+    expect(() => validateMiniSnapshot(partial)).toThrow(/reconcile/);
+    const repeated = structuredClone(snapshot);
+    repeated.inventory.returnedRows++;
+    expect(() => validateMiniSnapshot(repeated)).toThrow(/reconcile/);
     expect(new Set(snapshot.inventory.references.map((r) => r.year))).toEqual(
       new Set([2025, 2026, 2027]),
     );
     const cars = catalog.cars.filter((c) => c.make === 'MINI' && c.recordKind === 'retail-trim');
-    expect(cars).toHaveLength(189);
-    expect(cars.filter((c) => c.facts.msrpCad.value !== null)).toHaveLength(185);
+    expect(cars).toHaveLength(203);
+    expect(cars.filter((c) => c.facts.msrpCad.value !== null)).toHaveLength(199);
     expect(JSON.stringify(snapshot)).not.toMatch(/"(?:VIN|RDayAF|cookie|headers|x-api-key)"/i);
     expect(catalog.cars.find((c) => c.id === 'honda-cr-v-2026-lx-fwd')).toBeDefined();
   });

@@ -47,9 +47,9 @@ describe('Canadian BMW stock and factory import', () => {
   it('retains all observed exact year/code groups while keeping inventory completeness unproven', () => {
     expect(validateBmwSnapshot(data).records).toHaveLength(110);
     expect(snapshot.inventory.modelReferences).toHaveLength(110);
-    expect(snapshot.inventory.sources).toHaveLength(196);
-    expect(snapshot.inventory.total).toBe(9386);
-    expect(snapshot.inventory.distinctStockRecords).toBe(8970);
+    expect(snapshot.inventory.sources).toHaveLength(202);
+    expect(snapshot.inventory.total).toBe(9666);
+    expect(snapshot.inventory.distinctStockRecords).toBe(9201);
     expect(new Set(snapshot.inventory.modelReferences.map((reference) => reference.year))).toEqual(
       new Set([2025, 2026, 2027]),
     );
