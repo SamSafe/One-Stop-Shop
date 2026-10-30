@@ -1,13 +1,13 @@
 # Aston Martin Canadian public listings
 
-The October 26, 2026 UTC capture uses the anonymous production configurator's
+The October 30, 2026 UTC capture uses the anonymous production configurator's
 Canada selector. `/data/api/country-list` includes `CA` and
-`/models/products/CA` returns 15 products. Product IDs and model codes join the
+`/models/products/CA` returns 16 products. Product IDs and model codes join the
 English `DERIVATIVE_SELECTION` and `STANDARD_LIST` entries. These are listings,
 not accepted orders, quotations or confirmed allocations.
 
-Nine products enter the app as `manufacturer-offer` records with `year=null`:
-Valhalla, Vanquish Coupe/Volante, DBX GT/S, DB12 S Coupe/Volante and Vantage S
+Ten products enter the app as `manufacturer-offer` records with `year=null`:
+Valhalla, Valhalla Spider, Vanquish Coupe/Volante, DBX GT/S, DB12 S Coupe/Volante and Vantage S
 Coupe/Roadster. The menu and the anonymous Canadian configuration responses
 publish neither model year nor price. Current calendar dates, image paths,
 product codes and first-delivery dates do not establish a model year. Global
@@ -23,9 +23,12 @@ Canadian offering still require verification; 2027 is not inferred as its model
 year.
 
 Menu `POWER.VALUE[0]` is imported only with `POWER.UNIT[0]=bhp`. PS is not copied
-as horsepower. Product-specific standard seating supplies eight of the nine
-offerings; Valhalla seating remains unknown in this capture. The linked Valhalla
-manufacturer page explicitly establishes its plug-in hybrid category. No WLTP
+as horsepower. Product-specific standard seating supplies eight of the ten
+offerings; Valhalla and Valhalla Spider seating remain unknown in this capture.
+The linked Valhalla manufacturer page explicitly establishes its plug-in hybrid
+category. The Valhalla Spider's own page lists a hybrid powertrain but does not
+mention plug-in charging, so it is recorded as a hybrid; the coupe's category is
+not copied to it. No WLTP
 economy/range, Chinese regional specification, alternative federal dimension or
 unknown-year Canadian government rating is substituted. Other metrics retain
 explicit unknown reasons.
@@ -49,10 +52,13 @@ capture time. The latest is 2026-10-26T05:08:12.183Z. Source bytes live under th
 ignored `data/raw/aston-martin` directory; the tracked snapshot retains only
 receipt metadata, factual identities and numeric/short-label projections.
 
-The reviewed public core client is `chunk-BTNBP6WG.js`, SHA-256
-`270d18e2da338dbe863cfd5a9ebac312345a582b2f059d82759c189a3bcf83ee`.
-Its entry client is `main-REOVSZF3.js`, SHA-256
-`54221addd504ee01002b220b73eeeaac4be2a74155254025e35432d308b0fa44`.
+The reviewed public core client is `chunk-2CDO63CM.js`, SHA-256
+`bf2f53c7882fdd40fd58e611039361d2d759366e575ad886fe828a608c1d2bb6`.
+Its entry client is `main-7MUIX7YT.js`, SHA-256
+`42d8513879174ad26d082eb3caebd154ea8dc447a8aad859c5cc7471318adb82`.
+They replaced `chunk-BTNBP6WG.js` and `main-REOVSZF3.js` in a 30 October rebuild
+that renamed minified identifiers; the stock-only product list and the
+configuration, patch and product request templates are unchanged.
 Changed production bootstrap or clients, unreviewed identities, duplicate/missing joins, non-public
 products, absent Canada, new price/year fields or changed delivery qualification
 require review. The importer verifies all bytes before atomically replacing the

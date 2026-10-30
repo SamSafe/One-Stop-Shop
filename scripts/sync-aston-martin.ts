@@ -12,6 +12,7 @@ import {
   astonConfiguration,
   astonReceiptSchema,
   validateAstonSnapshot,
+  astonSnapshotSchema,
   astonNoRegression,
 } from '../packages/car-catalog/src/aston-martin-import.ts';
 import type { AstonSnapshot } from '../packages/car-catalog/src/aston-martin-import.ts';
@@ -83,7 +84,7 @@ for (const [key, url] of Object.entries(astonUrls)) {
 for (const [key, expected] of Object.entries(astonClientHashes))
   if (sources[key as keyof typeof astonClientHashes].sha256 !== expected)
     throw new Error('Aston Martin public client changed; review before refreshing.');
-if (!bodies.bootstrap.includes('src="main-REOVSZF3.js"'))
+if (!bodies.bootstrap.includes(`src="${new URL(astonUrls.entryClient).pathname.slice(1)}"`))
   throw new Error('Aston Martin production bootstrap changed; review its current public client.');
 const plain = (s: string) =>
   s
@@ -94,6 +95,9 @@ if (!/first deliveries scheduled for Q2 2027/i.test(plain(bodies.valen)))
   throw new Error('Valen first-delivery qualification changed.');
 if (!/plug-in hybrid/i.test(plain(bodies.valhalla)))
   throw new Error('Valhalla powertrain qualification changed.');
+// The Spider's own page describes a hybrid powertrain but not plug-in charging.
+if (!/Hybrid Powertrain/i.test(plain(bodies.valhallaSpider)))
+  throw new Error('Valhalla Spider powertrain qualification changed.');
 const countries = z.array(z.string()).parse(JSON.parse(bodies.countries));
 if (!countries.includes('CA')) throw new Error('Canada is not offered in the public country menu.');
 const menu = astonMenu(JSON.parse(bodies.menu)),
@@ -122,7 +126,12 @@ const snapshot = validateAstonSnapshot({
   valenFirstDeliveryQuarter: '2027-Q2',
 });
 try {
-  astonNoRegression(validateAstonSnapshot(JSON.parse(await readFile(target, 'utf8'))), snapshot);
+  // The baseline was reviewed against the clients pinned at its own date, so only
+  // its shape is checked before comparing offerings. It may lack sources added since.
+  const baseline = astonSnapshotSchema
+    .extend({ sources: z.record(z.string(), astonReceiptSchema) })
+    .parse(JSON.parse(await readFile(target, 'utf8')));
+  astonNoRegression(baseline as AstonSnapshot, snapshot);
 } catch (e) {
   if ((e as NodeJS.ErrnoException).code !== 'ENOENT') throw e;
 }

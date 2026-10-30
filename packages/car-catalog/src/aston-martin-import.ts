@@ -6,19 +6,21 @@ export const astonUrls = {
   countries: `${astonOrigin}/data/api/country-list`,
   menu: `${astonOrigin}/models/products/CA`,
   translations: `${astonOrigin}/static/assets/translations/en.json`,
-  client: `${astonOrigin}/chunk-BTNBP6WG.js`,
-  entryClient: `${astonOrigin}/main-REOVSZF3.js`,
+  client: `${astonOrigin}/chunk-2CDO63CM.js`,
+  entryClient: `${astonOrigin}/main-7MUIX7YT.js`,
   valen:
     'https://www.astonmartin.com/en/our-world/news/2026/8/14/aston-martin-valen-the-most-powerful-front-engined-supercar',
   valhalla: 'https://www.astonmartin.com/en/models/valhalla',
+  valhallaSpider: 'https://www.astonmartin.com/en/models/valhalla-spider',
 } as const;
 export const astonClientHashes = {
-  client: '270d18e2da338dbe863cfd5a9ebac312345a582b2f059d82759c189a3bcf83ee',
-  entryClient: '54221addd504ee01002b220b73eeeaac4be2a74155254025e35432d308b0fa44',
+  client: 'bf2f53c7882fdd40fd58e611039361d2d759366e575ad886fe828a608c1d2bb6',
+  entryClient: '42d8513879174ad26d082eb3caebd154ea8dc447a8aad859c5cc7471318adb82',
 } as const;
 export const astonStockOnly = ['AM617', 'AM647', 'AM546A', 'AM576A', 'AM890'];
 const reviewedProducts: Record<string, { family: string; name: string }> = {
   AM003A: { family: 'M255', name: 'Valhalla' },
+  AM004: { family: 'M255', name: 'Valhalla Spider' },
   AM374: { family: 'M222', name: 'Vanquish Coupe' },
   AM384: { family: 'M222', name: 'Vanquish Volante' },
   AM546A: { family: 'M200', name: 'DB12 Volante' },
@@ -68,7 +70,7 @@ const productSchema = z.strictObject({
     })
     .nullable(),
 });
-const snapshotSchema = z.strictObject({
+export const astonSnapshotSchema = z.strictObject({
   schemaVersion: z.literal(1),
   market: z.literal('CA'),
   retrievedAt: z.iso.datetime(),
@@ -86,7 +88,7 @@ const snapshotSchema = z.strictObject({
   products: z.array(productSchema).min(1).max(100),
   valenFirstDeliveryQuarter: z.literal('2027-Q2'),
 });
-export type AstonSnapshot = z.infer<typeof snapshotSchema>;
+export type AstonSnapshot = z.infer<typeof astonSnapshotSchema>;
 export type AstonProduct = AstonSnapshot['products'][number];
 
 function strings(value: unknown): string[] {
@@ -204,7 +206,7 @@ export function astonConfiguration(input: unknown, source: z.infer<typeof astonR
   };
 }
 export function validateAstonSnapshot(input: unknown): AstonSnapshot {
-  const s = snapshotSchema.parse(input);
+  const s = astonSnapshotSchema.parse(input);
   const receipts = [
     ...Object.values(s.sources),
     ...s.products.flatMap((p) => (p.configuration ? [p.configuration.source] : [])),
@@ -239,7 +241,7 @@ export function validateAstonSnapshot(input: unknown): AstonSnapshot {
       p.configuration.source.url !== astonConfigUrl(p.id)
     )
       throw new Error('Aston Martin configuration country/product join failed.');
-    if (p.convertible !== /Volante|Roadster/.test(p.name))
+    if (p.convertible !== /Volante|Roadster|Spider/.test(p.name))
       throw new Error('Aston Martin body style conflicts with derivative.');
   }
   const times = receipts.map((r) => Date.parse(r.capturedAt));

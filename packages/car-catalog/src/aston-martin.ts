@@ -39,6 +39,16 @@ export function addAstonOffers(base: Catalog, snapshot: AstonSnapshot): Catalog 
       locator:
         'The manufacturer describes the plug-in hybrid architecture. Canadian model year, rated electric range and Canadian energy consumption require separate evidence.',
     },
+    {
+      id: 'aston-martin-valhalla-spider-powertrain',
+      publisher: 'Aston Martin',
+      title: 'Valhalla Spider manufacturer hybrid powertrain specification',
+      url: snapshot.sources.valhallaSpider.url,
+      reviewedAt: snapshot.sources.valhallaSpider.capturedAt.slice(0, 10),
+      publishedAt: null,
+      locator:
+        "The Spider's own page lists a hybrid powertrain with a high-voltage battery and e-motors. It does not state plug-in charging, so the coupe's plug-in description is not applied.",
+    },
   ];
   const cars: Car[] = snapshot.products
     .filter((p) => p.role === 'menu-offer')
@@ -82,7 +92,7 @@ export function addAstonOffers(base: Catalog, snapshot: AstonSnapshot): Catalog 
         modelYearNote:
           'The Canadian public configurator does not publish an exact model year. A current calendar date, product code, image path or first-delivery date does not establish one.',
         bodyStyle: p.family === 'M230' ? 'SUV' : p.convertible ? 'Convertible' : 'Coupe',
-        fuel: p.family === 'M255' ? 'Plug-in hybrid' : 'Gasoline',
+        fuel: p.id === 'AM003A' ? 'Plug-in hybrid' : p.id === 'AM004' ? 'Hybrid' : 'Gasoline',
         drivetrain: 'Not verified',
         variant: 'Canadian configurator listing · year unverified',
         manufacturerConfiguration: {
@@ -100,7 +110,8 @@ export function addAstonOffers(base: Catalog, snapshot: AstonSnapshot): Catalog 
         sourceIds: [
           menuId,
           specsId,
-          ...(p.family === 'M255' ? ['aston-martin-valhalla-powertrain'] : []),
+          ...(p.id === 'AM003A' ? ['aston-martin-valhalla-powertrain'] : []),
+          ...(p.id === 'AM004' ? ['aston-martin-valhalla-spider-powertrain'] : []),
         ],
         facts,
       };
@@ -117,8 +128,7 @@ export function astonReviewGaps(snapshot: AstonSnapshot) {
     {
       brand: 'Aston Martin',
       field: 'scope',
-      reason:
-        'Nine year-unverified Canadian public configurator listings are represented. Exact model years, base CAD MSRP, packages, independent national availability, allocations and current/older new inventory remain unverified. These are manufacturer offers, not year-qualified retail configurations.',
+      reason: `${snapshot.products.filter((p) => p.role === 'menu-offer').length} year-unverified Canadian public configurator listings are represented. Exact model years, base CAD MSRP, packages, independent national availability, allocations and current/older new inventory remain unverified. These are manufacturer offers, not year-qualified retail configurations.`,
     },
     ...snapshot.products
       .filter((p) => p.role !== 'menu-offer')

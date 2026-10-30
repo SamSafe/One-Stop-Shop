@@ -43,9 +43,9 @@ const translations = () => ({
 });
 
 describe('Aston Martin Canadian public listings', () => {
-  it('reconciles all 15 Canadian menu products, withholding stock-only and future-delivery products', () => {
-    expect(snapshot.products).toHaveLength(15);
-    expect(cars).toHaveLength(9);
+  it('reconciles all 16 Canadian menu products, withholding stock-only and future-delivery products', () => {
+    expect(snapshot.products).toHaveLength(16);
+    expect(cars).toHaveLength(10);
     expect(
       snapshot.products
         .filter((p) => p.role === 'stock-only')
@@ -98,6 +98,11 @@ describe('Aston Martin Canadian public listings', () => {
     expect(get('AM003A').facts.seats.value).toBeNull();
     expect(get('AM003A').sourceIds).toContain('aston-martin-valhalla-powertrain');
     expect(get('AM003A').facts.electricRangeKm.value).toBeNull();
+    // The Spider's own page describes a hybrid but not plug-in charging.
+    expect(get('AM004').fuel).toBe('Hybrid');
+    expect(get('AM004').bodyStyle).toBe('Convertible');
+    expect(get('AM004').sourceIds).toContain('aston-martin-valhalla-spider-powertrain');
+    expect(get('AM004').sourceIds).not.toContain('aston-martin-valhalla-powertrain');
   });
   it('requires reviewed product/family labels, public access and an explicit bhp unit', () => {
     const menu = astonMenu([product]);
