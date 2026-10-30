@@ -87,6 +87,11 @@ const navModelSchema = z.object({
     vehicleBodystyle: z.object({ code: text, name: text }),
   }),
 });
+// The menu can list an unfinished model card with year 0 and no model identity.
+// It is kept as a placeholder for review, never imported as a model.
+const navStubSchema = z.object({ modelPath: text, modelPage: text, year: z.literal(0) });
+const isStub = (row: { year?: unknown; modelName?: unknown }) =>
+  row.year === 0 && row.modelName === undefined;
 export type MercedesReference = {
   key: string;
   model: string;
@@ -103,6 +108,10 @@ export type MercedesReference = {
   comingSoon: boolean;
   fuelType: string | null;
   electric: boolean;
+  // Set when the menu still lists the previous year but the model page states
+  // this one. A builder still showing the menu year is kept only for review.
+  menuYear?: number;
+  staleBuilder?: string;
 };
 export function mercedesLineup(html: string): MercedesReference[] {
   mercedesContext(html, false);
@@ -114,7 +123,7 @@ export function mercedesLineup(html: string): MercedesReference[] {
           .array(
             z.object({
               displayName: text.optional(),
-              activeVehicleModelList: z.array(navModelSchema).optional(),
+              activeVehicleModelList: z.array(z.union([navModelSchema, navStubSchema])).optional(),
             }),
           )
           .optional(),
@@ -127,6 +136,7 @@ export function mercedesLineup(html: string): MercedesReference[] {
   for (const group of groups)
     for (const family of group.jellyBeanList ?? [])
       for (const row of family.activeVehicleModelList ?? []) {
+        if (!('modelName' in row)) continue;
         if (
           row.year !== row.model.year ||
           row.modelName !== row.model.name ||
@@ -181,7 +191,15 @@ export function mercedesMenuPlaceholders(html: string) {
             z.object({
               displayName: text.optional(),
               classPageUrl: text.optional(),
-              activeVehicleModelList: z.array(z.unknown()).optional(),
+              activeVehicleModelList: z
+                .array(
+                  z.object({
+                    year: z.unknown().optional(),
+                    modelName: z.unknown().optional(),
+                    modelPage: z.unknown().optional(),
+                  }),
+                )
+                .optional(),
             }),
           )
           .optional(),
@@ -190,19 +208,24 @@ export function mercedesMenuPlaceholders(html: string) {
     .parse(
       mercedesJson(html, /mbNafta\.ns\('pageData', 'globalVehicleNavHierarchy'\)\.content\s*=\s*/),
     );
+  const reviewable = (link: string) => {
+    const url = new URL(link, mercedesCarOrigin);
+    if (url.origin !== mercedesCarOrigin)
+      throw new Error('Mercedes menu placeholder leaves Canadian origin.');
+    return url.href;
+  };
   return [
     ...new Set(
       groups.flatMap((g) =>
-        (g.jellyBeanList ?? [])
-          .filter((c) => !c.activeVehicleModelList?.length)
-          .map((c) => {
-            if (!c.classPageUrl)
-              throw new Error('Mercedes menu placeholder has no reviewable class link.');
-            const url = new URL(c.classPageUrl, mercedesCarOrigin);
-            if (url.origin !== mercedesCarOrigin)
-              throw new Error('Mercedes menu placeholder leaves Canadian origin.');
-            return url.href;
-          }),
+        (g.jellyBeanList ?? []).flatMap((c) => {
+          if (c.activeVehicleModelList?.length)
+            return c.activeVehicleModelList
+              .filter(isStub)
+              .map((row) => reviewable(text.parse(row.modelPage)));
+          if (!c.classPageUrl)
+            throw new Error('Mercedes menu placeholder has no reviewable class link.');
+          return [reviewable(c.classPageUrl)];
+        }),
       ),
     ),
   ].sort();
@@ -352,7 +375,9 @@ export function mercedesBuilder(
     content.year !== expectedYear ||
     (!van && content.country !== 'ca')
   )
-    throw new Error('Mercedes factory builder model/year/country mismatch.');
+    throw new Error(
+      `Mercedes factory builder model/year/country mismatch: expected ${expectedYear}/${expectedModel}, builder shows ${content.year}/${content.model}/${content.country ?? 'no country'}.`,
+    );
   if ((!van && content.useCCSPrice !== false) || (van && content.useCCS))
     throw new Error('Mercedes active price mode needs renewed review.');
   if (content.useCCS) {
@@ -448,7 +473,9 @@ export function mercedesModelPage(html: string, model: string, modelYear: number
     Object.fromEntries(fields.map((field, i) => [field, JSON.parse(match[i + 1]!) as unknown])),
   );
   if (vehicle.model !== model || vehicle.year !== modelYear)
-    throw new Error('Mercedes model-page year/model mismatch.');
+    throw new Error(
+      `Mercedes model-page year/model mismatch: expected ${modelYear}/${model}, page shows ${vehicle.year}/${vehicle.model}.`,
+    );
   const rows: z.infer<typeof specificationSchema>[] = [];
   for (const block of html.matchAll(
     /<(div|li)\b[^>]*class="model-specs-list__item"[^>]*>([\s\S]*?)<\/\1>/g,
@@ -546,10 +573,44 @@ export function mercedesVanSelector(html: string, kind: (typeof mercedesVanKinds
   if (!models.length) throw new Error('Mercedes van selector is empty.');
   return models.sort((a, b) => a.key.localeCompare(b.key));
 }
+// Mercedes sometimes moves a model page to the next model year before the menu
+// catches up. When the page states exactly the next year for the same model code,
+// that year is used and the menu year is kept for review. A builder that still
+// shows the menu year is not used for the new year.
+export function mercedesRollover(
+  reference: MercedesReference,
+  pageHtml: string,
+  builderHtml: string | null,
+): MercedesReference {
+  const attempt = (check: () => unknown) => {
+    try {
+      check();
+      return true;
+    } catch {
+      return false;
+    }
+  };
+  const page = (y: number) => attempt(() => mercedesModelPage(pageHtml, reference.model, y)),
+    builder = (y: number) =>
+      builderHtml !== null &&
+      attempt(() => mercedesBuilder(builderHtml, reference.model, y, false));
+  if (page(reference.year) || !page(reference.year + 1)) return reference;
+  const next = {
+    ...reference,
+    key: `${reference.year + 1}/${reference.model}`,
+    year: reference.year + 1,
+    menuYear: reference.year,
+  };
+  if (builderHtml === null || builder(next.year)) return next;
+  if (!builder(reference.year)) return reference;
+  return { ...next, builder: null, staleBuilder: reference.builder! };
+}
 const referenceSchema: z.ZodType<MercedesReference> = z.strictObject({
   key: text,
   model: text,
   year,
+  menuYear: year.optional(),
+  staleBuilder: z.url().optional(),
   name: text,
   family: text,
   group: text,
@@ -660,7 +721,9 @@ export function validateMercedesSnapshot(input: unknown): MercedesSnapshot {
   for (const m of s.menu) {
     if (
       m.key !== `${m.year}/${m.model}` ||
-      !m.modelPath.includes(`/en_ca/models/${m.year}/`) ||
+      (m.menuYear !== undefined && m.menuYear !== m.year - 1) ||
+      (m.staleBuilder !== undefined && (m.menuYear === undefined || m.builder !== null)) ||
+      !m.modelPath.includes(`/en_ca/models/${m.menuYear ?? m.year}/`) ||
       !m.modelPath.toLowerCase().endsWith('/' + m.model.toLowerCase()) ||
       new URL(m.page).origin !== mercedesCarOrigin ||
       (m.builder && new URL(m.builder).origin !== mercedesCarOrigin)
@@ -737,9 +800,16 @@ export function validateMercedesSnapshot(input: unknown): MercedesSnapshot {
   return s;
 }
 export function mercedesRequireNoRegression(previous: MercedesSnapshot, next: MercedesSnapshot) {
-  const keys = new Set([...next.cars, ...next.vans].map((r) => r.key));
-  if ([...previous.cars, ...previous.vans].some((r) => !keys.has(r.key)))
+  const keys = new Set([
+    ...[...next.cars, ...next.vans].map((r) => r.key),
+    // A model year rolled over by its own page and builder replaces the listed year.
+    ...next.menu.flatMap((m) => (m.menuYear ? [`${m.menuYear}/${m.model}`] : [])),
+    // A model whose menu card lost its identity stays listed as a placeholder for review.
+    ...previous.menu.filter((m) => next.placeholders.includes(m.page)).map((m) => m.key),
+  ]);
+  const removed = [...previous.cars, ...previous.vans].filter((r) => !keys.has(r.key));
+  if (removed.length)
     throw new Error(
-      'Mercedes refresh would remove a previously represented model year. Reconcile new stock or record a reviewed removal before replacing the snapshot.',
+      `Mercedes refresh would remove a previously represented model year (${removed.map((r) => r.key).join(', ')}). Reconcile new stock or record a reviewed removal before replacing the snapshot.`,
     );
 }

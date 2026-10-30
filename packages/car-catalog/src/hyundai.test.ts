@@ -146,10 +146,11 @@ describe('Hyundai Canadian factory import', () => {
     expect(hyundaiFacts(conflict).seats.value).toBeNull();
     expect(hyundaiFacts(conflict).seats.note).toContain('Conflicting seating evidence');
   });
-  it('retains source failures and avoids applying shared or optional model specifications to exact trims', () => {
+  it('records specification-table status and avoids applying shared or optional model specifications to exact trims', () => {
+    // On 30 October every model table responded; earlier refreshes saw HTTP 503.
     expect(
       hyundaiSnapshot.models.filter((model) => model.specificationsReview.status !== 200),
-    ).toHaveLength(17);
+    ).toHaveLength(0);
     const phev = record('2026-tucson', 'Ultimate Plug-in Hybrid AWD'),
       facts = hyundaiFacts(phev);
     expect(facts.fuelCombinedL100km.value).toBeNull();

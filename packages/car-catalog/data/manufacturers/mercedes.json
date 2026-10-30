@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "market": "CA",
   "currency": "CAD",
-  "retrievedAt": "2026-10-23T16:48:06.044Z",
+  "retrievedAt": "2026-10-30T19:56:38.776Z",
   "overviewSource": {
     "url": "https://www.mercedes-benz.ca/en/home",
     "status": 200,
-    "sha256": "2d2380ae5d6510e011b9bef1bc72b6b69f393606ade18e593bd3575ee9902cb5"
+    "sha256": "1f3d43e4caa91967e8e307b23f11ab13c4576ac4aec0eaf15f0274ec779c278a"
   },
   "menu": [
     {
@@ -330,6 +330,62 @@
       "inactive": false,
       "comingSoon": false,
       "fuelType": "G",
+      "electric": false
+    },
+    {
+      "key": "2027/GLC300C4",
+      "model": "GLC300C4",
+      "year": 2027,
+      "menuYear": 2026,
+      "name": "GLC 300 4MATIC Coupe",
+      "family": "GLC Coupe",
+      "group": "SUVs",
+      "classCode": "GLC",
+      "bodyCode": "CPE",
+      "modelPath": "/content/mb-vehicles-data/en_ca/models/2026/glc/glc300c4",
+      "page": "https://www.mercedes-benz.ca/en/vehicles/model/glc/coupe/glc300c4",
+      "builder": "https://www.mercedes-benz.ca/en/vehicles/build/glc/coupe/glc300c4",
+      "inactive": false,
+      "comingSoon": false,
+      "fuelType": "G",
+      "electric": false
+    },
+    {
+      "key": "2027/GLC300W4",
+      "model": "GLC300W4",
+      "year": 2027,
+      "menuYear": 2026,
+      "staleBuilder": "https://www.mercedes-benz.ca/en/vehicles/build/glc/suv/glc300w4",
+      "name": "GLC 300 4MATIC SUV",
+      "family": "GLC SUV",
+      "group": "SUVs",
+      "classCode": "GLC",
+      "bodyCode": "SUV",
+      "modelPath": "/content/mb-vehicles-data/en_ca/models/2026/glc/glc300w4",
+      "page": "https://www.mercedes-benz.ca/en/vehicles/model/glc/suv/glc300w4",
+      "builder": null,
+      "inactive": false,
+      "comingSoon": false,
+      "fuelType": "G",
+      "electric": false
+    },
+    {
+      "key": "2027/GLC350E4",
+      "model": "GLC350E4",
+      "year": 2027,
+      "menuYear": 2026,
+      "staleBuilder": "https://www.mercedes-benz.ca/en/vehicles/build/glc/suv/glc350e4",
+      "name": "GLC 350e 4MATIC SUV",
+      "family": "GLC SUV",
+      "group": "SUVs",
+      "classCode": "GLC",
+      "bodyCode": "SUV",
+      "modelPath": "/content/mb-vehicles-data/en_ca/models/2026/glc/glc350e4",
+      "page": "https://www.mercedes-benz.ca/en/vehicles/model/glc/suv/glc350e4",
+      "builder": null,
+      "inactive": false,
+      "comingSoon": false,
+      "fuelType": "PH",
       "electric": false
     },
     {
@@ -877,57 +933,6 @@
       "electric": false
     },
     {
-      "key": "2027/GLC300C4",
-      "model": "GLC300C4",
-      "year": 2027,
-      "name": "GLC 300 4MATIC Coupe",
-      "family": "GLC Coupe",
-      "group": "SUVs",
-      "classCode": "GLC",
-      "bodyCode": "CPE",
-      "modelPath": "/content/mb-vehicles-data/en_ca/models/2027/glc/glc300c4",
-      "page": "https://www.mercedes-benz.ca/en/vehicles/model/glc/coupe/glc300c4",
-      "builder": "https://www.mercedes-benz.ca/en/vehicles/build/glc/coupe/glc300c4",
-      "inactive": false,
-      "comingSoon": false,
-      "fuelType": "G",
-      "electric": false
-    },
-    {
-      "key": "2027/GLC300W4",
-      "model": "GLC300W4",
-      "year": 2027,
-      "name": "GLC 300 4MATIC SUV",
-      "family": "GLC SUV",
-      "group": "SUVs",
-      "classCode": "GLC",
-      "bodyCode": "SUV",
-      "modelPath": "/content/mb-vehicles-data/en_ca/models/2027/glc/glc300w4",
-      "page": "https://www.mercedes-benz.ca/en/vehicles/model/glc/suv/glc300w4",
-      "builder": "https://www.mercedes-benz.ca/en/vehicles/build/glc/suv/glc300w4",
-      "inactive": false,
-      "comingSoon": false,
-      "fuelType": "G",
-      "electric": false
-    },
-    {
-      "key": "2027/GLC350E4",
-      "model": "GLC350E4",
-      "year": 2027,
-      "name": "GLC 350e 4MATIC SUV",
-      "family": "GLC SUV",
-      "group": "SUVs",
-      "classCode": "GLC",
-      "bodyCode": "SUV",
-      "modelPath": "/content/mb-vehicles-data/en_ca/models/2027/glc/glc350e4",
-      "page": "https://www.mercedes-benz.ca/en/vehicles/model/glc/suv/glc350e4",
-      "builder": "https://www.mercedes-benz.ca/en/vehicles/build/glc/suv/glc350e4",
-      "inactive": false,
-      "comingSoon": false,
-      "fuelType": "PH",
-      "electric": false
-    },
-    {
       "key": "2027/GLC400E4",
       "model": "GLC400E4",
       "year": 2027,
@@ -943,23 +948,6 @@
       "comingSoon": false,
       "fuelType": "E",
       "electric": true
-    },
-    {
-      "key": "2027/GLC53W4",
-      "model": "GLC53W4",
-      "year": 2027,
-      "name": "AMG GLC 53 4MATIC+ SUV",
-      "family": "GLC SUV",
-      "group": "SUVs",
-      "classCode": "GLC",
-      "bodyCode": "SUV",
-      "modelPath": "/content/mb-vehicles-data/en_ca/models/2027/glc/glc53w4",
-      "page": "https://www.mercedes-benz.ca/en/vehicles/model/glc/suv/glc53w4",
-      "builder": "https://www.mercedes-benz.ca/en/vehicles/build/glc/suv/glc53w4",
-      "inactive": false,
-      "comingSoon": false,
-      "fuelType": "G",
-      "electric": false
     },
     {
       "key": "2027/GT43R",
@@ -1152,6 +1140,9 @@
     "2026/G580W4E",
     "2026/GLA250W4",
     "2026/GLA35W4",
+    "2027/GLC300C4",
+    "2027/GLC300W4",
+    "2027/GLC350E4",
     "2026/GLE350W4",
     "2026/GLE450C4",
     "2026/GLE450E4",
@@ -1184,11 +1175,7 @@
     "2027/E53ES4",
     "2027/E53EW4",
     "2027/G63W4",
-    "2027/GLC300C4",
-    "2027/GLC300W4",
-    "2027/GLC350E4",
     "2027/GLC400E4",
-    "2027/GLC53W4",
     "2027/GT43R",
     "2027/GT55R4",
     "2027/GT63R4",
@@ -1200,7 +1187,10 @@
     "2027/SL55R4",
     "2027/SL63R4"
   ],
-  "placeholders": ["https://www.mercedes-benz.ca/en/vehicles/class/maybach-eqs/suv"],
+  "placeholders": [
+    "https://www.mercedes-benz.ca/en/vehicles/class/maybach-eqs/suv",
+    "https://www.mercedes-benz.ca/en/vehicles/model/glc/suv/glc53w4"
+  ],
   "selectors": [
     {
       "kind": "passenger-van",
@@ -1383,7 +1373,7 @@
       "source": {
         "url": "https://www.mercedes-benz.ca/en/vehicles/model/eqe/sedan/amgeqev4",
         "status": 200,
-        "sha256": "61a642aecc37771e697cec004355860c14d1fd4586e560e9796079f59e0fe01d"
+        "sha256": "384f36098812c79a7b7c1bc8ec214a7146e6a16840ba10801dcf1dcd20862df7"
       },
       "vehicle": {
         "model": "AMGEQEV4",
@@ -1448,7 +1438,7 @@
       "source": {
         "url": "https://www.mercedes-benz.ca/en/vehicles/model/eqe/suv/amgeqex4",
         "status": 200,
-        "sha256": "a9f6475afa5aaf6a893d52bb347f047905e71cd6e18014c85afaedb8ba76ab99"
+        "sha256": "175384674bbb66e5d6851e212c736260e52bf3f4e6bd7b52e44482f80c4e0534"
       },
       "vehicle": {
         "model": "AMGEQEX4",
@@ -1514,7 +1504,7 @@
       "source": {
         "url": "https://www.mercedes-benz.ca/en/vehicles/model/eqs/sedan/amgeqsv4",
         "status": 200,
-        "sha256": "d0c3c720c8228c4700e79491da3188571cd00d0d22e1b3ae24c88a96a4de78af"
+        "sha256": "351811e168b6dd271f9d3a3ed829f6a64b81afabf2a92e5490d61c7b17b566db"
       },
       "vehicle": {
         "model": "AMGEQSV4",
@@ -1579,7 +1569,7 @@
       "source": {
         "url": "https://www.mercedes-benz.ca/en/vehicles/model/eqe/sedan/eqe350v4",
         "status": 200,
-        "sha256": "459c83b24838f76ca6b23297f1143a3c483e957a4c1c777703acccef8744630a"
+        "sha256": "d7b42183dffbb8efe89a5504a74b307c60b6d5f6935f26963fece5340e12517a"
       },
       "vehicle": {
         "model": "EQE350V4",
@@ -1641,7 +1631,7 @@
       "source": {
         "url": "https://www.mercedes-benz.ca/en/vehicles/model/eqe/suv/eqe350x4",
         "status": 200,
-        "sha256": "0163ccc459ee8c8fe67143c8c09509e7e35ac0f355a29fb20b1ed69cfd2166a2"
+        "sha256": "dd70a0de6d3c375a9471392d8583c5c31bb601932911e75e6b48ca2d58d8ecc9"
       },
       "vehicle": {
         "model": "EQE350X4",
@@ -1707,7 +1697,7 @@
       "source": {
         "url": "https://www.mercedes-benz.ca/en/vehicles/model/eqe/sedan/eqe500v4",
         "status": 200,
-        "sha256": "6673dd328f55e3d9f4528ad34d3afdb17f3f1369c560c6577afc74cb2cad80f0"
+        "sha256": "07fb04c94e1ebb844fe8d27f11f5c2054a2f46332c6f3f177b38039113c8a9cd"
       },
       "vehicle": {
         "model": "EQE500V4",
@@ -1769,7 +1759,7 @@
       "source": {
         "url": "https://www.mercedes-benz.ca/en/vehicles/model/eqe/suv/eqe500x4",
         "status": 200,
-        "sha256": "cca69c43c557b8bc4da01a0228edd14fd6a00b5ba747d743bf485f1bf1292c50"
+        "sha256": "982a2c1a3da9d66bcc6ae224d8d3b232c365c59c9781cb5e38d7778c14f5d2fd"
       },
       "vehicle": {
         "model": "EQE500X4",
@@ -1838,7 +1828,7 @@
       "source": {
         "url": "https://www.mercedes-benz.ca/en/vehicles/model/eqs/sedan/eqs450v4",
         "status": 200,
-        "sha256": "2ef4094b8a89878e9ee80fd6578107e8aa6123eb150c8e615c2597262d1cbd37"
+        "sha256": "34cc635391064706d905018517d0ec95b15b48532cd06a58ec9f78e0ece38efa"
       },
       "vehicle": {
         "model": "EQS450V4",
@@ -1903,7 +1893,7 @@
       "source": {
         "url": "https://www.mercedes-benz.ca/en/vehicles/model/eqs/suv/eqs450x4",
         "status": 200,
-        "sha256": "2befb510676f13aff9b7b3724e3a32501c5b8ad5bf8fbcb9f46f2752ba97f2be"
+        "sha256": "29c7d62518e73e089c481fce90c2ed4e3adaddd3aef3e5dcf9b4a8331486358d"
       },
       "vehicle": {
         "model": "EQS450X4",
@@ -1969,7 +1959,7 @@
       "source": {
         "url": "https://www.mercedes-benz.ca/en/vehicles/model/eqs/sedan/eqs580v4",
         "status": 200,
-        "sha256": "6b08ac89dcddeea0cd114c47fcc490831c4cf9466004d137819a24c994b5fceb"
+        "sha256": "a79260a75e121d97e62ee5aa0e12d1c6c04505202d3c737b7607d90d7712dfd4"
       },
       "vehicle": {
         "model": "EQS580V4",
@@ -2034,7 +2024,7 @@
       "source": {
         "url": "https://www.mercedes-benz.ca/en/vehicles/model/eqs/suv/eqs580x4",
         "status": 200,
-        "sha256": "50cf340a5e708e4477d410cc9956ae91e346c39a7f8c00eb1136414ddb5c1d69"
+        "sha256": "830f428f4e4d0c0613ee4ec1507bf543079d605a1180d6aed5cdceca319eea8c"
       },
       "vehicle": {
         "model": "EQS580X4",
@@ -2100,7 +2090,7 @@
       "source": {
         "url": "https://www.mercedes-benz.ca/en/vehicles/model/c-class/sedan/c300w4",
         "status": 200,
-        "sha256": "b5fb1584b2a982933969a3f1b840a9408305eedf5c56d09af8c9660cece11db0"
+        "sha256": "e577ee423affefd7804af5a8b308a7ce6cca7f0e7a325044a8f560b0597b2f6d"
       },
       "vehicle": {
         "model": "C300W4",
@@ -2154,7 +2144,7 @@
         "source": {
           "url": "https://www.mercedes-benz.ca/en/vehicles/build/c-class/sedan/c300w4",
           "status": 200,
-          "sha256": "ad7e364a1a6df82879d95b95b4861bcca890f8758a2e89da65e0698d82bc6fc3"
+          "sha256": "9c459a6ee39aed262f98d7b49e9d925ed4e84ee57b518d7f70c0955138e7b7c8"
         },
         "data": {
           "content": {
@@ -2367,7 +2357,7 @@
       "source": {
         "url": "https://www.mercedes-benz.ca/en/vehicles/model/cla/coupe/cla250c4",
         "status": 200,
-        "sha256": "91525a22970923e071c0d2e19059ad028c9e7ad5f241ad38d977ad60f7f8d9c9"
+        "sha256": "21775a834b85d1f187f1d8c753694868a4987fec594c0214f40dc50d43e56666"
       },
       "vehicle": {
         "model": "CLA250C4",
@@ -2425,7 +2415,7 @@
       "source": {
         "url": "https://www.mercedes-benz.ca/en/vehicles/model/cla/coupe/cla35c4",
         "status": 200,
-        "sha256": "45f284a8f16c3223d7288b060ab6098410f79340fe37a7190ea9acb7102c1a37"
+        "sha256": "d42d65d3b3c0461a99ce9c4cd8d3ecbf87220300c8a182ed4bfbb8035cca89c2"
       },
       "vehicle": {
         "model": "CLA35C4",
@@ -2483,7 +2473,7 @@
       "source": {
         "url": "https://www.mercedes-benz.ca/en/vehicles/model/cla/coupe/cla45c4s",
         "status": 200,
-        "sha256": "08429599a57d50e145665c534ba4524e297de0c6942fdd399b1c44874afa5bd9"
+        "sha256": "6e463ee0f825170dae5e1d821f08b43c09ba556d5f1fa2af1ca5453af7a45f1a"
       },
       "vehicle": {
         "model": "CLA45C4S",
@@ -2541,7 +2531,7 @@
       "source": {
         "url": "https://www.mercedes-benz.ca/en/vehicles/model/g-class/suv/g550w4",
         "status": 200,
-        "sha256": "2fd46e216086aab94bdde0fe37099e7e3bf81c44fc71773a600e0dce9b4fccc8"
+        "sha256": "342a8e1f72b3e4bb761929ae9bc59936c031b8e0aa0b9fb0a73a593f365bf689"
       },
       "vehicle": {
         "model": "G550W4",
@@ -2602,7 +2592,7 @@
         "source": {
           "url": "https://www.mercedes-benz.ca/en/vehicles/build/g-class/suv/g550w4",
           "status": 200,
-          "sha256": "c69a3419e2e34ec4f03142a25ee5a11bd1a80b4ac2698ae19a328af38833da4b"
+          "sha256": "477cd0e2901f62ef674d15a9adb55d78ba3c0bfc162b770e9e3843a0b026c634"
         },
         "data": {
           "content": {
@@ -2973,7 +2963,7 @@
       "source": {
         "url": "https://www.mercedes-benz.ca/en/vehicles/model/g-class/suv/g580w4e",
         "status": 200,
-        "sha256": "e9178762ed9f74ebbb22d9d8ccb3e411357a57973676ecc73fd7487f05f9aa7d"
+        "sha256": "d6c1ea2953621a2ac550502735a238995aec6b5cba43efa4f435241af5722554"
       },
       "vehicle": {
         "model": "G580W4E",
@@ -3032,7 +3022,7 @@
         "source": {
           "url": "https://www.mercedes-benz.ca/en/vehicles/build/g-class/suv/g580w4e",
           "status": 200,
-          "sha256": "980921aa3ab2999ba106c8626c2384ad6a461779aa3c34abd1bcf69ba789dc95"
+          "sha256": "c66c0602d73cc7f7cbcc4b9be2053b68829600a44af2ed68c853176756490e7a"
         },
         "data": {
           "content": {
@@ -3310,7 +3300,7 @@
       "source": {
         "url": "https://www.mercedes-benz.ca/en/vehicles/model/gla/suv/gla250w4",
         "status": 200,
-        "sha256": "890f5ba5aa9d4caa21508d00367b5dcd6a69fe58601b8f7a03d9e83e23ee25bc"
+        "sha256": "7bc2b9bfde18ccc3827cce6bea17df4dba0a48fd134bd2dd976d742dcfdc85a2"
       },
       "vehicle": {
         "model": "GLA250W4",
@@ -3364,7 +3354,7 @@
         "source": {
           "url": "https://www.mercedes-benz.ca/en/vehicles/build/gla/suv/gla250w4",
           "status": 200,
-          "sha256": "694b96702a469b7f60d8ea053e2bde57bc26cb0bf6ff90faf5b3a6aef045d606"
+          "sha256": "0c73eba11d1bafea631a8bee4152c64f6fa6c36b935a470cc9383db8943911bc"
         },
         "data": {
           "content": {
@@ -3638,7 +3628,7 @@
       "source": {
         "url": "https://www.mercedes-benz.ca/en/vehicles/model/gla/suv/gla35w4",
         "status": 200,
-        "sha256": "aa79e68587702a8810219be6810122de383aff9156c1b0221716a964845f38e2"
+        "sha256": "0fafead5c7188f3fd656d519fada0549c9f9f2fb14edf0e310c942ef013c1015"
       },
       "vehicle": {
         "model": "GLA35W4",
@@ -3692,7 +3682,7 @@
         "source": {
           "url": "https://www.mercedes-benz.ca/en/vehicles/build/gla/suv/gla35w4",
           "status": 200,
-          "sha256": "67f5a7837b6df5aff158f80db438c2a75fdd22d4f5a4a3831bab101ae5f67c66"
+          "sha256": "c6e86c146ab4999431db93756e800fa76dc83bfbf2ee36e62483ab3c8c9ac618"
         },
         "data": {
           "content": {
@@ -3914,11 +3904,360 @@
       }
     },
     {
+      "key": "2027/GLC300C4",
+      "source": {
+        "url": "https://www.mercedes-benz.ca/en/vehicles/model/glc/coupe/glc300c4",
+        "status": 200,
+        "sha256": "8b053c6b2bfe4463e450e0aec02df847ecd102b7a0c4af308dece6a7564c95dc"
+      },
+      "vehicle": {
+        "model": "GLC300C4",
+        "name": "GLC 300 4MATIC Coupe",
+        "class": "GLC",
+        "year": 2027,
+        "bodyStyle": "CPE",
+        "msrp": 65300
+      },
+      "specifications": [
+        { "name": "Wheelbase — A", "value": "2,888 mm" },
+        { "name": "Overall length — B", "value": "4,764 mm" },
+        { "name": "Overall height — C", "value": "1,605 mm" },
+        { "name": "Overall width w/mirrors — D", "value": "2,075 mm" },
+        { "name": "Overall width w/o mirrors — E", "value": "1,890 mm" },
+        { "name": "Track width, front — F", "value": "1,627 mm" },
+        { "name": "Track width, rear — G", "value": "1,640 mm" },
+        { "name": "Curb weight", "value": "1,930 kg" },
+        { "name": "Passenger capacity", "value": "5" },
+        { "name": "Headroom (front)", "value": "1,045 mm" },
+        { "name": "Legroom (front)", "value": "TBD" },
+        { "name": "Shoulder room (front)", "value": "1,456 mm" },
+        { "name": "Headroom (rear)", "value": "972 mm" },
+        { "name": "Legroom (rear)", "value": "TBD" },
+        { "name": "Shoulder room (rear)", "value": "1,438 mm" },
+        { "name": "Cargo capacity", "value": "545 L-1,490 L" },
+        { "name": "Engine", "value": "2.0L inline-4 turbo with mild hybrid drive" },
+        { "name": "Fuel type", "value": "Gasoline" },
+        { "name": "Power", "value": "255 hp @ 5,800 rpm" },
+        { "name": "Torque", "value": "295 lb-ft @ 2,000-3,200 rpm" },
+        { "name": "Compression ratio", "value": "10.0:1" },
+        { "name": "Construction", "value": "Diecast alloy block and head" },
+        { "name": "Fuel requirement", "value": "Premium unleaded gasoline" },
+        { "name": "Fuel capacity", "value": "62 L" },
+        { "name": "Automatic transmission", "value": "9G-TRONIC 9-speed" },
+        { "name": "Drive configuration", "value": "4MATIC all-wheel drive" },
+        { "name": "ACCELERATION (0-100 km/h)", "value": "6.3 sec Disclaimer" },
+        { "name": "Towing capacity", "value": "1,487 kg" },
+        { "name": "Suspension", "value": "4-wheel independent, 4-link front/5-arm multilink rear" },
+        { "name": "Steering type", "value": "Rack-and-pinion with electromechanical power assist" },
+        { "name": "Turning circle", "value": "11.8 m, wall to wall" },
+        { "name": "Wheels", "value": "19-inch multispoke (8x19 front and rear)" },
+        { "name": "Tires", "value": "235/55R19 front and rear, all-season" }
+      ],
+      "builder": {
+        "source": {
+          "url": "https://www.mercedes-benz.ca/en/vehicles/build/glc/coupe/glc300c4",
+          "status": 200,
+          "sha256": "9fbae0ec5be566d11b43ce6b99a00364c84470d3e03bb16977595341ac8f6936"
+        },
+        "data": {
+          "content": {
+            "valid": true,
+            "model": "GLC300C4",
+            "year": 2027,
+            "vehicleName": "GLC 300 4MATIC Coupe",
+            "class": "GLC",
+            "bodyStyle": "CPE",
+            "msrp": 65300,
+            "useCCS": true,
+            "useCCSPrice": false,
+            "country": "ca",
+            "fuelType": "G"
+          },
+          "tree": {
+            "baseMsrpCad": 65300,
+            "options": [
+              { "id": "2:040", "type": "BOOLEAN", "price": 0, "implied": [] },
+              { "id": "2:149", "type": "BOOLEAN", "price": 0, "implied": [] },
+              { "id": "2:188", "type": "BOOLEAN", "price": 1100, "implied": [] },
+              { "id": "2:197", "type": "BOOLEAN", "price": 1100, "implied": [] },
+              { "id": "2:831", "type": "BOOLEAN", "price": 1100, "implied": [] },
+              { "id": "2:922", "type": "BOOLEAN", "price": 1100, "implied": [] },
+              { "id": "2:970", "type": "BOOLEAN", "price": 1100, "implied": [] },
+              { "id": "2:956", "type": "BOOLEAN", "price": 2400, "implied": [] },
+              { "id": "2:885", "type": "BOOLEAN", "price": 2400, "implied": [] },
+              { "id": "2:993", "type": "BOOLEAN", "price": 2400, "implied": [] },
+              { "id": "2:818", "type": "BOOLEAN", "price": 4600, "implied": [] },
+              { "id": "0:78R", "type": "BOOLEAN", "price": 0, "implied": [] },
+              { "id": "0:RRE", "type": "BOOLEAN", "price": 0, "implied": [] },
+              { "id": "0:R42", "type": "BOOLEAN", "price": 900, "implied": [] },
+              { "id": "0:RRN", "type": "BOOLEAN", "price": 1200, "implied": [] },
+              { "id": "0:RVO", "type": "BOOLEAN", "price": 1200, "implied": [] },
+              { "id": "0:RVP", "type": "BOOLEAN", "price": 1600, "implied": [] },
+              {
+                "id": "9:DS1",
+                "type": "PACKAGE",
+                "price": 4100,
+                "implied": ["0:772", "0:RRE", "0:U29", "0:P29", "0:L5C", "0:950"]
+              },
+              { "id": "0:772", "type": "BOOLEAN", "price": 0, "implied": [] },
+              { "id": "0:U29", "type": "BOOLEAN", "price": 0, "implied": [] },
+              { "id": "0:P29", "type": "BOOLEAN", "price": 0, "implied": [] },
+              { "id": "0:L5C", "type": "BOOLEAN", "price": 0, "implied": [] },
+              { "id": "0:950", "type": "BOOLEAN", "price": 0, "implied": [] },
+              { "id": "0:846", "type": "BOOLEAN", "price": 500, "implied": [] },
+              { "id": "9:P55", "type": "BOOLEAN", "price": 600, "implied": [] },
+              { "id": "0:24U", "type": "BOOLEAN", "price": 800, "implied": [] },
+              { "id": "4:101", "type": "BOOLEAN", "price": 0, "implied": [] },
+              { "id": "4:104", "type": "BOOLEAN", "price": 0, "implied": [] },
+              { "id": "4:105", "type": "BOOLEAN", "price": 0, "implied": [] },
+              { "id": "4:111", "type": "BOOLEAN", "price": 0, "implied": [] },
+              { "id": "4:118", "type": "BOOLEAN", "price": 0, "implied": [] },
+              { "id": "4:194", "type": "BOOLEAN", "price": 0, "implied": [] },
+              { "id": "4:201", "type": "BOOLEAN", "price": 2300, "implied": [] },
+              { "id": "4:205", "type": "BOOLEAN", "price": 2300, "implied": [] },
+              { "id": "4:211", "type": "BOOLEAN", "price": 2300, "implied": [] },
+              { "id": "4:294", "type": "BOOLEAN", "price": 2300, "implied": [] },
+              { "id": "4:297", "type": "BOOLEAN", "price": 2300, "implied": [] },
+              { "id": "4:801", "type": "BOOLEAN", "price": 3700, "implied": [] },
+              { "id": "4:804", "type": "BOOLEAN", "price": 3700, "implied": [] },
+              { "id": "0:H50", "type": "BOOLEAN", "price": 0, "implied": [] },
+              { "id": "0:H64", "type": "BOOLEAN", "price": 0, "implied": [] },
+              { "id": "0:H03", "type": "BOOLEAN", "price": 0, "implied": [] },
+              { "id": "0:H04", "type": "BOOLEAN", "price": 300, "implied": [] },
+              { "id": "0:H08", "type": "BOOLEAN", "price": 0, "implied": [] },
+              { "id": "0:H33", "type": "BOOLEAN", "price": 0, "implied": [] },
+              { "id": "0:661", "type": "BOOLEAN", "price": 0, "implied": [] },
+              { "id": "0:795", "type": "BOOLEAN", "price": 0, "implied": [] },
+              { "id": "0:401", "type": "BOOLEAN", "price": 700, "implied": [] },
+              { "id": "0:872", "type": "BOOLEAN", "price": 700, "implied": [] },
+              {
+                "id": "9:DP2",
+                "type": "PACKAGE",
+                "price": 3800,
+                "implied": ["0:P35", "0:49U", "0:810", "0:32U", "0:444", "0:851", "0:U19"]
+              },
+              { "id": "0:P35", "type": "BOOLEAN", "price": 0, "implied": [] },
+              { "id": "0:49U", "type": "BOOLEAN", "price": 0, "implied": [] },
+              { "id": "0:810", "type": "BOOLEAN", "price": 1200, "implied": [] },
+              { "id": "0:32U", "type": "BOOLEAN", "price": 0, "implied": [] },
+              { "id": "0:444", "type": "BOOLEAN", "price": 0, "implied": [] },
+              { "id": "0:851", "type": "BOOLEAN", "price": 0, "implied": [] },
+              { "id": "0:U19", "type": "BOOLEAN", "price": 0, "implied": [] },
+              { "id": "0:72B", "type": "BOOLEAN", "price": 100, "implied": [] },
+              { "id": "5:D88", "type": "BOOLEAN", "price": 400, "implied": [] },
+              {
+                "id": "9:P20",
+                "type": "PACKAGE",
+                "price": 2600,
+                "implied": [
+                  "0:239",
+                  "0:238",
+                  "0:268",
+                  "0:NC",
+                  "0:K32",
+                  "0:243",
+                  "0:546",
+                  "0:513",
+                  "0:266",
+                  "0:272",
+                  "0:K33",
+                  "0:253",
+                  "0:K34"
+                ]
+              },
+              { "id": "0:239", "type": "BOOLEAN", "price": 900, "implied": [] },
+              { "id": "0:238", "type": "BOOLEAN", "price": 0, "implied": [] },
+              { "id": "0:268", "type": "BOOLEAN", "price": 0, "implied": [] },
+              { "id": "0:NC", "type": "BOOLEAN", "price": 0, "implied": [] },
+              { "id": "0:K32", "type": "BOOLEAN", "price": 0, "implied": [] },
+              { "id": "0:243", "type": "BOOLEAN", "price": 0, "implied": [] },
+              { "id": "0:546", "type": "BOOLEAN", "price": 0, "implied": [] },
+              { "id": "0:513", "type": "BOOLEAN", "price": 0, "implied": [] },
+              { "id": "0:266", "type": "BOOLEAN", "price": 0, "implied": [] },
+              { "id": "0:272", "type": "BOOLEAN", "price": 0, "implied": [] },
+              { "id": "0:K33", "type": "BOOLEAN", "price": 0, "implied": [] },
+              { "id": "0:253", "type": "BOOLEAN", "price": 0, "implied": [] },
+              { "id": "0:K34", "type": "BOOLEAN", "price": 0, "implied": [] },
+              { "id": "0:550", "type": "BOOLEAN", "price": 1000, "implied": [] },
+              { "id": "0:21U", "type": "BOOLEAN", "price": 300, "implied": [] },
+              { "id": "0:293", "type": "BOOLEAN", "price": 500, "implied": [] },
+              {
+                "id": "PAINT",
+                "type": "PICK_LIST",
+                "price": null,
+                "implied": [
+                  "2:040",
+                  "2:149",
+                  "2:188",
+                  "2:197",
+                  "2:831",
+                  "2:922",
+                  "2:970",
+                  "2:956",
+                  "2:885",
+                  "2:993",
+                  "2:818"
+                ]
+              },
+              {
+                "id": "WHEELS",
+                "type": "PICK_LIST",
+                "price": null,
+                "implied": ["0:78R", "0:RRE", "0:R42", "0:RRN", "0:RVO", "0:RVP"]
+              },
+              {
+                "id": "UPHOLSTERY",
+                "type": "PICK_LIST",
+                "price": null,
+                "implied": [
+                  "4:101",
+                  "4:104",
+                  "4:105",
+                  "4:111",
+                  "4:118",
+                  "4:194",
+                  "4:201",
+                  "4:205",
+                  "4:211",
+                  "4:294",
+                  "4:297",
+                  "4:801",
+                  "4:804"
+                ]
+              },
+              {
+                "id": "TRIM",
+                "type": "PICK_LIST",
+                "price": null,
+                "implied": ["0:H50", "0:H64", "0:H03", "0:H04", "0:H08", "0:H33"]
+              }
+            ]
+          },
+          "selected": ["2:040", "0:78R", "0:H50", "4:101"],
+          "msrpCad": 65300
+        }
+      }
+    },
+    {
+      "key": "2027/GLC300W4",
+      "source": {
+        "url": "https://www.mercedes-benz.ca/en/vehicles/model/glc/suv/glc300w4",
+        "status": 200,
+        "sha256": "4354bc1c550e60c14636a643a0e6f66bb8600bbd32356863667854bac76df617"
+      },
+      "vehicle": {
+        "model": "GLC300W4",
+        "name": "GLC 300 4MATIC SUV",
+        "class": "GLC",
+        "year": 2027,
+        "bodyStyle": "SUV",
+        "msrp": 61000
+      },
+      "specifications": [
+        { "name": "Wheelbase — A", "value": "2,888 mm" },
+        { "name": "Overall length — B", "value": "4,716 mm" },
+        { "name": "Overall height — C", "value": "1,648 mm" },
+        { "name": "Overall width w/mirrors — D", "value": "2,076 mm" },
+        { "name": "Overall width w/o mirrors — E", "value": "1,920 mm" },
+        { "name": "Track width, front — F", "value": "1,623 mm" },
+        { "name": "Track width, rear — G", "value": "1,643 mm" },
+        { "name": "Curb weight", "value": "1,910 kg" },
+        { "name": "Passenger capacity", "value": "5" },
+        { "name": "Headroom (front)", "value": "1,048 mm" },
+        { "name": "Legroom (front)", "value": "TBD" },
+        { "name": "Shoulder room (front)", "value": "1,455 mm" },
+        { "name": "Headroom (rear)", "value": "1,007 mm" },
+        { "name": "Legroom (rear)", "value": "TBD" },
+        { "name": "Shoulder room (rear)", "value": "1,438 mm" },
+        { "name": "Cargo capacity", "value": "620 L-1,680 L" },
+        { "name": "Engine", "value": "2.0L inline-4 turbo with mild hybrid drive" },
+        { "name": "Fuel type", "value": "Gasoline" },
+        { "name": "Power", "value": "255 hp @ 5,800 rpm" },
+        { "name": "Torque", "value": "295 lb-ft @ 2,000-3,200 rpm" },
+        { "name": "Compression ratio", "value": "10.0:1" },
+        { "name": "Construction", "value": "Diecast alloy block and head" },
+        { "name": "Fuel requirement", "value": "Premium unleaded gasoline" },
+        { "name": "Fuel capacity", "value": "62 L" },
+        { "name": "Automatic transmission", "value": "9G-TRONIC 9-speed" },
+        { "name": "Drive configuration", "value": "4MATIC all-wheel drive" },
+        { "name": "Acceleration (0-100 km/h)", "value": "6.2 sec Disclaimer" },
+        { "name": "Towing capacity", "value": "1,588 kg" },
+        { "name": "Suspension", "value": "4-wheel independent, 4-link front/5-arm multilink rear" },
+        { "name": "Steering type", "value": "Rack-and-pinion with electromechanical power assist" },
+        { "name": "Turning circle", "value": "11.8 m, wall to wall" },
+        { "name": "Wheels", "value": "18-inch 10-spoke (8x18 front and rear)" },
+        { "name": "Tires", "value": "235/60R18 front and rear, all-season" }
+      ],
+      "builder": null
+    },
+    {
+      "key": "2027/GLC350E4",
+      "source": {
+        "url": "https://www.mercedes-benz.ca/en/vehicles/model/glc/suv/glc350e4",
+        "status": 200,
+        "sha256": "6f6284bbefee38517566ddaed138d66cd07c7784748ff5c45954693834410fee"
+      },
+      "vehicle": {
+        "model": "GLC350E4",
+        "name": "GLC 350e 4MATIC SUV",
+        "class": "GLC",
+        "year": 2027,
+        "bodyStyle": "SUV",
+        "msrp": 67300
+      },
+      "specifications": [
+        { "name": "Wheelbase — A", "value": "2,888 mm" },
+        { "name": "Overall length — B", "value": "4,716 mm" },
+        { "name": "Overall height — C", "value": "1,648 mm" },
+        { "name": "Overall width w/mirrors — D", "value": "2,076 mm" },
+        { "name": "Overall width w/o mirrors — E", "value": "1,920 mm" },
+        { "name": "Track width, front — F", "value": "1,623 mm" },
+        { "name": "Track width, rear — G", "value": "1,643 mm" },
+        { "name": "Curb weight", "value": "2,325 kg" },
+        { "name": "Passenger capacity", "value": "5" },
+        { "name": "Headroom (front)", "value": "1,048 mm" },
+        { "name": "Legroom (front)", "value": "TBD" },
+        { "name": "Shoulder room (front)", "value": "1,455 mm" },
+        { "name": "Headroom (rear)", "value": "1,007 mm" },
+        { "name": "Legroom (rear)", "value": "TBD" },
+        { "name": "Shoulder room (rear)", "value": "1,438 mm" },
+        { "name": "Cargo capacity", "value": "470-1,530 L" },
+        { "name": "Engine", "value": "2.0L inline-4 turbo with Plug-In Hybrid technology" },
+        { "name": "Fuel type", "value": "Plug-In Hybrid" },
+        { "name": "Power", "value": "313 hp (combined)" },
+        { "name": "Torque", "value": "406 lb-ft (combined)" },
+        { "name": "Compression ratio", "value": "10.0:1" },
+        { "name": "Construction", "value": "Diecast alloy block and head" },
+        { "name": "Fuel requirement", "value": "Premium unleaded gasoline" },
+        { "name": "Fuel capacity", "value": "49 L" },
+        { "name": "AC charging speed", "value": "9.6 kW" },
+        { "name": "AC charging time (0-100%)", "value": "2.75 hrs" },
+        { "name": "AC CHARGING CONN TYPE", "value": "J1772" },
+        { "name": "DC charging speed", "value": "60 kW" },
+        { "name": "DC charging time (10-80%)", "value": "30 min" },
+        { "name": "DC CHARGING CONN TYPE", "value": "Combined Charging System (CCS)" },
+        { "name": "COMBINED FUEL ECONOMY", "value": "2.5 - 2.1 l/100 km" },
+        { "name": "Automatic transmission", "value": "9G-TRONIC 9-speed" },
+        { "name": "Drive configuration", "value": "4MATIC all-wheel drive" },
+        { "name": "Acceleration (0-100 km/h)", "value": "6.7 sec Disclaimer" },
+        { "name": "Towing capacity", "value": "1,590 kg" },
+        {
+          "name": "Suspension",
+          "value": "4-wheel independent, 4-link front/5-arm multilink rear with self-leveling rear air suspsnesion"
+        },
+        { "name": "Steering type", "value": "Rack-and-pinion with electromechanical power assist" },
+        { "name": "Turning circle", "value": "11.8 m, wall to wall" },
+        { "name": "Wheels", "value": "18-inch 5-spoke (8x18 front and 9x18 rear)" },
+        { "name": "Tires", "value": "235/60R18 front and 255/55R18 rear, all-season" }
+      ],
+      "builder": null
+    },
+    {
       "key": "2026/GLE350W4",
       "source": {
         "url": "https://www.mercedes-benz.ca/en/vehicles/model/gle/suv/gle350w4",
         "status": 200,
-        "sha256": "97fa7d265c9af652b1cea86168473e0af7dcea5626bfeca957479170f562363b"
+        "sha256": "8cc90679b537f932bd5e2e96f3206e9794fc65dcefb6831fbe5e3758bed7b5b0"
       },
       "vehicle": {
         "model": "GLE350W4",
@@ -3969,7 +4308,7 @@
         "source": {
           "url": "https://www.mercedes-benz.ca/en/vehicles/build/gle/suv/gle350w4",
           "status": 200,
-          "sha256": "676c1bb048ef26c9d5c4ebf21c3986ec4face7396b20a9b07531275e05575940"
+          "sha256": "5988a8fdd7dc79a994917cfb10a162e70c214df8518e35094ea7c4b00d0d82b3"
         },
         "data": {
           "content": {
@@ -4123,7 +4462,7 @@
               }
             ]
           },
-          "selected": ["0:H31", "2:040", "4:111", "0:30R"],
+          "selected": ["0:30R", "4:111", "2:040", "0:H31"],
           "msrpCad": 85400
         }
       }
@@ -4133,7 +4472,7 @@
       "source": {
         "url": "https://www.mercedes-benz.ca/en/vehicles/model/gle/coupe/gle450c4",
         "status": 200,
-        "sha256": "70f46daa2b63289cc40da38351d843dcb84c9cc8d9f15703c723c5d68ace2782"
+        "sha256": "e1e36b6a1e694a25664189af01c82027d4acb7adcb73e5a92c1d7032cc5511b3"
       },
       "vehicle": {
         "model": "GLE450C4",
@@ -4188,7 +4527,7 @@
         "source": {
           "url": "https://www.mercedes-benz.ca/en/vehicles/build/gle/coupe/gle450c4",
           "status": 200,
-          "sha256": "d3f60124dc84690ae7875b3575822e8fe0d4dc64bfcf666929454775dd3eddfa"
+          "sha256": "4a3680a6fd54a0dc45ddbe779f60582ed855c7f10bd8e6e73be554450b94b8cf"
         },
         "data": {
           "content": {
@@ -4388,7 +4727,7 @@
       "source": {
         "url": "https://www.mercedes-benz.ca/en/vehicles/model/gle/suv/gle450e4",
         "status": 200,
-        "sha256": "64ab8d8cdc496c67875276ac4e374eec673807810295142147c6938a6d8671b4"
+        "sha256": "386359210171eccb620c15817b8fec3469b9ff8165fa7ea2df912b5f2ccecf19"
       },
       "vehicle": {
         "model": "GLE450E4",
@@ -4446,7 +4785,7 @@
         "source": {
           "url": "https://www.mercedes-benz.ca/en/vehicles/build/gle/suv/gle450e4",
           "status": 200,
-          "sha256": "9ae5097f32f105b873402af08e9398d2b18e10ba98c4067284714881d62f1a74"
+          "sha256": "177b97da1b3f2dd6188a6c25586d0631fbf19a51dece9d0b288d983873a1065f"
         },
         "data": {
           "content": {
@@ -4614,7 +4953,7 @@
       "source": {
         "url": "https://www.mercedes-benz.ca/en/vehicles/model/gle/suv/gle450w4",
         "status": 200,
-        "sha256": "c2e91baedea768b5c228ad9d7014f1f44a029a98119f4b4b02a984e8816df5f8"
+        "sha256": "aeaec9ef2bbe20584c8d9e192eeadf99349c1f8cb92312b343f11d766ed2505a"
       },
       "vehicle": {
         "model": "GLE450W4",
@@ -4665,7 +5004,7 @@
         "source": {
           "url": "https://www.mercedes-benz.ca/en/vehicles/build/gle/suv/gle450w4",
           "status": 200,
-          "sha256": "8ee444cfef8f34ae343ba1532c49909d670506f167747d5979e6ec230bad4f5f"
+          "sha256": "8126ef995fb6a44ffeb8c2cc416cb2422097ed82a0ab1557008e56004101e304"
         },
         "data": {
           "content": {
@@ -4836,7 +5175,7 @@
       "source": {
         "url": "https://www.mercedes-benz.ca/en/vehicles/model/gle/coupe/gle53c4",
         "status": 200,
-        "sha256": "3d51c443158c46d536df7db9b35853ed31be9f9596f26b28228b280db2d065ca"
+        "sha256": "9db4e8b5c01620cd06b7468045be91654c29d5d13eab495d0a0b622ff9945a5a"
       },
       "vehicle": {
         "model": "GLE53C4",
@@ -4895,7 +5234,7 @@
         "source": {
           "url": "https://www.mercedes-benz.ca/en/vehicles/build/gle/coupe/gle53c4",
           "status": 200,
-          "sha256": "1ab3799005a8cf280e849423ac889d86420b9a9d86cb464d29a4688088722fb6"
+          "sha256": "a020a80c3d8468d8cbdaa4247c6819a10cf408b5e048c584fb120b9827c6cf53"
         },
         "data": {
           "content": {
@@ -5134,7 +5473,7 @@
       "source": {
         "url": "https://www.mercedes-benz.ca/en/vehicles/model/gle/suv/gle53w4",
         "status": 200,
-        "sha256": "26d44547a208aa53c80dc5b46367de41e2335f10e43fd2ffa3775a7da114ae92"
+        "sha256": "f6da99b1b121aed1aa38641284eb18202a52f03c1f610dc88e5fd934ac51a65c"
       },
       "vehicle": {
         "model": "GLE53W4",
@@ -5189,7 +5528,7 @@
         "source": {
           "url": "https://www.mercedes-benz.ca/en/vehicles/build/gle/suv/gle53w4",
           "status": 200,
-          "sha256": "3a9cc76171bae2665b631cb65e58e9bfe2333935f95e31b8a0fc5ba57646a28c"
+          "sha256": "04b5069f278d82dbb66f5a8a0ea57032d2083334879e55df52fb09122d593950"
         },
         "data": {
           "content": {
@@ -5379,7 +5718,7 @@
       "source": {
         "url": "https://www.mercedes-benz.ca/en/vehicles/model/gle/suv/gle580w4",
         "status": 200,
-        "sha256": "7bd721157272fa9054b780bad850fe125ebced78b4e1540da0817377363ec2e2"
+        "sha256": "73b25c1ba567a40c6597c40f040019148579f99717bcfe320e274c47a0679713"
       },
       "vehicle": {
         "model": "GLE580W4",
@@ -5433,7 +5772,7 @@
         "source": {
           "url": "https://www.mercedes-benz.ca/en/vehicles/build/gle/suv/gle580w4",
           "status": 200,
-          "sha256": "ada4927c07a26a93150c1034df2c2ca60a01d7bf3a78c4cd629adb0149cf3e70"
+          "sha256": "132c6a4316a6c83b2b9596eace1d2d81dcdfe708746abb02c6b48965fc3aaf7d"
         },
         "data": {
           "content": {
@@ -5580,7 +5919,7 @@
       "source": {
         "url": "https://www.mercedes-benz.ca/en/vehicles/model/gle/coupe/gle63c4s",
         "status": 200,
-        "sha256": "56d5d241a3265090e5c09cdc59a8be375f509bd61f7f4121b553ccf2c1ffd622"
+        "sha256": "6b601301f3b2f7913e7666155a59459eeaabfdede65d46e2b180199a854553c1"
       },
       "vehicle": {
         "model": "GLE63C4S",
@@ -5642,7 +5981,7 @@
         "source": {
           "url": "https://www.mercedes-benz.ca/en/vehicles/build/gle/coupe/gle63c4s",
           "status": 200,
-          "sha256": "56339f95659806184de465b40e8096e145fc5a9931771d6294cb1df845e5cbc0"
+          "sha256": "7032842ae4535675b3ffa389d74c10e015bd6f1e43da581252db94370d56976b"
         },
         "data": {
           "content": {
@@ -5843,7 +6182,7 @@
       "source": {
         "url": "https://www.mercedes-benz.ca/en/vehicles/model/gle/suv/gle63w4s",
         "status": 200,
-        "sha256": "9075079be893726376ee94adc28eff11ad86c4c129bfde4963696b9d4a22f72d"
+        "sha256": "f8865a2fa551f5dc4cde4cbb2bbe2853e6759b41fe67df4e7fff58c139e8f3a3"
       },
       "vehicle": {
         "model": "GLE63W4S",
@@ -5898,7 +6237,7 @@
         "source": {
           "url": "https://www.mercedes-benz.ca/en/vehicles/build/gle/suv/gle63w4s",
           "status": 200,
-          "sha256": "c05911d0a8a267b5171aecad1a0c1d7d050355be6be89d488281edf8f7b2520a"
+          "sha256": "56c53f6c5d406ceccbdd93b6233668652f2f93550594ab8e43855b426ca02b9e"
         },
         "data": {
           "content": {
@@ -6047,7 +6386,7 @@
       "source": {
         "url": "https://www.mercedes-benz.ca/en/vehicles/model/gls/suv/gls450w4",
         "status": 200,
-        "sha256": "6d0d09047fb630eca774786a86eb619c5ab4fcbd6dfb24e6ef11e1d6d731f5a0"
+        "sha256": "d9f1576b9ffd53299f90dff6b8623eabf74921a2bf971b950370763b448cbc3c"
       },
       "vehicle": {
         "model": "GLS450W4",
@@ -6105,7 +6444,7 @@
         "source": {
           "url": "https://www.mercedes-benz.ca/en/vehicles/build/gls/suv/gls450w4",
           "status": 200,
-          "sha256": "81ca3cb4328eb9efeeface53342b3d13277d16a1409356164792001fbafd3993"
+          "sha256": "2a5c2eca529ac5d780f614f41d257b1b5febdf224dc11e4bc940ba42aeea3585"
         },
         "data": {
           "content": {
@@ -6353,7 +6692,7 @@
       "source": {
         "url": "https://www.mercedes-benz.ca/en/vehicles/model/gls/suv/gls580w4",
         "status": 200,
-        "sha256": "944fa6a3c06ffd99194e99169d548dad37846789aaf77ea1413c0aed19123803"
+        "sha256": "dab0533ab7903e7e9f915972c2552ff7cd9363aed2a7fca58e31b4d0d9943701"
       },
       "vehicle": {
         "model": "GLS580W4",
@@ -6411,7 +6750,7 @@
         "source": {
           "url": "https://www.mercedes-benz.ca/en/vehicles/build/gls/suv/gls580w4",
           "status": 200,
-          "sha256": "8584330d6b51ff6c9a6f0da7fe9c4c23b73abe1e513c8ea8bdc40c3b5720b1e7"
+          "sha256": "a3857421841b2f811738cfe763b5e1634229fc156016fc6f4f26c1679d6dd9b6"
         },
         "data": {
           "content": {
@@ -6615,7 +6954,7 @@
       "source": {
         "url": "https://www.mercedes-benz.ca/en/vehicles/model/gls/suv/gls600z4",
         "status": 200,
-        "sha256": "9d9ffe46519d673111bf527063ab3cc1ae9739829a091df8c91f8ff49a349b48"
+        "sha256": "de6609fa05447344a3e8c599622b2d341b59994defb6ce217abe8ce60c73d891"
       },
       "vehicle": {
         "model": "GLS600Z4",
@@ -6671,7 +7010,7 @@
         "source": {
           "url": "https://www.mercedes-benz.ca/en/vehicles/build/gls/maybach/gls600z4",
           "status": 200,
-          "sha256": "e152e40b74dbec76e2993087d1df67e812a0c229dfb448a1b5f8153ac4929834"
+          "sha256": "443d635e8672b6be58f2660f735d55ddb70912f5c8d5c9e5290c5edde0d52823"
         },
         "data": {
           "content": {
@@ -6844,7 +7183,7 @@
       "source": {
         "url": "https://www.mercedes-benz.ca/en/vehicles/model/gls/suv/gls63w4",
         "status": 200,
-        "sha256": "7de6d06e17a56cca7e3e673301ebd19acd5212e885e33d5c6cbfdd691a3cd88f"
+        "sha256": "ccceae879ba9943035243c405992631e7cd1523f45b02402ba8d39c51e8764e1"
       },
       "vehicle": {
         "model": "GLS63W4",
@@ -6903,7 +7242,7 @@
         "source": {
           "url": "https://www.mercedes-benz.ca/en/vehicles/build/gls/suv/gls63w4",
           "status": 200,
-          "sha256": "01e7e9407e56a87bd35c0d3835812466ffb2231cfc639732c015098451d62b42"
+          "sha256": "739293c6944b6a70f2e7256af3e9685ab5d52de50911603a5a94f16f63098c55"
         },
         "data": {
           "content": {
@@ -7080,7 +7419,7 @@
       "source": {
         "url": "https://www.mercedes-benz.ca/en/vehicles/model/gt/amg-gt-4-door/gt53c4",
         "status": 200,
-        "sha256": "db912a7f3bf5ab6955058fcc69f780584371cb0876eb9ab2d8e84475b1478ed1"
+        "sha256": "b48ffd071d64cbd1914f0acb87616e98ab23efabc319a37070fa6ef9efe680d6"
       },
       "vehicle": {
         "model": "GT53C4",
@@ -7141,7 +7480,7 @@
       "source": {
         "url": "https://www.mercedes-benz.ca/en/vehicles/model/gt/amg-gt-4-door/gt63c4",
         "status": 200,
-        "sha256": "b149693ba4702d28e5b3c17f5529512f027a3e8246b582ad67d82a157c56ca96"
+        "sha256": "f17f6171f7be064e9b872476daed40989e9263377d57f967ef39599626e8c096"
       },
       "vehicle": {
         "model": "GT63C4",
@@ -7205,7 +7544,7 @@
       "source": {
         "url": "https://www.mercedes-benz.ca/en/vehicles/model/gt/amg-gt-4-door/gt63c4se",
         "status": 200,
-        "sha256": "3e9c13a0c385e1c8caa6010a3bd561cf7b774583055c2ef23d042f4200be73e5"
+        "sha256": "afd579bc1c123fe18b5e43366a17221cf2061a8de78f09eafc8b1f44f400bfbc"
       },
       "vehicle": {
         "model": "GT63C4SE",
@@ -7276,7 +7615,7 @@
       "source": {
         "url": "https://www.mercedes-benz.ca/en/vehicles/model/sl/maybach/sl680z4",
         "status": 200,
-        "sha256": "b028249695940c6b49062192e7b16ab635cd0578ce2b0721bf56898f646a4a90"
+        "sha256": "3afe646b60f5e9f23b5009e81f839ad6ad44cfa94f3b0594a18addafe445aad5"
       },
       "vehicle": {
         "model": "SL680Z4",
@@ -7334,7 +7673,7 @@
         "source": {
           "url": "https://www.mercedes-benz.ca/en/vehicles/build/sl/maybach/sl680z4",
           "status": 200,
-          "sha256": "705a26ad66d6f372cb2b1b6889a6421931b08089d7678561e8e5a9cb344e4586"
+          "sha256": "5a02d733eacc8e64e4bf61e9f60e6b742f5bf8ad76fff281ed979383a9201dc5"
         },
         "data": {
           "content": {
@@ -7386,7 +7725,7 @@
       "source": {
         "url": "https://www.mercedes-benz.ca/en/vehicles/model/gt/coupe/amggt63x",
         "status": 200,
-        "sha256": "0d18805ccd5bdceecc5a4c006d7d3d08159e51f5f5eb1909e0aad1fb8783d8e7"
+        "sha256": "4cf33159611b4fd9030cdecb5c06df9e1ff1831699f646b29d436232aa23b1dd"
       },
       "vehicle": {
         "model": "AMGGT63X",
@@ -7440,7 +7779,7 @@
         "source": {
           "url": "https://www.mercedes-benz.ca/en/vehicles/build/gt/coupe/amggt63x",
           "status": 200,
-          "sha256": "2863e2b12053b5d0ce14f12398b6ed2e5920a2fb6a5e917a2ddfbfa603748ed1"
+          "sha256": "3bd146d791969a41ec4d6e869319f9530fb13606ca09da7cf169ef905f71ba62"
         },
         "data": {
           "content": {
@@ -7637,7 +7976,7 @@
       "source": {
         "url": "https://www.mercedes-benz.ca/en/vehicles/model/cla/sedan/cla250e",
         "status": 200,
-        "sha256": "4a6d57a00bc495faf320baff13ffb04e1cf1c6f98ffaab0baa6c4acd2e9e71f1"
+        "sha256": "923889c88bb70c466df2b541d55b8c4c5c12c12d2d5334b61c00870b6c776a60"
       },
       "vehicle": {
         "model": "CLA250E",
@@ -7692,7 +8031,7 @@
         "source": {
           "url": "https://www.mercedes-benz.ca/en/vehicles/build/cla/sedan/cla250e",
           "status": 200,
-          "sha256": "074415ecdb8fafcc37f3f87942299eea4cd0b4f063c419243efffc34f0768a6a"
+          "sha256": "99670c30776f75d01f31caae8c9d9e436f762fa0a6546ec5e35ece211945be68"
         },
         "data": {
           "content": {
@@ -7880,7 +8219,7 @@
       "source": {
         "url": "https://www.mercedes-benz.ca/en/vehicles/model/cla/sedan/cla350e4",
         "status": 200,
-        "sha256": "15738effdc60097a1c06b7ac7b65661409f9974316c60b61da34152200ca66bd"
+        "sha256": "09ccf45a0ee755d688b6c0e9ca8d9b4a76fe5c12f55f1a1c6ccb12339b4315d1"
       },
       "vehicle": {
         "model": "CLA350E4",
@@ -7938,7 +8277,7 @@
         "source": {
           "url": "https://www.mercedes-benz.ca/en/vehicles/build/cla/sedan/cla350e4",
           "status": 200,
-          "sha256": "bc41c028565e46a09f12326c41b23787e4a74aa8073a2f11be46e6e4ab8c12db"
+          "sha256": "15b02d63d19e7d156ac2167a0e6afe9ee5f6ac19c05c3ca23f213a231474f16a"
         },
         "data": {
           "content": {
@@ -8113,7 +8452,7 @@
       "source": {
         "url": "https://www.mercedes-benz.ca/en/vehicles/model/cle/cabriolet/cle300a4",
         "status": 200,
-        "sha256": "5ea6b0b89201da248c98cf0027f52adb2a4d2d9f25ebf50ab7e70a254f293b09"
+        "sha256": "7939e35cbbfe78934dc082b9f1b7e2b2f86df9bb369d35adab3f9e0192601e10"
       },
       "vehicle": {
         "model": "CLE300A4",
@@ -8164,7 +8503,7 @@
         "source": {
           "url": "https://www.mercedes-benz.ca/en/vehicles/build/cle/cabriolet/cle300a4",
           "status": 200,
-          "sha256": "707025799aef8ec57803da48449a9c8360bc9d367b26738067c4e725f2484261"
+          "sha256": "a8f0d0074f4e336fc9f5cbc7c128626d2d4a428c4bbf98cce7a4cb15a53a91c0"
         },
         "data": {
           "content": {
@@ -8322,7 +8661,7 @@
       "source": {
         "url": "https://www.mercedes-benz.ca/en/vehicles/model/cle/coupe/cle300c4",
         "status": 200,
-        "sha256": "599475875fd6d7d09124e3df7650feef2193b0cbcfbe3998bf42e9cf4cf5a55c"
+        "sha256": "d1641dfb5697e7d10047f41cf1b53b5968de576cf085dd89b10cd9a63f8abfe6"
       },
       "vehicle": {
         "model": "CLE300C4",
@@ -8373,7 +8712,7 @@
         "source": {
           "url": "https://www.mercedes-benz.ca/en/vehicles/build/cle/coupe/cle300c4",
           "status": 200,
-          "sha256": "a1840a0fd0fa7a1d7855cf34051e04d8af720a08df1121e1156ac22ded4e6416"
+          "sha256": "c5c9730097fb1597714cfa9521e657fec07f4ef97d0fe7582374e507d3c1934d"
         },
         "data": {
           "content": {
@@ -8538,7 +8877,7 @@
       "source": {
         "url": "https://www.mercedes-benz.ca/en/vehicles/model/cle/cabriolet/cle450a4",
         "status": 200,
-        "sha256": "c3d38acabb62ad4ba1cb7eec3072938aecb34a4128a6deef437b34975bde17b8"
+        "sha256": "23c6d136924db2f38c59308ac56612eedc7c2e1fb574ae647627b6b71b27a543"
       },
       "vehicle": {
         "model": "CLE450A4",
@@ -8589,7 +8928,7 @@
         "source": {
           "url": "https://www.mercedes-benz.ca/en/vehicles/build/cle/cabriolet/cle450a4",
           "status": 200,
-          "sha256": "cda7b7becc7103fe95364af7086bd0e73c9a525a1a11d694cb2a7bf065ea83cf"
+          "sha256": "8c1734a492fa45286bdcf20d8844b1fa8bf21bfd94a4e508a1858d9160be06a6"
         },
         "data": {
           "content": {
@@ -8760,7 +9099,7 @@
       "source": {
         "url": "https://www.mercedes-benz.ca/en/vehicles/model/cle/coupe/cle450c4",
         "status": 200,
-        "sha256": "8c456ca09133665ad70531c70cc638b6376bf75864c57ae87df6422a17b9de5e"
+        "sha256": "427b0f08587208f8f1aea545861157c277d369e98aed7c63d03d9a44c7da2915"
       },
       "vehicle": {
         "model": "CLE450C4",
@@ -8811,7 +9150,7 @@
         "source": {
           "url": "https://www.mercedes-benz.ca/en/vehicles/build/cle/coupe/cle450c4",
           "status": 200,
-          "sha256": "97006f4c175376591ba7d8dd584fb84b44ef7589a2ee7f3d4111d1b06a5d77f4"
+          "sha256": "e0f5c7c647918a099011f24262804f51e8c8c6d439c07c36ef98a3589d3a6afb"
         },
         "data": {
           "content": {
@@ -8978,7 +9317,7 @@
       "source": {
         "url": "https://www.mercedes-benz.ca/en/vehicles/model/cle/cabriolet/cle53a4",
         "status": 200,
-        "sha256": "2d0f3d1b3762515c9d85a64b7b7895125aca892ee83de038d751b96094626676"
+        "sha256": "6dac9c720487c9ee536850b8268cacf16a8b94dd68fc706935550e779fb67904"
       },
       "vehicle": {
         "model": "CLE53A4",
@@ -9038,7 +9377,7 @@
         "source": {
           "url": "https://www.mercedes-benz.ca/en/vehicles/build/cle/cabriolet/cle53a4",
           "status": 200,
-          "sha256": "16431754a99252091402779d824a182143e3717695e063057734c7a106ffbf06"
+          "sha256": "0a2b55538601e081610ae44647f5cbda53f99c39eb489d1943c64ae7dbea08f4"
         },
         "data": {
           "content": {
@@ -9208,7 +9547,7 @@
       "source": {
         "url": "https://www.mercedes-benz.ca/en/vehicles/model/cle/coupe/cle53c4",
         "status": 200,
-        "sha256": "ffa96387bae6b62c99df77b604e615b402a1e660b1fbbe054e3bcf8629842d57"
+        "sha256": "b84fd7211db7a1456746ea437c3f351492d748b215801c96eaeed47a1327c813"
       },
       "vehicle": {
         "model": "CLE53C4",
@@ -9268,7 +9607,7 @@
         "source": {
           "url": "https://www.mercedes-benz.ca/en/vehicles/build/cle/coupe/cle53c4",
           "status": 200,
-          "sha256": "883e5c935702ab0fa19a991bd3dd8436d88332356658b2c801f2f25bb65ef3df"
+          "sha256": "477d270b92077fe5eb5e215449a43068b3741869178e407d402da22deaf7b313"
         },
         "data": {
           "content": {
@@ -9431,7 +9770,7 @@
       "source": {
         "url": "https://www.mercedes-benz.ca/en/vehicles/model/e-class/sedan/e350w4",
         "status": 200,
-        "sha256": "35a7c42c5776b0da8d36fc77294e75fdd6528d4558f45f65c5aee117c39bac32"
+        "sha256": "7899476acb91f092a96e4746efe3420fd7639a801b59af801e81c46172d22f88"
       },
       "vehicle": {
         "model": "E350W4",
@@ -9483,7 +9822,7 @@
         "source": {
           "url": "https://www.mercedes-benz.ca/en/vehicles/build/e-class/sedan/e350w4",
           "status": 200,
-          "sha256": "0fa9e4fe6c59a82744b0dc1d2ab56d26b32b55fb751c2c59c4231ac343a338e8"
+          "sha256": "940725443948ead2e25916805289b79745c248c634578fc3ce0536e830126a98"
         },
         "data": {
           "content": {
@@ -9704,7 +10043,7 @@
       "source": {
         "url": "https://www.mercedes-benz.ca/en/vehicles/model/e-class/wagon/e450s4",
         "status": 200,
-        "sha256": "688e44e3119789dae8d08889ff1ec024a299d5f37fa8d09d17802d334ad67459"
+        "sha256": "dc626d4bdb54ff56969803910a474053dea9e712cd5298195ad98218f628d3a2"
       },
       "vehicle": {
         "model": "E450S4",
@@ -9756,7 +10095,7 @@
         "source": {
           "url": "https://www.mercedes-benz.ca/en/vehicles/build/e-class/wagon/e450s4",
           "status": 200,
-          "sha256": "57ebc8ce835825705780a6de115b524c2d3b40c4020e65298164a13bceedcc0e"
+          "sha256": "6f325d6257f9d0569d16c614633b180f0e4538b84e2596326ceb0d30fb57fbef"
         },
         "data": {
           "content": {
@@ -9925,7 +10264,7 @@
       "source": {
         "url": "https://www.mercedes-benz.ca/en/vehicles/model/e-class/sedan/e450w4",
         "status": 200,
-        "sha256": "f92b52a0bee6ed29d4da32de4c62ac86d254196e2b0a80c863cd229f3f50d395"
+        "sha256": "f28c978f71e1439164cee4523a41c4b25b1642e04bb40e7382af008b415cdcbb"
       },
       "vehicle": {
         "model": "E450W4",
@@ -9977,7 +10316,7 @@
         "source": {
           "url": "https://www.mercedes-benz.ca/en/vehicles/build/e-class/sedan/e450w4",
           "status": 200,
-          "sha256": "63db56a7b072b9c31f8a8b553ef06aa38785c42e3f476ff62927def899a70f5e"
+          "sha256": "5d19efe7b660c3e374cd8c71f475780574743a391026ea5ae610b44ea154779b"
         },
         "data": {
           "content": {
@@ -10172,7 +10511,7 @@
       "source": {
         "url": "https://www.mercedes-benz.ca/en/vehicles/model/e-class/wagon/e53es4",
         "status": 200,
-        "sha256": "9de4b33f3e61844beb59b25c5ea2aed0ebc9c5cb183a19e56f1777e2f2331ccc"
+        "sha256": "44a9b4691210837826da508e783ed00368f1409191fbfc4f5c0ed763a5165012"
       },
       "vehicle": {
         "model": "E53ES4",
@@ -10238,7 +10577,7 @@
         "source": {
           "url": "https://www.mercedes-benz.ca/en/vehicles/build/e-class/wagon/e53es4",
           "status": 200,
-          "sha256": "9b3266d9526ab2770f1fdc06bf44445e4f2598b9b1f0ea4c1b9d896e0db9e9f9"
+          "sha256": "81860c03747dd33dc5b399d765210c5a1ffb2d3fbe0a3e187b15396a5f38f31b"
         },
         "data": {
           "content": {
@@ -10397,7 +10736,7 @@
               }
             ]
           },
-          "selected": ["2:197", "0:RTP", "0:10H", "4:651"],
+          "selected": ["2:197", "4:651", "0:RTP", "0:10H"],
           "msrpCad": 112300
         }
       }
@@ -10407,7 +10746,7 @@
       "source": {
         "url": "https://www.mercedes-benz.ca/en/vehicles/model/e-class/sedan/e53ew4",
         "status": 200,
-        "sha256": "8511b2bbc3b642f566969d0baa73f22f4c748c23c41bc06d82125c91df830110"
+        "sha256": "1851c6601f040c5f7b0a2359688473e19f07302d50ffc597d1dddf6fb5613093"
       },
       "vehicle": {
         "model": "E53EW4",
@@ -10473,7 +10812,7 @@
         "source": {
           "url": "https://www.mercedes-benz.ca/en/vehicles/build/e-class/sedan/e53ew4",
           "status": 200,
-          "sha256": "159935fed69669a7c65215ded19db3a5c36c6c5b66b3e43b15ac1da339972443"
+          "sha256": "478b50dc3ded85816dd1803b2022fa8464e2051a5cdc1e0e4fa8169dcc3c92ac"
         },
         "data": {
           "content": {
@@ -10642,7 +10981,7 @@
       "source": {
         "url": "https://www.mercedes-benz.ca/en/vehicles/model/g-class/suv/g63w4",
         "status": 200,
-        "sha256": "0a75ecbfb52d20995d7798ec09ca64f34b2c2de6a83e80517edb20a1262e3d96"
+        "sha256": "2913a77cd26fca83c948ee44a2066d9b82ec307aba2469b2ff27bcb31f23f7b1"
       },
       "vehicle": {
         "model": "G63W4",
@@ -10696,794 +11035,11 @@
       "builder": null
     },
     {
-      "key": "2027/GLC300C4",
-      "source": {
-        "url": "https://www.mercedes-benz.ca/en/vehicles/model/glc/coupe/glc300c4",
-        "status": 200,
-        "sha256": "2b69669476ac58bc116d58b156144634c6d2bbb46ca7f9f09de04371b1e6b57c"
-      },
-      "vehicle": {
-        "model": "GLC300C4",
-        "name": "GLC 300 4MATIC Coupe",
-        "class": "GLC",
-        "year": 2027,
-        "bodyStyle": "CPE",
-        "msrp": 65300
-      },
-      "specifications": [
-        { "name": "Wheelbase — A", "value": "2,888 mm" },
-        { "name": "Overall length — B", "value": "4,764 mm" },
-        { "name": "Overall height — C", "value": "1,605 mm" },
-        { "name": "Overall width w/mirrors — D", "value": "2,075 mm" },
-        { "name": "Overall width w/o mirrors — E", "value": "1,890 mm" },
-        { "name": "Track width, front — F", "value": "1,627 mm" },
-        { "name": "Track width, rear — G", "value": "1,640 mm" },
-        { "name": "Curb weight", "value": "1,930 kg" },
-        { "name": "Passenger capacity", "value": "5" },
-        { "name": "Headroom (front)", "value": "1,045 mm" },
-        { "name": "Legroom (front)", "value": "TBD" },
-        { "name": "Shoulder room (front)", "value": "1,456 mm" },
-        { "name": "Headroom (rear)", "value": "972 mm" },
-        { "name": "Legroom (rear)", "value": "TBD" },
-        { "name": "Shoulder room (rear)", "value": "1,438 mm" },
-        { "name": "Cargo capacity", "value": "545 L-1,490 L" },
-        { "name": "Engine", "value": "2.0L inline-4 turbo with mild hybrid drive" },
-        { "name": "Fuel type", "value": "Gasoline" },
-        { "name": "Power", "value": "255 hp @ 5,800 rpm" },
-        { "name": "Torque", "value": "295 lb-ft @ 2,000-3,200 rpm" },
-        { "name": "Compression ratio", "value": "10.0:1" },
-        { "name": "Construction", "value": "Diecast alloy block and head" },
-        { "name": "Fuel requirement", "value": "Premium unleaded gasoline" },
-        { "name": "Fuel capacity", "value": "62 L" },
-        { "name": "Automatic transmission", "value": "9G-TRONIC 9-speed" },
-        { "name": "Drive configuration", "value": "4MATIC all-wheel drive" },
-        { "name": "ACCELERATION (0-100 km/h)", "value": "6.3 sec Disclaimer" },
-        { "name": "Towing capacity", "value": "1,487 kg" },
-        { "name": "Suspension", "value": "4-wheel independent, 4-link front/5-arm multilink rear" },
-        { "name": "Steering type", "value": "Rack-and-pinion with electromechanical power assist" },
-        { "name": "Turning circle", "value": "11.8 m, wall to wall" },
-        { "name": "Wheels", "value": "19-inch multispoke (8x19 front and rear)" },
-        { "name": "Tires", "value": "235/55R19 front and rear, all-season" }
-      ],
-      "builder": {
-        "source": {
-          "url": "https://www.mercedes-benz.ca/en/vehicles/build/glc/coupe/glc300c4",
-          "status": 200,
-          "sha256": "f55e43069e832e91ba49d8e2bfa6a5d812c8bd3fc13fe2cd60a5b2213b08941e"
-        },
-        "data": {
-          "content": {
-            "valid": true,
-            "model": "GLC300C4",
-            "year": 2027,
-            "vehicleName": "GLC 300 4MATIC Coupe",
-            "class": "GLC",
-            "bodyStyle": "CPE",
-            "msrp": 65300,
-            "useCCS": true,
-            "useCCSPrice": false,
-            "country": "ca",
-            "fuelType": "G"
-          },
-          "tree": {
-            "baseMsrpCad": 65300,
-            "options": [
-              { "id": "2:040", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "2:149", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "2:188", "type": "BOOLEAN", "price": 1100, "implied": [] },
-              { "id": "2:197", "type": "BOOLEAN", "price": 1100, "implied": [] },
-              { "id": "2:831", "type": "BOOLEAN", "price": 1100, "implied": [] },
-              { "id": "2:922", "type": "BOOLEAN", "price": 1100, "implied": [] },
-              { "id": "2:970", "type": "BOOLEAN", "price": 1100, "implied": [] },
-              { "id": "2:956", "type": "BOOLEAN", "price": 2400, "implied": [] },
-              { "id": "2:885", "type": "BOOLEAN", "price": 2400, "implied": [] },
-              { "id": "2:993", "type": "BOOLEAN", "price": 2400, "implied": [] },
-              { "id": "2:818", "type": "BOOLEAN", "price": 4600, "implied": [] },
-              { "id": "0:78R", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:RRE", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:R42", "type": "BOOLEAN", "price": 900, "implied": [] },
-              { "id": "0:RRN", "type": "BOOLEAN", "price": 1200, "implied": [] },
-              { "id": "0:RVO", "type": "BOOLEAN", "price": 1200, "implied": [] },
-              { "id": "0:RVP", "type": "BOOLEAN", "price": 1600, "implied": [] },
-              {
-                "id": "9:DS1",
-                "type": "PACKAGE",
-                "price": 4100,
-                "implied": ["0:772", "0:RRE", "0:U29", "0:P29", "0:L5C", "0:950"]
-              },
-              { "id": "0:772", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:U29", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:P29", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:L5C", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:950", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:846", "type": "BOOLEAN", "price": 500, "implied": [] },
-              { "id": "9:P55", "type": "BOOLEAN", "price": 600, "implied": [] },
-              { "id": "0:24U", "type": "BOOLEAN", "price": 800, "implied": [] },
-              { "id": "4:101", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "4:104", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "4:105", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "4:111", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "4:118", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "4:194", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "4:201", "type": "BOOLEAN", "price": 2300, "implied": [] },
-              { "id": "4:205", "type": "BOOLEAN", "price": 2300, "implied": [] },
-              { "id": "4:211", "type": "BOOLEAN", "price": 2300, "implied": [] },
-              { "id": "4:294", "type": "BOOLEAN", "price": 2300, "implied": [] },
-              { "id": "4:297", "type": "BOOLEAN", "price": 2300, "implied": [] },
-              { "id": "4:801", "type": "BOOLEAN", "price": 3700, "implied": [] },
-              { "id": "4:804", "type": "BOOLEAN", "price": 3700, "implied": [] },
-              { "id": "0:H50", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:H64", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:H03", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:H04", "type": "BOOLEAN", "price": 300, "implied": [] },
-              { "id": "0:H08", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:H33", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:661", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:795", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:401", "type": "BOOLEAN", "price": 700, "implied": [] },
-              { "id": "0:872", "type": "BOOLEAN", "price": 700, "implied": [] },
-              {
-                "id": "9:DP2",
-                "type": "PACKAGE",
-                "price": 3800,
-                "implied": ["0:P35", "0:49U", "0:810", "0:32U", "0:444", "0:851", "0:U19"]
-              },
-              { "id": "0:P35", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:49U", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:810", "type": "BOOLEAN", "price": 1200, "implied": [] },
-              { "id": "0:32U", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:444", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:851", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:U19", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:72B", "type": "BOOLEAN", "price": 100, "implied": [] },
-              { "id": "5:D88", "type": "BOOLEAN", "price": 400, "implied": [] },
-              {
-                "id": "9:P20",
-                "type": "PACKAGE",
-                "price": 2600,
-                "implied": [
-                  "0:239",
-                  "0:238",
-                  "0:268",
-                  "0:NC",
-                  "0:K32",
-                  "0:243",
-                  "0:546",
-                  "0:513",
-                  "0:266",
-                  "0:272",
-                  "0:K33",
-                  "0:253",
-                  "0:K34"
-                ]
-              },
-              { "id": "0:239", "type": "BOOLEAN", "price": 900, "implied": [] },
-              { "id": "0:238", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:268", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:NC", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:K32", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:243", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:546", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:513", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:266", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:272", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:K33", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:253", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:K34", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:550", "type": "BOOLEAN", "price": 1000, "implied": [] },
-              { "id": "0:21U", "type": "BOOLEAN", "price": 300, "implied": [] },
-              { "id": "0:293", "type": "BOOLEAN", "price": 500, "implied": [] },
-              {
-                "id": "PAINT",
-                "type": "PICK_LIST",
-                "price": null,
-                "implied": [
-                  "2:040",
-                  "2:149",
-                  "2:188",
-                  "2:197",
-                  "2:831",
-                  "2:922",
-                  "2:970",
-                  "2:956",
-                  "2:885",
-                  "2:993",
-                  "2:818"
-                ]
-              },
-              {
-                "id": "WHEELS",
-                "type": "PICK_LIST",
-                "price": null,
-                "implied": ["0:78R", "0:RRE", "0:R42", "0:RRN", "0:RVO", "0:RVP"]
-              },
-              {
-                "id": "UPHOLSTERY",
-                "type": "PICK_LIST",
-                "price": null,
-                "implied": [
-                  "4:101",
-                  "4:104",
-                  "4:105",
-                  "4:111",
-                  "4:118",
-                  "4:194",
-                  "4:201",
-                  "4:205",
-                  "4:211",
-                  "4:294",
-                  "4:297",
-                  "4:801",
-                  "4:804"
-                ]
-              },
-              {
-                "id": "TRIM",
-                "type": "PICK_LIST",
-                "price": null,
-                "implied": ["0:H50", "0:H64", "0:H03", "0:H04", "0:H08", "0:H33"]
-              }
-            ]
-          },
-          "selected": ["2:040", "0:78R", "0:H50", "4:101"],
-          "msrpCad": 65300
-        }
-      }
-    },
-    {
-      "key": "2027/GLC300W4",
-      "source": {
-        "url": "https://www.mercedes-benz.ca/en/vehicles/model/glc/suv/glc300w4",
-        "status": 200,
-        "sha256": "a74b807f56b8ad42c1db93fa49cf42419e47e9827213754e9e1c1e08472d5a1e"
-      },
-      "vehicle": {
-        "model": "GLC300W4",
-        "name": "GLC 300 4MATIC SUV",
-        "class": "GLC",
-        "year": 2027,
-        "bodyStyle": "SUV",
-        "msrp": 61000
-      },
-      "specifications": [
-        { "name": "Wheelbase — A", "value": "2,888 mm" },
-        { "name": "Overall length — B", "value": "4,716 mm" },
-        { "name": "Overall height — C", "value": "1,648 mm" },
-        { "name": "Overall width w/mirrors — D", "value": "2,076 mm" },
-        { "name": "Overall width w/o mirrors — E", "value": "1,920 mm" },
-        { "name": "Track width, front — F", "value": "1,623 mm" },
-        { "name": "Track width, rear — G", "value": "1,643 mm" },
-        { "name": "Curb weight", "value": "1,910 kg" },
-        { "name": "Passenger capacity", "value": "5" },
-        { "name": "Headroom (front)", "value": "1,048 mm" },
-        { "name": "Legroom (front)", "value": "TBD" },
-        { "name": "Shoulder room (front)", "value": "1,455 mm" },
-        { "name": "Headroom (rear)", "value": "1,007 mm" },
-        { "name": "Legroom (rear)", "value": "TBD" },
-        { "name": "Shoulder room (rear)", "value": "1,438 mm" },
-        { "name": "Cargo capacity", "value": "620 L-1,680 L" },
-        { "name": "Engine", "value": "2.0L inline-4 turbo with mild hybrid drive" },
-        { "name": "Fuel type", "value": "Gasoline" },
-        { "name": "Power", "value": "255 hp @ 5,800 rpm" },
-        { "name": "Torque", "value": "295 lb-ft @ 2,000-3,200 rpm" },
-        { "name": "Compression ratio", "value": "10.0:1" },
-        { "name": "Construction", "value": "Diecast alloy block and head" },
-        { "name": "Fuel requirement", "value": "Premium unleaded gasoline" },
-        { "name": "Fuel capacity", "value": "62 L" },
-        { "name": "Automatic transmission", "value": "9G-TRONIC 9-speed" },
-        { "name": "Drive configuration", "value": "4MATIC all-wheel drive" },
-        { "name": "Acceleration (0-100 km/h)", "value": "6.2 sec Disclaimer" },
-        { "name": "Towing capacity", "value": "1,588 kg" },
-        { "name": "Suspension", "value": "4-wheel independent, 4-link front/5-arm multilink rear" },
-        { "name": "Steering type", "value": "Rack-and-pinion with electromechanical power assist" },
-        { "name": "Turning circle", "value": "11.8 m, wall to wall" },
-        { "name": "Wheels", "value": "18-inch 10-spoke (8x18 front and rear)" },
-        { "name": "Tires", "value": "235/60R18 front and rear, all-season" }
-      ],
-      "builder": {
-        "source": {
-          "url": "https://www.mercedes-benz.ca/en/vehicles/build/glc/suv/glc300w4",
-          "status": 200,
-          "sha256": "6301c5a8ef315770ca6e64862dfe4fff6cb5ac361726c57736e439b512499f0e"
-        },
-        "data": {
-          "content": {
-            "valid": true,
-            "model": "GLC300W4",
-            "year": 2027,
-            "vehicleName": "GLC 300 4MATIC SUV",
-            "class": "GLC",
-            "bodyStyle": "SUV",
-            "msrp": 61000,
-            "useCCS": true,
-            "useCCSPrice": false,
-            "country": "ca",
-            "fuelType": "G"
-          },
-          "tree": {
-            "baseMsrpCad": 61000,
-            "options": [
-              { "id": "2:040", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "2:149", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "2:188", "type": "BOOLEAN", "price": 1100, "implied": [] },
-              { "id": "2:197", "type": "BOOLEAN", "price": 1100, "implied": [] },
-              { "id": "2:831", "type": "BOOLEAN", "price": 1100, "implied": [] },
-              { "id": "2:922", "type": "BOOLEAN", "price": 1100, "implied": [] },
-              { "id": "2:970", "type": "BOOLEAN", "price": 1100, "implied": [] },
-              { "id": "2:956", "type": "BOOLEAN", "price": 2400, "implied": [] },
-              { "id": "2:885", "type": "BOOLEAN", "price": 2400, "implied": [] },
-              { "id": "2:993", "type": "BOOLEAN", "price": 2400, "implied": [] },
-              { "id": "2:818", "type": "BOOLEAN", "price": 4600, "implied": [] },
-              { "id": "0:R41", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:78R", "type": "BOOLEAN", "price": 800, "implied": [] },
-              { "id": "0:RRE", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:R42", "type": "BOOLEAN", "price": 1900, "implied": [] },
-              { "id": "0:RRN", "type": "BOOLEAN", "price": 1200, "implied": [] },
-              { "id": "0:RVO", "type": "BOOLEAN", "price": 1200, "implied": [] },
-              { "id": "0:RVP", "type": "BOOLEAN", "price": 1600, "implied": [] },
-              {
-                "id": "9:DS1",
-                "type": "PACKAGE",
-                "price": 4100,
-                "implied": ["0:772", "0:5U4", "0:RRE", "0:U29", "0:P29", "0:L5C", "0:950", "0:U34"]
-              },
-              { "id": "0:772", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:5U4", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:U29", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:P29", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:L5C", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:950", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:U34", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:846", "type": "BOOLEAN", "price": 500, "implied": [] },
-              { "id": "9:P55", "type": "BOOLEAN", "price": 600, "implied": [] },
-              { "id": "0:24U", "type": "BOOLEAN", "price": 800, "implied": [] },
-              { "id": "4:101", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "4:104", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "4:105", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "4:111", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "4:118", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "4:194", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "4:201", "type": "BOOLEAN", "price": 2300, "implied": [] },
-              { "id": "4:205", "type": "BOOLEAN", "price": 2300, "implied": [] },
-              { "id": "4:211", "type": "BOOLEAN", "price": 2300, "implied": [] },
-              { "id": "4:294", "type": "BOOLEAN", "price": 2300, "implied": [] },
-              { "id": "4:297", "type": "BOOLEAN", "price": 2300, "implied": [] },
-              { "id": "4:801", "type": "BOOLEAN", "price": 3700, "implied": [] },
-              { "id": "4:804", "type": "BOOLEAN", "price": 3700, "implied": [] },
-              { "id": "0:H50", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:H64", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:H03", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:H04", "type": "BOOLEAN", "price": 300, "implied": [] },
-              { "id": "0:H08", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:H33", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:795", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:661", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:401", "type": "BOOLEAN", "price": 700, "implied": [] },
-              { "id": "0:872", "type": "BOOLEAN", "price": 700, "implied": [] },
-              {
-                "id": "9:DP1",
-                "type": "PACKAGE",
-                "price": 3300,
-                "implied": [
-                  "0:49U",
-                  "9:PBG",
-                  "0:502",
-                  "0:367",
-                  "0:SSS",
-                  "0:810",
-                  "0:32U",
-                  "0:894",
-                  "0:U45",
-                  "0:589",
-                  "0:501",
-                  "0:04U",
-                  "0:P82"
-                ]
-              },
-              { "id": "0:49U", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "9:PBG", "type": "BOOLEAN", "price": 1200, "implied": [] },
-              { "id": "0:502", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:367", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:SSS", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:810", "type": "BOOLEAN", "price": 1200, "implied": [] },
-              { "id": "0:32U", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:894", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:U45", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:589", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:501", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:04U", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:P82", "type": "BOOLEAN", "price": 0, "implied": [] },
-              {
-                "id": "9:DP2",
-                "type": "PACKAGE",
-                "price": 3200,
-                "implied": ["0:P35", "0:444", "0:851", "0:U19"]
-              },
-              { "id": "0:P35", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:444", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:851", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:U19", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:413", "type": "BOOLEAN", "price": 2100, "implied": [] },
-              { "id": "0:72B", "type": "BOOLEAN", "price": 100, "implied": [] },
-              { "id": "5:D88", "type": "BOOLEAN", "price": 400, "implied": [] },
-              {
-                "id": "9:P20",
-                "type": "PACKAGE",
-                "price": 2600,
-                "implied": [
-                  "0:239",
-                  "0:238",
-                  "0:268",
-                  "0:NC",
-                  "0:K32",
-                  "0:243",
-                  "0:546",
-                  "0:513",
-                  "0:266",
-                  "0:272",
-                  "0:K33",
-                  "0:253",
-                  "0:K34"
-                ]
-              },
-              { "id": "0:239", "type": "BOOLEAN", "price": 900, "implied": [] },
-              { "id": "0:238", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:268", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:NC", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:K32", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:243", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:546", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:513", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:266", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:272", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:K33", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:253", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:K34", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:550", "type": "BOOLEAN", "price": 1000, "implied": [] },
-              { "id": "0:21U", "type": "BOOLEAN", "price": 300, "implied": [] },
-              { "id": "0:293", "type": "BOOLEAN", "price": 500, "implied": [] },
-              {
-                "id": "PAINT",
-                "type": "PICK_LIST",
-                "price": null,
-                "implied": [
-                  "2:040",
-                  "2:149",
-                  "2:188",
-                  "2:197",
-                  "2:831",
-                  "2:922",
-                  "2:970",
-                  "2:956",
-                  "2:885",
-                  "2:993",
-                  "2:818"
-                ]
-              },
-              {
-                "id": "WHEELS",
-                "type": "PICK_LIST",
-                "price": null,
-                "implied": ["0:R41", "0:78R", "0:RRE", "0:R42", "0:RRN", "0:RVO", "0:RVP"]
-              },
-              {
-                "id": "UPHOLSTERY",
-                "type": "PICK_LIST",
-                "price": null,
-                "implied": [
-                  "4:101",
-                  "4:104",
-                  "4:105",
-                  "4:111",
-                  "4:118",
-                  "4:194",
-                  "4:201",
-                  "4:205",
-                  "4:211",
-                  "4:294",
-                  "4:297",
-                  "4:801",
-                  "4:804"
-                ]
-              },
-              {
-                "id": "TRIM",
-                "type": "PICK_LIST",
-                "price": null,
-                "implied": ["0:H50", "0:H64", "0:H03", "0:H04", "0:H08", "0:H33"]
-              }
-            ]
-          },
-          "selected": ["2:040", "0:R41", "0:H50", "4:101"],
-          "msrpCad": 61000
-        }
-      }
-    },
-    {
-      "key": "2027/GLC350E4",
-      "source": {
-        "url": "https://www.mercedes-benz.ca/en/vehicles/model/glc/suv/glc350e4",
-        "status": 200,
-        "sha256": "98f563f107392d735862d8418e1f0e2bc7bb0442717948413a7b8ef59a5fff6e"
-      },
-      "vehicle": {
-        "model": "GLC350E4",
-        "name": "GLC 350e 4MATIC SUV",
-        "class": "GLC",
-        "year": 2027,
-        "bodyStyle": "SUV",
-        "msrp": 67300
-      },
-      "specifications": [
-        { "name": "Wheelbase — A", "value": "2,888 mm" },
-        { "name": "Overall length — B", "value": "4,716 mm" },
-        { "name": "Overall height — C", "value": "1,648 mm" },
-        { "name": "Overall width w/mirrors — D", "value": "2,076 mm" },
-        { "name": "Overall width w/o mirrors — E", "value": "1,920 mm" },
-        { "name": "Track width, front — F", "value": "1,623 mm" },
-        { "name": "Track width, rear — G", "value": "1,643 mm" },
-        { "name": "Curb weight", "value": "2,325 kg" },
-        { "name": "Passenger capacity", "value": "5" },
-        { "name": "Headroom (front)", "value": "1,048 mm" },
-        { "name": "Legroom (front)", "value": "TBD" },
-        { "name": "Shoulder room (front)", "value": "1,455 mm" },
-        { "name": "Headroom (rear)", "value": "1,007 mm" },
-        { "name": "Legroom (rear)", "value": "TBD" },
-        { "name": "Shoulder room (rear)", "value": "1,438 mm" },
-        { "name": "Cargo capacity", "value": "470-1,530 L" },
-        { "name": "Engine", "value": "2.0L inline-4 turbo with Plug-In Hybrid technology" },
-        { "name": "Fuel type", "value": "Plug-In Hybrid" },
-        { "name": "Power", "value": "313 hp (combined)" },
-        { "name": "Torque", "value": "406 lb-ft (combined)" },
-        { "name": "Compression ratio", "value": "10.0:1" },
-        { "name": "Construction", "value": "Diecast alloy block and head" },
-        { "name": "Fuel requirement", "value": "Premium unleaded gasoline" },
-        { "name": "Fuel capacity", "value": "49 L" },
-        { "name": "AC charging speed", "value": "9.6 kW" },
-        { "name": "AC charging time (0-100%)", "value": "2.75 hrs" },
-        { "name": "AC CHARGING CONN TYPE", "value": "J1772" },
-        { "name": "DC charging speed", "value": "60 kW" },
-        { "name": "DC charging time (10-80%)", "value": "30 min" },
-        { "name": "DC CHARGING CONN TYPE", "value": "Combined Charging System (CCS)" },
-        { "name": "COMBINED FUEL ECONOMY", "value": "2.5 - 2.1 l/100 km" },
-        { "name": "Automatic transmission", "value": "9G-TRONIC 9-speed" },
-        { "name": "Drive configuration", "value": "4MATIC all-wheel drive" },
-        { "name": "Acceleration (0-100 km/h)", "value": "6.7 sec Disclaimer" },
-        { "name": "Towing capacity", "value": "2,000 kg" },
-        {
-          "name": "Suspension",
-          "value": "4-wheel independent, 4-link front/5-arm multilink rear with self-leveling rear air suspsnesion"
-        },
-        { "name": "Steering type", "value": "Rack-and-pinion with electromechanical power assist" },
-        { "name": "Turning circle", "value": "11.8 m, wall to wall" },
-        { "name": "Wheels", "value": "18-inch 5-spoke (8x18 front and 9x18 rear)" },
-        { "name": "Tires", "value": "235/60R18 front and 255/55R18 rear, all-season" }
-      ],
-      "builder": {
-        "source": {
-          "url": "https://www.mercedes-benz.ca/en/vehicles/build/glc/suv/glc350e4",
-          "status": 200,
-          "sha256": "6aa22abadcebe5bb18bf8316899274e846c0ae6452ec15b6a1266b627c5d26b8"
-        },
-        "data": {
-          "content": {
-            "valid": true,
-            "model": "GLC350E4",
-            "year": 2027,
-            "vehicleName": "GLC 350e 4MATIC SUV",
-            "class": "GLC",
-            "bodyStyle": "SUV",
-            "msrp": 67300,
-            "useCCS": true,
-            "useCCSPrice": false,
-            "country": "ca",
-            "fuelType": "PH"
-          },
-          "tree": {
-            "baseMsrpCad": 67300,
-            "options": [
-              { "id": "2:040", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "2:149", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "2:188", "type": "BOOLEAN", "price": 1100, "implied": [] },
-              { "id": "2:197", "type": "BOOLEAN", "price": 1100, "implied": [] },
-              { "id": "2:831", "type": "BOOLEAN", "price": 1100, "implied": [] },
-              { "id": "2:922", "type": "BOOLEAN", "price": 1100, "implied": [] },
-              { "id": "2:970", "type": "BOOLEAN", "price": 1100, "implied": [] },
-              { "id": "2:956", "type": "BOOLEAN", "price": 2400, "implied": [] },
-              { "id": "2:885", "type": "BOOLEAN", "price": 2400, "implied": [] },
-              { "id": "2:993", "type": "BOOLEAN", "price": 2400, "implied": [] },
-              { "id": "2:818", "type": "BOOLEAN", "price": 4600, "implied": [] },
-              { "id": "0:R32", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:R17", "type": "BOOLEAN", "price": 800, "implied": [] },
-              { "id": "0:RRE", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:RRN", "type": "BOOLEAN", "price": 1200, "implied": [] },
-              { "id": "0:RVO", "type": "BOOLEAN", "price": 1200, "implied": [] },
-              { "id": "0:RVP", "type": "BOOLEAN", "price": 1600, "implied": [] },
-              {
-                "id": "9:DS1",
-                "type": "PACKAGE",
-                "price": 4100,
-                "implied": ["0:772", "0:5U4", "0:RRE", "0:U29", "0:P29", "0:L5C", "0:950", "0:U34"]
-              },
-              { "id": "0:772", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:5U4", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:U29", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:P29", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:L5C", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:950", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:U34", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:846", "type": "BOOLEAN", "price": 500, "implied": [] },
-              { "id": "9:P55", "type": "BOOLEAN", "price": 600, "implied": [] },
-              { "id": "0:24U", "type": "BOOLEAN", "price": 800, "implied": [] },
-              { "id": "4:101", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "4:104", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "4:105", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "4:111", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "4:118", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "4:194", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "4:201", "type": "BOOLEAN", "price": 2300, "implied": [] },
-              { "id": "4:205", "type": "BOOLEAN", "price": 2300, "implied": [] },
-              { "id": "4:211", "type": "BOOLEAN", "price": 2300, "implied": [] },
-              { "id": "4:294", "type": "BOOLEAN", "price": 2300, "implied": [] },
-              { "id": "4:297", "type": "BOOLEAN", "price": 2300, "implied": [] },
-              { "id": "4:801", "type": "BOOLEAN", "price": 3700, "implied": [] },
-              { "id": "4:804", "type": "BOOLEAN", "price": 3700, "implied": [] },
-              { "id": "0:H50", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:H64", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:H03", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:H04", "type": "BOOLEAN", "price": 300, "implied": [] },
-              { "id": "0:H08", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:H33", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:795", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:661", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:401", "type": "BOOLEAN", "price": 700, "implied": [] },
-              { "id": "0:872", "type": "BOOLEAN", "price": 700, "implied": [] },
-              {
-                "id": "9:DP1",
-                "type": "PACKAGE",
-                "price": 3300,
-                "implied": [
-                  "0:49U",
-                  "9:PBG",
-                  "0:502",
-                  "0:367",
-                  "0:SSS",
-                  "0:810",
-                  "0:32U",
-                  "0:894",
-                  "0:U45",
-                  "0:589",
-                  "0:501",
-                  "0:04U",
-                  "0:P82"
-                ]
-              },
-              { "id": "0:49U", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "9:PBG", "type": "BOOLEAN", "price": 1200, "implied": [] },
-              { "id": "0:502", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:367", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:SSS", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:810", "type": "BOOLEAN", "price": 1200, "implied": [] },
-              { "id": "0:32U", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:894", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:U45", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:589", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:501", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:04U", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:P82", "type": "BOOLEAN", "price": 0, "implied": [] },
-              {
-                "id": "9:DP2",
-                "type": "PACKAGE",
-                "price": 3200,
-                "implied": ["0:P35", "0:444", "0:851", "0:U19"]
-              },
-              { "id": "0:P35", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:444", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:851", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:U19", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:413", "type": "BOOLEAN", "price": 2100, "implied": [] },
-              { "id": "0:72B", "type": "BOOLEAN", "price": 100, "implied": [] },
-              { "id": "5:D88", "type": "BOOLEAN", "price": 400, "implied": [] },
-              {
-                "id": "9:P20",
-                "type": "PACKAGE",
-                "price": 2600,
-                "implied": [
-                  "0:239",
-                  "0:238",
-                  "0:268",
-                  "0:NC",
-                  "0:K32",
-                  "0:243",
-                  "0:546",
-                  "0:513",
-                  "0:266",
-                  "0:272",
-                  "0:K33",
-                  "0:253",
-                  "0:K34"
-                ]
-              },
-              { "id": "0:239", "type": "BOOLEAN", "price": 900, "implied": [] },
-              { "id": "0:238", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:268", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:NC", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:K32", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:243", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:546", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:513", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:266", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:272", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:K33", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:253", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:K34", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:550", "type": "BOOLEAN", "price": 1000, "implied": [] },
-              { "id": "0:21U", "type": "BOOLEAN", "price": 300, "implied": [] },
-              { "id": "0:293", "type": "BOOLEAN", "price": 500, "implied": [] },
-              { "id": "0:83B", "type": "BOOLEAN", "price": 700, "implied": [] },
-              {
-                "id": "PAINT",
-                "type": "PICK_LIST",
-                "price": null,
-                "implied": [
-                  "2:040",
-                  "2:149",
-                  "2:188",
-                  "2:197",
-                  "2:831",
-                  "2:922",
-                  "2:970",
-                  "2:956",
-                  "2:885",
-                  "2:993",
-                  "2:818"
-                ]
-              },
-              {
-                "id": "WHEELS",
-                "type": "PICK_LIST",
-                "price": null,
-                "implied": ["0:R32", "0:R17", "0:RRE", "0:RRN", "0:RVO", "0:RVP"]
-              },
-              {
-                "id": "UPHOLSTERY",
-                "type": "PICK_LIST",
-                "price": null,
-                "implied": [
-                  "4:101",
-                  "4:104",
-                  "4:105",
-                  "4:111",
-                  "4:118",
-                  "4:194",
-                  "4:201",
-                  "4:205",
-                  "4:211",
-                  "4:294",
-                  "4:297",
-                  "4:801",
-                  "4:804"
-                ]
-              },
-              {
-                "id": "TRIM",
-                "type": "PICK_LIST",
-                "price": null,
-                "implied": ["0:H50", "0:H64", "0:H03", "0:H04", "0:H08", "0:H33"]
-              }
-            ]
-          },
-          "selected": ["2:040", "0:R32", "0:H50", "4:101"],
-          "msrpCad": 67300
-        }
-      }
-    },
-    {
       "key": "2027/GLC400E4",
       "source": {
         "url": "https://www.mercedes-benz.ca/en/vehicles/model/glc/suv/glc400e4",
         "status": 200,
-        "sha256": "83cd879e88989926ae6463d3a46bf8f13c06229fdd58bb58eaf2240ac965e6b1"
+        "sha256": "7fa00624a2950ce064387ba7d25b49eb4053e9a1bea795863f754e2a38df81d0"
       },
       "vehicle": {
         "model": "GLC400E4",
@@ -11540,7 +11096,7 @@
         "source": {
           "url": "https://www.mercedes-benz.ca/en/vehicles/build/glc/suv/glc400e4",
           "status": 200,
-          "sha256": "f45d06e4c1c7d0b8e8ea4f2889e5209229023f81c1e516621cd2177a35faeaba"
+          "sha256": "b96638475d58b4bea40f7f1beddb85681bce61d6ae97d8cdf3180bd3c22bba4e"
         },
         "data": {
           "content": {
@@ -11572,15 +11128,15 @@
               { "id": "0:53R", "type": "BOOLEAN", "price": 0, "implied": [] },
               { "id": "0:17R", "type": "BOOLEAN", "price": 0, "implied": [] },
               { "id": "0:RRM", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:RRN", "type": "BOOLEAN", "price": 2100, "implied": [] },
-              { "id": "0:RVQ", "type": "BOOLEAN", "price": 2400, "implied": [] },
-              { "id": "0:RWD", "type": "BOOLEAN", "price": 3400, "implied": [] },
-              { "id": "0:RWE", "type": "BOOLEAN", "price": 3800, "implied": [] },
+              { "id": "0:RRN", "type": "BOOLEAN", "price": 700, "implied": [] },
+              { "id": "0:RVQ", "type": "BOOLEAN", "price": 700, "implied": [] },
+              { "id": "0:RWD", "type": "BOOLEAN", "price": 2200, "implied": [] },
+              { "id": "0:RWE", "type": "BOOLEAN", "price": 2900, "implied": [] },
               { "id": "0:RWI", "type": "BOOLEAN", "price": 0, "implied": [] },
               {
                 "id": "9:950",
                 "type": "PACKAGE",
-                "price": 4100,
+                "price": 4600,
                 "implied": ["0:772", "0:L5C", "0:RRM", "0:27H", "0:950", "0:U26", "0:589", "0:B63"]
               },
               { "id": "0:772", "type": "BOOLEAN", "price": 0, "implied": [] },
@@ -11590,7 +11146,33 @@
               { "id": "0:U26", "type": "BOOLEAN", "price": 0, "implied": [] },
               { "id": "0:589", "type": "BOOLEAN", "price": 0, "implied": [] },
               { "id": "0:B63", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:846", "type": "BOOLEAN", "price": 700, "implied": [] },
+              {
+                "id": "9:956",
+                "type": "PACKAGE",
+                "price": 7100,
+                "implied": [
+                  "0:P55A",
+                  "0:NC",
+                  "0:772",
+                  "0:RWD",
+                  "0:U95",
+                  "0:27H",
+                  "0:949",
+                  "0:950",
+                  "0:Y05",
+                  "0:U26",
+                  "0:589",
+                  "0:L5C",
+                  "0:B63"
+                ]
+              },
+              { "id": "0:P55A", "type": "BOOLEAN", "price": 0, "implied": [] },
+              { "id": "0:NC", "type": "BOOLEAN", "price": 0, "implied": [] },
+              { "id": "0:U95", "type": "BOOLEAN", "price": 0, "implied": [] },
+              { "id": "0:949", "type": "BOOLEAN", "price": 0, "implied": [] },
+              { "id": "0:Y05", "type": "BOOLEAN", "price": 0, "implied": [] },
+              { "id": "9:P55", "type": "PACKAGE", "price": 600, "implied": ["0:P55A", "0:NC"] },
+              { "id": "0:846", "type": "BOOLEAN", "price": 900, "implied": [] },
               { "id": "4:101", "type": "BOOLEAN", "price": 0, "implied": [] },
               { "id": "4:104", "type": "BOOLEAN", "price": 0, "implied": [] },
               { "id": "4:105", "type": "BOOLEAN", "price": 0, "implied": [] },
@@ -11619,14 +11201,13 @@
               {
                 "id": "9:PDH",
                 "type": "PACKAGE",
-                "price": 2300,
-                "implied": ["0:4B7", "0:860", "0:891", "0:U45", "0:398"]
+                "price": 2500,
+                "implied": ["0:4B7", "0:891", "0:U45", "0:398"]
               },
               { "id": "0:4B7", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:860", "type": "BOOLEAN", "price": 0, "implied": [] },
               { "id": "0:891", "type": "BOOLEAN", "price": 0, "implied": [] },
               { "id": "0:U45", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:398", "type": "BOOLEAN", "price": 1500, "implied": [] },
+              { "id": "0:398", "type": "BOOLEAN", "price": 1400, "implied": [] },
               {
                 "id": "9:PDJ",
                 "type": "PACKAGE",
@@ -11635,7 +11216,6 @@
               },
               { "id": "9:P35", "type": "BOOLEAN", "price": 1400, "implied": [] },
               { "id": "0:810", "type": "BOOLEAN", "price": 1200, "implied": [] },
-              { "id": "0:NC", "type": "BOOLEAN", "price": 0, "implied": [] },
               { "id": "0:32U", "type": "BOOLEAN", "price": 0, "implied": [] },
               { "id": "0:P53", "type": "BOOLEAN", "price": 0, "implied": [] },
               { "id": "0:878", "type": "BOOLEAN", "price": 0, "implied": [] },
@@ -11657,7 +11237,7 @@
               {
                 "id": "9:P20",
                 "type": "PACKAGE",
-                "price": 1950,
+                "price": 2700,
                 "implied": ["0:K65", "0:K32", "0:K46"]
               },
               { "id": "0:K65", "type": "BOOLEAN", "price": 0, "implied": [] },
@@ -11666,13 +11246,13 @@
               {
                 "id": "9:PAD",
                 "type": "PACKAGE",
-                "price": 3000,
+                "price": 2900,
                 "implied": ["0:489", "0:SSS", "0:201"]
               },
               { "id": "0:489", "type": "BOOLEAN", "price": 0, "implied": [] },
               { "id": "0:SSS", "type": "BOOLEAN", "price": 0, "implied": [] },
               { "id": "0:201", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "9:P47", "type": "BOOLEAN", "price": 500, "implied": [] },
+              { "id": "9:P47", "type": "BOOLEAN", "price": 800, "implied": [] },
               { "id": "0:550", "type": "BOOLEAN", "price": 1400, "implied": [] },
               { "id": "0:21U", "type": "BOOLEAN", "price": 300, "implied": [] },
               { "id": "0:293", "type": "BOOLEAN", "price": 500, "implied": [] },
@@ -11736,257 +11316,11 @@
       }
     },
     {
-      "key": "2027/GLC53W4",
-      "source": {
-        "url": "https://www.mercedes-benz.ca/en/vehicles/model/glc/suv/glc53w4",
-        "status": 200,
-        "sha256": "1c8786141b4fcb3c17b69515179b24de00f5eeef0ef11ab6ac85e2fdd0405401"
-      },
-      "vehicle": {
-        "model": "GLC53W4",
-        "name": "AMG GLC 53 4MATIC+ SUV",
-        "class": "GLC",
-        "year": 2027,
-        "bodyStyle": "SUV",
-        "msrp": 82900
-      },
-      "specifications": [
-        { "name": "Wheelbase — A", "value": "2,888 mm" },
-        { "name": "Overall length — B", "value": "4,749 mm" },
-        { "name": "Overall height — C", "value": "1,635 mm" },
-        { "name": "Overall width w/mirrors — D", "value": "2,076 mm" },
-        { "name": "Overall width w/o mirrors — E", "value": "1,920 mm" },
-        { "name": "Track width, front — F", "value": "1,666 mm" },
-        { "name": "Track width, rear — G", "value": "1,666 mm" },
-        { "name": "Curb weight", "value": "1,975 kg" },
-        { "name": "Passenger capacity", "value": "5" },
-        { "name": "Headroom (front)", "value": "1,048 mm" },
-        { "name": "Legroom (front)", "value": "TBD" },
-        { "name": "Shoulder room (front)", "value": "1,455 mm" },
-        { "name": "Headroom (rear)", "value": "1,007 mm" },
-        { "name": "Legroom (rear)", "value": "TBD" },
-        { "name": "Shoulder room (rear)", "value": "1,438 mm" },
-        { "name": "Cargo capacity", "value": "620 L-1,680 L" },
-        {
-          "name": "Engine",
-          "value": "AMG-enhanced 3.0L inline-6 turbo with hybrid assist and electric auxiliary compressor"
-        },
-        { "name": "FUEL_TYPE", "value": "Gasoline" },
-        { "name": "Power", "value": "443 hp @ 5,800-6,100 rpm" },
-        { "name": "Torque", "value": "443 lb-ft @ 2,200-5,000 rpm" },
-        { "name": "Compression ratio", "value": "10.5:1" },
-        { "name": "Construction", "value": "Diecast alloy block and head" },
-        { "name": "Fuel requirement", "value": "Premium unleaded gasoline" },
-        { "name": "Fuel capacity", "value": "62 L" },
-        { "name": "COMBINED_FUEL_ECONOMY", "value": "9.9 - 9.4 l/100 km" },
-        { "name": "Automatic transmission", "value": "AMG SPEEDSHIFT MCT 9-speed" },
-        { "name": "Drive configuration", "value": "AMG Performance 4MATIC+ all-wheel drive" },
-        { "name": "Acceleration (0-100 km/h)", "value": "4.2 sec Disclaimer" },
-        { "name": "Towing capacity", "value": "1,588 kg" },
-        {
-          "name": "Suspension",
-          "value": "4-wheel independent, 4-link front/5-arm multilink rear with AMG RIDE CONTROL"
-        },
-        {
-          "name": "Steering type",
-          "value": "3-stage AMG parameter rack-and-pinion with electromechanical power assist and active rear-wheel steering"
-        },
-        { "name": "Turning circle", "value": "13.0 m, wall to wall" },
-        { "name": "Wheels", "value": "20-inch AMG twin 10-spoke (9.5x20 front and 10.0x20 rear)" },
-        { "name": "Tires", "value": "265/450R20 front and 295/40R20 rear, all-season runflat" }
-      ],
-      "builder": {
-        "source": {
-          "url": "https://www.mercedes-benz.ca/en/vehicles/build/glc/suv/glc53w4",
-          "status": 200,
-          "sha256": "012d2cdcad6f56b9bb1c530d3f6c26cbd800e7b6610d4d115944d42988e0567d"
-        },
-        "data": {
-          "content": {
-            "valid": true,
-            "model": "GLC53W4",
-            "year": 2027,
-            "vehicleName": "AMG GLC 53 4MATIC+ SUV",
-            "class": "GLC",
-            "bodyStyle": "SUV",
-            "msrp": 82900,
-            "useCCS": true,
-            "useCCSPrice": false,
-            "country": "ca",
-            "fuelType": "G"
-          },
-          "tree": {
-            "baseMsrpCad": 82900,
-            "options": [
-              { "id": "2:040", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "2:149", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "2:188", "type": "BOOLEAN", "price": 1100, "implied": [] },
-              { "id": "2:197", "type": "BOOLEAN", "price": 1100, "implied": [] },
-              { "id": "2:831", "type": "BOOLEAN", "price": 1100, "implied": [] },
-              { "id": "2:922", "type": "BOOLEAN", "price": 1100, "implied": [] },
-              { "id": "2:970", "type": "BOOLEAN", "price": 1100, "implied": [] },
-              { "id": "2:956", "type": "BOOLEAN", "price": 2400, "implied": [] },
-              { "id": "2:885", "type": "BOOLEAN", "price": 2400, "implied": [] },
-              { "id": "2:993", "type": "BOOLEAN", "price": 2400, "implied": [] },
-              { "id": "2:734", "type": "BOOLEAN", "price": 4600, "implied": [] },
-              { "id": "2:818", "type": "BOOLEAN", "price": 4600, "implied": [] },
-              { "id": "0:RVM", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:RVN", "type": "BOOLEAN", "price": 400, "implied": [] },
-              { "id": "0:RWM", "type": "BOOLEAN", "price": 1600, "implied": [] },
-              { "id": "0:RWN", "type": "BOOLEAN", "price": 2200, "implied": [] },
-              { "id": "0:RWK", "type": "BOOLEAN", "price": 3300, "implied": [] },
-              { "id": "0:RWL", "type": "BOOLEAN", "price": 3800, "implied": [] },
-              { "id": "0:RWJ", "type": "BOOLEAN", "price": 0, "implied": [] },
-              {
-                "id": "9:PEL",
-                "type": "PACKAGE",
-                "price": 11500,
-                "implied": [
-                  "0:U15",
-                  "9:P60",
-                  "9:PAZ",
-                  "9:36P",
-                  "0:RWJ",
-                  "0:4U4",
-                  "0:213",
-                  "0:H69",
-                  "0:6U6"
-                ]
-              },
-              { "id": "0:U15", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "9:P60", "type": "BOOLEAN", "price": 1200, "implied": [] },
-              { "id": "9:PAZ", "type": "BOOLEAN", "price": 900, "implied": [] },
-              { "id": "9:36P", "type": "BOOLEAN", "price": 1500, "implied": [] },
-              { "id": "0:4U4", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:213", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:H69", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:6U6", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:846", "type": "BOOLEAN", "price": 500, "implied": [] },
-              { "id": "0:773", "type": "BOOLEAN", "price": 4200, "implied": [] },
-              { "id": "4:651", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "4:211", "type": "BOOLEAN", "price": 2300, "implied": [] },
-              { "id": "4:251", "type": "BOOLEAN", "price": 2300, "implied": [] },
-              { "id": "4:294", "type": "BOOLEAN", "price": 2300, "implied": [] },
-              { "id": "4:297", "type": "BOOLEAN", "price": 2300, "implied": [] },
-              { "id": "4:213", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "4:801", "type": "BOOLEAN", "price": 3700, "implied": [] },
-              { "id": "4:804", "type": "BOOLEAN", "price": 3700, "implied": [] },
-              { "id": "0:H64", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:H03", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:H04", "type": "BOOLEAN", "price": 300, "implied": [] },
-              { "id": "0:H08", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:H33", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:H73", "type": "BOOLEAN", "price": 1400, "implied": [] },
-              { "id": "0:661", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:401", "type": "BOOLEAN", "price": 700, "implied": [] },
-              { "id": "0:555", "type": "BOOLEAN", "price": 3500, "implied": [] },
-              { "id": "0:872", "type": "BOOLEAN", "price": 700, "implied": [] },
-              { "id": "0:L6H", "type": "BOOLEAN", "price": 1300, "implied": [] },
-              { "id": "0:L6K", "type": "BOOLEAN", "price": 700, "implied": [] },
-              { "id": "0:Y05", "type": "BOOLEAN", "price": 500, "implied": [] },
-              {
-                "id": "9:DP2",
-                "type": "PACKAGE",
-                "price": 6000,
-                "implied": ["0:P35", "0:49U", "0:810", "0:32U", "0:444", "0:851", "0:U19"]
-              },
-              { "id": "0:P35", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:49U", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:810", "type": "BOOLEAN", "price": 1200, "implied": [] },
-              { "id": "0:32U", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:444", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:851", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:U19", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "9:PBG", "type": "BOOLEAN", "price": 1200, "implied": [] },
-              { "id": "0:72B", "type": "BOOLEAN", "price": 100, "implied": [] },
-              { "id": "5:D88", "type": "BOOLEAN", "price": 400, "implied": [] },
-              {
-                "id": "9:P20",
-                "type": "PACKAGE",
-                "price": 2600,
-                "implied": [
-                  "0:239",
-                  "0:238",
-                  "0:268",
-                  "0:NC",
-                  "0:K32",
-                  "0:243",
-                  "0:546",
-                  "0:513",
-                  "0:266",
-                  "0:272",
-                  "0:K33",
-                  "0:253",
-                  "0:K34"
-                ]
-              },
-              { "id": "0:239", "type": "BOOLEAN", "price": 900, "implied": [] },
-              { "id": "0:238", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:268", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:NC", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:K32", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:243", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:546", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:513", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:266", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:272", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:K33", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:253", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:K34", "type": "BOOLEAN", "price": 0, "implied": [] },
-              { "id": "0:256", "type": "BOOLEAN", "price": 500, "implied": [] },
-              { "id": "0:550", "type": "BOOLEAN", "price": 1000, "implied": [] },
-              { "id": "0:21U", "type": "BOOLEAN", "price": 300, "implied": [] },
-              { "id": "0:293", "type": "BOOLEAN", "price": 500, "implied": [] },
-              {
-                "id": "PAINT",
-                "type": "PICK_LIST",
-                "price": null,
-                "implied": [
-                  "2:040",
-                  "2:149",
-                  "2:188",
-                  "2:197",
-                  "2:831",
-                  "2:922",
-                  "2:970",
-                  "2:956",
-                  "2:885",
-                  "2:993",
-                  "2:734",
-                  "2:818"
-                ]
-              },
-              {
-                "id": "WHEELS",
-                "type": "PICK_LIST",
-                "price": null,
-                "implied": ["0:RVM", "0:RVN", "0:RWM", "0:RWN", "0:RWK", "0:RWL", "0:RWJ"]
-              },
-              {
-                "id": "UPHOLSTERY",
-                "type": "PICK_LIST",
-                "price": null,
-                "implied": ["4:651", "4:211", "4:251", "4:294", "4:297", "4:213", "4:801", "4:804"]
-              },
-              {
-                "id": "TRIM",
-                "type": "PICK_LIST",
-                "price": null,
-                "implied": ["0:H64", "0:H03", "0:H04", "0:H08", "0:H33", "0:H73", "0:H69"]
-              }
-            ]
-          },
-          "selected": ["2:040", "0:RVM", "0:H64", "4:651"],
-          "msrpCad": 82900
-        }
-      }
-    },
-    {
       "key": "2027/GT43R",
       "source": {
         "url": "https://www.mercedes-benz.ca/en/vehicles/model/gt/coupe/gt43r",
         "status": 200,
-        "sha256": "6be3e832c4ca3a27f14798943916850129efe86512645e879eef22e7425c5d8e"
+        "sha256": "98e7bc1b4792902c47c525dbc8b539d962ca7cec657ec5c57f38ab8ec5bb6606"
       },
       "vehicle": {
         "model": "GT43R",
@@ -12034,7 +11368,7 @@
         "source": {
           "url": "https://www.mercedes-benz.ca/en/vehicles/build/gt/coupe/gt43r",
           "status": 200,
-          "sha256": "dcdfbff0943eb8437b3e25526710c643c5ca39e868777e14b143287f76871207"
+          "sha256": "da99ebed2501540ef818aea902925b9448860bcfebc7b4da9ead7582b8f9db84"
         },
         "data": {
           "content": {
@@ -12245,7 +11579,7 @@
       "source": {
         "url": "https://www.mercedes-benz.ca/en/vehicles/model/gt/coupe/gt55r4",
         "status": 200,
-        "sha256": "ce2e94a8b81305f4d4c42e6c716723b45adcc1a15c0a5629f254535163b39954"
+        "sha256": "99196d74e865f82123fad1a9950796b56e487ed169ff7763b71c67c88b49faf2"
       },
       "vehicle": {
         "model": "GT55R4",
@@ -12299,7 +11633,7 @@
         "source": {
           "url": "https://www.mercedes-benz.ca/en/vehicles/build/gt/coupe/gt55r4",
           "status": 200,
-          "sha256": "e40823bfcc4be86241f377cd48a6785fdcd5ca9698fbeed7d4596521b991905d"
+          "sha256": "879430a9e9b59cbbd895e3b5782722b4623c51ba7fa76fa3aec63fe15920bfac"
         },
         "data": {
           "content": {
@@ -12523,7 +11857,7 @@
       "source": {
         "url": "https://www.mercedes-benz.ca/en/vehicles/model/gt/coupe/gt63r4",
         "status": 200,
-        "sha256": "e09029feec24281bf107e4c247a42bd5072f87d5daf1f51293acdd927d26c573"
+        "sha256": "04058834b30f790bac0fbe2e7d1f897ecc642fd1da58d950b4ccc974dc238721"
       },
       "vehicle": {
         "model": "GT63R4",
@@ -12577,7 +11911,7 @@
         "source": {
           "url": "https://www.mercedes-benz.ca/en/vehicles/build/gt/coupe/gt63r4",
           "status": 200,
-          "sha256": "a4e55965fd379cdd95eb52586cc9be58d14b9ec1aa8c098c030d79e5f37a96f2"
+          "sha256": "7104037241f01441c726d3d6d3892bcfd826f2f0f111ad0fdacbac450e5f1729"
         },
         "data": {
           "content": {
@@ -12783,7 +12117,7 @@
       "source": {
         "url": "https://www.mercedes-benz.ca/en/vehicles/model/s-class/sedan/s500v4",
         "status": 200,
-        "sha256": "16f4fc8e366766ecab19504f060ec9e90e20eb2afb0c422b5a10cc6a1163a79f"
+        "sha256": "84a301e0395ad81185065bbb4e145453e24037985b36a53deaeef03896e5890a"
       },
       "vehicle": {
         "model": "S500V4",
@@ -12840,7 +12174,7 @@
         "source": {
           "url": "https://www.mercedes-benz.ca/en/vehicles/build/s-class/sedan/s500v4",
           "status": 200,
-          "sha256": "00ab22c4e286ab6dfd6d6b85aaa3f0c7e08bcefdb461d77a30841f2f60caea07"
+          "sha256": "165c5e9228ea0a578a364e9b43f94ab8e14b90b6e84869677529fd81c20d560c"
         },
         "data": {
           "content": {
@@ -13044,7 +12378,7 @@
       "source": {
         "url": "https://www.mercedes-benz.ca/en/vehicles/model/s-class/sedan/s580v4",
         "status": 200,
-        "sha256": "d09d1c1230ed74267a020130f413bff2f352c46b01edcfe6e6814daf873c1119"
+        "sha256": "bec912b044f285ade174fea217a7649899f52df69062d49d2badd5ace5a68b9e"
       },
       "vehicle": {
         "model": "S580V4",
@@ -13098,7 +12432,7 @@
         "source": {
           "url": "https://www.mercedes-benz.ca/en/vehicles/build/s-class/sedan/s580v4",
           "status": 200,
-          "sha256": "d83fcfcf9d838219e28aef2944ac7e27004a374d153cf63fdb8dfc6bb95a8b27"
+          "sha256": "c8256d929deaefd9f38ee6c9bf26465ded3f60df2dff5f3496544f5d5fba1c72"
         },
         "data": {
           "content": {
@@ -13334,7 +12668,7 @@
       "source": {
         "url": "https://www.mercedes-benz.ca/en/vehicles/model/s-class/maybach/s580z4",
         "status": 200,
-        "sha256": "4f00750ad0b8305617240bd9a6e266fab4419c447e0a0f2cfe4473d312144b46"
+        "sha256": "214523c29fecbff5e7656f4d5cefbc16a5c664b03a43a15a35b28480c228b703"
       },
       "vehicle": {
         "model": "S580Z4",
@@ -13393,7 +12727,7 @@
         "source": {
           "url": "https://www.mercedes-benz.ca/en/vehicles/build/s-class/maybach/s580z4",
           "status": 200,
-          "sha256": "55e47bb0015073aa1d4f46c41ad259274a946847b9287d0cebe37eb6d97a9a67"
+          "sha256": "4302606d2b70526f11c4cbb5ab7ada7df8af30f8787370a43433d7649e19f56c"
         },
         "data": {
           "content": {
@@ -13604,7 +12938,7 @@
       "source": {
         "url": "https://www.mercedes-benz.ca/en/vehicles/model/s-class/maybach/s680z4",
         "status": 200,
-        "sha256": "33ac7aefa67081caa510a8a2aff8b5da41a23f55708e29c1940403ca483a0cbf"
+        "sha256": "8bb6c30c7448afceee7f8c9c8621607f517b16cfb0304e7c782b1f4d184dd0c2"
       },
       "vehicle": {
         "model": "S680Z4",
@@ -13663,7 +12997,7 @@
         "source": {
           "url": "https://www.mercedes-benz.ca/en/vehicles/build/s-class/maybach/s680z4",
           "status": 200,
-          "sha256": "cff770718566c45dd1c03cc868a9c24f22d2fef40db5489d3e827de0f9fad8e9"
+          "sha256": "69f348c218160e03b8c121c830ab2714aceb92ce1d3a47105a6ec75ec0a1b054"
         },
         "data": {
           "content": {
@@ -13859,7 +13193,7 @@
       "source": {
         "url": "https://www.mercedes-benz.ca/en/vehicles/model/sl/roadster/sl43r",
         "status": 200,
-        "sha256": "9d4522271db3a2f7a396f26faff7cd4f069da1a1fc8b0614c6e238a9ffee18d7"
+        "sha256": "be48f0395c70bac90afa56b3c06e5dcee79aab734fddd0f6524cd45249818dcb"
       },
       "vehicle": {
         "model": "SL43R",
@@ -13910,7 +13244,7 @@
         "source": {
           "url": "https://www.mercedes-benz.ca/en/vehicles/build/sl/roadster/sl43r",
           "status": 200,
-          "sha256": "65e657fdf7cb176ccc1f831fabc23fb890b200bd323dec39917d7a47d260a589"
+          "sha256": "b8bc91af1c7e4d6f64b8b7a5361bb8f07cf9d86f61d16e76cabd414666394f40"
         },
         "data": {
           "content": {
@@ -14110,7 +13444,7 @@
       "source": {
         "url": "https://www.mercedes-benz.ca/en/vehicles/model/sl/roadster/sl55r4",
         "status": 200,
-        "sha256": "d15d62a362262291499bbd9c3380f6376bb4250aa9775ddf8d496928572e8013"
+        "sha256": "1b6b494bf4ae11a6a92f8ae894320a438e273e59fdf278148d7bb102456123d6"
       },
       "vehicle": {
         "model": "SL55R4",
@@ -14167,7 +13501,7 @@
         "source": {
           "url": "https://www.mercedes-benz.ca/en/vehicles/build/sl/roadster/sl55r4",
           "status": 200,
-          "sha256": "937ec120a8eb18a6ce2850be29c4cbe53a54f4a3dcfa2c4547ec2b4b9a4d320b"
+          "sha256": "3da14a31ba2933d74254d78c83a58ba910a8694bb04d386322474eb277635444"
         },
         "data": {
           "content": {
@@ -14398,7 +13732,7 @@
       "source": {
         "url": "https://www.mercedes-benz.ca/en/vehicles/model/sl/roadster/sl63r4",
         "status": 200,
-        "sha256": "c5b8da8356e890f8359ca98184a698d1ccb0412d8cf816027aa204a54eeec109"
+        "sha256": "4453a612bd7345ee28deec25a1d9aa3a8b62e9b84556803f45620157d1b855a9"
       },
       "vehicle": {
         "model": "SL63R4",
@@ -14455,7 +13789,7 @@
         "source": {
           "url": "https://www.mercedes-benz.ca/en/vehicles/build/sl/roadster/sl63r4",
           "status": 200,
-          "sha256": "91b8a1e2990fc244c3695e0518b7e43f714373c5a3e44c40cb05fe8f189fa728"
+          "sha256": "bcc168099d83fd1a8f9726f61aa1d31111405ced369bae9dc831844301ed9a0e"
         },
         "data": {
           "content": {

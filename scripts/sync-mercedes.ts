@@ -7,6 +7,7 @@ import {
   mercedesCarOrigin,
   mercedesVanOrigin,
   mercedesLineup,
+  mercedesRollover,
   mercedesModelPage,
   mercedesMenuPlaceholders,
   mercedesReceiptSchema,
@@ -17,6 +18,7 @@ import {
 } from '../packages/car-catalog/src/mercedes-import.ts';
 import type {
   MercedesReceipt,
+  MercedesReference,
   MercedesSnapshot,
 } from '../packages/car-catalog/src/mercedes-import.ts';
 import { addMercedesRetail } from '../packages/car-catalog/src/mercedes.ts';
@@ -82,13 +84,19 @@ async function capture(url: string) {
   return { source: receipt, text: bytes.toString('utf8') };
 }
 const home = await capture(`${mercedesCarOrigin}/en/home`),
-  menu = mercedesLineup(home.text);
+  menu: MercedesReference[] = [];
 const cars: MercedesSnapshot['cars'] = [];
-for (const m of menu) {
-  const page = await capture(m.page);
+for (const listed of mercedesLineup(home.text)) {
+  const page = await capture(listed.page),
+    response = listed.builder ? await capture(listed.builder) : null,
+    m = mercedesRollover(listed, page.text, response?.text ?? null);
+  if (m.menuYear)
+    console.log(
+      `${listed.key}: model page states ${m.year}${m.staleBuilder ? '; builder still shows the menu year' : ''}. Imported as ${m.key}.`,
+    );
+  menu.push(m);
   let builder: MercedesSnapshot['cars'][number]['builder'] = null;
-  if (m.builder) {
-    const response = await capture(m.builder);
+  if (response && m.builder) {
     builder = {
       source: response.source,
       data: mercedesBuilder(response.text, m.model, m.year, false),

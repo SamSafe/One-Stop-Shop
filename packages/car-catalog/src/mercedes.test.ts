@@ -22,18 +22,20 @@ const retail = catalog.cars.filter(
 const context = "mbNafta.ns('pageData').country = 'ca'; mbNafta.ns('pageData').currency = 'CAD';";
 describe('Canadian Mercedes-Benz base model years, passenger and crew vans', () => {
   it('retains all explicit menu identities and both separate passenger-van selectors without claiming expansion completeness', () => {
-    expect(validateMercedesSnapshot(snapshot).cars).toHaveLength(66);
-    expect(snapshot.cars.filter((r) => r.builder)).toHaveLength(48);
+    expect(validateMercedesSnapshot(snapshot).cars).toHaveLength(65);
+    expect(snapshot.cars.filter((r) => r.builder)).toHaveLength(45);
     expect(snapshot.vans).toHaveLength(11);
     expect(snapshot.selectors.map((s) => [s.kind, s.models.length])).toEqual([
       ['passenger-van', 5],
       ['crew-van', 6],
     ]);
-    expect(retail).toHaveLength(82);
-    expect(retail.filter((c) => c.facts.msrpCad.value !== null)).toHaveLength(81);
+    expect(retail).toHaveLength(81);
+    expect(retail.filter((c) => c.facts.msrpCad.value !== null)).toHaveLength(80);
     expect(new Set(retail.map((c) => c.year))).toEqual(new Set([2025, 2026, 2027]));
+    // The AMG GLC 53 menu card lost its model identity (year 0, no name).
     expect(snapshot.placeholders).toEqual([
       'https://www.mercedes-benz.ca/en/vehicles/class/maybach-eqs/suv',
+      'https://www.mercedes-benz.ca/en/vehicles/model/glc/suv/glc53w4',
     ]);
     expect(
       mercedesReviewGaps(snapshot).some(
@@ -43,12 +45,13 @@ describe('Canadian Mercedes-Benz base model years, passenger and crew vans', () 
     expect(JSON.stringify(snapshot)).not.toMatch(/"(?:VIN|cookie|headers|x-api-key|email)"/i);
   });
   it('uses the active legacy MSRP basis with exact CCS defaults instead of the CCS default-model price', () => {
-    const b = row('2027/GLC300W4').builder!.data;
+    const b = row('2027/GLC300C4').builder!.data;
     expect(b.content.useCCS).toBe(true);
     expect(b.content.useCCSPrice).toBe(false);
     expect(b.selected).toHaveLength(4);
-    expect(b.tree.baseMsrpCad).toBe(61000);
-    expect(mercedesPrice(b.tree, b.selected)).toBe(61000);
+    expect(b.tree.baseMsrpCad).toBe(65300);
+    expect(mercedesPrice(b.tree, b.selected)).toBe(65300);
+    expect(facts('2027/GLC300C4').msrpCad.value).toBe(65300);
     expect(facts('2027/GLC300W4').msrpCad.value).toBe(61000);
     expect(facts('2027/CLA250E').msrpCad.value).toBe(49900);
     expect(facts('2027/GLC350E4').msrpCad.value).toBe(67300);
@@ -65,7 +68,7 @@ describe('Canadian Mercedes-Benz base model years, passenger and crew vans', () 
     changed.cars.find((c) => c.key === c300.key)!.vehicle.msrp++;
     expect(() => validateMercedesSnapshot(changed)).toThrow(/Unreviewed.*conflict/);
     const newConflict = structuredClone(snapshot);
-    newConflict.cars.find((c) => c.key === '2027/GLC300W4')!.vehicle.msrp++;
+    newConflict.cars.find((c) => c.key === '2027/GLC300C4')!.vehicle.msrp++;
     expect(() => validateMercedesSnapshot(newConflict)).toThrow(/Unreviewed.*conflict/);
   });
   it('preserves standard seating, metric mirror conventions and published power instead of boost/optional maxima', () => {
@@ -155,11 +158,25 @@ describe('Canadian Mercedes-Benz base model years, passenger and crew vans', () 
       /previously represented model year/,
     );
   });
+  it('uses the model page year when Mercedes rolls a model over before its menu', () => {
+    const rolled = reference('2027/GLC300W4');
+    expect(rolled).toMatchObject({ menuYear: 2026, builder: null });
+    expect(rolled.staleBuilder).toContain('/glc300w4');
+    expect(reference('2027/GLC300C4')).toMatchObject({ menuYear: 2026 });
+    expect(reference('2027/GLC300C4').staleBuilder).toBeUndefined();
+    const car = retail.find((c) => c.manufacturerConfiguration?.code === 'GLC300W4')!;
+    expect(car.year).toBe(2027);
+    expect(car.modelYearNote).toContain('still lists this as 2026');
+    expect(car.modelYearNote).toContain('price is not used');
+    const regressed = structuredClone(snapshot);
+    regressed.menu.find((m) => m.key === '2027/GLC300W4')!.menuYear = 2025;
+    expect(() => validateMercedesSnapshot(regressed)).toThrow(/identity/);
+  });
   it('rejects unknown/missing price components and prevents double counting included package children', () => {
-    const b = row('2027/GLC300W4').builder!.data;
+    const b = row('2026/C300W4').builder!.data;
     // Price arithmetic alone does not verify package compatibility or orderability.
-    expect(mercedesPrice(b.tree, [...b.selected, '9:DP1'])).toBe(64300);
-    expect(mercedesPrice(b.tree, [...b.selected, '9:DP1', '0:810'])).toBe(64300);
+    expect(mercedesPrice(b.tree, [...b.selected, '9:PDB'])).toBe(64250);
+    expect(mercedesPrice(b.tree, [...b.selected, '9:PDB', '0:810'])).toBe(64250);
     expect(() => mercedesPrice(b.tree, [...b.selected, 'MISSING'])).toThrow(/missing/);
     expect(() => mercedesPrice(b.tree, [...b.selected, b.selected[0]!])).toThrow(/duplicated/);
     const unknown = structuredClone(b.tree);

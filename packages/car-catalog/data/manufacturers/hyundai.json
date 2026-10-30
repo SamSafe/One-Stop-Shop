@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "retrievedAt": "2026-10-21T16:58:31.811Z",
+  "retrievedAt": "2026-10-30T19:49:12.224Z",
   "lineup": {
-    "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/GetShowroomsModelJson?language=en&prov=AB",
-    "sha256": "a4001c25da9c8aaec096c406d8a871fba825eeb1aba2f21219c132771f9672b9"
+    "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/GetShowroomsModelJson?prov=AB&lang=en",
+    "sha256": "d8a21a7966f0213bccd5b48f6fef8b1078d63d4aa55c7b52feb998aac0947c34"
   },
   "client": {
     "url": "https://www.hyundaicanada.com/blocks/build-and-price/buildAndPrice.bundle.js",
@@ -37,7 +37,7 @@
       "name": "ELANTRA",
       "source": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getShowroomModelTrimsJson?modelId=48ab551a-00fd-4e1b-934d-5f06f361e2ee&prov=AB&language=en",
-        "sha256": "c95c9c11391a9e881dc9b82ec6967717569172bd8b235c6c75ffc3588386de4d"
+        "sha256": "748885e935a087d3db958e626f4350e6d9be27e4e41c6e0dbf3b8d87fac8930a"
       },
       "expectedParentTrimIds": [
         "fdfb2547-2d96-47c7-bf9b-d5fa68fc3bb7",
@@ -56,10 +56,10 @@
       "specificationsReview": {
         "source": {
           "url": "https://www.hyundaicanada.com/api/backendservice/vlp/GetSpecifications?modelId=48ab551a-00fd-4e1b-934d-5f06f361e2ee&lang=en",
-          "sha256": "e0c35d86cd20a6788cd4ff35daffeecf2895f2199d8d6a0467d1b11a13847df0"
+          "sha256": "88fcfa24bfab76d17ede4c402092de7379f9cc9d894a15ac123c7dff0f79638d"
         },
-        "status": 503,
-        "reason": "Official model specification endpoint returned HTTP 503 after bounded retries. Dimensions, cargo, power and energy facts require exact-trim source review."
+        "status": 200,
+        "reason": "Model table uses presentation columns, including shared optional powertrains. Exact trim/column and measurement-mode reconciliation remains required; values are not guessed."
       }
     },
     {
@@ -69,7 +69,7 @@
       "name": "ELANTRA N",
       "source": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getShowroomModelTrimsJson?modelId=2175a17c-0ef0-409f-a5a4-ec2f932d5447&prov=AB&language=en",
-        "sha256": "9e4ea3daa744143658ac7b2c5abb6a70efa041896802086e8188a16d6e31aa09"
+        "sha256": "02d2c6aed2e28f700ff22f0fc3535d9ee13873507b703debd3ef1559f7549d2a"
       },
       "expectedParentTrimIds": [
         "461ebf3a-c454-40f7-82b7-4cb11d7a86f1",
@@ -86,10 +86,10 @@
       "specificationsReview": {
         "source": {
           "url": "https://www.hyundaicanada.com/api/backendservice/vlp/GetSpecifications?modelId=2175a17c-0ef0-409f-a5a4-ec2f932d5447&lang=en",
-          "sha256": "46c7465edce2eb1998e92209b1c1a0b2905ddd77ddc76a9506fc4426071c2277"
+          "sha256": "5a726565a7dd18aa8c7d050703953ab82dca788ae0841208185c36521486b0ff"
         },
-        "status": 503,
-        "reason": "Official model specification endpoint returned HTTP 503 after bounded retries. Dimensions, cargo, power and energy facts require exact-trim source review."
+        "status": 200,
+        "reason": "Model table uses presentation columns, including shared optional powertrains. Exact trim/column and measurement-mode reconciliation remains required; values are not guessed."
       }
     },
     {
@@ -99,7 +99,7 @@
       "name": "IONIQ 5",
       "source": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getShowroomModelTrimsJson?modelId=8ee48e9e-535f-46b0-b80b-f6a884268ad1&prov=AB&language=en",
-        "sha256": "e49308875302d4bf0b2f8664869084529be16c719fbb259ee68aafc38b0a723d"
+        "sha256": "aa801d97837df8426650f7dad86cdd9620ca21e96c9ddacb02ae576bf5c161ad"
       },
       "expectedParentTrimIds": [
         "1341d283-0eea-4a3e-b3cc-4a319f9736d8",
@@ -113,10 +113,10 @@
       "specificationsReview": {
         "source": {
           "url": "https://www.hyundaicanada.com/api/backendservice/vlp/GetSpecifications?modelId=8ee48e9e-535f-46b0-b80b-f6a884268ad1&lang=en",
-          "sha256": "4a9707af974e5249d28f75b518cae73cd1e39d9c4a96059455420848f8f42a43"
+          "sha256": "eda5c0a0584085abcf946781a937a1fb587dc5517dbb52a998e83f5351b8fd0d"
         },
-        "status": 503,
-        "reason": "Official model specification endpoint returned HTTP 503 after bounded retries. Dimensions, cargo, power and energy facts require exact-trim source review."
+        "status": 200,
+        "reason": "Model table uses presentation columns, including shared optional powertrains. Exact trim/column and measurement-mode reconciliation remains required; values are not guessed."
       }
     },
     {
@@ -126,7 +126,7 @@
       "name": "IONIQ 9",
       "source": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getShowroomModelTrimsJson?modelId=d55f878d-61e0-4a21-8a88-40437592eccd&prov=AB&language=en",
-        "sha256": "7663736e1d25b880c54c02822a5144328414f9b109ecf070e5d0d45bf0749d23"
+        "sha256": "6a391a5a980b7816a0f537eafce94464205ef47436aef46b40434a77c5fa84cd"
       },
       "expectedParentTrimIds": [
         "46f9deb5-db62-41a0-9956-8e2c0cb3bce4",
@@ -143,10 +143,10 @@
       "specificationsReview": {
         "source": {
           "url": "https://www.hyundaicanada.com/api/backendservice/vlp/GetSpecifications?modelId=d55f878d-61e0-4a21-8a88-40437592eccd&lang=en",
-          "sha256": "6d43e98662785b1965c98c6fcf96be7cd3e3d72cc8a83debab34e9734af237b9"
+          "sha256": "cff81cf1f24e8e3e16118ee0edef830a190179cd97454d86326bdd352f0783af"
         },
-        "status": 503,
-        "reason": "Official model specification endpoint returned HTTP 503 after bounded retries. Dimensions, cargo, power and energy facts require exact-trim source review."
+        "status": 200,
+        "reason": "Model table uses presentation columns, including shared optional powertrains. Exact trim/column and measurement-mode reconciliation remains required; values are not guessed."
       }
     },
     {
@@ -156,7 +156,7 @@
       "name": "KONA",
       "source": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getShowroomModelTrimsJson?modelId=18a14438-8ae3-44b1-ab4d-e315b9cbb050&prov=AB&language=en",
-        "sha256": "7426def0b0d2a302e36d1cece2aac0104503fca3430c0f8c02fb6a8f70db4180"
+        "sha256": "45e62becccd8e32e0e255d271a0b7df8ccfe427f149b68839bced0e04d691520"
       },
       "expectedParentTrimIds": [
         "1d0b4fd6-8e06-4559-849f-4d0559a7b13f",
@@ -175,10 +175,10 @@
       "specificationsReview": {
         "source": {
           "url": "https://www.hyundaicanada.com/api/backendservice/vlp/GetSpecifications?modelId=18a14438-8ae3-44b1-ab4d-e315b9cbb050&lang=en",
-          "sha256": "b1a40ec9028dc9dcc82ba1cd432f4d78ebe360ed88bd119ce06a025371810e44"
+          "sha256": "336897ccb3b61568ebc678d0d7cda68f564b19eeee99b49b53b86bfc0f28d1f6"
         },
-        "status": 503,
-        "reason": "Official model specification endpoint returned HTTP 503 after bounded retries. Dimensions, cargo, power and energy facts require exact-trim source review."
+        "status": 200,
+        "reason": "Model table uses presentation columns, including shared optional powertrains. Exact trim/column and measurement-mode reconciliation remains required; values are not guessed."
       }
     },
     {
@@ -188,7 +188,7 @@
       "name": "KONA Electric",
       "source": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getShowroomModelTrimsJson?modelId=a863bcf0-33ac-47f9-8d62-c51a92acfac8&prov=AB&language=en",
-        "sha256": "b6068c81398fd18058b056c0217b19f9b01c87771c2e315b80b3f3a00e24055c"
+        "sha256": "4e3008cb36ddd9beb56a35752962d4e430b1f643f9f3451afc36976637023556"
       },
       "expectedParentTrimIds": ["e50f68af-b3af-4e06-af05-eaeca8e39842"],
       "expectedTrimIds": [
@@ -199,10 +199,10 @@
       "specificationsReview": {
         "source": {
           "url": "https://www.hyundaicanada.com/api/backendservice/vlp/GetSpecifications?modelId=a863bcf0-33ac-47f9-8d62-c51a92acfac8&lang=en",
-          "sha256": "0d0e32f4b6ee0e5a5fb5d9e645b6666de04f256fc5ee848e4404be81745957e0"
+          "sha256": "a56be8c35f4c77ba098f40ae726a6c6bb823323277a43657cda390534c724e42"
         },
-        "status": 503,
-        "reason": "Official model specification endpoint returned HTTP 503 after bounded retries. Dimensions, cargo, power and energy facts require exact-trim source review."
+        "status": 200,
+        "reason": "Model table uses presentation columns, including shared optional powertrains. Exact trim/column and measurement-mode reconciliation remains required; values are not guessed."
       }
     },
     {
@@ -212,7 +212,7 @@
       "name": "PALISADE",
       "source": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getShowroomModelTrimsJson?modelId=2e0e34bb-5195-40e7-80c8-fe605973b1d1&prov=AB&language=en",
-        "sha256": "85b1929b0ebcec0fecf84d71732fb8dcf2c4b8c111549b49330ea45c89e1f919"
+        "sha256": "ac995736ec8be2686b20c4a20d153dfa467f238d680ff4c034096f3b8199d64d"
       },
       "expectedParentTrimIds": [
         "98ad5227-e42c-47e1-91ca-80470afb256e",
@@ -232,10 +232,10 @@
       "specificationsReview": {
         "source": {
           "url": "https://www.hyundaicanada.com/api/backendservice/vlp/GetSpecifications?modelId=2e0e34bb-5195-40e7-80c8-fe605973b1d1&lang=en",
-          "sha256": "e7e405925ae03f9f09b646054d7093d11e3bd5e4a43995e79d7b03356ad5d35e"
+          "sha256": "1781e5b16ff52a7d89159eae4927e8a3d03ddbf74b7c165a1511f76f0de28c6a"
         },
-        "status": 503,
-        "reason": "Official model specification endpoint returned HTTP 503 after bounded retries. Dimensions, cargo, power and energy facts require exact-trim source review."
+        "status": 200,
+        "reason": "Model table uses presentation columns, including shared optional powertrains. Exact trim/column and measurement-mode reconciliation remains required; values are not guessed."
       }
     },
     {
@@ -245,7 +245,7 @@
       "name": "SANTA FE",
       "source": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getShowroomModelTrimsJson?modelId=8be6af57-45ec-49a2-9e1b-3812d44c98cb&prov=AB&language=en",
-        "sha256": "8669eac938e6ea44f6450eb60795a0bf6f9c4757312c6a6e97dd847f29121053"
+        "sha256": "fbea314f811c6e154ce48d418fefffb26b9c1a7d3f2b66457af91d8d3eac3b28"
       },
       "expectedParentTrimIds": [
         "9523a7d9-5b69-4466-a201-64e4a4ae4d48",
@@ -261,10 +261,10 @@
       "specificationsReview": {
         "source": {
           "url": "https://www.hyundaicanada.com/api/backendservice/vlp/GetSpecifications?modelId=8be6af57-45ec-49a2-9e1b-3812d44c98cb&lang=en",
-          "sha256": "372b107fd64c9627c3911fabd93d602e802f71cedd68f7e8ad6feef941a74541"
+          "sha256": "580e48a9b2df52d90eb5380e532d9588c38ed564fc9df019b5f2b607f7270aed"
         },
-        "status": 503,
-        "reason": "Official model specification endpoint returned HTTP 503 after bounded retries. Dimensions, cargo, power and energy facts require exact-trim source review."
+        "status": 200,
+        "reason": "Model table uses presentation columns, including shared optional powertrains. Exact trim/column and measurement-mode reconciliation remains required; values are not guessed."
       }
     },
     {
@@ -274,7 +274,7 @@
       "name": "SONATA",
       "source": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getShowroomModelTrimsJson?modelId=ec3d0631-b108-425a-9e3a-636187c18a38&prov=AB&language=en",
-        "sha256": "7332f70def6ca95ad9d24e03786e9e10cc73e705d05212769f835753c5cf9f71"
+        "sha256": "e06db3244fa50fda01670495adb820699d57f341b71b61013eda6aec9812718a"
       },
       "expectedParentTrimIds": [
         "1b99bbe8-a49c-4ca8-b6e1-5d5766f81bc0",
@@ -289,10 +289,10 @@
       "specificationsReview": {
         "source": {
           "url": "https://www.hyundaicanada.com/api/backendservice/vlp/GetSpecifications?modelId=ec3d0631-b108-425a-9e3a-636187c18a38&lang=en",
-          "sha256": "31293eec171b758b7fe5937042733bb1367db08b77c96345d966efc6d665f311"
+          "sha256": "42aaeef26a51b6310eed995fe2a032526fdef7e417ebd58ed8c3d97379f74424"
         },
-        "status": 503,
-        "reason": "Official model specification endpoint returned HTTP 503 after bounded retries. Dimensions, cargo, power and energy facts require exact-trim source review."
+        "status": 200,
+        "reason": "Model table uses presentation columns, including shared optional powertrains. Exact trim/column and measurement-mode reconciliation remains required; values are not guessed."
       }
     },
     {
@@ -302,7 +302,7 @@
       "name": "TUCSON",
       "source": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getShowroomModelTrimsJson?modelId=db60f289-950f-4326-98d7-6cc173446e18&prov=AB&language=en",
-        "sha256": "3e96355497c763dae0ee9037c176d4ef6c320290d92524fa82e58737d8b40fa5"
+        "sha256": "f520a244c7d96491578495d60c2e0acc930dac7523aed90c27a77628ea275d35"
       },
       "expectedParentTrimIds": [
         "caf5bc0d-1b70-4562-997a-c6c4bc99dbf1",
@@ -321,7 +321,7 @@
       "specificationsReview": {
         "source": {
           "url": "https://www.hyundaicanada.com/api/backendservice/vlp/GetSpecifications?modelId=db60f289-950f-4326-98d7-6cc173446e18&lang=en",
-          "sha256": "79cd77d340fe2c1157be221b158b291fd30842d29d1c44be9dd327b52fb1f4dc"
+          "sha256": "bcb975cc419f63ea07a703d04cefb19dc3720906d4c3a69f0b3bde19f1afd752"
         },
         "status": 200,
         "reason": "Model table uses presentation columns, including shared optional powertrains. Exact trim/column and measurement-mode reconciliation remains required; values are not guessed."
@@ -334,7 +334,7 @@
       "name": "VENUE",
       "source": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getShowroomModelTrimsJson?modelId=cca62b9d-9ae2-4018-81cb-22d93a81044a&prov=AB&language=en",
-        "sha256": "d77be3e6b22f067d8db2d0f1a1b40d37bb46a2507677b8665cf059b9322f83af"
+        "sha256": "d0d697b7fa0b15145d7890bec1a50f95c7d108b1d7d51dee980bc765d33d7db0"
       },
       "expectedParentTrimIds": [
         "fa92b82a-b641-4ade-a08e-f0bf4fb4cfdc",
@@ -349,10 +349,10 @@
       "specificationsReview": {
         "source": {
           "url": "https://www.hyundaicanada.com/api/backendservice/vlp/GetSpecifications?modelId=cca62b9d-9ae2-4018-81cb-22d93a81044a&lang=en",
-          "sha256": "54a0c9c244af4a0178d18b08940467a9bf7d218fb37b91c1adfcc0a369ed8028"
+          "sha256": "4a57c6581d9db5c04e2144b7032cc25834e2c6f041b80437f743fc759cde6d57"
         },
-        "status": 503,
-        "reason": "Official model specification endpoint returned HTTP 503 after bounded retries. Dimensions, cargo, power and energy facts require exact-trim source review."
+        "status": 200,
+        "reason": "Model table uses presentation columns, including shared optional powertrains. Exact trim/column and measurement-mode reconciliation remains required; values are not guessed."
       }
     },
     {
@@ -362,7 +362,7 @@
       "name": "IONIQ 5",
       "source": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getShowroomModelTrimsJson?modelId=7aba3521-6fb5-ea8e-69bc-03a6892662a0&prov=AB&language=en",
-        "sha256": "410fe65e90c0d3483a28dcb38a9a0d0811475a7862d7c4e968003758bbebb046"
+        "sha256": "06b6f8b32646dd34e3dc37a7b9de75798af274a7228d9715f07db82ae556a4f7"
       },
       "expectedParentTrimIds": [
         "a90e1c4b-800f-1818-c437-80e4c98db688",
@@ -377,10 +377,10 @@
       "specificationsReview": {
         "source": {
           "url": "https://www.hyundaicanada.com/api/backendservice/vlp/GetSpecifications?modelId=7aba3521-6fb5-ea8e-69bc-03a6892662a0&lang=en",
-          "sha256": "1409626fed1d0dfff838d406fd74d377e18ec6e047d84b5547f30229697cb961"
+          "sha256": "070674688a586f9589b49a8f8d84d8b3f78d67c6ad6bdccfacb45fd339c21f55"
         },
-        "status": 503,
-        "reason": "Official model specification endpoint returned HTTP 503 after bounded retries. Dimensions, cargo, power and energy facts require exact-trim source review."
+        "status": 200,
+        "reason": "Model table uses presentation columns, including shared optional powertrains. Exact trim/column and measurement-mode reconciliation remains required; values are not guessed."
       }
     },
     {
@@ -390,17 +390,17 @@
       "name": "IONIQ 5 N",
       "source": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getShowroomModelTrimsJson?modelId=d0736584-92f1-dcb1-d61b-6324e290915a&prov=AB&language=en",
-        "sha256": "314a272034f3e98dc1c7acf4bece67764a76c556ec47409fff9c7e6b9b92733d"
+        "sha256": "626dc183965ea2546188e722e847e7f57a2a181c2f588ea1ef820d78e3ca24fe"
       },
       "expectedParentTrimIds": ["7032886d-45c9-0cae-be15-862c3d9c0e01"],
       "expectedTrimIds": ["7032886d-45c9-0cae-be15-862c3d9c0e01"],
       "specificationsReview": {
         "source": {
           "url": "https://www.hyundaicanada.com/api/backendservice/vlp/GetSpecifications?modelId=d0736584-92f1-dcb1-d61b-6324e290915a&lang=en",
-          "sha256": "cecd26f58d8bdc125e346e1eb0ea71047a7919caae83cbcf5e993d4037ce4227"
+          "sha256": "fe35353d4b03945870395e17f88d7ae306da84f2cf2ee328b798117e89bb117b"
         },
-        "status": 503,
-        "reason": "Official model specification endpoint returned HTTP 503 after bounded retries. Dimensions, cargo, power and energy facts require exact-trim source review."
+        "status": 200,
+        "reason": "Model table uses presentation columns, including shared optional powertrains. Exact trim/column and measurement-mode reconciliation remains required; values are not guessed."
       }
     },
     {
@@ -410,7 +410,7 @@
       "name": "IONIQ 9",
       "source": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getShowroomModelTrimsJson?modelId=0acba46a-a832-a17a-fda7-7239a1ae1527&prov=AB&language=en",
-        "sha256": "581247da5e2a2150be5baa24438afd6a6332c67bfcc1c0d22ae2f7474f3c3a11"
+        "sha256": "d658720e8dba89bca8ea3e1e05932156351cc1c4692ee780f39e907c7abf6381"
       },
       "expectedParentTrimIds": [
         "51fb9737-5cbf-c2f3-0b32-9148ff3a1b75",
@@ -426,10 +426,10 @@
       "specificationsReview": {
         "source": {
           "url": "https://www.hyundaicanada.com/api/backendservice/vlp/GetSpecifications?modelId=0acba46a-a832-a17a-fda7-7239a1ae1527&lang=en",
-          "sha256": "50b88c44b0394159c99940d07cf756b4fc6ab8ffa918f6be722eb375bbb904a2"
+          "sha256": "b6780145020ad2b45a62d2ae8d638f09ab8f60c4e6199fb875be852f1e11ac1d"
         },
-        "status": 503,
-        "reason": "Official model specification endpoint returned HTTP 503 after bounded retries. Dimensions, cargo, power and energy facts require exact-trim source review."
+        "status": 200,
+        "reason": "Model table uses presentation columns, including shared optional powertrains. Exact trim/column and measurement-mode reconciliation remains required; values are not guessed."
       }
     },
     {
@@ -439,7 +439,7 @@
       "name": "KONA",
       "source": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getShowroomModelTrimsJson?modelId=db796c8a-ae4f-3b7f-8e3f-b67dec5bbc9d&prov=AB&language=en",
-        "sha256": "7ed387effa32852c8b33293f6a166cfa2e17ce37ed6e75abf494e1239e27db88"
+        "sha256": "d3186403f0f07d2437129da04e1039d1839b1340f5cddc753c3986be336f8230"
       },
       "expectedParentTrimIds": [
         "6d39dcbc-4957-65ac-49d8-8f6d7177b0d9",
@@ -459,10 +459,10 @@
       "specificationsReview": {
         "source": {
           "url": "https://www.hyundaicanada.com/api/backendservice/vlp/GetSpecifications?modelId=db796c8a-ae4f-3b7f-8e3f-b67dec5bbc9d&lang=en",
-          "sha256": "168530c102da11dedb6c50ef9f10876005fcc44d6db1e9796d99b67a21379848"
+          "sha256": "2baa5649662a8913c7917a2170219afcf6bcaff7d05de5934602f17955d2d9b8"
         },
-        "status": 503,
-        "reason": "Official model specification endpoint returned HTTP 503 after bounded retries. Dimensions, cargo, power and energy facts require exact-trim source review."
+        "status": 200,
+        "reason": "Model table uses presentation columns, including shared optional powertrains. Exact trim/column and measurement-mode reconciliation remains required; values are not guessed."
       }
     },
     {
@@ -472,7 +472,7 @@
       "name": "KONA Electric",
       "source": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getShowroomModelTrimsJson?modelId=1834e7a5-c4bd-30ae-6adf-8241e30ed62c&prov=AB&language=en",
-        "sha256": "5dd4cb29338010bf2db5631c4f4ed70671785dd40db6f163db49fd9216c184e4"
+        "sha256": "d9cc0d9dec4e3da0c851b78b239ca5951c7a0f4d852f1f2a6bd7959748cfce59"
       },
       "expectedParentTrimIds": ["35fcb273-4454-472f-87e5-ee4899c74002"],
       "expectedTrimIds": [
@@ -483,10 +483,10 @@
       "specificationsReview": {
         "source": {
           "url": "https://www.hyundaicanada.com/api/backendservice/vlp/GetSpecifications?modelId=1834e7a5-c4bd-30ae-6adf-8241e30ed62c&lang=en",
-          "sha256": "7520d19a701ab21f0a8e1acb042a80a62684e0bfd2d004176ea2f2916bde37fb"
+          "sha256": "bc388ec6a10ee8769221926f44d18d3e380437eb3eb7d3bc870a5d01d7f20de5"
         },
-        "status": 503,
-        "reason": "Official model specification endpoint returned HTTP 503 after bounded retries. Dimensions, cargo, power and energy facts require exact-trim source review."
+        "status": 200,
+        "reason": "Model table uses presentation columns, including shared optional powertrains. Exact trim/column and measurement-mode reconciliation remains required; values are not guessed."
       }
     },
     {
@@ -496,7 +496,7 @@
       "name": "PALISADE",
       "source": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getShowroomModelTrimsJson?modelId=a63a2d3e-626f-b605-f8ea-8eb0ed4beb13&prov=AB&language=en",
-        "sha256": "5beb346a34a3f3459756b40c4b544fd9bda98a0f484323e99e00f99843a964f9"
+        "sha256": "a3f6ff8cd236b7dcae1b01897480c65973298c49ba24a7f646aac1b29909dee3"
       },
       "expectedParentTrimIds": [
         "01993d76-bbb0-88bf-a72b-bfa51f2d9e99",
@@ -518,10 +518,10 @@
       "specificationsReview": {
         "source": {
           "url": "https://www.hyundaicanada.com/api/backendservice/vlp/GetSpecifications?modelId=a63a2d3e-626f-b605-f8ea-8eb0ed4beb13&lang=en",
-          "sha256": "bf2571302d7b9eccb2bd14305ef648719a04603b7eb5cb27a136b42ccdedbe72"
+          "sha256": "3949383f47f1edf38cd135d394d32b3eae4146dfdc1de04e63a88714c9059c43"
         },
-        "status": 503,
-        "reason": "Official model specification endpoint returned HTTP 503 after bounded retries. Dimensions, cargo, power and energy facts require exact-trim source review."
+        "status": 200,
+        "reason": "Model table uses presentation columns, including shared optional powertrains. Exact trim/column and measurement-mode reconciliation remains required; values are not guessed."
       }
     },
     {
@@ -531,7 +531,7 @@
       "name": "SANTA FE",
       "source": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getShowroomModelTrimsJson?modelId=af69d1ab-83a8-77dd-da02-6b5db93d5346&prov=AB&language=en",
-        "sha256": "8a923f386f8367049588ca563376bf9156b97c5f57bd0def7b729951dee09740"
+        "sha256": "c5208833a74e06b3d905ff65c9dc506bff5ffb4668ffacc99601344336714886"
       },
       "expectedParentTrimIds": [
         "80524807-6423-41ed-b5dd-8f15af47c28a",
@@ -547,10 +547,10 @@
       "specificationsReview": {
         "source": {
           "url": "https://www.hyundaicanada.com/api/backendservice/vlp/GetSpecifications?modelId=af69d1ab-83a8-77dd-da02-6b5db93d5346&lang=en",
-          "sha256": "0b74a8dbcbb274c9ba06775a665a8c36a74523a036f845dbb776d1238599399e"
+          "sha256": "20f011a7f6974ed6f777bbacecaaeb4524d8bc13a4415448d0ae03a3e652f5b4"
         },
-        "status": 504,
-        "reason": "Official model specification endpoint returned HTTP 504 after bounded retries. Dimensions, cargo, power and energy facts require exact-trim source review."
+        "status": 200,
+        "reason": "Model table uses presentation columns, including shared optional powertrains. Exact trim/column and measurement-mode reconciliation remains required; values are not guessed."
       }
     }
   ],
@@ -975,7 +975,7 @@
       },
       "featuresSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getAllTrimFeatures?trimId=f2e53b16-a921-4851-843d-5f01dd033227&isParentVehicle=false&language=en",
-        "sha256": "45bd1116ee7b3ff2920552106186d001a67ff9babaedc67c5a1abfdd8be3125b"
+        "sha256": "84ab288e28a98424f58b1ee89bfa0f220c3e6edd32fc809896dad953ac7a9391"
       },
       "features": [
         {
@@ -1028,7 +1028,7 @@
       },
       "featuresSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getAllTrimFeatures?trimId=461ebf3a-c454-40f7-82b7-4cb11d7a86f1&isParentVehicle=false&language=en",
-        "sha256": "1d006b207d2477f97fc0f6d02bca154e17727bd5c5d1e4469878828d9614fe14"
+        "sha256": "1f7e5ca1e32f1edb41e73571d1bacc68d36d3414f386c1cb476689a731817dd7"
       },
       "features": [
         {
@@ -1081,7 +1081,7 @@
       },
       "featuresSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getAllTrimFeatures?trimId=2d52d22a-0585-4fc2-a8dd-b6a88a9a6fcb&isParentVehicle=false&language=en",
-        "sha256": "3fd16ad087db5411baaa1a07b133cb34f97543113dfa2c211515a72c834befd8"
+        "sha256": "163761ff9643b19c52e206c64b5e1fcd283f2abf681ee7f2f3e31b60c5f47a35"
       },
       "features": [
         {
@@ -1134,7 +1134,7 @@
       },
       "featuresSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getAllTrimFeatures?trimId=79b6c2a6-912d-4997-828b-ceecede20031&isParentVehicle=false&language=en",
-        "sha256": "628e588e21d67df3f76ae9a8e48359d6caac79077a8af8bbc18b49237d9500d7"
+        "sha256": "2d6a06384976285d9ee9375af8c7c89611f096dc447bb452db02fedba3309d09"
       },
       "features": [
         {
@@ -1183,11 +1183,11 @@
       "featuresTrimName": "Essential",
       "priceSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/trimallpurchaseOptions?trimId=fdfb2547-2d96-47c7-bf9b-d5fa68fc3bb7&prov=AB&lang=en",
-        "sha256": "07f97aa04e7da3faa902985a3701c6696f28746027f32285b07b5644cffa1287"
+        "sha256": "7aef4abaa75568630d9f711ee54bfc8f8e596c2121fe4e615ab8c6fdf9f0be05"
       },
       "featuresSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getAllTrimFeatures?trimId=fdfb2547-2d96-47c7-bf9b-d5fa68fc3bb7&isParentVehicle=false&language=en",
-        "sha256": "d934c30243e455a258d10d9fe6c2a6f51e0f1738b9569bbdf35021266f49253f"
+        "sha256": "34be4782c72d7c0dd3cd8db857b1a9b4c2d151f12b987c8cd746ea7bc8bac801"
       },
       "features": [
         {
@@ -1220,11 +1220,11 @@
       "featuresTrimName": "Luxury",
       "priceSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/trimallpurchaseOptions?trimId=506b74d9-78d7-4733-b3cc-ca4a5c40c161&prov=AB&lang=en",
-        "sha256": "52a0fc95fc8192ee67e202a3205749008be18a08bb7643e2f3bdba1ae8ac131e"
+        "sha256": "7d94ef47114396df4ec11ccb68e7374fe643f5e463a0d25bdc692624d7cb8c5d"
       },
       "featuresSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getAllTrimFeatures?trimId=506b74d9-78d7-4733-b3cc-ca4a5c40c161&isParentVehicle=false&language=en",
-        "sha256": "1e5d0fc000cf5d4f8a50d65a383d95cc153700d89d25e5bc9e08a7161af2e01a"
+        "sha256": "fa92b39ccd1c72579eb6c84e432d2cd05c0995cc6296b8450f92ce2618e63634"
       },
       "features": [
         {
@@ -1256,11 +1256,11 @@
       "featuresTrimName": "Luxury Hybrid",
       "priceSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/trimallpurchaseOptions?trimId=46414e57-3aec-4f33-aad0-fcc46fa19ad4&prov=AB&lang=en",
-        "sha256": "623f0a670fd14dfd06c70364b7be7bb8d40c415343ffc9fa967bfe5f99e0ce9a"
+        "sha256": "29e79f744dae90ce4e861651b356401be6c8a203f7240571751d62536c0085e7"
       },
       "featuresSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getAllTrimFeatures?trimId=46414e57-3aec-4f33-aad0-fcc46fa19ad4&isParentVehicle=false&language=en",
-        "sha256": "a43336efe62488b613b3c2efbdfe15fbd4e8d3f372898589262a7f7d7647c642"
+        "sha256": "adcab9222c6a7802f7b547ece2122ca05697ea86bf13425fb5ef55b9effabb51"
       },
       "features": [
         {
@@ -1290,11 +1290,11 @@
       "featuresTrimName": "N Line Ultimate",
       "priceSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/trimallpurchaseOptions?trimId=8aeb092a-5933-4223-9690-7b8bff243022&prov=AB&lang=en",
-        "sha256": "805e5e1c07438b5c1b78ca855d6ece2c186856b50efc6116a7af069375ebb6d1"
+        "sha256": "b8bb91ae6a4ecfcf0c0713df10a4ac026ad505ef031ab7ff9c2e1495dad89962"
       },
       "featuresSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getAllTrimFeatures?trimId=8aeb092a-5933-4223-9690-7b8bff243022&isParentVehicle=false&language=en",
-        "sha256": "c210b7bb2c629d67a844eefea30a9e6ecf1515007390c2cc774dfcaba55a3f12"
+        "sha256": "36cea2497975f5e5a517f76a62ff5f221fbcc4376846ea75b582da852e727778"
       },
       "features": [
         {
@@ -1328,11 +1328,11 @@
       "featuresTrimName": "Preferred",
       "priceSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/trimallpurchaseOptions?trimId=cb1a6942-fd6b-461a-9742-5024a0114150&prov=AB&lang=en",
-        "sha256": "e2eeb0ae4f678aca665cb6ca8502d34015ba80ef38aa4f42c98f30548fca6488"
+        "sha256": "ebdad986c51bfcd7755bda11d9b502069df4b7ddf0fe3fcec12e91d28b1c29b7"
       },
       "featuresSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getAllTrimFeatures?trimId=cb1a6942-fd6b-461a-9742-5024a0114150&isParentVehicle=false&language=en",
-        "sha256": "cc32919742ec0d88da951050fa6c96e071ed3cd6c2cee3501225779bd4e1ca86"
+        "sha256": "c58ede0773ae8db597837744b10438932e243b6acd71b5753349649a99fd787b"
       },
       "features": [
         {
@@ -1364,11 +1364,11 @@
       "featuresTrimName": "Preferred with Tech Package",
       "priceSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/trimallpurchaseOptions?trimId=f260e233-c401-41cd-b87c-52ea41f46921&prov=AB&lang=en",
-        "sha256": "bebe0552de809e155e1ad153741d2926802145441b722937ab995f7b37dd3ed3"
+        "sha256": "53c0098fd24a10dddeb3070c443c0fb14722cf1923452a2ad4a072421f853e9a"
       },
       "featuresSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getAllTrimFeatures?trimId=f260e233-c401-41cd-b87c-52ea41f46921&isParentVehicle=false&language=en",
-        "sha256": "abce9be218d7663220c918c2fcc5fe9d2e5513d0e41d72c1bdb399230921b12e"
+        "sha256": "4530d52d0dc213627d9863b73914e24f125b905a269df6f3abc749a70f67fa77"
       },
       "features": [
         {
@@ -1404,7 +1404,7 @@
       },
       "featuresSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getAllTrimFeatures?trimId=1bc6f420-4f50-4232-ba56-d1e8930f54a9&isParentVehicle=false&language=en",
-        "sha256": "f6424c1c3d3f60411abff0ce9c6e29c03662c03e6b5066bb4a5a487d1e7422c8"
+        "sha256": "be831e4ccffa609ad2cb05f7169036026bd6dd10378f40edc3df495216002efa"
       },
       "features": [
         { "section": "Performance Features", "name": "84.0kWh Lithium-ion high-voltage battery" },
@@ -1457,7 +1457,7 @@
       },
       "featuresSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getAllTrimFeatures?trimId=6d3fff24-0979-4923-9376-c3f45821ec06&isParentVehicle=false&language=en",
-        "sha256": "20d37b2a1d30c1eab6bd3e2c972ef8fc9288d556eee5a0b7a999315c0ddf4146"
+        "sha256": "9d56cf647ae8814a75dd6a4f17ebee928e8c1a8c37a88f7a0c8126abf7ec9b8d"
       },
       "features": [
         { "section": "Performance Features", "name": "84.0kWh Lithium-ion high-voltage battery" },
@@ -1510,7 +1510,7 @@
       },
       "featuresSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getAllTrimFeatures?trimId=1341d283-0eea-4a3e-b3cc-4a319f9736d8&isParentVehicle=false&language=en",
-        "sha256": "c00f43f1f1fde1b6f2cf74cd656f8f0f6f15d28945fba1530fd2206d723c4cd8"
+        "sha256": "88ce15deae2ee70f6ea6da3bb8ac9ab89055211ca3f8c77fa83727966fc2df2a"
       },
       "features": [
         { "section": "Performance Features", "name": "84.0kWh Lithium-ion high-voltage battery" },
@@ -1558,11 +1558,11 @@
       "featuresTrimName": "Essential RWD",
       "priceSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/trimallpurchaseOptions?trimId=46f9deb5-db62-41a0-9956-8e2c0cb3bce4&prov=AB&lang=en",
-        "sha256": "84c81493971c20c1c50b1c89d1058ea5629016c8ef6a5741d5757a9b66e73648"
+        "sha256": "8a301551fe45b58fcdd29cd0f57521366b4502770c2040d145d1dbcec30494d6"
       },
       "featuresSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getAllTrimFeatures?trimId=46f9deb5-db62-41a0-9956-8e2c0cb3bce4&isParentVehicle=false&language=en",
-        "sha256": "97d82736ff083b092b2b0f15ad7488f6c66a8b72f469b532b3682fd01c3a6f43"
+        "sha256": "7d4e1d92162e19f27965e94190d59eb5dbedc674b0fda8c2a92b04b4b2485e15"
       },
       "features": [
         { "section": "Performance Features", "name": "110.3kWh Lithium-ion high-voltage battery" },
@@ -1611,11 +1611,11 @@
       "featuresTrimName": "Preferred AWD",
       "priceSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/trimallpurchaseOptions?trimId=9ff157f1-6597-4e7e-9daa-0d5ba56d8cbb&prov=AB&lang=en",
-        "sha256": "92d4e8be68e2368fbeebe37c92adf4e389dbab70823359008da1113874cafb88"
+        "sha256": "2309ad93b8bf3f3d7e4c59bf5e0befd4de3ec136013c61abb23102a060051800"
       },
       "featuresSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getAllTrimFeatures?trimId=9ff157f1-6597-4e7e-9daa-0d5ba56d8cbb&isParentVehicle=false&language=en",
-        "sha256": "696972be1f131fe5ad8cad7515e346d183e485deb620cf6e0bd42609cd197f94"
+        "sha256": "4e1b2d7b70c6b166837e37de62eb51a52dfbacbecd835c2338c1db1d18ab0ba0"
       },
       "features": [
         { "section": "Performance Features", "name": "110.3kWh Lithium-ion high-voltage battery" },
@@ -1664,11 +1664,11 @@
       "featuresTrimName": "Preferred AWD+",
       "priceSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/trimallpurchaseOptions?trimId=eff15b8f-cfa6-4d4d-b08f-73cfb0ca621c&prov=AB&lang=en",
-        "sha256": "7e7081de88e02f2ff1ccedf75e52766cc2df6f80a0c14354dec609ef6ebc1678"
+        "sha256": "1353e99cc358c65028a95ccf9769e43559494d8b25386b85d1d241fd7d6b2e2b"
       },
       "featuresSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getAllTrimFeatures?trimId=eff15b8f-cfa6-4d4d-b08f-73cfb0ca621c&isParentVehicle=false&language=en",
-        "sha256": "b2997050dea5ad21b837540fc13c2ffa9c0a381d1bb37ef5d307e10e6ebf8235"
+        "sha256": "f4eeee681d5c04182302329e6fe8e7314095facbfdceaeafe7f8c579d406cd54"
       },
       "features": [
         { "section": "Performance Features", "name": "110.3kWh Lithium-ion high-voltage battery" },
@@ -1717,11 +1717,11 @@
       "featuresTrimName": "Preferred AWD+ with Ultimate Calligraphy Package",
       "priceSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/trimallpurchaseOptions?trimId=d6efe6a0-ecac-4d8a-a605-21a682c9d9d5&prov=AB&lang=en",
-        "sha256": "d998e8ba0170d26b1561fe6833f5d9957dd482935acf725269829512405dcfdf"
+        "sha256": "0e83c011d08befea0aad806fa9baa6d38da7c959544bad3b1ba6f37b187e625a"
       },
       "featuresSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getAllTrimFeatures?trimId=d6efe6a0-ecac-4d8a-a605-21a682c9d9d5&isParentVehicle=false&language=en",
-        "sha256": "60cdc6017360675ca7bc8acbe1b673976e464233ee4f86e1ff86e92d44a119bf"
+        "sha256": "8b4fb542e8ccdff984e0a331ec2576765307b2df91158a802f2562f4c26f3a6e"
       },
       "features": [
         { "section": "Performance Features", "name": "110.3kWh Lithium-ion high-voltage battery" },
@@ -1770,11 +1770,11 @@
       "featuresTrimName": "Preferred AWD with Luxury Package",
       "priceSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/trimallpurchaseOptions?trimId=75f18f7e-271c-4bdf-bd7b-9a9058be0b41&prov=AB&lang=en",
-        "sha256": "a2767ddd2ff0967f2340a49534a82acccd61335ae320e963f7af37449e1c30f3"
+        "sha256": "1b392f0c511a7d27d10a9e47a729f3ed8d9b120692e8bdda88d54a03671738d0"
       },
       "featuresSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getAllTrimFeatures?trimId=75f18f7e-271c-4bdf-bd7b-9a9058be0b41&isParentVehicle=false&language=en",
-        "sha256": "f2c7a10bd90ed51589557d2380f75a414cd87ec041d87557d9685420de7026dd"
+        "sha256": "9f142e05e3efccf0ae18040c9c4ec08095786000605fb022f2abffc4d15d8ba0"
       },
       "features": [
         { "section": "Performance Features", "name": "110.3kWh Lithium-ion high-voltage battery" },
@@ -1827,7 +1827,7 @@
       },
       "featuresSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getAllTrimFeatures?trimId=e50f68af-b3af-4e06-af05-eaeca8e39842&isParentVehicle=false&language=en",
-        "sha256": "6d64f129969df13d0eeddf62870bf05a5cae446938477cd54c34b230637963b3"
+        "sha256": "ea69c6ff206f897f782af657367599977e65c42d723a200bc3079810eaa18b15"
       },
       "features": [
         {
@@ -1878,7 +1878,7 @@
       },
       "featuresSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getAllTrimFeatures?trimId=fca744d7-7948-4d74-b1f4-e2fff5aeed57&isParentVehicle=false&language=en",
-        "sha256": "9ca99cc1d1e1b00de45248f300f5733e52b2e09f3d5d23091e550b297d22c1ae"
+        "sha256": "9ce22f3d26368d8fe2b8ffe96799ccac0c7d6407bbeb973fe427635b9861649d"
       },
       "features": [
         {
@@ -1929,7 +1929,7 @@
       },
       "featuresSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getAllTrimFeatures?trimId=9c54bd4d-374e-420f-a4f2-9c5328d12d02&isParentVehicle=false&language=en",
-        "sha256": "5019c357c9a82dd1d5c2fd8dfba2e638fb3ec93c1f72cf0ad1d90d6f25ffa01c"
+        "sha256": "d736e116cf4ac57d94b616f4edf6940fa98c3e758530a0a466ea2519ea4cad79"
       },
       "features": [
         {
@@ -1980,7 +1980,7 @@
       },
       "featuresSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getAllTrimFeatures?trimId=b2b76d8e-c665-4e5b-a796-d1593d4a76c6&isParentVehicle=false&language=en",
-        "sha256": "67e7a2e8bbfb9dad3a9c924e580ddfc80437412e2aca68b72bc1473a5be9439d"
+        "sha256": "02c04f5cdd1a406e477aa778ec69cbd7788fb615b675475184391c4dd78cbfb4"
       },
       "features": [
         { "section": "Performance Features", "name": "2.0L MPI DOHC 4-cylinder engine" },
@@ -2017,7 +2017,7 @@
       },
       "featuresSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getAllTrimFeatures?trimId=1d0b4fd6-8e06-4559-849f-4d0559a7b13f&isParentVehicle=false&language=en",
-        "sha256": "3f6738fe8b8b81f3a9df42fc98933c81af80bff9f2d75dbb8e6628ba78d12113"
+        "sha256": "b287fb15c2497fb8241b979f5f956c772ebf4a6d7aec7507a02373e2bc37e746"
       },
       "features": [
         { "section": "Performance Features", "name": "2.0L MPI DOHC 4-cylinder engine" },
@@ -2052,7 +2052,7 @@
       },
       "featuresSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getAllTrimFeatures?trimId=50aaa729-d1df-45a4-96fa-0281e2b75007&isParentVehicle=false&language=en",
-        "sha256": "04843b430835b0eec1ead0440650849ab98e9ac4e59b175330523e70a6cf8fda"
+        "sha256": "1026c4035632eb459a85160fe879d6c6f3cf56c8cf47e9555da10b4391070cca"
       },
       "features": [
         {
@@ -2088,7 +2088,7 @@
       },
       "featuresSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getAllTrimFeatures?trimId=0a675371-eaa0-43f7-ad8b-fa78c1093a9e&isParentVehicle=false&language=en",
-        "sha256": "ba52ba600d6c4d82f59c6a1a56c1163621bd37e7f88e7dc3979cd84683b9e26c"
+        "sha256": "c9c3aeabb6871ee68d6d4f85ca2abb3a0ff9a5a96ac634cce858b2e4e0551042"
       },
       "features": [
         {
@@ -2124,7 +2124,7 @@
       },
       "featuresSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getAllTrimFeatures?trimId=4a71d88f-7692-4405-a2f0-d91dc40335a0&isParentVehicle=false&language=en",
-        "sha256": "20b05383da77b4729241e4965e2fc79ef55ab278e9a05df965d0ab37ec0909a6"
+        "sha256": "bd1e7ce748fb90851baafb3d7a099b4208575e0511efd64591b4843f146e7e0b"
       },
       "features": [
         { "section": "Performance Features", "name": "2.0L MPI DOHC 4-cylinder engine" },
@@ -2163,7 +2163,7 @@
       },
       "featuresSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getAllTrimFeatures?trimId=4c9ee3ee-3099-4786-8179-0d54684104b9&isParentVehicle=false&language=en",
-        "sha256": "763629dba9131d5083436eb519c72682a933617adaac8a488fd9d27e24769551"
+        "sha256": "71aaf3a45a3193aa7fc8811d834fc308e9ba3dc85282fb6113d06ea53430f159"
       },
       "features": [
         { "section": "Performance Features", "name": "2.0L MPI DOHC 4-cylinder engine" },
@@ -2199,7 +2199,7 @@
       },
       "featuresSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getAllTrimFeatures?trimId=17f902ee-fca8-4d5b-9a50-4ed7939332cb&isParentVehicle=false&language=en",
-        "sha256": "5b8a21717ba9c1f86a6ae32172563e9f7543c57fa367a63fe6801e2af6d56a56"
+        "sha256": "08dcdc47eb76596ed0ff8e97e8463c024bc26c9fb685408f5dbc917e218bd210"
       },
       "features": [
         { "section": "Performance Features", "name": "2.0L MPI DOHC 4-cylinder engine" },
@@ -2231,11 +2231,11 @@
       "featuresTrimName": "Luxury HEV 7-Passenger",
       "priceSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/trimallpurchaseOptions?trimId=39ccc8f3-9740-4ac6-9821-231cad4f0184&prov=AB&lang=en",
-        "sha256": "25cf42b37990eceee11a553aef144e0412e56dbb23f2796e5012ceecb41e8d34"
+        "sha256": "5fb7849a5d60f06ec79ee037cbe0c191f81f42ff25f093e46a82440e5275506e"
       },
       "featuresSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getAllTrimFeatures?trimId=39ccc8f3-9740-4ac6-9821-231cad4f0184&isParentVehicle=false&language=en",
-        "sha256": "8bfce620275003fb773327f09e386ef3b40e937a42437916e377d930cd2185f9"
+        "sha256": "685cf375f201ce613dd96a56e91f32dbe541966acd2ad587dc9425cf50321a63"
       },
       "features": [
         { "section": "Performance Features", "name": "2.5L Turbo Hybrid 4-cylinder" },
@@ -2260,11 +2260,11 @@
       "featuresTrimName": "Luxury HEV 8-Passenger",
       "priceSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/trimallpurchaseOptions?trimId=e426fb1f-2c45-4101-8e1e-4966ebfc8868&prov=AB&lang=en",
-        "sha256": "4b78ac447c0fb0dd32755f5b7a3e40cc73db251b7311cf727de372f4d558a1fa"
+        "sha256": "45806e06f09e85c7f9cde2a073cd1f6f824c65937fb3eeed8e38c1cf690dc4a4"
       },
       "featuresSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getAllTrimFeatures?trimId=e426fb1f-2c45-4101-8e1e-4966ebfc8868&isParentVehicle=false&language=en",
-        "sha256": "dcec504eca3b0c6f9c5cce01cc79e1de1d50994a449c655806c93dece13f196d"
+        "sha256": "584f59ad787b726ca7b7cf386f54574f51a1094fbf5e402d60d067266d8a84c5"
       },
       "features": [
         { "section": "Performance Features", "name": "2.5L Turbo Hybrid 4-cylinder" },
@@ -2289,11 +2289,11 @@
       "featuresTrimName": "Preferred Trend",
       "priceSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/trimallpurchaseOptions?trimId=98ad5227-e42c-47e1-91ca-80470afb256e&prov=AB&lang=en",
-        "sha256": "fe5466974884503d9629302d07e8adf888b582a5ead1344b9de4dec9063eaf2f"
+        "sha256": "a33aaf3a32188017316b837e46615233736dbee88107a73501c0976982b817a4"
       },
       "featuresSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getAllTrimFeatures?trimId=98ad5227-e42c-47e1-91ca-80470afb256e&isParentVehicle=false&language=en",
-        "sha256": "0475fc2ba255cdf8b121ee9a648d5387644b1aedadbd4527076f60bb506c6a72"
+        "sha256": "8182ab6378c580a1224bada77202ed6fa01ac63c0178890798f775f646cc1dbf"
       },
       "features": [
         {
@@ -2325,11 +2325,11 @@
       "featuresTrimName": "Ultimate Calligraphy",
       "priceSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/trimallpurchaseOptions?trimId=efa2c0a8-3b1f-4e5d-ac43-fd1f1bb38bb9&prov=AB&lang=en",
-        "sha256": "1c28489b9fd6b576533b728c44b672c2795beefdafa92e1eefd6cbcdd6781562"
+        "sha256": "409c4a9ba0950fe2a9d59c892a6629e9954b74c3681c41389e1b48d7da7d5d43"
       },
       "featuresSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getAllTrimFeatures?trimId=efa2c0a8-3b1f-4e5d-ac43-fd1f1bb38bb9&isParentVehicle=false&language=en",
-        "sha256": "1d626897902aa96bb3242997bfe16834cc76c1a714df7a35deb060de4d923bac"
+        "sha256": "828658ae44c33c907311add93719ae6e61396e631e4aa4f9962a2705f08cf495"
       },
       "features": [{ "section": "Interior Features", "name": "7 passenger capacity" }]
     },
@@ -2350,11 +2350,11 @@
       "featuresTrimName": "Ultimate Calligraphy HEV",
       "priceSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/trimallpurchaseOptions?trimId=57dc5450-3733-4d68-a494-fc358b1a8888&prov=AB&lang=en",
-        "sha256": "bd308a8826848de52c0b343494fe5d350fa28092f3baabba0b5b08c84e4b683d"
+        "sha256": "3358b1541713aca76f9e70cbcd83cf0f768191f5662e7e417c1ef1c2f34af556"
       },
       "featuresSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getAllTrimFeatures?trimId=57dc5450-3733-4d68-a494-fc358b1a8888&isParentVehicle=false&language=en",
-        "sha256": "123eb828be765f01255a3ce5ce5e45b304cfed4058c20f93a24e352e1f7803d0"
+        "sha256": "033fb2939ae79b5b79becc5e7a38ed8d6aef7b6a8fc2c97ea7f40d88b682f2d9"
       },
       "features": [{ "section": "Interior Features", "name": "7 passenger capacity" }]
     },
@@ -2375,11 +2375,11 @@
       "featuresTrimName": "XRT Pro",
       "priceSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/trimallpurchaseOptions?trimId=63907649-1ec8-4aad-8749-f779b0ab945d&prov=AB&lang=en",
-        "sha256": "31ab9579ac5bbf4e0b930a86ff1b78a5ca416ff46e7d6c634942c54a6b2853d7"
+        "sha256": "16037fc4652ad7a55388f148ecb04f2fc4b1e16199410381851de8e72d56ef64"
       },
       "featuresSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getAllTrimFeatures?trimId=63907649-1ec8-4aad-8749-f779b0ab945d&isParentVehicle=false&language=en",
-        "sha256": "ae9d4d6c16cec96a24e1646127e924e31942ed7cff0109bcfff0615be893939f"
+        "sha256": "6dae7cc6bb10683dae9f7c7b5d53f93d0d6bd8c0c405c675b7fddb607ac829d5"
       },
       "features": [
         { "section": "Performance Features", "name": "XRT Offroad Mode" },
@@ -2403,11 +2403,11 @@
       "featuresTrimName": "Luxury Hybrid AWD",
       "priceSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/trimallpurchaseOptions?trimId=8ace0290-69a1-4bc7-a6b3-5ab179d6dfb2&prov=AB&lang=en",
-        "sha256": "d80efe1c9eb3ecf5fca253268a629f06d98a4722aa94f8ce4e799795d29db6de"
+        "sha256": "d6ef3ca784ff186779e01d67758641699fd95a52fd14fbb8d481223a1aaf2a5b"
       },
       "featuresSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getAllTrimFeatures?trimId=8ace0290-69a1-4bc7-a6b3-5ab179d6dfb2&isParentVehicle=false&language=en",
-        "sha256": "2c189e3764fb3e31964b53599ac7c8e34438b0fbe0dadb91a5ae4fff8803d328"
+        "sha256": "a9a4457ca3695a43ff65a083b87fd70ab4623e2542481f95482d5ea1c858e51d"
       },
       "features": [
         {
@@ -2445,11 +2445,11 @@
       "featuresTrimName": "Preferred Hybrid AWD",
       "priceSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/trimallpurchaseOptions?trimId=9523a7d9-5b69-4466-a201-64e4a4ae4d48&prov=AB&lang=en",
-        "sha256": "137639b2f5ba3611e3525a0b1886fb35e7f76a49b931ed5e775c24ce27024b44"
+        "sha256": "2645e4d88b4bdd7dd8f3bb1096c6556f762ab07c27302376402256435acffcef"
       },
       "featuresSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getAllTrimFeatures?trimId=9523a7d9-5b69-4466-a201-64e4a4ae4d48&isParentVehicle=false&language=en",
-        "sha256": "e150ea4ae85e85ad10c95c30c8e5fce94cedb1875513c990ff4a32f80d699802"
+        "sha256": "b5bcd7cd7d13b2f3eb5c1bbb1936eed9b8e5aba9e541175a70615393b93e8ffa"
       },
       "features": [
         {
@@ -2487,11 +2487,11 @@
       "featuresTrimName": "Preferred Hybrid AWD with Trend Package",
       "priceSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/trimallpurchaseOptions?trimId=fd0d4de8-68ff-4ef2-a70d-4f632753f862&prov=AB&lang=en",
-        "sha256": "9429b8446814b4ccf9471d4f2c4a5a745870c24776b7b0c9aa09e3ba44aa6023"
+        "sha256": "f955dfe31a6b8df4679c1e59358ff5fbed0692a62fd75eb2cb6b9f6d01e5b950"
       },
       "featuresSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getAllTrimFeatures?trimId=fd0d4de8-68ff-4ef2-a70d-4f632753f862&isParentVehicle=false&language=en",
-        "sha256": "f0d9d66751081ad2f01dd60dcf70db04d52053cd0fe8e7cbe4226ff61564f607"
+        "sha256": "cb461de246382f12cdc67fc03398f53bea51c8b0bafbcab004014d9c88cf7e2a"
       },
       "features": [
         {
@@ -2529,11 +2529,11 @@
       "featuresTrimName": "Ultimate Calligraphy Hybrid AWD",
       "priceSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/trimallpurchaseOptions?trimId=aace4d22-04a1-4d1d-bff0-bc6798e3e85c&prov=AB&lang=en",
-        "sha256": "3c4a36cf05981eb1387f7636aae54ebfb1e349035d74de518ab6d582c06f9232"
+        "sha256": "72a4c0c6b56ec5c753d566c91537d42dacf7ddb78f3a63371628fcf013721f6f"
       },
       "featuresSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getAllTrimFeatures?trimId=aace4d22-04a1-4d1d-bff0-bc6798e3e85c&isParentVehicle=false&language=en",
-        "sha256": "a063eabcd813f96c3bb5b233338fda969ccb1919bead591e00512526c626b985"
+        "sha256": "25b0c385796fbaf94a36005fc085d5666a96775c200f3375543591922e89acc5"
       },
       "features": [
         {
@@ -2571,11 +2571,11 @@
       "featuresTrimName": "N Line",
       "priceSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/trimallpurchaseOptions?trimId=d5e43fd9-7fce-48b8-94c8-12e0a77a5d25&prov=AB&lang=en",
-        "sha256": "c7d831c4541bcc37e5d54c19a3937f3dd74ab403e89cdd2e8c920317d23b9d89"
+        "sha256": "e6a6bb3b38df07eac0dc5008c9a94acf30efadaefb9e98fa7450bfa2c9bdf000"
       },
       "featuresSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getAllTrimFeatures?trimId=d5e43fd9-7fce-48b8-94c8-12e0a77a5d25&isParentVehicle=false&language=en",
-        "sha256": "f95ef0561c5a8e8dfe15ab4a76e1f9ad78904278d31b61d96733ffefe8bdcbd4"
+        "sha256": "2be96100825a1d9d59b068bb89c4ab02c68d2c5fe810a0a3094130afa0a37cb5"
       },
       "features": [
         {
@@ -2615,11 +2615,11 @@
       "featuresTrimName": "Preferred-Trend AWD",
       "priceSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/trimallpurchaseOptions?trimId=1b99bbe8-a49c-4ca8-b6e1-5d5766f81bc0&prov=AB&lang=en",
-        "sha256": "518bf337aebdee3bf4e07b9abdb198317b10ed919da04100150322dbe2e00158"
+        "sha256": "ba0a23a42af9d658f693f8bf2dc113d772a96e57d4f5e081acd30dd3206dd359"
       },
       "featuresSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getAllTrimFeatures?trimId=1b99bbe8-a49c-4ca8-b6e1-5d5766f81bc0&isParentVehicle=false&language=en",
-        "sha256": "b457f09d6533f0ecbef2b09d151f1d5680ade0df8a5ac8741240091d43672eb9"
+        "sha256": "7ced21c9925d6f6f61374e403c5696c7425ec4b9342b4b6eaac838259e17f32a"
       },
       "features": [
         {
@@ -2650,11 +2650,11 @@
       "featuresTrimName": "Preferred-Trend Hybrid",
       "priceSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/trimallpurchaseOptions?trimId=e90ba1fc-2cd6-4595-891b-e353d71bcc04&prov=AB&lang=en",
-        "sha256": "6776595acb24bb8a459bd4789aeb296eee205566280f34ad679555b5cc184633"
+        "sha256": "9603a849b7fc5aab2b6eefa7de00023c96f979b39aaa0acae366640204f52eb8"
       },
       "featuresSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getAllTrimFeatures?trimId=e90ba1fc-2cd6-4595-891b-e353d71bcc04&isParentVehicle=false&language=en",
-        "sha256": "67951b36f7fcb992bd1332f42861990c77b2d17c36bec97e991468fd363f787d"
+        "sha256": "bb5059f72def9f56b26b89d4aa7fdd770c9fd37902b5719807f10c0642e6d486"
       },
       "features": [
         {
@@ -2685,11 +2685,11 @@
       "featuresTrimName": "N Line Hybrid AWD",
       "priceSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/trimallpurchaseOptions?trimId=a2b75a22-d06a-4d0a-82ff-0d467444527b&prov=AB&lang=en",
-        "sha256": "71a67dd8fc041ac842a9be94b9f9b58da0b8b19c15ff481d7e19dce0dc96d2ae"
+        "sha256": "c6624229594b65908a8e1db65eaf91cd6ef1a80ffcbbe2b0b7c2aad79b2e87c5"
       },
       "featuresSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getAllTrimFeatures?trimId=a2b75a22-d06a-4d0a-82ff-0d467444527b&isParentVehicle=false&language=en",
-        "sha256": "d781d7a11c74406c07248eebc997a323b7219c7826e39d619a28fd92a84da652"
+        "sha256": "2af03e02d9e1951ea01853c8f734e46158d0a6d02bcface92a4909e3406e0481"
       },
       "features": [
         {
@@ -2722,11 +2722,11 @@
       "featuresTrimName": "Night Edition Hybrid AWD",
       "priceSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/trimallpurchaseOptions?trimId=f7e4c156-1917-4901-b101-6428fb69cb75&prov=AB&lang=en",
-        "sha256": "6cf5a7b8c31aa57d7c6d0ab31612df3399f27670320f2c1379dc9b87cd901799"
+        "sha256": "9f3de2d0d1b53f22b6579cfd3b6fcdf27389959c7ddd4b9b25808673cbc01df7"
       },
       "featuresSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getAllTrimFeatures?trimId=f7e4c156-1917-4901-b101-6428fb69cb75&isParentVehicle=false&language=en",
-        "sha256": "b7f4bc97b9cb76225a24214d392a47b37b75d6c67a64b01c08a792acbd8e2e37"
+        "sha256": "67d134f102f6f6991be9e58ad1c2496dd030d49b8840b5e58fe740d086ee38bb"
       },
       "features": [
         {
@@ -2759,11 +2759,11 @@
       "featuresTrimName": "Preferred AWD",
       "priceSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/trimallpurchaseOptions?trimId=caf5bc0d-1b70-4562-997a-c6c4bc99dbf1&prov=AB&lang=en",
-        "sha256": "c22b98fbda2ef69834f0b76cf7292912e1b54b0b4a867a6bd723e7cc7ee13950"
+        "sha256": "3af437a86b00eb371ea204a50e5364f8ae164381b7a810b345f9f1cea16e8124"
       },
       "featuresSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getAllTrimFeatures?trimId=caf5bc0d-1b70-4562-997a-c6c4bc99dbf1&isParentVehicle=false&language=en",
-        "sha256": "95c28020ee431a2146a623e496bd6b9932eb0220aae308cc1ff39600e843d885"
+        "sha256": "030360e90012171403922da7fa7f065a13c3ac846541e86dc6380f8a915368c1"
       },
       "features": [
         {
@@ -2796,11 +2796,11 @@
       "featuresTrimName": "Preferred AWD with Trend Package",
       "priceSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/trimallpurchaseOptions?trimId=f8066429-5e3f-4326-85f4-c731cd986e28&prov=AB&lang=en",
-        "sha256": "317396c1d5a7303c9d241f6e620794e343ff39b8f39768c074dbc6e0b351b2f2"
+        "sha256": "f4ac6989f1b6e77557b2fc04a35c86f801a08a239a5863be060330ef95f67243"
       },
       "featuresSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getAllTrimFeatures?trimId=f8066429-5e3f-4326-85f4-c731cd986e28&isParentVehicle=false&language=en",
-        "sha256": "af1d0f34f214df04f565099afdafc92bbacff84c3470dd943f9ffe2e76e4986b"
+        "sha256": "8ecbca93fa317c5e46b25caa630c13990a778683f554e7da777b3573390a7ea2"
       },
       "features": [
         {
@@ -2833,11 +2833,11 @@
       "featuresTrimName": "Ultimate Hybrid AWD",
       "priceSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/trimallpurchaseOptions?trimId=c4a261bd-1520-43ea-8d3b-2b46e5fe57f8&prov=AB&lang=en",
-        "sha256": "1e979c4aa4ef34301433f7c456826a1673887faa377b2ba6d63adfc8ca9434a4"
+        "sha256": "b20f54e2760f5ecf6ce995e418b03a29204432573506360272065acf9388c780"
       },
       "featuresSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getAllTrimFeatures?trimId=c4a261bd-1520-43ea-8d3b-2b46e5fe57f8&isParentVehicle=false&language=en",
-        "sha256": "ede83b0d39bc518af25171f76f91d8e5c3ef02de60cca3ceabeb8d66e5ede12b"
+        "sha256": "3475e2b118ed23d7d88d715359df46898301347c7f4d0fa02872253ff3e83fe9"
       },
       "features": [
         {
@@ -2870,11 +2870,11 @@
       "featuresTrimName": "Ultimate Plug-in Hybrid AWD",
       "priceSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/trimallpurchaseOptions?trimId=59f03504-0ce1-4b94-b8d0-2728ce578f73&prov=AB&lang=en",
-        "sha256": "72f6a567a48f8e85057643f93d4fe852710dc4c525d35ecbacc018ef33578d0a"
+        "sha256": "518037b1546e5e980d0ca64ea1419dcb19f64edcf60003f453a8d63e2a917850"
       },
       "featuresSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getAllTrimFeatures?trimId=59f03504-0ce1-4b94-b8d0-2728ce578f73&isParentVehicle=false&language=en",
-        "sha256": "9af6ab5069708cec56efeac84b9d85b127d09af16d2c042b5765b48fd5189abf"
+        "sha256": "e40991f9d9db9397c454f968d4f9ebf600e48ccac72001bcc52b86cde0f05520"
       },
       "features": [
         {
@@ -2907,11 +2907,11 @@
       "featuresTrimName": "Essential",
       "priceSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/trimallpurchaseOptions?trimId=fa92b82a-b641-4ade-a08e-f0bf4fb4cfdc&prov=AB&lang=en",
-        "sha256": "8e970bb09be3e768e9758444d9d4dd4889cf384ef61fe6581fa4fdd32e794562"
+        "sha256": "026bc9800b1c09aa788e0c62b15c03e9cb9db4906d565524c6f02b949247f87a"
       },
       "featuresSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getAllTrimFeatures?trimId=fa92b82a-b641-4ade-a08e-f0bf4fb4cfdc&isParentVehicle=false&language=en",
-        "sha256": "670feb8ac6d2d52efd9b94903a6d634d6a69ef9fcc4d0b80ea8f32a473de5a3a"
+        "sha256": "c3243ce2d49afade2595bdf55708fe1a5ac49bbd1a2359d217976e5490859ad1"
       },
       "features": [
         {
@@ -2947,11 +2947,11 @@
       "featuresTrimName": "Preferred",
       "priceSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/trimallpurchaseOptions?trimId=7926ed6d-f0e5-4d08-8b62-f08a8926535c&prov=AB&lang=en",
-        "sha256": "7c4c73d648f0643fbbaf4e69d774d8a81649edde7be59e15cc5955c7ff1c555d"
+        "sha256": "19b2b9e6f2b1946800a1a4519e5a0937fd3d2e051082d81bf0dd4b62de88a3d0"
       },
       "featuresSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getAllTrimFeatures?trimId=7926ed6d-f0e5-4d08-8b62-f08a8926535c&isParentVehicle=false&language=en",
-        "sha256": "4debfb1e75488d2d18362887a87d79fa6de66d729c27149409e4bcf51d5e40d7"
+        "sha256": "35e97f60aa624f3a8e377fd16eee86e765118a65d5c8bab1a8fccc6d6514d962"
       },
       "features": [
         {
@@ -2988,11 +2988,11 @@
       "featuresTrimName": "Ultimate",
       "priceSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/trimallpurchaseOptions?trimId=1ca3249b-d2bc-437f-8137-7f572a4f7f2f&prov=AB&lang=en",
-        "sha256": "af9a7cf68f55dce6f4dca0dfbdef4817dfcd1c9cf22a46db4076ad4b80f13291"
+        "sha256": "355d79546f053c56b60e0ac5a565402c2c72ed55915ab7f6da4be5b8154bc333"
       },
       "featuresSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getAllTrimFeatures?trimId=1ca3249b-d2bc-437f-8137-7f572a4f7f2f&isParentVehicle=false&language=en",
-        "sha256": "1df5dfbf462c136d1206edf5547e2b6f873da92362ca8ed3261687b666f7ea93"
+        "sha256": "72680039675f94dbfbd678ca4b366cd4c2733a4178bc077217dfbe0a126149c1"
       },
       "features": [
         {
@@ -3034,7 +3034,7 @@
       },
       "featuresSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getAllTrimFeatures?trimId=7032886d-45c9-0cae-be15-862c3d9c0e01&isParentVehicle=false&language=en",
-        "sha256": "7ce4e8478d0dd0271d75028646eba3c828433eba14a340b7c6d715c75a1bf80d"
+        "sha256": "49ed4ab7997725db1feedcca86cd2ace780ce9136ba7c05350159b3c2d658efd"
       },
       "features": [
         {
@@ -3099,11 +3099,11 @@
       "featuresTrimName": "Preferred AWD",
       "priceSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/trimallpurchaseOptions?trimId=a90e1c4b-800f-1818-c437-80e4c98db688&prov=AB&lang=en",
-        "sha256": "470972b20d95cca2bcde0ac0186fc80ff49e89c5588e7cbee3b94a5a4944f7b9"
+        "sha256": "bcc843974918cb9d79048599e1c76d62fb9719397a642c8d5c2ccbd224f25e5e"
       },
       "featuresSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getAllTrimFeatures?trimId=a90e1c4b-800f-1818-c437-80e4c98db688&isParentVehicle=false&language=en",
-        "sha256": "a8f83cb02166d8cc76ff4f1d2196bb869d969b4cb4b3fd812b7d9f8c3fbba490"
+        "sha256": "c40b5d1ebf3726222393b8da6b43346bd05ad17497e8284ce2b75f2179cc8a10"
       },
       "features": [
         { "section": "Performance Features", "name": "84.0kWh Lithium-ion high-voltage battery" },
@@ -3152,11 +3152,11 @@
       "featuresTrimName": "Trend AWD",
       "priceSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/trimallpurchaseOptions?trimId=f69909e1-1ad3-cfbe-4d99-c3872ea302ff&prov=AB&lang=en",
-        "sha256": "d5f30d61ac88bfca2e795a2fb1f93c762568346c995681c7b922780fcddba1ac"
+        "sha256": "0b86afe80bcf0cf108cea85613c7db0d393fa8c674eb18545cb6efcdaccade21"
       },
       "featuresSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getAllTrimFeatures?trimId=f69909e1-1ad3-cfbe-4d99-c3872ea302ff&isParentVehicle=false&language=en",
-        "sha256": "361be5dd1bb342309ca2903ef7259e5a1c9fbedddd86660ed5ff8062000ffa95"
+        "sha256": "a39c9a51dd003bab39f00f2dd03844782ad99eaff395b7708ade35797567f0b5"
       },
       "features": [
         { "section": "Performance Features", "name": "84.0kWh Lithium-ion high-voltage battery" },
@@ -3205,11 +3205,11 @@
       "featuresTrimName": "Ultimate AWD",
       "priceSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/trimallpurchaseOptions?trimId=6a79a63d-caea-4a77-171b-e047dbec918c&prov=AB&lang=en",
-        "sha256": "88c3f646fe1c94eb1d26748d65390bf4a624be969c6f7c5aefaa73109912f4ef"
+        "sha256": "b0ed81fc9d107f75e2a9c59d8019ff2f2b0e73c17d7b3fc0ead63a893e4a52b5"
       },
       "featuresSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getAllTrimFeatures?trimId=6a79a63d-caea-4a77-171b-e047dbec918c&isParentVehicle=false&language=en",
-        "sha256": "ded06355135014c305e2727a4fc7bd8e3ca3ba24eeaf784fed0a7da45186579b"
+        "sha256": "3564838bc008f87a4f49bc8a0710f26735bf578d966d2422b57f6ee7180eb3d4"
       },
       "features": [
         { "section": "Performance Features", "name": "84.0kWh Lithium-ion high-voltage battery" },
@@ -3262,7 +3262,7 @@
       },
       "featuresSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getAllTrimFeatures?trimId=67dae6c9-e7e2-99c3-86ad-c5786a3534c0&isParentVehicle=false&language=en",
-        "sha256": "237b83f66237fbceecb3ac46c8977ec4516e3f4170ecf777b86a0c24d99311bf"
+        "sha256": "92ef748b6a76146e165a437ae4c6dc8f61ff1d011f88140374627b40303ded60"
       },
       "features": [
         { "section": "Performance Features", "name": "110.3kWh Lithium-ion high-voltage battery" },
@@ -3311,11 +3311,11 @@
       "featuresTrimName": "Preferred AWD",
       "priceSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/trimallpurchaseOptions?trimId=51fb9737-5cbf-c2f3-0b32-9148ff3a1b75&prov=AB&lang=en",
-        "sha256": "a2d75e83e98b6191cf53e29bf37fff98a6ea070d3b44a03a53e7381adcf9e12c"
+        "sha256": "d87e9d8ce399a2751425b7b11ac2224011db75409ce4f7c1cd18e332e58c2177"
       },
       "featuresSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getAllTrimFeatures?trimId=51fb9737-5cbf-c2f3-0b32-9148ff3a1b75&isParentVehicle=false&language=en",
-        "sha256": "05eb16e07ef01a7d9e7be24a61b153504c312eae19182807b7dd34a52e8f3fa2"
+        "sha256": "2271cc27ae53bbae838e4ceca8478f9516a36e3c4642112df60069c358387c81"
       },
       "features": [
         { "section": "Performance Features", "name": "110.3kWh Lithium-ion high-voltage battery" },
@@ -3368,7 +3368,7 @@
       },
       "featuresSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getAllTrimFeatures?trimId=de335ee5-bae5-389b-cb70-2c5a3f47ae48&isParentVehicle=false&language=en",
-        "sha256": "57e8b1bea65c0884715f6efae007e1d44107e5bab1b72ba9cab23019c89a4ffc"
+        "sha256": "a8f0268d18d2c0f2c7daa0bb2bcc7a66989fc9fa8f28db0f6d8f69a980a1757f"
       },
       "features": [
         { "section": "Performance Features", "name": "110.3kWh Lithium-ion high-voltage battery" },
@@ -3417,11 +3417,11 @@
       "featuresTrimName": "Luxury AWD",
       "priceSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/trimallpurchaseOptions?trimId=efe077ed-1d53-803a-7636-5f21e62d5089&prov=AB&lang=en",
-        "sha256": "aee93854014291a3b64476e934b601393b20123e1ed3fadbeeec48c7f8eb5e1d"
+        "sha256": "5f1da24df3b1c3405913d6aee1dc90abdc9ca1dafff8ca5ebc662f2696e7cbd3"
       },
       "featuresSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getAllTrimFeatures?trimId=efe077ed-1d53-803a-7636-5f21e62d5089&isParentVehicle=false&language=en",
-        "sha256": "f697c050165f7b74aef9fc8d2961504a6fb310f30990371b2b03783577b2eb1b"
+        "sha256": "e19321ac1e284ceec596d7c935fa6a0f740abfa84461cc9cddec39f287df3ee4"
       },
       "features": [
         { "section": "Performance Features", "name": "110.3kWh Lithium-ion high-voltage battery" },
@@ -3470,11 +3470,11 @@
       "featuresTrimName": "Preferred",
       "priceSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/trimallpurchaseOptions?trimId=35fcb273-4454-472f-87e5-ee4899c74002&prov=AB&lang=en",
-        "sha256": "b32d7323a7eb189a107862654bb970f32215a114ad303ac0361bc12dcb03d114"
+        "sha256": "6044e2a0d43883559037721efb27850abaecb7f03d41aea2aef7f9a2e6b5894b"
       },
       "featuresSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getAllTrimFeatures?trimId=35fcb273-4454-472f-87e5-ee4899c74002&isParentVehicle=false&language=en",
-        "sha256": "c5f777e1f2b7d755be492cd87aaef275e0948ace86fa187f69d4130d4f073d77"
+        "sha256": "f07e86cda2ef4a1461744e2c262299a8e268aad39a1f6efbb4b5e519c7ab061c"
       },
       "features": [
         {
@@ -3521,11 +3521,11 @@
       "featuresTrimName": "Preferred with Trend Package",
       "priceSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/trimallpurchaseOptions?trimId=1c8b8146-4c76-458c-9224-c2fd4d6ab4dc&prov=AB&lang=en",
-        "sha256": "035dc95c6ed1203d684837bdb7673e3eaaab672966537d1e9f9142ee8abadb36"
+        "sha256": "ee7b3a17ea44bd41e574e6158b79f9d1610b0aea15a7a20915df8c317c01f177"
       },
       "featuresSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getAllTrimFeatures?trimId=1c8b8146-4c76-458c-9224-c2fd4d6ab4dc&isParentVehicle=false&language=en",
-        "sha256": "d493e8975e888d4a55be058467cc0a6f1e6291b6edc76419bff5d952c9cb970b"
+        "sha256": "af54579f49d7403c11e196412178a04b894733564f0ac2dd87465b0c68c99120"
       },
       "features": [
         {
@@ -3572,11 +3572,11 @@
       "featuresTrimName": "Preferred with Ultimate Package",
       "priceSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/trimallpurchaseOptions?trimId=aa941bfd-92e3-dd2a-8674-b3cec9b2ab11&prov=AB&lang=en",
-        "sha256": "41868cd2e96b4c8682072f5dfe35fc7c84e58c88747e8cfac0c0c344f3771226"
+        "sha256": "b62cf3a725b353479f3a179f83a4bef4502d37a01d354b1341de5a6cd889e928"
       },
       "featuresSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getAllTrimFeatures?trimId=aa941bfd-92e3-dd2a-8674-b3cec9b2ab11&isParentVehicle=false&language=en",
-        "sha256": "b7811407288d0599e5b665ac6e8fba83c57b2c762b41acad84605a8d1f9679ff"
+        "sha256": "8e8a793284ccee7cc22df454edf22f97b45a5b73711c0da2a2c1fbc6d6315cb3"
       },
       "features": [
         {
@@ -3623,11 +3623,11 @@
       "featuresTrimName": "Essential AWD",
       "priceSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/trimallpurchaseOptions?trimId=8f65262f-6e8e-34ea-94e9-978aebd8093c&prov=AB&lang=en",
-        "sha256": "1f1db3c2d614a97b696cc1773088f16d71972d2001cf653acd009b0163be8dc3"
+        "sha256": "c032d16f1383b59ac82845c2fd16f8f02d8fdff9bc832cc7cd1ebf7532122c30"
       },
       "featuresSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getAllTrimFeatures?trimId=8f65262f-6e8e-34ea-94e9-978aebd8093c&isParentVehicle=false&language=en",
-        "sha256": "5aee74707f8c67cfd089acee4d41c49edb165f5620fc8cf393ab65dd582b1ef5"
+        "sha256": "32ad71abfb2b1841c93491d0d7ae5655b0bc70130fb3ae2c56d7e206aefb0b6b"
       },
       "features": [
         { "section": "Performance Features", "name": "2.0L MPI DOHC 4-cylinder engine" },
@@ -3660,11 +3660,11 @@
       "featuresTrimName": "Essential FWD",
       "priceSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/trimallpurchaseOptions?trimId=6d39dcbc-4957-65ac-49d8-8f6d7177b0d9&prov=AB&lang=en",
-        "sha256": "f89e38cc3ef0351c2d98f809d8020d7c1a031ee30c11fdb0d08f8128cd9bdd01"
+        "sha256": "4d3eae97d32ad158afab981b3c9c6dc9be925661c61dc859f17cd71ef2ba6dea"
       },
       "featuresSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getAllTrimFeatures?trimId=6d39dcbc-4957-65ac-49d8-8f6d7177b0d9&isParentVehicle=false&language=en",
-        "sha256": "75989dbcc851e5e4279e36937669beaba54efcbb31a4a0c25c5de42bbe61a027"
+        "sha256": "370975c609d7abf4705891ba8b8674a22a5740aa47c790a8105d69071f0ac2f3"
       },
       "features": [
         { "section": "Performance Features", "name": "2.0L MPI DOHC 4-cylinder engine" },
@@ -3695,11 +3695,11 @@
       "featuresTrimName": "Luxury AWD",
       "priceSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/trimallpurchaseOptions?trimId=acd54032-9b1a-3963-927f-ed563d30c6d8&prov=AB&lang=en",
-        "sha256": "b08e0059c4f24d848a60fe2b89c209979ed73f8f8f62d22644b0379686590572"
+        "sha256": "ca53252999e98b910feb8fcbd24b55833518a154f10d5f0497f113418693e9b4"
       },
       "featuresSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getAllTrimFeatures?trimId=acd54032-9b1a-3963-927f-ed563d30c6d8&isParentVehicle=false&language=en",
-        "sha256": "48d44db4e63ae0dfaf36769c87a6dd8b8142dd14bfba13ab6a7eb3bff569e894"
+        "sha256": "44b4439a87b08efe5f936ae2842714462bfc7d896ca9caad838847d767455aed"
       },
       "features": [
         { "section": "Performance Features", "name": "2.0L MPI DOHC 4-cylinder engine" },
@@ -3731,11 +3731,11 @@
       "featuresTrimName": "N Line Ultimate AWD",
       "priceSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/trimallpurchaseOptions?trimId=2bd5135c-bf03-8769-8fbe-e80f2dddda66&prov=AB&lang=en",
-        "sha256": "bc91cfaec1fd3206ced040ba32baf0730f0e68c232c26e8a72e05aaba3bb701b"
+        "sha256": "8ba477848fc6262a0355c2780a4c6a258cafc8523ea08fd258259c18bd0f6200"
       },
       "featuresSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getAllTrimFeatures?trimId=2bd5135c-bf03-8769-8fbe-e80f2dddda66&isParentVehicle=false&language=en",
-        "sha256": "809cd375e5fa174ff432caeb8e070c549feef1cd0d2099b9bfe4c3bfe735c25d"
+        "sha256": "deb93958ac22dfd56be9eca5eb8192d413a983ea988e9371eb9fc448bd7ce1f1"
       },
       "features": [
         {
@@ -3767,11 +3767,11 @@
       "featuresTrimName": "Preferred AWD",
       "priceSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/trimallpurchaseOptions?trimId=d5b1dd80-0739-bf2d-3018-e49fd8aa83b7&prov=AB&lang=en",
-        "sha256": "dce95dfaadd32ac3a76d385cb3120d4e416b86e0d15ef6bc232d27c941b354d0"
+        "sha256": "3495dd2d46e3b30bd2037bcc77980db6bd76678fb93499bc7e547e5a59772836"
       },
       "featuresSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getAllTrimFeatures?trimId=d5b1dd80-0739-bf2d-3018-e49fd8aa83b7&isParentVehicle=false&language=en",
-        "sha256": "0d96334425fdcc72b02bcce3134f93b42fd164628974ce6821eb3853a33b7315"
+        "sha256": "be889afb12edf350fa53e74fd7a000c71a74f9e5d7c0ac628658cd96357d8f8b"
       },
       "features": [
         { "section": "Performance Features", "name": "2.0L MPI DOHC 4-cylinder engine" },
@@ -3806,11 +3806,11 @@
       "featuresTrimName": "Preferred AWD with Trend Package",
       "priceSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/trimallpurchaseOptions?trimId=977b55f8-c965-b89a-0998-86ece73f5dd1&prov=AB&lang=en",
-        "sha256": "88c6cbcafcad2d24b323092664ae90bb48544189d42d5824552f0df997b2733b"
+        "sha256": "01589ed3a60204af60552c52329b93eb0bede0c4ab78c7305d021fbb051cdad8"
       },
       "featuresSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getAllTrimFeatures?trimId=977b55f8-c965-b89a-0998-86ece73f5dd1&isParentVehicle=false&language=en",
-        "sha256": "90c89995b3ba96ca53948584b286c7cdcd635435fbabf1345d9d8115169fecbb"
+        "sha256": "24f09e205d428677e2e12f990224a53434ccda75b9fab054cca830c47be47bb4"
       },
       "features": [
         { "section": "Performance Features", "name": "2.0L MPI DOHC 4-cylinder engine" },
@@ -3842,11 +3842,11 @@
       "featuresTrimName": "Preferred FWD",
       "priceSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/trimallpurchaseOptions?trimId=f594ec4c-f4ad-af67-d24f-890ad7ff0305&prov=AB&lang=en",
-        "sha256": "fb65bcc07185195df6b60714d86000f23757c2aa12c918b05dced682e72b495c"
+        "sha256": "6d9fdeeefe3a99bc12da99e6d9c9e388cc9697a4956c8dd2f7986e410d39d2c3"
       },
       "featuresSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getAllTrimFeatures?trimId=f594ec4c-f4ad-af67-d24f-890ad7ff0305&isParentVehicle=false&language=en",
-        "sha256": "64aec653367f50d3cb3920c020d28cefaa73bf2362221c192f68ddcea23cb57f"
+        "sha256": "216d7ebf4fd8e91df4a76aa5754bf59d0d2b534a9f9f7e0ac5b43a8f58a252b5"
       },
       "features": [
         { "section": "Performance Features", "name": "2.0L MPI DOHC 4-cylinder engine" },
@@ -3878,11 +3878,11 @@
       "featuresTrimName": "Luxury HEV 7-Passenger",
       "priceSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/trimallpurchaseOptions?trimId=22a44f61-309b-7a9f-65a8-346911fc433c&prov=AB&lang=en",
-        "sha256": "9ae59689cd5081a013e8927fb74902d8a11453d4fbfe868f17288fc3de90d31b"
+        "sha256": "d71b10101548c0889dc18f61f8246bf4c74603f0e1125f747b619f6657a9b8c9"
       },
       "featuresSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getAllTrimFeatures?trimId=22a44f61-309b-7a9f-65a8-346911fc433c&isParentVehicle=false&language=en",
-        "sha256": "85532cffe5cba3cde467a3cab33ac5c1d2abf2bccdf12b5343c648c6c33de1d4"
+        "sha256": "5e4d1951640edad0797d18771ef8e8b3961c162f7358531719d827b632e7ae5a"
       },
       "features": [
         { "section": "Performance Features", "name": "2.5L Turbo Hybrid 4-cylinder" },
@@ -3910,11 +3910,11 @@
       "featuresTrimName": "Luxury HEV 8-Passenger",
       "priceSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/trimallpurchaseOptions?trimId=6ec707a9-ad48-de59-23dc-0ad6e2b8b3e0&prov=AB&lang=en",
-        "sha256": "625e1fd553f281f426aab264ef9b9abe0752c139a241bdfdbd465cbc556bcbe5"
+        "sha256": "faa321259186036e8b76c80c860e00b0ad3592406df97f4647397c6c17f7286a"
       },
       "featuresSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getAllTrimFeatures?trimId=6ec707a9-ad48-de59-23dc-0ad6e2b8b3e0&isParentVehicle=false&language=en",
-        "sha256": "3b8cdaf50983c7ea3636fe0976d6c8bf49b7fd170b58deb5baf91bd93e6014bf"
+        "sha256": "127333021422c59d72f55df24e6e68e5341cbbccba517e00b06e1f75355117fa"
       },
       "features": [
         { "section": "Performance Features", "name": "2.5L Turbo Hybrid 4-cylinder" },
@@ -3942,11 +3942,11 @@
       "featuresTrimName": "Preferred Trend",
       "priceSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/trimallpurchaseOptions?trimId=01993d76-bbb0-88bf-a72b-bfa51f2d9e99&prov=AB&lang=en",
-        "sha256": "12282b83af7a11e8cecc4eb36cbdcea13ff222980f991b74b89abe4e035092a1"
+        "sha256": "45c5e443067620d0be68bf633d7fc68e3b50a87b719ef03e9c741d01637c2eb6"
       },
       "featuresSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getAllTrimFeatures?trimId=01993d76-bbb0-88bf-a72b-bfa51f2d9e99&isParentVehicle=false&language=en",
-        "sha256": "32f0cd0bd34a4f56cd56b808efce2111bb9bbf92fc338e6b43ee3c1b81c3f1a4"
+        "sha256": "c21545ce3c2a8a6645c1e86dde66b914d853ede7a80d289653fa76e8fead0656"
       },
       "features": [
         {
@@ -3977,11 +3977,11 @@
       "featuresTrimName": "Ultimate Calligraphy",
       "priceSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/trimallpurchaseOptions?trimId=60cbeb0b-7e1b-68e0-8026-cbf79e355b23&prov=AB&lang=en",
-        "sha256": "113f6605a4182d56804743df07e5d651c6ffa1a568ebe29448b5959f172ecf01"
+        "sha256": "f71731c40bfd72083bbff5d502c1949da1cd33c07ab3726b542463a58447f05c"
       },
       "featuresSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getAllTrimFeatures?trimId=60cbeb0b-7e1b-68e0-8026-cbf79e355b23&isParentVehicle=false&language=en",
-        "sha256": "1df039d63df7355a7303d90bce101d7af1e6c4cdb7241c09ce020dad0cafde67"
+        "sha256": "9e0c394879cbfa4d451d92d5e9b780e0f69a90926c66b1a6412965fd91fa6c25"
       },
       "features": [
         {
@@ -4013,11 +4013,11 @@
       "featuresTrimName": "Ultimate Calligraphy HEV",
       "priceSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/trimallpurchaseOptions?trimId=a6bac832-5bfd-997d-1c1e-8e9296272a4f&prov=AB&lang=en",
-        "sha256": "be10759fea63539136fdb7d764648f0594c6409341da0bcc2c6e27fca5cd2086"
+        "sha256": "db91bf71968630bdcace23356563437a5e5872642571ecd33856997e4c8c248b"
       },
       "featuresSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getAllTrimFeatures?trimId=a6bac832-5bfd-997d-1c1e-8e9296272a4f&isParentVehicle=false&language=en",
-        "sha256": "2df87063a425cf0d7d3cf0bc2f6b03136e9edc57db315a5574d80bfcf750f0df"
+        "sha256": "d67c7633dad1fa979a20a6129a6bc40517a52be58271ff61b73a2f97bae481c6"
       },
       "features": [
         { "section": "Performance Features", "name": "2.5L Turbo Hybrid 4-cylinder" },
@@ -4046,11 +4046,11 @@
       "featuresTrimName": "Ultimate Calligraphy HEV Night",
       "priceSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/trimallpurchaseOptions?trimId=418adc0a-b5af-392f-5d01-5bbc6544bc36&prov=AB&lang=en",
-        "sha256": "edd769beefb9de0fb9bd9a29deed7d85e73deed551c9a4e955c48eb90b16b317"
+        "sha256": "1c88fd92d24b4d5627295e5f3174e4bc546f91634d6ee3700397c43af46e4ae8"
       },
       "featuresSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getAllTrimFeatures?trimId=418adc0a-b5af-392f-5d01-5bbc6544bc36&isParentVehicle=false&language=en",
-        "sha256": "11d042afefde36d72fdf95c6a45eb05b14b34c73e3d0dfce0b4d17d5c07bbee9"
+        "sha256": "5f81a767b353798e8a1a8cb8e0e41e0829ff7e60512d86609ce444e6b8703bc2"
       },
       "features": [
         { "section": "Performance Features", "name": "2.5L Turbo Hybrid 4-cylinder" },
@@ -4079,11 +4079,11 @@
       "featuresTrimName": "Ultimate Calligraphy Night",
       "priceSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/trimallpurchaseOptions?trimId=10d1fece-2a54-50c4-90ea-ac7bde41b0a8&prov=AB&lang=en",
-        "sha256": "98433e5dc1788460098cf1ad63e46397b03e591ddcb025e665e94d259fdf169f"
+        "sha256": "021e1f9709ab1116e4682e0f88b83f8f797449d330397cbd38a416a784bff786"
       },
       "featuresSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getAllTrimFeatures?trimId=10d1fece-2a54-50c4-90ea-ac7bde41b0a8&isParentVehicle=false&language=en",
-        "sha256": "13dbf82e8d92fe0a5b6f395b71d6ca7c24861e76b36170ddd5a320099a8f7afc"
+        "sha256": "9b52ad037cebda8776024d0377e3e72dacf97f8421cd3f76db433a736adb14da"
       },
       "features": [
         {
@@ -4115,11 +4115,11 @@
       "featuresTrimName": "XRT PRO",
       "priceSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/trimallpurchaseOptions?trimId=0f909e16-6ff7-df56-0eeb-0c6f39245639&prov=AB&lang=en",
-        "sha256": "30cff519f49c8b1754ee37eb2e43f64ba6c397535f042351e13126692f3ccc80"
+        "sha256": "e7d89ef37c518641d1ac4a0ee88849d591659df36df5c5f1be688ef4654cc0ee"
       },
       "featuresSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getAllTrimFeatures?trimId=0f909e16-6ff7-df56-0eeb-0c6f39245639&isParentVehicle=false&language=en",
-        "sha256": "371022029e237ae29ce46a6f955bdfbf47f558bd3a2607b4210d7f90a09c9019"
+        "sha256": "efd6eeb7d816cb39311a5454811cc09555bb5b70df08ee85053defb4efab5e33"
       },
       "features": [
         {
@@ -4156,7 +4156,7 @@
       },
       "featuresSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getAllTrimFeatures?trimId=7bf828eb-3071-4f03-b493-c927e6d2d38f&isParentVehicle=false&language=en",
-        "sha256": "fbea621509c1a4748f1c644b5ee8d223405ae36a3c44529bdc97bc4cde70281e"
+        "sha256": "894e48e29e08844bb2ab47ca26448f6a91be5186e855d5d94d04785df777f575"
       },
       "features": [
         {
@@ -4198,7 +4198,7 @@
       },
       "featuresSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getAllTrimFeatures?trimId=80524807-6423-41ed-b5dd-8f15af47c28a&isParentVehicle=false&language=en",
-        "sha256": "0463f1e5e65fefeb697f1ff681b88e52500f114e9641575e74ffeb31f3fcc38e"
+        "sha256": "a4df32ecd467504afd49de91ac09a83c443205248ddf40a15a3ea262ead7bee0"
       },
       "features": [
         {
@@ -4240,7 +4240,7 @@
       },
       "featuresSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getAllTrimFeatures?trimId=54a1a01c-108a-4e83-9ee4-e46d9e36756f&isParentVehicle=false&language=en",
-        "sha256": "45e4f858d100c4644e0983b404a577238c8d66007932f055d4a27ff851c89886"
+        "sha256": "335ec5aacff1f29ada8014bcbbb72f07bda6a32bfff4bb002941d5c887891227"
       },
       "features": [
         {
@@ -4282,7 +4282,7 @@
       },
       "featuresSource": {
         "url": "https://www.hyundaicanada.com/api/backendservice/buildandprice/getAllTrimFeatures?trimId=e9ae93c1-dced-4ba3-9735-8b3109ca17fb&isParentVehicle=false&language=en",
-        "sha256": "967c1a4b705978d63ea63ba239b8ace82d9aeab9cc75563810fae2b7032be85d"
+        "sha256": "1e84c237e87efccaae73229c7c4fb3093b6c04d992cd3954f4fd358b157b6663"
       },
       "features": [
         {

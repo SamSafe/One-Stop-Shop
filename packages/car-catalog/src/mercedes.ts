@@ -168,6 +168,11 @@ export function addMercedesRetail(base: Catalog, snapshot: MercedesSnapshot): Ca
       model: reference.family.trim(),
       trim: reference.name,
       year: reference.year,
+      ...(reference.menuYear
+        ? {
+            modelYearNote: `Mercedes-Benz's model menu still lists this as ${reference.menuYear}; its model page${row.builder ? ' and builder state' : ' states'} ${reference.year}.${reference.staleBuilder ? ` The linked builder still opens the ${reference.menuYear} model, so its price is not used.` : ''}`,
+          }
+        : {}),
       market: 'CA',
       recordKind: 'retail-trim',
       bodyStyle: body(reference),
@@ -188,7 +193,7 @@ export function addMercedesRetail(base: Catalog, snapshot: MercedesSnapshot): Ca
             : 'manufacturer-listed',
         checkedAt: on,
         source: overviewId,
-        note: `${reference.inactive ? 'Menu flags this model inactive; current offering needs review.' : reference.comingSoon ? 'Menu flags this model coming soon; current sale availability is not verified.' : 'Exact Canadian model year is explicitly listed in the current manufacturer menu.'} ${row.builder ? 'Base factory builder is published.' : 'No current builder link is published for this menu entry.'} Package combinations, remaining new stock, order acceptance and delivery require confirmation.`,
+        note: `${reference.inactive ? 'Menu flags this model inactive; current offering needs review.' : reference.comingSoon ? 'Menu flags this model coming soon; current sale availability is not verified.' : reference.menuYear ? 'The current manufacturer menu lists this model; its model page states this model year.' : 'Exact Canadian model year is explicitly listed in the current manufacturer menu.'} ${row.builder ? 'Base factory builder is published.' : 'No current builder link is published for this menu entry.'} Package combinations, remaining new stock, order acceptance and delivery require confirmation.`,
       },
       sourceIds: [overviewId, pageId(row.key), ...(row.builder ? [buildId(row.key)] : [])],
       facts: mercedesCarFacts(row, reference),
@@ -287,7 +292,7 @@ export function mercedesReviewGaps(snapshot: MercedesSnapshot) {
       configuration: url,
       field: 'ordering-identity',
       reason:
-        'Current Maybach EQS SUV family card has no explicit active model/year identity. Image filenames and placeholder prices are not model years or MSRP. Review the family builder and new stock before deciding availability.',
+        'This current menu card has no explicit active model/year identity. Image filenames and placeholder prices are not model years or MSRP. Review the linked page, builder and new stock before deciding availability.',
     })),
     ...snapshot.menu
       .filter((m) => !m.builder)
@@ -295,8 +300,9 @@ export function mercedesReviewGaps(snapshot: MercedesSnapshot) {
         brand: 'Mercedes-Benz',
         configuration: m.key,
         field: 'factory-ordering',
-        reason:
-          'Explicit current menu identity and exact-year model-page MSRP are retained, but no factory-builder link is published. Remaining new stock and ordering require reconciliation.',
+        reason: m.staleBuilder
+          ? `The model page states ${m.year} and its MSRP is retained; the builder linked from the menu still opens the ${m.menuYear} model. Remaining new stock and ordering require reconciliation.`
+          : 'Explicit current menu identity and exact-year model-page MSRP are retained, but no factory-builder link is published. Remaining new stock and ordering require reconciliation.',
       })),
     ...snapshot.cars.flatMap((r) =>
       Object.entries(

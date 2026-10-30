@@ -4,7 +4,7 @@ export const hyundaiBuildPage = 'https://www.hyundaicanada.com/en/shopping-tools
 export const hyundaiClientUrl =
   'https://www.hyundaicanada.com/blocks/build-and-price/buildAndPrice.bundle.js';
 const api = 'https://www.hyundaicanada.com/api/backendservice';
-export const hyundaiLineupUrl = `${api}/buildandprice/GetShowroomsModelJson?language=en&prov=AB`;
+export const hyundaiLineupUrl = `${api}/buildandprice/GetShowroomsModelJson?prov=AB&lang=en`;
 export const hyundaiTrimsUrl = (modelId: string) =>
   `${api}/buildandprice/getShowroomModelTrimsJson?modelId=${encodeURIComponent(modelId)}&prov=AB&language=en`;
 export const hyundaiPriceUrl = (trimId: string) =>
