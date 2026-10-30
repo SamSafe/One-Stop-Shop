@@ -298,9 +298,9 @@ export const rivianBuilderUrl = (model: string) =>
 export const rivianStockUrl = `${rivianOrigin}/configurations/api/v1/shop/search`;
 export const rivianRulesUrl = `${rivianOrigin}/configurations/api/v1/vehicle-ruleset`;
 export const rivianSeatingCopyUrl = `${rivianOrigin}/configurations/locales/en-CA/common.json`;
-export const rivianWheelClientUrl = `${rivianOrigin}/configurations/assets/DK3-89Ks.js`;
+export const rivianWheelClientUrl = `${rivianOrigin}/configurations/assets/BhH2asrd.js`;
 export const rivianWheelClientSha256 =
-  '46230755f1aa97748ff748df1ab4a406e9e2d2ca6ed078ff9cba111ad861e7cd';
+  'abeb11bfb182f7668f25f448bd0e88061e29533e2295dbba8fba0116586de638';
 export const rivianReceiptSchema = z.strictObject({
   url: z.url().refine((url) => new URL(url).origin === rivianOrigin),
   status: z.union([z.literal(200), z.literal(400)]),
@@ -383,7 +383,7 @@ const ruleEntry = z.strictObject({
 const stockRecord = rivianStockResponseSchema.shape.shopSearch.shape.results.element
   .omit({ configId: true, region: true, shopType: true })
   .extend({ identityHash: z.string().regex(/^[a-f0-9]{64}$/), searchKeys: z.array(text).min(1) });
-const snapshotSchema = z.strictObject({
+export const rivianSnapshotSchema = z.strictObject({
   schemaVersion: z.literal(1),
   retrievedAt: z.iso.datetime(),
   homeSource: rivianReceiptSchema,
@@ -422,12 +422,17 @@ const snapshotSchema = z.strictObject({
   ),
   stock: z.array(stockRecord),
 });
-export type RivianSnapshot = z.infer<typeof snapshotSchema>;
+export type RivianSnapshot = z.infer<typeof rivianSnapshotSchema>;
 export const rivianRulesKey = (model: string, version: string) => `${model}/${version}`;
 export function rivianRequireNoRegression(previous: RivianSnapshot, next: RivianSnapshot) {
-  if (
-    previous.stock.some((r) => !next.stock.some((v) => v.identityHash === r.identityHash)) ||
-    previous.current.some(
+  // A stock vehicle may disappear (sold or withdrawn) only when every search that
+  // found it before succeeded again; a failed search must not hide stock.
+  const stock = previous.stock.filter(
+      (r) =>
+        !next.stock.some((v) => v.identityHash === r.identityHash) &&
+        !r.searchKeys.every((key) => next.searches.some((q) => q.key === key && !q.error)),
+    ),
+    offerings = previous.current.filter(
       (c) =>
         !next.current.some(
           (n) =>
@@ -437,15 +442,17 @@ export function rivianRequireNoRegression(previous: RivianSnapshot, next: Rivian
             ) &&
             c.expectedProfileKeys.every((key) => n.expectedProfileKeys.includes(key)),
         ),
-    ) ||
-    previous.searches.some((q) => !q.error && next.searches.find((n) => n.key === q.key)?.error)
-  )
+    ),
+    searches = previous.searches.filter(
+      (q) => !q.error && next.searches.find((n) => n.key === q.key)?.error,
+    );
+  if (stock.length || offerings.length || searches.length)
     throw new Error(
-      'Rivian lost offerings or stock/delivery coverage needs reviewed reconciliation before replacement.',
+      `Rivian lost offerings or stock/delivery coverage needs reviewed reconciliation before replacement (${stock.length} stock identities without a repeated successful search, ${offerings.length} builder offerings, ${searches.length} searches lost).`,
     );
 }
 export function validateRivianSnapshot(input: unknown): RivianSnapshot {
-  const s = snapshotSchema.parse(input);
+  const s = rivianSnapshotSchema.parse(input);
   if (s.homeSource.url !== rivianHomeUrl || s.homeSource.status !== 200)
     throw new Error('Rivian Canadian overview source mismatch.');
   if (

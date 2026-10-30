@@ -1,8 +1,8 @@
 # Rivian Canada source and import contract
 
-Reviewed 2026-10-23 UTC. The import adds 106 retail profiles with verified factory
-MSRP: 69 current 2027 profiles and 37 additional 2026 new-stock equipment profiles.
-Forty-five distinct stock configuration references reconcile across eight
+Reviewed 2026-10-30 UTC. The import adds 104 retail profiles with verified factory
+MSRP: 69 current 2027 profiles and 35 additional 2026 new-stock equipment profiles.
+Forty-two distinct stock configuration references reconcile across eight
 successful sampled delivery searches. These are configuration references, not
 physical vehicle counts or proof of exhaustive national inventory.
 
@@ -38,8 +38,10 @@ six-seat Captain's Chairs. All-Terrain, wheel packages, underbody protection,
 motors, batteries, roof and audio are derived where the published rules require
 them; they are not independently multiplied into imaginary selections.
 
-The builder currently links `/configurations/assets/DK3-89Ks.js`. Its reviewed
-wheel/interior UI contract is pinned by its SHA-256 receipt. A changed module or
+The builder currently links `/configurations/assets/BhH2asrd.js`. Its reviewed
+wheel/interior UI contract is pinned by its SHA-256 receipt. On 30 October it
+replaced the reviewed `DK3-89Ks.js`; the two differ only in the hashed file names
+of their 57 imports, with identical import bindings and code. A changed module or
 an unlinking from the current builder aborts live refresh pending review. The UI
 selects wheel codes, with paired packages derived by rules; its interior cards
 offer BUND-AR01, BUND-AR02 and SEAT-CAPT. Applying the lower-level engine to every
@@ -93,9 +95,9 @@ read request with its explicit postal-code field succeeds anonymously. No
 authentication, challenge or access restriction was bypassed.
 
 Thirteen public sample delivery points, one per province/territory, were queried
-for each model. Alberta and B.C. each return 24 R1S and eight R1T references;
-Ontario and Quebec each return 23 R1S and 11 R1T references. The 132 rows reconcile
-to 45 distinct configuration hashes across 2026–2027. The other nine sampled
+for each model. Alberta and B.C. each return 22 R1S and eight R1T references;
+Ontario and Quebec each return 20 R1S and 13 R1T references. The 126 rows reconcile
+to 42 distinct configuration hashes across 2026–2027. The other nine sampled
 points return the explicit NO_DC business result. That establishes a delivery
 limitation at those points; it does not prove an entire province has no new
 offerings or that every inventory area is covered. A source total proving national
@@ -130,9 +132,12 @@ hashed for reconciliation; VINs, cookies and headers are not normalized data.
 `npm run catalog:sync:rivian` captures public sources, reconciles every required
 identity and validates the resulting catalog before replacement. HTTP/schema/
 checksum/identity failures abort. Only the explicit, parsed NO_DC stock business
-result is accepted as a delivery limitation. Lost factory years/profiles, older
-stock references or a previously served search context require reviewed
-reconciliation instead of silent retirement.
+result is accepted as a delivery limitation. Lost factory years/profiles, a previously
+served search context, or a stock reference whose earlier searches no longer all
+succeed require reviewed reconciliation instead of silent retirement. A stock
+reference missing from searches that all succeeded again has left the published
+stock (sold or withdrawn) and is retired; on 30 October five did, and two new
+ones appeared.
 
 `-- --from-captures <manifest.json>` compiles reviewed bytes with their original
 date. `-- --offline` verifies original request/response bytes and exact normalized

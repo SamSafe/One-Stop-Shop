@@ -21,6 +21,7 @@ import {
   rivianRulesKey,
   validateRivianRules,
   validateRivianSnapshot,
+  rivianSnapshotSchema,
   rivianRequireNoRegression,
 } from '../packages/car-catalog/src/rivian-import.ts';
 import type { RivianReceipt, RivianSnapshot } from '../packages/car-catalog/src/rivian-import.ts';
@@ -307,7 +308,9 @@ const catalog = addRivianRetail(
 if (!captured) {
   let previous: RivianSnapshot | undefined;
   try {
-    previous = validateRivianSnapshot(JSON.parse(await readFile(target, 'utf8')));
+    // The baseline was reviewed against the client pinned at its own date, so only
+    // its shape is checked before comparing offerings.
+    previous = rivianSnapshotSchema.parse(JSON.parse(await readFile(target, 'utf8')));
   } catch (error) {
     if ((error as NodeJS.ErrnoException).code !== 'ENOENT') throw error;
   }

@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
-  "retrievedAt": "2026-10-23T04:08:01.021Z",
+  "retrievedAt": "2026-10-30T20:24:22.984Z",
   "homeSource": {
     "url": "https://rivian.com/en-CA",
     "status": 200,
-    "sha256": "0e634a1b62ed836910039689f74ff1949b64b3c6aca65a95b92395b3506fbb1e"
+    "sha256": "de349492e221eaeac6f9a261e3fe3b143f9500fda0c699334eccf8b02226260b"
   },
   "wheelSelectorSource": {
-    "url": "https://rivian.com/configurations/assets/DK3-89Ks.js",
+    "url": "https://rivian.com/configurations/assets/BhH2asrd.js",
     "status": 200,
-    "sha256": "46230755f1aa97748ff748df1ab4a406e9e2d2ca6ed078ff9cba111ad861e7cd"
+    "sha256": "abeb11bfb182f7668f25f448bd0e88061e29533e2295dbba8fba0116586de638"
   },
   "listedOrderModels": ["R1S", "R1T"],
   "deferredModels": [
@@ -18,7 +18,7 @@
       "source": {
         "url": "https://rivian.com/en-CA/r2",
         "status": 200,
-        "sha256": "066565530bcf4bbe7a0ab3d2abfb7a53b0642714b17857a6e8939c1983d5375a"
+        "sha256": "0d0d45fc2a318b76690541dec6972e612f440e45c06ce3d98f0464e9f67f4353"
       },
       "reason": "The Canadian page advertises Coming 2027 and reservations. An exact Canadian model-year/retail-trim ordering identity is not yet reconciled; a launch calendar year is not assumed to be a model year."
     },
@@ -27,7 +27,7 @@
       "source": {
         "url": "https://rivian.com/en-CA/r3",
         "status": 200,
-        "sha256": "0c1fe4bfe8a6ad2000b5c704109a857f252c0f9a85c42d00a6be187078acc443"
+        "sha256": "426336bde4a29c96675d17e0a77c1014133df521181fe91cf6bb77ca674a5ed0"
       },
       "reason": "The Canadian R3 page and gallery are captured, but no exact Canadian retail-trim/model-year ordering identity is reconciled. Availability remains a research gap."
     }
@@ -36,12 +36,12 @@
     "standardSource": {
       "url": "https://rivian.com/en-CA/r2",
       "status": 200,
-      "sha256": "066565530bcf4bbe7a0ab3d2abfb7a53b0642714b17857a6e8939c1983d5375a"
+      "sha256": "0d0d45fc2a318b76690541dec6972e612f440e45c06ce3d98f0464e9f67f4353"
     },
     "captainsSource": {
       "url": "https://rivian.com/configurations/locales/en-CA/common.json",
       "status": 200,
-      "sha256": "eccad5800281a27abbaf924e526c0420b74a4fde3e62de9f0bca1262830b2602"
+      "sha256": "b9a5a6eba6698e45b7ef1b0caefab3ea743bfcec084866a0d73f4c7ca4ea7405"
     },
     "standard": { "R1S": 7, "R1T": 5 },
     "captains": 6
@@ -51,7 +51,7 @@
       "source": {
         "url": "https://rivian.com/en-CA/configurations/builder?MODEL=R1S",
         "status": 200,
-        "sha256": "49906482b218bba0ff890c0b9654387909623ca303a09712b7f138df9de93e80"
+        "sha256": "f52d3d2ec88fe7b4e5d01733c016a7d40538b14de2be3e1baf73d57826bd537e"
       },
       "builder": {
         "sku": "R1S",
@@ -1138,7 +1138,7 @@
       "source": {
         "url": "https://rivian.com/en-CA/configurations/builder?MODEL=R1T",
         "status": 200,
-        "sha256": "c9d45d4ce57b284b38a3abb6e457f7cb0108a297683d4228c3a4434e71fc1dac"
+        "sha256": "7b751dcee50c1fe7b0836d6dc5af2031e1b881ca509fcf46ecadde2fb232fc15"
       },
       "builder": {
         "sku": "R1T",
@@ -6151,17 +6151,15 @@
       "source": {
         "url": "https://rivian.com/configurations/api/v1/shop/search",
         "status": 200,
-        "sha256": "75981bc6417c0de794a1d1e8403e5449859c20fc5d7575e9fce7168d9f2a72df",
+        "sha256": "24be51c02716303f93328f695ce57c27cb812f556bb01626d87616c3c151ba6a",
         "requestSha256": "524ea2262c9b21e3f7ce2b12544857ebb57f2704cdf5df71e14d2f52e0b384a1"
       },
       "error": null,
       "identities": [
         "1852e823d5c542e57a9f227d528b4fa7c0811e2729a2bb087f0e7d336361ff88",
         "1a83499c76b74aa3d56eb4d71f904cbe57cfc0fa986293a100e8b1052b271da7",
-        "1e7b592b934dbc7b9b48057aede6517644ac1cb799886933580369ab0ab8edf3",
         "22434c93aa7f5cb442583870b03562b1688d3ca3b5dea7e6f82abedd0ed62d39",
         "2a88b7d1ee4fcc48a61ecd60d356faec769fd5eb416a945ccc954e5bf32de5d4",
-        "315836dfc22d82e71e1dab496b13f6b9731c2dba93b892854ceebd2aa9b4642d",
         "3df5058a901bfacc878063636c9e74f60f441a06baab31662909efa28cb6c116",
         "50b09a707fc9c68c526ae5932391bc937a4fdb8eacb14a000c6fe97ec63596e6",
         "583b6c8c8b38a4166e04bc5c4d4def7b84aa86c2031b4e45a762389ef0a2d643",
@@ -6181,7 +6179,7 @@
         "f7e6b02934cf349301d8f34a710ad93707210cea737b76639515ec9165419177",
         "feb2be49c517c1be2f8fd82070d889acee3e7a5864f592fc41f204438284989d"
       ],
-      "reportedRows": 24
+      "reportedRows": 22
     },
     {
       "key": "AB/R1T",
@@ -6191,7 +6189,7 @@
       "source": {
         "url": "https://rivian.com/configurations/api/v1/shop/search",
         "status": 200,
-        "sha256": "a07e5e212f9facbdb4c041cec414775d2681334d43b52f088feaac7fd0956671",
+        "sha256": "d6610fc680a0ae8c914342600cf3a5c9a906e0da4b273746d08231182aa090db",
         "requestSha256": "de210f5a484c9f6d234c28fc467bd32d4c7be84940c107b6336221ac02ba985d"
       },
       "error": null,
@@ -6215,17 +6213,15 @@
       "source": {
         "url": "https://rivian.com/configurations/api/v1/shop/search",
         "status": 200,
-        "sha256": "6347517de935d503a9a6b3b80252f91a3fbc916ffa6c072af59bbd734740cf06",
+        "sha256": "a38124e960e9a35bc137b1769ec93f92a2d5e24f3282715af7d0931a11ed27a0",
         "requestSha256": "247dd916d148d1efb5309d6d7b2358f1f25a6e3bc585d55e790ea35e7aec53ad"
       },
       "error": null,
       "identities": [
         "1852e823d5c542e57a9f227d528b4fa7c0811e2729a2bb087f0e7d336361ff88",
         "1a83499c76b74aa3d56eb4d71f904cbe57cfc0fa986293a100e8b1052b271da7",
-        "1e7b592b934dbc7b9b48057aede6517644ac1cb799886933580369ab0ab8edf3",
         "22434c93aa7f5cb442583870b03562b1688d3ca3b5dea7e6f82abedd0ed62d39",
         "2a88b7d1ee4fcc48a61ecd60d356faec769fd5eb416a945ccc954e5bf32de5d4",
-        "315836dfc22d82e71e1dab496b13f6b9731c2dba93b892854ceebd2aa9b4642d",
         "3df5058a901bfacc878063636c9e74f60f441a06baab31662909efa28cb6c116",
         "50b09a707fc9c68c526ae5932391bc937a4fdb8eacb14a000c6fe97ec63596e6",
         "583b6c8c8b38a4166e04bc5c4d4def7b84aa86c2031b4e45a762389ef0a2d643",
@@ -6245,7 +6241,7 @@
         "f7e6b02934cf349301d8f34a710ad93707210cea737b76639515ec9165419177",
         "feb2be49c517c1be2f8fd82070d889acee3e7a5864f592fc41f204438284989d"
       ],
-      "reportedRows": 24
+      "reportedRows": 22
     },
     {
       "key": "BC/R1T",
@@ -6255,7 +6251,7 @@
       "source": {
         "url": "https://rivian.com/configurations/api/v1/shop/search",
         "status": 200,
-        "sha256": "5525e08d2113ce4ebd97851477de9fdd46bb432c56bdad25887c1988940b8ffa",
+        "sha256": "d91cac7f405d1e8f48e3e5c7017eedf5d9ca09bd3cc1e5bd776e019f38a7feb0",
         "requestSha256": "229f3569dbc222cce6d9dd04cc800ce4a1435e31698a7c8c7771921bfd8b6670"
       },
       "error": null,
@@ -6339,7 +6335,7 @@
       "source": {
         "url": "https://rivian.com/configurations/api/v1/shop/search",
         "status": 200,
-        "sha256": "0521548f3314f2d6ff07be268d4b2ba6f64cdec8d2c7446690ed0a559dcaf136",
+        "sha256": "0a58e09655cc5ac53937a89e868319496b3987564b6fc0caacf6c394be7937b9",
         "requestSha256": "855ee7d1a79a93490fc4cacaa6430f1bc1b02e8617b7c1bed6f973bcd45c6cc4"
       },
       "error": null,
@@ -6347,8 +6343,6 @@
         "00aed21b99bf5ad425aa956a06c5c7459cf54cc60b4299b261aeb84d9db91bcb",
         "1a83499c76b74aa3d56eb4d71f904cbe57cfc0fa986293a100e8b1052b271da7",
         "22434c93aa7f5cb442583870b03562b1688d3ca3b5dea7e6f82abedd0ed62d39",
-        "2807ceaf53b5562066e9cd2466b9469352d12fe2cae3e278c902e336030690d6",
-        "2bbba63243b0964f564ea375e6c0348a3921d85e74fcbddcebfb631f64e7a805",
         "37c0004dfa796f906c62c8d62b9eb8690f1ec1a18c80454f900f052e9639d046",
         "3df5058a901bfacc878063636c9e74f60f441a06baab31662909efa28cb6c116",
         "50b09a707fc9c68c526ae5932391bc937a4fdb8eacb14a000c6fe97ec63596e6",
@@ -6357,7 +6351,6 @@
         "77c38ae9b8e706e60a4262f510f3fb4ae2e10a335097cc72e9f7322bfeadce32",
         "898f161ff3d346131f3c4aa99782a8f51a245f93323925667ce7439257282906",
         "972e24e97a56b51204fffd831cfa056c39610e4b54896d6ba43aa4739016e4ab",
-        "a1237d0f0521adfaaa1a84f3f0b9b7091664ddf409d8c520c200388e8b4f8bc5",
         "a39857d4689a89e3b1c48932bc6c235523122d6d762e7fc27ea95905922df6f5",
         "b2ea5698e510603d2a956877b0ea85e8089eadf5fbc02526f86d80db5d90c2e3",
         "b9c9d05e38aeecfbc23f1d04f0c3049ad2b06817bafeea480af705ff56efc920",
@@ -6368,7 +6361,7 @@
         "f7e6b02934cf349301d8f34a710ad93707210cea737b76639515ec9165419177",
         "feb2be49c517c1be2f8fd82070d889acee3e7a5864f592fc41f204438284989d"
       ],
-      "reportedRows": 23
+      "reportedRows": 20
     },
     {
       "key": "ON/R1T",
@@ -6378,11 +6371,12 @@
       "source": {
         "url": "https://rivian.com/configurations/api/v1/shop/search",
         "status": 200,
-        "sha256": "02013012748dd27ed2c28228bc6453c82c52714f6008305868ddc5328027ad94",
+        "sha256": "493bc78561d3b395665965870bc6f81e9678e532f3e41f8efd9606bc39c55946",
         "requestSha256": "a9ef14423d04c9c413e05ad6aea5fda38f9707729249309f993d0170fc7b7d6f"
       },
       "error": null,
       "identities": [
+        "1e7327cf7f10b0362a5f4120fbb624c42ddeb4f7bdfa43709a6c059c1a412dcb",
         "49056f19679dfc5e839cc20d7faf10e5d54865afc2eabc89dc13ee23610dd8cb",
         "73e350ebd72ed7c5ddccd7b9041ea47f32a9c2902d212257b7a4037645d61baf",
         "75dd13b2868be757145f86b3f160c352d32528de3d9dc9f5b77699e73868d93d",
@@ -6390,12 +6384,13 @@
         "7dbbe62cacfb9bbf1da5107c9d1fbad6a40e1735726263b0daad5b499e5cbfb8",
         "84a836d78af72da19290e754057669b9ce13cdc6d59a88a083c7f8c39c480a26",
         "ac4aec8575760922b5a8a8de228c196c1f45aac417695437508af7b81ac6b382",
+        "ce03f5b962a931d3e07d7b31544dde7fc99ab12d10ebd017e753b2c3f5b7e075",
         "ce602559459264c83aea08f4d26e57c860f8f83aff5e3c9f5dddd964df71225c",
         "e014279ab9fba397cad0b125126aa34737733a56f8ba46ff4d95ff063ecec010",
         "eb6a2eacdf2b8b50a349d90185a9bd547b3ea89b3b74775cc221e8fb2f6eeb9e",
         "ee1037387e8cc7f1a3c7bf562e9837d9dded9dfac7697483546728e4d529ad71"
       ],
-      "reportedRows": 11
+      "reportedRows": 13
     },
     {
       "key": "QC/R1S",
@@ -6405,7 +6400,7 @@
       "source": {
         "url": "https://rivian.com/configurations/api/v1/shop/search",
         "status": 200,
-        "sha256": "6fe5a40337dda58737df7f2cf0073c2debee8db63efa1309706fdbb0f77d4e03",
+        "sha256": "5461406958b415de79c5edf5ac399b89e3e2a1b364550579ceb47f8b3e7100c5",
         "requestSha256": "45bfbdead88db66052f189f4791d6f5fc895ed45f07faef990cf4bdfabfd038f"
       },
       "error": null,
@@ -6413,8 +6408,6 @@
         "00aed21b99bf5ad425aa956a06c5c7459cf54cc60b4299b261aeb84d9db91bcb",
         "1a83499c76b74aa3d56eb4d71f904cbe57cfc0fa986293a100e8b1052b271da7",
         "22434c93aa7f5cb442583870b03562b1688d3ca3b5dea7e6f82abedd0ed62d39",
-        "2807ceaf53b5562066e9cd2466b9469352d12fe2cae3e278c902e336030690d6",
-        "2bbba63243b0964f564ea375e6c0348a3921d85e74fcbddcebfb631f64e7a805",
         "37c0004dfa796f906c62c8d62b9eb8690f1ec1a18c80454f900f052e9639d046",
         "3df5058a901bfacc878063636c9e74f60f441a06baab31662909efa28cb6c116",
         "50b09a707fc9c68c526ae5932391bc937a4fdb8eacb14a000c6fe97ec63596e6",
@@ -6423,7 +6416,6 @@
         "77c38ae9b8e706e60a4262f510f3fb4ae2e10a335097cc72e9f7322bfeadce32",
         "898f161ff3d346131f3c4aa99782a8f51a245f93323925667ce7439257282906",
         "972e24e97a56b51204fffd831cfa056c39610e4b54896d6ba43aa4739016e4ab",
-        "a1237d0f0521adfaaa1a84f3f0b9b7091664ddf409d8c520c200388e8b4f8bc5",
         "a39857d4689a89e3b1c48932bc6c235523122d6d762e7fc27ea95905922df6f5",
         "b2ea5698e510603d2a956877b0ea85e8089eadf5fbc02526f86d80db5d90c2e3",
         "b9c9d05e38aeecfbc23f1d04f0c3049ad2b06817bafeea480af705ff56efc920",
@@ -6434,7 +6426,7 @@
         "f7e6b02934cf349301d8f34a710ad93707210cea737b76639515ec9165419177",
         "feb2be49c517c1be2f8fd82070d889acee3e7a5864f592fc41f204438284989d"
       ],
-      "reportedRows": 23
+      "reportedRows": 20
     },
     {
       "key": "QC/R1T",
@@ -6444,11 +6436,12 @@
       "source": {
         "url": "https://rivian.com/configurations/api/v1/shop/search",
         "status": 200,
-        "sha256": "c47ece98c954a63fe75d3fd1de17dd6dca43420072e492501ab8c7a4fa0c4f9e",
+        "sha256": "2e0d725baf524b645cdc0c26083de3625b89ad103f8f9a448a7d65193c33fb1b",
         "requestSha256": "990493a28254e8f71f7bcf5576d0f44f0cab4b4af88353948d6dccd6887096ef"
       },
       "error": null,
       "identities": [
+        "1e7327cf7f10b0362a5f4120fbb624c42ddeb4f7bdfa43709a6c059c1a412dcb",
         "49056f19679dfc5e839cc20d7faf10e5d54865afc2eabc89dc13ee23610dd8cb",
         "73e350ebd72ed7c5ddccd7b9041ea47f32a9c2902d212257b7a4037645d61baf",
         "75dd13b2868be757145f86b3f160c352d32528de3d9dc9f5b77699e73868d93d",
@@ -6456,12 +6449,13 @@
         "7dbbe62cacfb9bbf1da5107c9d1fbad6a40e1735726263b0daad5b499e5cbfb8",
         "84a836d78af72da19290e754057669b9ce13cdc6d59a88a083c7f8c39c480a26",
         "ac4aec8575760922b5a8a8de228c196c1f45aac417695437508af7b81ac6b382",
+        "ce03f5b962a931d3e07d7b31544dde7fc99ab12d10ebd017e753b2c3f5b7e075",
         "ce602559459264c83aea08f4d26e57c860f8f83aff5e3c9f5dddd964df71225c",
         "e014279ab9fba397cad0b125126aa34737733a56f8ba46ff4d95ff063ecec010",
         "eb6a2eacdf2b8b50a349d90185a9bd547b3ea89b3b74775cc221e8fb2f6eeb9e",
         "ee1037387e8cc7f1a3c7bf562e9837d9dded9dfac7697483546728e4d529ad71"
       ],
-      "reportedRows": 11
+      "reportedRows": 13
     },
     {
       "key": "NB/R1S",
@@ -6785,11 +6779,11 @@
       "searchKeys": ["AB/R1S", "BC/R1S", "ON/R1S", "QC/R1S"]
     },
     {
-      "model": "R1S",
+      "model": "R1T",
       "modelYear": 2026,
       "ruleset": "VEHICLE_SHOP_33.0",
-      "listingPrice": 166690,
-      "finalPrice": 167007,
+      "listingPrice": 153590,
+      "finalPrice": 153907,
       "vehicleDiscountAmount": 2800,
       "marketingOptions": [
         { "groupId": "V_GEN", "optionId": "GEN-2" },
@@ -6797,28 +6791,25 @@
         { "groupId": "RGN", "optionId": "RGN-CAN" },
         { "groupId": "PKG", "optionId": "PKG-ADV" },
         { "groupId": "MOT", "optionId": "MOT-201" },
-        { "groupId": "SWUP", "optionId": "SWUP-PERF01" },
-        { "groupId": "BLD", "optionId": "BLD-DR1S" },
-        { "groupId": "BAT", "optionId": "BAT-B01" },
-        { "groupId": "EXP", "optionId": "EXP-ELG" },
-        { "groupId": "ACTBDG", "optionId": "ACTBDG-DRK" },
-        { "groupId": "WHLPKG", "optionId": "WHLPKG-2SD" },
-        { "groupId": "WHL", "optionId": "WHL-2SD" },
+        { "groupId": "BLD", "optionId": "BLD-DR1T" },
+        { "groupId": "BAT", "optionId": "BAT-A01" },
+        { "groupId": "EXP", "optionId": "EXP-FGR" },
+        { "groupId": "ACTBDG", "optionId": "ACTBDG-BRT" },
+        { "groupId": "WHL", "optionId": "WHL-2SS" },
         { "groupId": "INT", "optionId": "INT-BMP" },
-        { "groupId": "ROOF", "optionId": "ROOF-DGP" },
-        { "groupId": "UTL", "optionId": "UTL-S01" },
-        { "groupId": "AUD", "optionId": "AUD-P01" },
-        { "groupId": "BUND", "optionId": "BUND-AR01" },
+        { "groupId": "ROOF", "optionId": "ROOF-FGP" },
+        { "groupId": "UTL", "optionId": "UTL-T01" },
+        { "groupId": "TON", "optionId": "TON-P02" },
         { "groupId": "CHRG", "optionId": "CHRG-NACS01" }
       ],
       "fees": [
-        { "amount": 300, "currency": "CAD", "code": "DOCUMENTATION_FEE" },
         { "amount": 22, "currency": "CAD", "code": "OMVIC_FEE" },
-        { "amount": 100, "currency": "CAD", "code": "AIR_CONDITIONING_RECOVERY_FEE" },
-        { "amount": 2695, "currency": "CAD", "code": "DELIVERY_FEE" }
+        { "amount": 300, "currency": "CAD", "code": "DOCUMENTATION_FEE" },
+        { "amount": 2695, "currency": "CAD", "code": "DELIVERY_FEE" },
+        { "amount": 100, "currency": "CAD", "code": "AIR_CONDITIONING_RECOVERY_FEE" }
       ],
-      "identityHash": "1e7b592b934dbc7b9b48057aede6517644ac1cb799886933580369ab0ab8edf3",
-      "searchKeys": ["AB/R1S", "BC/R1S"]
+      "identityHash": "1e7327cf7f10b0362a5f4120fbb624c42ddeb4f7bdfa43709a6c059c1a412dcb",
+      "searchKeys": ["ON/R1T", "QC/R1T"]
     },
     {
       "model": "R1S",
@@ -6858,40 +6849,6 @@
       "model": "R1S",
       "modelYear": 2026,
       "ruleset": "VEHICLE_SHOP_33.0",
-      "listingPrice": 208090,
-      "finalPrice": 211207,
-      "marketingOptions": [
-        { "groupId": "V_GEN", "optionId": "GEN-2" },
-        { "groupId": "MODEL_YEAR", "optionId": "2026" },
-        { "groupId": "RGN", "optionId": "RGN-CAN" },
-        { "groupId": "PKG", "optionId": "PKG-ASC" },
-        { "groupId": "MOT", "optionId": "MOT-401" },
-        { "groupId": "BLD", "optionId": "BLD-QR1S" },
-        { "groupId": "BAT", "optionId": "BAT-A01" },
-        { "groupId": "EXP", "optionId": "EXP-SBL" },
-        { "groupId": "ACTBDG", "optionId": "ACTBDG-DRK" },
-        { "groupId": "WHL", "optionId": "WHL-2SP" },
-        { "groupId": "INT", "optionId": "INT-OCDW" },
-        { "groupId": "ROOF", "optionId": "ROOF-DGP" },
-        { "groupId": "UTL", "optionId": "UTL-S01" },
-        { "groupId": "AUD", "optionId": "AUD-P01" },
-        { "groupId": "BUND", "optionId": "BUND-AR01" },
-        { "groupId": "CHRG", "optionId": "CHRG-NACS01" },
-        { "groupId": "UND", "optionId": "UND-SH01" }
-      ],
-      "fees": [
-        { "amount": 300, "currency": "CAD", "code": "DOCUMENTATION_FEE" },
-        { "amount": 22, "currency": "CAD", "code": "OMVIC_FEE" },
-        { "amount": 100, "currency": "CAD", "code": "AIR_CONDITIONING_RECOVERY_FEE" },
-        { "amount": 2695, "currency": "CAD", "code": "DELIVERY_FEE" }
-      ],
-      "identityHash": "2807ceaf53b5562066e9cd2466b9469352d12fe2cae3e278c902e336030690d6",
-      "searchKeys": ["ON/R1S", "QC/R1S"]
-    },
-    {
-      "model": "R1S",
-      "modelYear": 2026,
-      "ruleset": "VEHICLE_SHOP_33.0",
       "listingPrice": 184190,
       "finalPrice": 184507,
       "vehicleDiscountAmount": 2800,
@@ -6920,76 +6877,6 @@
         { "amount": 2695, "currency": "CAD", "code": "DELIVERY_FEE" }
       ],
       "identityHash": "2a88b7d1ee4fcc48a61ecd60d356faec769fd5eb416a945ccc954e5bf32de5d4",
-      "searchKeys": ["AB/R1S", "BC/R1S"]
-    },
-    {
-      "model": "R1S",
-      "modelYear": 2026,
-      "ruleset": "VEHICLE_SHOP_33.0",
-      "listingPrice": 172790,
-      "finalPrice": 173107,
-      "vehicleDiscountAmount": 2800,
-      "marketingOptions": [
-        { "groupId": "V_GEN", "optionId": "GEN-2" },
-        { "groupId": "MODEL_YEAR", "optionId": "2026" },
-        { "groupId": "RGN", "optionId": "RGN-CAN" },
-        { "groupId": "PKG", "optionId": "PKG-ADV" },
-        { "groupId": "MOT", "optionId": "MOT-201" },
-        { "groupId": "SWUP", "optionId": "SWUP-PERF01" },
-        { "groupId": "BLD", "optionId": "BLD-DR1S" },
-        { "groupId": "BAT", "optionId": "BAT-A01" },
-        { "groupId": "EXP", "optionId": "EXP-FGR" },
-        { "groupId": "ACTBDG", "optionId": "ACTBDG-BRT" },
-        { "groupId": "WHL", "optionId": "WHL-2SS" },
-        { "groupId": "INT", "optionId": "INT-BMP" },
-        { "groupId": "ROOF", "optionId": "ROOF-DGP" },
-        { "groupId": "UTL", "optionId": "UTL-S01" },
-        { "groupId": "AUD", "optionId": "AUD-P01" },
-        { "groupId": "BUND", "optionId": "BUND-AR01" },
-        { "groupId": "CHRG", "optionId": "CHRG-NACS01" }
-      ],
-      "fees": [
-        { "amount": 300, "currency": "CAD", "code": "DOCUMENTATION_FEE" },
-        { "amount": 22, "currency": "CAD", "code": "OMVIC_FEE" },
-        { "amount": 100, "currency": "CAD", "code": "AIR_CONDITIONING_RECOVERY_FEE" },
-        { "amount": 2695, "currency": "CAD", "code": "DELIVERY_FEE" }
-      ],
-      "identityHash": "2bbba63243b0964f564ea375e6c0348a3921d85e74fcbddcebfb631f64e7a805",
-      "searchKeys": ["ON/R1S", "QC/R1S"]
-    },
-    {
-      "model": "R1S",
-      "modelYear": 2026,
-      "ruleset": "VEHICLE_SHOP_33.0",
-      "listingPrice": 159290,
-      "finalPrice": 159607,
-      "vehicleDiscountAmount": 2800,
-      "marketingOptions": [
-        { "groupId": "V_GEN", "optionId": "GEN-2" },
-        { "groupId": "MODEL_YEAR", "optionId": "2026" },
-        { "groupId": "RGN", "optionId": "RGN-CAN" },
-        { "groupId": "PKG", "optionId": "PKG-ADV" },
-        { "groupId": "MOT", "optionId": "MOT-201" },
-        { "groupId": "BLD", "optionId": "BLD-DR1S" },
-        { "groupId": "BAT", "optionId": "BAT-B01" },
-        { "groupId": "EXP", "optionId": "EXP-ELG" },
-        { "groupId": "ACTBDG", "optionId": "ACTBDG-DRK" },
-        { "groupId": "WHLPKG", "optionId": "WHLPKG-2SD" },
-        { "groupId": "WHL", "optionId": "WHL-2SD" },
-        { "groupId": "INT", "optionId": "INT-BMP" },
-        { "groupId": "ROOF", "optionId": "ROOF-DGP" },
-        { "groupId": "UTL", "optionId": "UTL-S01" },
-        { "groupId": "AUD", "optionId": "AUD-P01" },
-        { "groupId": "BUND", "optionId": "BUND-AR01" },
-        { "groupId": "CHRG", "optionId": "CHRG-NACS01" }
-      ],
-      "fees": [
-        { "amount": 300, "currency": "CAD", "code": "DOCUMENTATION_FEE" },
-        { "amount": 22, "currency": "CAD", "code": "OMVIC_FEE" },
-        { "amount": 100, "currency": "CAD", "code": "AIR_CONDITIONING_RECOVERY_FEE" },
-        { "amount": 2695, "currency": "CAD", "code": "DELIVERY_FEE" }
-      ],
-      "identityHash": "315836dfc22d82e71e1dab496b13f6b9731c2dba93b892854ceebd2aa9b4642d",
       "searchKeys": ["AB/R1S", "BC/R1S"]
     },
     {
@@ -7596,40 +7483,6 @@
       "model": "R1S",
       "modelYear": 2026,
       "ruleset": "VEHICLE_SHOP_33.0",
-      "listingPrice": 165390,
-      "finalPrice": 165707,
-      "vehicleDiscountAmount": 2800,
-      "marketingOptions": [
-        { "groupId": "V_GEN", "optionId": "GEN-2" },
-        { "groupId": "MODEL_YEAR", "optionId": "2026" },
-        { "groupId": "RGN", "optionId": "RGN-CAN" },
-        { "groupId": "PKG", "optionId": "PKG-ADV" },
-        { "groupId": "MOT", "optionId": "MOT-201" },
-        { "groupId": "BLD", "optionId": "BLD-DR1S" },
-        { "groupId": "BAT", "optionId": "BAT-A01" },
-        { "groupId": "EXP", "optionId": "EXP-FGR" },
-        { "groupId": "ACTBDG", "optionId": "ACTBDG-BRT" },
-        { "groupId": "WHL", "optionId": "WHL-2SS" },
-        { "groupId": "INT", "optionId": "INT-BMP" },
-        { "groupId": "ROOF", "optionId": "ROOF-DGP" },
-        { "groupId": "UTL", "optionId": "UTL-S01" },
-        { "groupId": "AUD", "optionId": "AUD-P01" },
-        { "groupId": "BUND", "optionId": "BUND-AR01" },
-        { "groupId": "CHRG", "optionId": "CHRG-NACS01" }
-      ],
-      "fees": [
-        { "amount": 300, "currency": "CAD", "code": "DOCUMENTATION_FEE" },
-        { "amount": 22, "currency": "CAD", "code": "OMVIC_FEE" },
-        { "amount": 100, "currency": "CAD", "code": "AIR_CONDITIONING_RECOVERY_FEE" },
-        { "amount": 2695, "currency": "CAD", "code": "DELIVERY_FEE" }
-      ],
-      "identityHash": "a1237d0f0521adfaaa1a84f3f0b9b7091664ddf409d8c520c200388e8b4f8bc5",
-      "searchKeys": ["ON/R1S", "QC/R1S"]
-    },
-    {
-      "model": "R1S",
-      "modelYear": 2026,
-      "ruleset": "VEHICLE_SHOP_33.0",
       "listingPrice": 208090,
       "finalPrice": 205607,
       "vehicleDiscountAmount": 5600,
@@ -7877,6 +7730,40 @@
       ],
       "identityHash": "c3a5888e3ced67862301b23f1cb79bed3c4da162c7075cd380490dfb9345995c",
       "searchKeys": ["AB/R1T", "BC/R1T"]
+    },
+    {
+      "model": "R1T",
+      "modelYear": 2026,
+      "ruleset": "VEHICLE_SHOP_33.0",
+      "listingPrice": 160990,
+      "finalPrice": 161307,
+      "vehicleDiscountAmount": 2800,
+      "marketingOptions": [
+        { "groupId": "V_GEN", "optionId": "GEN-2" },
+        { "groupId": "MODEL_YEAR", "optionId": "2026" },
+        { "groupId": "RGN", "optionId": "RGN-CAN" },
+        { "groupId": "PKG", "optionId": "PKG-ADV" },
+        { "groupId": "MOT", "optionId": "MOT-201" },
+        { "groupId": "SWUP", "optionId": "SWUP-PERF01" },
+        { "groupId": "BLD", "optionId": "BLD-DR1T" },
+        { "groupId": "BAT", "optionId": "BAT-A01" },
+        { "groupId": "EXP", "optionId": "EXP-FGR" },
+        { "groupId": "ACTBDG", "optionId": "ACTBDG-BRT" },
+        { "groupId": "WHL", "optionId": "WHL-2SS" },
+        { "groupId": "INT", "optionId": "INT-BMP" },
+        { "groupId": "ROOF", "optionId": "ROOF-FGP" },
+        { "groupId": "UTL", "optionId": "UTL-T01" },
+        { "groupId": "TON", "optionId": "TON-P02" },
+        { "groupId": "CHRG", "optionId": "CHRG-NACS01" }
+      ],
+      "fees": [
+        { "amount": 22, "currency": "CAD", "code": "OMVIC_FEE" },
+        { "amount": 300, "currency": "CAD", "code": "DOCUMENTATION_FEE" },
+        { "amount": 2695, "currency": "CAD", "code": "DELIVERY_FEE" },
+        { "amount": 100, "currency": "CAD", "code": "AIR_CONDITIONING_RECOVERY_FEE" }
+      ],
+      "identityHash": "ce03f5b962a931d3e07d7b31544dde7fc99ab12d10ebd017e753b2c3f5b7e075",
+      "searchKeys": ["ON/R1T", "QC/R1T"]
     },
     {
       "model": "R1T",

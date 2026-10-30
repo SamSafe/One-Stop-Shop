@@ -20,17 +20,17 @@ describe('Canadian Rivian visible factory choices and dated new-stock evidence',
   it('reconciles current ordering, both stock years and delivery-point limitations without a national inventory claim', () => {
     expect(snapshot.listedOrderModels).toEqual(['R1S', 'R1T']);
     expect(snapshot.current.map((c) => c.expectedProfileKeys.length)).toEqual([46, 23]);
-    expect(snapshot.stock).toHaveLength(45);
+    expect(snapshot.stock).toHaveLength(42);
     expect(snapshot.searches).toHaveLength(26);
     expect(snapshot.searches.filter((s) => !s.error)).toHaveLength(8);
-    expect(snapshot.searches.reduce((n, q) => n + q.reportedRows, 0)).toBe(132);
+    expect(snapshot.searches.reduce((n, q) => n + q.reportedRows, 0)).toBe(126);
     expect(new Set(snapshot.stock.map((r) => r.modelYear))).toEqual(new Set([2026, 2027]));
     const profiles = rivianProfiles(snapshot);
-    expect(profiles).toHaveLength(106);
-    expect(profiles.filter((p) => p.stockOnly)).toHaveLength(37);
+    expect(profiles).toHaveLength(104);
+    expect(profiles.filter((p) => p.stockOnly)).toHaveLength(35);
     expect(
       catalog.cars.filter((c) => c.make === 'Rivian' && c.recordKind === 'retail-trim'),
-    ).toHaveLength(106);
+    ).toHaveLength(104);
     expect(JSON.stringify(snapshot)).not.toMatch(/"(?:VIN|cookie|headers|configId|x-api-key)"/i);
   });
   it('rejects omitted factory profiles, delivery searches and mismatched stock years', () => {
@@ -163,9 +163,15 @@ describe('Canadian Rivian visible factory choices and dated new-stock evidence',
       expect(facts[key].value).toBeNull();
   });
   it('refuses silent retirement of older stock, current model years and previously served source contexts', () => {
-    const stock = structuredClone(snapshot);
-    stock.stock.pop();
-    expect(() => rivianRequireNoRegression(snapshot, stock)).toThrow(/reconciliation/);
+    // A vehicle missing from searches that succeeded again was sold or withdrawn.
+    const sold = structuredClone(snapshot);
+    sold.stock.pop();
+    expect(() => rivianRequireNoRegression(snapshot, sold)).not.toThrow();
+    // One missing because a search that found it now fails must be reviewed.
+    const hidden = structuredClone(sold);
+    const lost = snapshot.stock.at(-1)!;
+    for (const q of hidden.searches) if (lost.searchKeys.includes(q.key)) q.error = 'NO_DC';
+    expect(() => rivianRequireNoRegression(snapshot, hidden)).toThrow(/reconciliation/);
     const year = structuredClone(snapshot);
     year.current[0]!.builder.ruleset.groups.MODEL_YEAR!.options = ['2028'];
     expect(() => rivianRequireNoRegression(snapshot, year)).toThrow(/reconciliation/);
