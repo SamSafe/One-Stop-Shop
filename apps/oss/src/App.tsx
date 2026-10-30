@@ -8,6 +8,7 @@ import {
   defaultWeights,
   parseSharedState,
   priorityKeys,
+  uncheckedLimits,
 } from './domain';
 import type { Weights } from './domain';
 import { useShortlist } from './useShortlist';
@@ -21,7 +22,6 @@ import { CatalogFilters } from './CatalogFilters';
 import { ActiveFilters, DiscoveryShortcuts, PrimaryFilters } from './CatalogControls';
 import { SourcesSection } from './SourceLibrary';
 import { AppHeader } from './AppHeader';
-import { BuyingHub } from './BuyingHub';
 import { Comparison } from './Comparison';
 import { CompareTray } from './CompareTray';
 import { Card } from './VehicleCard';
@@ -30,7 +30,6 @@ import { ShortlistDialog } from './ShortlistDialog';
 import { SiteFooter } from './SiteFooter';
 import { Icon, formatDate, reviewedDate } from './catalogView';
 import { useBuyingWorkspace } from './useBuyingWorkspace';
-import { BuyingBriefDialog } from './BuyingBriefDialog';
 import { TestDriveJournal } from './TestDriveJournal';
 import { latestReview } from './buying';
 import './buying.css';
@@ -48,8 +47,6 @@ const initialBrowsing = parseBrowsingState(window.location.search, cars);
 
 export function App() {
   const buying = useBuyingWorkspace();
-  const activeBrief = buying.workspace.brief?.enabled ? buying.workspace.brief : null;
-  const [briefOpen, setBriefOpen] = useState(false);
   const [journal, setJournal] = useState<{ carId: string | null } | null>(null);
   const [filtersOpen, setFiltersOpen] = useState(false);
   const {
@@ -106,14 +103,13 @@ export function App() {
       setReferenceId(next.reference ?? next.compare[0] ?? '');
       setComparisonOpen(next.compare.length >= 2);
       setShortlistOpen(false);
-      setBriefOpen(false);
       setJournal(null);
     };
     window.addEventListener('popstate', navigate);
     return () => window.removeEventListener('popstate', navigate);
   }, []);
 
-  const { results, scoredCount, requirementGaps } = useCatalogResults({
+  const { results, scoredCount, ruledOutCount, uncheckedHidden } = useCatalogResults({
     cars,
     filters,
     savedIds,
@@ -121,7 +117,6 @@ export function App() {
     energy,
     sort,
     scoredOnly,
-    brief: activeBrief,
     reviews: buying.workspace.reviews,
   });
   const totalPages = Math.max(1, Math.ceil(results.length / pageSize));
@@ -220,10 +215,6 @@ export function App() {
         );
       },
     );
-  function editBrief() {
-    buying.clearError();
-    setBriefOpen(true);
-  }
   function openJournal(carId: string | null) {
     buying.clearError();
     setJournal({ carId });
@@ -260,14 +251,11 @@ export function App() {
             <p>Canadian prices and specifications. Select up to four vehicles to compare.</p>
           </div>
         </section>
-        <BuyingHub
-          store={buying}
-          activeBrief={activeBrief}
-          dialogOpen={briefOpen || !!journal}
-          onEditBrief={editBrief}
-          onOpenJournal={() => openJournal(null)}
-          onBriefToggled={resetPage}
-        />
+        {buying.warning && (
+          <p className="notice" role="status">
+            {buying.warning}
+          </p>
+        )}
         <details className="catalog-coverage">
           <summary>
             Canadian catalog <span>Coverage in progress · details &amp; sources</span>
@@ -369,10 +357,8 @@ export function App() {
                   resetFilters();
                   setWeights({ ...defaultWeights });
                 }}
-                briefActive={!!activeBrief}
               />
               <CatalogFilters
-                briefActive={!!activeBrief}
                 filtersOpen={filtersOpen}
                 filters={filters}
                 setFilters={setFilters}
@@ -381,6 +367,7 @@ export function App() {
                 scoredOnly={scoredOnly}
                 setScoredOnly={setScoredOnly}
                 savedIds={savedIds}
+                ruledOutCount={ruledOutCount}
                 energyInputs={energyInputs}
                 onEnergyInput={onEnergyInput}
               />
@@ -398,9 +385,7 @@ export function App() {
                 </p>
                 <span>
                   {sort === 'fit'
-                    ? activeBrief
-                      ? 'Sorted by your buying brief'
-                      : 'Sorted by your priorities'
+                    ? 'Sorted by your priorities'
                     : sort === 'price'
                       ? 'Lowest base MSRP first'
                       : 'Lowest estimated energy cost per 100 km first'}
@@ -412,6 +397,9 @@ export function App() {
                 >
                   Manage shortlist ({savedIds.length})
                 </button>
+                <button type="button" className="text-button" onClick={() => openJournal(null)}>
+                  Test-drive journal ({buying.workspace.reviews.length})
+                </button>
               </div>
               {filters.savedOnly && results.length < savedIds.length && (
                 <p className="ranking-coverage">
@@ -419,38 +407,25 @@ export function App() {
                   filters.
                 </p>
               )}
-              <p className="ranking-coverage">
-                {scoredCount.toLocaleString('en-CA')} of {results.length.toLocaleString('en-CA')}{' '}
-                matching records have all the data needed for your priorities. Unknown values stay
-                unscored.
-              </p>
-              {activeBrief && requirementGaps > 0 && (
-                <p className="panel-note brief-gap-notice">
-                  {requirementGaps.toLocaleString('en-CA')} matching records have unverified
-                  requirements.
-                  {activeBrief.includeUnverified ? (
-                    ' They are included for checking and remain unscored.'
-                  ) : (
-                    <>
-                      {' '}
-                      Include them below to review the missing facts.{' '}
-                      <button
-                        type="button"
-                        className="text-button"
-                        onClick={() => {
-                          if (
-                            buying.saveBrief(activeBrief, {
-                              ...activeBrief,
-                              includeUnverified: true,
-                            })
-                          )
-                            resetPage();
-                        }}
-                      >
-                        Include candidates needing checks
-                      </button>
-                    </>
-                  )}
+              {results.length > 0 && (
+                <p className="ranking-coverage">
+                  {scoredCount.toLocaleString('en-CA')} of {results.length.toLocaleString('en-CA')}{' '}
+                  matching records have all the data needed for your priorities. Unknown values stay
+                  unscored.
+                </p>
+              )}
+              {uncheckedHidden > 0 && (
+                <p className="panel-note unchecked-notice">
+                  {uncheckedHidden.toLocaleString('en-CA')} more{' '}
+                  {uncheckedHidden === 1 ? 'record has' : 'records have'} no verified figure for
+                  your limits.{' '}
+                  <button
+                    type="button"
+                    className="text-button"
+                    onClick={() => setFilters({ ...filters, includeUnverified: true })}
+                  >
+                    Show them to check
+                  </button>
                 </p>
               )}
               <ActiveFilters
@@ -459,7 +434,7 @@ export function App() {
                 scoredOnly={scoredOnly}
                 onClearScoredOnly={() => setScoredOnly(false)}
               />
-              {!activeBrief && priorityKeys.every((key) => weights[key] === 0) && (
+              {priorityKeys.every((key) => weights[key] === 0) && (
                 <p className="notice">
                   Choose at least one priority to calculate fit scores. Cars are currently ordered
                   by MSRP when sorting by fit.
@@ -474,7 +449,7 @@ export function App() {
                       index={startIndex + index}
                       weights={weights}
                       energy={energy}
-                      brief={activeBrief}
+                      unchecked={filters.includeUnverified ? uncheckedLimits(car, filters) : []}
                       review={latestReview(buying.workspace.reviews, car.id)}
                       onTestDrive={() => openJournal(car.id)}
                       selected={compareIds.includes(car.id)}
@@ -488,8 +463,6 @@ export function App() {
               ) : (
                 <EmptyResults
                   emptyShortlist={filters.savedOnly && savedIds.length === 0}
-                  briefActive={!!activeBrief}
-                  onEditBrief={editBrief}
                   onReset={resetFilters}
                 />
               )}
@@ -531,17 +504,6 @@ export function App() {
       <div className="sr-only" role="status" aria-live="polite">
         {announcement}
       </div>
-      {briefOpen && (
-        <BuyingBriefDialog
-          store={buying}
-          filters={filters}
-          onClose={() => setBriefOpen(false)}
-          onApply={() => {
-            setSort('fit');
-            resetPage();
-          }}
-        />
-      )}
       {journal && (
         <TestDriveJournal
           store={buying}
@@ -590,7 +552,6 @@ export function App() {
         />
       )}
       <Comparison
-        brief={activeBrief}
         reviews={buying.workspace.reviews}
         selected={selected}
         weights={weights}

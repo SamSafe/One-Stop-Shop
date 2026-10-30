@@ -33,7 +33,7 @@ import {
 const cars = curatedCatalog.cars;
 const first = cars[0]!;
 const hybrid = cars.find((car) => car.fuel === 'Hybrid')!;
-const onlyPrice = { price: 5, efficiency: 0, cargo: 0, room: 0 };
+const onlyPrice = { price: 5, efficiency: 0, cargo: 0, room: 0, power: 0 };
 
 describe('explainable energy estimates and applicability', () => {
   const plugIn = () => {
@@ -378,13 +378,15 @@ describe('ranking', () => {
     example.facts.fuelCombinedL100km.value = 9.333333333;
     example.facts.cargoSeatsUpL.value = 1040.4;
     example.facts.rearLegroomMm.value = 1060;
-    expect(scoreCar(example, { price: 3, efficiency: 3, cargo: 2, room: 2 }).score).toBe(62);
+    expect(scoreCar(example, { price: 3, efficiency: 3, cargo: 2, room: 2, power: 0 }).score).toBe(
+      62,
+    );
   });
   it('changes the winner when priorities change', () => {
     expect(rankCars(cars, onlyPrice)[0]!.car.id).toBe('subaru-forester-2026-convenience-awd');
-    expect(rankCars(cars, { price: 0, efficiency: 5, cargo: 0, room: 0 })[0]!.car.id).toBe(
-      hybrid.id,
-    );
+    expect(
+      rankCars(cars, { price: 0, efficiency: 5, cargo: 0, room: 0, power: 0 })[0]!.car.id,
+    ).toBe(hybrid.id);
   });
   it('keeps a car score unchanged after filtering other cars out', () => {
     const before = rankCars(cars, defaultWeights).find(({ car }) => car.id === first.id)!;
@@ -398,7 +400,9 @@ describe('ranking', () => {
     expect(scoreCar(incomplete, onlyPrice).score).not.toBeNull();
   });
   it('returns no score for zero weights', () => {
-    expect(scoreCar(first, { price: 0, efficiency: 0, cargo: 0, room: 0 }).score).toBeNull();
+    expect(
+      scoreCar(first, { price: 0, efficiency: 0, cargo: 0, room: 0, power: 0 }).score,
+    ).toBeNull();
   });
   it.each([-1, 6, 0.5, NaN, Infinity])('rejects invalid weight %s', (price) => {
     expect(() => scoreCar(first, { ...defaultWeights, price })).toThrow('Invalid weight');
@@ -636,7 +640,7 @@ describe('shared comparisons', () => {
   it('roundtrips selected IDs and weights', () => {
     const state = {
       compare: [first.id, hybrid.id],
-      weights: { price: 5, efficiency: 2, cargo: 0, room: 1 },
+      weights: { price: 5, efficiency: 2, cargo: 0, room: 1, power: 0 },
     };
     expect(parseSharedState(serializeSharedState(state), cars)).toEqual(state);
   });

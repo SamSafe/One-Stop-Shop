@@ -6,19 +6,10 @@ import {
   readBuyingWorkspace,
   mergeBuyingWorkspace,
 } from './buying';
-import type { BuyingBrief, BuyingWorkspace, TestDriveReview } from './buying';
+import type { BuyingWorkspace, TestDriveReview } from './buying';
 
 const visitOnly = 'Buying changes are kept for this visit only. Export a backup before leaving.';
 const same = (a: unknown, b: unknown) => JSON.stringify(a) === JSON.stringify(b);
-export function updateBrief(
-  workspace: BuyingWorkspace,
-  expected: BuyingBrief | null,
-  next: BuyingBrief | null,
-) {
-  if (!same(workspace.brief, expected))
-    throw new Error('Your buying brief changed in another tab. Reopen it before saving.');
-  return { ...workspace, brief: next };
-}
 export function updateReview(
   workspace: BuyingWorkspace,
   expected: TestDriveReview | null,
@@ -120,8 +111,6 @@ export function useBuyingWorkspace() {
     warning,
     error,
     clearError: () => setError(''),
-    saveBrief: (expected: BuyingBrief | null, next: BuyingBrief | null) =>
-      change((w) => updateBrief(w, expected, next)),
     saveReview: (expected: TestDriveReview | null, next: TestDriveReview) =>
       change((w) => updateReview(w, expected, next)),
     removeReview: (expected: TestDriveReview) => change((w) => deleteReview(w, expected)),
@@ -131,7 +120,7 @@ export function useBuyingWorkspace() {
         const raw = localStorage.getItem(buyingStorageKey);
         const storageChanged = persist.current
           ? raw === null
-            ? current.current.brief !== null || current.current.reviews.length > 0
+            ? current.current.reviews.length > 0
             : readBuyingWorkspace(raw).revision !== revision
           : rawSeen.current === undefined
             ? raw !== null

@@ -23,7 +23,7 @@ import { EnergyInputs } from './EnergyInputs';
 import { estimateEnergy, annualEnergyEstimate } from './energy';
 import { EnergyCost } from './EnergyCost';
 import type { EnergyInputs as Inputs } from './useEnergySettings';
-import type { BuyingBrief, TestDriveReview } from './buying';
+import type { TestDriveReview } from './buying';
 import { latestReview } from './buying';
 import { TestDriveDetails } from './TestDriveJournal';
 import { FitBreakdown } from './FitBreakdown';
@@ -72,7 +72,6 @@ export function Comparison({
   energy,
   inputs,
   onInput,
-  brief,
   reviews,
 }: {
   selected: Car[];
@@ -80,7 +79,6 @@ export function Comparison({
   energy: EnergySettings;
   inputs: Inputs;
   onInput: (key: keyof Inputs, value: string) => void;
-  brief: BuyingBrief | null;
   reviews: TestDriveReview[];
   open: boolean;
   onClose: () => void;
@@ -327,15 +325,9 @@ export function Comparison({
                   <th scope="row">Your fit score</th>
                   {selected.map((car) => (
                     <td key={car.id}>
-                      <strong>{scoreCar(car, weights, energy, brief).score ?? 'Unscored'}</strong>
-                      {scoreCar(car, weights, energy, brief).score !== null && ' / 100'}
-                      {brief && (
-                        <p>
-                          {scoreCar(car, weights, energy, brief).reason ??
-                            'Based on your buying brief.'}
-                        </p>
-                      )}
-                      <FitBreakdown car={car} weights={weights} energy={energy} brief={brief} />
+                      <strong>{scoreCar(car, weights, energy).score ?? 'Unscored'}</strong>
+                      {scoreCar(car, weights, energy).score !== null && ' / 100'}
+                      <FitBreakdown car={car} weights={weights} energy={energy} />
                     </td>
                   ))}
                 </tr>

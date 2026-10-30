@@ -53,7 +53,6 @@ export function PrimaryFilters({
   filtersOpen,
   onToggleFilters,
   onReset,
-  briefActive,
 }: {
   cars: Car[];
   makes: string[];
@@ -64,7 +63,6 @@ export function PrimaryFilters({
   filtersOpen: boolean;
   onToggleFilters: () => void;
   onReset: () => void;
-  briefActive: boolean;
 }) {
   const models = useMemo(
     () =>
@@ -153,7 +151,7 @@ export function PrimaryFilters({
         {filtersOpen ? 'Hide filters' : 'Filters & priorities'}
       </button>
       <button type="button" className="text-button filter-reset" onClick={onReset}>
-        {briefActive ? 'Reset catalog' : 'Reset'}
+        Reset
       </button>
     </div>
   );
@@ -172,7 +170,11 @@ const filterLabels: Record<string, string> = {
   drivetrain: 'Drivetrain',
   bodyStyle: 'Body style',
   minSeats: 'Minimum seats',
+  minHorsepower: 'Minimum horsepower',
+  minRearLegroom: 'Minimum rear legroom',
   pricedOnly: 'Verified base price',
+  includeUnverified: 'Keeping unverified figures',
+  hideRuledOut: 'Hiding ruled-out vehicles',
   savedOnly: 'Shortlist',
 };
 
@@ -217,7 +219,9 @@ export function ActiveFilters({
           const shown =
             key === 'budget'
               ? currency.format(Number(value))
-              : (valueLabels[key]?.[String(value)] ?? String(value).replaceAll('-', ' '));
+              : key === 'minSeats' || key === 'minHorsepower' || key === 'minRearLegroom'
+                ? `${Number(value).toLocaleString('en-CA')}+${{ minSeats: '', minHorsepower: ' hp', minRearLegroom: ' mm' }[key]}`
+                : (valueLabels[key]?.[String(value)] ?? String(value).replaceAll('-', ' '));
           const label = `${filterLabels[key]}${value === true ? '' : `: ${shown}`}`;
           return (
             <button

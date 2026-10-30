@@ -50,8 +50,8 @@ test('family SUV discovery uses verified seating and manufacturer body styles, w
   await expect(page.getByRole('article').first()).toBeVisible();
   const group = page.getByRole('group', { name: 'Active filters', exact: true });
   await expect(group).toContainText('Body style: SUV');
-  await expect(group).toContainText('Minimum seats: 5');
-  await group.getByRole('button', { name: 'Remove Minimum seats: 5 filter', exact: true }).click();
+  await expect(group).toContainText('Minimum seats: 5+');
+  await group.getByRole('button', { name: 'Remove Minimum seats: 5+ filter', exact: true }).click();
   await expect(group).not.toContainText('Minimum seats');
   await page.getByRole('button', { name: 'Filters & priorities', exact: true }).click();
   await page.getByLabel('Make', { exact: true }).selectOption('Honda');

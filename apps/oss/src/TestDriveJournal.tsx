@@ -445,9 +445,9 @@ export function TestDriveJournal({
         <details className="buying-backups">
           <summary>Buying backups &amp; device data</summary>
           <p>
-            Your brief and all reviews stay in this browser, independently of the shortlist and
-            Garage. Back them up before clearing site data or changing devices. Copied catalog links
-            do not contain this data.
+            Your reviews stay in this browser, independently of the shortlist and Garage. Back them
+            up before clearing site data or changing devices. Copied catalog links do not contain
+            this data.
           </p>
           <div className="shortlist-tools">
             <button
@@ -479,8 +479,8 @@ export function TestDriveJournal({
             <section className="notice" aria-label="Buying import preview">
               <p>
                 {pending.reviews.length} {pending.reviews.length === 1 ? 'review' : 'reviews'} in
-                this backup. New reviews will be added. Your current brief and saved reviews will be
-                kept. Keep the original file if it contains changes to a saved review.
+                this backup. New reviews will be added and your saved reviews will be kept. Keep the
+                original file if it contains changes to a saved review.
               </p>
               <button
                 type="button"
@@ -514,14 +514,11 @@ export function TestDriveJournal({
               setClearing(store.workspace.revision);
             }}
           >
-            Clear buying brief and reviews
+            Clear test-drive reviews
           </button>
           {clearing && (
             <div className="notice">
-              <p>
-                Remove your buying brief and all test-drive reviews from this device? Export a
-                backup first.
-              </p>
+              <p>Remove all test-drive reviews from this device? Export a backup first.</p>
               <div className="confirmation-actions">
                 <button
                   type="button"
@@ -530,7 +527,7 @@ export function TestDriveJournal({
                     if (store.clear(clearing)) {
                       setClearing(null);
                       setEditor(null);
-                      setNotice('Buying brief and reviews cleared.');
+                      setNotice('Test-drive reviews cleared.');
                     }
                   }}
                 >

@@ -13,15 +13,15 @@ and manufacturer maintenance.
 - **Browse the catalog.** Search by make, model, trim or powertrain, filter by
   year, price, body style, seats, drivetrain and fuel, and use quick views for
   priced retail vehicles, EVs and family SUVs.
-- **Rank by fit.** Weight price, energy cost, cargo, rear legroom and other
-  priorities. **Why this fits** shows every requirement, weight, target and
-  missing input behind a score.
+- **Rank by fit.** Set limits (price, seats, horsepower, rear legroom) and weight
+  price, energy cost, cargo, rear legroom and horsepower. **Why this fits** shows
+  every weight, scale and missing input behind a score.
 - **Compare 2–4 configurations.** Specifications are shown side by side with
   key differences relative to a chosen reference vehicle and a fuel/electricity
   cost estimate you can adjust.
-- **Plan a purchase.** An optional buying brief separates must-haves from
-  preferences, and a test-drive journal records dated personal ratings and notes
-  ([details](docs/BUYING-BRIEF.md)).
+- **Record test drives.** A test-drive journal keeps dated personal ratings and
+  notes, and can hide vehicles you ruled out
+  ([details](docs/TEST-DRIVE-JOURNAL.md)).
 - **Keep a shortlist and share links.** Shortlists stay on the device with JSON
   backup and import. Searches and comparisons are shareable URLs.
 - **Own a vehicle.** The Garage finds owned vehicles from 1995 onward, records
@@ -109,11 +109,11 @@ account service, analytics or secret configuration.
 
 ## Privacy
 
-Shortlists, buying briefs, test-drive reviews and Garage records stay in the
+Shortlists, test-drive reviews and Garage records stay in the
 browser's local storage. Backups go only where you save them. Searches, filters,
 comparisons, priority weights and energy assumptions are kept in the URL, so
 anyone you share a link with can see them, and they may appear in host access
-logs. Briefs, reviews and the shortlist filter are never included in links.
+logs. Reviews and the shortlist filter are never included in links.
 
 ## Documentation
 

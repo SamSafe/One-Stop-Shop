@@ -3,8 +3,8 @@ import type { Car } from '@oss/car-catalog';
 import { energyCostPer100km, filterCars, rankCars } from './domain';
 import type { EnergySettings, Filters, Weights } from './domain';
 import type { SortOrder } from './browsing';
-import { assessRequirements, matchesBrief } from './buying';
-import type { BuyingBrief, TestDriveReview } from './buying';
+import { ruledOutIds } from './buying';
+import type { TestDriveReview } from './buying';
 
 export function useCatalogResults({
   cars,
@@ -14,7 +14,6 @@ export function useCatalogResults({
   energy,
   sort,
   scoredOnly,
-  brief,
   reviews,
 }: {
   cars: Car[];
@@ -24,14 +23,11 @@ export function useCatalogResults({
   energy: EnergySettings;
   sort: SortOrder;
   scoredOnly: boolean;
-  brief: BuyingBrief | null;
   reviews: TestDriveReview[];
 }) {
+  const ruledOut = useMemo(() => ruledOutIds(reviews), [reviews]);
   const results = useMemo(() => {
-    const eligible = filterCars(cars, filters, savedIds).filter(
-      (car) => !brief || matchesBrief(car, brief, reviews),
-    );
-    const ranked = rankCars(eligible, weights, energy, brief);
+    const ranked = rankCars(filterCars(cars, filters, savedIds, ruledOut), weights, energy);
     if (sort === 'price')
       ranked.sort(
         (a, b) =>
@@ -53,8 +49,7 @@ export function useCatalogResults({
     savedIds,
     sort,
     scoredOnly,
-    brief,
-    reviews,
+    ruledOut,
     energy.fuelPrice,
     energy.electricityPrice,
     energy.electricFraction,
@@ -62,20 +57,20 @@ export function useCatalogResults({
     energy.dieselPrice,
     energy.e85Price,
   ]);
-  // Records that meet every verified requirement but miss data for another.
-  const requirementGaps = useMemo(
-    () =>
-      brief
-        ? filterCars(cars, filters, savedIds).filter((car) => {
-            const needs = assessRequirements(car, brief);
-            return !needs.failed.length && needs.unknown.length > 0;
-          }).length
-        : 0,
-    [cars, brief, filters, savedIds],
-  );
+  // Records hidden only because a numeric limit has no verified figure for them.
+  const uncheckedHidden = useMemo(() => {
+    const limited =
+      filters.budget || filters.minSeats || filters.minHorsepower || filters.minRearLegroom;
+    if (!limited || filters.includeUnverified) return 0;
+    return (
+      filterCars(cars, { ...filters, includeUnverified: true }, savedIds, ruledOut).length -
+      filterCars(cars, filters, savedIds, ruledOut).length
+    );
+  }, [cars, filters, savedIds, ruledOut]);
   return {
     results,
+    uncheckedHidden,
     scoredCount: results.filter((result) => result.score !== null).length,
-    requirementGaps,
+    ruledOutCount: ruledOut.length,
   };
 }

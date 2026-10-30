@@ -1,47 +1,5 @@
-.buying-hub {
-  max-width: 1280px;
-  margin: 4px auto 22px;
-  padding: 16px 20px;
-  background: var(--surface-alt);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-md);
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 12px 24px;
-}
-.buying-hub h2 {
-  font-size: 18px;
-  margin-bottom: 6px;
-}
-.buying-hub .buying-storage {
-  color: var(--muted);
-  white-space: nowrap;
-}
-.buying-hub p,
 .buying-dialog p {
   line-height: 1.6;
-}
-.buying-hub p {
-  font-size: 14px;
-}
-.buying-actions {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 12px;
-}
-.buying-private {
-  color: var(--muted);
-  font-size: 13px;
-  grid-column: 1 / -1;
-}
-.buying-hub > .notice {
-  grid-column: 1 / -1;
-  margin: 0;
-}
-.buying-brief-summary {
-  margin-top: 8px;
-  font-weight: 600;
 }
 .buying-dialog {
   width: min(850px, calc(100% - 32px));
@@ -98,72 +56,33 @@
 .buying-fields .matching-filter input {
   width: auto;
 }
-.buying-checks {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 14px 22px;
-  margin-bottom: 18px;
-}
-.buying-checks label {
-  display: flex;
-  gap: 8px;
-  align-items: center;
-  font-size: 14px;
-}
-.buying-form .body-options {
-  margin-block: 20px;
-}
 .buying-questionnaire,
 .buying-backups {
   border-block: 1px solid var(--line);
   padding-block: 18px;
 }
-.buying-questionnaire summary,
 .buying-backups summary {
   font-weight: 650;
   line-height: 1.6;
 }
-.buying-questionnaire-content {
-  display: grid;
-  gap: 18px;
-  padding-top: 18px;
-}
-.buying-weight {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 10px;
-  font-size: 14px;
-}
-.buying-weight input {
-  grid-column: 1 / -1;
-  width: 100%;
-}
-.brief-card-match,
+.unchecked-limits,
 .card-test-drive {
   font-size: 13px;
   line-height: 1.5;
   margin-top: 14px;
 }
-.brief-card-match {
+.unchecked-limits {
   padding: 10px 12px;
-  background: var(--surface-alt);
+  background: var(--warning-bg);
+  border: 1px solid var(--warning-border);
   border-radius: var(--radius-sm);
+  color: var(--warning);
 }
-.brief-card-match strong {
-  color: var(--action);
-}
-.brief-card-match p {
+.unchecked-limits p {
   margin-top: 4px;
-  color: var(--muted);
 }
 .card-test-drive .text-button {
   margin-top: 6px;
-}
-.brief-methodology {
-  line-height: 1.7;
-  margin-bottom: 24px;
-  padding: 16px;
-  background: var(--surface-alt);
 }
 .journal-results {
   margin-block: 24px 12px;
@@ -213,22 +132,7 @@
   border: 1px solid var(--line);
   border-radius: var(--radius-sm);
 }
-@media (max-width: 1328px) {
-  .buying-hub {
-    margin-inline: 24px;
-  }
-}
-@media (max-width: 1000px) {
-  .buying-hub {
-    grid-template-columns: minmax(0, 1fr);
-  }
-}
 @media (max-width: 800px) {
-  .buying-hub {
-    grid-template-columns: minmax(0, 1fr);
-    margin-inline: 16px;
-    padding: 18px;
-  }
   .buying-fields {
     grid-template-columns: minmax(0, 1fr);
   }
@@ -237,33 +141,5 @@
   }
   .buying-form fieldset {
     padding: 14px;
-  }
-  .buying-actions .button {
-    flex: 1 1 auto;
-  }
-}
-
-/* Phones: a compact brief panel keeps the first vehicle closer to the top. */
-@media (max-width: 580px) {
-  .buying-hub {
-    padding: 14px 16px;
-    gap: 10px;
-  }
-  .buying-hub h2 {
-    font-size: 17px;
-    margin-bottom: 2px;
-  }
-  .buying-actions {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 8px;
-  }
-  .buying-actions .button {
-    padding-inline: 10px;
-    font-size: 13px;
-  }
-  .buying-actions .text-button {
-    grid-column: 1 / -1;
-    justify-self: start;
   }
 }

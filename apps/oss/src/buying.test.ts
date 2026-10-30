@@ -1,25 +1,27 @@
 import { describe, expect, it } from 'vitest';
 import { catalog } from '@oss/car-catalog';
 import type { Car } from '@oss/car-catalog';
-import { defaultEnergy, defaultFilters, defaultWeights, scoreCar } from './domain';
 import {
-  assessRequirements,
-  emptyBrief,
+  defaultEnergy,
+  defaultFilters,
+  defaultWeights,
+  filterCars,
+  scoreCar,
+  uncheckedLimits,
+} from './domain';
+import {
   emptyBuyingWorkspace,
   latestReview,
-  matchesBrief,
   mergeBuyingWorkspace,
-  parseBuyingBrief,
   parseBuyingWorkspace,
   parseReview,
   readBuyingWorkspace,
+  ruledOutIds,
   buyingBackup,
   buyingFileLimit,
-  scoreBuyingBrief,
-  briefFromFilters,
 } from './buying';
-import type { BriefPriority, BuyingBrief, TestDriveReview } from './buying';
-import { deleteReview, updateBrief, updateReview } from './useBuyingWorkspace';
+import type { TestDriveReview } from './buying';
+import { deleteReview, updateReview } from './useBuyingWorkspace';
 
 function car(values: Partial<Car> = {}): Car {
   const c = structuredClone(catalog.cars[0]!);
@@ -34,12 +36,6 @@ function car(values: Partial<Car> = {}): Car {
     c.facts[key as keyof Car['facts']].value = value;
   return c;
 }
-function brief(only: BriefPriority): BuyingBrief {
-  const b = emptyBrief();
-  for (const key of Object.keys(b.weights) as BriefPriority[])
-    b.weights[key] = Number(key === only);
-  return b;
-}
 function review(id = 'review-a', date = '2026-10-20'): TestDriveReview {
   return {
     id,
@@ -52,98 +48,57 @@ function review(id = 'review-a', date = '2026-10-20'): TestDriveReview {
     notes: '',
   };
 }
-describe('buying brief matching', () => {
-  it('uses chosen body styles and power instead of inferring a lifestyle', () => {
-    const b = brief('power');
-    b.bodies = ['Coupe', 'Convertible'];
-    b.weights.body = 1;
-    const coupe = car({ bodyStyle: 'Coupe' }),
-      van = car({ bodyStyle: 'Minivan' });
-    van.facts.horsepower.value = 350;
-    expect(scoreBuyingBrief(coupe, b, defaultEnergy).score).toBe(92);
-    expect(scoreBuyingBrief(van, b, defaultEnergy).score).toBe(50);
-    b.bodyRequired = true;
-    expect(matchesBrief(van, b, [])).toBe(false);
-    expect(matchesBrief(coupe, b, [])).toBe(true);
+describe('catalog requirements', () => {
+  const limits = {
+    ...defaultFilters,
+    budget: 50000,
+    minSeats: 4,
+    minHorsepower: 250,
+    minRearLegroom: 1000,
+  };
+  it('applies price, seat, power and legroom limits to verified figures', () => {
+    const c = car();
+    expect(filterCars([c], limits)).toEqual([c]);
+    for (const [key, value] of [
+      ['msrpCad', 50001],
+      ['seats', 3],
+      ['horsepower', 249],
+      ['rearLegroomMm', 999],
+    ] as const) {
+      const failing = car();
+      failing.facts[key].value = value;
+      expect(filterCars([failing], limits)).toEqual([]);
+      expect(filterCars([failing], { ...limits, includeUnverified: true })).toEqual([]);
+    }
   });
-  it('applies every hard requirement and keeps unknown facts distinct', () => {
-    const b = emptyBrief();
-    Object.assign(b, {
-      budget: 50000,
-      minSeats: 4,
-      bodies: ['Coupe'],
-      bodyRequired: true,
-      drive: 'AWD',
-      driveRequired: true,
-      horsepower: 240,
-      powerRequired: true,
-      rearLegroom: 950,
-      roomRequired: true,
-    });
-    const c = car({ bodyStyle: 'Coupe', drivetrain: 'AWD' });
-    expect(assessRequirements(c, b)).toEqual({
-      matched: [
-        'Within budget',
-        '4+ seats',
-        'Required body style',
-        'AWD required',
-        '240+ hp',
-        '950+ mm rear legroom',
-      ],
-      unknown: [],
-      failed: [],
-    });
-    expect(matchesBrief(c, b, [])).toBe(true);
-    c.facts.horsepower.value = null;
-    expect(matchesBrief(c, b, [])).toBe(false);
-    b.includeUnverified = true;
-    expect(matchesBrief(c, b, [])).toBe(true);
-    expect(scoreBuyingBrief(c, b, defaultEnergy)).toMatchObject({
-      score: null,
-      reason: 'Requirements need checking: 240+ hp.',
-    });
-    c.drivetrain = '4WD';
-    expect(matchesBrief(c, b, [])).toBe(false);
-  });
-  it('makes price scores relative to the chosen budget and caps targets', () => {
-    const b = brief('price'),
-      c = car();
-    b.budget = 60000;
-    expect(scoreBuyingBrief(c, b, defaultEnergy).score).toBe(50);
-    b.budget = 90000;
-    expect(scoreBuyingBrief(c, b, defaultEnergy).score).toBe(100);
-    b.budget = 40000;
-    expect(scoreBuyingBrief(c, b, defaultEnergy).score).toBeNull();
-    const space = brief('room');
-    space.rearLegroom = 900;
-    expect(scoreBuyingBrief(c, space, defaultEnergy).score).toBe(100);
-    c.facts.rearLegroomMm.value = 1200;
-    expect(scoreBuyingBrief(c, space, defaultEnergy).score).toBe(100);
-  });
-  it('requires active facts, ignores unused preferences and preserves legacy scoring when paused', () => {
+  it('keeps unverified figures only when asked, and names the limits to check', () => {
     const c = car();
     c.facts.horsepower.value = null;
-    const b = brief('power');
-    expect(scoreBuyingBrief(c, b, defaultEnergy).score).toBeNull();
-    b.weights.power = 0;
-    b.weights.price = 1;
-    b.weights.drive = 5;
-    b.weights.body = 5;
-    expect(scoreBuyingBrief(c, b, defaultEnergy).score).toBe(50);
-    expect(scoreCar(c, defaultWeights, defaultEnergy, { ...b, enabled: false })).toEqual(
-      scoreCar(c, defaultWeights, defaultEnergy),
-    );
+    c.facts.seats.value = null;
+    expect(filterCars([c], limits)).toEqual([]);
+    expect(filterCars([c], { ...limits, includeUnverified: true })).toEqual([c]);
+    expect(uncheckedLimits(c, limits)).toEqual(['seats', 'horsepower']);
+    expect(uncheckedLimits(c, defaultFilters)).toEqual([]);
   });
-  it('does not let personal ratings change published-fit scores; latest verdict hiding is opt-in', () => {
-    const b = brief('price'),
-      c = car(),
-      r = { ...review(), verdict: 'ruled-out' as const };
-    expect(matchesBrief(c, b, [r])).toBe(true);
-    b.hideRuledOut = true;
-    expect(matchesBrief(c, b, [r])).toBe(false);
+  it('scores horsepower without letting personal ratings change published-fit scores', () => {
+    const c = car();
+    const weights = { ...defaultWeights, price: 0, efficiency: 0, power: 3 };
+    expect(scoreCar(c, weights, defaultEnergy).score).toBe(33);
+    c.facts.horsepower.value = null;
+    expect(scoreCar(c, weights, defaultEnergy)).toMatchObject({
+      score: null,
+      reason: 'Missing horsepower data.',
+    });
+  });
+  it('hides vehicles ruled out by the latest dated review only when asked', () => {
+    const c = car(),
+      r = { ...review(), carId: c.id, verdict: 'ruled-out' as const };
+    const hiding = { ...defaultFilters, hideRuledOut: true };
+    expect(ruledOutIds([r])).toEqual([c.id]);
+    expect(filterCars([c], defaultFilters, [], ruledOutIds([r]))).toEqual([c]);
+    expect(filterCars([c], hiding, [], ruledOutIds([r]))).toEqual([]);
     const later = { ...r, id: 'review-b', date: '2026-10-21', verdict: 'consider' as const };
-    expect(matchesBrief(c, b, [r, later])).toBe(true);
-    expect(scoreBuyingBrief(c, b, defaultEnergy).score).toBe(50);
+    expect(ruledOutIds([r, later])).toEqual([]);
   });
   it('orders multiple same-day visits by creation time and retains unknown ratings', () => {
     const a = review('review-z'),
@@ -171,10 +126,9 @@ describe('buying storage and portable reviews', () => {
     expect(new TextEncoder().encode(backup).length).toBeLessThanOrEqual(buyingFileLimit);
     expect(readBuyingWorkspace(backup)).toEqual(workspace);
   });
-  it('round trips briefs, multiline personal notes and unavailable configuration reviews', () => {
+  it('round trips multiline personal notes and unavailable configuration reviews', () => {
     const w = {
       ...emptyBuyingWorkspace(),
-      brief: emptyBrief(),
       reviews: [
         {
           ...review(),
@@ -186,16 +140,23 @@ describe('buying storage and portable reviews', () => {
     expect(readBuyingWorkspace(JSON.stringify(w))).toEqual(w);
     expect(readBuyingWorkspace(null)).toEqual(emptyBuyingWorkspace());
   });
+  it('reads backups from versions that also stored a buying brief and drops the brief', () => {
+    const legacy = { ...emptyBuyingWorkspace(), brief: { budget: 40000 }, reviews: [review()] };
+    expect(readBuyingWorkspace(JSON.stringify(legacy))).toEqual({
+      ...emptyBuyingWorkspace(),
+      reviews: [review()],
+    });
+    expect(readBuyingWorkspace(JSON.stringify({ ...legacy, brief: null }))).not.toHaveProperty(
+      'brief',
+    );
+    expect(() => parseBuyingWorkspace({ ...legacy, brief: 'yes' })).toThrow('Unsupported');
+  });
   it('rejects unsupported, malformed, over-limit and ambiguous data', () => {
     expect(() => readBuyingWorkspace('{')).toThrow();
     expect(() => parseBuyingWorkspace({ ...emptyBuyingWorkspace(), version: 2 })).toThrow(
       'version',
     );
-    expect(() => parseBuyingBrief({ ...emptyBrief(), age: 70 })).toThrow();
-    expect(() => parseBuyingBrief({ ...emptyBrief(), bodyRequired: true })).toThrow('body style');
-    expect(() =>
-      parseBuyingBrief({ ...emptyBrief(), weights: { ...emptyBrief().weights, power: 6 } }),
-    ).toThrow();
+    expect(() => parseBuyingWorkspace({ ...emptyBuyingWorkspace(), notes: 'x' })).toThrow();
     expect(() => parseReview({ ...review(), date: '2026-02-30' })).toThrow('date');
     expect(() =>
       parseReview({ ...review(), ratings: { ...review().ratings, comfort: 0 } }),
@@ -206,24 +167,19 @@ describe('buying storage and portable reviews', () => {
     ).toThrow('Duplicate');
     expect(() => readBuyingWorkspace(' '.repeat(2_000_001))).toThrow('large');
   });
-  it('merges new IDs while preserving existing brief and conflicting reviews', () => {
-    const current = { ...emptyBuyingWorkspace(), brief: emptyBrief(), reviews: [review()] };
+  it('merges new IDs while preserving conflicting reviews', () => {
+    const current = { ...emptyBuyingWorkspace(), reviews: [review()] };
     const incoming = {
       ...emptyBuyingWorkspace(),
-      brief: { ...emptyBrief(), budget: 80000 },
       reviews: [{ ...review(), notes: 'Conflicting version' }, review('review-b')],
     };
-    const result = mergeBuyingWorkspace(current, incoming);
-    expect(result.brief).toEqual(current.brief);
-    expect(result.reviews).toEqual([review(), review('review-b')]);
-    expect(mergeBuyingWorkspace(emptyBuyingWorkspace(), incoming).brief).toEqual(incoming.brief);
+    expect(mergeBuyingWorkspace(current, incoming).reviews).toEqual([review(), review('review-b')]);
   });
-  it('rejects stale edits, removals and brief replacement while preserving independent changes', () => {
+  it('rejects stale edits and removals while preserving independent changes', () => {
     const original = review(),
       changed = { ...original, notes: 'Newer notes' };
     const w = {
       ...emptyBuyingWorkspace(),
-      brief: emptyBrief(),
       reviews: [changed, review('review-b')],
     };
     expect(() => updateReview(w, original, { ...original, notes: 'Old editor' })).toThrow(
@@ -231,31 +187,9 @@ describe('buying storage and portable reviews', () => {
     );
     expect(() => deleteReview(w, original)).toThrow('another tab');
     expect(() => updateReview({ ...w, reviews: [] }, original, original)).toThrow('another tab');
-    expect(() => updateBrief(w, null, emptyBrief())).toThrow('another tab');
     expect(updateReview(w, changed, { ...changed, notes: 'Corrected' }).reviews).toContainEqual(
       review('review-b'),
     );
     expect(deleteReview(w, changed).reviews).toEqual([review('review-b')]);
-  });
-});
-
-describe('briefFromFilters', () => {
-  it('starts a new brief from the narrowed catalog search', () => {
-    const brief = briefFromFilters({
-      ...defaultFilters,
-      budget: 45000,
-      minSeats: 5,
-      bodyStyle: 'SUV',
-      drivetrain: 'AWD',
-    });
-    expect(brief).toMatchObject({ budget: 45000, minSeats: 5, bodies: ['SUV'], drive: 'AWD' });
-    expect(brief.bodyRequired).toBe(false);
-  });
-  it('ignores catalog values that are not brief choices', () => {
-    expect(briefFromFilters({ ...defaultFilters, bodyStyle: 'Not verified' })).toMatchObject({
-      bodies: [],
-      drive: 'Any',
-      budget: null,
-    });
   });
 });

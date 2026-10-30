@@ -1,8 +1,6 @@
 import type { Car, Metric } from '@oss/car-catalog';
 import { estimateEnergy, annualEnergyEstimate } from './energy';
 import { nonApplicableReason } from './specifications';
-import { scoreBuyingBrief } from './buying';
-import type { BuyingBrief } from './buying';
 import { vehicleBodyStyle } from './vehicleBodyStyle';
 export { vehicleBodyStyle } from './vehicleBodyStyle';
 
@@ -35,13 +33,20 @@ export const priorityDefinitions = {
     max: 1150,
     lowerIsBetter: false,
   },
+  power: {
+    label: 'Horsepower',
+    metric: 'horsepower',
+    min: 150,
+    max: 450,
+    lowerIsBetter: false,
+  },
 } as const satisfies Record<
   string,
   { label: string; metric: Metric; min: number; max: number; lowerIsBetter: boolean }
 >;
 export type Priority = keyof typeof priorityDefinitions;
 export type Weights = Record<Priority, number>;
-export const defaultWeights: Weights = { price: 3, efficiency: 3, cargo: 0, room: 0 };
+export const defaultWeights: Weights = { price: 3, efficiency: 3, cargo: 0, room: 0, power: 0 };
 export interface EnergySettings {
   kilometres: number;
   fuelPrice: number;
@@ -59,8 +64,9 @@ export const defaultEnergy = {
 } satisfies EnergySettings;
 export const priorityPresets: { label: string; weights: Weights }[] = [
   { label: 'Price & energy', weights: defaultWeights },
-  { label: 'Family space', weights: { price: 3, efficiency: 2, cargo: 3, room: 3 } },
-  { label: 'Price only', weights: { price: 5, efficiency: 0, cargo: 0, room: 0 } },
+  { label: 'Family space', weights: { price: 3, efficiency: 2, cargo: 3, room: 3, power: 0 } },
+  { label: 'Performance', weights: { price: 2, efficiency: 1, cargo: 0, room: 0, power: 5 } },
+  { label: 'Price only', weights: { price: 5, efficiency: 0, cargo: 0, room: 0, power: 0 } },
 ];
 export const priorityKeys = Object.keys(priorityDefinitions) as Priority[];
 export const modelYearLabel = (car: Pick<Car, 'year'>) =>
@@ -83,7 +89,12 @@ export interface Filters {
   availability?: string;
   bodyStyle?: string;
   minSeats?: number | null;
+  minHorsepower?: number | null;
+  minRearLegroom?: number | null;
   pricedOnly?: boolean;
+  // Numeric limits keep vehicles whose figure is unverified, flagged for checking.
+  includeUnverified?: boolean;
+  hideRuledOut?: boolean;
   fuel: string;
   drivetrain: string;
   savedOnly: boolean;
@@ -102,8 +113,34 @@ export const defaultFilters: Filters = {
   savedOnly: false,
   bodyStyle: 'all',
   minSeats: null,
+  minHorsepower: null,
+  minRearLegroom: null,
   pricedOnly: false,
+  includeUnverified: false,
+  hideRuledOut: false,
 };
+
+const numericLimits = [
+  { key: 'budget', metric: 'msrpCad', label: 'base MSRP', atMost: true },
+  { key: 'minSeats', metric: 'seats', label: 'seats', atMost: false },
+  { key: 'minHorsepower', metric: 'horsepower', label: 'horsepower', atMost: false },
+  { key: 'minRearLegroom', metric: 'rearLegroomMm', label: 'rear legroom', atMost: false },
+] as const satisfies { key: keyof Filters; metric: Metric; label: string; atMost: boolean }[];
+// Limits a vehicle passes only because its figure is unverified.
+export function uncheckedLimits(car: Car, filters: Filters): string[] {
+  return numericLimits
+    .filter(({ key, metric }) => filters[key] && car.facts[metric].value === null)
+    .map(({ label }) => label);
+}
+function withinLimits(car: Car, filters: Filters) {
+  return numericLimits.every(({ key, metric, atMost }) => {
+    const limit = filters[key],
+      value = car.facts[metric].value;
+    if (!limit) return true;
+    if (value === null) return !!filters.includeUnverified;
+    return atMost ? value <= limit : value >= limit;
+  });
+}
 
 export function hasMatchingSpecification(cars: Car[], metric: Metric): boolean {
   if (cars.length < 2) return false;
@@ -178,7 +215,12 @@ const searchWords = (value: string) =>
     .split(/\s+/)
     .filter(Boolean);
 
-export function filterCars(cars: Car[], filters: Filters, savedIds: string[] = []): Car[] {
+export function filterCars(
+  cars: Car[],
+  filters: Filters,
+  savedIds: string[] = [],
+  ruledOutIds: string[] = [],
+): Car[] {
   const phrases: string[] = [];
   const query = searchWords(
     filters.query.replace(/"([^"]*)"/g, (_match, phrase: string) => {
@@ -209,11 +251,8 @@ export function filterCars(cars: Car[], filters: Filters, savedIds: string[] = [
   return cars.filter(
     (car) =>
       ((!query.length && !phrases.length) || matches(car)) &&
-      (filters.budget === null ||
-        (car.facts.msrpCad.value !== null && car.facts.msrpCad.value <= filters.budget)) &&
+      withinLimits(car, filters) &&
       (!filters.pricedOnly || car.facts.msrpCad.value !== null) &&
-      (!filters.minSeats ||
-        (car.facts.seats.value !== null && car.facts.seats.value >= filters.minSeats)) &&
       (!filters.bodyStyle ||
         filters.bodyStyle === 'all' ||
         vehicleBodyStyle(car) === filters.bodyStyle) &&
@@ -233,7 +272,8 @@ export function filterCars(cars: Car[], filters: Filters, savedIds: string[] = [
         filters.availability === 'all' ||
         car.availability.status === filters.availability) &&
       (filters.drivetrain === 'all' || car.drivetrain === filters.drivetrain) &&
-      (!filters.savedOnly || savedIds.includes(car.id)),
+      (!filters.savedOnly || savedIds.includes(car.id)) &&
+      !(filters.hideRuledOut && ruledOutIds.includes(car.id)),
   );
 }
 
@@ -245,13 +285,7 @@ export function energyCostPer100km(
   return estimate.available ? Math.round(estimate.total * 100) / 100 : null;
 }
 
-export function scoreCar(
-  car: Car,
-  weights: Weights,
-  energy: EnergySettings = defaultEnergy,
-  brief?: BuyingBrief | null,
-) {
-  if (brief?.enabled) return scoreBuyingBrief(car, brief, energy);
+export function scoreCar(car: Car, weights: Weights, energy: EnergySettings = defaultEnergy) {
   const contributions: { priority: Priority; value: number; weight: number; points: number }[] = [];
   let totalWeight = 0;
   for (const key of priorityKeys) {
@@ -292,14 +326,9 @@ export function scoreCar(
   };
 }
 
-export function rankCars(
-  cars: Car[],
-  weights: Weights,
-  energy: EnergySettings = defaultEnergy,
-  brief?: BuyingBrief | null,
-) {
+export function rankCars(cars: Car[], weights: Weights, energy: EnergySettings = defaultEnergy) {
   return cars
-    .map((car) => ({ car, ...scoreCar(car, weights, energy, brief) }))
+    .map((car) => ({ car, ...scoreCar(car, weights, energy) }))
     .sort(
       (a, b) =>
         (b.score ?? -1) - (a.score ?? -1) ||

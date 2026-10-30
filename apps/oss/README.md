@@ -40,11 +40,10 @@ When the outer dialog scrolls past the table's top, vehicle headings follow the 
 
 Fuel-specific prices are optional under the energy inputs. Blank premium, diesel and E85 fields use the shared fuel price. Exact rating fuel labels select their matching price; an explicitly verified Diesel powertrain can also use the diesel price. Other records retain the shared assumption without guessing a grade from make/model names. Cards and comparisons show the applied fuel type, unit price and shared/specific basis. Invalid used overrides leave estimates unknown; irrelevant prices do not block EVs or unused plug-in modes. Valid optional prices survive search/comparison links and reloads; older links keep their shared-price behavior.
 
-## Buying brief and test drives
+## Test drives
 
-`buying.ts` owns validated buying preferences, requirement checks, personalized
-scoring, reviews and portable backups. `useBuyingWorkspace.ts` handles independent
-device storage and stale edits. The brief replaces legacy scoring only while
-active; catalog filters still apply. The questionnaire is optional. Test-drive
-ratings remain separate from facts and numerical fit; the latest verdict can
-optionally hide ruled-out configurations. See [the behavior and privacy contract](../../docs/BUYING-BRIEF.md).
+`buying.ts` owns validated test-drive reviews and portable backups.
+`useBuyingWorkspace.ts` handles independent device storage and stale edits.
+Ratings remain separate from facts and numerical fit; the latest verdict can
+optionally hide ruled-out configurations. Requirements live in the catalog
+filters (`filterCars` in `domain.ts`). See [the behavior and privacy contract](../../docs/TEST-DRIVE-JOURNAL.md).

@@ -1,6 +1,18 @@
-# Project status — 29 October 2026
+# Project status — 30 October 2026
 
 This is the current implementation summary. Earlier release and review reports describe their dated checkpoints.
+
+## One set of filters — 30 October
+
+The buying brief has been removed. It repeated the catalog filters (budget,
+seats, body style, drivetrain) and ran a second fit score beside the first. Its
+unique parts moved into **Filters & priorities**: minimum horsepower and rear
+legroom limits, a horsepower priority with a Performance preset, an option to
+keep vehicles whose figures are unverified (each card names the limit to check),
+and hiding vehicles ruled out after a test drive. Limits and weights are in the
+URL. The test-drive journal is unchanged and opens from the results bar. Saved
+data and backups from earlier versions still load; a stored brief is dropped.
+See [limits, priorities and the test-drive journal](TEST-DRIVE-JOURNAL.md).
 
 ## Source health, GM prices and maintenance — 30 October
 
@@ -104,7 +116,7 @@ latest verdict can optionally hide ruled-out vehicles. Buying backups export and
 merge the entire brief and history while preserving existing versions. Device
 storage failures retain an exportable session; stale edits and removals reject
 newer changes. Buying data is separate from the shortlist and Garage and is
-excluded from shared URLs. See [the behavior and privacy contract](BUYING-BRIEF.md).
+excluded from shared URLs. See [the behavior and privacy contract](TEST-DRIVE-JOURNAL.md).
 
 Feature validation:
 

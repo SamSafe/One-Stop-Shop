@@ -77,34 +77,6 @@ for (const theme of ['light', 'dark']) {
   });
 }
 
-test('brief actions stay visible and validation reveals the field above the footer', async ({
-  page,
-}) => {
-  await page.goto('/?q=2026%20Toyota%20GR86&kind=retail-trim&price=0&efficiency=0&cargo=0&room=0');
-  await page.getByRole('button', { name: 'Create buying brief', exact: true }).click();
-  const dialog = page.getByRole('dialog', { name: 'Your buying brief', exact: true });
-  await dialog.getByText('Optional questionnaire: what matters to you?', { exact: true }).click();
-  const save = dialog.getByRole('button', { name: 'Save and use brief', exact: true });
-  for (const edge of ['top', 'bottom']) {
-    await dialog.evaluate((el, edge) => {
-      el.scrollTop = edge === 'top' ? 0 : el.scrollHeight;
-    }, edge);
-    await expect(save).toBeInViewport({ ratio: 1 });
-  }
-  const power = dialog.getByRole('spinbutton', { name: 'Horsepower target · hp', exact: true });
-  await power.fill('0');
-  await save.click();
-  await expect(power).toBeFocused();
-  await unobstructed(power, dialog);
-  await power.fill('200');
-  await save.click();
-  await expect(dialog).not.toBeVisible();
-  await expect(page.getByRole('button', { name: 'Edit buying brief', exact: true })).toBeVisible();
-  await expect(
-    page.getByText(/Choose at least one priority to calculate fit scores/),
-  ).not.toBeVisible();
-});
-
 test('journal editing keeps save actions visible and returns focus to saved reviews', async ({
   page,
 }) => {
@@ -170,8 +142,8 @@ test('scoring details and publication notes expand without crowding the catalog'
   const methodology = page.getByRole('region', { name: 'How scoring works', exact: true });
   await methodology.getByText('Default score scales', { exact: true }).click();
   await expect(methodology).toContainText('CAD $30,000–$60,000');
-  await methodology.getByText('Scoring with a buying brief', { exact: true }).click();
-  await expect(methodology).toContainText('full points at half the budget');
+  await methodology.getByText('Limits and unverified figures', { exact: true }).click();
+  await expect(methodology).toContainText('Keep vehicles with unverified');
   await page.getByText(/^Browse [\d,]+ official sources$/).click();
   const entry = page.locator('.source-entry').first();
   await expect(entry.getByRole('link')).toHaveAttribute('href', /^https:\/\//);
@@ -229,32 +201,4 @@ test('Garage backup preview keeps the most recently chosen file when an older re
   await expect(
     page.getByRole('article', { name: '2020 Example Sedan', exact: true }),
   ).toBeVisible();
-});
-
-test('empty brief results offer requirement editing while catalog reset preserves the brief', async ({
-  page,
-}) => {
-  await page.goto('/?q=2026%20Toyota%20GR86&kind=retail-trim');
-  await page.getByRole('button', { name: 'Create buying brief', exact: true }).click();
-  const dialog = page.getByRole('dialog', { name: 'Your buying brief', exact: true });
-  await dialog
-    .getByRole('spinbutton', { name: 'Maximum base MSRP · CAD', exact: true })
-    .fill('10000');
-  await dialog.getByRole('button', { name: 'Save and use brief', exact: true }).click();
-  await expect(
-    page.getByRole('heading', { name: 'No vehicles match your criteria.', exact: true }),
-  ).toBeVisible();
-  await page.getByRole('button', { name: 'Reset catalog filters', exact: true }).click();
-  expect(
-    await page.evaluate(() => JSON.parse(localStorage.getItem('oss-buying-v1')!).brief.budget),
-  ).toBe(10000);
-  await page.getByRole('button', { name: 'Edit requirements', exact: true }).click();
-  await expect(
-    dialog.getByRole('spinbutton', { name: 'Maximum base MSRP · CAD', exact: true }),
-  ).toHaveValue('10000');
-  await dialog
-    .getByRole('spinbutton', { name: 'Maximum base MSRP · CAD', exact: true })
-    .fill('50000');
-  await dialog.getByRole('button', { name: 'Save and use brief', exact: true }).click();
-  await expect(page.getByRole('article').first()).toBeVisible();
 });

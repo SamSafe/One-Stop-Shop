@@ -3,6 +3,7 @@ import { catalog, governmentRatingCount } from '@oss/car-catalog';
 import { priorityDefinitions, priorityKeys, priorityPresets, vehicleBodyStyle } from './domain';
 import type { Filters, Weights } from './domain';
 import { currency } from './catalogView';
+import { horsepowerChoices, legroomChoices, seatChoices } from './browsing';
 import { EnergyInputs } from './EnergyInputs';
 import type { EnergyInputs as Inputs } from './useEnergySettings';
 const fuels = [...new Set(catalog.cars.map((car) => car.fuel))].sort();
@@ -15,7 +16,6 @@ const vehicleClasses = [
   ),
 ].sort();
 export function CatalogFilters({
-  briefActive,
   filtersOpen,
   filters,
   setFilters,
@@ -24,10 +24,10 @@ export function CatalogFilters({
   scoredOnly,
   setScoredOnly,
   savedIds,
+  ruledOutCount,
   energyInputs,
   onEnergyInput,
 }: {
-  briefActive: boolean;
   filtersOpen: boolean;
   filters: Filters;
   setFilters: Dispatch<SetStateAction<Filters>>;
@@ -36,6 +36,8 @@ export function CatalogFilters({
   scoredOnly: boolean;
   setScoredOnly: (value: boolean) => void;
   savedIds: string[];
+  // Vehicles whose latest test-drive verdict is "ruled out".
+  ruledOutCount: number;
   energyInputs: Inputs;
   onEnergyInput: (key: keyof Inputs, value: string) => void;
 }) {
@@ -46,6 +48,39 @@ export function CatalogFilters({
       aria-label="Filters and priorities"
     >
       <div className="advanced-filters">
+        <div className="catalog-field">
+          <label className="field-label" htmlFor="budget">
+            Max base MSRP
+          </label>
+          <select
+            id="budget"
+            value={filters.budget ?? 'all'}
+            onChange={(event) =>
+              setFilters({
+                ...filters,
+                budget: event.target.value === 'all' ? null : Number(event.target.value),
+              })
+            }
+          >
+            <option value="all">Any price, including unverified</option>
+            {filters.budget !== null &&
+              ![25000, 35000, 50000, 75000, 100000, 150000, 250000, 500000, 1000000].includes(
+                filters.budget,
+              ) && (
+                <option value={filters.budget}>
+                  {currency.format(filters.budget)} · custom limit
+                </option>
+              )}
+            {[25000, 35000, 50000, 75000, 100000, 150000, 250000, 500000, 1000000].map((value) => (
+              <option key={value} value={value}>
+                {currency.format(value)}
+              </option>
+            ))}
+          </select>
+          <p className="field-hint">
+            Limits use verified CAD base MSRP. Unknown prices are not treated as free.
+          </p>
+        </div>
         <div className="catalog-field">
           <label className="field-label" htmlFor="body-style">
             Body style
@@ -82,46 +117,56 @@ export function CatalogFilters({
             }
           >
             <option value="all">Any seating capacity</option>
-            {[2, 4, 5, 6, 7, 8].map((seats) => (
+            {seatChoices.map((seats) => (
               <option key={seats} value={seats}>
-                {seats}+ verified seats
+                {seats}+ seats
               </option>
             ))}
           </select>
         </div>
         <div className="catalog-field">
-          <label className="field-label" htmlFor="budget">
-            Max base MSRP
+          <label className="field-label" htmlFor="min-horsepower">
+            Minimum horsepower
           </label>
           <select
-            id="budget"
-            value={filters.budget ?? 'all'}
+            id="min-horsepower"
+            value={filters.minHorsepower ?? 'all'}
             onChange={(event) =>
               setFilters({
                 ...filters,
-                budget: event.target.value === 'all' ? null : Number(event.target.value),
+                minHorsepower: event.target.value === 'all' ? null : Number(event.target.value),
               })
             }
           >
-            <option value="all">Any price, including unverified</option>
-            {filters.budget !== null &&
-              ![25000, 35000, 50000, 75000, 100000, 150000, 250000, 500000, 1000000].includes(
-                filters.budget,
-              ) && (
-                <option value={filters.budget}>
-                  {currency.format(filters.budget)} · custom limit
-                </option>
-              )}
-            {[25000, 35000, 50000, 75000, 100000, 150000, 250000, 500000, 1000000].map((value) => (
-              <option key={value} value={value}>
-                {currency.format(value)}
+            <option value="all">Any output</option>
+            {horsepowerChoices.map((hp) => (
+              <option key={hp} value={hp}>
+                {hp}+ hp
               </option>
             ))}
           </select>
-          <p className="field-hint">
-            A price limit includes only verified CAD base MSRP. Unknown prices are not treated as
-            free.
-          </p>
+        </div>
+        <div className="catalog-field">
+          <label className="field-label" htmlFor="min-legroom">
+            Minimum rear legroom
+          </label>
+          <select
+            id="min-legroom"
+            value={filters.minRearLegroom ?? 'all'}
+            onChange={(event) =>
+              setFilters({
+                ...filters,
+                minRearLegroom: event.target.value === 'all' ? null : Number(event.target.value),
+              })
+            }
+          >
+            <option value="all">Any legroom</option>
+            {legroomChoices.map((mm) => (
+              <option key={mm} value={mm}>
+                {mm.toLocaleString('en-CA')}+ mm
+              </option>
+            ))}
+          </select>
         </div>
         <div className="catalog-field">
           <label className="field-label" htmlFor="fuel">
@@ -228,19 +273,33 @@ export function CatalogFilters({
         <label className="saved-filter">
           <input
             type="checkbox"
+            checked={!!filters.includeUnverified}
+            onChange={(event) =>
+              setFilters({ ...filters, includeUnverified: event.target.checked })
+            }
+          />
+          Keep vehicles with unverified price, seats, power or legroom
+        </label>
+        {(ruledOutCount > 0 || filters.hideRuledOut) && (
+          <label className="saved-filter">
+            <input
+              type="checkbox"
+              checked={!!filters.hideRuledOut}
+              onChange={(event) => setFilters({ ...filters, hideRuledOut: event.target.checked })}
+            />
+            Hide vehicles I ruled out after a test drive <span>{ruledOutCount}</span>
+          </label>
+        )}
+        <label className="saved-filter">
+          <input
+            type="checkbox"
             checked={scoredOnly}
             onChange={(event) => setScoredOnly(event.target.checked)}
           />
           Has a fit score for my priorities
         </label>
       </div>
-      {briefActive && (
-        <p className="panel-note">
-          Your buying brief sets the fit priorities. Edit the brief above or pause it to use these
-          sliders. Energy prices apply to both.
-        </p>
-      )}
-      <fieldset className="priorities" disabled={briefActive}>
+      <fieldset className="priorities">
         <legend>What matters most?</legend>
         <div className="priority-presets" role="group" aria-label="Priority presets">
           {priorityPresets.map((preset) => (

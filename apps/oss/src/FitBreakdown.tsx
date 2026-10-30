@@ -1,23 +1,20 @@
 import { useState } from 'react';
 import type { Car } from '@oss/car-catalog';
 import type { EnergySettings, Weights } from './domain';
-import type { BuyingBrief } from './buying';
 import { SourcedFact } from './catalogView';
-import { explainFit, fitNumber, requirementDescription, requirementValue } from './fit';
+import { explainFit, fitNumber } from './fit';
 
 export function FitBreakdown({
   car,
   weights,
   energy,
-  brief,
 }: {
   car: Car;
   weights: Weights;
   energy: EnergySettings;
-  brief?: BuyingBrief | null;
 }) {
   const [open, setOpen] = useState(false);
-  const fit = open ? explainFit(car, weights, energy, brief) : null;
+  const fit = open ? explainFit(car, weights, energy) : null;
   const included = fit?.criteria.filter((row) => row.active) ?? [];
   const excluded = fit?.criteria.filter((row) => !row.active) ?? [];
   return (
@@ -26,36 +23,10 @@ export function FitBreakdown({
       {fit && (
         <div className="fit-breakdown-content">
           <p className="fit-breakdown-total">
-            <strong>{fit.score === null ? 'Unscored' : `${fit.score} / 100`}</strong> ·{' '}
-            {fit.mode === 'brief' ? 'Your buying brief' : 'Filters & priorities'}
+            <strong>{fit.score === null ? 'Unscored' : `${fit.score} / 100`}</strong> · Filters
+            &amp; priorities
           </p>
           {fit.reason && <p className="fit-breakdown-notice">{fit.reason}</p>}
-          {fit.mode === 'brief' && (
-            <>
-              <p className="fit-section-title">Your requirements</p>
-              {fit.requirements.length ? (
-                <ul className="fit-requirements" aria-label="Requirements">
-                  {fit.requirements.map((check) => (
-                    <li key={check.key}>
-                      <span>
-                        <strong>{requirementDescription(check)}</strong>
-                        <small>{requirementValue(check)}</small>
-                      </span>
-                      <span className="fit-status" data-state={check.status}>
-                        {check.status === 'met'
-                          ? 'Met'
-                          : check.status === 'unknown'
-                            ? 'Needs checking'
-                            : 'Does not meet'}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              ) : (
-                <p>No must-haves set.</p>
-              )}
-            </>
-          )}
           {!!included.length && (
             <>
               <p className="fit-section-title">Score breakdown</p>

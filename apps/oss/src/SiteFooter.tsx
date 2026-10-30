@@ -13,15 +13,15 @@ export function SiteFooter({ onClearShortlist }: { onClearShortlist: () => void 
       <details id="privacy">
         <summary>How your data works</summary>
         <p>
-          Your shortlist, buying brief, test-drive reviews and Garage records are saved in this
-          browser on this device. Export backups before moving devices or clearing site data. Manage
-          buying backups in the journal and vehicle backups in Garage.
+          Your shortlist, test-drive reviews and Garage records are saved in this browser on this
+          device. Export backups before moving devices or clearing site data. Manage buying backups
+          in the journal and vehicle backups in Garage.
         </p>
         <p>
           Searches, filters, result pages, comparison IDs, ranking weights and energy settings
           appear in the address bar and copied links. Recipients can see those choices, and URLs may
-          appear in hosting access logs. Buying briefs, reviews and the saved-only filter stay
-          local; copied links use the catalog controls.
+          appear in hosting access logs. Test-drive reviews and the saved-only filter stay local;
+          copied links use the catalog controls.
         </p>
         <p>
           OSS uses local storage for personal records and runs without app accounts or analytics.

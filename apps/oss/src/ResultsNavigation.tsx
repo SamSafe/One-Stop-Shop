@@ -2,13 +2,9 @@ import { Icon } from './catalogView';
 
 export function EmptyResults({
   emptyShortlist,
-  briefActive,
-  onEditBrief,
   onReset,
 }: {
   emptyShortlist: boolean;
-  briefActive: boolean;
-  onEditBrief: () => void;
   onReset: () => void;
 }) {
   return (
@@ -16,28 +12,15 @@ export function EmptyResults({
       <span className="empty-icon">
         <Icon name="search" size={30} />
       </span>
-      <h3>
-        {emptyShortlist
-          ? 'Your shortlist is empty.'
-          : briefActive
-            ? 'No vehicles match your criteria.'
-            : 'No vehicles match these filters.'}
-      </h3>
+      <h3>{emptyShortlist ? 'Your shortlist is empty.' : 'No vehicles match these filters.'}</h3>
       <p>
         {emptyShortlist
           ? 'Save a car with the bookmark button to find it here later.'
-          : briefActive
-            ? 'Review your buying brief or broaden the catalog filters.'
-            : 'Try a higher budget, another powertrain, or a broader search.'}
+          : 'Try a higher budget, another powertrain, or a broader search.'}
       </p>
       <div className="empty-actions">
-        {briefActive && (
-          <button type="button" className="button primary" onClick={onEditBrief}>
-            Edit requirements
-          </button>
-        )}
         <button type="button" className="button secondary" onClick={onReset}>
-          {briefActive ? 'Reset catalog filters' : 'Show all cars'} <Icon name="arrow" size={18} />
+          Show all cars <Icon name="arrow" size={18} />
         </button>
       </div>
     </div>

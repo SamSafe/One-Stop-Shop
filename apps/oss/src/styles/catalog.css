@@ -235,3 +235,7 @@
 .results-caption > .text-button {
   margin-left: auto;
 }
+/* The shortlist and journal links sit together at the end of the row. */
+.results-caption > .text-button + .text-button {
+  margin-left: 0;
+}

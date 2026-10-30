@@ -2,8 +2,7 @@ import { useState } from 'react';
 import { catalog, metricDefinitions, ratingUrl } from '@oss/car-catalog';
 import type { Car } from '@oss/car-catalog';
 import { scoreCar, fullName, modelYearLabel } from './domain';
-import { assessRequirements } from './buying';
-import type { BuyingBrief, TestDriveReview } from './buying';
+import type { TestDriveReview } from './buying';
 import { TestDriveSummary } from './TestDriveJournal';
 import type { Weights, EnergySettings } from './domain';
 import { estimateEnergy } from './energy';
@@ -27,7 +26,7 @@ export function Card({
   atLimit,
   onCompare,
   onSave,
-  brief,
+  unchecked,
   review,
   onTestDrive,
 }: {
@@ -40,12 +39,12 @@ export function Card({
   atLimit: boolean;
   onCompare: () => void;
   onSave: () => void;
-  brief: BuyingBrief | null;
+  // Filter limits this vehicle passes only because the figure is unverified.
+  unchecked: string[];
   review: TestDriveReview | undefined;
   onTestDrive: () => void;
 }) {
-  const ranking = scoreCar(car, weights, energy, brief);
-  const needs = brief ? assessRequirements(car, brief) : null;
+  const ranking = scoreCar(car, weights, energy);
   const [expanded, setExpanded] = useState(false);
   return (
     <article
@@ -107,7 +106,7 @@ export function Card({
               {ranking.score === null ? '—' : ranking.score}
               <span>/100</span>
             </strong>
-            <span>{brief ? 'brief fit score' : 'fit score'}</span>
+            <span>fit score</span>
           </div>
         </div>
         {car.publishedPrice && (
@@ -154,17 +153,10 @@ export function Card({
         </dl>
 
         <EnergyCost estimate={estimateEnergy(car, energy)} compact />
-        {needs && (
-          <div className="brief-card-match">
-            <strong>
-              {needs.unknown.length ? 'Requirements need checking' : 'Meets your requirements'}
-            </strong>
-            <p>
-              {needs.unknown.length
-                ? needs.unknown.join(' · ')
-                : needs.matched.join(' · ') || 'No must-haves set'}
-            </p>
-            {ranking.reason && <p>{ranking.reason}</p>}
+        {unchecked.length > 0 && (
+          <div className="unchecked-limits">
+            <strong>Check before buying</strong>
+            <p>Your {unchecked.join(', ')} limit could not be verified for this vehicle.</p>
           </div>
         )}
         <div className="card-test-drive">
@@ -183,7 +175,7 @@ export function Card({
           </button>
         </div>
 
-        <FitBreakdown car={car} weights={weights} energy={energy} brief={brief} />
+        <FitBreakdown car={car} weights={weights} energy={energy} />
         <div className="card-actions">
           <label className={`compare-checkbox ${atLimit && !selected ? 'is-disabled' : ''}`}>
             <input

@@ -2,6 +2,9 @@ import type { Car } from '@oss/car-catalog';
 import { defaultFilters, serializeSharedState, vehicleBodyStyle } from './domain';
 import type { Filters, SharedState } from './domain';
 
+export const seatChoices = [2, 4, 5, 6, 7, 8];
+export const horsepowerChoices = [150, 200, 250, 300, 400, 500];
+export const legroomChoices = [900, 950, 1000, 1050];
 export type SortOrder = 'fit' | 'price' | 'fuel';
 export interface BrowsingState {
   filters: Filters;
@@ -26,7 +29,11 @@ const filterParams = {
   availability: 'availability',
   bodyStyle: 'body',
   minSeats: 'seats',
+  minHorsepower: 'hp',
+  minRearLegroom: 'legroom',
   pricedOnly: 'priced',
+  includeUnverified: 'unverified',
+  hideRuledOut: 'ruledout',
   fuel: 'powertrain',
   drivetrain: 'drive',
   savedOnly: 'saved',
@@ -87,8 +94,14 @@ export function parseBrowsingState(search: string, cars: Car[]): BrowsingState {
   if (budget && /^\d{1,8}$/.test(budget) && Number(budget) > 0 && Number(budget) <= 10000000)
     filters.budget = Number(budget);
   const seats = Number(params.get('seats'));
-  if ([2, 4, 5, 6, 7, 8].includes(seats)) filters.minSeats = seats;
+  if (seatChoices.includes(seats)) filters.minSeats = seats;
+  const horsepower = Number(params.get('hp'));
+  if (horsepowerChoices.includes(horsepower)) filters.minHorsepower = horsepower;
+  const legroom = Number(params.get('legroom'));
+  if (legroomChoices.includes(legroom)) filters.minRearLegroom = legroom;
   filters.pricedOnly = params.get('priced') === '1';
+  filters.includeUnverified = params.get('unverified') === '1';
+  filters.hideRuledOut = params.get('ruledout') === '1';
   filters.savedOnly = params.get('saved') === '1';
   state.scoredOnly = params.get('scored') === '1';
   const sort = params.get('sort');

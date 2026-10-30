@@ -14,8 +14,8 @@ export function ScoringMethodology() {
           <li>
             <h3>Check the available facts</h3>
             <p>
-              A vehicle needs verified data for every active priority to receive a score. Your
-              buying brief also checks requirements before ranking.
+              A vehicle needs verified data for every active priority to receive a score. Filters
+              decide which vehicles appear; priorities only rank them.
             </p>
           </li>
           <li>
@@ -45,28 +45,28 @@ export function ScoringMethodology() {
               <dt>Rear legroom</dt>
               <dd>850–1,150 mm · more earns more points</dd>
             </div>
+            <div>
+              <dt>Horsepower</dt>
+              <dd>150–450 hp · more earns more points</dd>
+            </div>
           </dl>
           <p>
             Values between the endpoints score proportionally. Values beyond an endpoint receive
-            that endpoint's score. Price and energy are enabled initially; cargo and legroom can be
-            added under Filters &amp; priorities.
+            that endpoint's score. Price and energy are enabled initially; cargo, legroom and
+            horsepower can be added under Filters &amp; priorities.
           </p>
         </details>
         <details className="methodology-details">
-          <summary>Scoring with a buying brief</summary>
+          <summary>Limits and unverified figures</summary>
           <p>
-            Required price, seating, body style, drivetrain, power and legroom are checked first.
-            Vehicles with unverified requirements can be included for checking and remain unscored.
+            Price, seat, horsepower and rear-legroom limits use verified figures only, so a vehicle
+            with an unknown figure is left out rather than assumed to pass. Turn on Keep vehicles
+            with unverified price, seats, power or legroom to see them; each one says which limit to
+            check, and it stays unscored if a scored priority is missing.
           </p>
           <p>
-            Price points measure headroom below your budget: full points at half the budget or less,
-            zero at the budget. With no budget, the default price scale applies. Cargo, legroom and
-            horsepower earn proportional points up to your targets. Body-style and drivetrain
-            preferences receive points for a verified match. Energy keeps the default scale above.
-          </p>
-          <p>
-            Your test-drive ratings appear alongside published facts. Enable Hide vehicles I ruled
-            out to apply your latest dated verdict to the results.
+            Your test-drive ratings appear alongside published facts and never change a score. Hide
+            vehicles I ruled out applies your latest dated verdict to the results.
           </p>
         </details>
         <details className="methodology-details">
