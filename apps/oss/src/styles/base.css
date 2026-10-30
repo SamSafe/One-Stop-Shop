@@ -1,0 +1,150 @@
+* {
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--site-header-height, 88px) + 24px);
+}
+body {
+  margin: 0;
+  min-width: 320px;
+  background: var(--page);
+  color: var(--ink);
+  line-height: 1.5;
+}
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+button,
+input,
+select,
+summary,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+summary {
+  min-height: var(--control-height);
+  padding-block: 10px;
+}
+label:has(> input[type='checkbox']) {
+  min-height: var(--control-height);
+}
+button,
+summary {
+  cursor: pointer;
+}
+button {
+  color: inherit;
+  background: none;
+  border: 0;
+}
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+a {
+  color: var(--accent);
+  text-underline-offset: 3px;
+}
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+summary:focus-visible,
+[tabindex]:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+}
+button,
+input,
+select {
+  touch-action: manipulation;
+}
+h1,
+h2,
+h3,
+h4,
+p {
+  margin: 0;
+}
+h1,
+h2,
+h3,
+h4 {
+  letter-spacing: normal;
+}
+button svg,
+a svg {
+  flex-shrink: 0;
+}
+input[type='checkbox'],
+input[type='range'] {
+  accent-color: var(--action);
+}
+input,
+select,
+textarea {
+  color: var(--ink);
+  font-size: 14px;
+  background: var(--surface);
+  border: 1px solid var(--input-border);
+  border-radius: var(--radius-sm);
+}
+input,
+select {
+  min-height: var(--control-height);
+  height: var(--control-height);
+}
+select {
+  padding: 8px 30px 8px 10px;
+}
+textarea {
+  padding: 10px;
+  resize: vertical;
+}
+input[type='checkbox'] {
+  min-height: 18px;
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+input[type='range'] {
+  width: 100%;
+  min-height: 24px;
+  padding: 0;
+  background: transparent;
+  border: 0;
+}
+::placeholder {
+  color: var(--muted);
+  opacity: 1;
+}
+.sr-only {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+.skip-link {
+  position: fixed;
+  z-index: 100;
+  top: 8px;
+  left: 12px;
+  transform: translateY(-180%);
+  background: var(--ink);
+  color: var(--surface);
+  padding: 12px 18px;
+  border-radius: var(--radius-sm);
+}
+.skip-link:focus {
+  transform: translateY(0);
+}

@@ -1,0 +1,83 @@
+.discovery-shortcuts,
+.priority-presets,
+.active-filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 14px;
+}
+.discovery-shortcuts {
+  margin: 4px 0 12px;
+  font-size: 13px;
+}
+.discovery-shortcuts > span {
+  color: var(--muted);
+}
+.priority-presets {
+  margin: 12px 0 16px;
+}
+.priority-presets button[aria-pressed='true'] {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.active-filters {
+  margin: 10px 0 18px;
+}
+.active-filters:empty {
+  display: none;
+}
+.filter-chip {
+  border: 1px solid var(--line-strong);
+  background: var(--surface-alt);
+  color: var(--ink);
+  border-radius: var(--radius-pill);
+  padding: 6px 12px;
+  font-size: 12px;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  text-align: left;
+  cursor: pointer;
+  min-height: var(--control-height);
+}
+.ranking-coverage {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.6;
+  margin: 0 0 14px;
+}
+.filters .fuel-calculator {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 18px 0;
+}
+.filters .fuel-calculator .energy-field {
+  min-width: 0;
+}
+.fuel-calculator input[aria-invalid='true'] {
+  border-color: var(--danger);
+}
+.fuel-calculator .energy-field small {
+  color: var(--danger);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.discovery-shortcuts .search-share {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.fuel-calculator .energy-field:has(input:disabled) small {
+  color: var(--muted);
+}
+.fuel-calculator input:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.search-tip {
+  color: var(--muted);
+  font-size: 12px;
+  margin: 8px 0 0;
+}

@@ -97,3 +97,41 @@ export function SourceLibrary({
     </details>
   );
 }
+
+export function SourcesSection({
+  items,
+  reviewedDate,
+  formatDate,
+}: {
+  items: readonly Source[];
+  reviewedDate: string;
+  formatDate: (date: string) => string;
+}) {
+  return (
+    <section id="sources" className="sources-section" aria-labelledby="sources-title">
+      <div className="section-heading">
+        <div>
+          <h2 id="sources-title">Sources</h2>
+        </div>
+        <p>
+          Manufacturer and NRCan publications; review dates appear below.
+          <br />
+          Catalog reviewed {reviewedDate}. Every numeric spec links back to its source.
+        </p>
+      </div>
+      <SourceLibrary items={items} formatDate={formatDate} />
+      <p className="catalog-disclaimer">
+        Contains information from Natural Resources Canada under the{' '}
+        <a
+          href="https://open.canada.ca/en/open-government-licence-canada"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Open Government Licence – Canada
+        </a>
+        . Independent tool; no Government of Canada endorsement. Rating publication and retail
+        availability are separate checks.
+      </p>
+    </section>
+  );
+}

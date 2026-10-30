@@ -1,0 +1,170 @@
+.methodology-section,
+.sources-section {
+  max-width: 1280px;
+  margin: 0 auto 24px;
+  border-top: 1px solid var(--line);
+  padding: 24px 0;
+}
+.methodology-section {
+  display: grid;
+  grid-template-columns: 240px minmax(0, 1fr);
+  gap: 32px;
+}
+.methodology-section h2,
+.sources-section h2 {
+  font-size: 22px;
+  margin: 8px 0 12px;
+}
+.methodology-section p,
+.sources-section > p {
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--muted);
+}
+.methodology-content {
+  display: grid;
+  gap: 16px;
+  font-size: 14px;
+  line-height: 1.8;
+}
+.methodology-content > div {
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 14px;
+}
+.methodology-content h3 {
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+.methodology-content ol,
+.methodology-content ul {
+  padding-left: 20px;
+}
+.methodology-content li {
+  margin: 8px 0;
+}
+.methodology-caveat {
+  padding: 14px;
+  background: var(--surface-alt);
+  border-radius: var(--radius-sm);
+  font-size: 12px !important;
+}
+.source-library {
+  margin-top: 18px;
+}
+.source-library > summary {
+  font-size: 13px;
+  font-weight: 600;
+  min-height: var(--control-height);
+  color: var(--accent);
+}
+.source-library[open] > summary {
+  margin-bottom: 16px;
+}
+.source-library .field-label {
+  display: block;
+}
+.source-search {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 13px;
+  margin-top: 4px;
+}
+.source-results {
+  font-size: 12px;
+  color: var(--muted);
+  margin: 15px 0;
+}
+.source-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+.source-entry > a {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-bottom: 1px solid var(--line);
+  padding: 15px 0;
+  text-decoration: none;
+  color: var(--ink);
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.source-entry > a:hover {
+  border-color: var(--accent);
+}
+.source-entry > a > span {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--accent);
+}
+.source-grid strong {
+  font-size: 14px;
+  line-height: 1.5;
+}
+.source-grid small {
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+.source-entry {
+  min-width: 0;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  overflow-wrap: anywhere;
+}
+.source-entry > a {
+  padding: 0 0 12px;
+}
+.source-entry details {
+  color: var(--muted);
+  font-size: 12px;
+}
+.source-entry summary,
+.methodology-details summary {
+  min-height: var(--control-height);
+  padding-block: 10px;
+  color: var(--action);
+  font-weight: 600;
+}
+.source-entry p {
+  line-height: 1.7;
+}
+.methodology-details {
+  border-top: 1px solid var(--line);
+}
+.methodology-details > p {
+  margin-block: 12px;
+}
+.score-scales {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+.score-scales dt {
+  font-weight: 650;
+}
+.score-scales dd {
+  margin: 4px 0 0;
+  color: var(--muted);
+}
+.score-steps li {
+  padding-block: 6px;
+}
+@media (max-width: 820px) {
+  :root :is(input, select, textarea):not([type='checkbox']):not([type='range']) {
+    font-size: 16px;
+  }
+}
+@media (max-width: 580px) {
+  .score-scales {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .dialog-actions .button {
+    flex: 1;
+  }
+}
