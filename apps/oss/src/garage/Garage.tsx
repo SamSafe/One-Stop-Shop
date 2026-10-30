@@ -106,7 +106,8 @@ export function Garage() {
           <button
             ref={addButton}
             type="button"
-            className="button primary"
+            // The empty state carries the primary call to action until a vehicle exists.
+            className={`button ${garage.vehicles.length ? 'primary' : 'secondary'}`}
             disabled={adding}
             aria-expanded={adding}
             aria-controls="garage-add-vehicle"

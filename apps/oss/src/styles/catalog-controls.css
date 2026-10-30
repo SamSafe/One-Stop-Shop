@@ -102,5 +102,9 @@
   }
   .results-caption {
     padding-bottom: 6px;
+    row-gap: 0;
+  }
+  .results-caption > .text-button {
+    margin-left: 0;
   }
 }

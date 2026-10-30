@@ -334,7 +334,9 @@ export function VehicleCard({
         </h3>
         {!reminders.length && (
           <p className="garage-empty-note">
-            No reminders yet. Add a personal interval or use a supported manufacturer plan above.
+            {maintenanceTasks(vehicle).length
+              ? 'No reminders yet. Add a personal interval or use the manufacturer tasks above.'
+              : 'No reminders yet. Use Add reminder to set an interval from your owner’s manual or service provider.'}
           </p>
         )}
         {reminders.map(({ r, due }) => {
