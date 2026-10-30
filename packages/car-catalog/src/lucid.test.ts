@@ -81,12 +81,12 @@ describe('Canadian Lucid factory choices and exact-year new stock', () => {
     expect(snapshot.current.reduce((n, c) => n + c.states, 0)).toBe(5028);
     expect(snapshot.current.reduce((n, c) => n + c.transitions, 0)).toBe(67078);
     expect(snapshot.searches).toHaveLength(32);
-    expect(snapshot.stock).toHaveLength(115);
+    expect(snapshot.stock).toHaveLength(116);
     expect(new Set(snapshot.stock.map((r) => r.year))).toEqual(new Set([2025, 2026, 2027]));
-    expect(lucidProfiles(snapshot)).toHaveLength(421);
+    expect(lucidProfiles(snapshot)).toHaveLength(424);
     expect(
       catalog.cars.filter((c) => c.make === 'Lucid' && c.recordKind === 'retail-trim'),
-    ).toHaveLength(421);
+    ).toHaveLength(424);
     const rows = catalog.cars.filter((c) => c.make === 'Lucid' && c.recordKind === 'retail-trim');
     expect(new Set(rows.map((c) => [c.year, c.model, c.trim, c.variant].join('/'))).size).toBe(
       rows.length,

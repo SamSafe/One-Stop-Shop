@@ -42,10 +42,16 @@ client abort synchronization. Internal product codes are not independently
 multiplied into phantom retail configurations.
 
 The reviewed selection client is
-`4184-2d364a1ebec51a1e.js`, SHA-256
-`e07257d12d40b774355c165e90b8db0c54f28543a24a825e6e36e5847a3a406c`.
-Isolated research compared every explored transition and price against that
-published event function: 5,028 reachable states and 67,078 transitions matched.
+`7364-f726cc0e6a8cb4ba.js`, SHA-256
+`2e351296be6ef416e6f0ad44d89464acb532673ee7e1d104f5ffc8a0d10ddd13`.
+Isolated research compared every explored transition and price against the
+published event function in its predecessor, `4184-2d364a1ebec51a1e.js`
+(SHA-256 `e07257d1…406c`): 5,028 reachable states and 67,078 transitions
+matched. On 30 October the chunk was renamed in a site deploy; apart from its
+chunk and module IDs and one renumbered preload reference, its code is byte for
+byte the same, and the refreshed graphs keep the same state and transition
+counts. A live import compares new offerings with the previous snapshot's shape
+only, since that snapshot was reviewed against the client of its own date.
 Production synchronization does not execute the downloaded client.
 
 | Model / trim          | Valid states | Explored transitions | Equipment profiles |

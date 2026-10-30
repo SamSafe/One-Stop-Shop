@@ -15,9 +15,9 @@ export const lucidCpqUrl = (
 ) =>
   `https://ext.cpq.lucidmotors.com/cpq/configurator/${model === 'air' ? 'v2' : 'v1'}/en-ca/${model}/${year}/${kind}`;
 export const lucidSelectionClientUrl =
-  'https://lucidmotors.com/configurator/_next/static/chunks/4184-2d364a1ebec51a1e.js';
+  'https://lucidmotors.com/configurator/_next/static/chunks/7364-f726cc0e6a8cb4ba.js';
 export const lucidSelectionClientSha256 =
-  'e07257d12d40b774355c165e90b8db0c54f28543a24a825e6e36e5847a3a406c';
+  '2e351296be6ef416e6f0ad44d89464acb532673ee7e1d104f5ffc8a0d10ddd13';
 export const lucidReceiptSchema = z.strictObject({
   url: z.url().refine((s) => {
     const u = new URL(s);

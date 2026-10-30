@@ -22,6 +22,7 @@ import {
   lucidYearKey,
   lucidRequireNoRegression,
   validateLucidSnapshot,
+  lucidSnapshotSchema,
 } from '../packages/car-catalog/src/lucid-import.ts';
 import type { LucidReceipt, LucidSnapshot } from '../packages/car-catalog/src/lucid-import.ts';
 import { addLucidRetail } from '../packages/car-catalog/src/lucid.ts';
@@ -228,7 +229,9 @@ const catalog = addLucidRetail(
 if (!captured) {
   let previous: LucidSnapshot | undefined;
   try {
-    previous = validateLucidSnapshot(JSON.parse(await readFile(target, 'utf8')));
+    // The baseline was reviewed against the client pinned at its own date, so only
+    // its shape is checked before comparing offerings.
+    previous = lucidSnapshotSchema.parse(JSON.parse(await readFile(target, 'utf8')));
   } catch (error) {
     if ((error as NodeJS.ErrnoException).code !== 'ENOENT') throw error;
   }
