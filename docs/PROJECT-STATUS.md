@@ -2,6 +2,37 @@
 
 This is the current implementation summary. Earlier release and review reports describe their dated checkpoints.
 
+## Source health, GM prices and maintenance — 30 October
+
+`npm run catalog:health` reports the age of every source snapshot. Its `--replay`
+mode rebuilds each snapshot from local captures, and `--live` runs every importer
+against its live source in a temporary sandbox. A weekly workflow runs the live
+check. See [catalog sources and refresh](CATALOG-SOURCES.md).
+
+The first live run, one week after the latest refreshes, found that 9 of 25
+manufacturer importers can no longer refresh. Aston Martin, Lucid, McLaren,
+Porsche and Rivian changed the public clients their importers verify. BMW and
+Mercedes-Benz responses fail schema validation, Hyundai's API returns HTTP 400
+and MINI's stock counts no longer reconcile. Tracked snapshots are unaffected;
+these importers need review before their next refresh. Replay also found that
+the Garage owner directory was missing the 2027 BRZ 輝 Kagayaki Edition added by
+the 27 October Subaru refresh. It has been rebuilt.
+
+GM's rate-limited build calculations were retried slowly against the reviewed
+22 October trim matrices. Verified GM base MSRP rose from 376 to 1,194 of 1,230
+configurations, and catalog-wide from 2,634 to 3,452 of 3,544 retail
+configurations. Most of the remaining unverified retail prices are deliberate:
+Genesis publishes only all-inclusive prices, Infiniti's selector includes
+freight, McLaren hides prices and a few records have source conflicts.
+
+The production server now sends Brotli or gzip files written at build time.
+With the GM prices the catalog is 6.2 MB raw; it transfers as 738 KB with Brotli
+instead of 1,027 KB with the previous streamed gzip, and the owner directory as
+119 KB instead of 185 KB. The comparison page's top-level component was split into
+focused components and a results hook, and the stylesheet into area files
+imported in the original order (the built CSS is byte-identical). The README was
+rewritten; per-manufacturer refresh notes moved to the catalog sources page.
+
 ## Fit explanations and reviewed specifications — 29 October
 
 Cards and comparison score cells now expose **Why this fits**: requirement outcomes,
