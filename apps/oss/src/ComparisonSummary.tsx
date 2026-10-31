@@ -23,10 +23,11 @@ function describe(reference: Car, other: Car, metric: SummaryMetric, unit: strin
     return change.value !== null
       ? `${format(change.value)}; ${change.reason.toLowerCase()}`
       : change.reason;
+  // Show both figures, but don't subtract measurements taken on different terms.
   if (change.kind === 'context')
     return change.referenceValue === change.value
       ? `Both publish ${format(change.value!)}; ${change.reason.toLowerCase()}`
-      : change.reason;
+      : `${format(change.value!)} vs ${format(change.referenceValue!)}; ${change.reason.toLowerCase()}`;
   if (change.kind === 'same') return `Same published figure (${format(change.value!)})`;
   return `${format(Math.abs(change.delta))} ${change.delta > 0 ? 'more' : metric === 'seats' ? 'fewer' : 'less'}`;
 }

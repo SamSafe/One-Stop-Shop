@@ -3,9 +3,11 @@ import { Icon } from './catalogView';
 export function EmptyResults({
   emptyShortlist,
   onReset,
+  onRestoreShortlist,
 }: {
   emptyShortlist: boolean;
   onReset: () => void;
+  onRestoreShortlist: () => void;
 }) {
   return (
     <div className="empty-state">
@@ -22,6 +24,11 @@ export function EmptyResults({
         <button type="button" className="button secondary" onClick={onReset}>
           Show all cars <Icon name="arrow" size={18} />
         </button>
+        {emptyShortlist && (
+          <button type="button" className="text-button" onClick={onRestoreShortlist}>
+            Restore from a backup
+          </button>
+        )}
       </div>
     </div>
   );

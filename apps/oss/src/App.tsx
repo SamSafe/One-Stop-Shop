@@ -390,16 +390,20 @@ export function App() {
                       ? 'Lowest base MSRP first'
                       : 'Lowest estimated energy cost per 100 km first'}
                 </span>
-                <button
-                  type="button"
-                  className="text-button"
-                  onClick={() => setShortlistOpen(true)}
-                >
-                  Manage shortlist ({savedIds.length})
-                </button>
-                <button type="button" className="text-button" onClick={() => openJournal(null)}>
-                  Test-drive journal ({buying.workspace.reviews.length})
-                </button>
+                {(savedIds.length > 0 || storageWarning) && (
+                  <button
+                    type="button"
+                    className="text-button"
+                    onClick={() => setShortlistOpen(true)}
+                  >
+                    Manage shortlist ({savedIds.length})
+                  </button>
+                )}
+                {buying.workspace.reviews.length > 0 && (
+                  <button type="button" className="text-button" onClick={() => openJournal(null)}>
+                    Test-drive journal ({buying.workspace.reviews.length})
+                  </button>
+                )}
               </div>
               {filters.savedOnly && results.length < savedIds.length && (
                 <p className="ranking-coverage">
@@ -464,6 +468,7 @@ export function App() {
                 <EmptyResults
                   emptyShortlist={filters.savedOnly && savedIds.length === 0}
                   onReset={resetFilters}
+                  onRestoreShortlist={() => setShortlistOpen(true)}
                 />
               )}
               {results.length > 0 && (

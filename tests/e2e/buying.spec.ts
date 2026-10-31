@@ -225,9 +225,8 @@ test('personal reviews stay out of copied links and survive shortlist clearing',
   try {
     const recipient = await guest.newPage();
     await recipient.goto(link);
-    await expect(
-      recipient.getByRole('button', { name: 'Test-drive journal (0)', exact: true }),
-    ).toBeVisible();
+    await recipient.getByRole('searchbox', { name: 'Search cars', exact: true }).waitFor();
+    await expect(recipient.getByRole('button', { name: /^Test-drive journal/ })).toHaveCount(0);
   } finally {
     await guest.close();
   }

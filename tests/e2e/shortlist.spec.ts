@@ -214,7 +214,11 @@ test('choosing a new backup supersedes an earlier file that is still being read'
     };
   });
   await open(page, []);
-  const dialog = await manager(page);
+  // An empty shortlist is restored from its empty state rather than the results caption.
+  await expect(page.getByRole('button', { name: /^Manage shortlist \(/ })).toHaveCount(0);
+  await page.getByRole('button', { name: /^Shortlist/ }).click();
+  await page.getByRole('button', { name: 'Restore from a backup', exact: true }).click();
+  const dialog = page.getByRole('dialog', { name: 'Your shortlist', exact: true });
   await dialog
     .getByLabel('Choose shortlist backup', { exact: true })
     .setInputFiles(backup([hondaId], 'slow.json'));
