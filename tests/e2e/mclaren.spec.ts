@@ -4,7 +4,7 @@ import { expect, test } from '@playwright/test';
 test('McLaren Canadian factory years stay distinct from unknown prices and unresolved stock and special models', async ({
   page,
 }) => {
-  await page.goto('/');
+  await page.goto('/?trims=all');
   await revealCatalogFilters(page);
   await page.getByLabel('Make', { exact: true }).selectOption('McLaren');
   await page

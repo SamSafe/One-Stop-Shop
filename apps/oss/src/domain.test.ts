@@ -25,6 +25,7 @@ import {
   loadShortlist,
   parseSharedState,
   rankCars,
+  groupByModel,
   saveShortlist,
   scoreCar,
   serializeSharedState,
@@ -710,5 +711,28 @@ describe('device shortlists', () => {
         [first.id],
       ),
     ).toBe(false);
+  });
+});
+
+describe('grouping results by model', () => {
+  it('keeps one entry per model at its best trim, with trims in ranked order', () => {
+    const ranked = rankCars(catalog.cars, defaultWeights);
+    const groups = groupByModel(ranked);
+    const models = groups.map((group) => `${group[0]!.car.make} ${group[0]!.car.model}`);
+    expect(new Set(models.map((model) => model.toLocaleLowerCase('en-CA'))).size).toBe(
+      groups.length,
+    );
+    expect(groups.flat()).toHaveLength(ranked.length);
+    const position = new Map(ranked.map((result, index) => [result.car.id, index]));
+    for (const group of groups) {
+      const order = group.map((result) => position.get(result.car.id)!);
+      expect(order).toEqual([...order].sort((a, b) => a - b));
+    }
+    const leads = groups.map((group) => position.get(group[0]!.car.id)!);
+    expect(leads).toEqual([...leads].sort((a, b) => a - b));
+    // Model years of one model share an entry.
+    expect(groups.some((group) => new Set(group.map((result) => result.car.year)).size > 1)).toBe(
+      true,
+    );
   });
 });

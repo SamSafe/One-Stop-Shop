@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test';
 test('Land Rover shows visible Canadian derivatives while keeping unknown model years and base price basis clear', async ({
   page,
 }) => {
-  await page.goto('/');
+  await page.goto('/?trims=all');
   await revealCatalogFilters(page);
   await page.getByLabel('Make', { exact: true }).selectOption('Land Rover');
   await page

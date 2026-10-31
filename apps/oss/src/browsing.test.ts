@@ -25,6 +25,7 @@ describe('shareable browsing state', () => {
     };
     browsing.sort = 'fuel';
     browsing.scoredOnly = true;
+    browsing.allTrims = true;
     browsing.page = 3;
     const shared = {
       compare: cars.slice(0, 2).map((car) => car.id),

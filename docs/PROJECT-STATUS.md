@@ -2,6 +2,17 @@
 
 This is the current implementation summary. Earlier release and review reports describe their dated checkpoints.
 
+## One card per model — 30 October
+
+Results show one card per make and model instead of one per configuration, so
+popular models no longer fill the first pages. A card opens on the model's best
+trim for the current sort and lists every matching trim and model year, with
+prices and fit scores, to switch between; Save and Compare apply to the trim
+shown. Choosing a model, viewing the shortlist, or **Show every trim separately**
+(`trims=all` in the URL) lists configurations individually. The comparison's key
+differences now show both figures when measurement notes differ, and the
+shortlist and journal links appear only when there is something to open.
+
 ## One set of filters — 30 October
 
 The buying brief has been removed. It repeated the catalog filters (budget,

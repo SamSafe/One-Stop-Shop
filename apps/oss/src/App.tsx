@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import type { Dispatch, SetStateAction } from 'react';
 import { catalog } from '@oss/car-catalog';
 import type { Car } from '@oss/car-catalog';
@@ -6,6 +6,7 @@ import {
   defaultFilters,
   defaultEnergy,
   defaultWeights,
+  groupByModel,
   parseSharedState,
   priorityKeys,
   uncheckedLimits,
@@ -24,7 +25,7 @@ import { SourcesSection } from './SourceLibrary';
 import { AppHeader } from './AppHeader';
 import { Comparison } from './Comparison';
 import { CompareTray } from './CompareTray';
-import { Card } from './VehicleCard';
+import { ModelCard } from './ModelCard';
 import { EmptyResults, ResultsPagination } from './ResultsNavigation';
 import { ShortlistDialog } from './ShortlistDialog';
 import { SiteFooter } from './SiteFooter';
@@ -55,10 +56,11 @@ export function App() {
     setFilters,
     setSort,
     setScoredOnly,
+    setAllTrims,
     setRequestedPage,
     resetPage,
   } = useBrowsingState(initialBrowsing);
-  const { filters, sort, scoredOnly, page: requestedPage } = browsing;
+  const { filters, sort, scoredOnly, allTrims, page: requestedPage } = browsing;
   const {
     energy,
     inputs: energyInputs,
@@ -119,7 +121,15 @@ export function App() {
     scoredOnly,
     reviews: buying.workspace.reviews,
   });
-  const totalPages = Math.max(1, Math.ceil(results.length / pageSize));
+  const modelGroups = useMemo(() => groupByModel(results), [results]);
+  // A chosen model or the shortlist is a list of specific trims, so it isn't grouped.
+  const groupable = !filters.savedOnly && filters.model === 'all' && modelGroups.length > 1;
+  const grouped = groupable && !allTrims;
+  const entries = useMemo(
+    () => (grouped ? modelGroups : results.map((result) => [result])),
+    [grouped, modelGroups, results],
+  );
+  const totalPages = Math.max(1, Math.ceil(entries.length / pageSize));
   const currentPage = Math.min(requestedPage, totalPages);
   useEffect(() => {
     const next = `${window.location.pathname}${serializeViewState({ compare: compareIds, weights, reference: referenceId, energy }, { ...browsing, page: currentPage })}${window.location.hash}`;
@@ -151,7 +161,7 @@ export function App() {
   ]);
 
   const startIndex = (currentPage - 1) * pageSize;
-  const visibleResults = results.slice(startIndex, startIndex + pageSize);
+  const visibleEntries = entries.slice(startIndex, startIndex + pageSize);
   function changePage(page: number) {
     setRequestedPage(page);
     document
@@ -373,6 +383,8 @@ export function App() {
               />
               <div className="results-caption">
                 <p role="status">
+                  {grouped &&
+                    `${modelGroups.length.toLocaleString('en-CA')} ${modelGroups.length === 1 ? 'model' : 'models'} · `}
                   {results.length.toLocaleString('en-CA')}{' '}
                   {filters.recordKind === 'retail-trim'
                     ? results.length === 1
@@ -390,6 +402,16 @@ export function App() {
                       ? 'Lowest base MSRP first'
                       : 'Lowest estimated energy cost per 100 km first'}
                 </span>
+                {(groupable || allTrims) && (
+                  <button
+                    type="button"
+                    className="text-button"
+                    aria-pressed={allTrims}
+                    onClick={() => setAllTrims(!allTrims)}
+                  >
+                    Show every trim separately
+                  </button>
+                )}
                 {(savedIds.length > 0 || storageWarning) && (
                   <button
                     type="button"
@@ -446,21 +468,25 @@ export function App() {
               )}
               {results.length ? (
                 <div className="card-grid">
-                  {visibleResults.map(({ car }, index) => (
-                    <Card
-                      key={car.id}
-                      car={car}
-                      index={startIndex + index}
-                      weights={weights}
-                      energy={energy}
-                      unchecked={filters.includeUnverified ? uncheckedLimits(car, filters) : []}
-                      review={latestReview(buying.workspace.reviews, car.id)}
-                      onTestDrive={() => openJournal(car.id)}
-                      selected={compareIds.includes(car.id)}
-                      saved={savedIds.includes(car.id)}
-                      atLimit={compareIds.length >= 4}
-                      onCompare={() => toggleCompare(car.id)}
-                      onSave={() => toggleSave(car)}
+                  {visibleEntries.map((members, index) => (
+                    <ModelCard
+                      key={members[0]!.car.id}
+                      members={members}
+                      savedIds={savedIds}
+                      compareIds={compareIds}
+                      cardProps={(car) => ({
+                        index: startIndex + index,
+                        weights,
+                        energy,
+                        unchecked: filters.includeUnverified ? uncheckedLimits(car, filters) : [],
+                        review: latestReview(buying.workspace.reviews, car.id),
+                        onTestDrive: () => openJournal(car.id),
+                        selected: compareIds.includes(car.id),
+                        saved: savedIds.includes(car.id),
+                        atLimit: compareIds.length >= 4,
+                        onCompare: () => toggleCompare(car.id),
+                        onSave: () => toggleSave(car),
+                      })}
                     />
                   ))}
                 </div>
@@ -476,8 +502,8 @@ export function App() {
                   page={currentPage}
                   totalPages={totalPages}
                   firstIndex={startIndex}
-                  shown={visibleResults.length}
-                  total={results.length}
+                  shown={visibleEntries.length}
+                  total={entries.length}
                   onPage={changePage}
                 />
               )}

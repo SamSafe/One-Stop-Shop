@@ -10,12 +10,15 @@ export interface BrowsingState {
   filters: Filters;
   sort: SortOrder;
   scoredOnly: boolean;
+  // Every configuration gets its own card instead of one card per model.
+  allTrims: boolean;
   page: number;
 }
 export const initialBrowsingState = (): BrowsingState => ({
   filters: { ...defaultFilters },
   sort: 'fit',
   scoredOnly: false,
+  allTrims: false,
   page: 1,
 });
 const filterParams = {
@@ -104,6 +107,7 @@ export function parseBrowsingState(search: string, cars: Car[]): BrowsingState {
   filters.hideRuledOut = params.get('ruledout') === '1';
   filters.savedOnly = params.get('saved') === '1';
   state.scoredOnly = params.get('scored') === '1';
+  state.allTrims = params.get('trims') === 'all';
   const sort = params.get('sort');
   if (sort === 'price' || sort === 'fuel') state.sort = sort;
   const page = params.get('page');
@@ -126,6 +130,7 @@ export function serializeViewState(shared: SharedState, browsing: BrowsingState)
   }
   if (browsing.sort !== 'fit') params.set('sort', browsing.sort);
   if (browsing.scoredOnly) params.set('scored', '1');
+  if (browsing.allTrims) params.set('trims', 'all');
   if (Number.isInteger(browsing.page) && browsing.page > 1)
     params.set('page', String(browsing.page));
   const query = params.toString();

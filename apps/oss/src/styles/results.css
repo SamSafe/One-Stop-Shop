@@ -400,3 +400,72 @@
   color: var(--muted);
   margin-top: 20px;
 }
+
+/* Other trims of the model on this card. */
+.model-trims {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 4px 12px;
+  margin: 14px 0 0;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  background: var(--surface-alt);
+  font-size: 13px;
+}
+.model-trims > p {
+  margin: 0;
+  color: var(--muted);
+}
+.model-trims > p strong {
+  color: var(--ink);
+}
+.trim-list {
+  flex-basis: 100%;
+  max-height: 320px;
+  overflow-y: auto;
+  margin: 6px 0 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--line);
+}
+.trim-list li + li {
+  border-top: 1px solid var(--line);
+}
+.trim-list button {
+  display: flex;
+  width: 100%;
+  min-height: var(--control-height);
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 6px;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: none;
+  color: var(--ink);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.trim-list button:hover {
+  background: var(--surface-muted);
+}
+.trim-list button[aria-pressed='true'] {
+  background: var(--surface);
+  box-shadow: inset 3px 0 0 var(--action);
+}
+.trim-list .trim-name,
+.trim-list .trim-figures {
+  display: grid;
+  gap: 2px;
+}
+.trim-list .trim-figures {
+  flex-shrink: 0;
+  text-align: right;
+}
+.trim-list small {
+  color: var(--muted);
+  font-size: 12px;
+}

@@ -63,7 +63,7 @@ test('Porsche rear seats and manual/PDK choices retain distinct identities and n
 test('Porsche powertrain filters preserve qualified power and the menu-only allocation gap', async ({
   page,
 }) => {
-  await page.goto('/');
+  await page.goto('/?trims=all');
   await revealCatalogFilters(page);
   await page.getByLabel('Record type', { exact: true }).selectOption('retail-trim');
   await page.getByLabel('Make', { exact: true }).selectOption('Porsche');

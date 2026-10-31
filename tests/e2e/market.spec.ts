@@ -127,7 +127,7 @@ test('Rivian factory packages, six-seat layouts and older new stock keep their o
 test('Genesis regional all-inclusive prices keep their basis, missing fees and preorder status', async ({
   page,
 }) => {
-  await page.goto('/');
+  await page.goto('/?trims=all');
   await revealCatalogFilters(page);
   await page.getByLabel('Record type', { exact: true }).selectOption('retail-trim');
   await page
@@ -555,7 +555,7 @@ test('GM factory prices exclude fees, unavailable prices remain visible, and pas
 test('Kia AWD packages, overlapping model years and passenger vans retain exact factory prices', async ({
   page,
 }) => {
-  await page.goto('/');
+  await page.goto('/?trims=all');
   await revealCatalogFilters(page);
   await page.getByLabel('Record type', { exact: true }).selectOption('retail-trim');
   await page
@@ -697,7 +697,7 @@ test('full catalog is paged, retains a shortlist across pages, and supports make
 });
 
 test('price limits exclude unverified prices without hiding them by default', async ({ page }) => {
-  await page.goto('/');
+  await page.goto('/?trims=all');
   await revealCatalogFilters(page);
   await page.getByLabel('Max base MSRP', { exact: true }).selectOption('50000');
   await expect(page.locator('.price-row').filter({ hasText: 'Not verified' })).toHaveCount(0);
@@ -839,7 +839,7 @@ test('Ford pickups and passenger vans use exact factory MSRP while Lincoln hybri
 test('Mazda factory packages retain complete MSRP and source availability conflicts remain visible', async ({
   page,
 }) => {
-  await page.goto('/');
+  await page.goto('/?trims=all');
   await revealCatalogFilters(page);
   await page.getByLabel('Record type', { exact: true }).selectOption('retail-trim');
   await page.getByLabel('Make', { exact: true }).selectOption('Mazda');

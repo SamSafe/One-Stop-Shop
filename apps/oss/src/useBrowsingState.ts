@@ -18,6 +18,7 @@ export function useBrowsingState(initial: BrowsingState) {
     setSort: (sort: SortOrder) => restore((current) => ({ ...current, sort, page: 1 })),
     setScoredOnly: (scoredOnly: boolean) =>
       restore((current) => ({ ...current, scoredOnly, page: 1 })),
+    setAllTrims: (allTrims: boolean) => restore((current) => ({ ...current, allTrims, page: 1 })),
     setRequestedPage: (page: number) => restore((current) => ({ ...current, page })),
     resetPage: () => restore((current) => (current.page === 1 ? current : { ...current, page: 1 })),
   };

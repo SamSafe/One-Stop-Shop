@@ -9,12 +9,12 @@ const hondaId = 'honda-cr-v-2026-lx-fwd',
   mazdaId = 'mazda-cx-5-2026-gx-awd';
 const honda = '2026 Honda CR-V LX FWD',
   hybrid = '2026 Honda CR-V Sport Hybrid AWD';
-async function open(page: Page, ids: string[] = [hondaId]) {
+async function open(page: Page, ids: string[] = [hondaId], path = '/') {
   await page.addInitScript((ids) => {
     if (!localStorage.getItem('oss-shortlist-v1'))
       localStorage.setItem('oss-shortlist-v1', JSON.stringify({ version: 1, ids }));
   }, ids);
-  await page.goto('/');
+  await page.goto(path);
   await page.getByRole('searchbox', { name: 'Search cars', exact: true }).waitFor();
 }
 async function manager(page: Page) {
@@ -131,7 +131,7 @@ test('import merges the latest cross-tab shortlist and keeps the active comparis
   page,
   context,
 }) => {
-  await open(page);
+  await open(page, [hondaId], '/?trims=all');
   await page.getByRole('searchbox', { name: 'Search cars', exact: true }).fill('2026 Honda CR-V');
   await page.getByRole('checkbox', { name: `Compare ${honda}`, exact: true }).check();
   await page.getByRole('checkbox', { name: `Compare ${hybrid}`, exact: true }).check();
@@ -140,7 +140,7 @@ test('import merges the latest cross-tab shortlist and keeps the active comparis
     .getByLabel('Choose shortlist backup', { exact: true })
     .setInputFiles(backup([mazdaId]));
   const other = await context.newPage();
-  await other.goto('/');
+  await other.goto('/?trims=all');
   await other.getByRole('searchbox', { name: 'Search cars', exact: true }).fill('2026 Honda CR-V');
   await other.getByRole('button', { name: `Save ${hybrid} to shortlist`, exact: true }).click();
   await dialog.getByRole('button', { name: 'Add vehicles', exact: true }).click();

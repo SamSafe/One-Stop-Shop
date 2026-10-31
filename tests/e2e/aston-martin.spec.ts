@@ -4,7 +4,7 @@ import { expect, test } from '@playwright/test';
 test('Aston Martin listings preserve unknown years and prices and withhold stock-only and future products', async ({
   page,
 }) => {
-  await page.goto('/');
+  await page.goto('/?trims=all');
   await revealCatalogFilters(page);
   await page.getByLabel('Make', { exact: true }).selectOption('Aston Martin');
   await page

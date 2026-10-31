@@ -337,6 +337,19 @@ export function rankCars(cars: Car[], weights: Weights, energy: EnergySettings =
     );
 }
 
+// One entry per make and model, keeping the ranked order: each model takes the
+// position of its best trim, and its trims stay in ranked order inside it.
+export function groupByModel<T extends { car: Car }>(ranked: T[]): T[][] {
+  const groups = new Map<string, T[]>();
+  for (const result of ranked) {
+    const key = `${result.car.make}\u0000${result.car.model}`.toLocaleLowerCase('en-CA');
+    const group = groups.get(key);
+    if (group) group.push(result);
+    else groups.set(key, [result]);
+  }
+  return [...groups.values()];
+}
+
 export function annualFuelCost(car: Car, kilometres: number, cadPerLitre: number): number | null {
   if (['Electric', 'Plug-in hybrid', 'Hydrogen'].includes(car.fuel)) return null;
   return annualEnergyCost(car, kilometres, cadPerLitre, NaN);

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import type { ReactNode } from 'react';
 import { catalog, metricDefinitions, ratingUrl } from '@oss/car-catalog';
 import type { Car } from '@oss/car-catalog';
 import { scoreCar, fullName, modelYearLabel } from './domain';
@@ -16,6 +17,13 @@ import {
   publishedCurrency,
   metricKeys,
 } from './catalogView';
+export const trimLabel = (car: Car) =>
+  `${
+    car.recordKind === 'government-rating'
+      ? `${car.governmentRating?.engineLitres ? `${car.governmentRating.engineLitres} L · ` : ''}${car.governmentRating?.transmission}`
+      : `${car.trim}${car.trim.split(/\s+/).includes(car.drivetrain) ? '' : ` · ${car.drivetrain}`}`
+  }${car.variant ? ` · ${car.variant}` : ''}`;
+
 export function Card({
   car,
   index,
@@ -29,6 +37,7 @@ export function Card({
   unchecked,
   review,
   onTestDrive,
+  trims,
 }: {
   car: Car;
   index: number;
@@ -43,6 +52,8 @@ export function Card({
   unchecked: string[];
   review: TestDriveReview | undefined;
   onTestDrive: () => void;
+  // The other trims of this model, when results are grouped by model.
+  trims?: ReactNode;
 }) {
   const ranking = scoreCar(car, weights, energy);
   const [expanded, setExpanded] = useState(false);
@@ -72,12 +83,7 @@ export function Card({
             {modelYearLabel(car)} {car.make}
           </p>
           <h3 id={`title-${car.id}`}>{car.model}</h3>
-          <p className="car-trim">
-            {car.recordKind === 'government-rating'
-              ? `${car.governmentRating?.engineLitres ? `${car.governmentRating.engineLitres} L · ` : ''}${car.governmentRating?.transmission}`
-              : `${car.trim} · ${car.drivetrain}`}
-            {car.variant && ` · ${car.variant}`}
-          </p>
+          <p className="car-trim">{trimLabel(car)}</p>
           <p className="record-status">
             {car.recordKind === 'government-rating'
               ? 'NRCan rating · retail trim not checked'
@@ -109,6 +115,7 @@ export function Card({
             <span>fit score</span>
           </div>
         </div>
+        {trims}
         {car.publishedPrice && (
           <p className="published-price">
             <strong>{publishedCurrency.format(car.publishedPrice.value)}</strong> all-inclusive ·{' '}

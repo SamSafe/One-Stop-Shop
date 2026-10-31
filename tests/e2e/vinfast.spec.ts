@@ -5,7 +5,7 @@ import AxeBuilder from '@axe-core/playwright';
 test('VinFast price cards distinguish year-unverified offers from year-qualified retail profiles', async ({
   page,
 }) => {
-  await page.goto('/');
+  await page.goto('/?trims=all');
   await revealCatalogFilters(page);
   await page.getByLabel('Make', { exact: true }).selectOption('VinFast');
   await page
@@ -45,7 +45,7 @@ test('VinFast price cards distinguish year-unverified offers from year-qualified
 test('year-unverified offers retain their labels, unknown facts and stable links through comparisons and shortlists', async ({
   page,
 }) => {
-  await page.goto('/?compare=vinfast-ca-vf8-plus,vinfast-ca-vf9-eco');
+  await page.goto('/?compare=vinfast-ca-vf8-plus,vinfast-ca-vf9-eco&trims=all');
   await revealCatalogFilters(page);
   const dialog = page.getByRole('dialog');
   await expect(dialog).toBeVisible();
